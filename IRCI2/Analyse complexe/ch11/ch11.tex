@@ -1,0 +1,198 @@
+\chapter{Transformée de Laplace 1}
+\section{Motivation}
+La transformée de Laplace permet l'analyse et la description des systèmes instables.
+Si une exponentielle est présente dans l'entrée (par exemple $y(t) = H(p)\exp(pt)$), les
+conditions de convergences de la transformée de Fourier ne sont pas vérifiées : c'est
+la transformée de Laplace qui offre la solution.
+
+
+\section{Définition et région de convergence}
+	\subsection{Définition}
+	La définition de la \textit{Transformée de Laplace bilatérale} s'énonce\footnote{
+	Anglais : $p$ est remplacé par $s$.} :
+	\begin{equation}
+	X(p) = \mathcal{L}(x(t)) = \int_{-\infty}^\infty x(t)e^{-pt}dt
+	\end{equation}
+	où $p= \sigma + i\omega$ dans le but de généraliser la transformée de Fourier :
+%	\begin{equation}
+$	X(\sigma+i\omega) = \int_{-\infty}^\infty x(t)e^{-(\sigma+i\omega)t}dt$ =$ 
+	\int_{-\infty}^\infty x(t)e^{-\sigma t}e^{-i\omega t}dt
+$%	\end{equation}
+	Ce qui n'est rien d'autre que la transformée de Fourier de $x(t)e^{-\sigma t}$.
+
+
+	\subsection{Convergence de la transformée de Laplace et transformée inverse}
+	Que deviennent les conditions de Dirichlet ? On part directement de celles pour
+	Fourier en adaptant le fait que l'on travaille non plus avec une transformation 
+	de $x(t)$ mais $x(t)\exp\dots$ :
+	
+	
+	\retenir{\textbf{conditions de Dirichlet}\\
+	Soit une fonction $x(t)$ telle que 
+	\begin{enumerate}
+	\item Elle possède un nombre fini d'extréma dans tout intervalle fini de valeurs 
+	de $t$.
+	\item Elle possède un ombre fini de discontinuités, uniquement de première espèce,
+	dans tout intervalle fini de valeurs de $t$
+	\end{enumerate}
+	On a alors, pour toutes les valeurs de $\sigma$ pour lesquelles
+	\begin{equation}
+	\int_{-\infty}^\infty |x(t)|e^{-\sigma t} dt < \infty
+	\end{equation}
+	la transformée de Laplace
+	\begin{equation}
+	\int_{-\infty}^\infty x(t)e^{-pt}dt
+	\end{equation}
+	\textbf{converge}.\\
+	En outre,
+	\begin{equation}
+	\frac{x(t^+)+x(t^-)}{2}e^{-\sigma t} = \frac{1}{2\pi}\int_{-\infty}^\infty X
+	(\sigma + i\omega)e^{i\omega t}d\omega
+	\label{eq:TransfoInvLaplace}
+	\end{equation}
+	}
+	
+	\subsection{Transformée inverse}
+	La première condition de Dirichlet assure la convergence de la transformée de 
+	Laplace pour un $\sigma$ : elle permet alors d'appliquer la transformée inverse.
+	La transformée inverse s'obtient en multipliant \autoref{eq:TransfoInvLaplace} 
+	par $e^{\sigma t}$ :
+	\begin{equation}
+	\frac{x(t^+)+x(t^-)}{2} = \frac{1}{2\pi}\int_{-\infty}^\infty X
+	(\sigma + i\omega)e^{\sigma t} e^{i\omega t}d\omega
+	\end{equation}
+	En posant $p = \sigma + i\omega, dp = id\omega$ :
+	\begin{equation}
+	\frac{x(t^+)+x(t^-)}{2} = \frac{1}{2\pi}\int_{-\infty-i\omega}^{\infty+i\omega} X
+	(p)e^{pt}dp
+	\end{equation}
+	Comme $x(t)$ est une fonction continue :
+	\begin{equation}
+	x(t) = \mathcal{L}^{-1}(X(p)) = \frac{1}{2\pi i}\int_{-\infty-i\omega}^{\infty+i
+	\omega} X(p)e^{pt}dp
+	\end{equation}
+	Les bornes un peu spéciales ne font que représenter une parallèle à l'axe 
+	imaginaire, la région pour laquelle la transformée existe. On ne calcule presque
+	jamais la transformée inverse de cette façon, c'est plus un support théorique.
+
+
+	\subsection{Détermination de la RDC}
+	La \textit{région de convergence (RDC)} est l'ensemble des valeurs de $\sigma$ 
+	pour lesquelles les intégrales convergent ; les RDC sont formées de bandes 
+	parallèles  l'axe imaginaire.\\
+	\textbf{Attention !} Ne pas confondre RDV avec le rayon de convergence des 
+	séries de Taylor, ça montre juste que t'as rien compris !\\
+	On détermine la RDC en décomposant la transformée de Laplace : $X(p) = X_\_(p)+
+	X_+(p)$ :
+	\begin{equation}
+	X(p) = \int_{-\infty}^0 x(t)e^{-pt}dt + \int_0^\infty x(t)e^{-pt}dt
+	\end{equation}
+	On observe trois choses :
+	\begin{enumerate}
+	\item $X(p)$ converge absolument pour certaines valeurs de $\sigma$, impliquant 
+	que $X_\_(p)$ et  $X_+(p)$ convergent absolument pour ces valeurs de $\sigma$.
+	\item Si $X_+(p)$ converge absolument pour $\sigma=\sigma^+$ ; ceci est vrai
+	$\forall\ \sigma>\sigma^+$.\\
+	En effet : 
+	\begin{equation}
+	\int_0^\infty |x(t)|e^{-\sigma t}dt = \int_0^\infty |x(t)|e^{-\sigma^+t}e^{
+	(\sigma-\sigma^+)t} dt
+	\end{equation}
+	Comme la deuxième exponentielle est toujours inférieure à l'unité, je peux 
+	majorer la première. Si l'une est bornée, l'autre le sera aussi.
+	\begin{equation}
+	\int_0^\infty |x(t)|e^{-\sigma t}dt < \int_0^\infty |x(t)|e^{-\sigma^+t}dt
+	\end{equation}
+	\item Si $X_\_(p)$ converge absolument pour $\sigma = \sigma^-$ ; ceci est 
+	vrai pour tout $\sigma < \sigma^-$.
+	\end{enumerate}
+
+
+	\subsection{Résultat alternatif pour la convergence de la transformée de Laplace}
+	\textit{"Voir syllabus"}.
+
+
+\section{Propriétés de la transformée de Laplace}
+Je rappelle seulement les transformations, il faut se référer aux slides pour avoir
+les hypothèses complètes.
+	\subsection{Linéarité}
+	Si $x_1(t) \lt X_1(p), \alpha_1^+ < \mathbb{R}(p) < \alpha_1^-$ et $x_2(t) \lt X_2(p),
+	\alpha_2^+ < \mathbb{R}(p) < \alpha_2^-$ alors 
+	\begin{equation}
+	x(t) = k_1x_1(t) + k_2x_2(t) \lt X(p) = k_1X_1(p) + k_2X_2(p),\ \ \ k_1,k_2\in\mathbb{C}
+	\end{equation}
+	pour une RDC contenant $\max(\alpha_1^+,\alpha_2^+)< \mathbb{R} < \min(\alpha^-_1,\alpha^-_2)$.
+	
+	
+	\subsection{Fonction complexe conjuguée}
+	\begin{equation}
+	x(t)\ \text{réelle} \rightarrow X(p) = \overline{X}(\overline{p})
+	\end{equation}
+	Ceci à pour conséquence que si $x(t) \in \mathbb{R}$, si $X(p)$ possède un pole ou un 
+	zéro en $p=p_0$, alors $p=\overline{p_0}$ est également un pole ou un zéro de $X(p)$.\footnote{
+	Ceci est en rouge, voir slide 21/28.}
+	
+	
+	\subsection{Glissement dans le temps}	
+	\begin{equation}
+	x(t-t_0) \lt e^{-pt_0}X(p)
+	\end{equation}
+	
+	
+	\subsection{Glissement en $p$}
+	\begin{equation}
+	e^{p_0t}x(t) \lt X(p-p_0)
+	\end{equation}
+	
+	
+	
+	\subsection{Changement d'échelle}
+	\begin{equation}
+	x(at) \lt \frac{1}{|a|}X\left(\frac{p}{a}\right)
+	\end{equation}
+	
+	
+	\subsection{Transformée de Laplace de la dérivée d'une fonction}
+	Pour un domaine de convergence contenant $\alpha^+<\mathbb{R}<\alpha^-$ :
+	\begin{equation}
+	\frac{dx(t)}{dt} \lt pX(p)
+	\end{equation}
+	
+	\subsection{Dérivée de la transformée de Laplace}
+	\begin{equation}
+	-tx(t) \lt \frac{dX(p)}{dp}
+	\end{equation}
+	
+	
+	\subsection{Transformée de Laplace d'une convolution}
+	La démonstration est similaire à celle pour Joseph et se trouve dans le syllabus (
+	elle est \textbf{aussi} à connaître !)
+	\begin{equation}
+	x(t) = s(t)*q(t) \lt X(p) = S(p)Q(p)
+	\end{equation}
+	
+	\subsection{Intégration}
+	\begin{equation}
+	\int_{-\infty}^t x(\tau)d\tau \lt \frac{X(p)}{p}
+	\end{equation}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

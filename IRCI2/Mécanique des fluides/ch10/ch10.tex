@@ -1,0 +1,208 @@
+\chapter{Dynamique des fluides visqueux}
+\section{Introduction}
+Le \autoref{ch:ch5} nous avait montré que le fluide visqueux newtonien était défini par \autoref{eq:ComportementVisqNew} ou \autoref{eq:EqStokes}. Ces deux équations mettent 
+en évidence les deux coefficients de viscosité $\lambda$ et $\mu$. Lorsque le fluide 
+était incompressible, il y avait une relation entres ces deux coefficients de nos deux
+équations : si on ajoute l'hypothèse de Stokes, ces relations sont vérifiées même si le
+flide n'est pas incompressible.
+
+
+	\subsection{Interprétation physique}
+	Considérons $\vec{V}$ la vitesse de la plaque et $\vec{v}$ la vitesse du fluide. Le
+	long de la plaque mobile $\vec{v}=\vec{V}$ : le fluide visqueux colle et est entrainé
+	par la paroi, s'il était parfait ça ne serait pas le cas. Le log de la plaque fixe,
+	$\vec{v}=\vec{0}$.\\
+	
+	On verra (spoil) que sous certaines conditions que 
+	\begin{equation}
+	\vec{V} = V\frac{z}{L}\vec{1_x}
+	\label{eq:VitCh10}
+	\end{equation}
+	Reprenons la loi de comportement \autoref{eq:EqStokes} :
+	\begin{equation}
+	\tau_{ij} = -p\delta_{ij} + 2\mu\left(V_{ij} - \frac{1}{3}\delta_{ij}V_{kk}\right)
+	\end{equation}
+	où la vitesse est donnée par \autoref{eq:VitCh10}. Nous avons donc (où $w$, la vitesse
+	selon $z$ est nulle (vitesse est toujours horizontale)) :
+	\begin{equation}
+	\begin{array}{ccccc}
+	\tau_{xz} = 2\mu V_{xz} &\Leftrightarrow & \tau_{xz} = 2\mu\dfrac{1}{2}\left(\dfrac{
+	\partial u}{\partial z}+\underbrace{\dfrac{\partial w}{\partial x}}_{=0}\right) &
+	\Leftrightarrow & \tau_{xz}	= \mu \dfrac{\partial u}{\partial z}
+	\end{array}
+	\end{equation}
+	où $\tau_{xz}$ est la contrainte tangentielle de frottement entre les filets fluides
+	voisins, due à la différence de vitesse de ces filets fluides.
+	
+	\subsection{Unités}
+	\textbf{Inclure tableau slide 7}
+	
+\section{Equation de mouvement}
+	\subsection{Equation de Navier-Stokes}
+	La démarche est identique que celle suivie pour établir les équations d'Euler pour un
+	fluide parfait. Partons des équations générales du mouvement
+	\begin{equation}
+	\rho v_i^\bullet = f_i + \partial_j \tau_{ij}
+	\end{equation}		
+	Notre loi de comportement est toujours donnée par l'équation de Stokes 
+	\autoref{eq:EqStokes}. La vitesse de déformation est donnée par 
+	\begin{equation}
+	V_{ij} = \frac{1}{2}(v_{i,j} + v_{j,i})
+	\end{equation}
+	Le fluide étant incompressible, $\rho^\bullet = 0$:
+	\begin{equation}
+	\rho^\bullet + \rho \partial_iv_i = 0 \rightarrow V_{ii} = 0 \rightarrow V_{kk}=0
+	\end{equation}
+	On peut alors se débarasser de $V_{kk}$ dans \autoref{eq:EqStokes}.\\
+	Introduisons la définition de $\tau_{ij}$ dans les équations du mouvement : 
+	\begin{equation}
+	\rho v_i^\bullet = f_i + \partial_j[-p\delta_{ij} + 2\mu V_{ij}]
+	\end{equation}
+	En tenant compte de la définition des vitesses de déformations :
+	\begin{equation}
+	\rho v_i^\bullet = f_i-\partial_i p + \mu\partial_j(\partial_iv_j+\partial_jv_i)
+	\end{equation}
+	En effectuant la distribution, compte-tenu du résultat que nous venons d'obtenir 
+	($\rho\partial_iv_i=0$), le terme $\mu\partial_i\partial_j v_j$ s'annule pour donner
+	:\\
+	
+	\prop{\textsc{Equations de Navier-Stokes}
+	\begin{equation}
+	\rho v_i^\bullet = f_i - \partial_ip + \mu\partial_j\partial_jv_i
+	\end{equation}}
+	
+		\subsubsection{Exemple : écoulement entre deux plaques parallèles}
+		Commençons par énoncer ce que nosu avons : 
+		\begin{enumerate}
+		\item Ecoulement permanent $\rightarrow \frac{\partial}{\partial t}=0$
+		\item Fluide incompressible :$\rho^\bullet=0 \rightarrow \rho^\bullet + \rho
+		\divv\vec{v}=0 \rightarrow \divv \vec{v}=0$
+		\item Fluide visqueux $\rightarrow$ équation de Navier-Stokes
+		\item Ecoulement unidimensionnel $\rightarrow \vec{v} = (u,0,0)$
+		\end{enumerate}				
+		Comme nous avons $\divv \vec v=0$ où $\vec{v}=(u,0,0)$, cela implique :
+		\begin{equation}
+		\frac{\partial y}{\partial x} = 0 \Rightarrow u = u(z)
+		\end{equation}
+		Comme nous sommes en stationnaire et en unidimensionnel, les équations 
+		de Stokes développées se simplifient fortement :
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		\mu \frac{\partial^2u}{\partial z^2} &= \frac{\partial \hat{p}}{\partial x}\\
+		0 &= \frac{\partial \hat{p}}{\partial y}\\
+		0 &= \frac{\partial \hat{p}}{\partial z}
+		\end{array}\right.
+		\end{equation}
+		Imposons les conditions aux limites $u(0)=0, u(L)=V$ et considérons la première 
+		équation de notre système : le premier membre est fonction de $z$ et le second de
+		$x$ impliquant que les deux fonctions doivent être constantes.
+		\begin{equation}
+		\frac{d\hat{p}}{dx}= 0 \Rightarrow \hat{p}=ax+b
+		\end{equation}
+		Deux cas s'offrent à nous : 
+		\begin{enumerate}
+		\item $a=0$\\
+		\begin{equation}
+		u = V\frac{z}{L}\ \ \ ;\ \ \ v=0;\ \ \ w=0
+		\end{equation}
+		\item $a\neq0$\\
+		\begin{equation}
+		u = \frac{az}{2\mu}(z-L) + V\frac{z}{L}\ \ \ ;\ \ \ v=0;\ \ \ w=0
+		\end{equation}
+		\end{enumerate}
+		\textbf{Inclure schéma slide 25} et interprétation.
+		
+		
+	\subsection{Pression motrice}
+	Fréquemment, la force de volume est la pensenteur. En définitssant $z$ comme l'axe
+	vertical positif vers le haut :
+	\begin{equation}
+	\begin{array}{ccc}
+	\rho\vec{F}=-\rho g\vec{1_z}, & \vec{F}=-\grad U, & U=gz
+	\end{array}
+	\end{equation}
+	L'équation du mouvement s'écrit 
+	\begin{equation}
+	\rho v_i^\bullet = \rho F_i - \partial_i p +\mu\partial_j\partial_jv_i = -\grad\hat{p}
+	+\mu\Delta\ \vec v
+	\end{equation}
+	où l'on utilise la pression motrice $\hat{p}=p+\rho gz$.\\
+	Un bel exemple sur l'\textit{écoulement unidimensionnel} est donné slide 27-30. Même 
+	si je ne le reprends pas ici, notons :
+	\begin{itemize}
+	\item Attention, ne pas oublier que le $z$ caché dans $\hat{p}$ est dirigé vers le 
+	haut.
+	\item $\hat{p}$ est constant le long de la perpendiculaire à l'écoulement ; quand les 
+	lignes de courants sont parallèles dans un écoulement, $\hat{p}$ est perpendiculaire 
+	à la direction de l'écoulement.
+	\end{itemize}
+	
+	
+	\subsection{Conditions aux limites}
+	Intéressons nous aux ordres des équations d'un fluide parfait (Euler) et d'un fluide 
+	visqueux newtonien incompressible :
+	\begin{equation}
+	\begin{array}{ll}
+	\rho(\partial_0v_i + v_k\partial_kv_i) &= f_i-\partial_i p\\
+	\rho(\partial_0v_i + v_k\partial_kv_i) &= f_i-\partial_i p + \mu\Delta\ v_i
+	\end{array}
+	\end{equation}
+	Le seul terme différent est du à la viscosité qui, pas de bol, est le terme d'ordre 
+	le plus élevé : si l'on rajoute de la viscosité, on change les équations \textbf{et 
+	aussi} (ne pas oublier!) les conditions aux limites!
+	
+\section{Mouvement turbulent}
+	\subsection{Nombre de Reynolds}
+	Faisons un expérience de la pensée ! \textit{Considérons un tuyau d'arrosage cylindrique,
+	transparent et en plastique. On s'arrange pour que l'eau entre d'un coté et sorte de l'autre.
+	Injectons un liquide coloré (d'où l'importance du plastique, sinon trop dur (TWSS)). Si la
+	vitesse d'écoulement est faible, il va colorer la ligne de courant. C'est l'écoulement 
+	\textbf{laminaire} ; chaque ligne de courant est indépendante d'lune de l'autre.}\\
+	
+	\textit{Assez joué, augmentons la vitesse du fluide ! L aligne de courant va se mettre à onduler à
+	cause de la viscosité des coefficients de frottements, mais cela reste laminaire. Si on augmente
+	encore le débit l'eau claire va devenir totalement mélangée avec notre liquide coloré ; c'est 
+	l'écoulement \textbf{turbulent}.}\ \\
+	
+	Le passage de l'état laminaire à l'état turbulent peut être prédit par la valeur d'un
+	nombre sans dimensions : le nombre de Reynolds\footnote{Remarquons que le symbôle des
+	nombres sans dimensions ont 'toujours' deux lettres! Comme Mach, $Ma$ notamment.}\\
+	Pour un tube circulaire:
+	\begin{equation}
+	\text{Re} = \frac{UD}{\nu}
+	\end{equation}
+	où $U$ est la vitesse débitante (débit/section), $D$ le diamètre du tube et $\nu = \frac{
+	\mu}{\rho}$ la 	viscosité cinématique.
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\subsection{Contrainte de turbulence}
+	\subsection{Equations de Navier-Stokes moyennées}
+	
+\section{Les théorèmes de Bernouilli}

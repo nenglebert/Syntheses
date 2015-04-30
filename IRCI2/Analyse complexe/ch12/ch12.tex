@@ -1,0 +1,269 @@
+\chapter{Transformée de Laplace 2}
+\section{Calcul de la transformée de Laplace et de la transformée inverse}
+	
+	\subsection{Calcul de la transformée de Laplace}
+		\subsubsection{A partir de la défintion}
+		Voici un petit tableau qu'il peut être intéressant de connaître par cœur :
+		\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline 
+		$x(t)$ & $X(p)$ & RDC \\ 
+		\hline 
+		$\delta(t)$ & 1 & $\mathbb{C}$ \\ 
+		\hline 
+		$\nu(t)$ & $\frac{1}{p}$ & $Re(p)>0$ \\ 
+		\hline 
+		$t^n\nu(t), n \in \mathbb{N}$ & $\frac{n!}{p^{n+1}}$ & $Re(p)>0$ \\ 
+		\hline 
+		$e^{-at}\nu(t), a \in \mathbb{C}$ & $\frac{1}{p+a}$ & $Re(p)>-Re(a)$ \\ 
+		\hline 
+		$\sin\omega t\ \nu(t), \omega \in \mathbb{R}$ & $\frac{\omega}{p^2+\omega^2}$ &
+		 $Re(p)>0$ \\ 
+		\hline $\cos\omega t\ \nu(t), \omega \in \mathbb{R}$ & $\frac{p}{p^2+\omega^2}$ &
+		 $Re(p)>0$ \\ 
+		\hline 
+		\end{tabular} 
+		\end{center}
+		
+		\subsubsection{A partir des propriétés}
+		Quatre exemples utilisant les propriétés sont repris dans les slides 5 à 7. Je ne 
+		les détaille pas ici car il s'agit de matière de TP.
+
+	\subsection{Calcul de la transformée de Laplace inverse}
+		
+		\subsubsection{Par décomposition en fractions simples (Rouge!)}
+		Soit $X(p), \mathfrak{Re}(p) > \alpha$ une fraction rationnelle dont le degré du 
+		numérateur est inférieure au degré du numérateur.
+		\begin{enumerate}
+		\item Si tous les pôles sont de multiplicité \textbf{unitaire} : 
+		\begin{equation}
+		X(p) = \sum_{i=1}^n \dfrac{\alpha_i}{(p-\beta_i)}\ \text{pour }\ \mathfrak{Re}(p) >
+		\alpha\ (=\max(\mathfrak{Re}(\beta_i)))
+		\end{equation}
+		Par propriété de la linéairité et vu la RDC :
+		\begin{equation}
+		x(t) = \sum_{i=1}^n \alpha_i e^{\beta_it}\nu(t)
+		\label{eq:Sl8}
+		\end{equation}
+		\item S'il y a des poles de multiplicité supérieure à 1 :\\
+		Soit $\beta$, un pôle de multiplicité $\gamma$ :
+		\begin{equation}
+		X_\beta(p) = \sum_{l=1}^\gamma \dfrac{\alpha_k}{(p-\beta)^k}\ \text{pour }\ \mathfrak{Re}(p) >
+		\mathfrak{Re}(\beta)
+		\end{equation}
+		Par le quatrième exemple (slide 7/37) de calcul de transformée de Laplace :
+		\begin{equation}
+		x_\beta(t) = \mathcal{L}^{-1}(X_\beta(t)) = e^{\beta t}\sum_{k=1}^\gamma \alpha_k
+		\dfrac{t^{k-1}}{(k-1)!}\nu(t)
+		\end{equation}
+		\end{enumerate}
+
+
+		\subsubsection{Par application d'une formule d'inversion basée sur le théorèmes des 
+		résidus}
+		Nous allons considérer un ensemble de pôles disposés à gauche et à droite d'une région
+		de convergence. Enonçons deux hypothèses : 
+		\begin{enumerate}
+		\item Soit $X(p)$ une fraction rationnelle à coefficients réels, analytique sur $\alpha^+ <
+		\mathfrak{Re}(p) < \alpha^-$. Décomposons $X(p)$ sous la forme (gauche et droite):
+		\begin{equation}
+		X(p) = X_g(p) +X_d(p)
+		\end{equation}
+		de sorte que les pôles de $X_g(p)$ ont une partie réelle inférieure ou égale à $\alpha^+$ 
+		et ceux de $X_d(p)$ ont une partie réelle supérieure ou égale à $\alpha^-$.
+		\item Il existe $M_g, b_g, c_g,M_d, b_d, c_d \in \mathbb{R}^+$ tels que :
+		\begin{equation}
+		\begin{array}{lll}
+		|X_g(p)| < \frac{M_g}{|p|^{c_g}} & \text{lorsque} & |p| > b_g\\
+		|X_d(p)| < \frac{M_d}{|p|^{c_d}} & \text{lorsque} & |p| > b_d
+		\end{array}
+		\end{equation}
+		\end{enumerate}
+		Si les hypothèses sont vérifiées, ont peut appliquer la méthode d'inversion :\\
+		
+		\retenir{\textsc{Méthode d'inversion}\\
+		\begin{equation}
+		\begin{array}{ll}
+		x(t) &= \frac{1}{2\pi i}\lim\limits_{\omega\rightarrow\infty}\int_{\sigma-i\omega}^{
+		\sigma+i\omega} X(p)e^{pt}dp\\
+		 &= \sum_{p\in p_{-g}} \text{Res}_p\{X_g(p)e^{pt}\}\nu(t) - \sum_{p\in p_{-d}} \text{Res}_p\{X_d
+		 (p)e^{pt}\}\nu(-t), \ \ \ \  t\neq0, \alpha^+ < \sigma < \alpha^-
+		\end{array}
+		\end{equation}
+		où $p_{-g}, p_{-d}$ désignent l'ensemble des pôles de $X_g(p),X_d(p)$.}\ \\
+		
+		Pour le calcul des résidus $t$ doit être vu comme un paramètre.  La première sommation de 
+		la deuxième égalité donne la partie causale de la transfo de Laplace inverse et l'autre 
+		sommation, pour $t > 0$, la partie anticausale.\\
+		En obtient cette expression en procédant comme à la séance 7 des exercices, c'est-à-dire en
+		choisissant un arc "fermant" le contour en s'arrangeant pour que la contribution le long de
+		cet arc soit nul\footnote{La démonstration est dans les notes}.\\
+		
+		\textbf{Attention !} Dans le cas d'une fonction $H(p) = \tilde{H}(p)e^{-p\tau}$ avec $\tau 
+		\in \mathbb{R}$ et $\tilde{H}(p)$ vérifiant nos deux hypothèses, il est conseillé de suivre
+		ces deux étapes :
+		\begin{enumerate}
+		\item Appliquer la méthode d'inversion à $\tilde{H}(p)$
+		\item Utiliser la propriété du glissement dans le temps pour en déduire $h(t) = \mathcal{L}^{-1}
+		(H(p))$.
+		\end{enumerate}
+		Ceci est nécessaire car la fonction $H(p)$ ne respecte pas la deuxième hypothèse ! Illustrons :\\
+		\exemple{Exemple slide 12/37}
+		
+
+
+
+\section{Théorèmes taubériens}
+
+	\subsection{Théorème de la valeur initiale}
+	Trois hypothèses (regroupée en "hypothèse A") permettent d'assurer la convergence de la transformée
+	de Laplace :
+	\begin{enumerate}
+	\item Il existe un réel $\sigma$ pour lequel 
+	\begin{equation}
+	\int_{-\infty}^{\infty} x(t)e^{-\sigma t}dt
+	\end{equation}
+	converge absolument (première condition de Dirichlet)
+	\item $x(t)$ possède un nombre fini d'extréma dans tout intervalle fini de valeur de$t$
+	\item $x(t)$ possède un nombre fini de discontinuités de première espèce dans tout intervalle
+	fini de valeurs de $t$.
+	\end{enumerate}
+	
+	\theor{\textsc{valeur initiale}\\
+	Considérons une fonction causale\footnote{Une fonction causale est une fonction définie sur 
+	l'ensemble des réels dont le support est borné à gauche.} $x(t)$ vérifiant l'hypothèse A. 
+	S'il existe un nombre complexe
+	$\alpha$ tel que 
+	\begin{equation}
+	\lim\limits_{t\rightarrow 0^+} x(t) = \alpha,
+	\end{equation}
+	alors
+	\begin{equation}
+	\lim\limits_{\sigma\rightarrow \infty} \sigma X(\sigma) = \alpha,
+	\end{equation}
+	où $\sigma \in \mathbb{R}, X(p) = \mathcal{L}(x(t))$.}\ 
+	
+	
+	\corollaire{ \textsc{Important (rouge)}\\
+	Soit $X(p)$ une fraction rationnelle dont le degré du numérateur est inférieur au degré du 
+	dénominateur. Soit $x(t)$ la fonction causale telle que $x(t) = \mathcal{L}^{-1}(X(p))$, alors
+	\begin{equation}
+ 	\lim\limits_{\sigma \rightarrow \infty} \sigma X(\sigma) = \lim\limits_{t\rightarrow 0^+} x(t)
+	\end{equation}
+	}
+	
+
+	\subsection{Théorème de la valeur finale}	
+	\theor{\textsc{valeur finale}\\
+	Soit une fonction $x(t)$ vérifiant l'hypothèse $A$ et telle que $x(t)=0$ pour $-\infty < t <
+	T, T \in \mathbb{R}$. S'il existe un $\alpha$ réel tel que 
+	\begin{equation}
+	\lim\limits_{t\rightarrow\infty} x(t) = \alpha,
+	\end{equation}
+	alors
+	\begin{equation}
+	\lim\limits_{\sigma\rightarrow0^+} \sigma X(\sigma) = \alpha
+	\end{equation}}\
+	Ce théorème est le "petit frère". On "passe" d'une information $x(t)$ à $x(p)$, mais est-t-il
+	possible de passer de $x(p)$ à $x(t)$ ? Oui, avec le corollaire suivant :\\
+
+	\corollaire{ \textsc{Important (rouge)}\\
+	Il faut avant tout respecter deux hypothèses : avoir une fraction rationnelle multipliée par 
+	une exponentielle et l'analycité assurant la convergence (vient de l'expression de la transfo
+	inverse \autoref{eq:Sl8}) ;
+	\begin{enumerate}
+	\item Soit $X(p) = G(p)e^{ap}$ où $a \in \mathbb{R}$ et $G(p)$ est une fraction rationnelle dont
+	le degré du numérateur est inférieur au degré du dénominateur.
+	\item Supposons que $pX(p)$ est \textbf{analytique pour tout $p$ tel que $\mathfrak{Re}(p)\geq0$.}
+	\end{enumerate}
+	Si $x(t)$ est la fonction nulle pour $t < -a$ telle que $x(t) = \mathcal{L}^{-1}(X(p))$, alors
+	\begin{equation}
+	\lim\limits_{t\rightarrow\infty}x(t) = \lim\limits_{\sigma\rightarrow 0^+} \sigma X(\sigma)
+	\end{equation}}\
+	\textbf{Attention !} L'hypothèse portant sur l'analycité est impérative sans quoi on peut déduire
+	des conclusions totalement erronées du corollaire du théorème de la valeur finale.
+	
+	
+	
+\section{Transformée de Laplace unilatérale}
+L'intérêt de la transformée de Laplace unilatérale est la résolution d'EDL avec des CI non homogènes.
+Ceci permet l'étude de système non initialement au repos.
+	
+	\subsection{Définition}
+	Comme d'habitude, on commence par ré-écrire les conditions de Dirichlet "adaptée" (la première
+	est en rouge).\\
+	Soit une fonction $x(t)$ qui vérifie les conditions suivantes :
+	\begin{enumerate}
+	\item Il existe un $\alpha \in \mathbb{R}$ tq $\int_0^\infty |x(t)|e^{-\sigma t} < \infty\ \ 
+	\forall \sigma > \alpha$.
+	\item $x(t)$ possède un nombre fini d'extrema dans tout intervalle fini de valeurs de $t$, avec
+	$t\geq 0$
+	\item $x(t)$ possède un nombre fini de discontinuités de première espèce dans tout intervalle
+	fini de valeurs de $t$, avec $t\geq 0$.
+	\end{enumerate}
+	La \textbf{transformée de Laplace unilatérale}
+	\begin{equation}
+	\mathcal{X}(p) = \mathcal{L}_u(x(t)) = \int_0^\infty x(t)e^{-pt}dt
+	\end{equation}
+	converge pour $\mathfrak{Re}(p)>\alpha$.
+	
+	\subsection{Transformée inverse}
+	\retenir{\begin{equation}
+	x(t) = \mathcal{L}_u^{-1}(\mathcal{X}(p)) = \frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma
+	+i\infty} \mathcal{X}(p)e^{pt}dp
+	\end{equation}
+	existe $\forall \sigma> \alpha$ et $t>0$	 sauf aux points de discontinuité de $x(t)$.\\
+	On la note
+	\begin{equation}
+	x(t) \overset{\mathcal{L}_u}{\longleftrightarrow} \mathcal{X}(p)
+	\end{equation}}
+	
+	Notons une propriété : \textit{pour une fonction causale, la transformée de Laplace unilatérale  
+	est	égale à la transformée de Laplace bilatérale.}
+	
+	
+	\subsection{Application à l'impulsion de Dirac}
+	Le zéro doit-il appartenir à l'intervalle d'intégration ? En adaptant la définition, on trouve
+	(en rouge encadré) :
+	\begin{equation}
+	\mathcal{X}(p) = \mathcal{L}_u(x(t)) = \int_{0^-}^\infty x(t)e^{-pt}dt
+	\end{equation}
+	L'application de ceci est directe : $\mathcal{L}_u(\delta(t)) = 1$.
+	
+	
+	\subsection{Propriétés}
+		\subsubsection{Transformée de Laplace unilatérale de la dérivée d'une fonction}
+		En intégrant par parties 
+		\begin{equation}
+		\int_{0^-}^\infty \frac{dx}{dt}e^{-pt}dt = x(t)e^{-pt}|_{0^-}^{\infty} + p\int_{0^-}^{
+		\infty} x(t)e^{-pt}dt
+		\end{equation}
+		soit (en rouge, encadré),
+		\begin{equation}
+		\mathcal{L}_u\left(\frac{dx}{dt}\right) = p\mathcal{X}(p) - x(0^-)
+		\end{equation}
+		\textbf{pour une RDC incluant $\mathfrak{Re}(p)>\alpha$} où $\alpha$ est l'abscisse de
+		convergence absolue de $\mathcal{X}(p)$.
+		
+		\subsubsection{Dérivée seconde}
+		Juste encadré cette fois hyhy :
+		\begin{equation}
+		\mathcal{L}_u\left(\frac{d^2x}{dt^2}\right) = p^2\mathcal{X}(p) - px(0^-) - \left.\frac{
+		dx}{dt}\right|_{t=0^-}
+		\end{equation}
+		pour une RDC incluant $\mathfrak{Re}(p) > \alpha$.
+		
+		\subsubsection{Rapidos}
+		\begin{itemize}
+		\item Convolution et propriété du glissement en $t$ requièrent fonctions causales.
+		\item Transformée de Laplace bilatérale $X(p)$ peut être remplacée par transformée 
+		unilatérale $X(p)$ dans les théorèmes de la valeur initiale et de la valeur finale 
+		ainsi que dans leurs corollaires.
+		\end{itemize}
+
+	\subsection{Exemple - Circuit RC}
+	Comme en BA1 et en électricité, ça devrait aller (slide 30/31).
+	
+
+\section{Résolution d'équations aux dérivées partielles}
+Toujours comme en BA1 et en électricité, ça devrait aller (slide 33/37).

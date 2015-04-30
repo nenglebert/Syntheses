@@ -1,0 +1,217 @@
+\chapter{Modélisation}
+
+\section{Ondes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Notre microphone laser s'appuyant sur le principe d'interférences
+lumineuses, acquérir les concepts liés à celles-ci est indispensable pour
+la réalisation de notre projet.
+
+    \subsection{Ondes électromagnétiques}
+    La lumière est une onde électromagnétique qui peut être décrite
+    selon l'équation d'onde standard\footnote{Nous travaillons avec le champ électrique $\vec{E}$ car le champ magnétique $\vec{B}$ peut être retrouvé à partir de la \textit{Loi de Faraday} : rot $\vec{E} = -\partial \vec{B}/\partial t$} :
+    
+    \begin{equation}
+        \Delta \vec{E} = \mu_0\epsilon_0\frac{\partial^2\vec{E}}{dt^2}
+    \end{equation}
+        
+    Pour la simplicité des développements, nous ne considérerons cette
+    équation d'onde qu'à une seule dimension spatiale : 
+    
+    \begin{equation}
+        \frac{\partial^2 E}{\partial z^2} = 
+        \frac{1}{c^2}\frac{\partial^2 E}{dt^2}
+    \end{equation}
+    
+    Dans notre cas à une dimension spatiale, on peut montrer que cette équation
+    d'onde à pour solutions toutes fonction de la forme :
+
+    \begin{equation}
+	E(z,t) = f(z - vt)    
+    \end{equation}
+    
+	\subsection{Ondes harmoniques} 	
+	Dans le cadre de l'élaboration de notre modèle théorique, nous avons choisi 
+	modéliser les déplacements d'une vitre par une fonction harmoniques tel un
+	cosinus. Il convient donc de s'intéresser à la forme d'une onde lorsque
+	celle-ci se voit imposer un mouvement harmonique.\\
+	Pour retrouver cette équation d'onde, posons un problème de conditions aux
+	limites :
+	
+	\begin{equation}
+	E(0,t) = A\cos(\omega t) = f(0-ct)
+	\end{equation}
+	
+	Par changement de variables, nous trouvons l'équation d'onde associée :
+	
+	\begin{equation}
+	E(z,t) = f(z-ct) = A\cos\left[\frac{\omega}{c(z-ct)}\right]
+	\end{equation}
+	
+	En introduisant le \textit{nombre d'onde} $k := \omega/c$ l'expression devient 
+	:
+	
+	\begin{equation}
+	E(z,t) = A\cos(kz-\omega t)
+	\end{equation}
+ 	
+ 	
+ 	
+    \subsection{Interférences}
+    Ayant choisi de procéder par interférométrie au \textbf{CH2}, il nous faut 
+    comprendre ce phénomène. Par définition : "\textit{L'interférométrie est
+    une méthode de mesure qui exploite les interférences intervenant entre
+    plusieurs ondes cohérentes entre elles.}"\footnote{SOURCE !}.\\
+    Considérons deux ondes électromagnétiques sinusoïdale $E$ et 
+    $E_2$ et $E$, la somme de ces deux ondes.
+    
+    \begin{equation}
+    E(z,t) = E_1(z,t) + E_2(z,t)
+    \end{equation}
+
+   	Si ces deux ondes ont la même fréquence, il se produira des interférences.
+   	En sommant ces deux ondes, nous pourrons obtenir des \textit{interférences
+   	constructives} ou \textit{destructrices} comme le suggère le schéma ci-	
+   	dessous.
+   	\begin{center}
+    \includegraphics[scale=0.4]{modelisation/image3.png}
+    \captionof{figure}{Interférences}
+	\end{center}
+   	
+   	
+
+	\subsection{Cohérence}
+	Deux ondes sont dites cohérentes si celles-ci gardent une fréquence et
+	un déphasage constant l'une par rapport à l'autre. Cette condition est
+	fondamentale car si deux ondes ne sont pas cohérentes entre elles, il
+	y aura en moyenne autant d'interférences constructives que 
+	destructrices et aucune interférence ne sera observée.
+	
+		\subsubsection{Cohérence temporelle}
+		La longueur de cohérence est la différence maximale de longueur entre
+		deux chemins suivis par une onde pouvant donnée lieu à des interférences
+		lors de la combinaisons de ces deux ondes. 
+		
+		\begin{equation}
+		L_C = \tau_c v
+		\end{equation}
+		où $v$ est la vitesse de propagation de l'onde et $\tau_c$ le temps de 
+		cohérence.\\
+		
+		Le temps de cohérence est lié à la largeur de la bande spectrale. Si l'
+		onde est réellement monochromatique (une seule fréquence), son temps de
+		cohérence serait en théorie infinis. Le temps de cohérence est en effet
+		définit comme étant l'inverse de la largeur spectrale\footnote{Intervalle
+		entre la plus haute fréquence et la plus basse.} $\Delta \nu$ de la
+		source.
+		\begin{equation}
+		\tau_c = \dfrac{1}{\Delta \nu}
+		\end{equation}
+        
+		\subsubsection{Cohérence spatiale}      
+		La cohérence spatiale 
+        
+        \subsubsection{Laser}
+        Un laser est une source lumineuse respectant à la fois la cohérence 
+        temporelle et spatiale. Le peu d'informations lié à la largeur spectrale
+        ainsi qu'à la longueur de cohérence nous à poussé à calculer ce-dernier
+        expérimentalement \textbf{LIEN RAPPORT LABO ANNEXE}
+        
+        
+
+\section{Interféromètre de Michelson}
+Le microphone laser se basant sur l'observation du changement d'une onde
+déjà connue, il fallut recourir à un dispositif où l'on pourrait détecter
+aisément cette modification. L'interféromètre de Michelson parut fournir
+un résultat précis sans pour autant se révéler infaisable en pratique.
+Ce montage est constitué d'une source, d'une lame séparatrice de faisceaux,
+de deux miroirs, d'un récepteur et éventuellement d'une lame de compensation.
+La lame de compensation étant indiquée pour les expériences visant à mettre
+en évidence la formation de franges d'interférence, elle ne fut pas utilisée
+dans ce projet-ci car il nécessitait de mesurer les variations d'intensité
+lumineuse. Le principe de cet interféromètre est qu'une source émet de la
+lumière vers le séparateur de faisceaux, donnant lieu à deux rayons lumineux
+de directions de propagation différentes. Ces rayons seront  reflétés par
+des miroirs vers le séparateur de faisceaux qui, cette fois,les laissera
+passer dans la direction du récepteur. Le récepteur captera ainsi la
+recombinaison des deux ondes dont la fonction mathématique permettra entre
+autres de calculer les variations de position des deux miroirs.
+
+\begin{center}
+    \includegraphics[scale=0.4]{modelisation/image1.jpg}
+    \captionof{figure}{Interféromètre de Michelson}
+\end{center}
+
+\section{Interférences}
+Intéressons nous maintenant à la recombinaison des ondes au niveau de
+notre récepteur. Pour se faire, considérons deux ondes planes : l'onde
+$E_1$ réfléchie sur un miroir $M_1$, $E_2$ est l'onde réfléchie sur
+un miroir $M_2$ et $E_3$ est la recombinaison de ces deux ondes.
+
+% J'ai changé tes \eqnarray en \equation. C'est plus mieux. Faut utiliser
+% des sous environnement de \equation plutôt que \eqnarray
+
+\begin{equation}
+\begin{aligned}
+    E_1 &= E_{01}\sin(kL_1 + \omega t)\\
+    E_2 &= E_{02}\sin(kL_2 + \omega t)\\
+    E_3 &= E_1 + E_2
+\end{aligned}
+\end{equation}
+    
+La photodiode réagissant en fonction de l'intensité lumineuse, il nous
+faut trouver celle-ci. L'intensité lumineuse est définie comme étant
+la densité surfacique de puissance de l'onde électromagnétique.
+Celle-ci est proportionelle au module carré du champ électrique
+
+\begin{equation}
+    I \propto \module{E}^2 
+\end{equation}
+
+Ce qui dans notre cas donne :
+
+%(ligne de 72 caractères de référence)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{equation}
+\begin{split}
+    I & \propto (E_1 + E_2)^2\\
+      & \propto \left(E_{01}\sin(kL_1 + \omega t) +
+        E_{02}\sin(kL_2 + \omega t)\right)^2\\
+      & \propto E_{01}^2\sin^2(kL_1 + \omega t) +
+        E_{02}^2\sin^2(kL_2 + \omega t)\\
+      & \quad + 2E_{01}E_{02}\sin(kL_1 + \omega t)\sin(kL_2 + \omega t)
+\end{split}
+\end{equation}
+
+%\begin{eqnarray}
+%    I &\propto & (E_1 + E_2)^2\\
+%    \ &\propto & \left(E_{01}\sin(kL_1 + \omega t) +
+%                 E_{02}\sin(kL_2 + \omega t)\right)^2\\
+%    \ &\propto & E_{01}^2\sin^2(kL_1 + \omega t) +
+%                 E_{02}^2\sin^2(kL_2 + \omega t) +
+%                 2E_{01}E_{02}\sin(kL_1 + \omega t)\sin(kL_2 + \omega t)
+%\end{eqnarray}
+    
+En utilisant les relations trigonométriques\footnote{$2\sin(a)\sin(b)
+= \cos(a - b) - \cos(a + b)$ et $2\sin^2(a) = 1 - \cos(2a)$}, l'équation
+devient :
+
+\begin{multline}
+    I \propto \frac{1}{2}E_{01}^2(1 - \cos(2kL_1 + 2\omega t) +
+    \frac{1}{2}E_{02}^2(1 - \cos(2kL_2 + 2\omega t) +
+    E_{01}E_{02}\cos(k\Delta L)\\ - \frac{1}{2}E_{01}^2
+    \cos(2kL_1 + 2\omega t) - \frac{1}{2}E_{02}^2
+    \cos(2kL_2 + 2\omega t) - E_{01}E_{02}\cos[k(L_1 + L_2) + 2\omega t]
+\end{multline}
+
+\begin{multline}
+    I \propto \frac{1}{2}(E_{01}^2 + E_{02}^2) + E_{01}E_{02}\cos(k.\Delta L) - \frac{1}{2}E_{01}^2\cos(2kL_1 + 2\omega t)\\ - \frac{1}{2}E_{02}^2\cos(2kL_2 + 2\omega t) 
+    - E_{01}E_{02}\cos[k(L_1 + L_2) + 2\omega t]
+\end{multline}
+
+où $\Delta L = L_1 - L_2$.\\
+
+Il est en pratique plus utile de se baser sur l'intensité moyenne, le récepteur n'étant sensible qu'à l' intensité lumineuse moyenne et non à la variation rapide de fréquence. 
+
+\begin{equation}
+    I \propto \frac{1}{2}(E_{01}^2 + E_{02}^2) + E_{01}E_{02}\cos(k.\Delta L) 
+\end{equation}

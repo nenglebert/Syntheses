@@ -1,0 +1,28 @@
+\shorthandoff{:!}
+\begin{circuitikz}[scale=1]
+\draw (0,0) node[op amp] (opamp) {} % Circuit
+(opamp.+) node[left]{}
+	to[short] (-1.25,-0.49)
+	to[short] (-1.25,-2)
+	to[short] (2,-2)
+(opamp.-) node[left]{}
+	to[short] (-1.75,0.49)
+	to[C=$C_1$] (-5,0.49)
+(opamp.out) node[right] {}
+	to[short] (2,0)
+	to[R=$R_2$,i=$i_2$,v=$V_{\text{out}}$] (2,-2)
+	to[R=$R_1$,i=$i_1$] (2,-4)
+	to[C=$C_2$] (0,-4)
+	node[ground]{};
+\draw (-5,-2) node[ground]{}
+	to[european voltage source=$V_{\text{in}}$] (-5,0.49);
+\draw (-2.5,0.49)
+	to[R=$R$] (-2.5,-2)
+	node[ground]{};
+\draw
+	[dashed] (-1,-2.2) rectangle (3,-5)
+	[dashed] (-3.8,1.2) rectangle (-1.5,-3)
+	(-3,-3) node[anchor=north]{Filtre passe-bas}
+	(3,-4) node[anchor=west]{Filtre passe-haut};
+\end{circuitikz}
+\shorthandon{:!}

@@ -1,0 +1,113 @@
+\chapter{Notion de signal et de système}
+\section{Notion de signal}
+	\subsection{Définition}
+	Un signal est une fonction d’une ou de plusieurs variables indépendantes 
+	qui contient de l’information sur certains phénomènes. Les signaux sont 
+	souvent des fonctions représentant des grandeurs physiques (pression, 
+	température, tension électrique, ...).
+	
+		\subsubsection{Signal continu et signal discret}
+		\begin{itemize}
+		\item Signal continu : $x(t), t \in [a,b] | a,b\in\mathbb{R}$
+		\item Signal discret : $x(k), k \in [a,b] | a,b\in\mathbb{Z}$
+		\end{itemize}
+	
+		\subsubsection{Signaux continus de base : $\exp,\sin,\cos$}
+		Par exemple $C\exp(at)$ où $C = |C|\exp(i\theta), a = r+i\omega_0$. 
+		On peut également écrire :
+		\begin{equation}
+		\begin{array}{ll}
+		C\exp(at) &= |C|e^{rt}\exp(i(\omega_0t+\theta))\\
+		 &= |C|e^{rt}(\cos(\omega_0+\theta) + i\sin(\omega_0+\theta))
+		\end{array}
+		\end{equation}
+		Pour $r<0$, la sinusoide sera amortie (comme la réponse d'un circuit
+		RLC, suspension automobile (ressort + dashpot\footnote{On s'en fiche, 
+		mais j'aimais bien le mot \textit{dashpot}.})
+		
+	\subsection{Fonction d'Heaviside}
+	La fonction d'Haeviside $\nu(t)$ est définie :
+	\begin{equation}
+	\nu(t) = \left\{\begin{array}{ll}
+	0 & t<0\\
+	1 & t>0	
+	\end{array}\right.
+	\label{eq:Heaviside}
+	\end{equation}
+	
+	\subsection{Impulsion de Dirac}
+	On remarque que la "fonction" d'Heaviside n'en est pas vraiment une (pas 
+	très injectif, n'est ce pas ?) : on va pouvoir l'approximer grâce à l'
+	impulsion de Dirac\footnote{Un traitement rigoureux requiert l'utilisation 
+	de la théorie des fonctions généralisées.}.\\
+	Le lien avec la fonction d'Heaviside est donné par : 
+	\begin{equation}
+	\nu(t) = \int_{-\infty}^t \delta(t)\ d\tau
+	\end{equation}
+	L'\textit{impulsion de Dirac} est la dérivée première de la fonction d'
+	Heaviside : $\delta(t) = \frac{d\nu(t)}{dt}$. Si $t>0$, on retrouve bien 
+	le fameux 1 défini en \autoref{eq:Heaviside}, sinon l'impulsion n'est pas 
+	dans l'intervale d'intégration et l'on retrouvera bien 0.\\
+	L'approximation de la fonction d'Heaviside est la suivante :
+	\begin{equation}
+	\nu_\epsilon(t) = \left\{\begin{array}{ll}
+	0 & t<0\\
+	\frac{t}{\epsilon}	 & 0\leq t \leq \epsilon\\
+	1 & t \geq \epsilon
+	\end{array}\right.
+	\end{equation}
+	La dérivée $\delta_\epsilon = \frac{d\nu_\epsilon}{dt}$ correspond à une 
+	impulsion de durée $\epsilon$ et de surface unitaire. On retrouve bien 
+	$\delta(t) = \lim\limits_{\epsilon\rightarrow0} \delta_\epsilon(t)$.\\
+	Pour la réprésentation graphique, on considère le cas ou la base tend 
+	vers zéro et donc la hauteur est très élevée. \textbf{Attention !} Il 
+	est faux de dire $\delta(0)=1$.
+	
+	
+\section{Notion de système}
+	\subsection{Définition}
+	Un système est un dispositif qui répond à un ou plusieurs signaux d’entrées 
+	en engendrant un ou plusieurs signaux de sortie. Il peut être considéré 
+	comme un ensemble de composants interconnectés par lesquels les signaux 
+	d’entrée sont transformés.
+	
+	\subsection{Classe des systèmes linéaires permanents (SLP)}
+	Un système décrit par l'équation $y(t) = \varphi(u(t))$ est linaire s'il 
+	vérifie les propriétés de superposition et d'homotétié, c'est-à-dire :
+	\begin{enumerate}
+	\item \textit{Propriété de superposition}.\\
+	Si $y_1(t) = \varphi(u_1(t)), y_2(t) = \varphi(u_2(t))$, alors :
+	\begin{equation}
+	y_1(t)+y_2(t) = \varphi(u_1(t) + u_2(t))
+	\end{equation}
+	\item \textit{Propriété d'homotéthie}.\\
+	\begin{equation}
+	ay_1(t) = \varphi(au_1(t))\ \ \ \ a \in \mathbb{C}
+	\end{equation}
+	\end{enumerate}	
+	Ces deux propriétés peuvent être reprises en une seule expression :
+	\begin{equation}
+	ay_1(t) + by_2(t) = \varphi(au_1(t) + bu_2(t))\ \ \ a,b\in\mathbb{C}
+	\end{equation}		
+	
+	
+		\subsubsection{Définition d'un système permanent (Time inveriant 
+		system)}
+		Si $y(t)$ est la sortie correspondant à $u(t)$, alors $y(t-t_0)$ 
+		est la sortie correspondant à $u(t-t_0) \forall\ \ t_0$.
+		
+		\exemple{Soit $y(t) = u(2t)$ non permanent (time varying). Si l'on
+		impose un changement d'échelle temporel (compresson d'un facteur 2 
+		dans le temps, alors tout décalage temporel de l'entrée est comprimé 
+		d'un facteur 2.}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

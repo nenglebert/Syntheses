@@ -1,0 +1,40 @@
+\scalebox{0.7}{
+\shorthandoff{!:}
+\begin{circuitikz}[scale=1]
+
+\draw (0,0) node[op amp] (opamp) {} % Circuit
+(opamp.+) node[left]{}
+	to[short] (-1.5,-0.49)
+	to[short] (-1.5,-2)
+(opamp.-) node[left]{}
+	to[short] (-2.5,0.49)
+	to[R=$R_1$] (-4,0.49)
+	to[C=$C_1$] (-6.5,0.49)
+	to[open,v=$V_{\text{in}}$] (-6.5,-2)
+	to[short] (-1.5,-2)
+(opamp.out) node[right] {}
+	to[short] (3.5,0)
+	to[open,v=$V_{\text{out}}$] (3.5,-2)
+	to[short] (-1.5,-2);
+
+\draw (-2,0.49)
+	to[short] (-2,2)
+	to[R=$R_2$] (2,2)
+	to[short] (2,0);
+	
+\draw (-2,2)
+	to[short] (-2,3.5)
+	to[C=$C_2$] (2,3.5)
+	to[short] (2,2);
+	
+\draw
+	[dashed] (-1.75,4.75) rectangle (1.75,1.25)
+	[dashed] (-6,1.2) rectangle (-2.2,-0.75)
+	(-4.1,1.2) node[anchor=south]{$Z_1$}
+	(1.75,4.25) node[anchor=west]{$Z_2$};
+
+\draw (-6.5,-2) node[ground]{};
+
+\end{circuitikz}
+\shorthandon{!:}
+}

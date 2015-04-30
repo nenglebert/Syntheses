@@ -1,0 +1,466 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Séries}
+\section{Convergence de suites et de séries}
+	\subsection{Convergence de suites}
+	\subsubsection{Définition}
+	La suite $z_1,z_2,\dots,z_n,\dots$ converge vers $z$
+	\begin{equation}
+	\lim\limits_{n\rightarrow \infty} z_n = z
+	\end{equation}
+	avec $z_1,z_2,\dots,z \in \mathbb{C}$ si 
+	\begin{equation}
+	\forall\varepsilon > 0, \exists n_0 \in \mathbb{N} : |z_n-z| < \varepsilon \ \ \ \
+	\forall n > n_0
+	\end{equation}
+	
+	\theor{Ecrivons $z_n = x_n+iy_n (n=1,2,\dots)$ et $z=x+iy$.
+	\begin{equation}
+	\lim\limits_{n\rightarrow \infty} z_n = z \Leftrightarrow \left\{\begin{array}{ll}
+	\lim\limits_{n\rightarrow \infty} x_n &= x\\
+	\lim\limits_{n\rightarrow \infty} y_n &=y
+	\end{array}\right.
+	\end{equation}}
+	
+	
+	\subsection{Convergence de séries}
+	\subsubsection{Définition}
+	La série $\sum_{n=1}^\infty z_n$ où $z_n \in \mathbb{C}$ converge vers $S$ si la suite 
+	$S_N = \sum_{n=	1}^{N} z_n\ (N=1,2,\dots)$ des sommes partielles converge vers $S$, c'est
+	 à dire :
+	\begin{equation}
+	\forall\varepsilon > 0, \exists N_0\in\mathbb{N} : |S_N-S| < \varepsilon\ \ \forall N>N_0
+	\end{equation}
+
+	Une conséquence directe de cette définition est que la série ne convergera vers $S$ que si
+	la partie réelle de cette série converge, de même pour la partie imaginaire : \\
+	
+	\theor{Ecrivons $z_n = x_n+iy_n (n=1,2,\dots)$ et $S=X+iY$.
+	\begin{equation}
+	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N z_n = S \Leftrightarrow \left\{\begin{array}
+	{ll}
+	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N x_n &= X\\
+	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N y_n &= Y
+	\end{array}\right.
+	\end{equation}}\ \\
+	
+	Sur base de la définition, on peut établir une convergence dans les cas suivants :
+	\begin{itemize}
+	\item Soit le reste après $N$ termes $\rho_N = S-S_N$. Comme $|S-S_N| = |\rho_N - 0|$, la 
+	série converge si et seulement si la suite des restes tend vers zéro.
+	\item Une condition nécessaire pour que la série converge et que son terme principal $z_n$
+	converge vers 0 pour $n\rightarrow\infty$.
+	\item Si la série de $|z_n|$ converge, alors la série de $z_n$ converge.
+	\item Si la série converge, alors $\exists M \in \mathbb{R}^+ : |z_n|<M\ \ \forall n \in 
+	\mathbb{N}$.
+	\end{itemize}
+\section{Séries de Taylor et de Laurent}
+	\subsection{Série de Taylor}
+	\theor{\textsc{Série de Taylor}
+	Si $f$ est analytique dans le disque ouvert $D$ et que $|z-z_0| < R$, alors en tout point 
+	$z$ du disque : 
+	\begin{equation}
+	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n
+	\end{equation}
+	où
+	\begin{equation}
+	a_n = \dfrac{f^{(n)}(z_0)}{n!}\ \ \ \ \ (n= 0,1,2,\dots)
+	\end{equation}}\ \\
+	
+	Enonçons et démontrons rapidement un lemme, puis démontrons ce théorème:\\
+	
+	\lemme{\begin{equation}
+	\frac{1}{1-\alpha} =  1 + \alpha + \dots + \alpha^{n-1} + \frac{\alpha^n}{1-\alpha}, 
+	\alpha \neq 1
+	\end{equation}
+	\begin{proof}
+	En multipliant toute l'équation par $(1-\alpha)$ on trouve $1=1$, l'identité est donc 
+	vérifiée.
+	\end{proof}}
+	
+	\begin{proof}\ \\
+	Soit un disque de rayon $R$. Considérons la première formule de Cauchy où $z$ joue le rôle 
+	de $z_0$ et la variable d'	intégration est $s$ :
+	\begin{equation}
+	f(z) = \frac{1}{2\pi i}\oint_{C_0} \frac{f(s)}{s-z}ds\ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ (1)
+	\end{equation}
+	A l'intérieur de ce disque, je considère un chemin $C_0$ (cercle de rayon $r_0$) dans lequel
+	 se trouve le point $z$ autour duquel je considère le développement. Notons que :
+	\begin{equation}
+	s-z = s-z_0-(z-z_0) = (s-z_0)(1-\alpha)\ \ \text{avec } \alpha = \frac{z-z_0}{s-z_0}
+	\end{equation}
+	Par utilisation du lemme, on a donc :
+	\begin{equation}
+	\begin{array}{ll}
+	\dfrac{1}{s-z} &= \dfrac{1}{(s-z_0)(1-\alpha)}\\
+	 &= \dfrac{1}{s-z_0}+\dfrac{\alpha}{s-z_0}+\dots+\dfrac{\alpha^{n-1}}{s-z_0}+\dfrac{\alpha^n}{
+	 (1-\alpha)(s-z_0)} \ \ \ \ \ \ \ \ \ \ \ \ \ (2)
+	\end{array}
+	\end{equation}
+	En substituant $\alpha = \frac{z-z_0}{s-z_0}$ dans (2) et en introduisant le résultat dans
+	(1) :
+	\begin{equation}
+	f(z) = \frac{1}{2\pi i}\oint_{C_0} \frac{f(s)}{s-z_0}\left(1 + \dfrac{z-z_0}{s-z_0} + \dots +
+	\dfrac{(z-z_0)^{n-1}}{(s-z_0)^{n-1}}\right)ds + R_n
+	\end{equation}
+	avec $R_n = \frac{1}{2\pi i}\oint_{C_0} \frac{f(s)}{s-z_0}\frac{(z-z_0)^n}{(s-z_0)^n}\frac{
+	1}{1-\frac{z-z_0}{s-z_0}}ds$.\\
+	En développant l'expression de $f(z)$ (les intégrales dépendent de $s$, ne pas hésiter à 
+	sortir les termes en $z, z_0$ si possible) :
+	\begin{equation}
+	f(z) = \frac{1}{2\pi i}\oint_{C_0}\frac{f(s)}{s-z_0}ds + \frac{z-z_0}{2\pi i}\oint_{C_0}
+	\frac{f(s)}{(s-z_0)^2}ds + \dots + \frac{(z-z_0)^{n-1}}{2\pi i}\oint_{C_0}\frac{f(s)}{(s
+	-z_0)^n}ds + R_n
+	\end{equation}
+	On y voit apparaître le terme de la dérivée ($n-1$)ème. En utilisant les formules de 
+	Cauchy, on voit apparaître la forme "classique" du développement de Taylor :
+	\begin{equation}
+	f(z) = f(z_0) + (z-z_0)f'(z_0) + \dots + (z-z_0)^{n-1}\frac{f^{(n-1)}(z_0)}{(n-1)!}+R_n
+	\end{equation}
+	où $R_n = \frac{(z-z_0)^n}{2\pi i}\oint_{C_0}\frac{f(s)ds}{(s-z_0)^n(s-z)}$.\\
+	
+	Il nous faut maintenant montrer, pour conclure, que le reste $R_n$ tend vers 0 lorsque $n
+	\rightarrow \infty$. On procède comme précédemment : on borne notre intégrale. Comme par
+	hypothèse, $f$ est analytique dans $D$, cela implique que :
+	\begin{itemize}
+	\item $\Rightarrow f$ est continue sur $C_0$
+	\item $\Rightarrow \exists M : |f(s)| \leq M\ \forall s \in C_0$
+	\end{itemize}
+	Notons que :
+	\begin{equation}
+	\begin{array}{ll}
+	|s-z| &= |s-z_0+z_0-z|\\
+	 &= |(s-z_0)-(z-z_0)|\\
+	 &\geq |s-z_0|-|z-z_0|\\
+	 &\geq r_0-r
+	\end{array}
+	\end{equation}
+	Compte tenu de ceci, en appliquant le théorème ML (borne * longueur du cercle
+	 de rayon $r_0$) :
+	\begin{equation}
+	|R_n| \leq \frac{r^n}{2\pi}\frac{M}{r^n_0(r_0-r}2\pi r_0
+	\end{equation}
+	En regroupant les termes :
+	\begin{equation}
+	|R_n| \leq \frac{Mr_0}{r_0-r}\left(\dfrac{r}{r_0}\right)^n, \ \ \frac{r}{r_0}<1
+	\end{equation}
+	On trouve bien :
+	\begin{equation}
+	\lim\limits_{n\rightarrow\infty} R_n = 0
+	\end{equation}
+	\end{proof}
+	
+	\exemple{\begin{enumerate}
+	\item Considérons $|z| < \infty$ et $f(z) = e^z = f'(z) = f''(z) = \dots$ Notre 
+	développement vaut alors :
+	\begin{equation}
+	e^z \approx 1+z+\frac{z^2}{2} + \dots + \frac{z^n}{n!} + \dots\ \ \ \ (|z|<\infty)
+	\end{equation}
+	\item Considérons cette fois un cercle unitaire centré à l'origine $|z|<1$ et la fonction
+	$f(z) = \frac{1}{1-z}$. Les dérivées vallent : $f'(z) = \frac{1}{(1-z)^2}, f''(z) = \frac{
+	1}{(1-z)^3}, \dots, f^{(n)} = \frac{1}{(1-z)^{n+1}}$. Notre développement vaut alors :
+	\begin{equation}
+	\frac{1}{1-z} = 1+z+z^2+\dots+z^n+\dots \ \ \ \ (|z|<1)
+	\end{equation}
+	ou encore (résultat intéressant) :
+	\begin{equation}
+	\frac{1}{1-z} = \sum_{n=0}^\infty z^n \ \ \ \ (|z|<1)
+	\end{equation}
+	\item Même chemin que pour 2. mais cette fois $f(z) = \frac{1}{z(1-z^2)} = \frac{1}{z}
+	\frac{1}{(1-z^2)}$. En reprenant le résultat précédent :
+	\begin{equation}
+	\frac{1}{z(1-z^2)} = \frac{1}{z}(1+z^2+z^4+\dots)
+	\end{equation}
+	Finalement
+	\begin{equation}
+	f(z) = \frac{1}{z} + z + z^3 + \dots\ \ \ \ (0<|z|<1)
+	\end{equation}
+	\end{enumerate}}
+	
+	
+	
+	
+	
+	\subsection{Série de Laurent}
+	\theor{I\\
+	Si : 
+	\begin{enumerate}
+	\item $f$ est analytique dans un domaine $D : R_1 < |z-z_0| < R_2$.
+	\item $\mathcal{C}$ est un chemin admissible fermé entourant $z_0$ et dans $D$, orienté 
+	dans le sens positif.
+	\end{enumerate}
+	Alors :
+	\begin{equation}
+	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n + \sum_{n=2}^\infty \dfrac{b_n}{(z-z_0)^n}
+	\end{equation}
+	où
+	\begin{eqnarray}
+	a_n = \frac{1}{2\pi i}\oint_\mathcal{C}\frac{f(z)dz}{(z-z_0)^{n+1}}\ \ (n=0,1,2,\dots)\\
+	b_n = \frac{1}{2\pi i}\oint_\mathcal{C}\frac{f(z)dz}{(z-z_0)^{-n+1}}\ \ (n=1,2,\dots)
+	\end{eqnarray}
+	
+	Une expression alternative d'une série de Laurent est donné par :
+	\begin{equation}
+	f(z) = \sum_{-\infty}^\infty c_n(z-z_0)^n
+	\end{equation}
+	avec :
+	\begin{equation}
+	c_n = \frac{1}{2\pi i}\oint_\mathcal{C} \frac{f(z) dz}{(z-z_0)^{n+1}}\ \ (n=0,\pm 1,\pm 2,
+	\dots)
+	\end{equation}}\ \\
+	
+	
+	\begin{proof}
+	\textbf{INCLURE IMAGE SLIDE 16/30}\\
+	Par extension du théorème de Cauchy-Grousat appliqué au contour ci-contre, on peut dire que:
+	\begin{equation}
+	\oint_{C_2} \frac{f(s)}{s-z}\ ds -	\oint_{C_1} \frac{f(s)}{s-z}\ ds -\oint_{\Gamma}
+	 \frac{f(s)}{s-z}\ ds = 0\ \ \ \ \ (*)
+	\end{equation}
+	La première formule de Cauchy nous dit que $\oint_\Gamma \frac{f(s)}{s-z}\ ds = 2\pi i f(z)$.
+	En substituant dans $(*)$ on trouve :
+	\begin{equation}
+	f(z) = \underbrace{\dfrac{1}{2\pi i}\oint_{C_2} \frac{f(s)}{s-z}ds}_{T_1(z)} + \underbrace{
+	\dfrac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{s-z}ds}_{T_2(z)}
+	\end{equation}\ \\
+	
+	Pour le terme $T_1(z)$, on procède par similitude avec la démonstration de la série de 
+	Taylor\footnote{Slide 18/30.} pour trouver :
+	\begin{equation}
+	T_1(z) = \sum_{n=0}^{N-1} A_n(z-z_0)^n + R_N
+	\end{equation}
+	avec $A_n = \frac{1}{2\pi i}\oint_{C_2} \frac{f(s)}{(s-z_0)^{n+1}}ds$. Par un des 
+	corollaires du théorème de Cauchy-Goursat (Proposition 2) : $A_n = a_n$.\\
+	
+	Pour le deuxième terme $T_2(z)$, notons que :
+	\begin{equation}
+	\begin{array}{ll}
+	z-s &= z-z_0 - (s-z_0) = (z-z_0)(1-\beta)\ \ \text{avec }\ \ \beta = \frac{s-z_0}{z-z_0}\\
+	\frac{1}{1-\beta} = 1+\beta + \dots + \beta^{N-1} + \frac{\beta^N}{1-\beta}\ \ \beta \neq 1
+	\end{array}
+	\end{equation}
+	En substituant ceci dans $T_2(z)$ :
+	\begin{equation}
+	T_2(z) =  \frac{1}{2\pi i(z-z_0)}\oint_{C_1} \frac{f(s)}{1-\beta}\ ds
+	\end{equation}
+	Ou encore :
+	\begin{multline}
+	T_2(z) = \frac{1}{(z-z_0)}\frac{1}{2\pi i}\oint_{C_1} f(s) ds + \frac{1}{(z-z_0^2}\frac{1}{2\pi 
+	i}\oint_{C_1} f(s)(s-z_0) ds\ +\ \dots \\
+	 \dots\ +\ \frac{1}{(z-z_0)^N}\frac{1}{2\pi i}\oint_{C_1} f(s)(s-	z_0) ds + S_N
+	\end{multline}
+	avec $S_N = \frac{1}{(z-z_0)}\frac{1}{2\pi i}\oint_{C_1} f(s)\frac{\beta^N}{1-\beta}\ ds$.\\
+	Ceci implique que :
+	\begin{equation}
+	T_2(z) = \sum_{n=1}^N B_n \frac{1}{(z-z_0)^n} + S_N
+	\end{equation}
+	où $S_n = \frac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{(s-z_0)^{-n+1}} ds$. Cette intégrale à quasi
+	la forme énoncée dans le théorème si ce n'est que le chemin est ici $C_1$. Mais ce chemin est
+	bien sur arbitraire pour le peu qu'il soit simple, fermé, admissible et dans le domaine de 
+	convergence. Par un des corollaires du théorème de Cauchy-Goursat (Proposition 2) : $B_n = 
+	b_n$.\\
+	
+	Montrons maintenant que $R_N = 0$ pour $N \rightarrow \infty$ et $S_N = 0$ pour $R_1<|z-z_0|<
+	R_2$. Les deux expressions étant : 
+	\begin{equation}
+	\begin{array}{ll}
+	R_N &= \frac{(z-z_0)^N}{2\pi i}\oint_{C_2} \frac{f(s)}{(s-z_0)^N(s-z)}ds\\
+	S_N &=	\frac{1}{(z-z_0)^N}\frac{1}{2\pi i}\oint_{C_1} \frac{f(s)(s-z_0)^N}{z-s}ds
+	\end{array}
+	\end{equation}
+	Par application du théorème $ML$ comme précédemment, on retrouve bien le résultat recherché
+	\footnote{Slide 20/30.}.
+	\end{proof}
+
+	\exemple{En fonction du type de chemin, il faudra utiliser Taylor ou Laurent. Par exemple :
+	\begin{itemize}
+	\item $|z| < 1$ : Taylor
+	\item $1 < |z| < 2$ : Laurent
+	\item $|z| > 2$ : Laurent
+	\end{itemize}
+	Considérons $f(z) = \dfrac{-1}{(z-1)(z-2)}$ sur $1 < |z| < 2$. Pour résoudre cette intégrale,
+	utilisons la décomposition en fraction simple : 
+	\begin{equation}
+	f(z) = \frac{A}{z-1}+\frac{B}{z-2}
+	\end{equation}
+	Multiplions les deux membres par $(z-1)$ et évaluons la fonction en un point quelconque (le
+	point $z=1$ paraît judicieux) :
+	\begin{equation}
+	\left.\dfrac{-(z-1)}{(z-1)(z-2)}\right|_{z=1} = A + \dfrac{B(z-1)}{z-1}
+	\end{equation}
+	On trouve alors $A=1$ et $B=-1$ (même raisonnement) $\Rightarrow f(z) = \frac{1}{z-1}-\frac{1}{z-2}$.
+	En décomposant le problème en deux, on a premièrement :	
+	\begin{equation}
+	\frac{1}{z-1} = \frac{1}{z(1-\frac{1}{z})} = \frac{1}{z}\sum_{n=0}^\infty \frac{1}{z^n}\ \ \
+	(|1/z|>1 \rightarrow |z| >1)
+	\end{equation}
+	Secondement :
+	\begin{equation}
+	\frac{-1}{z-2} = -\frac{1}{2(\frac{z}{2}-1)} = \frac{1}{z(1-\frac{z}{2})} = \frac{1}{2}
+	\sum_{n=0}^\infty\left(\frac{z}{2}\right)^n\ \ \ (|1/z|<2 \rightarrow |z|<2)
+	\end{equation}
+	Ainsi 
+	\begin{equation}
+	f(z) = \sum_{n=1}^\infty\frac{1}{z^n} + \sum_{n=0}^\infty\left(\frac{z}{2}\right)^n\ \ \
+	(1<|z|<2)
+	\end{equation}}
+
+\section{Propriétés des séries de puissances}
+	\subsection{Domaine de convergence et convergence absolue}	
+	\theor{\textsc{1 - série de puissances positives}\\
+	Si $\sum_{n=0}^\infty a_n(z-z_0)^n$ converge pour $z = z_1\ \ \ (z_1\neq z_0)$, alors 
+	$\sum_{n=0}^\infty |a_n(z-z_0)^n|$ converge pour tout $z$ dans $|z-z_0| < R_1$ où $R_1 =
+	z_1-z_0|$, le distance entre les deux points.}
+	Rappellons également que la convergence absolue d'une série de puissance implique la 
+	convergence simple de cette même série de puissance :
+	\begin{equation}
+	\sum_{n=0}^\infty |a_n(z-z_0)^n|\ \ \text{converge }\ \Rightarrow\ \ 	\sum_{n=0}^\infty 
+	a_n(z-z_0)^n\ \ \text{converge}
+	\end{equation}
+	
+	Avant d'énoncer les autres théorèmes, petit tour des définitions utiles :
+	\begin{description}
+	\item[Cercle de convergence : ] cerle de plus grand rayon tel que la série converge pour
+	tout point intérieur à ce cercle.
+	\item[Rayon de convergence : ] rayon de ce cerle.
+	\end{description}
+	
+	Ceci étant fait, il est précieux se savoir que si l'on a une série de puissance \textit{
+	négative} qui converge, alors cette même série converge absolument dans la région extérieure 
+	au disque d'un certain rayon, ce qui formellement dit :\\
+	
+	\theor{\textsc{2 - série de puissances négatives}\\
+	Si $\sum_{n=1}^\infty \frac{b_n}{(z-z_0)^n}$ converge pour $z=z_1\ \ \ (z_1\neq z_0)$, 
+	alors $\sum_{n=1}^\infty \left|\frac{b_n}{(z-z_0)^n} \right|$ converge pour tout $z$ 
+	extérieur au cercle $|z-z_0| = R_1$ où $R_1 = |z_1-z_0|$.}
+	
+	
+	\subsection{Continuité}
+	\theor{\textsc{3}\\
+	Une série de puissance 
+	\begin{equation}
+	\sum_{n=0}^\infty a_n(z-z_0)^n
+	\end{equation}
+	représente une fonction continue à l'intérieur de son cercle de convergence.}\ \\
+	Ceci explloite directement la définition de la continuité. Soit $S(z) = \sum_{n=0}^\infty 
+	a_n (z-z_0)^n$ dans $|z-z_0| = R$ et $z_1$ à l'intérieur de ce cercle. 
+	\begin{equation}
+	\forall \epsilon > 0, \exists \delta > 0\ t.q.\ si\ |z-z_1| < \delta\ \text{ alors }\ 
+	|S(z)-S(z_1)| < \epsilon
+	\end{equation}
+	et $\delta$ est suffisament petit pour que $z$ dans $|z-z_0| < R$ (continuité de $S(z)$ 
+	en $z_1$).
+	
+	
+	\subsection{Intégration d'une série de puissance}
+	\theor{\textsc{4}\\
+	Considérons une série de puissance $S(z) = \sum_{n=0}^\infty a_n (z-z_0)^n$ avec comme 
+	cercle de convergence $|z-z_0| = R$, $\mathcal{C}$ un chemin admissible fermé intérieur 
+	au cercle de convergence de $g(z)$ une fonction continue sur $\mathcal{C}$. Sous ces
+	hypothèses, on peut intégrer terme à terme la série après l'avoir multipliée par une 
+	fonction continue arbitraire.
+	\begin{equation}
+	\oint_\mathcal{C}g(z) S(z) dz = \sum_{n=0}^\infty a_n \oint_\mathcal{C}g(z)(z-z_0)^n dz\ 
+	\ \ \ \ \ (**)
+	\end{equation}}\ \\
+	
+	Un corollaire de ce théorème démontré ci-dessous est que la somme $S(z) = \sum_{n=0}^\infty 
+	a_n (z-z_0)^n$ est analytique en tout point $z$ intérieur au cercle de convergence de cette ssss
+	série.
+	
+	\begin{proof}\ \\
+	Posons $g(z) = 1$. Par Cauchy-Goursat :
+	\begin{equation}
+	\oint_\mathcal{C}g(z)(z-z_0)^n dz = \oint_\mathcal{C}(z-z_0)^n dz = 0\ \ \ (n=1,2,\dots)
+	\end{equation}
+	pour tout chemin admissible fermé à l'intérieur du cercle de convergence. Par substitution 
+	dans $(**)$ :
+	\begin{equation}
+	\oint_\mathcal{C} S(z)dz = 0\ \ \ \ \ (***)
+	\end{equation}
+	Comme $S(z)$ est continue et $(***)$ est vérifiée pour tout $\mathcal{C}$ dans la région 
+	de convergence, par le théorème de Morera\footnote{La "sorte" de réciproque du théorème 
+	de Cauchy-Goursat.}, $S(z)$ est analytique dans le disque ouvert borné par le cercle de 
+	convergence.
+	\end{proof}
+	
+	
+	
+	\subsection{Dérivée d'une série de puissances}
+	\theor{\textsc{5}\\
+	On peut dériver une série de puissance terme à terme :
+	\begin{equation}
+	S'(z) = \sum_{n=1}^\infty n a_n(z-z_0)^{n-1}
+	\end{equation}
+	pour tout $z$ à l'intérieur du cercle de convergence.}\ \\	
+	\begin{proof}\ \\
+	Soit $\mathcal{C}$ un chemin admissible fermé simple entourant $z$, orienté dans le sens 
+	positif et intérieur au cercle de convergence.\\
+	Considérons $g(s) = \frac{1}{2\pi i}\frac{1}{(s-z)^2}$ pour tout $s$ sur $\mathcal{C}$.
+	Comme $g(s)$ est continue, par le théorème 4 :
+	\begin{equation}
+	\oint_\mathcal{C}g(s) S(s) ds = \sum_{n=1}^\infty g(s)(s-z_0)^n ds\ \ \ \ \ (-\_-)"
+	\end{equation}
+	En appliquant la deuxième formule de Cauchy, je peux transformer ma première intégrale :
+	\begin{equation}
+	\oint_\mathcal{C}g(s) S(s) ds = \frac{1}{2\pi i}\oint_\mathcal{C}\frac{S(s)}{(s-z)^2}ds = 
+	S'(z)
+	\end{equation}
+	Comme on sait que $S(z)$ est une fonction analytique dans $\mathcal{C}$ et à l'intérieur, 
+	on vient de le montrer. Comme $z$ est à l'intérieur de $\mathcal{C}$, les hypothèses d'une 
+	des formules de Cauchy sont vérifiée, celle donant la dérivée. \\
+	Comme nous avons aussi :
+	\begin{equation}
+	\begin{array}{ll}
+	\oint_\mathcal{C} g(s)(s-z_0)^n\ ds &= \frac{1}{2\pi i}\oint_\mathcal{C}\frac{(s-z_0)^n}{
+	(s-z)^n}\ ds\\
+	 &= \frac{d}{dz}(z-z_0)^n\ \ \ \ (n=0,1,2,\dots)
+	\end{array}
+	\end{equation}
+	Par substitution dans $(-\_-)"$ on démontre le théorème :
+	\begin{equation}
+	S'(z) = \sum_{n=0}^\infty a_n\frac{d}{dz}(z-z_0)^n
+	\end{equation}
+	\end{proof}
+	
+	\subsection{Unicité de la représentation par une série de puissance}
+		\subsubsection{Série de Taylor}
+		Si 
+		\begin{equation}
+		\sum_{n=0}^\infty a_n(z-z_0)^n = \sum_{n=0}^\infty b_n(z-z_0)^n\ \ \ \ |z-z_0| < R
+		\end{equation}
+		alors $a_n = b_n = \frac{f^n(z_0)}{n!}$ et la série est le développement en série de 
+		Taylor de $f(z)$ en puissance de $(z-z_0)$.
+		
+		\subsubsection{Série de Laurent}
+		Si la série 
+		\begin{equation}
+		\sum_{-\infty}^\infty c_n(z-z_0)^n
+		\end{equation}
+		converge vers $f(z)$ en tout point d'un domaine en forme d'anneau autour de $z_0$, 
+		alors c'est le développement en série de Laurent de $f$ en puissances de $(z-z_0)$ 
+		dans ce domaine
+		
+	\subsection{Multiplication de séries de puissances}
+	Pour les quatres opérations de base, la manipulation des séries de puissances se fait 
+	de façon analogue aux polynômes, en utilisant les propriétés de commutativité et de 
+	distributivité.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

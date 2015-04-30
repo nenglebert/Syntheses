@@ -1,0 +1,222 @@
+\chapter{Résidus et p\^oles}
+
+\section{Résidu et théorème des résidus}
+
+	\subsection{Point singulier isolé}
+	On dira que $z_0$ est un point isolé de $f(z)$ si :
+	\begin{itemize}
+	\item $f$ n'est pas analytique en $z_0$ mais analytique en certains points
+	autour de $z_0$.
+	\item Il existe un $\epsilon$ tel que $f$ est analytique dans $0<|z-z_0|<
+	\epsilon$.
+	\end{itemize}
+	
+	\exemple{\begin{enumerate}
+	\item La fonction $f(z) = \frac{z^3}{z^2(z^2+5)}$ possède trois points 
+	singuliers isolés : $z=0,\pm i\sqrt{5}$.
+	\item Pour $Log\ z$, zéro est un point singulier, mais pas isolé.
+	\end{enumerate}}
+	
+	\subsection{Notion de résidu}
+	Soit $z_0$ un point singulier isolé. Ceci implique qu'il existe un $R_2$ tel 
+	que $f$ est analytique pour tout $z$ dans $|z-z_0| < R_2$, où $f(z$ est 
+	représenté par le développement en série de Laurent :
+	\begin{equation}
+	f(z) = \sum_{m=0}^\infty a_n(z-z_0)^n + \frac{b_1}{z-z_0}+\frac{b_2}{(z-z_0)^2}
+	+ \dots + + \frac{b_n}{(z-z_0)^n} + \dots\ \ \ \ (0<|z-z_0|<R_2)
+	\end{equation}
+	avec $b_n = \frac{1}{2\pi i}\oint_\mathcal{C}\frac{f(z)}{(z-z_0)^{-n+1}}dz\ \
+	\ (n=1,2,\dots)$ avec en particulier $b_1 = \frac{1}{2\pi i}\oint_\mathcal{C}
+	f(z) dz$.\\
+	
+	\retenir{\textbf{Définition}\\
+	Le résidu de $f$ au point singulier $z_0$ est la coefficient de $\frac{1}{z-z_0}$ 
+	dans le développement en série de Laurent de $f(z)$ en puissance de $(z-z_0)$ pour 
+	$0<|z-z_0|<R_2$.\\
+	On le notera :
+	\begin{equation}
+	b_1 = \text{Res}_{z=z_0}\ f(z)
+	\end{equation}}\ \\
+	
+	Ce résidu permet de simplifier fortement le calcul d'intégrale. Nous verrons 
+	également qu'il est possible de le calculer sans déballer le dev. de Laurent.
+	
+	\newpage
+	\subsection{Théorème des résidus}
+	Mais comment calculer des intégrales ? Avec le résidu défini ci-dessus ça devient 
+	plus simple : il suffit de faire la somme des résidus aux différents points 
+	singuliers (avec un facteur de $2\pi i$):\\
+	
+	\theor{\textbf{INCLURE SCHEMA SLIDE 7/19}\\
+	Soit $\mathcal{C}$ un chemin admissible fermé, simple, orienté dans le sens positif 
+	et $f$ analytique en tout point de $\mathcal{C}$ ainsi qu'à l'intérieur de $\mathcal{
+	C}$ sauf en un nombre fini de points singuliers isolés $z_k\ (k=1,2,\dots,n)$ à l'
+	intérieur de $\mathcal{C}$ :
+	\begin{equation}
+	\oint_\mathcal{C} f(z) dz = 2\pi i \sum_{k=1}^n \text{Res}_{z=z_k}\ f(z)
+	\end{equation}}
+	
+	\begin{proof}\ \\
+	Découle directement du théorème de Cauchy-Goursat, la troisi!me proposition :
+	\begin{equation}
+	\oint_\mathcal{C}f(z)dz - \sum_{k=1}^n \oint_{C_k} f(z) dz = 0
+	\end{equation}
+	Ceci impliquant :
+	\begin{equation}
+	\oint_{C_k} f(z)dz = 2\pi i \text{Res}_{z=z_k}\ f(z)
+	\end{equation}
+	\end{proof}
+	
+	\exemple{\textbf{1}
+	 \begin{equation}
+	\oint_C\frac{\cos(z)}{z^3}dz=2\pi i\,\underset{z=0}{Res}\,\overbrace{(\cos(z)z^{-3})}^{f(z)}\quad(C\equiv|z|=1)
+	\end{equation}
+	En sachant que \begin{eqnarray}
+	f(z) &=& \frac{1}{z^3}\left(1-\frac{z^2}{2!}+\frac{z^4}{4!}+\dots\right)\quad(0<|z|<\infty)\\
+	&=& \frac{1}{z^3}-\frac{1}{2z}+\dots
+	\end{eqnarray}
+	le résidus (de cette fonction) étant le coefficient de $1/z\rightarrow$ résidus = $-1/2$\\
+	Ainsi, l'intégrale vaut \begin{equation}
+	\oint_C\frac{\cos(z)}{z^3}dz = -\pi i\quad(C\equiv|z|=1)
+	\end{equation}}\\
+	
+	\exemple{\textbf{2}
+	 \begin{equation}
+	\oint_C\overbrace{\frac{5z-2}{z(z-1)}}^{f(z)}dz=2\pi i\,(\underset{z=1}{Res}\,f(z)+\underset{z=0}{Res}\,f(z))\quad(C\equiv|z|=2)
+	\end{equation}
+	En sachant que \begin{eqnarray}
+	f(z) &=& \frac{5z-2}{z(z-1)} = \frac{2}{z}+\frac{3}{z-1}\\
+	&=& \frac{2}{z}+\sum_0^{\infty}a_nz^n\quad(0<|z|<1)\\
+	&=& \frac{3}{z-1}+\sum_0^{\infty}b_n(z-1)^n\quad(0<|z-1|<1)
+	\end{eqnarray}
+	le résidu vaut donc respectivement pour $z=1$ et $z=2$, 2 et 3.\\
+	Nous obtenons donc \begin{equation}
+	\oint_C\frac{5z-2}{z(z-1)}dz=10\pi i\end{equation}}
+	
+\section{Calcul du résidu}
+	\subsection{Trois types de points singuliers isolés}
+	On utilise la partie principale du développement en série de Laurent. Considérons 
+	$z_0$ un point singulier isolé : $\exists R_2 > 0 :$
+	\begin{equation}
+	f(z) = \sum_{n=0}^\infty a_n(z-z0)^n + \frac{b_1}{z-z_0} + \frac{b_2}{(z-z_0)^2}+\dots 
+	\end{equation}		
+	La partie principale de $f$ en $z_0$ est alors : 
+	\begin{equation}
+	\frac{b_1}{z-z_0} + \frac{b_2}{(z-z_0)^2}+\dots + \frac{b_n}{(z-z_0)^n}+\dots
+	\end{equation}
+	Ceci étant maintenant clair comme de l'eau de roche, voici ce qui justifie le titre 
+	de cette sous-section :\\
+		
+	\retenir{\begin{enumerate}
+	\item S'il existe $m$ tq :
+	\begin{equation}
+	b_m \neq 0\ \ \text{et}\ \ b_{m+1}=b_{m+2}=\dots=0
+	\end{equation}
+	alors $z_0$ est un \textbf{pôle} d'ordre $m$ de $f(z)$. Si $m=1$ le pôle est dit \textit{simple}.
+	\item Si $b_n= \forall n$ alors $z_0$ est un \textbf{point singulier artificiel} de $f(z)$.
+	\item Si la partie principe contient un nombre infini de terme, $z_0$ est un \textbf{point 
+	singulier essentiel} de $f(z)$.
+	\end{enumerate}}
+	
+	
+	\exemple{
+	\begin{equation}
+	e^{\frac{1}{z}}=\sum_0^{\infty}\frac{1}{z^n}\frac{1}{n!}\quad(0<|z|<\infty)
+	\end{equation}
+	Nous avons donc un nombre $\infty$ de terme en puissance négative de $z\rightarrow z=0$
+	 est un point singulier \textit{essentiel}.\\
+	Prenons un autre exemple :\begin{eqnarray}
+	\frac{\sinh(z)}{z^4} &=& \frac{1}{z^4}\left(z+\frac{z^3}{3!}+\frac{z^5}{5!}+\dots\right)
+	\quad(0<|z|<\infty)\\
+	&=&\frac{1}{z^3}+\frac{1}{6z}+\frac{z}{5!}
+	\end{eqnarray}
+	Nous avons donc un pôle de multiplicité d'ordre 3 (degré le plus haut des puissance 
+	négative de z)
+	}\ 
+	\exemple{\begin{align*}
+f(z) & =\frac{1-\cos(z)}{z^2}\quad 0<|z|<\infty\\
+ & =\frac{1-(1-\frac{z^2}{2!}+\frac{z^4}{4!}+\dots)}{z^2}\\
+ & = \frac{1}{2!}-\frac{z^2}{4!}+\dots\quad0<|z|<0
+ \end{align*}
+ Associer $f(0)=\frac{1}{2}\,|\,\lim\limits_{z\rightarrow 0}f(z)=\frac{1}{2}$}
+	
+	\theor{\textsc{R1}\ \\
+	Un point singulier isolé $z_0$ de $f$ est un pôle d'ordre $m$ si et seulement si
+	\begin{equation}
+	f(z) = \frac{\phi(z)}{(z-z_0)^m}
+	\label{eq:R1}
+	\end{equation}
+	où $\phi(z)$ est analytique et non nulle en $z_0$? En outre :
+	\begin{equation}
+	\begin{array}{lll}
+	Res_{z=z_0}\ f(z) &= \phi(z_0) &si\ m = 1\\
+	Res_{z=z_0}\ f(z) &= \frac{\phi^{(m-1)}(z_0)}{(m-1)!} &si\ m\geq 2
+	\end{array}
+	\end{equation}}\ \\
+	Ce théorème donne le résidu de façon rapide, pour autant que l'on sait factoriser 
+	$f(z)$ de la façon suivante. Il faut bien qu'il y ai un facteur 1 au dénominateur 
+	sinon \textit{slenderman} arrive.
+	
+	\begin{proof}\ \\
+	\textbf{Sens direct}\\
+	Ecrivons le développement de Taylor au voisinage de $z_0$ en supposant que $f(z)$ 
+	est de la forme \autoref{eq:R1}  :
+	\begin{equation}
+	\phi(z) = \phi(z_0)+ \frac{\phi'(z_0)}{1!}(z-z_0) + \dots + \frac{\phi^{(m-1)}(z_0)}{(m-1)!}
+	(z-z_0)^{m-1} + \sum_{n=m}^\infty  \frac{\phi^{(n)}(z_0)}{n!}(z-z_0)^n
+	\end{equation}
+	Pour une voisinage de $z_0, |z-z_0|<\epsilon$, on obtient un developpement qui possède 
+	une série de Laurent. Comme $\phi$ est nul, on peut conclure que le terme en $1/(z-z_0)$
+	est bien un pôle d'ordre $m$ en $z_0$.
+	\ \\
+	\ \\
+	\textbf{Réciproquement}\\
+	Supposons que $z_0$ soit un pôle d'ordre $m$ de $f$, c'est à dire :
+	\begin{equation}
+	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n + \frac{b_1}{z-z_0}+\dots+\frac{b_m}{(z-z_0)^m}\ \
+	\ \ (0<|z-z_0|<R_2), b_m\neq0
+	\end{equation}
+	Définissions une fonction $\phi(z)$ définie par :
+	\begin{equation}
+	\phi(z) = \left\{\begin{array}{ll}
+	(z-z_0)^mf(z) &si\ z\neq z_0\\
+	b_m &si\ z=z_0
+	\end{array}\right.
+	\end{equation}
+	Cette fonction possède le développement en série suivant :
+	\begin{equation}
+	\phi(z) = b_m + b_{m-1}(z-z_0) + \dots +b_2(z-z_0)^{m-2} + b_1(z-z_0)^{m-1} + 
+	\sum_{n=0}^\infty a_n(z-z_0)^{m+n}
+	\end{equation}
+	dans $|z-z_0| < R_2$. Comme le développement existe, cela implique que $\phi(z)$ est 
+	analytique dans $|z-z_0|<R_2$ (en particulier en $z_0$) et que $\phi(z_0)=b_m\neq0$.
+	\end{proof}
+	
+	Il est parfois compliquer de factoriser le dénominateur pour le mettre sous la forme
+	du \textsc{Theorème R1}. Si c'est le cas, on préfèrera le théorème suivant\footnote{
+	Démonstration pas à connaitre.} :\\
+	
+	\theor{\textsc{R2}\\
+	Soient deux fonctions $p$ et $q$ analytiques en $z_0$. Si :
+	\begin{equation}
+	\begin{array}{ccc}
+	p(z_0)\neq 0 & q(z_0) = 0 & q'(z_0) \neq 0
+	\end{array}
+	\end{equation}
+	alors $z_0$ est un pôle simple du quotient $\frac{p(z)}{q(z)}$ et 
+	\begin{equation}
+	Res_{z=z_0} \frac{p(z)}{q(z)} = \frac{p(z_0)}{q'(z_0)}
+	\end{equation}}
+
+\section{Zéro de $f(z)$}
+\textbf{Def :}Soit $f$ analytique en $z_0$. Si $f(z_0) = 0$, s'il existe un entier $m$ tel que
+$f^{(m)}\neq 0$ et $f(z_0) = \dots = f^{(m-1)}(z_0) = 0$ alors $f$ possède un 
+zéro d'ordre $m$ en $z_0$.\\
+
+\textbf{Proposition :} $f$ possède un zéro d'ordre $m$ si et seulement si il existe une fonction $g$ analytique et non nulle en $z_0$ telle que :
+\begin{equation}
+f(z) = (z-z_0)^mg(z)
+\end{equation}
+
+\textbf{Lien avec pôle ?} Soient $p$ et $q$ analytiques en $z_0$ avec $p(z_0)\neq 0$. Si
+$z_0$ est séro d'ordre $m$ de $q$, alors $z_0$ est un pôle d'ordre $m$ de $\frac{p}{q}$.

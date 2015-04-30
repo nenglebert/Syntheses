@@ -1,0 +1,510 @@
+\chapter{Intégrales 1}
+
+\section{Préliminaires}
+
+    \subsection{Dérivée d'une fonction complexe d'une variable réelle}
+    Soit $w(t) = u(t) +iv(t)$ ou $u$ et $v$ sont réelles. On trouve naturellement 
+    \begin{equation}
+    w'(t) = u'(t) + iv'(t)
+    \end{equation}
+    pour autant que les dérivées $u'$ et $v'$ existent en $t$.\\
+    
+    \prop{Soit $z_0 \in \mathbb{C}$ :
+    \begin{itemize}
+    \item $[z_0w(t)]' = z_0w'(t)$
+    \item Règles de dérivation + et * se généralisent ici.
+    \end{itemize}}
+    
+    \subsection{Intégrale définie d'une fonction complexe d'une variable réelle}
+    En gardant les mêmes pré-requis qu'à la précédente section, l'intégrale définie de $w(t)$ sur
+    l'intervalle $a \leq t \leq b$ vaut :
+    \begin{equation}
+    \int_a^b w(t) dt = \int_a^b u(t) dt + i\int_a^b v(t)dt
+    \end{equation}
+    
+    Si $U$ et $V$ sont des primitives de $u$ et $v$, l'intégrale de $w(t)$ n'est que l'intégrale 
+    d'une fonction réelle qui admet une primitive que l'on peut évaluer additionné à une intégrale
+    d'une fonction réelle qui admet également une primitive, multipliée par $i$ :
+    \begin{equation}
+    \int_a^b w(t)dt = [U(b) + iV(b)] - [U(a) + iV(a)]
+    \end{equation}
+ 
+ Attention, l'intégrale d'une fonction complexe ne donne pas l'aire sous la courbe de cette fonction.   
+    
+\section{Intégrale d'une fonction complexe d'une valeur complexe}
+    \subsection{Notions de chemin élémentaire et de chemin admissible}
+        \subsubsection{Chemin élémentaire}
+    Un \textit{chemin élémentaire} (ou \textit{arc différentiable}) est défini par les équations
+    paramétriques :
+    \begin{equation}
+    \left\{\begin{array}{ll}
+    x &= \varphi(t)  \\
+    y &= \psi(t) 
+    \end{array}\right.\ \ \ \ \ \ \ t_0\leq t t_1
+    \end{equation}
+    où $\varphi(t)$ et $\psi(t)$ sont de classe $C^1$ dans $t_0 \leq t\leq t_1$.\\
+    On utilise souvent comme expression équivalente : 
+    \begin{equation}
+    z = \Phi(t) = \varphi(t) + i\psi(t)\ \ \ \ \ t_0 \leq t\leq t_1
+    \end{equation}
+    
+    \exemple{Considérons le point $A : z = 2+i$. Le chemin $O\rightarrow A$ peut avoir comme  
+    équation paramétrique :
+    \begin{equation}
+    \left\{\begin{array}{lll}
+     x &= 2t &= \varphi(t)\\
+     y &= t &= \psi(t)
+    \end{array}\right.\ \ \ \ \ \ \ 0\leq t \leq 1\
+    \end{equation}
+    L'autre manière de le définir correspond à :
+    \begin{equation}
+    z = \Phi(t) := (2+i)t
+    \end{equation}}
+    
+        \subsubsection{Différents types de chemins}
+        Trois chemins valent le détour (pfpfp) :
+        \begin{enumerate}
+        \item \textit{Chemin admissible} : chemin décomposable en un nombre fini de chemin
+        élémentaire. Par exemple, un segment de droite suivi d'un demi-cercle puis à nouveau d'
+        un segment de droite est un chemin dit admissible.
+        \item \textit{Chemin simple} : $z(t_a) \neq z(t_b)$ si $t_a \neq t_b$. Cela signifie qu'
+        il ne peut y avoir de "boucle" dans un chemin simple si ce n'est (dans le cas d'un chemin
+        fermé) le point ou se referme celui-ci.
+        \item \textit{Ensemble simplement connexe $R$} : ce srea le cas sitout chemin simple fermés
+        n'englobent que les points de $R$. Deux cercles dans un plan n'est pas connexe. Si j'ai un
+        cercle dans un cercle et que "l'entre-deux cercle" est mon ensemble, il sera bien connexe
+        mais pas simplement car mon "petit cercle central" englobe des points qui ne font pas partie
+        de mon ensemble.
+        \end{enumerate}
+    
+    \subsection{Intégrale le long d'un chemin élémentaire}
+    \subsubsection{Définition (!) :}
+    Soit $\left\{\begin{array}{l}
+    - f(z)\ continue\\
+    - bornes\ z_0\ et\ z_1\\
+    - C : \textit{chemin élémentaire de $z_0$ à $z_1$}\\
+    - z = \Phi(t)\ \ \ avec\ t_0 \leq t \leq t_1
+    \end{array}\right.$ 
+    \begin{equation}
+    \int_\mathcal{C} f(z) dz \equiv \int_{t_0}^{t_1} f(\Phi(t))\Phi'(t) dt
+    \end{equation}
+    NB : pour le peu que le chemin soit identique, si l'on change les équations paramétriques on 
+    obtiendra le même résultat (les équations paramétriques ne sont pas uniques).\\
+    
+    \prop{\begin{enumerate}
+    \item On peut sortir toute constante (même $\mathbb{C}$) de l'intégrale
+    \item L'intégrale d'une somme est la somme des intégraleS
+    \item Inverser le sens du chemin revient à inverser le signe de l'intégrale
+    \end{enumerate}}\ \\
+    
+    \retenir{Si le chemin admissible $\mathcal{C}$ est formé des chemins élémentaires $C_1$ et $C_2$ :
+    \begin{equation}
+    \int_\mathcal{C} f(z) dz = \int_{C_1} f(z) dz + \int_{C_2} f(z) dz
+    \end{equation}}\ \\
+    
+    \exemple{Considérons la même fonction $z = 2+i$ en guise de chemin avec la paramétrisation
+    définie ci-dessus :
+    $z = (2+i)t \ (0\leq t \leq 1) $. Calculons $\int_\mathcal{C}z^2dz$ :
+    \begin{equation}
+    \int_\mathcal{C}z^2dz = \int_0^1 (2+i)^2t^2 \ (2+i)dt = (2+i)^3\left[\frac{t^3}{3}\right]_0^1
+    = (8+12i-6-i)\frac{1}{3} = \frac{2}{3} + \frac{11}{3}i
+    \end{equation}
+    
+    Décomposons le chemin $O\rightarrow A$ en deux parties : $O \rightarrow B$ et $B\rightarrow A$ :
+    \begin{equation}
+    OB : \left\{\begin{array}{l}
+    x = 2i\\
+    y = 0
+    \end{array}\right. \rightarrow z= \Phi = 2t,\ \ \ \ \ \ \ \ BA :  \left\{\begin{array}{l}
+    x = 2\\
+    y = t
+    \end{array}\right. \rightarrow z = \Phi = 2+it,\ \ \ \ \ \ \ (0\leq t \leq 1)
+    \end{equation}
+    Appliquons le cadre \textbf{A retenir} ci-dessus en calculant chacune des deux intégrale. Nous
+    avons d'une part
+    \begin{equation}
+    \int_{OB} z^2 dz = \int_0^1 4t^2.(2t)dt = \frac{8}{3}
+    \end{equation}
+    D'autre part 
+    \begin{equation}
+    \int_{BA} z^2 dz = \int_0^1 (2+it)^2.i dt = \frac{11}{3}i-2
+    \end{equation}
+    En sommant ces deux contributions, on retrouve bien le même résultat que précédemment :
+    \begin{equation}
+    \int_{OB} z^2 dz +  \int_{BA} z^2 dz = \frac{2}{3} + \frac{11}{3}i
+    \end{equation}}\ \\
+    Au vu du précédent exemple, on pourrait penser  que le chemin n'a pas d'importance. Ce n'est
+    cependant pas le cas. Illustrons avec un nouvel exemple :\\
+    \exemple{Tentons de calculer, avec les deux chemins représentés ci-contre, l'intégrale suivante:
+    \begin{equation}
+    \int_\mathcal{C} \frac{dz}{z}
+    \end{equation}
+    \begin{enumerate}
+    \item \textit{Chemin ABC}\\
+    Une paramétrisation pour le chemin $ABC$ est $z = Re^{i\theta}$ où $R$ est constant et $0 \leq
+    \theta \leq \pi$. En appliquant la définition, on trouve :
+    \begin{equation}
+    \int_a^\pi \frac{1}{R}e^{-i\theta}Rie^{i\theta} = i\pi
+    \end{equation}
+    
+    \item \textit{Chemin ADB}\\
+    Une paramétrisation pour le chemin $ABC$ est $z = Re^{-i\theta}$\footnote{Les bornes de l'intégrale
+    doivent être croissantes, d'ou l'inversion du signe de l'argument pour garder $0\leq \theta\leq \pi$}
+    où $R$ est constant et $0 \leq\theta \leq \pi$. En appliquant la définition, on trouve :
+    \begin{equation}
+    \int_a^\pi \frac{1}{R}e^{i\theta}R(-i)e^{-i\theta} = -i\pi
+    \end{equation}
+    \end{enumerate}} 
+    
+    
+    \subsection{Borne supérieure pour le module d'une intégrale le long d'un chemin}
+    Afin de démontrer un précieux théorèmes majorant notre intégrale le long d'un chemin, il faut 
+    avant tout énoncer un lemme :\\
+    
+    \lemme{Si $w(t)$ est une fonction continue par morceaux à valeurs dans $\mathbb{C}$ définie
+    sur $a \leq t \leq b$, alors
+    \begin{equation}
+    \left|\int_a^b w(t) dt\right| \leq \int_a^b |w(t)|dt
+    \end{equation}}
+    \begin{proof}\ \\
+    Considérons une intégrale $J$ et sa solution :
+    \begin{equation}
+    J = \int_a^b w(t).dt = r_0e^{i\theta_0}
+    \end{equation}
+    où $r_0, \theta_0$ sont des constantes réelles. Multiplions de part et d'autres par 
+    $e^{-i\theta_0}$ : étant constant, il peut rentrer dans l'intégrale. Comme $r_0 \in
+    \mathbb{R}$, l'intégrande doit forcément être réelle:
+    \begin{equation}
+    r_0 = \int_a^b w(t)e^{-i\theta_0}\ dt = \int_a^b \text{Re}[w(t)e^{-i\theta_0}]dt
+    \end{equation}
+    Comme la partie réelle d'un nombre complexe est toujours inférieure a son module, 
+    on peut écrire :
+    \begin{equation}
+    \text{Re}[ \leq |w(t)e^{-i\theta_0}|] \leq |w(t)|
+    \end{equation}
+    On a donc :
+    \begin{equation}
+    \left|\int_a^b w(t) dt\right| \leq \int_a^b |w(t)|dt
+    \end{equation}
+    \end{proof}
+    \theor{\textsc{"ML"}\\
+    Soit $f(z)$ continue en tout point du chemin admissible $\mathcal{C}$ (de $z_0 =
+    \phi(t_0)$ à $z_1 = \phi(t_1)$) de longueur $L$.\\
+    Si $|f(z)| \leq M, \forall z \in \mathbb{C}, M \in \mathbb{R}^+$, alors 
+    \begin{equation}
+    \left|\int_\mathcal{C}f(z)dz\right| \leq ML
+    \end{equation}}
+    \begin{proof}
+    Par définition de l'intégrale et application du lemme:
+    \begin{equation}
+    \left|\int_\mathcal{C} f(z) dz\right| = \left|\int_{t_0}^{t_1} f(\phi(t))\phi'(t)
+    dt\right| \leq \int_{t_0}^{t_1} |f(\phi(t))||\phi'(t)| dt
+    \end{equation}
+    On considérant comme description du chemin élémentaire $\mathcal{C}$ 
+    \begin{equation}
+    z = x+iy = \phi(t) = \varphi(t) + i\psi(t)
+    \end{equation}
+    On peut calculer la dérivée de $\phi$ ainsi que son module : 
+    \begin{equation}
+    \begin{array}{lll}
+    \phi'(t) &= \frac{dx}{dt} + \frac{dy}{dt} &\rightarrow \phi'(t)dt= dx + idy\\
+    |\phi'(t)| &= \sqrt{dx^2 + dy^2}  &= ds
+    \end{array}
+    \end{equation}
+    Après substitution dans l'intégrale :
+    \begin{equation}
+     \left|\int_\mathcal{C} f(z) dz\right| \leq M\int_0^L ds = ML
+    \end{equation}
+    \end{proof}
+    
+    
+    
+    
+    
+    
+\section{Primitive}
+    \subsection{Définition et propriété}
+    \textit{La primitive d'une fonction $f$ continue dans $D \cap \mathbb{C}$ :}
+    \begin{equation}
+    F(z)\ t.q.\ F'(z) = f(z)\ \ \forall z \in D
+    \end{equation}
+    $F$ est primitive de $f$ pour autant que la dérivée de $F$ donne $f$. Bien sûr,
+    il existe une infinité de primitive comme dans le cas réel, qui ne sont distinctes
+    que d'une constante :\\
+    
+    \prop{Soient $F(z)$ et $G(z)$ deux primitives de $f(z)$ dans $D \cap \mathbb{C}$:
+    \begin{equation}
+    F(z) - G(z) = c\ \ \ c\in\mathbb{C}, z\in D
+    \end{equation}}
+    \begin{proof}\ \\
+    Notons $h(z) = F(z) - G(z)$, toute deux primitive d'une même fonction. Sa dérivée
+    vaut :
+    \begin{equation}
+    h'(z) =  F'(z) - G'(z) = f(z) - f(z) = 0
+    \end{equation}
+    Vu que $h$ est une fonction complexe, je peux l'écrire sous la forme $h(z) = 
+    u(x,y) + iv(x,y)$. En exprimant alors les dérivées partielles ($\forall z =
+    x + iy \in D$ ):
+    \begin{equation}
+    h' = \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x} = 0 \rightarrow
+    \left\{\begin{array}{ll}
+    \frac{\partial u}{\partial x} &= 0  \\
+    \frac{\partial v}{\partial x} &= 0 
+    \end{array}\right.
+    \end{equation}
+    Par les équations de Cauchy-Riemann $\frac{\partial u}{\partial y} =0$ et 
+    $\frac{\partial v}{\partial y} = $. Ceci implique qu'à la fois $u$ et $v$ sont
+    des constantes et donc $h(z)$ est constante $\Rightarrow h(z) = c \in C \; \forall
+    z \in D$.
+    \end{proof}
+    
+    \subsection{Intégrale indépendante du chemin}
+    Lors du dernier exemple, il apparaissait clairement que l'intégrale pouvait être
+    (ou ne pas être) dépendante du chemin. Ce théorème permet de savoir s'il faut ou
+    non tenir compte du chemin imposé :\\
+    
+    \theor{Considérons une fonction $f(z)$ continu dans un domaine $D$. Si l'une des
+    conditions suviantes est vérifiée, alors les autres le sont aussi.
+    \begin{enumerate}
+    \item $f(z)$ admet une primitive $F(z)$ dans $D$.
+    \item Les intégrales de $f(z)$ le long de chemins admissibles de $z_1$ à $z_2$ 
+    contenus entièrement dans $D$ ont toutes la même valeur à savoir :
+    \begin{equation}
+    \int_{z_1}^{z_2} f(z) dz = F(z)|^{z_2}_{z_1} = F(z_2)-F(z_1)
+    \end{equation}
+    où $F(z)$ est primitive du point (1).
+    
+    \item Les intégrales de $f(z)$ sur des chemin admissibles fermés contenus entièrement
+    dans $D$ sont toutes égales à zéro.
+    \end{enumerate}}
+    
+    \newpage
+    \begin{proof}\ \\
+    \textbf{(1) $\rightarrow$ (2)}\\
+    \ \ \ \textit{Cas 1} : considérons un chemin élémentaire $\mathcal{C}$ de $z_1$ à
+    $z_2$ dans $D$ tel que $z = \phi(t), a\leq t\leq b$ avec $\phi(a) = z_1$ et $\phi(
+    2) = z_2$. Notons que : 
+    \begin{equation}
+    \frac{d}{df}F(\phi(t)) = F'(\phi(t))\phi'(t) = f(\phi(t))\phi'(t)\ \ a \leq t\leq b
+    \end{equation}
+    Par défintion de l'intégrale de $f(z)$ et en utilisant \textbf{(3.3)} :
+    \begin{equation}
+    \int_\mathcal{C} f(z) dz = \int_a^b f(\phi(t))\phi'(t) dt = F(\phi(t))|_b^a = F(z_2)
+    - F(z_1)
+    \end{equation}
+    Ce qui est indépendant de $\mathcal{C}$\\
+    
+    \ \ \ \textit{Cas 1} : considérons un chemin admissible dans $D$ formé d'un nombre
+    fini de chemins élémentaires $C_k$ de $z_k$ à $z_{k+1}$ pour $k=1,2\dots,n.$ Je
+    'découpe' mon intégrale le long de $\mathcal{C}$ :
+    \begin{equation}
+    \int_\mathcal{C} f(z) dz = \sum_{k=1}^n \int_{C_k} f(z)dz = \int_{z_k}^{z_{k+1}}
+    f(z)dz = F(z_{n+1}) - F(z_1)
+    \end{equation}
+    Ce qui est indépendant de $\mathcal{C}$\\
+    
+    \textbf{(2) $\rightarrow$ (3)}\\
+    Soit $z_1,z_2$, deux points distincts appartenant à un chemin admissible fermé 
+    $\mathcal{C}$ dans $D$. Comme mon intégrale ne dépend pas du chemin, je sépare
+    $\mathcal{C}$ en $C_1,C_2$ : soit $C_1,C_2$, deux chemins de $z_1$ à $z_2$ tels
+    que $\mathcal{C} = C_1-C_2$. En utilisant (2) :
+    \begin{equation}
+    \int_{C_1} f(z) dz = \int_{C_2} f(z) dz
+    \end{equation}
+    Ce qui implique : 
+    \begin{equation}
+    \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = \int_\mathcal{C}f(z) dz = 0
+    \end{equation}\ \\
+    
+    \textbf{(3) $\rightarrow$ (1)}\\
+    Partons de (3) :
+    \begin{equation}
+    \int_\mathcal{C} f(z) dz = 0
+    \end{equation}
+    Quelque soit $\mathcal{C}$, je peux trouver une primitive associé à $f$ : 
+    définissions $F(z) = \int_{z_0}^{z} f(s) ds$ avec $z_0,z \in D$ ($z_0$ est 
+    arbtitraire) et montrons que  $F'(z) = f(z)\ \forall z \in D$. L'évaluation de la
+    dérivée fait apparaître la différence suivante :
+    \begin{equation}
+    \begin{array}{ll}
+     F(z+\Delta z) - F(z) &= \int_{z_0}^{z+\Delta z} f(s) ds - \int_{z_0}^z f(s)ds\\
+     &= \int_{z}^{z+\Delta z} 
+    \end{array}
+    \end{equation}
+    Comme l'intégrale (3) est nulle, cela implique bien que le chemin parcouru n'a pas
+    d'importance justifiant cette dernière ligne.\\
+    Considérons le chemin d'intégration $z,z+\Delta z$ (segment de droite) :
+    \begin{equation}
+    \int_z^{z+\Delta z} ds = \Delta z
+    \end{equation}
+    Dans notre cas (comme $f(z)$ ne dépend pas de $s$), il en résulte :
+    \begin{equation}
+    f(z) = \frac{1}{\Delta z} \int_z^{z+\Delta z} f(z) ds
+    \end{equation}
+    Soustrayons de part et d'autre de l'égalité $f(z)$ pour avoir :
+    \begin{equation}
+    \dfrac{F(z+\Delta z) - F(z)}{\Delta z} - f(z) = \dfrac{1}{\Delta z}\int_z^{z+
+    \Delta z} (f(s)-f(z)) ds
+    \end{equation}
+    Cherchons la borne supérieure pour :
+    \begin{equation}
+    \left|\dfrac{F(z+\Delta z) - F(z)}{\Delta z} - f(z)\right| = \dfrac{1}{|\Delta z|}
+    |\int_z^{z+ \Delta z} (f(s)-f(z)) ds|
+    \end{equation}
+    Comme $f$ est continue en $z$, $\forall \epsilon > 0, \exists \delta$ tel que :
+    \begin{equation}
+    |f(s)-f(z)|<\epsilon\ \text{si }\ |s-z| < \delta
+    \end{equation}
+    Si $\Delta z$ tel que $|s-z|\leq \Delta z | < \delta$, alors $|f(s)-f(z)|<\epsilon$
+     et l'on peut appliquer le théorème ML :
+    \begin{equation}
+    \left|\dfrac{F(z+\Delta z) - F(z)}{\Delta z} - f(z)\right| < \dfrac{1}{|\Delta z|}
+    \epsilon|\Delta z|
+    \end{equation}
+    Par définition de la limite :
+    \begin{equation}
+    \lim\limits_{\Delta z \rightarrow 0} \dfrac{F(z+\Delta z) - F(z)}{\Delta z} = f(z)
+    \end{equation}
+    Soit F'(z) = f(z), ce qui finit cette longue démonstration.
+    \end{proof}
+    \exemple{\begin{enumerate}
+    \item Considérons un domaine $D \equiv |z| > 0$. On cherche à calculer :
+    \begin{equation}
+    \int_{z_1}^{z_2} \dfrac{dz}{z^2}
+    \end{equation}
+    Notre fonction étant $f(z) = 1/z^2$, sa primitive est $F(z) = -1/z$. Son intégrale 
+    vaut alors :
+    \begin{equation}
+    \int_{z_1}^{z_2} \dfrac{dz}{z^2} = -\dfrac{1}{z_2} + \dfrac{1}{z_1}
+    \end{equation}
+    \item \begin{equation}
+    \oint \dfrac{dz}{z^2} = 0
+    \end{equation}
+    Cette primitive étant partout définie, l'intégrale "donne $F-F$", ce qui donne bien
+    zéro.
+    \item \begin{equation}
+    \oint_C \dfrac{dz}{z} =\ ?
+    \end{equation}
+    Ici, que vaut $F(z)$ ? $Log(z)$ ? La primitive n'étant pas défini sur l'axe des réels
+    négatifs, on ne peut affirmer - avec ce théorème \textbf{ci} - que cette intégrale est
+    nulle.
+    \end{enumerate}}
+    
+
+\section{Théorème de Cauchy Goursat}
+\theor{\textsc{Cauchy-Goursat}\\
+Soit $\mathcal{C}$, un chemin admissible fermé simple, $f(z)$ analytique en tout point
+de $\mathcal{C}\cup D$ (où $D$ est un domaine intérieur à $\mathcal{C}$) :
+\begin{equation}
+\oint_\mathcal{C} f(z) dz = 0
+\end{equation}}\ \\
+
+Plus "francisé" ce théorème dit que si $f$ est analytique en tout point à l'intérieur de
+$D$, domaine défini par le chemin $\mathcal{C}$, l'intégrale le long du chemin fermé
+est nulle.\\
+Avant de démontrer ce théorème, rappellons l'identité de Green :
+\begin{equation}
+\oint_\mathcal{C} P(x,y)dx + Q(x,y)dy = \iint_D \left(\dfrac{\partial Q}{\partial x} -
+\dfrac{\partial P}{\partial y}\right)dxdy
+\end{equation}
+\textbf{Attention !} On travaille ici avec l'hypothèse supplémentaire que les dérivées
+partielles sont continues sur $\mathcal{C}\cup D$.
+
+\begin{proof}
+Considérons un chemin $\mathcal{C}$ décrit par $z = x+iy = \varphi(t) + i\psi(t)$ pour
+$t_0 \leq t \leq t_1$ et $z(t_0) = z(t_1)$. Évaluons l'intégrale sur $\mathcal{C}$ de
+$f(z)$ et exprimons cette dernière en fonction de sa partie réelle et imaginaire. La 
+ligne ci-dessous n'est rien d'autre que la définition d'une intégrale en prenant compte
+de la paramétrisation.
+\begin{equation}
+\oint_\mathcal{C}f(z) dz = \int_{t_0}^{t_1} (u(x,y) + iv(x,y))(x'(t) + iy'(t)) dt
+\end{equation}
+On reconnaît la définition d'une intégrale curviligne :
+\begin{equation}
+\oint_\mathcal{C}f(z) dz = \oint (u+iv)(dx+idy) = \oint(udx - vdy) + i\oint (vdx + udy)
+\end{equation}
+En faisant l'hypothèse que les dérivées partielles sont continues, je peux appliquer l'
+identité de Green pour avoir :
+\begin{equation}
+\oint_\mathcal{C}f(z) dz = -\iint_D \left(\dfrac{\partial v}{\partial x} + 
+\dfrac{\partial u}{\partial y}\right) dxdy + i\iint_D\left(
+\dfrac{\partial u}{\partial x} - \dfrac{\partial v}{\partial y}\right)dxdy
+\end{equation}
+Par les équations de Cauchy-Riemann, le deuxième terme est nul.
+\end{proof}
+
+\exemple{Avec ce théorème, on peut directement dire que 
+\begin{equation}
+\oint \exp(5z)\ dz = 0
+\end{equation}
+Quelle est la différence avec le théorème vu en \textbf{3.2.2} ? C'est que ici, on n'a
+pas besoin d'une primitive. Ainsi, si l'on prend $\mathcal{C}$ le cercle de rayon 1 de
+centre (2,0) :
+\begin{equation}
+\oint_\mathcal{C} \frac{dz}{z} = 0
+\end{equation}
+Ce que nous n'avions pas réussi à obtenir avec le précédent théorème. Par contre, pour 
+l'intégrale :
+\begin{equation}
+\oint_\mathcal{C} \dfrac{dz}{z^2}
+\end{equation}
+je ne peux rien dire avec Cauchy-Gourmet, la fonction étant non analytique en 0. Mais 
+cette fois, avec \textbf{3.2.2}, je peux dire qu'elle vaut 0 ! }
+
+    \subsection{Conséquence du théorème de Cauchy-Goursat}
+        \subsubsection{Première proposition}
+        Si $f(z)$ est analytique sur un chemin fermé $z_0z_2z_1z_3z_0$ et en tout point
+        intérieur, alors
+        \begin{equation}
+        \int_{z_0z_2z_1} f(z) dz = \int_{z_0z_3z_1} f(z) dz
+        \end{equation}
+        $\Rightarrow$ la valeur de $\int_{z_0z_1}$ est indépendante du chemin. Notons
+        que la réciproque est fausse ; si la fonction n'est pas analytique, la valeur
+        de l'intégrale peut dépendre du chemin ou non !\\
+        \exemple{Voir slide 27.}
+        
+        
+        \subsubsection{Deuxième proposition}
+        Soit $C, C_0$ deux chemins admissibles, fermés, simples et orientés dan le sens
+        positif ($C_0$ intérieur à $C$). Si $f(z)$ est analytique dans $C$ excepté les
+        points intérieurs à $C_0$ alors :
+        \begin{equation}
+        \oint_C f(z) dz = \oint_{C_0} f(z) dz
+        \end{equation}
+        
+        Cela signifie que les points "à problème" de la fonction sur le domaine compris par les chemins $C$ et $C_0$ sont les mêmes, ceux-ci étant uniquement compris à l'intérieur de $C_0$.
+        
+        \begin{proof}
+        Slide 29.
+        \end{proof}
+        \exemple{On avait vu lors d'un précédent exemple (celui prouvant que le chemin 
+        d'intégration avait parfois de l'importance que pour $\int_C \frac{dz}{z}$ :
+        \begin{equation}
+        \begin{array}{l}
+        \int_{C_1} =\  i \pi\\
+        \int_{C_2} = -i\pi
+        \end{array}
+        \end{equation}
+        On trouve alors :
+        \begin{equation}
+        \int_{C_1} - \int_{C_2} = 2\pi i
+        \end{equation}
+        $\Rightarrow$ résultat valable pour tout chemin admissible simple fermé entourant
+        zéro.}
+        
+        
+        \subsubsection{Troisième proposition}
+        Soient :
+        \begin{itemize}
+        \item $\mathcal{C}$ un chemin admissible, ferme, simple et orienté dans le sens
+        positif.
+        \item $C_k (k=1,\dots,n)$ des chemins admissibles fermés, simples, orientés dans
+        le sens positif, intérieurs à $\mathcal{C}$ et dont l'intérieur n'ont pas de 
+        points communs.
+        \end{itemize}
+        Si $f$ est analytique dans $\mathcal{C}$, sauf en des points intérieurs à $C_k$,
+        alors 
+        \begin{equation}
+        \oint_\mathcal{C} f(z) dz = \sum_{k=1}^n \oint_{C_k} f(z) dz
+        \end{equation}
+        

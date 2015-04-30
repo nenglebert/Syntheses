@@ -1,0 +1,186 @@
+% Longueur de référence :
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Fonctions élémentaires}
+\label{chap:2}
+\section{Préliminaires}
+    \subsection{Argument d'un nombre complexe}
+    On peut représenter polairement un nombre complexe $z = x+iy$ en posant $x=r\cos\theta$ et $y =
+    r\sin\theta$ :
+    \begin{equation}
+    z = r(\cos\theta + i\sin\theta)\ \ \ \ \text{avec }\left\{\begin{array}{ll}
+    r &= |z| \\
+    \theta &: \text{Angle que fait $z$ avec l'axe réel positif.}\\
+    (\tan\theta &= \frac{y}{x})
+    \end{array}\right.
+    \end{equation}
+    
+        \subsubsection{Valeur principale de $arg\ z$}
+        La \textbf{valeur principale }de $arg\ z$ est notée $Arg\ z$ alors que la valeur unique,
+        $\Theta$, de $arg\ z$ est comprise dans $-\pi < \Theta <\pi$.\\ 
+        
+        Le lien entre $Arg\ z$ et $arg\ z$ est donné par :
+        \begin{equation}
+        arg\ z = Arg\ z + 2n\pi\ \ (n = 0,\pm 1, \pm 2, \dots)
+        \end{equation}
+        La valeur principale peut s'écrire sous forme d'une partie réelle et imaginaire :
+        \begin{equation}
+        Arg\ z = u(x,y) + iv(x,y)\ \ \ \ \text{avec } \left\{\begin{array}{ll}
+        u(x,y) &= \arctan(y,x)  \\
+        v(x,y) &= 0 
+        \end{array}\right.
+        \end{equation}
+        
+        \prop{Deux propriétés\footnote{Rappel : $arg\ z_1z_2 = arg\ z_1 + arg\ z_2$ et $arg\ z_1/z_2 =
+        arg\ z_1 - arg\ z_2$.} sont à connaître :
+        \begin{enumerate}
+        \item Il s'agit d'une fonction continue, sauf pour $z$ réel négatif (saut de discontinuité de 2$\pi$)
+        \item Si $-\pi < Arg\ z_1 + Arg\ z_2 \leq \pi$, alors
+        \begin{equation}
+        Arg\ z_1z_2 = Arg\ z_1 + Arg\ z_2
+        \end{equation}
+        \end{enumerate}}
+    
+    \subsection{Fonction exponentielle}
+    En travaillant avec $\mathbb{C}$ comme domaine de définition, la définition de l'exponentielle 
+    complexe est 
+    \begin{equation}
+    \exp(z) = e^x(\cos y + i \sin y) = e^x\exp(iy)
+    \end{equation}
+    On retrouve l'exponentielle réelle si la partie imaginaire est nulle et la \textit{formule d'Euler}
+    en cas de partie réelle nulle.\\
+    
+    \prop{\begin{itemize}
+    \item Analytique en tout point
+    \item $\frac{d}{dt}\exp(z) = \exp(z) \forall z \in \mathbb{C}$
+    \item Le produit des exponentielle donne l'exponentielle d'une somme
+    \item Elle est périodique de période $2i\pi$. En effet
+    \begin{equation}
+    \exp(z+2\pi i ) = \exp(z).(\cos 2\pi + i \sin 2\pi) = \exp(z)
+    \end{equation}
+    \end{itemize}}\ \\
+    Contrairement à son équivalent réelle, $\exp(z)$ peut être négative. Elle peut valoir -1 si $x=0$ et
+    $y = \pi + 2n\pi$.
+    
+    \subsection{Fonctions trigonométriques}
+    Par définition :
+    \begin{equation}
+    \sin z = \dfrac{e^{iz} - e^{-iz}}{2i}\ \ \ \ \ \ \cos z = \dfrac{e^{iz} + e^{-iz}}{2}
+    \end{equation}
+    \prop{Il s'agit de fonction analytiques. L'identité fondamentale ainsi que les formules trigonométrique
+    de somme et différence reste valable.}\\
+    
+    La petite différence réside dans le fait que sin($z$) et cos($z$) ne sont plus bornés : $\sin(iy) = i\sinh
+    y$ et $cos(iy) = \cosh y$. On a notamment :
+    \begin{equation}
+    \sin z = \sin(x+iy) = \sin x \cosh y + i \cos x \sinh y
+    \end{equation}
+    \exemple{\textsc{FEUILLE ENES}}
+    
+        \subsubsection{Sinus et exponentielle - Notion de phaseur}
+        Considérons une fonction sinusoïdale $v(t) = V_m\sin(\omega t + \phi)$. Ceci est équivalent à 
+        \begin{equation}
+        Im\{(V_me^{i\phi})e^{i\omega t} \}
+        \end{equation}
+        où $V \equiv V_me^{i\phi}$ est le phaseur, un nombre complexe représentant l'amplitude et la phase
+        d'une sinusoïde.
+        
+    \subsection{Fonction logarithme népérien}
+        \subsubsection{Motivation de la définition}
+    Déterminons $w = u+iv$ tel que $e^w = z$. Considérons $z = re^{i\Theta}$ avec $-\pi <\Theta \leq \pi$ :
+    \begin{equation}
+    e^ue^{iv} = re^{i\Theta}
+    \end{equation}
+    D'où :
+    \begin{equation}
+    w = \ln r + i(\Theta + 2n\pi)\ \ \ \ (n=0, \pm 1, \pm2,\dots)
+    \end{equation}
+    où $r$ est le module de $z$ et $i(\dots)$ la phase.
+    
+        \subsubsection{Définition et notation}
+        Par définition, en considérant le domaine de définition $\mathbb{C}_0$ :
+        \begin{equation}
+        Log\ z = \ln |z| + i\ Arg\ z
+        \end{equation}
+        \exemple{Si $z \in \mathbb{R}^+ : Log\ z = \ln z$. On peut ici avoir le logarithme d'un nombre 
+        négatif : $Log(-1) = i\pi$}\ \\
+        
+        \prop{Celles-ci sont assez semblables à celles établies pour les réels :
+        \begin{enumerate}
+        \item On peut écrire la définition de la sorte : 
+            \begin{equation}
+            Log\ z = u(x,y) + iv(x,y)\ \ \ \text{avec } \left\{\begin{array}{ll}
+            u(x,y) &= \ln(\sqrt{x^2+y^2})  \\
+            v(x,y) &= \arctan(y,x)
+            \end{array}\right.
+            \end{equation}
+        $Log\ z$ est continue si $u$ et $v$ le sont : $Log\ z$ continue en tout point \textbf{à l'
+        exception de l'axe réel négatif} (discontinuité de Arg\ z).
+        \item Comme $Log\ z$ est analytique sur $\mathbb{C}\{$axe réel négatif + origine$\}$ :
+        \begin{equation}
+        \frac{d}{dz}Log\ z = \frac{1}{z}
+        \end{equation}
+        \item Si $-\pi < Arg\ z_1 + Arg\ z_2 \leq \pi$, alors
+        \begin{equation}
+        Log\ z_1z_2 = Log\ z_1 + Log\ z_2
+        \end{equation}
+        \item $\exp(Log\ z) = z$
+        \item Si $-\pi < y \leq \pi$, $Log(\exp(z)) = z$
+        \end{enumerate}}\ \\
+        
+        \exemple{(1) et (2) - Calculons l'expression de la dérivée de $Log\ z$, et vérifions Cauchy-Riemann (faisons
+        une paire deux couilles) :
+        \begin{equation}
+        \left\{\begin{array}{ll}
+        \frac{\partial u}{\partial x} = \frac{1}{\sqrt{x^2+y^2}}\frac{1}{2}\frac{2x}{\sqrt{x^2+y^2}} &=
+        \frac{x}{x^2+y^2}\\
+        \frac{\partial u}{\partial x} &= \frac{y}{x^2+y^2}
+        \end{array}\right.
+        \end{equation}
+        \begin{equation}
+        \left\{\begin{array}{ll}
+        \frac{\partial v}{\partial x} = \frac{1}{1+\frac{y^2}{x^2}}\frac{-y}{x^2} &= \frac{-y}{x^2+y^2}  \\
+        \frac{\partial v}{\partial y} &= \frac{1}{1+x^2}\frac{1}{x}
+        \end{array}\right.
+        \end{equation}
+        Ces expressions étant calculées, nous savons que (Ch. précédent) :
+        \begin{equation}
+        f'(z_0) = \frac{\partial u}{\partial x}|_{(x_0,y_0)} + i\frac{\partial v}{\partial x}|_{(x_0,y_0)}
+        \end{equation}
+        Ce qui implique :
+        \begin{equation}
+        \frac{d}{dz}Log\ z = \frac{x}{x^2+y^2} + i\frac{-y}{x^2+y^2} = \frac{x-iy}{(x+iz)(x-iz)} = \frac{1}{z}
+        \end{equation}}\ \\
+        
+        \begin{proof} (3)\\
+        Par définition :
+        \begin{equation}
+        Log\ (z_1z_2) = \ln|z_1z_2| +i\ Arg\ (z_1z_2)
+        \end{equation}
+        Par propriété des logarithmes :
+        \begin{equation}
+        Log\ (z_1z_2) = \ln|z_1|+\ln|z_2| + i(Arg\ z_1 + Arg\ z_2)
+        \end{equation}
+        On trouve finalement
+        \begin{equation}
+        Log\ (z_1z_2) = Log\ z_1 +  Log\ z_2
+        \end{equation}
+        \end{proof}
+        Les deux autres démonstrations sont données slide 16.
+        
+    \subsection{Fonction puissance}
+    En prenant $\mathbb{C}$ comme domaine de définition, la puissance $c$ de $z$ est, par définition :
+    \begin{equation}
+    P(c,z) = \exp(c\ Log\ z)\ \ \ c\in\mathbb{C}
+    \end{equation}
+    \exemple{$P(i,i) = \exp(i\ Log\ i) = \exp(i(0+1\pi/2) = e^{-\pi/2}$}\ \\
+    
+    \prop{\begin{enumerate}
+    \item $P(c_1+c_2, z) = P(c_1,z) + P(c_2,z)$
+    \item Continuité en tout point de $\mathbb{C}$ sauf l'axe des réels négatifs (à vérifier pour chaque point)
+    \item Dérivée en tout point de $\mathbb{C}$ sauf l'axe des réels négatifs
+    \begin{equation}
+    \frac{d}{dz} P(c,z) = c\ P(c-1, z)
+    \end{equation}
+    \end{enumerate}}\ \\
+    Quelques cas particuliers sont présentés slide 19.
