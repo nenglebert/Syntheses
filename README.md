@@ -4,7 +4,7 @@ Synthèses de l'École Polytechnique de Bruxelles
 ## Visualisation des synthèses
 Les `.pdf` des synthèses se trouvent dans le dossier build de chaque
 cours. Il s'agit du fichier le plus récent. Après avoir cliqué sur 
-le fichier, il suffit d'appuyer sur Raw pour le télécharger..
+le fichier, il suffit d'appuyer sur Raw pour le télécharger. 
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors
