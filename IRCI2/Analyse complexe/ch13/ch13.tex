@@ -1,1 +1,260 @@
 \chapter{Notions de base de théorie des systèmes}
+
+\section{Propriétés fondamentales des systèmes}
+	\subsection{Définitions}
+	Deux types de systèmes sont à connaître :
+	\begin{enumerate}
+	\item Système avec et sans mémoire\\
+	\textit{Un système est dit sans mémoire lorsque $y(t_0)$ ne dépend que de l'entrée 
+	$u(t)$ en $t=t_0$.} Par exemple :
+		\begin{itemize}
+		\item Sans mémoire : $V(t) = RI(t)$
+		\item Avec mémoire : $V(t) = \frac{1}{C}\int_{-\infty}^t I(\tau)d\tau$
+		\end{itemize}
+	\item \textbf{Système causal (!)}\\
+	\textit{La sortie à l'instant $t$ ne dépend que de l'entrée à l'instant $t$ et aux 
+	instants antérieurs.} Par exemple $y(t) = u(t+\tau)$ est non causal pour $
+	\tau > 0$ et causal pour $\tau\leq0$.
+	\end{enumerate}
+	
+	Une autre notion clef est celle de \textbf{stabilité} dont la définition formelle 
+	est : \textit{toute entrée bornée fourni une sortie bornée}. Celle-ci est souvent
+	lié à la dissipation d'énergie. Par exemple $y(t) = tu(t)$ est instable.
+
+
+
+
+	\subsection{Propriétés en termes de la réponse impulsionnelle}
+		\subsubsection{Mémoire}
+	Considérons un système avec et sans mémoire avec comme sortie 
+	\begin{equation}
+	y(t) = \int_{-\infty}^\infty u(\tau)h(t-\tau)d\tau = \int_{-\infty}^\infty u(t-\tau)
+	h(\tau)d\tau
+	\end{equation}
+	Ce système sera sans mémoire si $h(\tau) = 0$ pour $\tau \neq 0$.\\
+	
+		\subsubsection{Causalité}
+	Un SLP est causal si $h(t) =0$ pour $t<0$ ; dans ce cas $h(t)$ est dit 
+	signal causal. En effet, $y(t) = \int_{-\infty}^\infty u(\tau)h(t-\tau)d\tau = 
+	\int_0^\infty u(\tau)h(t-\tau)d\tau$.
+	
+		\subsubsection{Stabilité}
+		Si $|u(t)| < b$ avec $b\in\mathbb{R}^+$, alors 
+		\begin{equation}
+		\begin{array}{ll}
+		|y(t)| &= |\int_{-\infty}^\infty u(t-\tau)h(\tau)d\tau|\\
+		 &\leq \int_{-\infty}^\infty |h(\tau)||u(t-\tau)|d\tau\\
+		 &\leq b\int_{-\infty}^\infty|h(\tau)|d\tau
+		\end{array}
+		\end{equation}
+		Si cette intégrale est convergente, la sortie sera bornée ; la sortie de mon 
+		système (SLP) sera donc stable si :
+		\begin{equation}
+		\int_{-\infty}^\infty |h(t)|dt < \infty
+		\end{equation}
+		Il s'agit d'une condition nécessaire et mais aussi suffisante (non démontrée ici).
+		Nous avons donc ici :\\
+		
+		\prop{\textsc{CNS de stabilité}
+		\begin{equation}
+		\int_{-\infty}^\infty |h(t)|dt < \infty
+		\end{equation}}\ \\
+		Celle-ci n'est que la définition même de la première condition de Dirichlet pour
+		$h(t)$.\\
+		\textbf{Attention !} Il ne faut pas confondre une fonction bornée et une fonction
+		absolument sommable :
+		\begin{itemize}
+		\item \textit{Fonction bornée :} $|f(t)| < M, M\in \mathbb{R}^+, \forall t \in 
+		\mathbb{R}$.
+		\item \textit{Fonction absolument sommable\footnote{Ne pas confondre non plus avec les 
+		"fonctions de carrés sommables.} :} $ \int_{-\infty}^\infty |f(t)|dt < \infty$
+		\end{itemize}
+		
+\section{Application de la transformée de Fourier - Analyse harmoniques}
+
+	\subsection{Transmittance isochrone}
+	Commençons par un léger rappel. Soit $y(t) = h(t)*u(t)$. Par la transformée de Fourier, 
+	on trouve : 
+	\begin{equation}
+	Y(i\omega) = H(i\omega)U(i\omega)
+	\end{equation}
+	avec $Y(i\omega) = \mathcal{F}(y(t)), H(i\omega) = \mathcal{F}(h(t))$ et $U(i\omega) = 
+	\mathcal{F}(u(t))$.\\
+	Ceci étant dit, énonçons la définition :\\
+
+	\retenir{\textsc{Transmittance isochrone - Définition}
+	\begin{equation}
+	H(i\omega) = \mathcal{F}(h(t)) = \dfrac{Y(i\omega)}{U(i\omega)}
+	\end{equation}}
+	
+	Cette transformée de Fourier ne va exister (c'est à dire converger) que si le système 
+	est stable. En effet, la première condition de Dirichlet doit être  vérifiée pour 
+	assurer l'existence de cette transformation !
+
+
+	\subsection{Réponse d'un SLP (de transmittance isochrone $H(i\omega)$) à une entrée
+	sinusoïdale}
+	Ce qui nous intéresse ici, c'est la réponse du système à une sinusoïde d'amplitude 
+	$A$ et de pulsation $\omega_0$ :
+	\begin{equation}
+	u(t) = A\sin\omega_0t = A \dfrac{e^{i\omega_0t}-e^{-i\omega_0t}}{2i}
+	\label{eq:EntreA}
+	\end{equation}
+	Le résultat qui en découle est \textbf{tellement fondamental} que \textbf{deux} démos
+	différentes sont donner : il faut en connaître \textbf{au moins une} ! 
+	
+		s\subsubsection{Première démo}
+	Substituons \autoref{eq:EntreA} dans $y(t) = h(t)*u(t)$ :
+	\begin{equation}
+	y(t) = \dfrac{A}{2i}\left[\int_{-\infty}^\infty h(\tau)e^{i\omega_0(t-\tau)}d\tau-
+	\int_{-\infty}^\infty h(\tau)e^{-i\omega_0(t-\tau)}d\tau\right]
+	\end{equation}
+	Les parties ne dépendant que de $t$ peuvent être sorties de l'intégrale. Ceci fait, 
+	on voit apparaître deux définitions de transformée de Fourier. Par exemple, pour la 
+	deuxième intégrale on obtient $\int_{-\infty}^\infty h(\tau)e^{-i\omega_0\tau}d\tau$
+	ce qui n'est rien d'autre que $H(-i\omega_0)$. On a dès lors :
+	\begin{equation}
+	y(t) = \dfrac{A}{2i}\left[e^{i\omega_0t}H(i\omega_0)-e^{-i\omega_0t}H(-i\omega_0)
+	\right]
+	\label{eq:ATravailler}
+	\end{equation}
+	On va maintenant retravailler cette expression pour arriver à quelque chose de plus 
+	lisible. Comme $h(t)$ est réelle $H(-i\omega_0) = \overline{H}(i\omega_0)$. Si $z\in
+	\mathbb{C}$, alors $Im(z) = (z-\overline{z}/2i$. On peut dès lors ré-écrire 
+	\autoref{eq:ATravailler} :
+	\begin{equation}
+	y(t) = \frac{A}{2i}2i\ Im\{e^{i\omega_0t}H(i\omega_0)\}
+	\end{equation}
+	Utilisons l'expression de $H(i\omega_0)$ en coordonnées polaires : $H(i\omega_0) = 
+	|H(i\omega_0)|e^{i\varphi(\omega_0)}$ avec $\varphi(\omega_0) = \text{arg}(H(
+	i\omega_0)$ :
+	\begin{equation}
+	y(t) = A\ \text{Im}\{(\cos\omega_0t + i\sin\omega_0t)|H(i\omega_0)|(\cos\varphi(\omega_0)
+	+i\sin\varphi(\omega_0))\}
+	\end{equation}
+	Après transformation trigonométrique :\\
+	
+	\retenir{
+	\begin{equation}
+	A\ |H(i\omega_0)|\sin(\omega_0t+\varphi(\omega_0))
+	\end{equation}}\ \\	
+	\textbf{Erreur fréquente ;} il faut bien garder à l'esprit que partout apparaît $\omega_0$.
+	Il ne faut donc \textbf{pas} voir de $\omega$ en sortie sinon...
+	
+	
+		\subsubsection{Deuxième démo}
+		Le but est d'utiliser ici la transformée inverse. Pour une entrée sinusoïdale, nous
+		avons :
+		\begin{equation}
+		U(i\omega) = -\frac{\pi}{i}\delta(\omega+\omega_0) + \frac{\pi}{i}\delta(\omega-
+		\omega_0)
+		\label{eq:ExpErr}
+		\end{equation}
+		Cette fonction ne vérifie pas la première condition de Dirichet. Pour obtenir cette 
+		transformation, on a passer par les fonctions généralisées et montré que la transfo 
+		de Fourier était la somme de deux impulsions\footnote{Cf. TP10} pondérées par 
+		$\frac{pi}{i}$.\\
+		Après substitution dans la relation entrée-sortie :
+		\begin{equation}
+		Y(i\omega) = H(i\omega)A\left(-\frac{\pi}{i}\delta(\omega+\omega_0) + \frac{\pi}{i}
+		\delta(\omega-\omega_0)\right)
+		\end{equation}
+		Par définition de la transformée inverse :
+		\begin{equation}
+		\begin{array}{ll}
+		y(t) &= \frac{A\pi}{2\pi i}\int_{-\infty}^\infty H(i\omega)(\delta(\omega-\omega_0)-
+		\delta(\omega+\omega_0))e^{i\omega t}d\omega\\
+		 &= \frac{A}{2i}(H(i\omega_0)e^{i\omega_0t} - H(-i\omega_0)e^{-i\omega_0t})
+		\end{array}
+		\end{equation}
+		en supposant $h(t)$ réelle :
+		\begin{equation}
+		y(t) = \frac{A}{2i}(H(i\omega_0)e^{i\omega_0t} - \overline{H}(i\omega_0)e^{-i\omega_0t})
+		\end{equation}
+		En exprimant $H(i\omega_0)$ sous sa forme polaire :
+		\begin{equation}
+		y(t) = |H(i\omega_0t)|A\frac{e^{i(\omega_0t+\varphi(\omega_0)))}-e^{-i(\omega_0t+\varphi
+		(\omega_0)))}}{2i}
+		\end{equation}
+		On retombe sur le résultat tant désiré :	
+		\begin{equation}
+		A\ |H(i\omega_0)|\sin(\omega_0t+\varphi(\omega_0))
+		\end{equation}
+		
+		\subsubsection{L'erreur qui tue}
+		Au lieu de partir de l'expression \autoref{eq:ExpErr}, on part souvent du résultat : 
+		\begin{equation}
+		\mathcal{L}(\sin(\omega_0t)\nu(t)) = \frac{\omega_0}{p^2+\omega_0^2}
+		\label{eq:ErrTue}
+		\end{equation}
+		Ce n'est pas totalement la même chose, car le $\nu(t)$ remplace la borne inférieure 
+		(initialement à $-\infty$ par 0. En plus, si on part de \autoref{eq:ErrTue} il y 
+		aura une contribution supplémentaire du au régime transitoire lié à l'application du
+		signal. On peut y arriver, mais il faut réussir à montrer que ce terme s'annule.\\
+		Considérons $u(t) = A\sin(\omega_0t)\nu(t)$. La réponse (ou sortie) est :
+		\begin{equation}
+		\begin{array}{ll}
+		y(t) &= A\int_{-\infty}^\infty h(\tau)\sin(\omega_0(t-\tau))\nu(t-\tau)d\tau\\
+		 &= A\int_{-\infty}^t h(\tau)\sin(\omega_0(t-\tau))d\tau \\
+		 &= A\int_{-\infty}^\infty h(\tau)\sin(\omega_0(t-\tau))d\tau - A\int_{t}^\infty
+		 h(\tau)\sin(\omega_0(t-\tau))d\tau
+		\end{array}
+		\end{equation}
+		Le deuxième terme correspond au transitoire mentionné ci-dessus. Ce terme tend vers
+		zéro lorsque $t$ tend vers l'infini pour un système stable.
+
+
+	
+	\subsection{Réponse harmoniques - Courbes de Bode}
+	Il existe deux définition de diagramme de Bode :
+	\begin{enumerate}
+	\item Porter en graphique le module de la transmittance isochrone (gain du système) exprimé 
+	en décibels ($20\log_10|H(j\omega)|$) en fonction de $\omega$ (en échelle logarithmique).
+	\item Porter en graphique $arg\ H(i\omega)$ en fonction de $\omega$ en échelle logarithmique.
+	\end{enumerate}
+	Pourquoi des échelles logarithmiques ? Car les courbes de Bode de systèmes en série peuvent 
+	s'additionner mais aussi pour la possibilité de représenter le comportement du système dans 
+	une large gamme de pulsations.\\
+	
+	Il s'en suit une série de slide (20 à 26) traitant des courbes de Bode avec des exemples 
+	et même un exercice ! Je ne les reprends pas ici.
+
+
+
+
+
+
+	\subsection{Réponse harmonique d'un système décrit par une EDO à coefficients constants}
+	Les systèmes sont souvent décrits et traités par des équations différentielles :
+	\begin{equation}
+	\sum_{k=0}^n a_k\dfrac{d^ky(t)}{dt^k} = \sum_{k=0}^m b_k\dfrac{d^ku(t)}{dt^k}\ \ \ \ \ \
+	m\leq n
+	\end{equation}
+	On suppose une entrée $u(t)$ appliquée depuis un temps suffisamment long et on on s'intéresse
+	à la réponse harmonique (en supposant qu'elle existe).\\
+	Appliquons Joseph :
+	\begin{equation}
+	\mathcal{F}\left\{\sum_{k=0}^n a_k\dfrac{d^ky(t)}{dt^k}\right\} =	\mathcal{F}\left\{
+	\sum_{k=0}^m b_k\dfrac{d^ku(t)}{dt^k}\right\}
+	\end{equation}
+	Par linéarité :
+	\begin{equation}
+	\sum_{k=0}^n a_k\mathcal{F}\left\{\dfrac{d^ky(t)}{dt^k}\right\} =	\sum_{k=0}^m b_k
+	\mathcal{F}\left\{\dfrac{d^ku(t)}{dt^k}\right\}
+	\end{equation}
+	En appliquant la transformée de Fourier de la dérivée :
+	\begin{equation}
+	\sum_{k=0}^n a_k(i\omega)^kY(i\omega) = \sum_{k=0}^m b_k(i\omega)^kU(i\omega)
+	\end{equation}
+	Soit encore $Y(i\omega) = H(i\omega)U(i\omega)$\footnote{A revoir} avec la transmittance 
+	isochrone :
+	\begin{equation}
+	H(i\omega) = \dfrac{Y(i\omega)}{U(i\omega)} = \dfrac{\sum_{k=0}^m b_k(i\omega)^k
+	}{\sum_{k=0}^n a_k(i\omega)^k}
+	\end{equation}
+
+
+
+
+\section{Application de la transformée de Laplace en théorie des systèmes}
+Pour le prochain et dernier cours :'(
