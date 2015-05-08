@@ -2673,6 +2673,7 @@ il s'agit d'une \textit{approximation classique}. On a alors, pour un volume $V=
 \begin{equation}
 Z^{(1)} \approx \dfrac{1}{8}\left(\dfrac{\pi}{\gamma}\right)^{3/2} = \left(\dfrac{mk_BT}{2\pi\hbar^2}
 \right)^{3/2}V
+\label{eq:z1}
 \end{equation}
 L'équation (14.35) du syllabus (sorry pfpfpf) permet de déduire la pression due à une seule particule:
 \begin{equation}
@@ -2847,7 +2848,7 @@ une augmentation de $R$ au niveau mole) grâce à l'énergie de rotation ! Puis,
 de vibration on pourra encore augmenter de $R$ pour obtenir la valeur totale de $c_V = \frac{7}{2}
 R$ comme on peut le voir à la \autoref{fig:cV}.
 
-\section{Propriété des sytèmes dont l'énergie est une somme de termes indépendants}
+\section{Propriété des systèmes dont l'énergie est une somme de termes indépendants}
 On peut généraliser tout ce qui a été obtenu précédemment à un nombre $n$ d'énergie.
 
 
@@ -2859,9 +2860,179 @@ On peut généraliser tout ce qui a été obtenu précédemment à un nombre $n$
 
 
 
+\chapter{Mécanique statistique de particules identiques}
+\section{Le paradoxe de Gibbs}
+Jusqu'ici nous avons considéré les particules comme étant discernables. Cependant, comme 
+nous allons le voir, cette hypothèse induit parfois en erreur. Considérons l'entropie d'une
+particule de gaz et multiplions par $N$ pour le nombre de particules dans un volume $V$ :
+\begin{equation}
+\tilde{S}(N,V) = \frac{3}{2}Nk_B\left[1+\ln\left(\dfrac{mk_BT}{2\pi\hbar^2}V^{3/2}\right)\right]
+\label{eq:FausseEntropie}
+\end{equation}
+Cette expression n'est pas correcte car l'entropie n'est pas extensive ($S(\lambda N,\lambda V)$.\\
+On peut retrouver \autoref{eq:FausseEntropie} en partant de l'hamiltonien du système : 
+$H = \sum_{i=1}^N \frac{p_i^2}{2m}$. L'énergie totale est la somme des énergies des $N$ particules
+($E = E_1 + E_2 + \dots$) conduisant à la fonction de partition :
+\begin{equation}
+\tilde{Z} = (Z^{(1)})^N
+\end{equation}
+où $Z^{(1)}$ est donné par \label{eq:z1}. En utilisant 
+\begin{equation}
+S = k_B\left(\dfrac{\partial T\ln z}{\partial T}\right)_{V,N}
+\label{eq:EntroCh15}
+\end{equation}
+on retrouve \autoref{eq:FausseEntropie} : c'est le paradoxe de Gibbs. Ce dernier à tout  de 
+même réussi à le corriger empiriquement en partant de
+\begin{equation}
+Z = \dfrac{(z^{(1)^N}}{N!}
+\end{equation}
+où le dénominateur est le \textit{facteur de correction de Gibbs.} En utilisant \autoref{eq:EntroCh15}:
+\begin{equation}
+\ln\ Z = N\ln\ Z^{(1)} - N\ln\ N + N
+\end{equation}
+on peut déduire l'expression correcte de l'entropie :
+\begin{equation}
+S(N,V) = Nk_B\left\{\dfrac{5}{2}+\dfrac{3}{2}\ln\left[\dfrac{mk_BT}{2\pi\hbar^2}\left(\dfrac{V}{N}
+\right)^{3/2}\right]\right\}
+\end{equation}
+Cette fois-ci, grâce au rapport $V/N$, $S$ est bien extensive.
+
+\section{Bosons et fermions sans interaction}
+Il y a deux catégorie au niveau de l'indiscernabilité : les bosons (spin entier) identiques décrits par 
+une fonction d'onde symétrique et les fermions identiques par une fonction d'onde antisymétrique (spin 
+demi-entier). Les atomes/molécules ne sont composés que de fermions ($e^-,p^+,n^0$). Le moment cinétique
+total de deux particules de spin $1/2$ est entier et devient demi-entier lors de l'ajout d'un fermion :
+\begin{center}
+\textit{Un atome, une molécule ou un noyau atomique est un boson si le nombre total d'électron, protons 
+et neutrons qui le composent est pair ou un fermion si ce nombre est impair.}
+\end{center}
+Considérons \textbf{deux fermions identiques} sans interactions. Une fonction d'onde antisymétrique de
+ce système peut s'écrire grâce à Slater :
+\begin{equation}
+\Psi_A(1,2) = \frac{1}{\sqrt{2}}\left|\begin{array}{cc}
+\psi_\alpha(1) & \psi_\alpha(2)\\
+\psi_\beta(1) & \psi_\beta(2)
+\end{array}\right|
+\end{equation}
+La valeur propre vaut $E = E_\alpha + E_\beta$ (où $E_\alpha \neq E_\beta$ si elles ne sont pas dégénérés) 
+et $\Psi_A$ n'existe que si $\phi_\alpha\neq\phi_\beta$ à cause de Pauli (deux fermions identiques doivent 
+être dans des états différents).\\
+Considérons \textbf{deux bosons identiques} sans interactions. Une fonction d'onde symétrique :
+\begin{equation}
+\Psi_S(1,2) = \left\{\begin{array}{ll}
+\psi_\alpha(1)\psi_\alpha(2), & (\alpha=\beta)\\
+\frac{1}{\sqrt{2}}[\psi_\alpha(1)\psi_\beta(2) + \psi_\beta(1)\psi_\alpha(2)], & (\alpha\neq\beta)
+\end{array}\right.
+\end{equation}
+Ici, rien n'empêche que $\alpha = \beta$. Pour les fermions, on peut généraliser ce résultat à $N$ fermions 
+identiques :
+\begin{equation}
+E = \sum_{\lambda=0}^{N-1} E_\lambda
+\end{equation}
+où toutes les énergies $E_\lambda$ doivent être différentes. Pour les bosons, ils peuvent eux se trouver
+à plusieurs dans le même état avec une même fonction d'onde individuelle $\psi_\alpha$ :
+\begin{equation}
+E = NE_0
+\end{equation}
+
+\section{Interprétation de la correction de Gibbs}
+Soit un système de deux particules de même masse supposé \textit{discernable} où $E_\alpha$ et $E_\beta$ 
+correspondent aux deux valeurs propres distinctes de $H(1)$ et $H(2)$ de fonction propre $\psi_\alpha$ et
+$\psi_\beta$. Deux fonctions propres différentes de $H$\footnote{$H = H(1)+H(2)$.} sont données par :
+\begin{equation}
+\begin{array}{ll}
+\Psi_{\alpha\beta}(1,2) &=  \psi_\alpha(1)\psi_\beta(2)\\
+\Psi_{\beta\alpha}(1,2) &=  \psi_\beta(1)\psi_\alpha(2)
+\end{array}
+\end{equation}
+Elles correspondent cependant à la même énergie $E = E_\alpha+E_\beta$ ; lors du calcul de $Z$, l'énergie
+$E$ est comptée deux fois ! Le facteur de correction de Gibbs permet d'éviter de compter plusieurs fois le
+même étant individuel. Ceci reste une approximation, car on néglige la différence fermion/boson.
 
 
 
+\section{Statistique de photons}
+Soit un gaz de photons (boson) à température $T$. Leur nombre peut varier par absorption et émission avec
+la paroi par exemple. Ils peuvent exister dans différents états d'énergie $\epsilon_1,\epsilon_2,\dots$ 
+pouvant être relié à $\nu_\gamma$ ou $\lambda_\gamma$. Chacune des $\nu/\lambda$ caractérise un 
+\textit{mode} $\gamma$ du champ EM. Le nombre de photons dans chaque niveau est noté $n_1,n_2,\dots$\footnote{
+On ne fait que \textit{compter} les photons, on les traite bien comme \textit{indiscernable}.} La 
+fonction de partition est alors une somme sur tous ces nombres possibles :
+\begin{equation}
+Z = \sum_{n_1,n_2,\dots} e^{-(n_1\epsilon_1 + n_2\epsilon_2 + \dots)/k_BT}
+\end{equation}
+On peut séparer les sommations, elle sont indépendantes. On va maintenant considérer chaque mode 
+séparément et on mettra tout ensemble dans la prochaine section. Pour un mode donné, la fonction de 
+partition vaut :
+\begin{equation}
+\begin{array}{ll}
+Z_\gamma &= \sum_{n_\gamma=0}^\infty \left(e^{-\epsilon_\gamma/k_BT}\right)^{n_\gamma}\\
+ &= \dfrac{1}{1-e^{\epsilon_\gamma/k_BT}}
+\end{array}
+\end{equation}
+D'après la distribution de Boltzman, la probabilité d'avoir $n_\gamma$ photons dans le niveau
+$\epsilon_\gamma$ est :
+\begin{equation}
+p(n_\gamma) = \dfrac{e^{-n_\gamma\epsilon_\gamma/k_BT}}{Z_\gamma}
+\end{equation}
+Le nombre moyen de photon d'énergie $\epsilon_\gamma$ est donné par la moyenne des $n_\gamma$ 
+pondérés par les probabilités correspondantes :
+\begin{equation}
+<n_\gamma> = \sum_{n_\gamma = 0}^\infty p(n_\gamma)n_\gamma = -k_BT\dfrac{\partial}{\partial\epsilon_
+\gamma}\ln Z_\gamma = \dfrac{1}{e^{\epsilon_\gamma/k_BT}-1}
+\end{equation}
+On considère en général l'énergie de ces modes comme continue : $\epsilon$ pour écrire l'expression du
+nombre moyen de photon en fonction de l'énergie $\epsilon$ de ces photons, à température $T$ :
+\begin{equation}
+n(\epsilon,T) = \dfrac{1}{e^{\epsilon/k_BT}-1}
+\end{equation}
+ce qui n'est rien d'autre que la \textit{distribution de Planck}. On observe que le nombre moyen de 
+photons d'énergie données augmente avec la température. A  haute énergie :
+\begin{equation}
+n(\epsilon,T) \approx e^{-\epsilon/k_BT} \ll 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  k_BT\ll\epsilon
+\end{equation}
+A basse énergie :
+\begin{equation}
+n(\epsilon,T) \approx \frac{k_BT}{\epsilon} \gg 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \epsilon\ll k_BT
+\end{equation}
+L'énergie moyenne du champ dans un mode donné vaut simplement le nombre moyen de photons fois l'énergie 
+de ceux-ci :
+\begin{equation}
+\overline{E}_\nu(T) = \dfrac{\epsilon_\nu}{e^{\epsilon/k_BT}-1} = \dfrac{h\nu}{e^{\epsilon/k_BT}-1}
+\end{equation}
+
+
+\section{Le corps noir}
+Un corps noir est un système à l'équilibre à une température fixée, qui absorbe toute radiation qui y 
+entre. L'observation des radiations émises par une petite ouverture dans une enceinte bien isolée à 
+température constante est une très bonne approximation du rayonnement d'un corps noir idéal. Une 
+grandeur de ce comportement ne pouvait être expliqué classiquement : la densité par énergie de volume 
+$dU/d\lambda$ des radiations de longueur d'onde $\lambda$ émise par le corps noir à la température $T$.
+En pratique, on travaille avec la \textit{densité d'énergie par unité de volume en fonction de la fréquence} 
+\begin{equation}
+u(\nu,T) = dU/d\nu
+\end{equation}
+A partir de la thermo, Wien à proposé la \textit{loi de Wien} permettait de limiter l'étude d'une fonction
+à une variable :
+\begin{equation}
+u(\nu,T) = \nu^3f(\nu/T)
+\end{equation}
+Avec une certaine expression de $f$\footnote{Montré également par Wien}, cette loi prédisait les résultats 
+pour les hautes fréquences...
+\begin{equation}
+u(\nu,T) = \alpha \nu^3 e^{-\gamma\nu/T}
+\end{equation}
+... mais pas les basses. Rayleigh et Jeans ont calculé $u$ avec la physique statistique classique :
+\begin{equation}
+u(\nu,T) = \dfrac{8\pi\nu^2}{c^3}\overline{E}_\nu(T)
+\end{equation}
+Si on suppose que la distribution des énergie suit celle de Maxwell-Boltzmann, $\overline{E}_\nu=k_BT$ :
+\begin{equation}
+u(\nu,T) = \nu^3\dfrac{8\pi k_B}{c^3}\dfrac{T}{\nu}
+\end{equation}
+Ceci est en accord avec la loi de Wien, mais ne fonctionne cette fois-ci que pour les basses fréquences. De 
+plus, si on intègre sur toutes les fréquences pour avoir l'énergie totale, on trouve une énergie infinie ! 
+C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergie.}
 
 
 
