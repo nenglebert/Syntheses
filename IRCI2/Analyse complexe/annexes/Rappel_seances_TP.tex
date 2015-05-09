@@ -1,7 +1,15 @@
-\renewcommand{\thesection}{Séance \arabic{section}}
+\newcommand*{\seancesection}[1]{%
+  \addtocontents{toc}
+  {\string\renewcommand\string\l@section{\string\@dottedtocline{1}{1.5em}{4.7em}}}
+  \renewcommand*{\thesection}{Séance\space\arabic{section}}%
+  \section{#1}
+  \renewcommand*{\thesection}{\thechapter.\Alph{section}}%
+  \addtocontents{toc}
+  {\string\renewcommand\string\l@section{\string\@dottedtocline{1}{1.5em}{2.3em}}}
+}
 \newcommand{\Log}{\text{Log}}
 \chapter{Analyse complexe : rappel TP}
-\section{Opérations sur les nombres complexes}
+\seancesection{Opérations sur les nombres complexes}
 Soit $$ z=x+iy=re^{i\theta} \text{ avec }\left\{\begin{array}{l}
 r=\sqrt{x^2+y^2}\\
 \theta = sign(\text{Gauss})\arctan\left(\frac{y}{x}\right)
@@ -14,7 +22,7 @@ Pour les inégalités théoriques, si il y a des $|\dots|$ mettre au carré pour
 $$Re(z)=\frac{z+\bar z}{2}\qquad Im(z)=\frac{z-\bar z}{2i}$$ $$\cos\theta=\frac{e^{i\theta}+e^{-i\theta}}{2}\qquad \sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
 $\cosh$ et $\sinh$ c'est pareil sans $i$.\\
 $$z=0\Leftrightarrow \left\{\begin{array}{l}{Re}(z)=0\\ Im(z)=0\end{array}\right.$$
-\section{Limites, dérivabilité, Cauchy-Riemann}
+\seancesection{Limites, dérivabilité, Cauchy-Riemann}
 Ne pas hésiter à utiliser Horner ou la division euclidienne.\\
 Notion de différentielle en $z=z_0$ : 
 $$\lim_{z_0}\frac{f(z)-f(z_0)}{z-z_0}$$
@@ -29,7 +37,7 @@ $$\lim_{z_0}\frac{f(z)-f(z_0)}{z-z_0}$$
 La notion d'\textbf{analytique} en un point signifiant la différentiabilité de la fonction dans un voisinage du point (autour du point)
 
 
-\section{Fonctions usuelles}
+\seancesection{Fonctions usuelles}
 Notion de dérivée : $$\lim_{|\Delta  z|\rightarrow 0} \frac{f(z_0+\Delta z)-f(z_0)}{\Delta z} $$
 Quelques opérateurs : \begin{itemize}
 \item $\log(z)=\ln|z|+i\,arg(z)$
@@ -40,7 +48,7 @@ Quelques opérateurs : \begin{itemize}
 Ici, le logarithme de base est de base \cancel{10} $e$.\\
 $\Log(z)$ est analytique partout sur $\mathbb{C}\backslash\{z\leq 0\,|\,z\in\mathbb{R}\}$\\\\
 \danger tout est a $2k\pi i$ prêt, c-a-d que si $z = 2$ c'est en réalité $z = 2e^{2k\pi i}$. Lors du passage de logarithme, ne pas oublier le $2k\pi i$
-\section{Analycité et intégrabilité. Intégrale de chemin}
+\seancesection{Analycité et intégrabilité. Intégrale de chemin}
 Théorème de Cauchy-Goursat : \begin{center}\fbox{\begin{minipage}{0.7\textwidth}
    Soit $C$ un chemin admissible fermé simple. Soit $f(z)$ une fonction analytique en tout point de $C\cup D$ ($D$, domaine intérieur de $C$) $$\Rightarrow \oint_C f(z)\,dz=0$$
    \end{minipage}}
@@ -51,7 +59,7 @@ Formule de Cauchy : \begin{center}\fbox{\begin{minipage}{0.7\textwidth}
     \end{minipage}}
 \end{center}
 
-\section{}
+\seancesection{}
 Série de Taylor : \begin{center}\fbox{\begin{minipage}{0.7\textwidth}
    Si $f$ est analytique dans le \textbf{disque ouvert} $D$, $|z-z_0|<R$\\ Alors $\forall$ point $\in D$ $$f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n\qquad|z-z_0|<R$$
    $$a_n = \frac{f^{(n)}(z_0)}{n!}\qquad n=0,1,2,\dots $$
@@ -79,7 +87,7 @@ Important dans le TP $$\frac{1}{1-z}=\sum_{n=0}^\infty z^n\qquad (|z|<1)$$
 On ne calculera quasi pas $a_n$ et $b_n$, il faut se débrouiller pour avoir quelque chose en $\frac{1}{(z-z_0)^n}$ et quelque chose en $(z-z_0)^n$ pour ainsi faire le lien avec Laurent.
 \paragraph{Remarque } $|z-2|< 3 \Rightarrow 0<\frac{1}{|z-2|}<\frac{1}{3}$ et poser $u=\pm(z-2)$ pour alléger\\
 Ne pas hésiter à passer par dérivation, ex : $\frac{1}{(z-1)^3}=-\frac{1}{2}\frac{d^2}{dz^2}\frac{1}{1-z}=-\frac{1}{2}\frac{d^2}{dz^2}\sum_0^\infty z^n$
-\section{Singularités, Séries de Laurent, Théorème des résidus}
+\seancesection{Singularités, Séries de Laurent, Théorème des résidus}
 \paragraph{Définition du résidus (en gros)} le résidu est le coefficient devant le terme en $\frac{1}{z-z_0}$ 	(étant dans la partie principale de la série de Laurent), $z_0$  étant le point singulier correspondant
 
 Théorème des résidus : \begin{center}\fbox{\begin{minipage}{0.7\textwidth}
@@ -114,7 +122,7 @@ Type particulier de point singulier :\begin{itemize}
 \item "pôle d'ordre $\infty$", la partie principale a une infinité de termes
 \end{itemize}
 \end{itemize}
-\section{Applications du théorème des résidus}
+\seancesection{Applications du théorème des résidus}
  $$ P.V\int_{-\infty}^{+\infty}f(x)\,dx=\lim_{R\rightarrow\infty}\int_{-R}^R f(x)\, dx$$ où $P.V :=$ Valeur principale
  \paragraph{Propriété (pour $f(x)$ continue!)} \begin{itemize}
  \item Si $f(x)$ converge $(x\rightarrow\infty)\Rightarrow P.V\displaystyle\int\limits_{-\infty}^{+\infty}f(x)\,dx\ \exists$
@@ -135,7 +143,7 @@ De cela, on peut s'amuser... car en effet, on peut dire que (\autoref{fig::p}) $
 \captionof{figure}{$R+\gamma=\text{O}$ dans le sens +}\label{fig::p}
 \end{center}
 
-\section{Systèmes linéaires et permanents, produits de convolution, séries de Fourier}
+\seancesection{Systèmes linéaires et permanents, produits de convolution, séries de Fourier}
 2 type de système :\begin{itemize}
 \item Système linéaire : \begin{itemize}
 \item Propriété de superposition et d’homothétie
@@ -162,7 +170,7 @@ $$\text{ où }\qquad\omega_0=\frac{2\pi}{T},\qquad a_k=\frac{1}{T}\int_Tu(t)e^{-
 \paragraph{Remarque} Nous avons une exponentielle complexe dans l'intégrale, il est parfois judicieux de la décomposer en $\cos(k\omega_0t)$ et $\sin(k\omega_0t)$ pour faire apparaître les parités et ainsi, faire (parfois) plus simple\\
 Petite précision sur $\delta(t-t_0)$, l'impulsion de Dirac : c'est une fonction nulle partout sauf en $t=t_0$ et dont la valeur est telle que la surface de l'impulsion $=1$\\
 \danger\ Faire attention au changement de signe -\_-'
-\section{Transformées de Fourier et de Laplace	}
+\seancesection{Transformées de Fourier et de Laplace	}
 Petit rappel de Fourier (+notation supplémentaire) :
 $$x(t)\overset{F}{\rightarrow}X(i\omega)=F(x(t))=\int_{-\infty}^{+\infty}x(t)\,e^{-i\omega t}\, dt $$
 Nouveautés : $$X(i\omega)\overset{F^{-1}}{\rightarrow} x(t)=F^{-1}(X(i\omega))=\frac{1}{2\pi}\int_{-\infty}^{+\infty}X(i\omega)\,e^{i\omega t}\,d\omega$$
@@ -172,7 +180,8 @@ Propriétés :
 $$x(t)\overset{F}{\underset{F^{-1}}{\rightleftharpoons}}X(i\omega)$$
 \begin{alignat*}{4}
 y(t) &= x(t-t_0) &&\overset{F}{\rightarrow} Y(i\omega)=e^{-i\omega t_0}X(i\omega)\\
-y(t) &= e^{i\omega_0t}x(t) &&\overset{F}{\rightarrow} Y(i\omega)=X(i(\omega-\omega_0))\\ 
+y(t) &= e^{i\omega_0t}x(t) &&\
+overset{F}{\rightarrow} Y(i\omega)=X(i(\omega-\omega_0))\\ 
 y(t) &= x(at) &&\overset{F}{\rightarrow} Y(i\omega)=\frac{1}{|a|}X\left(i\frac{\omega}{a}\right)\qquad (a\in\mathbb{R}_0)\\
 y(t) &= \frac{d}{dt}x(t) &&\overset{F}{\rightarrow} Y(i\omega)=i\omega X(i\omega)\\
 y(t) &= -itx(t) &&\overset{F}{\rightarrow} Y(i\omega)=\frac{dX(i\omega)}{d\omega}
@@ -181,7 +190,7 @@ $$\int_{-\infty}^{+\infty}|x(t)|^2\,dt=1\Leftrightarrow\int_{-\infty}{+\infty}|X
 Transformation de Laplace : 
 $$X(p)=\mathcal{L}(x(t))=\int_{-\infty}^{+\infty}x(t)\,e^{-pt}\,dt $$
 
-\section{Transformée de Laplace et équations différentielles}
+\seancesection{Transformée de Laplace et équations différentielles}
 \paragraph{Transformée de Laplace} \begin{align*}X(p) &=\mathcal{L}(x(t))=\int_{-\infty}^ {+\infty}x(t)e^ {-pt}\,dt\\
 x(t) &= \frac{1}{2\pi i}\int_{\sigma-i\infty}^ {\sigma+i\infty}X(p)e^{pt}\,dp
 \end{align*}
