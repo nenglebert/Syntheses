@@ -52,8 +52,30 @@
     
     \prop{\begin{itemize}
     \item Analytique en tout point
-    \item $\frac{d}{dt}\exp(z) = \exp(z) \forall z \in \mathbb{C}$
-    \item Le produit des exponentielle donne l'exponentielle d'une somme
+    \item $\frac{d}{dt}\exp(z) = \exp(z) \forall z \in \mathbb{C}$. \\
+    En effet, vérifions avec Cauchy-Riemann. On a $f(z) = \exp z = e^x (\cos y + i \sin y)$ donc on pause $u = e^x \cos y$ et $v = e^x \sin y$. 
+\begin{equation}
+\left\{
+\begin{aligned}
+\frac{\partial u}{\partial x} &= e^x \cos y \\
+\frac{\partial u}{\partial y} &= - e^x \sin y  
+\end{aligned}
+\right.
+\mbox{ et }
+\left\{
+\begin{aligned}
+\frac{\partial v}{\partial x} &= e^x \sin y \\
+\frac{\partial v}{\partial y} &= e^x \cos y  
+\end{aligned}
+\right.
+\end{equation}
+Comme les conditions de Cauchy-Riemann sont vérifiées \footnote{Il fallait que $\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}$ et que $\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.$}, on peut appliquer
+\begin{equation}
+\frac{d}{dz} \exp z = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} = e^x \cos y  + i e^x \sin y
+\end{equation}
+Ce qui démontre bien la propriété.
+
+    \item Le produit des exponentielles donne l'exponentielle d'une somme
     \item Elle est périodique de période $2i\pi$. En effet
     \begin{equation}
     \exp(z+2\pi i ) = \exp(z).(\cos 2\pi + i \sin 2\pi) = \exp(z)
@@ -75,7 +97,6 @@
     \begin{equation}
     \sin z = \sin(x+iy) = \sin x \cosh y + i \cos x \sinh y
     \end{equation}
-    \exemple{\textsc{FEUILLE ENES}}
     
         \subsubsection{Sinus et exponentielle - Notion de phaseur}
         Considérons une fonction sinusoïdale $v(t) = V_m\sin(\omega t + \phi)$. Ceci est équivalent à 
