@@ -403,7 +403,7 @@ La preuve expérimentale a été donnée par \textit{Comptons} en réalisant des
 
 \begin{center}
 \includegraphics[scale = 0.5]{img/tableaucoeur}
-\captionof{figure}{Particule de rayonnement électromagnétique (\textbf{a connaître par coeur})
+\captionof{figure}{Particule de rayonnement électromagnétique (\textbf{a connaître par coeur}}
 \end{center}
 \textit{Remarque :} \eqref{eq:ehbaromega} et \eqref{eq:phbark} unifié grâce à \eqref{eq:Komegack}$\Rightarrow P=\hbar K$\\
 \textit{NB :} $1\,eV=1,602\times 10^{-19}\,J$
@@ -3000,6 +3000,7 @@ L'énergie moyenne du champ dans un mode donné vaut simplement le nombre moyen 
 de ceux-ci :
 \begin{equation}
 \overline{E}_\nu(T) = \dfrac{\epsilon_\nu}{e^{\epsilon_\nu/k_BT}-1} = \dfrac{h\nu}{e^{h\nu/k_BT}-1}
+\label{eq:ResQuant}
 \end{equation}
 
 
@@ -3026,8 +3027,15 @@ u(\nu,T) = \alpha \nu^3 e^{-\gamma\nu/T}
 ... mais pas les basses. Rayleigh et Jeans ont calculé $u$ avec la physique statistique classique :
 \begin{equation}
 u(\nu,T) = \dfrac{8\pi\nu^2}{c^3}\overline{E}_\nu(T)
+\label{eq:IdeePlanck}
 \end{equation}
-Si on suppose que la distribution des énergie suit celle de Maxwell-Boltzmann, $\overline{E}_\nu=k_BT$ :
+Si on suppose que la distribution des énergie suit celle de Maxwell-Boltzmann :
+\begin{equation}
+\overline{E}_\nu(T) = \dfrac{\int_0^\infty E_\nu e^{-E_\nu/k_BT}\ dE_\nu}{\int_0^\infty
+e^{-E_\nu/k_BT}\ dE_\nu} = k_BT
+\label{eq:CalculEv}
+\end{equation}
+On obtient
 \begin{equation}
 u(\nu,T) = \nu^3\dfrac{8\pi k_B}{c^3}\dfrac{T}{\nu}
 \end{equation}
@@ -3037,22 +3045,127 @@ C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergi
 C'est Max Planck qui a trouvé une formule empirique, autant valable en haute pression qu'en basse :
 \begin{equation}
 u(\nu,T) = \dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}
+\label{eq:FormulePlanck}
 \end{equation}
-Elle ne contient que le paramètre $h$ qui doit valoir $\approx 6.63\times 10^{-34}\ \text{Js}$.
+Elle ne contient que le paramètre $h$ qui doit valoir $\approx 6.63\times 10^{-34}\ \text{Js}$. Le maximum 
+de cette distribution se déplace vers les hautes fréquences quand la température augmente : lors de la 
+chauffe d'un métal, celui-ci est d'abord rouge jusqu'à devenir blanc.\\
+
+L'idée géniale de Planck était de conserver \autoref{eq:IdeePlanck} mais de remplacer les intégrales par
+des sommes sur des valeurs discrètes pour le calcul de $\overline{E}_\nu$ (dans \autoref{eq:CalculEv}), 
+c'est à dire remplacer $\overline{E}_\nu$ par son expression quantique \autoref{eq:ResQuant}\footnote{La 
+recombinaison des deux donne bien la formule de Planck \autoref{eq:FormulePlanck}.}. Planck à ainsi proposé 
+que l'énergie dans le corps noir soit \textit{quantifiée} : elle ne peut prendre que des valeurs discrètes 
+de la forme :
+\begin{equation}
+E_\nu = nh\nu
+\end{equation}
+Ceci permet d'éviter la catastrophe ultraviolette.
 
 
+\section{Émission induite et effet laser}
+Du à cette quantification, Einstein a proposé une interprétation physique du cors noir indiquant un nouvel 
+effet : l'\textit{émission induite}. Elle correspond à l'émission par un atome excité d'un second photon en 
+présence d'un photon ayant exactement l'énergie correspondant à une transition de cet atome (photon dit 
+"raisonnant"). L'énergie du photons émis est égale à celle du premier : ils sont identiques (possible car les
+photons sont des boson (nombre non conservé)). Avant ceci, seuls deux effets étaient connus :
+\begin{enumerate}
+\item \textit{Émission spontanée} : l'atome passe spontanément d'un état excité $E_j$ vers un état d'énergie
+plus basse $E_i$ par émission d'un photon d'énergie $E_j-E_i$.
+\item \textit{Absorption} : C'est l'inverse de l'émission : un photon d'énergie $h\nu = E_j-E_i$ est 
+absorbé.
+\end{enumerate}
+L'interaction entre un photon ou un atome peut mener soit à l'absorption, soit à l'émission induite. Cette 
+dernière a été introduite pour expliquer la loi de Planck (non possible à partir d'une étude statistique d'un
+corps noir).
 
+	\subsection*{Coefficients d'Einstein}
+	Lorsque le corps noir est à l'équilibre, l'apparition/disparition de photons se compensent. Soit deux 
+	énergies $E_j > E_i$ et étudions les variations de populations d'atomes dans ces deux niveaux de photons
+	d'énergie $h\nu = E_j-E_i$. Soit $N_i$ le nombre d'atome dans le niveau $E_i$ et idem avec $N_j$. Pour
+	une \textit{émission spontanée} (e.s.) :
+	\begin{equation}
+	\left(\dfrac{dN_i}{dt}\right)_{e.s.} = -\left(\dfrac{dN_j}{dt}\right)_{e.s.} = +A_{ji}N_j
+	\end{equation}
+	La diminution d'atomes dans l'état $j$ est $\propto N_j$ où $A_{ji}$ est le \textit{coefficient d’
+	Einstein d'émission spontanée}, une probabilité par énergie de temps.\\
+	Pour l'\textit{absorbtion} (a.), l'évolution des populations est proportionnelle au nombre de photons qui
+	ont une énergie égale à $E_j-E_i$. Pour une énergie donné, ce nombre est proportionnel à $u(\nu,T)$. On 
+	retrouve alors :
+	\begin{equation}
+	\left(\dfrac{dN_i}{dt}\right)_{a.} = -\left(\dfrac{dN_j}{dt}\right)_{a} = -B_{ji}u(\nu,T)N_i
+	\end{equation}
+	Le signe négatif se justifie par le fait que l'absorption diminue $N_i$ et augmente $N_j$.\\
+	Pour expliquer la distribution de Planck, Einstein à postuler l'\textit{émission induite} (e.i.). Elle 
+	est aussi $\propto h\nu$ et donc $u(\nu,T)$ mais ici le niveau $j$ se fait dépeuplé au profit du 
+	niveau $i$ :
+	\begin{equation}
+	\left(\dfrac{dN_i}{dt}\right)_{e.i.} = -\left(\dfrac{dN_j}{dt}\right)_{e.i.} = +B_{ji}u(\nu,T)N_j
+	\end{equation}
+	où $B_{ji}$ est le \textit{coefficient d’Einstein d’émission induite}, ici proportionnel à $N_j$ 
+	comme on agit sur un état excité.\\
+	
+	A l'équilibre, les populations des niveaux ne varient pas :
+	\begin{equation}
+	\dfrac{dN_i}{dt} = -\dfrac{dN_j}{dt} = 0
+	\end{equation}
+	En sommant alors nos trois équations ci-dessus, on obtient pour $E_j > E_i$ :
+	\begin{equation}
+	[A_{ji} + B_{ji}u(\nu,T)]N_j = B_{ij}u(\nu,T)N_i
+	\label{eq:SomForm}
+	\end{equation}
+	Selon la distribution de Boltzmann, le rapport des populations à l'équilibre est
+	\begin{equation}
+	\dfrac{N_j}{N_i} = \dots = \dfrac{g_j}{g_i}e^{-h\nu/k_BT}
+	\end{equation}
+	où l'on voit apparaître les dégénérescences. Avec \autoref{eq:SomForm} :
+	\begin{equation}
+	[A_{ji}+B_{ji}u(\nu,T)]g_j = B_{ij}g_iu(\nu,T)e^{-h\nu/k_BT}
+	\end{equation}
+	Après meltingpot :
+	\begin{equation}
+	u(\nu,T) = \dfrac{(A_{ji}/B_{ji})}{(g_iB_{ij}/g_jB_{ji})e^{h\nu/k_BT}-1}
+	\end{equation}
+	Pour que cette relation soit la même que celle trouvée par Planck, il a proposé les relations :
+	\begin{equation}
+	\begin{array}{ll}
+	g_jB_{ji} &= g_iB_{ij}\\
+	A_{ji} &= \dfrac{8\pi h\nu^3}{c^3}B_{ji}
+	\end{array}
+	\end{equation}
+	Ceci montre que les transitions induites sont plus importantes à basse fréquence, aux grandes 
+	longueurs d'ondes ce qui explique qu'obtenir un laser bleu est plus dur qu'un laser rouge !
+	
+\section{Statistique de Bose-Einstein}
+\textit{\textbf{Cette partie est très mathématique, je ne donne que les résultats et interprétations.}}
+On s'intéresse ici à la distribution des énergies pour des bosons identiques.  Pour faire de bonnes
+approximations, on va regrouper les niveaux d'énergies par paquets. Le but est de calculer le nombre 
+moyen de boson par état microscopique individuel. Pour un état d'énergie $E$ :
+\begin{equation}
+f^{BE}(E) = \frac{1}{e^{(E-\mu)/k_BT}-1}
+\end{equation}
+Il s'agit de la \textit{distribution de Bose-Einstein} où $\mu$ est le potentiel chimique. Celui-ci doit
+être négatif pour que le nombre moyen de boson soit toujours positif.\\
+A faible température on observe grâce au caractère bosonique une \textit{condensation de Bose-Einstein} :
+lorsque la température tend vers zéro, les bosons tombent dans l'état fondamental (et ce nombre devient
+très important passé une température critique $T_c$). Ceci permet d'obtenir des températures $\approx 
+1\ \mu K$.
 
-
-
-
-
-
-
-
-
-
-
+\section{Statistique de Fermi-Dirac}
+\textit{\textbf{Cette partie est très mathématique, je ne donne que les résultats et interprétations.}}
+On s'intéresse ici à la distribution des énergies pour des fermions identiques, supposé tous dans le 
+même état de spin $\chi_{+1/2}$. Le nombre moyen de fermions par état individuel d'énergie $E_i$ est 
+donné par la \textit{distribution de Fermi-Dirac} :
+\begin{equation}
+f^{FD}(E) = \frac{1}{e^{(E-\mu)/k_BT}+1}
+\end{equation}
+Celle-ci est toujours comprise entre 0 et 1 vu qu'un état individuel ne peut être occupé que par au 
+maximum une particule. Ici, $\mu > 0$ pour avoir un nombre positif. Le potentiel à température nulle 
+est dite \textit{énergie de Fermi}. Quand la température tend vers zéro, la variation de la distribution
+devient plus rapide au voisinage de $\mu$ et forme un échelon à température nulle. \\
+La position relative de l'énergie de Fermi par rapport au haut de la bande de valence et au bas de la bande
+de conduction définit le caractère isolant ou conducteur du matériau. La \textit{supraconductivité} ne peut 
+hélas s'expliquer comme ceci, plus d'infos page 233.
 
 
 
