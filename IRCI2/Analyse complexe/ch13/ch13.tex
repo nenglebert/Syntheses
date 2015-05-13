@@ -257,4 +257,130 @@
 
 
 \section{Application de la transformée de Laplace en théorie des systèmes}
-Pour le prochain et dernier cours :'(
+Le but de cette dernière (\ :'(\ ) section est d'introduire la notion de fonction de 
+transfert d'un SLP et d'en caractériser les notions de causalité et stabilité en ces
+termes, mais aussi l'étude de l'interconnexion des SLP.
+
+	\subsection{Fonction de transfert d'un SLP}
+	Rappelons une fois de plus \textbf{la} propriété phare de la transformée de Laplace
+	bilatérale d'une produit de convolution :
+	\begin{equation}
+	y(t) = h(t)*u(t) \lt Y(p) = H(p)U(p), \ \ \ \ \ \text{où }\ \max(\alpha_h^+,
+	\alpha_u^+) < \mathfrak{Re}(p)< \min(\alpha_h^-,\alpha_u^-)
+	\end{equation}
+	Énonçons à présent la définition :
+	
+	\retenir{\textsc{Définition}\\
+	Fonction de transfert ou transmittance isomorphe : 
+	\begin{equation}
+	H(tp) = \mathcal{L}(h(t)) = \dfrac{Y(p)}{U(p)}
+	\end{equation}
+	avec RDC\ $\alpha_h^+ < \mathfrak{Re}(p) \alpha_h^-$.}
+	
+	
+	\subsection{Région de convergence de la fonction de transfert d'un SLP causal}
+	On sait maintenant bien que la RDC de $H(p)$ d'un système causal est un demi-plan
+	droit. Définissons la notion de causalité et stabilité (en rouge dans les slides) :
+	
+	\begin{enumerate}
+	\item Soit $H(p)$ une fraction rationnelle qui correspond à la fonction de transfert 
+	d’un SLP. Le SLP est \textbf{causal} si et seulement si la RDC de $H(p)$ est le demi-plan
+	à droite du pôle le plus à droite de $H(p)$.
+	\item Soit $H(p)$ une fraction rationnelle correspondant à la fonction de transfert d’un 
+	SLP causal et soient $p_i, i=1,\dots,n$ ses pôles. Le système est \textbf{stable} si et 
+	seulement si $\mathfrak{Re}(p_i) <0, i=1,\dots,n$.
+	\end{enumerate}
+	Une autre condition pour la stabilité peut s'énoncer : $\int_{-\infty}^\infty |h(t)|dt <
+	\infty$ (c-à-d le SLP est stable) si et seulement si la RDC de $H(p)$ contient $\mathfrak{
+	Re}(p) = 0$.
+	
+	
+	\subsection{Fonction de transfert d'un système décrit par une EDO a coefficient constants}
+		\subsubsection{Entrée $u(t)$ appliquée depuis un temps infiniment long}
+		On retrouve l'équation différentielle déjà énoncée un peu plus haut
+		\begin{equation}
+		\sum_{k=0}^n a_k\dfrac{d^ky(t)}{dt^k} = \sum_{k=0}^m b_k\dfrac{d^ku(t)}{dt^k}\ \ \ \ \ \
+		m\leq n
+		\end{equation}
+		Effectuons cette fois ci la transformée de Laplace \textbf{bilatérale} des deux membres :
+		\begin{equation}
+		\mathcal{L}\left\{\sum_{k=0}^n a_k\dfrac{d^ky(t)}{dt^k}\right\} =	\mathcal{L}\left\{
+		\sum_{k=0}^m b_k\dfrac{d^ku(t)}{dt^k}\right\}
+		\end{equation}
+		Par linéarité :
+		\begin{equation}
+		\sum_{k=0}^n a_k\mathcal{L}\left\{\dfrac{d^ky(t)}{dt^k}\right\} =	\sum_{k=0}^m b_k
+		\mathcal{L}\left\{\dfrac{d^ku(t)}{dt^k}\right\}
+		\end{equation}
+		En appliquant la transformée de Laplace bilatérale de la dérivée :
+		\begin{equation}
+		\sum_{k=0}^n a_kp^kY(p) = \sum_{k=0}^m b_kp^kU(p)
+		\end{equation}
+		Soit encore, $Y(p) = H(p)U(p)$ avec la fonction de transfert (rouge) :
+		\begin{equation}
+		H(p) = \frac{Y(p)}{U(p)} = \frac{\sum_{k=0}^m b_kp^k}{\sum_{k=0}^n a_kp^k}
+		\end{equation}
+		On a ici besoin d'\textbf{information complémentaire} pour déterminer la RDC de $H(p)$.	
+		
+		\subsubsection{Système initialement au repos soumis à une entrée causale}
+		Considérons comme entrée causale :
+		\begin{equation}
+		y(0^-) = \left.\frac{dy(t)}{dt}\right|_{0^-} = \dots = \left.\frac{dy^{n-1}(t)}{dt^{n-1}}
+		\right|_{0^-} = 0
+		\end{equation}
+		Effectuons cette fois ci la transformée de Laplace \textbf{unilatérale} des deux membres :
+		\begin{equation}
+		\mathcal{L}_u\left\{\sum_{k=0}^n a_k\dfrac{d^ky(t)}{dt^k}\right\} =	\mathcal{L}_u\left\{
+		\sum_{k=0}^m b_k\dfrac{d^ku(t)}{dt^k}\right\}
+		\end{equation}
+		Par linéarité :
+		\begin{equation}
+		\sum_{k=0}^n a_k\mathcal{L}_u\left\{\dfrac{d^ky(t)}{dt^k}\right\} =	\sum_{k=0}^m b_k
+		\mathcal{L}_u\left\{\dfrac{d^ku(t)}{dt^k}\right\}
+		\end{equation}
+		Appliquons la transformée de Laplace unilatérale de la dérivée pour les conditions initiales 
+		et l’entrée considérées:
+		\begin{equation}
+		\sum_{k=0}^n a_kp^k\mathcal{Y}(p) = \sum_{k=0}^m b_kp^k\mathcal{U}(p)
+		\end{equation}
+		Soit encore, $\mathcal{Y}(p) = \mathcal{H}(p)\mathcal{U}(p)$ avec la fonction de transfert 
+		(rouge) :
+		\begin{equation}
+		\mathcal{H}(p) = \frac{\mathcal{Y}(p)}{\mathcal{U}(p)} = \frac{\sum_{k=0}^m b_kp^k}{\sum_{k=0}^n
+		 a_kp^k}
+		\end{equation}
+		Les hypothèses impliquent le système causal : la RDC est le demi-plan à droite du pôle le
+		plus à droite.\footnote{Notons que si $u(t) = 0 \rightarrow y(t) =0$.}
+	
+	
+	\subsection{Interconnexion de SLP}
+	Trois cas sont intéressants : 
+	\begin{enumerate}
+	\item Système en parallèle
+	\begin{equation}
+	h(t) = h_1(t)+h_2(t) \Rightarrow H(p) = H_1(p) + H_2(p)
+	\end{equation}
+	\item Système en série (la sortie du premier système est l'entrée du second)
+	\begin{equation}
+	h(t) = h_1(t)*h_2(t) \Rightarrow H(p) = H_1(p)H_2(p)
+	\end{equation}
+	\item Système en rétroaction ; systèmes ayant la même entrée : la sortie est la somme de ces
+	systèmes.
+	\begin{equation}
+	Y(p) = H_1(p)E(p)\ \ \ \ Z(p) = H_2(p)Y(p)\ \ \ \Rightarrow Y(p) = H_1(p)(U(p)-H_2(p)Y(p))
+	\end{equation}
+	Soit :
+	\begin{equation}
+	H(p) = \frac{Y(p)}{H(p)} = \frac{H_1(p)}{1+H_1(p)H_2(p)}
+	\end{equation}
+	\end{enumerate}
+	On voit directement qu'il est bien plus simple d'utiliser ces expressions que de manier avec 
+	dextérité le produit de convolution dans le domaine temporel. On obtient également des 
+	expressions similaires en transformée de Fourier (pour les systèmes stables).\ \\
+	\\
+	\\
+	
+	
+	\begin{center}
+	\includegraphics[scale=0.08]{sceau}
+	\end{center}
