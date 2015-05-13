@@ -801,4 +801,307 @@ Les composants sont agencés suivant deux types de configuration : rapide dans l
 	\includegraphics[ scale=0.8]{ca2}
 \end{center}
 
+\chapter{Entrées/Sorties et Périphériques}
+
+Sans les périphériques, les effets du CPU ( processeur) sont inaccessibles, on ne sait pas l'utiliser même s'il marche. En effet l'ordinateur agit avec nous via ses périphériques. Il y a des périphériques d'entrée(Input) tels que le clavier, la souris, le micro ou le scanner, ils rentrent de l'information dans l'ordinateur. Et il y a les périphériques de sortie (Output), par exemple l'écran, les haut-parleurs, l'imprimante ou le disque dur. Il faut organiser les interactions du CPU avec ses périphériques. Pour communiquer les périphériques utilisent le {\bf pilote}, c'est le mode de dialogue avec le système d'exploitation. De plus en plus les pilotes sont déjà intégrés dans l'OS. Les interactions CPU/périphériques se caractérisent sur plusieurs aspects :\\
+- les interactions peuvent être sous le contrôle du CPU ou asynchrones( se produisent indépendamment du déroulement normal du CPU, comme les interruptions, lorsque l'opération quitte sans qu'on s'y attende ). \\
+- Il y a plusieurs périphériques avec lequel le CPU interagit et il faut pouvoir les différencier et organiser éventuellement des communications simultanées.\\
+-Les périphériques fonctionnent avec des débits de données et des contraintes internes extrêmement différent; chaque périphériques s'accompagne donc de son contrôleur pour s'interfacer au CPU.\\
+
+Les périphériques sont de plus en plus intelligents, ils prennent de plus en plus l'initiative dans leur interaction avec le processeur.
+Il est important que le CPU ne différiencie pas les périphériques entre eux, c'est eux-même qui se différencient entre eux par le biais des pilotes et contrôleurs, ce qui simplifie grandement le design du CPU. Concrètement, le pilote et le contrôleur se chargent de gérer les adresses physiques, de synchroniser la communication, de structurer les données, de réaliser les interruptions et de corriger les erreurs de transferts.\\
+C'est les bus qui unifient la connexion aux périphériques, surtout les bus USB.
+Les périphériques se différencient par leur vitesse, leur capacité,...
+Il existe des périphériques très rapides par exemple l'écan ou le disque dur et puis des très lents comme la souris ou le clavier.
+
+\begin{center}
+	\includegraphics[ scale=0.5]{peripherique3}
+\end{center}
+
+\section{disque dur magnétique}
+Sauver un fichier se fait en le mettnt dans un secteur du disque dur magnétisé. Comme pour les vinyles, il existe un contrôleur qui fait en sorte qu'on puisse lire et écrire dans le disque dur ( assemblage de disquettes) avec un bras et une tête ou plutôt une bobine et son noyau.Les faces du plateau sont couvertes d'une mince couche de matériau magnétisable. C'est l'envoi du courant électrique dans la bobine qui se traduit par une magnétisation, fonction du sens du courant dans la bobine et qui correspond à l'écriture d'une valeur binaire 0 ou 1. 
+
+\begin{center}
+	\includegraphics[ scale=0.5]{peripheriqu3}
+\end{center}
+
+Le compartimentage des surfaces du disque en cylindres,pistes et secteurs est une opération nommée formatage. On écrit sur le disque des informations qui serviront de balises et entre lesquelles les données pourront être écrites et retrouvées.\\
+Les constructeus de disques durs sont talonnés par les disques électroniques que nous allons voir tout de suite. Les disque dur magnétiques ont une {\bf capacité} qui n'arrête pas d'augmenter, bien plus grandes que les mémoires électroniques. Mais les parties électromécaniques des disques durs les rendent {\bf gourmands en énergie électique} et de plus ils sont {\bf fragiles}.
+
+
+\section{disques électroniques (SSD)}
+
+Ils n'ont en fait rien à voir avec un disque quant à leur forme ou leur fonctionnement.
+Grâce aux transistors, les electrons sont emprisonnés, stockés. c'est ce qui constitue la mémoire électronique.C'est par une tension appliquée sur une grille flottante que les bits se trouvent écrites ou effacés. Mais chaque opération use sensiblement la grille, il faut donc bien répartir les opérations sur l'ensemble de la grille, pas comme dans les disques durs magnétiques où on aime stocker l'information dans des endroits concentrés. Elle s'abîme assez rapidement, est plus chère et présentent une plus petite capacité de stockage en plus d'être moins robste que le disque dur magnétique, mais présente une consommation moindre et est plus rapide et plus silencieux. On recherche donc à faire des solutions hybrides combinant les vantages magnétiques et électroniques. Toutes les deux ne sont pas frappées d'amnésie suite à la coupure de l'alimentation.
+
+
+
+\begin{center}
+	\includegraphics[ scale=0.7]{peripheriq3}
+\end{center}
+
+\section{disques optiques}
+
+De type CD ou DVD, les données sont contenues dans une couche intermédiaire réfléchissante, où elles sont matérialisées par la différence de réflexion du rayon laser entre les surfaces planes et les microcuvettes de la couche du support. Soit la lumière est réfléchie en l'absence de déformations soit elle est plutôt dispersée.
+Principe simple : 1 quand il y a réflexion et 0 sinon.
+Il est donc nécessaire de graver les bosses et les réflexions, ce qui rend l'écriture plus difficile.
+\begin{center}
+	\includegraphics[ scale=0.5]{optique3}
+\end{center}
+
+\section{Mémoires électroniques non volatiles}
+
+Déjà abordées avec le SSD, ce sont les mémoires de type {\bf flash}, qui sont des mémoires basées sur des circuits électroniques, sans intervention d'éléments mécaniques. 
+
+\section{Le clavier à touche}
+
+C'est la position de la touche qui importe, pas la lettre au-dessus $\rightarrow$ on peut aisément transformer un qwerty en azerty.\\
+
+Une fois la touche enfoncée, le clavier informe par une interruption l'unité centrale de la présence d'un code touche dans son registre de sortie. Un programme dans l'unité centrale prélève le code depuis le registre, puis le transforme en un caractère ou une commande. Enfin, il renvoie un signal en libérant le registre afin qu'un nouveau code touche puisse y être placé. 
+
+\begin{center}
+	\includegraphics[ scale=0.5]{clavier3}
+\end{center}
+
+\section{L'écran}
+
+Ecrans cathodiques : \\
+On envoie une matrice avec 3 infos par pixels (R-G-B).Un balayage rapide est constamment effectué (notre oeil ne peut le voir) avec un canon d'électrons qui acquièrent une énergie cinétique suffisament important grâce à la profondeur des écrans. S'il y avait une large possibilité de couleur, cela créerait une pression trop forte sur les tranferts de données entre le CPU et le moniteur. D'où des choix restreint ( 256 couleurs sur 1 byte). L'image est transférée en binaire, du CPU dans la mémoire interne du moniteur.\\
+Ecrans plats : \\
+Plus complexe, fonctionne grâce à la polarisation de la lumière.
+
+\begin{center}
+	\includegraphics[ scale=0.5]{ecran3}
+\end{center}
+
+\section{Raccordement des périphériques}
+
+Pour réaliser leur fonction d'acquisition ou de restitution des données, les périphériques doivent être raccordés à l'unité centrale de telle sorte qu'ils puissent recevoir des commandes, transférer les données depuis ou vers la mémoire centrale, et annoncer par l'envoi d'une interruption la fin d'une opération ou tout autre changement d'état. Un raccordement = un cablâge, une tension électrique, des signaux de commande et d'horloge,... le tout formant l'interface entrées-sorties.
+
+\subsection{Port, Bus et Contrôleur}
+
+Un port relie un seul périphérique au travers d'une interface parfois spécialisée pour ce type particulier de périphérique. Mais ces ports spécialisés ont tendance à disparaitre pour laisser place à des bus USB très populaires.
+
+Le contôleur assure le dialogue entre son périphérique et son point de raccordement vers l'unité centrale. Il réalise la conversion des commandes en opérations physiques, gère les transferts de données et demande les interruptions de programme. Il est généralement constitué d'un microprocesseur spécialisé.==
+
+\begin{center}
+	\includegraphics[ scale=0.7]{peri3}
+\end{center}
+
+
+
+\section{Les périphériques en action}
+
+Les systèmes informatiques cherchent de plus en plus à réduire l'intervention du processeur lors des échange de données, c'est-à-à dire accroître l'autonomie des périphériques pour que le processeur puissent s'occuper d'autres tâches plus "nobles". dans cette idée les concepteurs de ces systèmes ont délégué aux périphériques à fort débit la gestion de leurs échanges avec la mémoire centrale, dans laquelle ils peuvent écrire ou lire directement par le biais des DMA (Direct Memory Acces). Le programmme exprime sa commande en termes généraux, et la transposition en fonction du périphérique est assurée par un logiciel appelé {\bf pilote ou driver} qui lui sera propre à chaque périphérique et permettra de les différencier, tout en maintenant ce différentiations transparentes au programme. Ces pilotes sont indissociables des périphériques !
+
+
+\begin{center}
+	\includegraphics[ scale=0.5]{per3}
+\end{center}
+
+
+\section{Le mécanisme des interruptions}
+Les périphériques parlent au CPU grâce aux interruptions. 
+L'OS alloue un canal d'interruption à chaque périphérique, c'est ainsi qu'ils dialoguent.
+
+De manière plus complète : \\
+L'interruption des programmes est la faculté pour le processeur, à l'occasion d'un événement particulier, de quitter le programme en cours d'éxécution et de bifurquer, ({\bf sans perdre le contexte du programme interrompu !} ) vers une autre séquence d'instructions. L'interruption est généralement appelée ISR pour interrupt service routine.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{interruption3}
+\end{center}
+
+
+Quand on reçoit l'interruption, il faut garantir qu'à la fin de l'interruption on puisse reprendre le programme là où il s'est arreté. On peut aussi interrompre une interruption. Il faut sauvegarder l'IC et les registres dans la mémoire centrale, dans une mémoire particulière appelée {\bf pile ou stack}. Toute l'information concernant l'état actuel du programme y  est sauvée. Ensuite, la première instruction du "service d'interruption" est chargée dans l'IR.\\  Le périphérique qui demande l'interruption doit s'identifier auprès du CPU, ainsi que la nature du service demandé par le périphérique. Ce service est une routine spécifique qui prendra possession du CPU. Quand la routine est terminée, elle peut soit rendre le contrôle au programme soit modifier complètement le cours des choses(par exemple une interruption d'une imprimante pour dire qu'elle est sans papier). Une interruption d'un évènement anormal peut venir de l'extérieur ou être généré par le CPU lui-même. On notera également qu'il peut exister une hiérarchie au sein des interruptions : une plus haute priorité pourra interrompre une plus basse priorité.\\
+Le déroulement du traitement d'une interruption peut se résumer au processus suivant :\\
+- On reçoit un vecteur d'interruption(informant sur sa nature).\\
+- A partir de cette information, on cherche le programme de gestion de cette interruption.\\
+- On {\bf sauve} l'état actuel du programme: le registre d'état, le contenu du segment de code et surtout le contenu du PC.\\
+- On charge le PC avec l'adresse du programme de gestion de l'interruption.\\
+- A la suite de ce programme, on restaure tout ce que l'on avait sauvé précédemment.\\
+La demande d'interruption d'un périphérique se matérialise par une IRQ( interrupt request). Chaque contrôleur de périphérique reçoit dès sa connexion un numéro d'IRQ. Chaque contôleur de périphérique se voit donc assigner un canal par lequel il transmet au processeur da demande d'interruption ou IRQ.
+La demande est envoyée par le contôleur du périphérique vers un organe annexe du processeur, le contrôleur d'interruptions, qui a une vision globale des demandes d'interuptions, et son rôle est d'arbitrer entre des demandes concurrentes en fonction de leur nature et de leur priorité.
+\begin{center}
+	\includegraphics[ scale=0.6]{int3}
+\end{center}
+
+\subsection{4 Catégories d'interruptions}
+
+Un premier type d'interruption est celui déjà vu plus haut où un {\bf périphérique annonce un événement} et déclenche donc un évènement.\\
+
+L'autonomie des périphériques doit être accompagnée d'une surveillance. Si il y a un périphérique défaillant qui oublie de répondre on ne verra jamais la fin de l'opération si bien qu'il faut un {\bf timer}, qui au bout d'un délai fixé provoque une interruption.\\
+
+Egalement, si le déroulement d'une instruction a causé un {\bf incident dans le processeur}, telle une situation anormale de division par 0, cela pourrait également déclenché une interruption\\
+
+Finalement, un {\bf programme} peut également emmetre des interruptions, et donc {\bf demander au superviseur l'exécution d'une fonction}..
+
+\begin{center}
+	\includegraphics[ scale=0.5]{in3}
+\end{center}
+
+
+\section{Transfert de données et DMA (direct access memory}
+
+Afin d'introduire la DMA, analysons ce qui se passe précisément lorsque je clique sur Save dans Word. En cliquant je provoque une interruption Souris, Word reçoit l'info et passe la main à l'OS et lui demande de sauver. L'OS a un pilote qui se connecte avec le disque dur. Un signal est envoyé au disque dur pour lui demander de sauver. {\bf C'est la DMA (Direct Memory Transfer) qui connecte la mémoire au contrôleur de périphériques}. Le dialogue se fait entre eux-deux de manière à ce que le CPU soit court-circuité. Il peut donc s'occuper d'autres process. Donc après avoir inité l'interruption, (car c'est quand même lui qui, à l'aide du pilote du périphérique, constate que l'entrée-sortie peut être réalisée en mode DMA et le communique au contrôleur d'entrées-sorties concerné ) il disparaît de la circulation et peut faire autre chose (multitasking). Le controleur I/O doit connaître l'adresse au niveau du périphérique et de la mémoire,la quantité de données à transférer et s'il s'agit d'une lecture ou écriture. Comme vu au chapitre 1 il est possible de détecter des erreurs de transferts et de les corriger par l'addition de bits de parité.\\
+On notera que quand on installe des périphériques sur notre ordinateur on a besoin de lui donner des {\bf canaux d'interruption et des canaux DMA}
+
+\begin{center}
+	\includegraphics[ scale=0.6]{DMA3}
+\end{center}
+
+\newpage
+Schéma de la carte-mère :\\
+\begin{center}
+	\includegraphics[ scale=0.5]{mere4}
+\end{center}
+
+Les mémoires BIOS sont des mémoires non-effaçables contenant des informations du type quand on allume l'ordi, les choses que doivent se dérouler avant que le processeur ne prenne la main.\\
+
+\begin{center}
+	\includegraphics[ scale=0.5]{ordi4}
+\end{center}
+
+\chapter{Les logiciels}
+
+\section{Le système d'exploitation (OS) - généralités}
+
+\subsection{Description générale}
+Un système d'exploitation est un immense logiciel clé, constitué de l'ensemble des services indispensables à la gestion de l'ordinateur et ses périphériques et à l'exécution des applications.
+L'OS (Operating System) est utilisé tout le temps, il effectue 3 fonctions essentielles :\\
+- {\bf Présenter une interface unifiée} pour les services les plus usités\\
+- {\bf Gérer les ressources de l'ordinateur}(processeur,RAM,périphériques,...), c'est-à-dire assurer le partage entre un ensemble d'utilisateurs et organiser la répartition entre les tâches multiples assignées à l'ordinateur. En effet le processeurs se répartit parfois entre plusieurs programmes, et l'unique mémoire entre les diiférents besoins.\\
+- Assurer le premier point en présentant aux utilisateurs(humains et programmes) {\bf une interface mieux adaptée à leurs besoins} que celle de la machine physique. C'est une interface de "machine virtuelle" qui fournit un ensemble de fonctions pour la gestion et la communication, ainsi que pour la réalisation de logiciel d'application,notamment avec du GUI pour les humains afin de rendre l'interfaçage beaucoup plus facile à utiliser.\\
+De manière synthétique il est possible de regrouper toutes les prérogatives du système d'exploitation en deux niveaux principaux. 
+Le premier niveau, invisible pour les utilisateurs, correspond à la gestion des ressources de l'ordinateur,essentiellement le processeur,les mémoires centrales et secondaires ainsi que les périphériques, assurant leur partage entre les taches multiples.\\
+Le second niveau est celui par lequel les utilisateurs accèdent à ces services.Services qui leur sont présentés à l'aide d'une interface plus compréhensible et plus facile à manier que celle issue directement des détails physiques de la machine réalisant le service.
+{\bf On peut donc le résumer en un langage de communication clar et concis entre l'ordinateur et l'utilisateur, permettant une interface plus conviviale entre l'utilisateur et le hardware, plus claire et plus robuste, en plus de faire une gestion des ressources (soumises à plusieurs demandes)et du hardware de manière à optimiser leur utilisation}\\
+
+NB : Hardware $\rightarrow$ Matériel et Software $\rightarrow$ Logiciels \\
+
+Il existe beaucoup de systèmes d'exploitation, indispensables pour chaque ordinateur. UNIX est l'ancêtre de tous ces OS. Ils fonctionnent tous comme UNIX, certains sont secrets (MAC OS,Windows) et d'autres ouverts (Linux). Linux est à la base du mouvement de l'OPEN SOURCE, qui se résume à "on ouvre et tout le monde collabore".\\
+NB: Libre n'est pas synonyme de gratuit. Des sociétés comme IBM s'enrichissent à partir de logiciels libres.
+DOS (D pour disc) est un OS que Bill Gates a proposé, faisant essentiellement de la gestion de fichiers.\\
+
+
+
+L'OS est le premier programme qui se charge dans la RAM, on le voit bien sur les Windows avec les écritures précédant les interfaces graphiques. C'est le {\bf Bootstrapping} de l'ordinateur.En français on utilisera le mot "amorçage" pour désigner la succession d'opérations préliminaires qui aboutissent à la mise en place du système d'exploitation. C'est par cette opération que le processeur vérifie le bon fonctionnement de tous les périphériques,elle s'exécute à partir du BIOS (basic input-ouput system) qui est donc le premier système d'exploitation à entrer en action lors du démarrage d'un PC. Ainsi, l'OS est responsable de son propre démarrage. Si tout est OK, il va chercher la partie graphique et reste en attente d'évènements, dans un état passif dit "event driven".\\
+Pour rappel, la mémoire et les périphériques sont de la responsabilité de l'OS, c'est lui qui attribue les canaux d'interruption aux périphériques, c'est lui qui s'occupe des process, de la mémoire, qui gére les I/O,traite les fichiers,... En pratique, 60-70 \% des manipulations de l'OS sont de la gestion de fichiers. \\
+
+Les OS sont codés dans des langages de programmation e haut niveau ( typiquement C/C++), ce qui permet de les compiler et de les exécuter sur de nombreuses plate-formes, les rendant "universels", en plus d'avoir une bonne portabilité des programmes et applications grâce au partage des OS entre plate-formes. D'ailleurs un même ordinateur peut contenir plusieurs plate-formes, on peut en effet avoir Windows et Mac OS sur son ordinateur.\\
+
+
+
+{\bf En résumé : 10 occupations de l'OS : \\
+-l'interface utilisateur\\
+-la gestion mémoire\\
+-le "dispatching", ou repartition des tâches\\
+-le service fichier\\
+-le service I/O (périphériques)\\
+-la gestion des process et des threads\\
+-la gestion des mémoires disques et autres supports secondaires\\
+-la sécurité et la protection\\
+-réseaux et communications\\
+-support au system manager}\\
+
+
+La figure ci-dessous montre que l'OS est souvent décomposable en une partie sur la droite, totalement dédiée au matériel et inaccessible tant par les applications que les utilisateurs, et une partie sur la gauche, plutôt tournée vers les utilisateurs et les applications, présentant à ceux-ci une interface plus conviviale et une version plus compréhensible de ce que fait la première. Il s'occupe de faire le pont entre les deux parties.
+
+
+\begin{center}
+	\includegraphics[ scale=0.5]{OS4}
+\end{center}
+
+
+Une séparation importante persiste entre ce qui est appelé le {\bf kernel}, c'est à dire le coeur de l'OS, qui en reprend toutes les fonctionnalités y compris toutes celles directement tournées vers le matériel, et commun à toutes les distrivutions de Linux, et le {\bf shell},généralement de type graphique, et qui pourra présenter entre ces distributions commerciales de nombreuses différences.
+
+Dans les entreprises, il existe un administrateur system ou system manager ( Chef de la partie informatique de l'entreprise) $\rightarrow$ L'OS a "pensé qu'il y aurait une persone privilégiée qui aurait des accès que les autres n'ont pas. En plus de fournir ces informations, l'OS permet des protections et des communications entre utilisateurs et programmes,  si bien qu'il permet {\bf l'exécution de plusieurs applications ou programmes avec une impression de simultanéité}. Ce qui nous mène à approfondir le multi-tâches.
+
+\section{Multi-tâches et multi-utilisateurs: Organisation en processus}
+
+Comme cité précédemment, le dispatching est la répartition equitable du temps CPU entre les programmes.\\
+Un {\bf processus} est un programme qui s'exécute avec ses ressources I/O, les fichiers ouverts, sa mémoire. A chaque processus est associé un {\bf bloc descripteur} qui contient des informations sur le processus telles qu'un identificateur, l'état courant, un espace pour la sauvegarde,l'adresse de sa table, le niveau de priorité, le propriétaire du processus,... Il est important de noter que chaque process est associé à une zone mémoire, la pile, qui permet d'interrompre le process. Car il est nécessaire de stocker les informations sur l'état actuel du process, de sauvegarder ce qui a déjà été fait afin de pouvoir reprendre d'où on était quand le process reprend.
+
+\begin{center}
+	\includegraphics[ scale=0.5]{proce4}
+\end{center}
+
+Avant les algorithmes des dispatching fonctionnaient selon le schéma du First-in-First-out, c'est-à-dire un à la fois. Une fois le programme selectionné il s'exécute jusqu'au bout, celui-ce pouvant être choisi sur base de sa taille, sa priorité,... Uniquement Linux procédait au {\bf roundrobin}, où plusieurs processus s'exécutent en "parallèle". Plus précisément il alloue à chaque process un certain "quantum" de temps et tous les processus tournent.\\
+NB: il existe toujours une notion de propriété car on peut décider d'allouer plus de temps CPU à certain qu'à d'autres.
+
+\begin{center}
+	\includegraphics[ scale=0.5]{proc4}
+\end{center}
+
+PHO ne peut exécuter qu'un seul process à la fois. Si je déclenche 30 process, ils se mettent dans un état "prêt" et puis PHO en sélectionne 1 et l'exécute pendant x nanosecondes puis un autre, tellement rapide donc qu'on ne voit pas le séquençage d'où l'impression de simultanéité. Si par exemple il est nécessaire d'aller chercher quelque chose dans le disque dur (très lent), au lieu d'attendre qu'il ait été chercher pour l'exécuter, PHO va déjà exécuter d'autres process en attendant, on a donc mis ce premier process en état "bloqué. C'est le dispatcher qui répartit les process en les mettant dans la pile suite à leur débloquage, c'est le multiprocess.\\
+NB: un process est un processus en état prêt. 
+
+\begin{center}
+	\includegraphics[ scale=0.5]{pro4}
+\end{center}
+
+La gestion mémoire consiste à allouer à chaque programme à exécuter un espace mémoire. La mémoire est partitionnéee en plusieurs programmes, de manière équitable ou en prenant en considération la taille du programme. Avec un emplacement mémoire non continu comme on le verra plus bas, avec l'adressage relatif. On veilleura à protéger l'espace mémoire de l'OS, OS qui gère également la mémoire virtuelle qui,rappelons-le, permet d'accroître considérablement l'espace mémoire en utilisant des adresses logiques  en correspondances avec des adresses physiques. On a déjà vu le fonctionnement de la mémoire virtuelle et de la gestion des I/O donc on n'insistera pas plus dessus, si ce n'est qu'on insistera bien sur le fait qu'ils sont la responsabilité de l'OS.
+
+\begin{center}
+	\includegraphics[ scale=0.5]{pr4}
+	
+\end{center}
+
+La figue ci dessus montre ce que serait le contenu dans la mémoire dans une version de celle-ci où les processus occuperaient des espaces mémoires continus et de tailles différentes. On y voit l'OS en première place et puis quatre autres processus. On y voit également des espaces mémoires inoccupés, résultant de la distribution au fur et à mesure des espaces pour des processus pouvant être de tailles très différentes. Le recours à la semgentation de la mémoire en pages ( cf mémoire virtuelle) contribue à éviter ce type de gaspillage.\\
+Si un processeur décrète son espace mémoire comme complètement inviolable, un autre processus se plantera s'il essaie d'adresser une information présente dans cet espace. Ainsi, on comprend en quoi l'espace mémoire occupé par le système d'exploitation doit bénéficier d'une protection particulièrement efficace contre les accès intempestifs par d'autres programmes.
+\\ NB ; La gestion de la mémoire virtuelle est également sous la responsabilité de l'OS.
+
+\section{gestion des fichiers}
+
+La gestion des fichiers est une partie importante de la gestion de l'OS. En effet tout sur le disque dur est sous forme de fichiers et l'essentiel de nos manipulations et celles de l'OS portent sur les fichiers. Chaque OS a un système de gestion des fichiers qui lui est propre et souvent différente de celle d'un autre. FALT () et NT (New Technology) sont deux exemples manières différentes de les gérer.\\
+un système de dénomination en répertoires est utilisée, avec des répertoires imbriqués dans d'autres répertoires. \\
+NB: Pour Unix et Windows, la gestion du contenu dépend des applications et non pas de l'OS qui voit tout fichier comme une séquence non structurée de bytes.
+\begin{center}
+	\includegraphics[ scale=0.5]{p4}
+\end{center}
+
+Le répertoire est essentiellement un mécanisme de dénomionation de fichier et forme une structure où chaque nom de fichier est repris, accompagné des informations nécessaires pour le localiser au sein de la mémoire secondaire.
+\section{stockages physique des fichiers}
+
+
+\subsection{Partitions et unité d'allocation}
+
+
+Un disque peut être exploité comme un tout ou être divisé en partitions. Chaque partition est considérée par l'OS comme un disque de taille réduite. Les raisons de partitionner un disque sont liées à la contrainte de limite de taille des tables gérant l'utilisation du disque, ou relèvent de la sécurité et de la facilité d'exploitation\\
+
+Intéressons nous maintenant à la manière d'allouer l'espace sur disque et d'y stocker les fichiers.\\
+En général, l'espace sur le disque est divisé logiquement en unités d'allocation, reprises dans la table d'allocation qui décrit leur état en terme d'occupation. La solution la plus élémentaire serait de faire de cette unité la plus petite division physique de l'espace disque, c-à-d le {\bf secteur} et ses 512  ou 4096 octets. Ainsi l'espace alloué à un fichier correspondrait exactement à son besoin en nombre de secteurs. cependant une telle approche nécessiterait la création et la gestion de tables extrêmement volumineuses. Or il est souhaitable de grossir l'unité d'allocation (pour épargner l'occupation et le traitement de ces tables) et de la porter à plusieurs secteurs, formant ainsi des agrégats de secteurs appeles {\bf clusters}.La taille de ces agrégats est déterminée lors de l'opération de formatage qui précède la première utilisation d'un disque.
+
+Il existe plusieurs méthodes de stockages avec leurs inconvénients et avantages propres.\\
+
+\subsection{Stockage contigu}
+
+Ce mode de stockage consiste à attrivuer aux fichiers un espace contigu égal à leur taille.
+
+{\color{green}
+-Bonnes performances en matière de temps d'accès, les déplacements du bras restant limités pour un fichier d'un seul tenant.\\
+-Simplicité : la conversion d'une adresse logique en adresse physique se fait par un point de référence.}
+{\color{red} -chaque suppression laisse un espace qui ne pourra utilement être comblé que par l'allocation à un nouveau fichier dont la taille est la même, le disque se fragmente donc au fur et à mesure que des fichiers se créeent sont supprimés ou allongés, et l'OS consacre un temps excessif à réordonner les fichiers}.\\
+
+Après de multiples créations/effaçages, il faut des fichiers de mêmes tailles pour récuperer la zone, si plus grand ne rentre pas et si plus petit les zones restantes restent inutilisées et inutilisables et comme ces petites zones s'accumulent on perd au final une relativement grande partie de mémoire. Le {\bf stockage contigu} est donc un gaspillage. Son schéma est représenté ci-dessous.
+
+
+\begin{center}
+	\includegraphics[ scale=0.5]{stockage4}
+\end{center}
+
+\subsection{Stockage en liste liée}
+On préferera alors les fichiers en {\bf liste liée}, où pour récupérer dans l'entièreté le fichier, on récupère un 1er bloc, celui-ci nous renseigne sur la position du 2eme bloc,et ainsi de suite jusqu'à la fin.En termes plus techniques on dit que la liste liée permet, ensuivant les agrégats et les pointeurs qu'ils contiennent, de reconstituer le fichier dans son intégralité. Chaque fichier se trouve donc éclaté sur le disque dur, éclatement {\color{green} qui permet d'éviter tous les problèmes de perte et récupération d'esoace disque évoqués juste avant.La défragmentation du disque n'est plus une préoccupation essentielle.} Cette méthode était très populaire mais l'est moins maintenant car elle est risquée : {\color{red} en effet si un bloc défaille la chaine est coupée et on ne sait rien faire du fichier, elle présente donc une certaine fragilité.\\ De plus une sollicitation mécanique plus importante pour le disque est nécessaire car les distances à parcourir sont plus grandes lors de la lecture du fichier.} On notera finalement que cette méthode convient tout aussi bien pour les fichiers séquentiels.
+
+
+
+\begin{center}
+	\includegraphics[ scale=0.5]{stocka4}
+\end{center}
+
+\subsection{Stockage en table indexée}
+Finalement, la solution actuellement préfèrée est celle de la {\bf table indexée}, qui présente une table avec les adresses de tous les blocs. {\color{green} C'est donc clairement la meilleure solution pour des accès logiques de type direct ou aléatoire car il suffit de localiser l'index dans la table pour récupérer l'adresse physique}. {\color{red} Elle présente néanmoins le défaut de nécessiter un espace mémoire pour stocker la table. La lecture séquentielle se fera également plus lentement car exigeant le parcours de la table entrée par entrée.} C'est l'équivalent au niveau du stockage physique de l'accès séquentiel indexé.
+\begin{center}
+	\includegraphics[ scale=0.5]{stock4}
+\end{center}
+
 \end{document}
