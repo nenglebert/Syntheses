@@ -2,7 +2,7 @@
 
 \section{Motivation}
 On remarque la forme simple de la réponse d'un SLP à  une entrée de
-la forme $e^{i\omega t}$. En effet, la sortie d'un SLP pour ce type
+la forme $e^{i\omega t}$, $\omega\in\mathbb{R}$. En effet, la sortie d'un SLP pour ce type
 d'entrée :
 \begin{equation}
 \begin{array}{ll}
@@ -28,16 +28,16 @@ y(t) = \sum_k a_kH(i\omega_k)\exp(i\omega_kt)
 \section{Série de Fourier}
 	\subsection{Définition}
 	Considérons un signal périodique $x(t)$ de période $T=\frac{2\pi}
-	{\omega}$. Son expression en série de Fourier :
+	{\omega_0}$. Son expression en série de Fourier :
 	\begin{equation}
-	x(t) = \sum_{-\infty}^\infty a_ke^{ik\omega_0t}\ \ \ \ \text{où}\ \ 
-	a_k = \frac{1}{T}x(t)e^{-ik\omega_0t}
+	x(t) = \sum_{k=-\infty}^\infty a_ke^{ik\omega_0t}\ \ \ \ \text{où}\ \ 
+	a_k = \frac{1}{T}\int_Tx(t)e^{-ik\omega_0t}\, dt
 	\end{equation}
 	où $a_k$ sont les coefficients de la série de Fourier. Les termes
 	correspondant à $k=\pm 1$ sont dit \textit{fondamental} ou \textit{
 	premier harmonique}.\ \\
 	
-	\exemple{Soit la fonction $x(t)$, nulle partout sauf dans l'intervalle $[-T_1,T_1]$, ayant une surface vallant 1 et périodique de période $T$ ($T_1<T$). Calculons ses coefficients de Fourier 
+	\exemple{Soit la fonction $x(t)$, nulle partout sauf dans l'intervalle $[-T_1,T_1]$, ayant une surface valant 1 et périodique de période $T$ ($T_1<T$). Calculons ses coefficients de Fourier 
 \begin{eqnarray}
 a_0 &=& \frac{1}{T}\int_{-T/2}^{T/2}\overbrace{x(t)}^{1}\,dt\\
  &=& \frac{1}{T}\int_{-T_1}^{T_1} dt = \frac{2T_1}{T}\\
@@ -48,34 +48,34 @@ a_k &=& \frac{1}{T}\int_{-T_1}^{T_1}e^{-ik\omega_0t}\,dt=\frac{1}{T}\frac{1}{-ik
 }
 
 	\subsection{Conditions de convergence}
-	L'expression mathématique de la convergence est : $\int_T|x(t)|dt <
+	L'expression mathématique de la convergence est : $\int_T|x(t)|^2dt <
 	\infty$. Ceci n'est garanti que si les $a_k$ sont finis. Comme en
 	\textit{Analyse II}, on définit la convergence en moyenne 
 	quadratique:
 	\begin{equation}
-	e_n(t) = x(t) - \sum_{k=-N}^N a_ke^{ik\omega_0t}
+	e_N(t) = x(t) - \sum_{k=-N}^N a_ke^{ik\omega_0t}
 	\end{equation}
 	alors :
 	\begin{equation}
-	\lim\limits_{N\rightarrow\infty} |e_N(t)|^2dt =0
+	\lim\limits_{N\rightarrow\infty}\int_T|e_N(t)|^2dt =0
 	\end{equation}
 	
-	Il existe trois types de "définition" de la convergences, toutes 
-	trois données par les \textit{conditions de Dirichet :}\\
+	Il existe trois types de "définition" de la convergence, toutes 
+	trois données par les \textit{conditions de Dirichlet :}\\
 	
 	\retenir{\textbf{conditions de Dirichlet}\\
 	Les trois conditions de Diriclou s'énoncent :
 	\begin{enumerate}
 	\item $\int_T |x(t)| <\infty$
-	\item Nombre fini d'extrémums sur une période
+	\item Nombre fini d’extremums sur une période
 	\item Nombre fini de discontinuités, uniquement de première espèce,
 	dans tout intervalle fini
 	\end{enumerate}
-	Ces conditions garantiessent :
+	Ces conditions garantissent :
 	\begin{itemize}
 	\item Les coefficients $a_k$ sont finis
-	\item Egalité entre $x(t)$ et sa série de Fourier en tout point 
-	où la fonction est continué.
+	\item Égalité entre $x(t)$ et sa série de Fourier en tout point 
+	où la fonction est continue.
 	\item Aux point de discontinuité\footnote{Convergence simple}:
 	\begin{equation}
 	\frac{x(t^+)+x(t^-)}{2} = \sum_{k=-\infty}^\infty a_ke^{ik
@@ -96,7 +96,7 @@ a_k &=& \frac{1}{T}\int_{-T_1}^{T_1}e^{-ik\omega_0t}\,dt=\frac{1}{T}\frac{1}{-ik
 \section{Transformée de Fourier d'un signal continu non périodique}
 Notre appréciation d’un signal sonore est directement liée au spectre 
 (ou au contenu harmonique) de ce signal. Le spectre n'est rien d'autre
-que la transformée de Fourier du signal accoustique.
+que la transformée de Fourier du signal acoustique.
 
 	\subsection{Obtention de la transformée de Fourier}
 	\begin{wrapfigure}[8]{l}{3.5cm}
@@ -105,7 +105,7 @@ que la transformée de Fourier du signal accoustique.
 	\end{wrapfigure}
 	Jusqu'à présent, nous n'avons utilisé que des signaux périodiques 
 	et l'on voudrait avoir la "généralisation" aux signaux qui ne le
-	sont pas. Les coefficients de fourier de l'onde carrée périodique
+	sont pas. Les coefficients de Fourier de l'onde carrée périodique
 	sont :
 	\begin{equation}
 	a_k = \frac{2\sin(k\omega_0T_1)}{k\omega_0T}
@@ -116,11 +116,11 @@ que la transformée de Fourier du signal accoustique.
 	enveloppe : 
 	\begin{equation}
 	Ta_k = \frac{2\sin(k\omega_0T_1)}{k\omega_0} = \left.\frac{2\sin
-	(\omega T_1)}{\omega}\right|_{w=k\omega_0}
+	(\omega T_1)}{\omega}\right|_{\omega=k\omega_0}
 	\end{equation}
 	En faisant $T\rightarrow\infty$, l'onde carrée devient bien un
 	signal apériodique : les coefficients $Ta_k$ tendent vers la 
-	fonction \textit{enveloppe}  appélée la \textit{transformée de
+	fonction \textit{enveloppe}  appelée la \textit{transformée de
 	Fourier du signal apériodique.}
 	\begin{center}
 	\includegraphics[scale=0.2]{ch10/image2.png}
@@ -144,7 +144,7 @@ que la transformée de Fourier du signal accoustique.
 		\end{equation}
 		Soit $X(i\omega)$ l'enveloppe de $Ta_k$ :
 		\begin{equation}
-		X(i\omega) = \int_{-\infty}^\infty x(t)e^{-ik\omega_0t}dt
+		X(i\omega) = \int_{-\infty}^\infty x(t)e^{-i\omega t}dt
 		\end{equation}
 		Il en résulte :
 		\begin{equation}
@@ -153,10 +153,10 @@ que la transformée de Fourier du signal accoustique.
 		Soit encore : 
 		\begin{equation}
 		\begin{array}{ll}
-		\tilde{x} &= \sum_{k=-\infty}^\infty \frac{1}{T}X(ik\omega_0)e^
+		\tilde{x}(t) &= \sum_{k=-\infty}^\infty \frac{1}{T}X(ik\omega_0)e^
 		{ik\omega_0t}\\
 		&= \frac{1}{2\pi}\sum_{k=-\infty}^\infty X(ik\omega_0)e^{ik
-		\omega_0t}
+		\omega_0t}\omega_0
 		\end{array}
 		\label{eq:ObtFourier}
 		\end{equation}
@@ -165,16 +165,16 @@ que la transformée de Fourier du signal accoustique.
 	\subsection{Transformée de Fourier et transformée inverse}
 	\retenir{La (def.) transformée de Fourier est :
 	\begin{equation}
-	X(i\omega) = \mathcal{F}\{x(t))\} = \int_{-\infty}^\infty x(t)e^
-	{-ik\omega_0t}dt
+	X(i\omega) = \mathcal{F}\{x(t)\} = \int_{-\infty}^\infty x(t)e^
+	{-i\omega t}dt
 	\end{equation}
 	où $X(i\omega)$ est aussi appelé \textit{spectre du signal}.}\ \\
 	
-	\retenir{La \textbf{transformée de fourier inverse} s'obtient en 
+	\retenir{La \textbf{transformée de Fourier inverse} s'obtient en 
 	faisant 
 	tendre $T\rightarrow\infty$ dans \autoref{eq:ObtFourier} :
 	\begin{equation}
-	x(t) = \mathcal{F}^{-1}\{x(i\omega)\} = \frac{1}{2\pi}\int_{-
+	x(t) = \mathcal{F}^{-1}\{X(i\omega)\} = \frac{1}{2\pi}\int_{-
 	\infty}^\infty X(i\omega)e^{i\omega t} d\omega
 	\end{equation}}
 
@@ -183,22 +183,22 @@ que la transformée de Fourier du signal accoustique.
 	Il faut en quelque sorte "adapter" les conditions de convergence dans
 	le cas de la transformée de Joseph\footnote{Les changements sont 
 	mentionnés par un $(!)$.}\footnote{On travaille maintenant dans l'
-	espace de carré sommable ou l'expression mathématique de la convervence
+	espace de carré sommable ou l'expression mathématique de la convergence
 	est donnée par $\int_{\infty}^\infty |x(t)|^2dt < \infty$.} :\\
 	
 	\retenir{\textbf{conditions de Dirichlet}\\
 	Les trois conditions de Diriclette s'énoncent :
 	\begin{enumerate}
-	\item $\int_{-\infty}^\infty |x(t)| <\infty\ \ \ (!)$
-	\item Nombre fini d'extrémums sur une période
+	\item $\int_{-\infty}^\infty |x(t)|\, dt<\infty\ \ \ (!)$
+	\item Nombre fini d’extremums dans tout intervalle fini
 	\item Nombre fini de discontinuités, uniquement de première espèce,
 	dans tout intervalle fini
 	\end{enumerate}
-	Ces conditions garantiessent :
+	Ces conditions garantissent :
 	\begin{itemize}
-	\item Garantissent la convergence de l'intégrale généralisée 
-	définissant la transformée de fourier\ \ \ $(!)$
-	\item Egalité entre $x(t)$ et sa série de Fourier en tout point 
+	\item La convergence de l'intégrale généralisée 
+	définissant la transformée de Fourier\ \ \ $(!)$
+	\item Égalité entre $x(t)$ et sa série de Fourier en tout point 
 	où la fonction est continué.
 	\item Aux point de discontinuité de $x(t)\ \ \ (!)$ :
 	\begin{equation}
@@ -211,7 +211,7 @@ que la transformée de Fourier du signal accoustique.
 	
 	\exemple{
 	\begin{eqnarray}
-	X(i\omega) &=&\int_{-\infty}^{+\infty}\overbrace{x(t)}^{e^{-at}u(t)}e^{-i\omega t}\,dt=\int_{0}^{+\infty}e^{-(a+i\omega)t}\,dt\\
+	X(i\omega) &=&\int_{-\infty}^{+\infty}\overbrace{x(t)}^{e^{-at}\nu(t)}e^{-i\omega t}\,dt=\int_{0}^{+\infty}e^{-(a+i\omega)t}\,dt\\
 	 &=& -\frac{1}{a+i\omega}\left[e^{-(a+i\omega)t}\right]_0^{+\infty}
 	\end{eqnarray}
 	Intéressons-nous a : 
@@ -226,18 +226,18 @@ que la transformée de Fourier du signal accoustique.
 
 \section{Transformée de Fourier d'une fonction périodique continue}
 Peut-on calculer la transformée de Fourier d'une fonction périodique 
-$x(t)$ à partir de $X(i\omega) = \mathcal{F}\{x(t))\} = \int_{-\infty}
-^\infty x(t)e^{-ik\omega_0t}dt$ ?\\
+$x(t)$ à partir de $X(i\omega) = \mathcal{F}\{x(t)\} = \int_{-\infty}
+^\infty x(t)e^{-i\omega t}dt$ ?\\
 \textbf{Non !} Les fonctions périodiques ne vérifient pas la première 
 condition de Dirichlet et ne sont pas de carré sommable : pas possible 
 de calculer la transformée de Fourier à partir de l’intégrale généralisée.
 Une approche rigoureuse passe par la théorie des distributions, mais nous
-ne ferons qu'ici une approche informelle pour énocer les résultats 
+ne ferons qu'ici une approche informelle pour énoncer les résultats 
 principaux.
 
 	\subsection{Approche informelle}
 	Considérons $X(i\omega) = 2\pi\delta(\omega-\omega_0)$. Par la 
-	définition de la transformation de Fourier inverse, il vient :
+	définition de la transformée de Fourier inverse, il vient :
 	\begin{equation}
 	x(t) = \frac{1}{2\pi}\int_{-\infty}^\infty 2\pi\delta(\omega-
 	\omega_0)e^{i\omega t}d\omega = e^{i\omega_0 t}
@@ -258,8 +258,8 @@ principaux.
 	\end{equation}
 	
 \section{Propriétés de la transformée de Fourier}
-Pour cette section, considérons que la fonction $x(t)$ vérifient les 
-conditions de Dirichet. La notation pour $x(t)$ et sa transformée de 
+Pour cette section, considérons que la fonction $x(t)$ vérifiant les 
+conditions de Dirichlet. La notation pour $x(t)$ et sa transformée de 
 Fourier est :
 \begin{equation}
 x(t) \ft X(i\omega)
@@ -301,18 +301,18 @@ x(t) \ft X(i\omega)
 		\subsubsection{Troisième propriété}
 		L'expression de $X(i\omega)$ en coordonnées cartésiennes est : 
 		\begin{equation}
-		X(i\omega) = \mathfrak{R}(X(i\omega)) + i\mathfrak{R}(X(i\omega))
+		X(i\omega) = \Re(X(i\omega)) + i\Im(X(i\omega))
 		\end{equation}
 		Si $x(t)$ est réelle :
 		\begin{equation}
 		\begin{array}{ll}
-		\overline{X}(i\omega) &= \mathfrak{R}(X(i\omega))-i\mathfrak{R}
+		\overline{X}(i\omega) &= \Re(X(i\omega))-i\Im
 		(X(i\omega))\\
-		&= \mathfrak{R}(X(-i\omega)) + \mathfrak{R}(X(-i\omega))
+		&= \Re(X(-i\omega)) + \Im(X(-i\omega))
 		\end{array}
 		\end{equation}
-		Ceci implique que $\mathfrak{R}(X(i\omega))$ est une fonction 
-		\textbf{paire} et $\mathfrak{I}(X(i\omega))$ une fonction 
+		Ceci implique que $\Re(X(i\omega))$ est une fonction 
+		\textbf{paire} et $\Im(X(i\omega))$ une fonction 
 		\textbf{impaire}.
 	
 	
@@ -325,7 +325,7 @@ x(t) \ft X(i\omega)
 		\begin{equation}
 		\begin{array}{ll}
 		\overline{X}(i\omega) &= |X(i\omega)|e^{-i\varphi(\omega)}\\
-		 &= |X(-i\omega)|e^{-i\varphi(-\omega)}
+		 &= |X(-i\omega)|e^{i\varphi(-\omega)}
 		\end{array}
 		\end{equation}
 		Ceci implique que $|X(i\omega)|$ est une fonction \textbf{paire} 
@@ -347,13 +347,13 @@ x(t) \ft X(i\omega)
 	\begin{equation}
 	\begin{array}{ll}
 	\mathcal{F}(x(t-t_0)) &= \int_{-\infty}^\infty x(t-t_0)e^{-i\omega t}dt\\
-	&= e^{-i\omega t} \int_{-\infty}^\infty x(t-t_0)dt \\
-	&= e^{-i\omega t}X(i\omega)
+	&= e^{-i\omega t_0} \int_{-\infty}^\infty x(\tau)e^{-i\omega\tau}d\tau \\
+	&= e^{-i\omega t_0}X(i\omega)
 	\end{array}
 	\end{equation}
 	Ceci signifie qu'un glissement temporel subi par $x(t)$ correspond à un 
 	déphasage de $-\omega t_0$ dans la transformée de Fourier (et aucun 
-	changement du module $|X(i\omega)|$.
+	changement du module $|X(i\omega)|$).
 	
 	\subsection{Glissement en fréquence}
 	Si $x(t) \ft X(i\omega)$, alors 
@@ -377,7 +377,7 @@ x(t) \ft X(i\omega)
 	_0
 	\end{equation}
 	Ceci s'obtient par changement de variable $q=at$. Cela signifie qu'une 
-	compression/dilatation du temps $\Leftarrow$ dilatation/compression 
+	compression/dilatation du temps $\Leftrightarrow$ dilatation/compression 
 	en fréquence.
 
 	\subsection{Transformée de Fourier de la dérivée d'une fonction}
@@ -392,18 +392,18 @@ x(t) \ft X(i\omega)
 	\begin{equation}
 	\begin{array}{ll}
 	\mathcal{F}\left(\frac{dx(t)}{dt}\right) &= \int_{-\infty}^\infty \frac{dx(t)}
-	{dt}e^{-i\omega t}\\
+	{dt}e^{-i\omega t}dt\\
 	 &= \left.x(t)e^{-i\omega t}\right|_{-\infty}^\infty - \int_{-\infty}^\infty x(t)
-	 \frac{d}{dt}e^{-i\omega t}\\
+	 \frac{d}{dt}e^{-i\omega t}dt\\
 	 &= \left.x(t)e^{-i\omega t}\right|_{-\infty}^\infty +i\omega \int_{-\infty}^
-	 \infty x(t)e^{-i\omega t}\\
+	 \infty x(t)e^{-i\omega t}dt\\
 	\end{array}
 	\end{equation}
-	Le premier s'annule par les conditions de Ridichlet (hypothèse) et on retrouve 
+	Le premier s'annule par les conditions de Dirichlet (hypothèse) et on retrouve 
 	bien le résultat.
 		
 	\subsection{Dérivée de la transformée de Fourier}
-	Si $x(t) \ft X(i\omega)$ et $tx(t)$ vérifie les conditions de Dirichelèè,
+	Si $x(t) \ft X(i\omega)$ et $tx(t)$ vérifie les conditions de Dirichlet,
 	alors:
 	\begin{equation}
 	-itx(t) \ft \frac{dX(i\omega)}{d\omega}
@@ -413,7 +413,7 @@ x(t) \ft X(i\omega)
 	\begin{array}{ll}
 	\frac{dX(i\omega)}{d\omega} &= \frac{d}{d\omega}\int_{-\infty}^\infty 
 	x(t)e^{-i\omega t}dt\\
-	 &= -i \int_{-\infty}^\infty tx(t)e^{-i\omega t}dt = -i\mathcal{F}(tx(t))
+	 &= -i \int_{-\infty}^\infty tx(t)e^{-i\omega t}dt = -i\mathcal{F}\{tx(t)\}
 	\end{array}
 	\end{equation}
 
@@ -423,7 +423,7 @@ x(t) \ft X(i\omega)
 	Il s'agit d'une règle fondamentale ! \textit{La démonstration est très sympathique
 	pour l'examen, courte et simple à corriger.}\\
 	Soit $s(t) \ft S(i\omega)$ et $q(t) \ft Q(i\omega)$. Si $s(t)*q(t)$ vérifie les 
-	conditions de Dirichet, alors :
+	conditions de Dirichlet, alors :
 	\begin{equation}
 	x(t) = s(t)*q(t) \ft X(i\omega) = S(i\omega)Q(i\omega)
 	\label{eq:TransfoConvol}
@@ -481,16 +481,16 @@ x(t) \ft X(i\omega)
 	
 	
 	
-	\subsection{Relation de Parceval (ou théorème de Plancherel}	
+	\subsection{Relation de Parceval (ou théorème de Plancherel)}	
 	Si $X(i\omega) \ft \mathcal{F}(x(t))$, alors 
 	\begin{equation}
-	\int_{-\infty}^\infty |x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^\infty |X(i\omega|^2
+	\int_{-\infty}^\infty |x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^\infty |X(i\omega)|^2
 	d\omega
 	\end{equation}
 	Cette relation permet de calculer l'énergie totale d'un signal à partir de son spectre.
 	
 	\begin{proof}\ \\
-	Vue en cours ? J'sais plus :( Slide 55/55.
+	Vue en cours ? J'sais plus :( Slide 55/55).
 	\end{proof}
 	
 	
