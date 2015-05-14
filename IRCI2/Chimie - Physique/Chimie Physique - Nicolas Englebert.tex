@@ -32,7 +32,7 @@
 \pagestyle{headings} % Titre du ch et numéro page dans l'entete
 \usepackage{fullpage} %Utilise toute la page
 \usepackage{url}
-
+\usepackage{eso-pic} %fond écran page de garde
 
 
 \newcommand{\cst}{\text{cst}}
@@ -52,12 +52,22 @@
 
 %\newcommand{\oiint}{\int\!\!\!\!\!\:\!\!\!\;\!\!\subset\!\!\supset\!\!\!\:\!\!\!\!\!\int}
 \newcommand{\oiint}{\int\!\!\!\!\!\!\! \:\!\subset\!\!\supset\!\!\!\!\!\!\!\int}
-
+%%% Background %%%
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ulb.jpg}%
+\vfill
+}}}
 
 
 \begin{document}
 \renewcommand{\proofname}{Démonstration}
 \frontmatter
+\AddToShipoutPicture*{\BackgroundPic}
 \begin{titlepage}
 \begin{center}	
 	
@@ -883,7 +893,7 @@ En jouant avec l'expression de $\mathcal{L}_f$ (cf. slide) on retrouve une gén�
 \begin{equation}
 R\ln(a_1) = \int_{T_0}^T \frac{\mathcal{L}_f(T)}{T^2}dT
 \end{equation}
-
+\end{document}
 
 
 \part{Applications industrielles}
