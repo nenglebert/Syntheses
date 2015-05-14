@@ -144,7 +144,7 @@
     Une paramétrisation pour le chemin $ABC$ est $z = Re^{i\theta}$ où $R$ est constant et $0 \leq
     \theta \leq \pi$. En appliquant la définition, on trouve :
     \begin{equation}
-    \int_a^\pi \frac{1}{R}e^{-i\theta}Rie^{i\theta} = i\pi
+    \int_a^\pi \frac{1}{R}e^{-i\theta}Rie^{i\theta} d\theta = i\pi
     \end{equation}
     
     \item \textit{Chemin ADB}\\
@@ -152,7 +152,7 @@
     doivent être croissantes, d'ou l'inversion du signe de l'argument pour garder $0\leq \theta\leq \pi$}
     où $R$ est constant et $0 \leq\theta \leq \pi$. En appliquant la définition, on trouve :
     \begin{equation}
-    \int_a^\pi \frac{1}{R}e^{i\theta}R(-i)e^{-i\theta} = -i\pi
+    \int_a^\pi \frac{1}{R}e^{i\theta}R(-i)e^{-i\theta} d\theta = -i\pi
     \end{equation}
     \end{enumerate}} 
     
@@ -207,7 +207,7 @@
     On peut calculer la dérivée de $\phi$ ainsi que son module : 
     \begin{equation}
     \begin{array}{lll}
-    \phi'(t) &= \frac{dx}{dt} + \frac{dy}{dt} &\rightarrow \phi'(t)dt= dx + idy\\
+    \phi'(t) &= \frac{dx}{dt} + i\frac{dy}{dt} &\rightarrow \phi'(t)dt= dx + idy\\
     |\phi'(t)| &= \sqrt{dx^2 + dy^2}  &= ds
     \end{array}
     \end{equation}
@@ -285,7 +285,7 @@
     $z_2$ dans $D$ tel que $z = \phi(t), a\leq t\leq b$ avec $\phi(a) = z_1$ et $\phi(
     2) = z_2$. Notons que : 
     \begin{equation}
-    \frac{d}{df}F(\phi(t)) = F'(\phi(t))\phi'(t) = f(\phi(t))\phi'(t)\ \ a \leq t\leq b
+    \frac{d}{dt}F(\phi(t)) = F'(\phi(t))\phi'(t) = f(\phi(t))\phi'(t)\ \ a \leq t\leq b
     \end{equation}
     Par défintion de l'intégrale de $f(z)$ et en utilisant \textbf{(3.3)} :
     \begin{equation}
@@ -294,11 +294,11 @@
     \end{equation}
     Ce qui est indépendant de $\mathcal{C}$\\
     
-    \ \ \ \textit{Cas 1} : considérons un chemin admissible dans $D$ formé d'un nombre
+    \ \ \ \textit{Cas 2} : considérons un chemin admissible dans $D$ formé d'un nombre
     fini de chemins élémentaires $C_k$ de $z_k$ à $z_{k+1}$ pour $k=1,2\dots,n.$ Je
     'découpe' mon intégrale le long de $\mathcal{C}$ :
     \begin{equation}
-    \int_\mathcal{C} f(z) dz = \sum_{k=1}^n \int_{C_k} f(z)dz = \int_{z_k}^{z_{k+1}}
+    \int_\mathcal{C} f(z) dz = \sum_{k=1}^n \int_{C_k} f(z)dz = \sum_{k=1} \int_{z_k}^{z_{k+1}}
     f(z)dz = F(z_{n+1}) - F(z_1)
     \end{equation}
     Ce qui est indépendant de $\mathcal{C}$\\
@@ -328,7 +328,7 @@
     \begin{equation}
     \begin{array}{ll}
      F(z+\Delta z) - F(z) &= \int_{z_0}^{z+\Delta z} f(s) ds - \int_{z_0}^z f(s)ds\\
-     &= \int_{z}^{z+\Delta z} 
+     &= \int_{z}^{z+\Delta z} f(s) ds
     \end{array}
     \end{equation}
     Comme l'intégrale (3) est nulle, cela implique bien que le chemin parcouru n'a pas
@@ -355,7 +355,7 @@
     \begin{equation}
     |f(s)-f(z)|<\epsilon\ \text{si }\ |s-z| < \delta
     \end{equation}
-    Si $\Delta z$ tel que $|s-z|\leq \Delta z | < \delta$, alors $|f(s)-f(z)|<\epsilon$
+    Si $\Delta z$ tel que $|s-z|\leq |\Delta z | < \delta$, alors $|f(s)-f(z)|<\epsilon$
      et l'on peut appliquer le théorème ML :
     \begin{equation}
     \left|\dfrac{F(z+\Delta z) - F(z)}{\Delta z} - f(z)\right| < \dfrac{1}{|\Delta z|}
@@ -448,7 +448,7 @@ l'intégrale :
 \begin{equation}
 \oint_\mathcal{C} \dfrac{dz}{z^2}
 \end{equation}
-je ne peux rien dire avec Cauchy-Gourmet, la fonction étant non analytique en 0. Mais 
+je ne peux rien dire avec Cauchy-Goursat, la fonction étant non analytique en 0. Mais 
 cette fois, avec \textbf{3.2.2}, je peux dire qu'elle vaut 0 ! }
 
     \subsection{Conséquence du théorème de Cauchy-Goursat}
