@@ -1104,4 +1104,264 @@ Finalement, la solution actuellement préfèrée est celle de la {\bf table inde
 	\includegraphics[ scale=0.5]{stock4}
 \end{center}
 
+\chapter{Les bases de données}
+\section{Introduction}
+-Afin de structurer, valider, securiser, sauvegarder de manière systématique, partager et rendre accessible  concurrentiellement les données, plutôt que de faire appel à un système de fichiers, qui ne connait ni gère la structuration interne du contenu des fichiers, ne permet pas d'accès logique en fonction du contenu, ne permet pas d'accès concurrentiels, ne permet pas de gérer les historiques des transactions,... ... On utilisera plutôt des bases de données.
+Les deux premières figures illustrent la structuration logique des fichiers.
+\begin{center}
+	\includegraphics[ scale=0.6]{res5}
+\end{center}
+\begin{center}
+	\includegraphics[ scale=0.6]{re5}
+\end{center}
+
+On préfèrera les bases de données et l'accès logique associé. Cet accès direct se fait  par adresse calculée à partir de la valeur de la clé.
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{r5}
+\end{center}
+
+Une base de données peut donc être définie comme un lot d'informations stockées dans un dispositif informatique structuré, qui permet d'organiser et de structurer les données de manière à pouvoir facilement les manipuler et stocker efficacement de très grandes quantités d'informations.\\
+Les données sont gérées ,consultées et modifiées par un language de requête SQL que nous approfondirons plus loin.
+
+\section{Modélisation et relations }
+ Le modèle le plus courant est celui des  {\bf bases de données relationnelles}. Ces bases de données sont représentées sous forme de tables et possède des "attributs" ( analogie OO ?) dont un au moins doit être unique pour pouvoir différencier deux élèments. CI-dessous il s'agirait par exemple du numéro.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{bases5}
+\end{center}
+
+Il est important que ces bases de données soient bien mises en {\bf relation}. (Important) Pour concrétiser cette relation de manière informatique : On rajoute un attribut d'un coté (par exemple étudiant avec ID de la faculté). Cet ID doit être présente dans les deux tables suivant le principe de {\bf clé primaire - clé étrangère}. La clé primaire d'une relation est l'attribut, ou l'ensemble d'attributs, permettant de désigner de façon unique un tuple.
+La clé étangère est une clé faisant référence à une clé appartenant à une autre table.
+
+\subsection{Relation 1-1}
+
+Exemple : si un ordinateur était mis à notre disposition lors de notre inscription. On aurait une relation 1-1 entre l'ordinateur et l'étudiant. En fait on pourrait faire une seule table contenant les caractéristiques des deux et donc fusionner mais il est conseillé de séparer et donc d'utiliser la clé étrangère.
+\begin{center}
+	\includegraphics[ scale=0.6]{base5}
+\end{center}
+\begin{center}
+	\includegraphics[ scale=0.6]{bas5}
+\end{center}
+
+\subsection{Relation 1-n}
+
+La relation 1-n oblige à avoir 2 tables avec d'un coté clef primaire pour le 1 et de l'autre la clef étrangère. La clef étrangère est la reproduction de la clef primaire du coté n. 
+Dans l'exemple du client, il peut passer plusieurs commandes mais chaque commande est liée à un seul client. La clé IDClient permet de retrouver le client associé à une commande. Plusieurs tuples de la table commande pourront avoir la meme valeur pour l'attribut IDClient.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{ba5}
+\end{center}
+
+\subsection{Relation n-n}
+
+Par exemple des étudiants et des cours. Cette problèmaique de plusieurs clefs primaires et étrangères est insolutionnable avec 2 tables, il est nécessaire d'avoir une table {\bf additionnelle} qui fait passer la rel N-N à deux relations 1-N. Il est extrêmement important d'avoir aussi la clef primaire dans la table de jonction !
+
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{relation5}
+\end{center}
+
+\begin{center}
+	\includegraphics[ scale=0.6]{relat5}
+\end{center}
+
+Soit l'exemple synthétique suivant représentant les cotes des étudiants aux cours. Il y a 3 tables : Etudiants, cours et cotes. \\
+Les étudiants ont pour clé primaire leur Matricule et possèdent des champs ( = attributs ) à savoir leur nom, prénom, adresse,...\\
+Les cours ont pour clé primaire leur mnémonique et possèdent également des champs.
+Finalement les cote ont comme clé primaire le Numéro et comme champs les étudiants et les cours  ( clés étrangères) , leur cote ,...
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{rela5}
+\end{center}
+
+\section{SQL - Structured Query Language}
+
+SQL est un langage de définition de données propres aux bases de données relationnelles qui permet de créer des tables et des relations, mais il permet également de manipuler ces données ( consultation, insertion, modification de tuples) ainsi que d'assurer une protection de ces données par le biais de permissions au niveau des utilisateurs.\\
+Les instructions de ce langage sont basiques.
+Exemples : \\ SELECT [ALL]/[DISTINCT] <liste des noms de colonnes> /* FROM <Liste des tables> [WHERE <condition logique>]\\ SELECT * FROM VOITURE ORDER BY Marque ASC, Compteur DESC\\ SELECT Marque , AVG(Compteur) FROM VOITURE GROUP BY Marque ( calculer la moyenne des compteurs du groupe formé de la marque Marque, c'est donc une combinaison de traitement statistique et de regroupement de données). 
+Par opposition avec le procédural, il s'agit d'un langage déclaratif. On dit "Je veux ceci", sans expliquer comment y arriver.\\
+On peut également faire des jointures de tables, une jointure étant un produit cartésien de deux tables.
+Pour voir les différentes commandes CF cours.\\
+Ce langage est utilisé dans des Systèmes de Gestion de Bases de Données (Microsoft Access, mySQL, Oracle, ...) qui rajoutent l'interface graphique, créent les requêtes, gèrent les tables et indexations, les transactions , les utilisateurs et les droits d'accès, ainsi que les sauvegardes.
+
+\chapter{Les réseaux}
+
+\section{Intérêt des réseaux}
+
+Les réseaux permettent le partage des ressources, de délocaliser un travail et de communiquer à distance, en plus de permettre de partager des programmes en plusieurs machines (avantage économique).  Le créateur de l'internet est l'armée afin de communiquer discrètement $\rightarrow$ fiabilité.
+
+Historiquement, le 1er réseau qui a existé  est celui du {\bf téléphone}. Il exigeait une communication de qualité ( nécessité de comprendre son interlocuteur), une {ligne est ainsi réservée} à notre communication, de manière isochrone, cad que la vitesse de réception est celle d'émission de l'information.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{reseaux6}
+\end{center}
+Ensuite internet est apparue, en commençeant avec des envois de fichiers et de message, qui eux pouvait être décomposés $\rightarrow$ plus besoin d'êre isochrone ( recevoir les infos en temps réel)
+Il faut faire attention de bien différencier l'internet qui est une infrastructure physique, de celle virtuelle que représente le web.  On notera également en plus de cet internet, deux autres internet dits "des objets" et "de l'énergie", qui constituent le futur.
+
+"\section{Digitalisation de l'information}
+Pour le fonctionnement des réseaux, les communications et l'information sont dématérialisés, en binaire toujours. On dit que les données sont de nature {\bf digitale}. Seulement, quand on parle, on émet un signal continu dans le temps ou {\bf analogique}, tout comme ce que notre oreille peut perçoir. Il est donc nécessaire de convertir d'analogique vers digital et inversement. Les connexions téléphoniques se doivent donc d'être en partie l'un et en partie l'autre, alors que la connexion internet peut être uniquement digitale. 
+
+\begin{center}
+	\includegraphics[ scale=0.6]{reseau6}
+\end{center}
+
+La tendance est une digitalisation généralisée de l'information, ce qui explique pourquoi des applications comme skype sont de moins bonne qualité que la téléphonie, l'information étant discrétisée. Mais en dépit de cette perte de qualité, la digitalisation généralisée de l'information tant pour son stockage que pour son transport lui permet d'être plus facilement multiplexable, compressable ou encore encryptable, ainsi que de subir moins les phénomènes d'interférence et donc d'être plus fiable durant le transport. Le 2ème avantage du digital est donc sa robustesse au bruit, vu que seulement 2 cas sont possibles, un 1 qui est perturbé et donne un 0.8 par exemple sera bien vu comme un 1 qui est plus proche que 0.
+L'information peut circuler de 3 manières :\\
+- {\bf Simplex} : L'information va dans uen seule direction, de l'émetteur vers le récepteur. C'est le cas d'une caméra qui filme et envoie les images en direct.\\
+- {\bf Semi-duplex} : L'information va dans les deux sens mais pas simultanément. Par exemple des talkie-walkie.\\
+-{\bf Duplex} : Dans les deux sens simultanément, comme dans une conversation téléphonique.
+Multiplexer les données revient donc à envoyer simultanément des données sur un même support. On peut multiplexer en fréquence et en temps. Généralement dans le temps en attribuant des "quantum" de temps à chacun des signaux.
+On différenciera aussi les communications {\bf point à point} des communications {\bf multipoints} ( 1 expéditeur à destination de multiples récepteurs) . \\
+
+
+Le wifi est typiquement en multiploint. Tout le monde peut recevoir le message mais si il ne leur est pas adressé il est encrypté. L'éthernet lui est beaucoup plus point à point car il existe des algorithmes de routage qui font que seul le destinataire reçoit le message.
+NB : Attention de ne pas confondre l'éthernet de l'internet !\\
+Sur le schéma ci-dessous on voir comment s'opère le multiplexage, dont la présence d'un mutliplexeur et d'un démultiplexeur est obligatoire. On mélange A,B,C en retenant comment et le démultiplexeur les sépare.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{resea6}
+\end{center}
+
+Le type de support de la communication est lui aussi important. Les 3 technologies principales sont la transmission des signaux par {\bf fils électriques}, par {\bf ondes électromagnétiques} et par {\bf fibres optiques}.\\
+Les fils électirques sont généralement torsadés ou des fils coaxiaux en vue de transporter l'information et de la protéger des interférences. Seulement ils ont pour désavantage l'absence de mobilité,, par opposition avec les ondes EM qui sont partout (broadcast) et non guidées donc typiquement ici du multiploint. Le fil étant déjà une protection, les ondes EM sont plus vulnérables.
+La fibre optique quant à elle est plus fine, hyperrobuste au bruit et très rapide ( v = c ), elle a une extrêmement large bande passante, permet des communications très distantes et est moins couteuse à installer. C'est la technologie de l'information de l'avenir. Le seul problème est que la communication oit être guidée, ce qui n'est pas encore totalement maitrisé.
+
+Pour les ondes EM on peut jouer sur la fréquence pour avoir différentes applications. Par exemple la gamme radio est robuste aux obstacles, les ondes passent à travers. Les Basses fréquences résistent mieux aux distances.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{rese6}
+\end{center}
+
+On peut moduler l'onde telle qu'elle véhicule des 1 et des 0 en jouant sur l'amplitude (forte $\rightarrow$ 1 sinon 0), sur la phase (induire déphasage pour avoir 1) ou sur la fréquence ( jouer avec 2 fréquences). Un critère de choix parmi d'autres pouvant être la bande passante.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{res6}
+\end{center}
+
+La téléphonie présente donc les avantages de la qualité du service et le fait d'être isochrone, mais présente un gaspillage car un  circuitest  bloqué le temps de la conversation, ce  qui le rend cher.  C'est pourquoi internet a été une telle révolution dans le mode de communications.
+
+\section{Types de commutations}
+\subsection{Commutation en circuits}
+La commutation est importante pour comprendre comment circule l'information entre l'expéditeur et le destinataire. Pour rappel, pour assurer l'exigence de l'isochronie il faut bloquer un circuit. Le commutateur permet de partager des lignes, ainsi que de garantir un flux continu de parole.
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{commutation6}
+\end{center}
+
+\subsection{Commutation de paquets en mode connecté}
+
+Il  s'agit en quelque sorte d'un mode situé entre celui en circits et celui en mode non connecté, donc entre le téléphone et l'internet. On garde ici l'idée des paquets ( cf sous-section siuvante) et ses avantages, mais en garantissant unes certaine qualité ainsi que la possiblité de facturer l'utilisation ( avantage opérateurs).
+Les fichiers/données envoyés sont divisés en "paquets" qui circulent à travers les liens physiques et sont recombinés à l'arrivée.
+On spécifie bien "en mode connecté", c'est-à-dire qu'il y a un mélange de paquets mais le flux est continu et le contrôle de la qualité est rendu possible.\\
+On crée ici des circuits virtuels, tout le fichier passant par le même circuit MAIS 2 fichiers peuvent passer par le même circuit. Cela permet de garantir une certaine isochronie.\\
+Les avantages par rapport à l'internet sont que une fois que le chemin est établi, on sait où on va allern on n'a donc pas besoin d'adresse ni de numéro d'ordre.
+
+
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{commutatio6}
+\end{center}
+
+\subsection{Commutation de paquets en mode NON connecté}
+
+Cette méthode est plus efficace mais n'assure aucun contrôle de la qualité. En effet ici on utilisera plutôt des {\bf routeurs} qui permettent de "rationnaliser" les chemins empruntés par les paquets, c'est à dire les envoyer par les plus courts chemins. Les routeurs tiennent donc compte de l'encombrement des lignes, les chemins empruntés la nuit ne sont donc pas spécialement les mêmes que la journée par exemple. Il est important de noter qu'il est nécessaire d'avoir une {\bf table de routage} qui est constamment mise à jour de l'encombrement du réseau. On peut voir sur le schéla la table de routage, qui envoie A1 et A2 par des lignes de sortie différentes alors qu'ils sont finalement envoyés vers la même destination. Ainsi chaque paquet à son adresse finale et la route à emprunté, déterminée au fur et à mesure par les différents routeurs qu'il emprunte. Ainsi on comprend bien pourquoi on peut qualifer l'internet de réseau non démocratique, en vertu du fait qu'aucune ligne n'est privilégiée. De la même manière, internet est un type de commutation potentiellement impossible à facturer.
+
+{\bf Avantages} : - On commence à avoir les données dès l'arrivée du 1er paquet, et on ne doit pas atteindre qu'ils soient tous là pour pouvoir disposer d'information. Comme une page internet, les paquets sont chargés les uns après les autres, on peut déjà voir la page alors que tout n'est pas encore chargé( généralement on voit déjà le texte et puis seulement les images arrivent). \\
+
+
+
+\begin{center}
+	\includegraphics[ scale=0.6]{commutati6}
+\end{center}
+
+\begin{center}
+	\includegraphics[ scale=0.6]{commutat6}
+\end{center}
+
+\begin{center}
+	\includegraphics[ scale=0.6]{commuta6}
+\end{center}
+
+
+\section{Topologie des réseaux LAN ou locaux}
+
+Attention de bien différencier l'internet de l'éthernet. C'est l'éthernet qu'on va étudier ici, soit un réseau local donc on va voir les différents types de configurations.
+
+\subsection{En bus}
+Chacun des postes est indépendant et communique quand ça lui chante et que la voie est libre, il n'y a pas de coordination centrale. Chaque poste scrute l'addresse de la "trame" et vérifie si elle lui est adressée. Des collections sont détectées et gérées mais ce moyen reste néanmoins peu fiable. \\
+C'est donc typiquement du multipoint qui est utilisé ici vu qu'il y a un fil commun sur lequel tous les ordis se branchent. Chacun a une adresse Mask, qui est une adresse de réseau local et chacun a également une carte réseau qui vérfie si le message lui est bien destiné en fonction de cette adresse. On comprend donc l'importance de ne pas endommager cette carte de réseau.\\
+Cette technologie présente les {\bf avantages} de la simplicité. et les {\bf désavantages} relatifs au risques de collisions et la vulnérabilité de l'entiereté du réseau si une seule carte de réseau est défaillante.
+\begin{center}
+	\includegraphics[ scale=0.6]{commut6}
+\end{center}
+\subsection{En étoile}
+Il existe un poste central, le "hub" qui relie les stations entre elles. Si le hub commute avec les différentes paires de "postes communicateurs" alors il devient "switch" et peut diriger le message en fonction du destinataire, rarifiant ainsi les collisions. Les comutations sont ouvertes et fermées à tour de rôle, ce qui permet à ce modèle d'être plus fiable et plus efficace. Ce modèle est de loin préféré au bus, malgré qu'il soit plus cher et qu'il nécessite plus de fils. Il est beaucoup plus robuste, si une carte de réseau est défaillante il continue de fonctionne normalement. 
+\begin{center}
+	\includegraphics[ scale=0.6]{commu6}
+\end{center}
+\subsection{En anneau}
+Ici seule la machine qui a attrapé le jeton envoie son message. Une fois que le message est reçu, le jeton est remis en jeu. Les informations circulent dans une seule direction, ce qui permet d'éviter les collisions.
+\begin{center}
+	\includegraphics[ scale=0.6]{comm6}
+\end{center}
+
+Les réseaux WAN ( Wide Area Network) combinent les sous-réseaux LAN avec des ponts et routeurs, le plus célèbre des WAN est bien sur internet. Ces réseaux ont une étendue très large.  Les ponts se limitent à répéter le signal et à isoler les LAN entre eux. Les routeurs sont plus intelligents. Soit, ils transmettent le message localement soit ils le re-dirigent vers un autre routeur (en maintenant une table de route).
+
+\section{Les protocoles de communication}
+
+Les protocoles sont hiérarchisés en {\bf couches}. Ainsi une communication établie à haut niveau ne se préoccupe pas du déroulement de cette communication au niveau juste en dessous. On peut de cette façon changer les couches de plus bas niveau sans altérer celles de plus haut niveau. \\
+Une application tournant sur un ordinateur devrait pouvoir communiquer avec une autre application tournant sur un autre ordinateur sans se soucier de la manière dont celle-ci s'effectue pratiquement.
+
+\subsection{ Modèle OSI}
+
+Le protocole idéal (théorique ca non utilisé en pratique) de communication dans les WAN est le protocole OSI (Open System Interconnexion) qui se décompose en 7 niveaux.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{com6}
+\end{center}
+
+En pratique il est réduit au protocole TCPI/P en 4 couches que nous verrons plus loin. Il est impératif d'avoir une équivalence du coté du destinataire, ils doivent donc être symétrique, ce qui n'est pas spécialement le cas du noeud de réseau car toutes les couches ne doivent pas y être effectuées.
+Quelques exemples pour ces niveaux :  \\
+- Physique : Au niveau le plus bas : transfert de bits sur paire torsadée.\\
+- Liaison : Envoi des données sous forme de trames (couche au niveau du réseau local donc on rentre sur un autre protocole par exemple éthernet ce qui implique l'utilisation de trames plutôt que de paquets et d'adresses Smash plutôt qu'IP) \\
+- Réseau : Données en paquets + optimisation du chemin + contrôle de congestion.\\
+- Session : ouverture et synchronisation du dialogue. (couche de prudence).\\
+- Présentation : Syntaxe des données échangées, prend en ocnsidération l'OS.\\
+- Application : Telnet, http, email, bref on différencie ce qu'on est en train de faire sur internet.\\
+Les protocoles peuvent s'appeler entre eux comme on l'a dit pour la liaison, pour un message global distribué en LAN, TCP/IP peut passr la main à Ethernet.\\
+
+Chaque couche ajoute en fait des bits redondants, par exemple la couché réseau qui s'occupe du routage a besoin de connaitre l'adresse du destinataire. C'est pourquoi l'information est rajoutée sur les paquets, pour connaitre le prochain serveur à qui l'information est envoyée. Ces bits supplémentaires rajoutés sont compris au même niveau mais du coté du destinataire, avant d'être enlevés par les couches correspondantes.
+\begin{center}
+	\includegraphics[ scale=0.6]{TCPIP6}
+\end{center}
+
+\subsection{Le protocole éthernet}
+
+La plupart des LAN existent pour le partage des ressources : fichier, programme et imprimante. Il correspond au niveau le plus bas à savoir le niveau physique. C'est un protocole qui marche bien pour peu d'ordinateurs et un traffic léger, bref quand il n'y a pas trop de collisions !
+
+\subsection{Internet et TCP/IP}
+
+
+La partie TCP reprend du OSI les niveaux "présentation","session" et "transport", alors que la partie IP reprend les interactions de bas niveaux propres à d'autres protocoles. \\
+Une adresse IP est un entier de 32 bits ( bientôt 64), elle spécifie l'adresse d'un domaine sur le WAN, les 3 premiers bytes, puis ensuite l'adresse de l'hôte sur ce domaine. Les adresses peuvent être de 3 classes : A,B et C suivant que l'on attribue au domaine un grand nombre d'hôtes ou non. Ainsi des entreprises comem IBM  et Amazon sont de classe A (très gourmandes en adresses IP) et les universités sont de classe B.
+
+\begin{center}
+	\includegraphics[ scale=0.6]{TCPI6}
+\end{center}
+
+Le schéma ci-dessus explique toutes les adresses IP. Si un organsime est de classe A, le 1er bit est à 0, l'adresse réseau est donc caractérisée par 7 bits soit 128 adresses. Ils reçoivent ainsi 32 - 7 - 1 = 24 adresses IP !
+
+\subsubsection{Le protocole hiérarchique}
+
+Au niveau de l'application, on fixe l'adresse IP du destinataire et on passe les données à transmettre.\\
+Au niveau TCP, on fait les paquets, on établit la session, on envoie les paquets, on s'assure que tous les paquets sont reçus dans le bon ordre. On s'occupe également de fournir les bits de détection et correction d'erreur.\\
+Au niveau IP, on s'occupe du routage. On regarde si le destinataire est local au réseau, si c'est le cas on modifie son adresse en une adresse locale et on est relayé par le protocole local, sinon on indique comme nouvelle adresse l'adresse du prochain routeur.\\
+Aujourd'hui tous les OS supportent TCP/IP en IP4 ainsi qu'en IP6 qui se développe encore. IP6 sera caractérisé par des adresses sur 128 bits plutôt que 32 soit $(4Milliards)^4$ adresses, par un "Plug and play" (chaque object qui se connecte sur le réseau reçoit une adresse IP, même une chaussette !) ainsi que par sa hiérarchie ( obligé car tellement d'adresses IP que nécessaire de les hiérarchisés d'abord par continent puis par pays puis ... ).
+
 \end{document}
