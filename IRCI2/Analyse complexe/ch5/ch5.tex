@@ -36,10 +36,10 @@
 	
 	\theor{Ecrivons $z_n = x_n+iy_n (n=1,2,\dots)$ et $S=X+iY$.
 	\begin{equation}
-	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N z_n = S \Leftrightarrow \left\{\begin{array}
+	\lim\limits_{N\rightarrow \infty} \sum_{n=1}^N z_n = S \Leftrightarrow \left\{\begin{array}
 	{ll}
-	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N x_n &= X\\
-	\lim\limits_{n\rightarrow \infty} \sum_{n=1}^N y_n &= Y
+	\lim\limits_{N\rightarrow \infty} \sum_{n=1}^N x_n &= X\\
+	\lim\limits_{N\rightarrow \infty} \sum_{n=1}^N y_n &= Y
 	\end{array}\right.
 	\end{equation}}\ \\
 	
@@ -56,7 +56,7 @@
 \section{Séries de Taylor et de Laurent}
 	\subsection{Série de Taylor}
 	\theor{\textsc{Série de Taylor}
-	Si $f$ est analytique dans le disque ouvert $D$ et que $|z-z_0| < R$, alors en tout point 
+	Si $f$ est analytique dans le disque ouvert $D$, $|z-z_0| < R$, alors en tout point 
 	$z$ du disque : 
 	\begin{equation}
 	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n
@@ -79,7 +79,7 @@
 	
 	\begin{proof}\ \\
 	Soit un disque de rayon $R$. Considérons la première formule de Cauchy où $z$ joue le rôle 
-	de $z_0$ et la variable d'	intégration est $s$ :
+	de $z_0$ et la variable d'intégration est $s$ :
 	\begin{equation}
 	f(z) = \frac{1}{2\pi i}\oint_{C_0} \frac{f(s)}{s-z}ds\ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ (1)
 	\end{equation}
@@ -137,7 +137,7 @@
 	Compte tenu de ceci, en appliquant le théorème ML (borne * longueur du cercle
 	 de rayon $r_0$) :
 	\begin{equation}
-	|R_n| \leq \frac{r^n}{2\pi}\frac{M}{r^n_0(r_0-r}2\pi r_0
+	|R_n| \leq \frac{r^n}{2\pi}\frac{M}{r^n_0(r_0-r)}2\pi r_0
 	\end{equation}
 	En regroupant les termes :
 	\begin{equation}
@@ -153,11 +153,11 @@
 	\item Considérons $|z| < \infty$ et $f(z) = e^z = f'(z) = f''(z) = \dots$ Notre 
 	développement vaut alors :
 	\begin{equation}
-	e^z \approx 1+z+\frac{z^2}{2} + \dots + \frac{z^n}{n!} + \dots\ \ \ \ (|z|<\infty)
+	e^z \approx 1+\frac{z}{1!} +\frac{z^2}{2!} + \dots + \frac{z^n}{n!} + \dots\ \ \ \ (|z|<\infty)
 	\end{equation}
 	\item Considérons cette fois un cercle unitaire centré à l'origine $|z|<1$ et la fonction
 	$f(z) = \frac{1}{1-z}$. Les dérivées vallent : $f'(z) = \frac{1}{(1-z)^2}, f''(z) = \frac{
-	1}{(1-z)^3}, \dots, f^{(n)} = \frac{1}{(1-z)^{n+1}}$. Notre développement vaut alors :
+	2!}{(1-z)^3}, \dots, f^{(n)} = \frac{n!}{(1-z)^{n+1}}$. Notre développement vaut alors :
 	\begin{equation}
 	\frac{1}{1-z} = 1+z+z^2+\dots+z^n+\dots \ \ \ \ (|z|<1)
 	\end{equation}
@@ -190,7 +190,7 @@
 	\end{enumerate}
 	Alors :
 	\begin{equation}
-	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n + \sum_{n=2}^\infty \dfrac{b_n}{(z-z_0)^n}
+	f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n + \sum_{n=1}^\infty \dfrac{b_n}{(z-z_0)^n}
 	\end{equation}
 	où
 	\begin{eqnarray}
@@ -220,7 +220,7 @@
 	En substituant dans $(*)$ on trouve :
 	\begin{equation}
 	f(z) = \underbrace{\dfrac{1}{2\pi i}\oint_{C_2} \frac{f(s)}{s-z}ds}_{T_1(z)} + \underbrace{
-	\dfrac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{s-z}ds}_{T_2(z)}
+	\dfrac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{z-s}ds}_{T_2(z)}
 	\end{equation}\ \\
 	
 	Pour le terme $T_1(z)$, on procède par similitude avec la démonstration de la série de 
@@ -244,7 +244,7 @@
 	\end{equation}
 	Ou encore :
 	\begin{multline}
-	T_2(z) = \frac{1}{(z-z_0)}\frac{1}{2\pi i}\oint_{C_1} f(s) ds + \frac{1}{(z-z_0^2}\frac{1}{2\pi 
+	T_2(z) = \frac{1}{(z-z_0)}\frac{1}{2\pi i}\oint_{C_1} f(s) ds + \frac{1}{(z-z_0)^2}\frac{1}{2\pi 
 	i}\oint_{C_1} f(s)(s-z_0) ds\ +\ \dots \\
 	 \dots\ +\ \frac{1}{(z-z_0)^N}\frac{1}{2\pi i}\oint_{C_1} f(s)(s-	z_0) ds + S_N
 	\end{multline}
@@ -253,7 +253,7 @@
 	\begin{equation}
 	T_2(z) = \sum_{n=1}^N B_n \frac{1}{(z-z_0)^n} + S_N
 	\end{equation}
-	où $S_n = \frac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{(s-z_0)^{-n+1}} ds$. Cette intégrale à quasi
+	où $B_n = \frac{1}{2\pi i}\oint_{C_1} \frac{f(s)}{(s-z_0)^{-n+1}} ds$. Cette intégrale à quasi
 	la forme énoncée dans le théorème si ce n'est que le chemin est ici $C_1$. Mais ce chemin est
 	bien sur arbitraire pour le peu qu'il soit simple, fermé, admissible et dans le domaine de 
 	convergence. Par un des corollaires du théorème de Cauchy-Goursat (Proposition 2) : $B_n = 
@@ -293,14 +293,14 @@
 	\frac{1}{z-1} = \frac{1}{z(1-\frac{1}{z})} = \frac{1}{z}\sum_{n=0}^\infty \frac{1}{z^n}\ \ \
 	(|1/z|>1 \rightarrow |z| >1)
 	\end{equation}
-	Secondement :
+	Deuxièmement :
 	\begin{equation}
-	\frac{-1}{z-2} = -\frac{1}{2(\frac{z}{2}-1)} = \frac{1}{z(1-\frac{z}{2})} = \frac{1}{2}
+	\frac{-1}{z-2} = \frac{1}{2(1-\frac{z}{2})} = \frac{1}{2}
 	\sum_{n=0}^\infty\left(\frac{z}{2}\right)^n\ \ \ (|1/z|<2 \rightarrow |z|<2)
 	\end{equation}
 	Ainsi 
 	\begin{equation}
-	f(z) = \sum_{n=1}^\infty\frac{1}{z^n} + \sum_{n=0}^\infty\left(\frac{z}{2}\right)^n\ \ \
+	f(z) = \sum_{n=1}^\infty\frac{1}{z^n} + \frac{1}{2}\sum_{n=0}^\infty\left(\frac{z}{2}\right)^n\ \ \
 	(1<|z|<2)
 	\end{equation}}
 
@@ -309,7 +309,7 @@
 	\theor{\textsc{1 - série de puissances positives}\\
 	Si $\sum_{n=0}^\infty a_n(z-z_0)^n$ converge pour $z = z_1\ \ \ (z_1\neq z_0)$, alors 
 	$\sum_{n=0}^\infty |a_n(z-z_0)^n|$ converge pour tout $z$ dans $|z-z_0| < R_1$ où $R_1 =
-	z_1-z_0|$, le distance entre les deux points.}
+	|z_1-z_0|$, la distance entre les deux points.}
 	Rappelons également que la convergence absolue d'une série de puissance implique la 
 	convergence simple de cette même série de puissance :
 	\begin{equation}
@@ -323,7 +323,7 @@
 	tout point intérieur à ce cercle.
 	\item[Rayon de convergence : ] rayon de ce cercle.
 	\end{description}
-	Ceci étant fait, il est précieux se savoir que si l'on a une série de puissance \textit{négative} qui converge, alors cette même série converge absolument dans la région extérieure 
+	Ceci étant fait, il est précieux de savoir que si l'on a une série de puissance \textit{négative} qui converge, alors cette même série converge absolument dans la région extérieure 
 	au disque d'un certain rayon, ce qui formellement dit :\\
 	
 	\theor{\textsc{2 - série de puissances négatives}\\
@@ -339,7 +339,7 @@
 	\sum_{n=0}^\infty a_n(z-z_0)^n
 	\end{equation}
 	représente une fonction continue à l'intérieur de son cercle de convergence.}\ \\
-	Ceci explloite directement la définition de la continuité. Soit $S(z) = \sum_{n=0}^\infty 
+	Ceci exploite directement la définition de la continuité. Soit $S(z) = \sum_{n=0}^\infty 
 	a_n (z-z_0)^n$ dans $|z-z_0| = R$ et $z_1$ à l'intérieur de ce cercle. 
 	\begin{equation}
 	\forall \epsilon > 0, \exists \delta > 0\ t.q.\ si\ |z-z_1| < \delta\ \text{ alors }\ 
@@ -396,7 +396,7 @@
 	Considérons $g(s) = \frac{1}{2\pi i}\frac{1}{(s-z)^2}$ pour tout $s$ sur $\mathcal{C}$.
 	Comme $g(s)$ est continue, par le théorème 4 :
 	\begin{equation}
-	\oint_\mathcal{C}g(s) S(s) ds = \sum_{n=1}^\infty g(s)(s-z_0)^n ds\ \ \ \ \ (-\_-)"
+	\oint_\mathcal{C}g(s) S(s) ds = \sum_{n=0}^\infty a_n\oint_\mathcal{C}g(s)(s-z_0)^n ds\ \ \ \ \ (-\_-)"
 	\end{equation}
 	En appliquant la deuxième formule de Cauchy, je peux transformer ma première intégrale :
 	\begin{equation}
@@ -410,7 +410,7 @@
 	\begin{equation}
 	\begin{array}{ll}
 	\oint_\mathcal{C} g(s)(s-z_0)^n\ ds &= \frac{1}{2\pi i}\oint_\mathcal{C}\frac{(s-z_0)^n}{
-	(s-z)^n}\ ds\\
+	(s-z)^2}\ ds\\
 	 &= \frac{d}{dz}(z-z_0)^n\ \ \ \ (n=0,1,2,\dots)
 	\end{array}
 	\end{equation}
@@ -433,7 +433,7 @@
 		\subsubsection{Série de Taylor}
 		Si 
 		\begin{equation}
-		\sum_{n=0}^\infty a_n(z-z_0)^n = \sum_{n=0}^\infty b_n(z-z_0)^n\ \ \ \ |z-z_0| < R
+		\sum_{n=0}^\infty a_n(z-z_0)^n = \sum_{n=0}^\infty b_n(z-z_0)^n = f(z)\ \ \ \ |z-z_0| < R
 		\end{equation}
 		alors $a_n = b_n = \frac{f^n(z_0)}{n!}$ et la série est le développement en série de 
 		Taylor de $f(z)$ en puissance de $(z-z_0)$.
@@ -447,7 +447,7 @@
 		alors c'est le développement en série de Laurent de $f$ en puissances de $(z-z_0)$ 
 		dans ce domaine
 		
-		\exemple{Soit la fonction $f(z)=\sum\limits_0^{\infty}a_n(z-z_0)^n\quad|z-z_0|<2$. Amusons-nous à calculer $f(z)$ en $z_0$ ainsi que ses dérivées : 
+		\exemple{Soit la fonction $f(z)=\sum\limits_0^{\infty}a_n(z-z_0)^n\quad|z-z_0|<R$. Amusons-nous à calculer $f(z)$ en $z_0$ ainsi que ses dérivées : 
 		\begin{equation}
 		f(z_0)=a_0
 		\end{equation}
@@ -488,8 +488,6 @@
 	\begin{equation}
 	\frac{e^z}{1+z}=1+z^2\left(1-1+\frac{1}{2}\right)+z^3\left(-1+1-\frac{1}{2}+\frac{1}{6}\right)+\dots\quad(|z|<1)
 	\end{equation}
-	\textbf{NICO A OUBLIÉ LA SUITE} -\_-
-	}
 	
 	
 	
