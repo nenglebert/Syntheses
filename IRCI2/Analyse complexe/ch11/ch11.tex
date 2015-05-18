@@ -1,7 +1,8 @@
 \chapter{Transformée de Laplace 1}
 \section{Motivation}
 La transformée de Laplace permet l'analyse et la description des systèmes instables.
-Si une exponentielle est présente dans l'entrée (par exemple $y(t) = H(p)\exp(pt)$), les
+Si une exponentielle est présente dans l'entrée (par exemple $u(t) = \exp(pt)$ avec
+$p = \sigma + i\omega$ où $\sigma,\omega\ \in\ \mathbb{R}$), les
 conditions de convergences de la transformée de Fourier ne sont pas vérifiées : c'est
 la transformée de Laplace qui offre la solution.
 
@@ -18,7 +19,7 @@ la transformée de Laplace qui offre la solution.
 $	X(\sigma+i\omega) = \int_{-\infty}^\infty x(t)e^{-(\sigma+i\omega)t}dt$ =$ 
 	\int_{-\infty}^\infty x(t)e^{-\sigma t}e^{-i\omega t}dt
 $%	\end{equation}
-	Ce qui n'est rien d'autre que la transformée de Fourier de $x(t)e^{-\sigma t}$.
+	 Ce qui n'est rien d'autre que la transformée de Fourier de $x(t)e^{-\sigma t}$.
 
 
 	\subsection{Convergence de la transformée de Laplace et transformée inverse}
@@ -32,7 +33,7 @@ $%	\end{equation}
 	\begin{enumerate}
 	\item Elle possède un nombre fini d'extréma dans tout intervalle fini de valeurs 
 	de $t$.
-	\item Elle possède un ombre fini de discontinuités, uniquement de première espèce,
+	\item Elle possède un nombre fini de discontinuités, uniquement de première espèce,
 	dans tout intervalle fini de valeurs de $t$
 	\end{enumerate}
 	On a alors, pour toutes les valeurs de $\sigma$ pour lesquelles
@@ -63,7 +64,7 @@ $%	\end{equation}
 	\end{equation}
 	En posant $p = \sigma + i\omega, dp = id\omega$ :
 	\begin{equation}
-	\frac{x(t^+)+x(t^-)}{2} = \frac{1}{2\pi}\int_{-\infty-i\omega}^{\infty+i\omega} X
+	\frac{x(t^+)+x(t^-)}{2} = \frac{1}{2\pi i}\int_{-\infty-i\omega}^{\infty+i\omega} X
 	(p)e^{pt}dp
 	\end{equation}
 	Comme $x(t)$ est une fonction continue :
@@ -80,7 +81,7 @@ $%	\end{equation}
 	La \textit{région de convergence (RDC)} est l'ensemble des valeurs de $\sigma$ 
 	pour lesquelles les intégrales convergent ; les RDC sont formées de bandes 
 	parallèles  l'axe imaginaire.\\
-	\textbf{Attention !} Ne pas confondre RDV avec le rayon de convergence des 
+	\textbf{Attention !} Ne pas confondre RDC avec le rayon de convergence des 
 	séries de Taylor, ça montre juste que t'as rien compris !\\
 	On détermine la RDC en décomposant la transformée de Laplace : $X(p) = X_\_(p)+
 	X_+(p)$ :
@@ -91,11 +92,11 @@ $%	\end{equation}
 	\begin{enumerate}
 	\item $X(p)$ converge absolument pour certaines valeurs de $\sigma$, impliquant 
 	que $X_\_(p)$ et  $X_+(p)$ convergent absolument pour ces valeurs de $\sigma$.
-	\item Si $X_+(p)$ converge absolument pour $\sigma=\sigma^+$ ; ceci est vrai
+	\item Si $X_+(p)$ converge absolument pour $\sigma=\sigma^+$ ; $X_+(p)$ converge aussi
 	$\forall\ \sigma>\sigma^+$.\\
 	En effet : 
 	\begin{equation}
-	\int_0^\infty |x(t)|e^{-\sigma t}dt = \int_0^\infty |x(t)|e^{-\sigma^+t}e^{
+	\int_0^\infty |x(t)|e^{-\sigma t}dt = \int_0^\infty |x(t)|e^{-\sigma^+t}e^{-
 	(\sigma-\sigma^+)t} dt
 	\end{equation}
 	Comme la deuxième exponentielle est toujours inférieure à l'unité, je peux 
@@ -103,8 +104,8 @@ $%	\end{equation}
 	\begin{equation}
 	\int_0^\infty |x(t)|e^{-\sigma t}dt < \int_0^\infty |x(t)|e^{-\sigma^+t}dt
 	\end{equation}
-	\item Si $X_\_(p)$ converge absolument pour $\sigma = \sigma^-$ ; ceci est 
-	vrai pour tout $\sigma < \sigma^-$.
+	\item Si $X_\_(p)$ converge absolument pour $\sigma = \sigma^-$ ; $X_\_(p)$ converge aussi  
+	pour tout $\sigma < \sigma^-$.
 	\end{enumerate}
 
 
@@ -121,7 +122,7 @@ les hypothèses complètes.
 	\begin{equation}
 	x(t) = k_1x_1(t) + k_2x_2(t) \lt X(p) = k_1X_1(p) + k_2X_2(p),\ \ \ k_1,k_2\in\mathbb{C}
 	\end{equation}
-	pour une RDC contenant $\max(\alpha_1^+,\alpha_2^+)< \mathbb{R} < \min(\alpha^-_1,\alpha^-_2)$.
+	pour une RDC contenant $\max(\alpha_1^+,\alpha_2^+)< \mathbb{R}(p) < \min(\alpha^-_1,\alpha^-_2)$.
 	
 	
 	\subsection{Fonction complexe conjuguée}
@@ -153,7 +154,7 @@ les hypothèses complètes.
 	
 	
 	\subsection{Transformée de Laplace de la dérivée d'une fonction}
-	Pour un domaine de convergence contenant $\alpha^+<\mathbb{R}<\alpha^-$ :
+	Pour un domaine de convergence contenant $\alpha^+<\mathbb{R}(p)<\alpha^-$ :
 	\begin{equation}
 	\frac{dx(t)}{dt} \lt pX(p)
 	\end{equation}

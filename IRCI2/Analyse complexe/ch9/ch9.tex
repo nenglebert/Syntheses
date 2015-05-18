@@ -9,16 +9,16 @@
 	\end{array}\right.
 	\end{equation}
 	La méthode utilisée ici est la m\^eme que celle utilisée pour obtenir les 
-	les intégrales de Riemann. Considérons un signal $u(t)$ approché par la 
-	fonction en escalier $\tilde{u}(t)$ :
+	intégrales de Riemann. Considérons un signal $u(t)$ approché par la 
+	fonction en escalier $\hat{u}(t)$ :
 	\begin{equation}
-	\tilde{u}(t) = \sum_{k=-\infty}^\infty u(k\epsilon)(t-k\epsilon)\epsilon
+	\hat{u}(t) = \sum_{k=-\infty}^\infty u(k\epsilon)\delta_\epsilon(t-k\epsilon)\epsilon
 	\end{equation}
 	où un seul terme est non nul dans la somme, pour chaque valeur de $t$. 
-	Lorsque $\epsilon\rightarrow 0, \tilde{u}(t) \rightarrow u(t)$ et donc :
+	Lorsque $\epsilon\rightarrow 0, \hat{u}(t) \rightarrow u(t)$ et donc :
 	\begin{equation}
 	u(t) = \lim\limits_{\epsilon\rightarrow 0} \sum_{k=-\infty}^\infty u(k
-	\epsilon)(t-k\epsilon)\epsilon
+	\epsilon)\delta_\epsilon(t-k\epsilon)\epsilon
 	\end{equation}
 	Cette somme tend gentillement vers une intégrale 
 	\begin{equation}
@@ -27,48 +27,48 @@
 
 
 	\subsection{Réponse impulsionnelle d'un SLP et convolution}
-	La démarche est de calculer la réponse $\tilde{y}(t)$ d'un SLP au signal
-	$\tilde{u}(t)$ puis d'ensuite faire tendre $\epsilon$ vers zéro pour 
+	La démarche est de calculer la réponse $\hat{y}(t)$ d'un SLP au signal
+	$\hat{u}(t)$ puis d'ensuite faire tendre $\epsilon$ vers zéro pour 
 	déduire la réponse $y(t)$ à $u(t)$.\\
-	Notons $\tilde{h}_{k\epsilon}$ la réponse d'un système linéaire continu 
+	Notons $\hat{h}_{k\epsilon}(t)$ la réponse d'un système linéaire continu 
 	au signal d'entrée $\delta_\epsilon(t-k\epsilon)$. Par les propriétés de 
-	superposition et d'homothétie, je peux exprimer $y(t)$ comme la 
-	somme des réponse sà chacune de ses imulsions. La somme approchée est 
+	superposition et d'homothétie, je peux exprimer $\hat{y}(t)$ comme la 
+	somme des réponse de chacune de ses impulsions. La somme approchée est 
 	donnée par : 
 	\begin{equation}
-	\tilde{y}(t) = \sum_{k=-\infty}^\infty u(k\epsilon)\tilde{h}_{k\epsilon}
+	\hat{y}(t) = \sum_{k=-\infty}^\infty u(k\epsilon)\hat{h}_{k\epsilon}
 	\epsilon
 	\end{equation}
-	Lorsque $\epsilon\rightarrow0, \tilde{u}(t)\rightarrow u(t)$ et $\tilde{y}
+	Lorsque $\epsilon\rightarrow0, \hat{u}(t)\rightarrow u(t)$ et $\hat{y}
 	(t) \rightarrow y(t)$. Si $\epsilon$ est suffisamment petit, la durée de 
 	l'impulsion $\delta_\epsilon(t-k\epsilon)$ n'importe pas. Notons $h_\tau(t
-	)$ la déponse du système au temps $t$ à l'entrée $\delta(t-\tau)$ (l'
+	)$ la réponse du système au temps $t$ à l'entrée $\delta(t-\tau)$ (l'
 	impulsion à l'instant $\tau$). Il vient : 
 	\begin{equation}
 	\begin{array}{ll}
 	y(t) &= \lim\limits_{\epsilon\rightarrow0} \sum_{k=-\infty}^\infty u(k\epsilon)
-	\tilde{h}_{k\epsilon}\\
+	\hat{h}_{k\epsilon}(t)\epsilon\\
 	 &= \int_{-\infty}^\infty u(\tau)h_\tau(t)\ d\tau
 	\end{array}
 	\label{eq:RepSLP}
 	\end{equation}
 	
 		 \subsubsection{Convolution}
-		 Si en plus d'\^etre linéaire, le système est permanant, alors $h_\tau(
+		 Si en plus d'\^etre linéaire, le système est permanent, alors $h_\tau(
 		 t) = h(t-\tau)$ où $h(t)$ est la réponse du système à l'entrée $\delta
 		 (t)$.\\
-		 Par \textbf{définition} ; réponse impulsionnelle d'un SLP : réponse du
-		 système au signal d'entrée $\delta(t)$, notée $h(t)$. En subsituant 
+		 \textbf{Définition} : réponse impulsionnelle d'un SLP := réponse du
+		 système au signal d'entrée $\delta(t)$, notée $h(t)$. En substituant 
 		 $h(t)$ par $h(t-\tau)$ dans l'équation \autoref{eq:RepSLP} on 
 		 trouve\footnote{Par définition} :
 		 \begin{equation}
-		 y(t) = \int_{-\infty}^\infty u(\tau)h_\tau(t)\ d\tau
+		 y(t) = \int_{-\infty}^\infty u(\tau)h_\tau(t-\tau)\ d\tau
 		 \end{equation}
-		 c'est à dire la \textbf{convulution} ou \textbf{produit de convolution} 
+		 c'est à dire la \textbf{convolution} ou \textbf{produit de convolution} 
 		 de $u(t)$ et $h(t)$.\\
 		 On utilise comme notation pour le produit de convolution $y(t) = u(t)*
 		 h(t)$. Tout ce qui est nécessaire pour la sortie, c'est la réponse 
-		 impulsionnelle. Cette notion caractérise entierement le SLP.
+		 impulsionnelle. Cette notion caractérise entièrement le SLP.
 	
 	\subsection{Réponse indicielle d'un SLP}
 	La réponse indicielle d'un SLP correspond à sa réponse l'entrée $u(t) = \nu
@@ -80,8 +80,8 @@
 	\tau)\ d\tau
 	\label{eq:RepIndic}
 	\end{equation}
-	pù $s$ est appelé la réponse indicielle. Cette forme se justifie par le fait que 
-	pour les $\tau > 1$, l'intégrale est nulle. L'équation \autoref{eq:RepIndic} 
+	où $s$ est appelé la réponse indicielle. Cette forme se justifie par le fait que 
+	pour les $\tau > t$, l'intégrale est nulle. L'équation \autoref{eq:RepIndic} 
 	permet d'écrire :
 	\begin{equation}
 	h(t) = \frac{ds(t)}{dt}
@@ -94,14 +94,14 @@
 	\subsection{Formulation du problème}
 	Considérons la loi décrivant le comportement d'un circuit RC :
 	\begin{equation}
-	\frac{dv_c(t)}{dt}+\frac{1}{RC}v_c(t) = \frac{1}{RC}v_s(t)
+	\frac{dv_c(t)}{dt}+\frac{1}{RC}v_c(t) = v_s(t)
 	\end{equation}		
 	Cette équation est-elle suffisante pour déterminer $v_c(t)$ de façon 
 	explicite ? On observe que :
 	\begin{itemize}
-	\item Une EDO est une description implicite du système au lieu d'une 
+	\item Une EDO fournit une description implicite du système au lieu d'une 
 	expression explicite de la sortie en fonction de l'entrée.
-	\item La résolution d'une EDO nécessaire des conditions auxiliaires
+	\item La résolution d'une EDO nécessite des conditions auxiliaires
 	\item Une EDO décrit uniquement une contrainte liant l'entrée et la
 	sortie d'un système.
 	\end{itemize}
@@ -112,16 +112,16 @@
 	Considérons maintenant une EDO d'ordre $n$ où $y$ et $u$ sont fonctions 
 	de $t$ :
 	\begin{equation}
-	y^{(n)} + a_iy^{(n-1)} + \dots + a_{n-1}y' + a_ny = b_0u^{(m)}+
-	b_1u^{(m-1)} + \dots + b_{m-1}u' + n_mu
+	y^{(n)} + a_1y^{(n-1)} + \dots + a_{n-1}y' + a_ny = b_0u^{(m)}+
+	b_1u^{(m-1)} + \dots + b_{m-1}u' + b_mu
 	\end{equation}
 	Elle représente un SLP si les CI correspondent à un système initialement
 	au repos.\\
-	\textbf{Def :} un système est initialement au repos lorsque si $u(t)=0\ 
-	\forall t<t_0, y(t) = 0$ pour $t<t_0$. Lorsque les CI ne sont pas données
+	\textbf{Def :} un système est initialement au repos si lorsque $u(t)=0\ 
+	\forall t<t_0, y(t) = 0\ \forall t<t_0$. Lorsque les CI ne sont pas données
 	cela suppose implicitement que le système est au repos avec pour CI :
 	\begin{equation}
-	y(t_0^-) = y'(t_0) = \dots = y^{(n-1)}(t_0) = 0
+	y(t_0^-) = y'(t_0^-) = \dots = y^{(n-1)}(t_0^-) = 0
 	\end{equation}
 	Comme $t_0$ est arbitraire, c'est souvent plus fun de prendre $t_0= \ln(
 	\frac{2\pi}{e^4})$ pour l'évaluer.\\

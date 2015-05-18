@@ -1,7 +1,6 @@
 \documentclass	[11pt, a4paper, openany]{book}
 \usepackage[utf8]{inputenc}
 
-
 \usepackage[francais]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -54,15 +53,30 @@
 \newcommand{\RE}{\text{Re}}
 \DeclareMathOperator{\arccot}{arccot}
 \newcommand{\com}[1]{}
+\usepackage{eso-pic} %fond écran page de garde
 
 %\newcommand{\oiint}{\int\!\!\!\!\!\:\!\!\!\;\!\!\subset\!\!\supset\!\!\!\:\!\!\!\!\!\int}
 \newcommand{\oiint}{\int\!\!\!\!\!\!\! \:\!\subset\!\!\supset\!\!\!\!\!\!\!\int}
+%%% Background %%%
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ulb.jpg}%
+\vfill
+}}}
 
 \newcommand{\danger}{{\huge\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}\ }
+
+\usepackage{braket}
+
 \begin{document}
 \renewcommand{\proofname}{Démonstration}
 \frontmatter
 %\mainmatter
+\AddToShipoutPicture*{\BackgroundPic}
 \begin{titlepage}
 \begin{center}	
 	
@@ -282,8 +296,8 @@ Même si la charge se déduit directement de la charge des quarks, ce n'est pas 
 Pour les électrons, protons et neutrons on parle de particules de première génération (elles constituent la matière, toutes faites à partir de la col. 1).\\
 Les particules de $2^e$ et $3^e$ générations sont plus lourdes et ont une durée de vie de $1 \mu s$. On ne rencontre pas ces particules dans la matière usuelle d'où la nécessité d'employer des accélérateurs.\\
 \begin{center}
-%\includegraphics[scale=0.13]{img/particulelem}
-\captionof{figure}{Modèle standard des Particules élémentaires}
+\includegraphics[scale=0.25]{img/particulelem}
+\captionof{figure}{Modèle standard des particules élémentaires}
 \end{center}
 Toutes les particules des trois premières colonnes sont des \textit{fermions} qui ont un spin de $1/2$ alors que la quatrième colonne est composée de \textit{vectoriel} qui ont un spin de 1 (le photon pouvant tourner dans les deux sens). La cinquième colonne n'a pas de spin, ce sont le(s) \textit{scalaire(s)}.\\
 Brièvement, ce sont les \textit{gluons} qui font tenir les particules positives ensemble dans le noyau.
@@ -1705,7 +1719,7 @@ Ceci explique la structure en couche des atomes. Les fonctions d'ondes complète
 	\end{array}
 	\end{equation}
 	Chaque fonction d'onde est devenue un vecteur-colonne à deux composantes que l'on 
-	nomme \textit{spinneur}. Si $H_0$ est l'hamiltonient dans l'équation de Schrödinger,
+	nomme \textit{spineur}. Si $H_0$ est l'hamiltonient dans l'équation de Schrödinger,
 	on peut associer à notre nouvelle fonction d'onde un hamiltonien matriciel :
 	\begin{equation}
 	\mathcal{H}_0 =\left(\begin{array}{cc}
@@ -1736,9 +1750,9 @@ Ceci explique la structure en couche des atomes. Les fonctions d'ondes complète
 	 L_x+iL_y & -L_z
 	 \end{array}\right)
 	\end{equation}
-	Les spinneurs ne sont pas des fonctions propres de $\mathcal{H}$ sauf pour les états
+	Les spineurs ne sont pas des fonctions propres de $\mathcal{H}$ sauf pour les états
 	$s$. Pour les états $l\neq 0$ les fonctions propres de $\mathcal{H}$ sont plus 
-	compliquées : elles sont combili des spinneurs $\rightarrow$ ce sont donc aussi des
+	compliquées : elles sont combili des spineurs $\rightarrow$ ce sont donc aussi des
 	fonctions propres de $L^2$ et de $S^2$ et donc les spineurs que l'on recherche sont 
 	aussi fonctions propres de l'opérateur 
 	\begin{equation}
@@ -3041,6 +3055,7 @@ u(\nu,T) = \nu^3\dfrac{8\pi k_B}{c^3}\dfrac{T}{\nu}
 \end{equation}
 Ceci est en accord avec la loi de Wien, mais ne fonctionne cette fois-ci que pour les basses fréquences. De 
 plus, si on intègre sur toutes les fréquences pour avoir l'énergie totale, on trouve une énergie infinie ! 
+<<<<<<< HEAD
 C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergie.}\\
 C'est Max Planck qui a trouvé une formule empirique, autant valable en haute pression qu'en basse :
 \begin{equation}
@@ -3050,6 +3065,7 @@ u(\nu,T) = \dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}
 Elle ne contient que le paramètre $h$ qui doit valoir $\approx 6.63\times 10^{-34}\ \text{Js}$. Le maximum 
 de cette distribution se déplace vers les hautes fréquences quand la température augmente : lors de la 
 chauffe d'un métal, celui-ci est d'abord rouge jusqu'à devenir blanc.\\
+C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergie.}
 
 L'idée géniale de Planck était de conserver \autoref{eq:IdeePlanck} mais de remplacer les intégrales par
 des sommes sur des valeurs discrètes pour le calcul de $\overline{E}_\nu$ (dans \autoref{eq:CalculEv}), 
@@ -3171,7 +3187,17 @@ hélas s'expliquer comme ceci, plus d'infos page 233.
 
 
 
-
+\appendix
+\chapter{Rappels théoriques}
+\input{TP1}
+\input{TP2}
+\input{TP3}
+\input{TP4}
+\input{TP5}
+\input{TP6}
+\input{TP7}
+\input{TP8}
+\input{TP9}
 
 
 
