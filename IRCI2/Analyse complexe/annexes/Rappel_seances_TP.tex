@@ -137,6 +137,8 @@ Corollaire du Théorème des résidus : \begin{center}\fbox{\begin{minipage}{0.7
 
 Après avoir prouvé que $f(x)$ est borné et continue, on peut dire que $\displaystyle\int\limits_{-\infty}^{+\infty}$ équivaut à $\lim\limits_{R=\rightarrow\infty}\displaystyle\int\limits_{-R}^R$\\ 
 De cela, on peut s'amuser... car en effet, on peut dire que (\autoref{fig::p}) $$\int_{-R}^R\dots+\int_{\gamma}\dots=\oint_C\dots$$ Il suffira donc de calculer l'intégrale sur le contour fermé (ce que l'on sait faire) et s'amuser avec celle sur la paramétrisation $\gamma$ (habituellement, on s'arrange pour qu'elle s'annule quand $R\rightarrow\infty$). Ainsi, on pourra déduire la valeur de l'intégrale de départ (bon exemple $\Rightarrow$ 2c et 3a)
+\paragraph{Explication intégrale sur $\boldsymbol{\gamma}$}
+On choisit le demi-cercle vers le haut ou vers le bas en fonction de la fonction. En effet, la méthode pour calculer l'intégrale est via le théorème ML (voir \autoref{theo:ML} p.\pageref{theo:ML}). La fonction va souvent être majorée grâce à l'inégalité triangulaire (voir \autoref{subsec:inegalitetriangulaire}, bien mettre les conditions sur $R$). Il faut donc s'arranger pour que ML tend vers qqchose quand $R\rightarrow\infty$.
 \paragraph{Remarque} Si une des singularités se trouve sur la courbe $[-R,R]$, \textbf{il faut l'exclure}, comment? Au lieu de faire $2\pi i\text{ Res}$, ce sera $\pi i\text{ Res}$.\subparagraph{Explication} On mettait $2\pi i$ car en réalité, on contourne la singularité par un contour élémentaire pour l'exclure de notre contour (un cercle)$\Rightarrow 2\pi i$. Mais dans le cas d'une singularité sur le segment $[-R,R]$, pour exclure la singularité, il ne faut plus qu’un \textbf{demi}-cercle $\Rightarrow \pi i$
 \begin{center}
 \includegraphics[scale=0.5]{test2}
@@ -201,6 +203,7 @@ x(t) &= \frac{1}{2\pi i}\int_{\sigma-i\infty}^ {\sigma+i\infty}X(p)e^{pt}\,dp
 & y(t)=x(at) &&\overset{\mathcal{L}}{\rightarrow} Y(p) = \frac{1}{|a|}X\left(\frac{p}{a}\right) & a\alpha^+<\Re(p)<a\alpha^-\\
 & y(t)=\frac{d\,x(t)}{dt} &&\overset{\mathcal{L}}{\rightarrow} Y(p) =p\,X(p) & \alpha^+<\Re(p)<\alpha^-\\
 & y(t)=-t\,x(t) &&\overset{\mathcal{L}}{\rightarrow}  Y(p)=\frac{d\,X(p)}{dp} & \alpha^+<\Re(p)<\alpha^-\\
+& y(t)=\int_{-\infty}^t x(t)\,dt &&\overset{\mathcal{L}}{\rightarrow}  Y(p)=\frac{X(p)}{p} &  \alpha^+<\Re(p)<\alpha^-
 \end{alignat*}
 \paragraph{Inversion}
 Les théorèmes (?) suivant utilisent la décomposition en fraction simple d'une fraction de polynômes.
@@ -223,3 +226,43 @@ $$X(p)=\text{$\mathbf{\mathcal{L}}$}_u(x(t))=\int_{0}^{\infty}x(t)e^{-pt}\,dt$$
 \subparagraph{Propriétés}
 $$\mathcal{L}_u\left(\frac{d^nx}{dt^n}\right)=p^nX_u(p)-p^{n-1}x(0^-)-p^{n-2}\frac{dx}{dt}(0^-)-\dots-\frac{d^{n-1}x}{dt^{n-1}}(0^-)$$
 $$\Rightarrow \ddot{y}(t)=p^2Y_u(p)-py(0)-\dot y(0)\quad|\quad\dot y(t)=pY_u(p)-y(0)$$
+\seancesection{Transmittances isomorphes et isochrones - Courbe de Bode}
+Soit le système
+$$e(t)\Longrightarrow \fbox{\quad h(t)\quad}\Longrightarrow v(t)$$
+l'une des propriétés des transformées de Laplace est que convolution devient produit simple et vise versa.\\
+Autrement dit, en prenant le système ci-dessus, on a : 
+$$v(t)=e(t)*h(t)\Leftrightarrow V(p) = E(p)\,H(p)$$
+\paragraph{Rappel} réponse $\left\{\begin{array}{ll}
+\text{impulsionnellle} & h(t)\\
+\text{indicielle} & S(t)
+\end{array}\right.$. De plus,  $h(t)=\frac{dS(t)}{dt}$ et  $H(p)=pS(p)$\\
+
+Après cela, on a les types de transmittance et de SLP
+\begin{center}\fbox{\begin{minipage}{0.7\textwidth}
+Transmittance isomorphe (= fonction de transfert)
+$$H(p)=\left\{\begin{array}{ll}
+\mathcal{L}(h(t)) & \text{T.L. de la réponse impulsionnelle}\\
+\frac{V(p)}{E(p)} & \text{Rapport des T.L. d'entrée et de sortie}
+\end{array}\right.$$
+\end{minipage}}\end{center}
+\begin{center}\fbox{\begin{minipage}{0.7\textwidth}
+ \begin{align*}
+\text{SLP stable} & \Leftrightarrow \text{"entrée bornée }\leftrightarrow\text{ sortie bornée"}\\
+& \Leftrightarrow \int_{-\infty}^{+\infty}|h(T)|\,dT<+\infty
+\end{align*}
+\end{minipage}}\end{center}
+\begin{center}\fbox{\begin{minipage}{0.7\textwidth}
+\begin{align*}
+\text{SLP stable} & \Rightarrow \text{RDC $H(p)$ contient $\Re(p)=0$ (que l'axe imaginaire)}\\
+& \Rightarrow H(i\omega)\,\exists\text{ (tranmittance isochrone)}	
+\end{align*}
+\end{minipage}}\end{center}
+\begin{center}\fbox{\begin{minipage}{0.7\textwidth}
+SLP causal (demi-plan droit et impulsion nulle dans le passé) avec $H(p)$, fonction rationnelle
+\begin{center}stable $\Leftrightarrow$ Tous les pôles $p_0$ de $H(p)$ ont $\Re(p)<0$\end{center}
+\end{minipage}}\end{center}
+Corollaire des théorèmes taubériens
+\begin{center}\fbox{\begin{minipage}{0.7\textwidth}
+Si $X(p)$ est fraction rationnelle avec \dots $$\Rightarrow\lim\limits_{t\rightarrow+\infty}x(t)=\lim\limits_{\sigma\rightarrow0^+}\sigma X(\sigma)$$
+Si $X(p)$ est fraction rationnelle avec \dots $$\Rightarrow\lim\limits_{t\rightarrow 0^+}x(t) = \lim\limits_{\sigma\rightarrow +\infty}\sigma X(\sigma)$$
+\end{minipage}}\end{center}
