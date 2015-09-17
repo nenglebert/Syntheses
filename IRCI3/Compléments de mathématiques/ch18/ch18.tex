@@ -1,0 +1,350 @@
+\chapter{Méthode des approximations successives pour problèmes de Cauchy}
+
+\setcounter{section}{3}
+\section{Principe de contraction de Banach}
+	 \subsection{Contraction (de constante $\alpha$)}
+	 Le principe d'une contraction est que si deux points sont à une 
+	 distance $d$, la distance entre leur image par la contraction 
+	 sera inférieure à $\alpha d$ où $\alpha<1$.\\
+	 	 
+	 \defi{\textsc{Contraction de Banach}\\
+	 Une application $T : E \rightarrow E$ est une \textbf{contraction de 
+	 constante} $\alpha$ ssi
+	 \begin{equation}
+	 \left\{\begin{array}{ll}
+	 (i) & \forall x, x' \in E : \| Tx-Tx'\| \leq \alpha \|x-x'\| \\
+	 (ii) & \alpha <1
+	 \end{array}\right.
+	 \end{equation}}\ \\
+	 Ainsi, une fonction lipschitzienne de constante strictement inférieure à
+	 1 est une contraction.\\
+	 
+	 Il est intéressant de travailler dans un espace de Banach (par exemple $V$), 
+	 c'est à dire un espace vectoriel réel normé (on aura besoin de la notion de 
+	 distance) \textbf{complet}. $V$ est dit complet ssi toute suite dite de Cauchy 
+	 converge. Pour rappel :
+	 \begin{equation}
+	 \forall \epsilon> 0, \exists N : \forall n \geq N, \forall l > 0 : \| 
+	 u_{n+l}-u_n\| < \epsilon
+	 \end{equation}
+	
+	On travaille souvent avec des fermés. Si $E$ est fermé dans $V$ alors 
+	toute suite d’éléments de $E$ converge dans $E$ !
+	
+	\subsection{Théorème de contraction de Banach}
+	\theor{\textsc{Principe de contraction de Banach}\\
+	Si $T : E \rightarrow E$ est une contraction de constante $\alpha$, alors 
+	\begin{enumerate}
+	\item $T$ admet \textbf{un} et \textbf{un} seul point fixe $\tilde{x}$
+	\item $\forall x \in E : T^n(x) \rightarrow \tilde{x}$
+	\item $\forall x \in E : \| T^n(x)-\tilde{x}\| \leq \frac{\alpha^n}{-1\alpha}
+	\|Tx-x\|$
+	\end{enumerate}	}
+	\newpage
+	De façon francisée, cela signifie que :
+	\begin{enumerate}
+	\item On admet un point fixe
+	\item D’où que l'on parte, pour chaque $x \in E$ ($T^1, \dots T^n$) cette suite
+	converge vers ce point fixe
+	\item Quel que soit $x \in E$, si j'ai appliqué $n$ fois la contraction je suis 
+	à une distance du point fixe majorée par le longueur du premier pas multiplié par
+	$\dots$ Comme $\alpha < 1$, cela tend fortement vers zéro
+	\end{enumerate}
+	
+	\begin{proof}\ \\	
+	Prouvons d'abord qu'il s'agit d'une suite de Cauchy.\\
+	Soit $x_0 \in E, x_n := T^n(x_0)$. On peut écrire
+	\begin{equation}
+	\| x_{n+l} - x_n\| = \| T^{n+l}(x_0à-T^n(x_0)\|
+	\end{equation}
+	L'idée à exploiter est que $T^n(x_0) = T(T^{n-1}(x_0))$. Je peux alors appliquer 
+	une majoration en sachant que appliquer $T$, c'est multiplier par $\alpha$
+	\begin{equation}
+	\begin{array}{ll}
+	\| x_{n+l} - x_n\| &\leq \alpha \|T^{n+l-1}(x_0) - T^{n-1}(x_0)\|\\
+	 &\leq \alpha^2 \|T^{n+l-2}(x_0) - T^{n-2}(x_0)\|\\	
+	 & \leq \dots\\
+	 &\leq \alpha^n \|T^{l}(x_0) - x_0\|
+	\end{array}
+	\end{equation}
+	On a alors
+	\begin{equation}
+	\| x_{n+l} - x_n\| \leq \alpha^n . \|x_l-x_0\|\qquad\qquad (*)
+	\end{equation}
+	En appliquant l'inégalité triangulaire 
+	\begin{equation}
+	\begin{array}{ll}
+	\|x_l-x_0\| &\leq \|x_l-x_{l-1}\| + \dots + \|x_2-x_1\| + \|x_1-x_0\|\\
+	 &\leq \underbrace{(\alpha^{l-1} + \dots + \alpha^1 + \alpha^0)}_{\frac{1-\alpha^l}{
+	 1-\alpha} \leq \frac{1}{1-\alpha}}\|x_1-x_0\|
+	\end{array}
+	\end{equation}
+	On a alors
+	\begin{equation}
+	\|x_l-x_0\| \leq \frac{1}{1-\alpha}\|x_1-x_0\|\qquad\qquad (**)
+	\end{equation}
+	En rassemblant $(*)$ et $(**)$ :
+	\begin{equation}
+	\|x_{n+l}-x_n\| \leq \frac{\alpha^n}{1-\alpha}\|x_1-x_0\| \underbrace{<\epsilon}_{\text{
+	dès que $n$ grand ($l\geq0$)}}
+	\end{equation}
+	Ceci démontre que $x_n$ est une suite de Cauchy.\\
+	
+	Cette suite converge, car par hypothèse $V,+,\| \|$ est complet. Comme $x_n$ est 
+	une suite de Cauchy, $x_n \rightarrow \tilde{x}\in V$. Par hypothèse $E$ est 
+	fermé dans $V$. Comme $\underbrace{x_n}_{\in E\ \forall n} \rightarrow \tilde{x}
+	\in V \Rightarrow \tilde{x}\in E$.\footnote{$x_n$ est une suite d’éléments dans $E$, 
+	elle converge forcément dans $E$ : sa "limite", $\tilde{x}\in E$.}\\
+	
+	Il faut maintenant prouver que $\tilde{x}$ est fixe : $T(\tilde{x}) = \tilde{x}$. 
+	Par continuité de la contraction :
+	\begin{equation}
+	T(\lim\limits_{n\rightarrow\infty} x_n) \underbrace{=}_{T \in C^0} = \lim\limits_{n
+	\rightarrow\infty} T(x_n) = \lim\limits_{n\rightarrow\infty} x_n = \tilde{x}
+	\end{equation}
+	
+	
+	Prouvons maintenant l'unicité de ce point fixe par l'absurde.\\
+	Soit $\tilde{x}, \tilde{y}$ fixés par $T$ contraction de sorte que $\|\tilde{x}
+	-\tilde{y}\| \neq 0$. Alors 
+	\begin{equation}
+	\|\tilde{x}-\tilde{y}\| = \| T(\tilde{x}) - T(\tilde{y})\| \leq\alpha\|\tilde{x}-
+	\tilde{y}\| < \|\tilde{x}-\tilde{y}\|
+	\end{equation}
+	On peut éviter la contradiction si $\|\tilde{x}-\tilde{y}\| = 0$ impliquant l'
+	unicité du point fixe.\\
+		
+	Il ne reste qu'a prouver la qualité de approximation :
+	\begin{equation}
+	\begin{array}{ll}
+	\| x_n-\tilde{x}\| &= \|x_n - \lim\limits_{l\rightarrow\infty} x_{n+l}\|\\
+	 & = \lim\limits_{l\rightarrow\infty} \|x_n-x_{n+l}\|\\
+	 & \leq \left(\lim\limits_{l\rightarrow\infty}\right) \frac{\alpha^n}{1-\alpha} 
+	 \|x_1-x_0\|
+	\end{array}
+	\end{equation}
+	On peut donc dire que $\tilde{x} \approx x_n$ avec une erreur $\leq \frac{\alpha^n}{
+	1-\alpha}\|x_1-x_0|$ soit la longueur du premier pas.
+	\end{proof}
+	
+
+
+
+\setcounter{section}{0}
+\section{EDO normale du premier ordre}
+	\subsection{Attention }
+	Le problème de Cauchy 
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	xy' + 2y &= 4x^2	\\
+	y(0) &= 1
+	\end{array}\right.
+	\end{equation}
+	n'admet pas de solution car 0 est un point singulier ! Il faut faire attention à 
+	pas confondre une ED implicite avec une ED explicite ($y' = f(x,y)$).
+	
+	\subsection{Solution maximale et globale dans un cylindre}
+	Considérons le problème de Cauchy
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	y' &= f(t,y)\\
+	y_0 &= y(t_0)
+	\end{array}\right.
+	\end{equation}
+	Si l'ED est scalaire, considérons un domaine rectangulaire et un cylindre s'il 
+	s'agit d'un SD. Les différents types de solutions sont :
+	\begin{enumerate}
+	\item[$\bullet$] \textbf{Maximale} ; Une solution est dite maximale ssi elle ne 
+	peut pas être prolongée en une autre solution, c'est à dire qu'on ne peut la 
+	prolonger sur un intervalle plus grand (Pas de solution dans un domaine plus 
+	étendu restant dans le domaine de $f$)
+	\item[$\bullet$] \textbf{Globale} ; Une solution est globale ssi la solution 
+	au problème de Cauchy est définie sur $I$ tout entier. 
+	\item[$\bullet$] \textbf{Locale} ; Une solution est locale ssi il existe un 
+	voisinage $\mathcal{V}$ du point de la C.I. tel que la fonction est définie 
+	dans un sous-intervalle de $I$.
+	\end{enumerate}
+
+	\textsc{Exemple}. Soit l'EDO $y'=y^2$. Sa solution générale est $y(t) = 
+	-\frac{1}{t+C}$. A cause de l'asymptote, toutes ces solutions sont maximales 
+	mais seule la solution nulle est globale.
+	
+	\newpage
+	\subsection{Régularité des solutions d'une EDO}
+	\proposition{Si $\vec{\varphi}$ est solution de $\vec{y}' = \vec{f}(t,\vec{y})$ 
+	pour $\vec{f}\in C^k$, alors $\vec{\varphi}\in C^{k+1}$}\ \\
+	
+	\begin{proof}\ \\
+	Comme $\varphi$ est solution d'EDO, il est dérivable (et donc $C^0$).\\
+	\begin{itemize}
+	\item[$\bullet$] Supposons $k=0$
+	\begin{equation}
+	\left.\begin{array}{l}
+	\varphi \in C^0\\
+	f \in C^0
+	\end{array}\right\} \Rightarrow t \mapsto f(t,\varphi(t)) \in C^0
+	\end{equation}
+	Or $f(t, \varphi(t)) = \varphi'(t) \Rightarrow \phi \in C^1$.
+	
+	\item[$\bullet$] Récurrence\footnote{??}. Supposons vrai pour $k-1$ et montrons vrai pour $k$
+	\begin{equation}
+	\left.\begin{array}{l}
+	\text{Vrai pour } k-1\\
+	C^k \subset C^{k-1}\\
+	\vec f \in C^k
+	\end{array}\right\} \Rightarrow \vec \varphi \in C^k \Rightarrow 
+	t \mapsto \vec f(t,\vec \varphi(t)) \in C^k
+	\end{equation}
+	Or $\vec \varphi'(t) = \vec{f}(t,\vec{\varphi}(t))$, d'où $\vec \varphi' 
+	\in C^k$ c'est-à-dire $\vec{\varphi}\in C^{k+1}$
+	\end{itemize}
+	\end{proof}
+	
+	
+	\subsection{Équation intégrale d'un problème de Cauchy}
+	\proposition{$\varphi$ est solution du problème de Cauchy sur $I$ 
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	y' &= f(t,y)\\
+	y(t_0) &= y_0
+	\end{array}\right.
+	\end{equation}		
+	ssi 
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\varphi \in C^0(I)\\
+	\forall t \in I : \varphi(t) = y_0+\int_{t_0}^t f(\tau,\varphi(\tau))d\tau
+	\end{array}\right.
+	\end{equation}}\	
+	\begin{proof}\ \\
+	\textit{Sens direct : } $\varphi'(t) = f(t,\varphi(t))$ par hypothèse, il 
+	suffit d'intégrer les deux membres de $t_0$ à $t$.\\
+	
+	\textit{Sens indirect :}  $\varphi \in C^0 \Longrightarrow \tau \mapsto f(
+	\tau,\varphi(\tau)) \in C^0$, d'où $\varphi'(t) = f(t, \varphi(t))$ en dérivant
+	l'équation intégrale.
+	\end{proof}
+	
+	
+\section{Théorème de résolubilité locale}
+	\subsection{Théorème}
+	\theor{\textsc{Cauchy-Paeno-Arzela}\ \\
+	Le problème de Cauchy 
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	y' &= f(t,y)\\
+	y(t_0) &= y_0
+	\end{array}\right.
+	\end{equation}
+	où $f \in C^0(\mathcal{U})$ ($\mathcal{U}$ étant ouvert) et $(t_0,y_0)\in\mathcal{U}$ 
+	admet \textbf{au moins} une solution locale.
+	}
+
+
+\newpage
+\section{L'opérateur intégral de Picard}
+	\subsection{L'opérateur intégral de Picard}
+	Inspiré par l'écriture intégrale d'un problème de Cauchy :
+	\begin{equation}
+	\vec \varphi(t) = \vec{y_0} + \int_{t_0}^t \vec{f}(\tau,\varphi(\tau))d\tau
+	\end{equation}
+	On définit l'opérateur intégral de Picard :
+	
+	\defi{\textsc{Opérateur intégral de Picard} \\
+	\begin{equation}
+	\begin{array}{ll}
+	T : z \mapsto &T(z)\\
+	 &T(z)|_t := \vec y_0 + \int_{t_0}^t \vec{f}(\tau,z(\tau))d\tau
+	\end{array}
+	\end{equation}
+	}\ \\
+	$T$ est l'opérateur intégral de Picard \textbf{associé au problème de Cauchy}
+	ci-dessus. Les solutions de l'équation intégrale du problème de Cauchy sont donc 
+	exactement les points fixes de cet opérateur, c'est-à-dire les fonctions 
+	$\vec{\varphi}$ telles que $\vec \varphi = T(\vec \varphi)$.
+	
+	\setcounter{subsection}{8}
+	\subsection{Erreur d'une approximation de la solution}
+	Étudions la différence entre la solution exacte et l'approximation
+	\begin{equation}
+	\begin{array}{ll}
+	|y(t) - y_n(t)| &= |y_0 + \int_{t_0}^t f(\tau,y(\tau))d\tau - y_0 - \int_{t_0}^t 
+	f(\tau, y_n(\tau))d\tau|\\
+	 &= |\int_{t_0}^t (f(\tau,y(\tau)) - f(\tau,y_n(\tau)))d\tau|\\
+	 &\leq \sup_t |t-t_0| ; \sup_\tau |f(\tau,y(\tau)) - f(\tau,y_n(\tau))|
+	\end{array}
+	\end{equation}
+	Pour que l'erreur soit petite, il faut que $t$ soit proche de $t_0$, que l'on 
+	parte d'une bonne approximation et aussi que $f$ ne varie pas trop vite en sa 
+	deuxième variable $y$ (c'est à dire $\sup |\partial f/\partial y|$ petit si 
+	$f$ est "brave" (c'est-à-dire lipschitzienne)).
+	
+	
+\section{Condition de Lipschitz}
+	\subsection{Fonction totalement ou partiellement lipschitzienne}
+	\defi{\textsc{Fonction lipschitzienne}\\
+	$f : A \subseteq \mathbb{R} \rightarrow \mathbb{R}$ est dite 
+	\textbf{lipschitzienne} ssi 
+	\begin{equation}
+	\exists M \in \mathbb{R}(=V) : \forall x, \tilde{x} \in A : |f(x) - f(\tilde{x})
+	\leq M|x-\tilde{x}|
+	\end{equation}}
+	Ceci signifie que $M$ majore toutes les valeurs absolues de pentes de cordes 
+	du graphe de $f$. Être lipschitzienne est plus fort qu'être continue, mais 
+	cela n'implique pas la dérivabilité. Par contre si une fonction est dérivable 
+	à dérivée bornée alors elle est lipschitzienne.\\
+	
+	On peut généraliser dans le cas où $V = \mathbb{R}^n\times\mathbb{R}^m$ en 
+	considérant une condition de Lipschitz "partielle", avec $\vec{x}$ constant 
+
+	\defi{\ \\
+	$\vec{f} : \mathcal{U} \subseteq \mathbb{R}^n\times\mathbb{R}^m \rightarrow\mathbb{R}^p$ 
+	est $\Lambda-$	\textbf{lipschitzienne} en $\vec{y}$ (sur $\mathcal{U}$) ssi 
+	\begin{equation}
+	\forall(x,y),(x,\tilde{y}) \in \mathcal{U} : ||f(x,y) - f(x,\tilde{y})|| \leq 
+	\Lambda||y-\tilde{y}||
+	\end{equation}
+	On remarque bien qu'ici $x$ est fixé, constant.}
+	
+	
+	\newpage
+	\subsection{Fonctions localement lipschitzienne}
+	Comme être lipschitzienne est fort contraignant, on ne demande parfois que 
+	localement. La définition est presque identique, sauf que l'on se limite à 
+	comparer les points de même abscisse en restant dans un voisinage $\mathcal{V}_0$.
+	
+	\defi{\ \\
+	$\forall (x_0,y_0) \in \mathcal{U}, \exists \mathcal{V}_0$ voisinage de $(x_0,y_0), 
+	\exists \Lambda_0 \in \mathbb{R}$ :
+	\begin{equation}
+	\forall (x,y), (x,\tilde{y}) \in \mathcal{V}_0 \cap \mathcal{U} : |f(x,y)-f(x,\tilde{y}|
+	\leq \Lambda_0 |y-\tilde{y}|
+	\end{equation}
+	Ceci se généralise aux fonction vectorielles en changeant $|\ |$ par $\|\ \|$.}
+	
+	
+	\setcounter{subsection}{3}
+	\subsection{CNS pour Lipschitz : composante par composante}
+	\proposition{$\vec{f}$ est lipschitzienne en $\vec{y}$ ssi $\forall i = 1,\dots, p :
+	f_i$ est lipschitzienne en $\vec{y}$}\ 
+	\begin{proof}
+	Flemme, voir slide 38 ou page 20 (\textbf{important pour l'examen!}).
+	\end{proof}
+	
+	
+	\subsection{$C^1$ garantit localement Lipschitz}
+	\lemme{\ \\
+		Si $\vec{f}$ est différentiable sur int($\mathcal{U}$) et continue sur 
+		$\mathcal{U}$ et que ses fonctions dérivées $\frac{\partial\vec f}{\partial 
+		y_1},\dots,\frac{\partial\vec f}{\partial y_m}$ sont bornées sur int($\mathcal{U}$),
+		alors $\vec{f}$ est lipschitzienne en $\vec{y}$ sur $\mathcal{U}$.}\ 		
+		\begin{proof}
+		Inclure 18.66
+		\end{proof}
+	
+	\proposition{Si $\vec{f}\in C^1(\mathcal{U})$, alors $\vec{f}$ est localement 
+	lipschitzienne sur int($\mathcal{U}$).}
+	
+	\begin{proof}
+	Non vu? 
+	\end{proof}
