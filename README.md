@@ -21,13 +21,19 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 
 ### 3<sup>ème</sup> année
 - [ ] Tronc Commun
-  - [ ] 
+  - [ ] [Électronique appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
+  - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy 15.02.11.pdf)
+  - [ ] [Mécanique du Solide et Résistance des Matériaux](IRCI3/Mécanique du solide et résistance des matériaux/build/)
+  - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
+  - [ ] [Thermodynamique appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
+  - [ ] [Électricité appliquée](IRCI3/Électricité appliquée/build/)
 - [ ] Option Physique
-  - [ ] 
+  - [ ] [Compléments de Mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
+  - [ ] [Physique des Semi-conducteurs](IRCI3/Physique des semiconducteurs/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
 - [ ] Option Électromécanique
-  - [ ] 
+  - [ ] [Cinématique et Dynamique des Machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
 - [ ] Option Électronique et télécommunication
-  - [ ] 
+  - [ ] [](IRCI3/)
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors
