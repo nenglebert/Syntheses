@@ -351,5 +351,142 @@ peut obtenir l'expression de $c_v$ :
 c_v = \frac{\pi^2}{2}\left(\frac{k_BT}{\epsilon_F}\right)nk_B
 \end{equation}
 
-La densité d'état en fonction de l'énergie c'est le nombre d'états
-électroniques compris entre deux sphère de rayon $k$ et $k'$. 
+L'idée est maintenant de calculer la densité d'état en fonction de 
+l'énergie en évaluant le nombre d'états électroniques compris entre 
+deux sphères de rayon $k$ et $k'$. On va être amené à sommer les 
+énergies sur tous les états.
+\begin{equation}
+\sum_k = \alpha(k) \rightarrow \frac{V}{8\pi^3}\int\alpha(k)d\vec{k}
+\end{equation}
+Le nombre d'états étant important ($\approx 10^{22}$), on peut 
+approximer cette somme par une majestueuse intégrale. Il y a un certain 
+nombre d'états qui ont l'énergie recherchée dans la bande 
+qui nous intéresse. En dérivant l'expression, on arrive à la densité 
+d'état $\mathcal{D}(\epsilon)$.
+\begin{equation}
+\mathcal{N}(\epsilon'+d\epsilon)
+-\mathcal{N}(\epsilon') \Longrightarrow \mathcal{D}(\epsilon) = 
+\frac{d\mathcal{N}(\epsilon)}{d\epsilon}
+\end{equation}
+où $\mathcal{N}(\epsilon)$ est le nombre d'états d'énergie $\leq 
+\epsilon$. Cette énergie $\epsilon$ peut être obtenue via l'équation 
+d'Erwin :
+\begin{equation}
+\epsilon = \frac{\hbar^2k^2}{2m} + V_0 \Longrightarrow k = \sqrt{
+\frac{2m}{\hbar^2}(\epsilon-V_0)}
+\end{equation}
+En multipliant par un facteur deux pour tenir compte du spin, par la 
+densité d'électron et le volume de la sphère de rayon $k$ on obtient 
+le nombre d'électron $N(\epsilon)$.
+\begin{equation}
+N(\epsilon) = 2 \frac{V}{8\pi^3}.\frac{4}{3}\pi k^3 = \frac{V}{3\pi^2}
+\frac{(2m)^{3/2}}{\hbar^3}(\epsilon-V)^{3/2}
+\end{equation}
+Si on dérive ça, on a la densité d'état par rapport à $\epsilon$ 
+(attention : ne pas confondre $h$ et $\hbar$)
+\begin{equation}
+\mathcal{D}(\epsilon) = \frac{d\mathcal{N}(\epsilon)}{d\epsilon}= 
+\frac{V}{2\pi^2}\frac{(Zm)^{(3/2)}}{\hbar^3}(\epsilon-V_0)^{1/2} = 
+\frac{4\pi V}{h^3} (2m)^{3/2)}(\epsilon-V_0)^{(1/2)}
+\end{equation}
+
+On peut arriver à une autre formulation en exprimant l'énergie en 
+terme de $\epsilon/k_BT$\footnote{Il faudrait faire apparaître un 
+facteur 2 pour tenir compte des deux états de spin.}. 
+\begin{equation}
+\mathcal{D}(\epsilon)d\epsilon = \mathbb{N}V\frac{2}{\sqrt{\pi}}
+\left( \frac{\epsilon-V_0}{k_BT}\right)^{1/2}\frac{d\epsilon}{k_BT}
+\end{equation}
+où $\mathbb{N}$ est la densité effective d'états
+\begin{equation}
+\mathbb{N} = \frac{2}{h^3}(2\pi m k_BT)^{3/2}
+\end{equation}
+Pour la température $T$, le nombre d'électrons ayant des énergies 
+comprises entre $\epsilon$ et $\epsilon+d\epsilon$ vaut 
+\begin{equation}
+\mathcal{D}(\epsilon)f(\epsilon)d\epsilon
+\end{equation}
+où $f(\epsilon)$ exprime la probabilité d'occupation d'un état 
+d'énergie $\epsilon$ grâce à la distribution de Fermi-Dirac.\\
+
+Comment va-t-on faire à température nulle? On peut dire que 
+$\mu = \epsilon_f$ en se basant sur cette même distribution. En 
+effet, comme $T\rightarrow 0$, il faut nécessairement que $\epsilon
+ = \mu$ sans quoi un souci se poserait. La concentation d'électron 
+ vaut alors
+\begin{equation}
+n = \int_{V_0}^\infty \mathcal{D}(\epsilon)d\epsilon = 
+\int_{V_0}^{\epsilon_F=\mu}\mathcal{D}(\epsilon)d\epsilon 
+\end{equation}
+A température non-nulle, il suffit de considérer l'infini comme borne 
+supérieure sans oublier de faire apparaître la distribution de FD.
+\begin{equation}
+n = \int_{V_0}^\infty \mathcal{D}(\epsilon)f(\epsilon)d\epsilon
+\end{equation}
+En explicitant
+\begin{equation}
+n = \mathbb{N}\frac{2}{\sqrt{\pi}}\int_{V_0}^\infty \frac{1}{e^{
+(\epsilon-V_0)/k_BT}+1}\left(\frac{\epsilon-V_0}{k_BT}\right)^{1/2
+}\frac{d\epsilon}{k_BT}
+\end{equation}
+Le changement de variable
+\begin{equation}
+\eta = \frac{\epsilon - V_0}{k_BT}
+\end{equation}
+nous donne
+\begin{equation}
+\frac{n}{\mathbb{N}} = \frac{2}{\sqrt{\pi}}\int_0^\infty \dfrac{\sqrt
+{\eta}}{e^{(\eta-\zeta)/k_BT}+1}d\eta
+\end{equation}
+où $\zeta(n/\mathbb{N}) = \mu - V_0$, dont l'ordre de grandeur typique 
+est 
+d'une dizaine d'électron volt.\\
+Voyons comment $\zeta$ dépend de $n/\mathbb{N}$.
+\begin{enumerate}
+\item $\zeta$ fortement négatif (cas non-dégénéré)\\
+L'exponentielle du dénominateur est grande devant 1. En première 
+approximation, cela donne :
+\begin{equation}
+\frac{n}{\mathbb{N}} \approx \frac{2}{\sqrt{\pi}}\int_0^\infty e^{-
+\eta + \frac{\zeta}{k_BT}}\sqrt{\eta}d\eta = \frac{2}{\sqrt{\pi}}
+\underbrace{\int_0^\infty e^{-\eta} \sqrt{\eta}d\eta}_{\Gamma(\frac{3
+}{2}) = \frac{1}{2}\Gamma(\frac{1}{2}) = \frac{1}{2}\sqrt{\pi}}.e^{
+\zeta/k_BT} = e^{\zeta/k_BT}
+\end{equation}
+Ce cas s'applique aux semi-conducteurs ($n/\mathbb{N}\ll 1$). On en 
+déduit que
+\begin{equation}
+\zeta = k_BT\ln\frac{n}{\mathbb{N}}
+\end{equation}
+\item $\zeta$ fortement positif (cas dégénéré)\\
+L'exponentielle du dénominateur est petite devant 1 et ce tant que $
+\eta < \zeta/k_BT$. On approxime en remplaçant l'intégrande par 1 dans 
+un intervalle réduit (de 0 à $\zeta/k_BT$) :
+\begin{equation}
+\frac{n}{\mathbb{N}} \approx \frac{2}{\sqrt{\pi}}\int_0^{\zeta/k_BT} 
+\sqrt{\eta}d\eta = \frac{4}{3\sqrt{\pi}}\left(\frac{\zeta}{k_BT}\right)^{
+3/2}
+\end{equation}
+et nous en déduisons cette fois-ci que $1 \ll \frac{n}{\mathbb{N}}$. On 
+retrouve ceci dans les métaux.
+\end{enumerate}
+Notons que dans la plupart des semi conducteurs, on a un $\zeta$ négatif du 
+aux impuretés que l'ont doit ajouter pour venir peupler la bande de valence.
+
+
+
+\subsection{Condition générale d'équilibre thermique}
+On modélise deux solides différent par le modèle Sommerfeld, c'est-à-dire 
+deux profondeurs de puits différents. On va remplir tous les puits (niveaux 
+d'énergie) jusqu'à une énergie maximale. Il faudrait un miracle pour avoir 
+le même niveau d'énergie dans les deux métaux. On imagine que les électron 
+$A$ vont voir des espaces libre à plus basse énergie dans $B$ et vont y aller. 
+Si on a par ex un manque d'électron en $A$ et un excès en $B$ on va avoir un 
+champ électrique, créant un potentiel de contact et égalant les niveaux de 
+Fermi. La condition d'équilibre est que le niveau d'énergie de Fermi soit le 
+même dans tous l'espace. \textit{"Je détaille pas trop ici."} 
+
+\begin{center}
+	\includegraphics[scale=0.6]{ch1/image3.png}
+	\captionof{figure}{Condition générale d'équilibre thermique}
+\end{center}
