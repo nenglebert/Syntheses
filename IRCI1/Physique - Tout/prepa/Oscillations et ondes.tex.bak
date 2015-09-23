@@ -1,0 +1,754 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[left=3cm,right=3cm,top=2.7cm,bottom=3cm]{geometry}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage{wrapfig}
+
+\usepackage{hyperref} \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black,}
+
+\usepackage[toc]{multitoc}
+
+\setcounter{tocdepth}{2}
+
+\author{Nicolas \bsc{Englebert}}
+\title{Synthèse du cours Physique Générale - Oscillations et ondes}
+\date{Février 2014}
+
+
+
+\begin{document}
+\renewcommand{\proofname}{Démonstration}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Un phénomène oscillatoire est un phénomène physique qui conduit spontanément à un mouvement périodique.
+
+\section{L'oscillateur harmonique} 
+\subsection{Le mouvement de rotation}
+Considérons un pendule en rotation (vitesse constante) libre autour de son point fixe. 
+On peut repérer la position du pendule grâce à l'angle $\theta$ qui évolue de façon linéaire avec le temps : $\theta = \omega_0 t$ ou $\omega_0$ est la \textit{pulsation} ou la \textit{fréquence angulaire}.\\
+Dans ce cas-ci, $\omega_0$ est aussi la \textit{vitesse angulaire}. En effet, la position étant définie par $\theta$ on retrouve bien $\frac{d\theta}{dt} : \omega_0$.\\
+
+De $t = 0$ à $t = 2\pi/\omega_0$ l'angle augmente de $2\pi \Rightarrow$ ce temps caractéristique se nomme \textit{période} :$T = \frac{2\pi}{\omega_0}$. La fréquence, soit \textit{un tour/une période} ; $\frac{1}{T} = \frac{\omega_0}{2\pi}$.\\
+
+En coordonnée cartésienne : $x = l cos(\theta)$ et $y = l sin(\theta)$ où $\theta = \omega_0 t$. L'évolution de la coordonnée en $x$ reproduit le \textbf{mouvement harmonique} sur base du mouvement circulaire.
+
+\begin{center}
+\includegraphics[scale=0.35]{oo/image0.png}
+\end{center}
+La pulsation est introduit comme facteur de $\propto$ provoquant un mouvement périodique (notre point étant soumis à vitesse constante sur une durée $\infty$ car pas de dissipation).
+\subsection{Mouvement harmonique}
+Grâce à l'\textit{attelage écossais} on peut représenter le mouvement harmonique d'un objet. Comme ci-dessus, la position est donnée par $x = l cos(\omega_0 t)$. ($l$ = rayon du disque)\\
+Grâce à notre cours de méca, on peut calculer la vitesse : $\dot{x} = -l \omega_0 sin(\omega_0 t)$ ainsi que l'accélération : $\ddot{x} = -l \omega_0^2 cos(\omega_0 t)$. \\
+On remarque que l'accélération est proportionelle à la position : 
+$$\ddot{x}(t) = -\omega_0^2 \underbrace{l cos(\omega_0 t)}_{x(t)} = - \omega_0^2 x(t)$$
+Ce qui est propre au mouvement harmonique (Ce dernier est régi par cette équation).
+
+\subsection{Mouvement harmonique naturel : l'oscillateur harmonique}
+Cette relation peut être retrouvée naturellement à partir de $f = m\ddot{x}$. Connaissant l'accélération ($\ddot{x} = -\omega_0^2 x$ ; l'équation de mouvement) on peut écrire :
+$$\ddot{x} = \frac{f}{m} = -\omega_0^2 x\ \ \ (On\ impose\ un\ mouvement\ harmonique)$$
+$$f = m \ddot{x} = -m\omega_0^2 x = -\kappa x$$
+où $\kappa = m\omega_0^2$ pour simplifier l'écriture. Le signe négatif indique que la force est de type attractive : force de \textit{rappel élastique}.\\
+
+Par exemple, un système masse ressort montre que la force exercée par un ressort lorsqu'on modifie sa longueur est de type "rappel élastique" (écarter le ressort va rappeler la masse en $x_0$. L'accélération valant $-\kappa x/m$, en posant $\omega_0^2 = \kappa /m$ on retrouve bien la loi obtenue ci-dessus : $\ddot{x} = -\omega_0^2x$.\\
+($f = -\kappa x = m\ddot{x} \rightarrow \ddot{x} = -\kappa x/m$ ; en posant $\omega_0^2$ on retrouve bien le mouvement harmonique $\ddot{x} = -\omega_0^2x$)
+
+\begin{center}
+\includegraphics[scale=0.55]{oo/image1.png}
+\end{center}
+
+L'évolution de la masse $m$ fixée à un ressort est la même que celle de l'attelage écossais si ce n'est que $x_0$ n'est pas fixé et dépendra de la force appliquée : $x = x_0 cos(\omega_0 t)$.\\
+
+Le mouvement harmonique est donc assez naturel (déformation d'objets élastiques). Remarquons que le mouvement se fait avec une pulsation unique :
+$$\omega_0 = \sqrt{\frac{\kappa}{m}}$$
+La période ne dépend donc pas des conditions initiales (donc de $x_0$) : on appelle ainsi $\omega_0$ la \textbf{pulsation propre} du système oscillant.
+
+\subsubsection*{Équation de l'oscillateur harmonique}
+Les systèmes répondant à l'équation de Newton seront oscillant et leur évolution étant donné par une fonction harmonique du temps on les nomme \textbf{oscillateurs harmoniques}.
+$$x(t) = a cos(\underbrace{\omega_0 t + \phi}_{phase})$$
+\textit{NB :} Rajouter la constante $\phi$ ne change rien ; $\dot{x} = -\omega_0 a sin(\omega_0t+\phi) \rightarrow \ddot{x} = -\omega_0^2 a cos(\omega_0t+\phi) = -\omega_0^2 x \Rightarrow$ bien vérifier.
+
+\subsubsection*{Solution générale}
+Dans l'équation ci-dessus $a$ est l'\textbf{amplitude}, $\omega_0$ la \textbf{pulsation} (correspond à une période $T = 2\pi/\omega_0$) et $\phi$ le \textbf{déphasage} ($\phi$ = petit angle de départ à $t=0$).
+$$x(t) = a cos\left[\omega_0\left(t + \frac{\phi}{\omega_0}\right)\right]$$
+Le déphasage $\phi$ est un décalage temporel de $\delta t = \phi/\omega_0$. On translate \textbf{négativement} $t$ de $\frac{\phi}{\omega_0}$ c'est à dire qu'on s'\textbf{avance} dans le temps, le premier maximum apparaîtra plus vite. Si $\phi < 0$ on aura un retard.
+
+\begin{center}
+\includegraphics[scale=0.55]{oo/image2.png}
+\end{center}
+$a$ et $\phi$ sont les deux constantes d'intégrations déterminées par les conditions initiales.\\
+\textbf{Attention :} Le graphique correspond à une avance même si le trait rouge à l'air en avance!
+
+\subsection{Potentiel harmonique}
+Pour calculer l'$E_{pot}$ de l'oscillateur considérons le travail nécessaire pour déplacer un ressort initialement en $x = 0$. Il faut lui appliquer une force $f_a = -f = \kappa x$ nous donnant le travail $\kappa x^2/2$ = $E_p$. 
+
+$$E_p = - \int f(x') dx'\ \ \left(Récirpoquement : f(x) = -\frac{dE_p}{dt}\right)$$
+
+Cet énergie est stockée en tant que "contrainte" et peut à tout moment être libérée en annulant $f_a$ : transformation en énergie cinétique.
+\begin{center}
+\includegraphics[scale=0.45]{oo/image3.png}
+\end{center}
+La ligne bleue indique que l'énergie sera conservée.\\
+$E_p = \kappa x^2 / 2$ est le \textbf{potentiel harmonique} de l'oscillateur (harmonique) représenté par le courbe rouge. Quand $x = 0$ l'$E_p = 0$ et donc l'énergie cinétique, la vitesse, est maximale.\\
+Dans des condition parfaite, on répètera une infinité de fois le trajet de la parabole pour ainsi former l'oscillation harmonique. Le mouvement harmonique est caractérisé par son échange d'énergie potentielle et cinétique.
+
+\subsection{Universalité de l'oscillateur harmonique}
+\subsubsection{Force de rappel et champ gravitationnel}
+Faisons pendre une masse à l'extrémité d'un élastique. Ce dernier va s'étendre pour atteindre l'équilibre ($f(x_0)=0$) : $mg - \kappa x = 0$ : la position de repos est $x_0 = mg/\kappa$.\\
+Le mouvement est régi par la $2^e$ loi de Newton. En divisant tout par la masse :
+$$\ddot{x} = \frac{f}{m} : -\frac{\kappa}{m}x + g$$
+En introduisant la pulsation propre $\omega_0$ (= $\sqrt{\kappa/m}$) on retrouve l'équation de l'oscillateur harmonique à une constante $g$ près.\\
+
+Cette équation est en réalité équivalente : considérons le potentiel, valant l'opposé de la primitive de la force.
+$$E_p(x) = \frac{\kappa}{2}x^2 - mgx$$
+\begin{center}
+\includegraphics[scale=0.45]{oo/image4.png}
+\end{center}
+Le minimum de la parabole correspond à la position de repos $x_0$.  (Lire haut de page 11)
+
+\subsubsection{Les molécules}
+Même principe, lire les pages 11 et 12.
+
+\subsubsection{Le pendule}
+La force de tension est compensée par la force gravitationnelle parallèle au fil. L'autre composante  est celle parallèle à la trajectoire, responsable du mouvement.
+\begin{center}
+\includegraphics[scale=0.45]{oo/image5.png}
+\end{center}
+En considérant de petits angles, on peut approcher le sinus par son argument : $\theta << 1 \Rightarrow sin\theta \simeq \theta$ (MacLaurin d'ordre 1). En approximation, la force vaut $f = -mg\theta$.\\
+
+Pour repérer la position de la masse, on définit la distance par rapport à $\theta = 0$ valant : $x = l\theta$. En remplaçant $\theta$ par $x/l$ on conclut que, pour de petits angles, le pendule est un OH.
+$$f = -\frac{mg}{l}x = m\ddot{x} = -\kappa x$$
+Comme $f = -\kappa x \Rightarrow \kappa = \frac{mg}{l}$. Et donc $\omega_0^2 = g/l \Rightarrow \omega_0 = \sqrt{g/l}$. La pulsation propre du pendule est indépendante de la masse du pendule (dans notre approximation).
+
+\subsubsection{Le circuit LC}
+Si dans le schéma ci-dessous le courant suit le sens horloger, la charge $Q$ de la plaque de gauche augmente avec $I > 0$ ; $I = dQ/dt$ (accroissement de charge à +).
+
+\begin{center}
+\includegraphics[scale=0.45]{oo/image14.png}
+\end{center}
+
+ En somment les tensions ($V = Q/C$ et $V = L dI/dt$) :
+$$L\frac{dI}{dt} + \frac{Q}{C} = 0$$
+On dérive pour faire apparaître $dQ$ et le remplacer par son expression :
+$$\frac{d^2I}{dt^2} = -\frac{1}{LC}\frac{dQ}{dt} \Rightarrow \frac{d^2I}{dt^2} = - \frac{1}{LC}I$$
+Cette équation à la structure de l'équation de l'OH. La pulsation caractéristique vaut $\omega_0 = \sqrt{1/LC}$. (\textit{NB :} On voit qu'une grande capacité implique un $\kappa$ petit, donc une saturation rapide)
+
+$$\ddot{I} = -\frac{1}{LC}I \Rightarrow \ddot{I} = -\omega_0^2I$$
+
+Le circuit LC subit dès lors d'une évolution harmonique d'amplitude $I_0$ : $I(t) = I_0 cos(\omega_0 t)$ (Solution générale sans déphasage).\\
+Comme $V = LdI/dt$ :
+$$V(t) = -\omega_0LI_0sin(\omega_0 t)$$
+Le courant et la tension évoluent ainsi en quadrature tout comme la position et la vitesse de l'OH mécanique (l'avance de tension est du à la présence de l'inducteur qui ralenti le courant)
+\begin{center}
+\includegraphics[scale=0.45]{oo/image6.png}
+\end{center}
+L'énergie dans l'inducteur $W_m = 1/2LI^2$ (= énergie magnétique) à la forme de l'énergie cinétique. Ajoutons-y l'énergie du condensateur $W_e = 1/2CV^2$.\\
+Comme il n'y a pas d'effet joue, l'énergie totale est constante : $W_m + W_e = cste$.\\
+
+Par analogie $W_m$ = énergie cinétique et $W_e$ = énergie potentielle. L'oscillation du circuit LC est donc du à un échange périodique entre énergie magnétique et énergie électrique.
+$$W_m + W_e = \frac{1}{2}(LI^2 + CV^2) \Rightarrow W_m + W_e = \frac{1}{2}\left[LI_0^2cos^2(\omega_0 t) + CL^2\omega_0^2I^2_0sin^2(\omega_0 t)\right]$$
+Comme $\omega_0 = 1/\sqrt{LC}$
+$$W_m + W_e = \frac{1}{2}LI^2_0 = cste$$
+\textit{NB :} Encore une fois, si $C$ est petit $\omega_0$ fera de sorte que le système oscillera fortement et on pourra peu stocker.
+
+\section{L'oscillateur linéaire amorti}
+\subsection{Équation de l'oscillateur linéaire amorti}
+Imaginons la masse se déplace dans un liquide visqueux (air ou eau) : viscosité provoque force proportionnelle à la vitesse de déplacement (dans le sens opposé de la vitesse) : $\vec{f}_f \equiv -\lambda\vec{v}$.\\
+(\textit{NB :} On dit linéaire et non harmonique du à ce facteur $\lambda$)
+\begin{center}
+\includegraphics[scale=0.45]{oo/image7.png}
+\end{center}
+En réutilisant les notations : $\vec{f}_f = -\lambda\dot{x}\vec{1_x}$. En ajoutant $\vec{f}_r = -\kappa x \vec{1_x}$, on peut trouver la force en $x$.
+$$f = -\kappa x - \lambda \dot{x}$$
+En introduisant cette expression dans la seconde loi de Newton : 
+$$f = m\ddot{x} \Rightarrow \ddot{x} = \frac{f}{m} = -\frac{\kappa}{m}x - \frac{\lambda}{m}\dot{x}$$
+En introduitant $\omega_0$ (=$\sqrt{\kappa/m}$) et le coefficient d'amortissement $\alpha = \lambda/2m$ on obtient l'\textbf{équation \underline{canonique} de l'oscillateur linéaire amorti (OLA).}
+$$\ddot{x} = - \omega_0^2x - 2\alpha\dot{x}$$
+
+\subsection{Solution générale}
+Ce sera pour plus tard ! Néanmoins, quand $\alpha < \omega_0$ l'amortissement est dit \textit{faible} et la solution générale vaut : 
+$$x(t) = a cos(\omega_a t + \phi) e^{-\alpha t}\ \ \ \ où\ \ \omega_a^2 = \omega_0^2 - \alpha^2$$
+La pulsation n'est pas égale à la pulsation propre et celle-ci est toujours plus faible que cette dernière (du à l'amortissement).\\
+On remarque aussi que l'amplitude diminie de façon exponentielle et n'est plus constante.
+
+\begin{center}
+\includegraphics[scale=0.45]{oo/image8.png}
+\end{center}
+La pseudo-période $T_a$ est définie comme étant deux fois le temps qui sépare deux zéros consécutifs de la position $x(t)$. Temps fixé par $\omega_a$ par $T_a = 2\pi/\omega_a$. $\omega_a$ est toujours > à la période de l'OH sans frottement visqueux.
+
+\subsection{Exemples d'oscillateurs linéaire amorti : le circuit RLC}
+Le circuit RLC présente un terme d'amortissement correspondant à une force de frottement visqueux. Comme précédemment, on exprime que la somme des différentions de potentiel aux bornes des 3 éléments est nulle.
+
+\begin{center}
+\includegraphics[scale=0.45]{oo/image9.png}
+\end{center}
+En remplaçant les d.d.p. et en dérivant pour éliminer $Q$ ($Q = dQ/dt$) :
+$$\frac{I}{C} + L \underbrace{\frac{d^2I}{dt^2}}_{accél.} + \underbrace{R\frac{dI}{dt}}_{amortiss.} = 0$$
+En divisant par $L$ et en introduisant $\omega_0$ et le coefficiant d'amortissement $\alpha = R/(2L)$ on retrouve l'équation de l'OLA.
+$$\omega_0^2I + \ddot{I} + 2\alpha \dot{I} = 0\ \ \ \Rightarrow\ \ \ \underbrace{\ddot{I} = -\omega_0^2I - 2\alpha\dot{I}}_{OLA}$$
+La solution générale est ici d'application. ($R$ représente ici la dissipation de l'énergie dans les échange $W_c$ et $W_m$)
+\begin{center}
+\includegraphics[scale=0.45]{oo/image10.png}
+\end{center}
+
+\section{Les phaseurs}
+\subsection{Oscillations forcées}
+Souvent, du au processus d'amortissement, il faut exercer une force externe pour maintenir l'oscillation qui généralement sera périodique. On appelle ces dispositif des \textbf{oscillateurs linéaires amortis et forcés : OLAF} dont la force extérieur sera modélisée par $Fcos(\omega t)$.\\
+En tenant compte de la force de rappel et du frottement visqueux :
+$$f = -\kappa x - \lambda \dot{x} + Fcos(\omega t)$$
+Partant de la deuxième loi de Newton, on obtient une équations différentielles difficile à résoudre.
+$$\ddot{x} = \frac{f}{m} \Rightarrow \ddot{x} = -\frac{\kappa}{m}x - \frac{\lambda}{m}\dot{x} + \frac{F}{m}cos(\omega t)$$
+On va ainsi introduire la notion de \textit{phaseurs} pour résoudre simplement cette équation.
+
+\subsection{Représentation complexe du mouvement harmonique}
+L'idée est d'adopter une nouvelle représentation mathématique. En reprenant le cas étudier en \textit{section 2.1} on avait déduit que $x(t) = lcos(\omega_0 t)$.\\
+Ici, plutôt que de considérer un objet dans l'espace, on le considère dans le plan de Gauss.
+
+\begin{center}
+\includegraphics[scale=0.45]{oo/image11.png}
+\end{center}
+Le plan complexe est utile à la description car l'argument $\theta$ d'un nombre complexe $\xi = x_0e^{i\theta}$ représente l'angle que ce nombre définit avec l'axe $Re$.\\
+
+En considérant la projection sur l'axe $Re$ et $Im$ on remarque que le mouvement harmonique vaut la projection sur l'axe réel. (\textit{NB :} ici on appellera $\theta$ la \textit{phase} du nombre complexe tournant plutôt que l'argument)
+\begin{center}
+\includegraphics[scale=0.45]{oo/image12.png}
+\end{center}
+
+\subsection{Déphasages et phaseurs}
+On peut exprimer la solution générale de l'OH en considérant non pas que $e^{i\omega_0 t}$ est multiplié par un réel ($x_0$), mais par un complexe ($\underline{X}$).
+$$x = Re\left[\underline{X}e^{i\omega_0 t}\right]\ \ \ \ \ \ \ où\ \ \ \underline{X} \in \mathbb{C}$$
+On peut expliciter ce nombre complexe en introduisant son module ($|\underline{X}|$) et son argument ($\phi$).
+
+$$x = Re\left[|\underline{X}|e^{i\phi}e^{i\omega_0t}\right] \Rightarrow x = Re\left[|\underline{X}|e^{i(\phi + \omega_0 t)}\right] \Rightarrow x(t) = |\underline{X}|cos(\omega_0 t + \phi)$$
+
+\begin{wrapfigure}[17]{r}{8cm}
+\includegraphics[width=8cm]{oo/image13.png}
+\end{wrapfigure}
+En explicitant donc ce nombre complexe, on obitient une évolution harmonique d'amplitude |\underline{X}| et de déphasage $\phi$.\\
+
+Le schéma ci-contre donne la représentation graphique de l'évolution du nombre complexe tournant.\\
+
+Comme \underline{X} caractérise l'amplitude et le déphasage, en le couplant à la pulsation $\omega_0$ on retrouve le mouvement harmonique.\\
+
+Quand un nombre complexe caractérise un mouvement harmonique, on lui donne le doux nom de \textbf{phaseur} pour le différencier d'un simple nombre complexe.
+
+\subsection{Équations des phaseurs}
+Pour illustrer, partons de l'oscillateur harmonique dont nous connaissons la solution et essayons de la retrouver.
+$$Oscillateur\ harmonique : \ddot{x} = -\frac{\kappa}{m}x$$
+Comme on recherche une solution harmonique, on peut introduire la soltution harmonique générale $x = Re\left[\underline{X}e^{i\omega t}\right]$. En dérivant deux fois cette expression, on trouve l'accélération (\textit{NB :} \underline{X} est un nombre complexe donc une constante).
+$$\ddot{x} = Re\left[-\omega^2 \underline{X}e^{i\omega t}\right]$$
+En substituant dans l'équation de l'OH :
+$$Re\left[-\omega^2 \underline{X}e^{i\omega t}\right] = Re\left[-\frac{\kappa}{m}\underline{X}e^{i\omega t}\right]$$ 
+
+En passant le second membre dans le premier membre et en unifiant les deux parties réelles et en mettant l'exponentielle en évidence :
+$$Re\left[\underbrace{(-\omega^2\underline{X} + \frac{\kappa}{m}\underline{X})}_{\underline{Y}}e^{I\omega t}\right] = 0\ \ \ \ \Rightarrow \underline{Y} = 0$$
+
+Ce nouveau nombre complexe (\underline{Y}) peut être vu comme un phaseur. Cette équation ne peut être satisfaite que si \underline{Y} est nul, le module devant être égal à zéro. On a donc 
+$$-\omega^2 \underline{X} + \frac{\kappa}{m}\underline{X} = 0\ \ \rightarrow\ \  \omega^2 = \frac{\kappa}{m}$$
+On peut voir cette relation comme l'équation de l'OH pour un phaseur \underline{X}.
+
+\subsubsection*{Remarques}
+On remarque que pour passer de l'équation différentielle à l'équation algébrique du phaseur il suffit de remplacer $x$ par $|\underline{X}|$ et $\frac{d}{dt}$ par $i\omega$.\\
+
+Les phaseurs permettent donc de transformer une équation différentielles $x(t)$ en une simple équation algébrique associée au phaseur $\underline{X}$.
+
+\section{L'Oscillateur linéaire amorti forcé}
+Les phaseurs introduits, on peut tenter de résoudre l'équation de l'OLAF ($f = -\kappa x - \lambda \dot{x} + Fcos(\omega t)$).\\
+En isolant $\ddot{x}$ (à partir de l'éq. de Newton):
+$$\ddot{x} = \frac{f}{m} \Rightarrow \ddot{x} +\frac{\kappa}{m}x + \frac{\lambda}{m}\dot{x} - \frac{F}{m}cos(\omega t) = 0$$
+
+En introduisant la pulsation propre $\omega_0$ (=$\sqrt{\kappa/m}$), l'amortissement $\alpha$ (= $\lambda/(2m)$) et de \textbf{force extérieure} $a$ (= $F/m$), on retrouve l'équation sous sa forme canonique.
+$$\ddot{x} + 2\alpha\dot{x} + \omega^2_0 x - a cos(\omega t) = 0$$
+
+\subsection{Solution harmonique, équation du phaseur}
+Introduisons le phaseur de $x$ avec la fréquence $\omega$ de la force extérieure :$x = Re\left[\underline{X}e^{i\omega t} \right]$.\\
+En dérivant deux fois et in remplaçant dans l'expression de l'OLAF :
+$$Re\left[-\omega^2\underline{X}e^{i\omega t} + 2\alpha i \omega \underline{X}e^{i\omega t} + \omega_0^2 \underline{X}e^{i\omega t} - ae^{i\omega t}\right] = 0$$
+L'équation du phaseur est donc :
+$$-\omega^2\underline{X}e^{i\omega t} + 2\alpha i \omega \underline{X}e^{i\omega t} + \omega_0^2 \underline{X}e^{i\omega t} - ae^{i\omega t} = 0$$ 
+
+\subsection{Résonance}
+L'équation algébrique obtenue va nous permettre d'étudier l'OLAF en isolant \underline{X} (Rappelons que le phaseur \underline{X} caractérise entièrement le mouvement harmonique $x(t)$)/
+$$\underline{X} = \frac{a}{\omega_0^2 - \omega^2 + 2\alpha i\omega}$$
+
+Si la pulsation extérieure $\omega = 0$, cela correspond à une force extérieure constante jusqu'à la position d'équilibre donnée par $F - \kappa x = 0$. On dénomme ainsi $\underline{X}_S$ la solution statique  du problème.
+\begin{center}
+\includegraphics[scale=0.65]{oo/image15.png}
+\end{center}
+La solution correspond bien au module de \underline{X} quand $\omega = 0$.\\
+
+Voyons maintenant quand $\omega \rightarrow \omega_0$. Quand $\omega = \omega_0$ la partie réelle est nulle : $\underline{X} = -ia/(2\alpha\omega_0)$ et le module, donnant l'amplitude vaut $|\underline{X}| = a/(2\alpha\omega_0)$. En multipliant en haut et en bas par $\omega_0$ on fait apparaître un lien avec $|\underline{X}_S|$.
+$$|\underline{X}| = \frac{a}{2\alpha\omega_0}\frac{\omega_0}{\omega_0} = |\underline{X}_S|\frac{\omega_0}{2\alpha}$$
+Si l'amortissement est faible ($\alpha << \omega_0$) on voit que l'amplitude à $\omega_0$ est beaucoup plus grande que dans le cas stationnaire.\\
+Lors du passage de la pulsation nulle à la pulsation propre, le mouvement subit une amplification : \textbf{phénomène de résonance}.
+\begin{center}
+\includegraphics[scale=0.65]{oo/image16.png}
+\end{center}
+\subsubsection{Amortissement faible}
+Supposons $\alpha << \omega_0$. Introduisons la proximité de résonance pour étudier les valeurs de pulsation proche de la résonance : $\delta\omega = \omega - \omega_0 \Rightarrow \omega = \omega_0 + \delta\omega\ \ \ \ où\ \delta\omega << \omega_0$ (Car la résonance est étroite).\\
+Approchons par le premier ordre.
+\begin{center}
+\includegraphics[scale=0.75]{oo/image17.png}
+\end{center}
+Comme nous sommes à l'ordre 1, on peut négliger $\alpha\delta\omega$ est d'ordre 2).
+$$\omega_0^2 - \omega^2 + 2\alpha i \omega = -2\omega_0\delta\omega + 2\alpha i\omega_0 + 2 \alpha i\delta\omega =  -2\omega_0(\delta\omega - i\alpha)$$
+Le phaseur de l'OLAF devient donc :
+$$\underline{X} = -\frac{a}{2\omega_0}\frac{1}{\delta\omega - i\alpha}$$
+On peut aisément calculer le module et l'argument de \underline{X} :
+$$|\underline{X}| = -\frac{a}{2\omega_0}\frac{1}{\sqrt{\delta\omega^2 - \alpha^2}}\ \ \ \ \ \ \phi = arctg\left(\frac{\alpha}{\delta\omega}\right)$$
+$\phi$ représente le décallage temporel entre la force extérieur ($Fcos(\omega t)$) et le mouvement qu'elle engendre ($x(t) = |\underline{X}|cos(\omega t + \phi)$). En effet quand on est à la résonance $\phi = \pi/2$ ce qui change le $cos$ en $sin$ montrant cette \textit{quadrature de phase}.
+
+\subsubsection{Largeur de résonance}
+Comment la largeur de la résonance varie en fonction d'$\alpha$ ? En cherchant $\delta\omega$ pour laquelle l'amplitude vaut la moitié de l'amplitude maximale.
+$$|\underline{X}(\delta\omega^*)| \equiv \frac{|\underline{X}|_{max}}{2}$$
+
+En utilisant l'expression approchée du phaseur :
+$$\frac{a}{2\omega_0}\frac{1}{\sqrt{\delta\omega^{*2} - \alpha^2}} = \frac{a}{4\omega_0\alpha}$$
+En en déduit :
+$$\delta\omega^* = \sqrt{3}\alpha$$
+Ce qui montre que la largeur de résonance $\propto$ coefficient d'amortissement.\\
+Plus l'amortissement est faible, plus la résonance est étroite (ligne bleue pointillée).
+\begin{center}
+\includegraphics[scale=0.5]{oo/image18.png}
+\end{center}
+\subsection{Le circuit RLC}
+\subsubsection{Équation du circuit}
+Comme d'habitude, et comme un dessin vaut mieux qu'un long discours :
+\begin{center}
+\includegraphics[scale=0.5]{oo/image19.png}
+\end{center}
+
+La tension étant alternative, on la modélisa par $V_m\omega sin(\omega t)$. En dérivant l'expression pour exprimer l'accroissement de charge : 
+$$V_m\omega cos(\omega t) = \frac{I}{C} + R\frac{dI}{dt} + L\frac{d^2I}{dt^2}$$
+En divisant tout par $L$ et en posant $\omega^2 = 1/LC$, $\alpha = R/2L$ et $a = V_m(\omega/L)$ on retrouve l'expression canonique de l'OLAF.
+$$\ddot{I} = -\omega_0^2 - 2\alpha\dot{I} + a cos(\omega t)$$
+Le circuit doit donc posséder une résonance : analysons la avec les phaseurs.
+
+\subsubsection{Phaseurs et impédances}
+La loi V = RI n'étant plus d'application, on cherche une nouvelle loi de relation. Comme $I = dQ/dt$ et $Q = CV_C$ on a :
+$$I = C\frac{dV_C}{dt}$$
+La bonne nouvelle, c'est qu'on peut tout changer en fonction de leurs phaseurs ! 
+$$I = Re\left[\underline{I}e^{i\omega t} \right] = C\frac{d}{dt}Re\left[\underline{V}_Ce^{i\omega t} \right] = C\ Re\left[i\omega\underline{V}_Ce^{i\omega t} \right]$$
+En réorganisant le tout :
+$$Re\left[\underline{I}e^{i\omega t} - i\omega C\underline{V}_C e^{i\omega t} \right] = 0$$
+Cette expression constitue la loi courant-tension du condensateurs exprimée en phaseurs.\\
+
+En faisant de même pour tout le monde : 
+$$\underline{V}_C = \frac{1}{i\omega C}\underline{I}\ \ \ \ \underline{V}_R = R\underline{I}\ \ \ \ \underline{V}_L = i\omega L\underline{I}$$
+
+En faisant la somme par la loi des mailles et en remarquant l'expression des réactances ($X_C = 1/(\omega C)$ et $X_L = \omega L$) la relation devient
+$$\underline{V} = -iX_C\underline{I} + R\underline{I} + iX_L\underline{I}$$
+
+En mettant en évidence, on voit apparaître une "résistance complexe" que l'on nomme \textit{impédance} $Z$ (qui est complexe mais \textbf{pas} un phaseur).
+$$\underline{V} = \left[R + i\left(X_L - X_C\right)\right]\underline{I}\ \ \Rightarrow\ \ \underline{V} = Z\underline{I}$$
+\begin{center}
+\includegraphics[scale=0.5]{oo/image18.png}
+\end{center}
+On remarque que si $Z$ est nul, on retrouve la loi d'Ohm et que l'argument de $Z$z représente le déphasage entre courant et tension dans le RLC ($V(t) = Re[Z\underline{I}e^{i\omega t}$ = $Re[|Z|I_m exp(i\omega t + i\phi_I + i arg(Z))]$)
+
+\subsubsection{Condition de résonance}
+La tension représente la force extérieur de l'OLAF : l'amplitude du courant est obtenue à la résonance. L'amplitude d'oscillation de courant $I_m = |\underline{I}| = \frac{|\underline{V}|}{|\underline{Z}|}$ est maximale quand le module de l'impédance est minimal.\\
+Cette valeur minimale s'obtient quand $X_L = X_C$ ce qui peut se ré-écrire :
+$$\omega L = \frac{1}{\omega C}\ \ \Rightarrow\ \ \omega^2 = \frac{1}{LC} = \omega_0^2$$
+Ceci montre bien que la résonance est bien $\omega_0$.
+
+\subsubsection{Etude de la résonance}
+Comme précédemment, considérons un amortissement ($R$) faible afin de considérer une proximité de résonance $\omega = \omega_0 + \delta\omega$. La réactance s'exprime donc $X_L = (\omega_0 + \delta\omega)L$ et celle de l'inducteur (On approche par McLaurin \textit{cf. p47}) $\frac{1}{\omega_0 C}(1-\frac{\delta\omega}{\omega_0}$\\
+
+En effectuant ($X_L - X_C$) sachant que $\omega_0 = \sqrt{1/LC}$ on trouve :
+$$Z = R + i2L\delta\omega$$
+Le courant $\underline{I} = \underline{V}/Z$ s'exprime =
+$$\underline{I} = \frac{1}{R}\frac{\underline{V}}{1+i\delta\omega/\Omega}$$
+L'amplitude des variation vaut ainsi :
+$$|\underline{I}| = \frac{1}{R}\frac{V_m}{\sqrt{1+i\delta\omega^2/\Omega^2}}$$
+
+\begin{center}
+\includegraphics[scale=0.5]{oo/image21.png}
+\end{center}
+On voit bien qu'à la résonance tout se passe comme s'il n'y avait ni condensateur, ni inducteur et que si $R$ augmente l'amortissement fait de même et la valeur maximale de courant diminue en même temps.
+$$Largeur\ de\ résonance\ : \Omega = \frac{R}{2L}$$
+
+\section{Ondes de corde}
+\subsection{Introduction}
+Une onde est un phénomène physique associé à un mécanisme oscillatoire. Imaginons une masse posée au milieu d'un fil élastique. Nous allons vois que dans l'hypothèse des petites amplitudes, ce mouvement est un OH.\\
+
+\begin{wrapfigure}[6]{l}{3cm}
+\includegraphics[width=3cm]{oo/image22.png}
+\end{wrapfigure}
+
+On peut décrire ce mouvement en partant de la deuxième loi de Newton en ajoutant toutes les forces présentes : tension des cordes. Pour décrire le mouvement de faible amplitude, considérons que $\theta << 1 \Rightarrow cos\theta = 1, sin\theta = \theta$.\\
+
+Notre cours de méca nous apprend que la résultante vaut $\vec{f} = -2||\vec{F_T}||sin(\theta) \vec{1_x}$. Avec l'hypothèse des petits mouvements, la longueur de demi-corde peut être vue comme constante ($\approx l$). On a donc : $\vec{f} = -2\underbrace{F_T}_{cste}\theta\vec{1_x}$.\\
+La hauteur de la masse par rapport à sa position de repos vaut $x = l.tan(\theta) \approx l\theta$. En remplaçant :
+$$\theta = \frac{x}{l}\ \ \Rightarrow\ \ \ f = -2\frac{F_T}{l}x$$
+En posant $\kappa = 2F_T/l$ on retrouve bien l'équation de l'OH. On voit aussi que plus la tension est grande, plus la fréquance d'oscillation est grande ($\omega_0 = \sqrt{2\frac{F_T}{lm}}$)
+
+\subsection{Modélisation des cordes}
+Introduisons la masse linéique $\mu$
+\subsubsection{Discrétisation}
+On va discrétiser la corde en considérant que sa masse est réparties sur des petites masses ponctuelles reliées par des cordes élastiques de longueur $\Delta l$. La masse vaudra ainsi $m = \mu\Delta l$.\\
+On a ainsi remplacé la corde par une chainette équivalente : en adoptant la vision infinitésimale, on pourra obtenir l'équation pour une corde continue.
+
+\subsubsection{Calcul des forces}
+Considérons trois masses ponctuelles situés à endroits quelconques formant des angles $\theta$ et $\theta '$.
+\begin{center}
+\includegraphics[scale=0.5]{oo/image23.png}
+\end{center}
+Cherchons les composantes selon les axes : $f_x = -F_Tsin(\theta) - F_Tsin(\theta ')$ et $f_z = -F_Tcos(\theta) + F_Tcos(\theta ')$.\\
+Avec l'approximation des petits angles, ça devient : $f_x \approx -F_T(\theta + \theta ')$ et $f_z \approx 0$. Avec notre approximation, le mouvement à considérer est uniquement fonction de l'axe $x$.
+$$\vec{f} = -F_T(\theta + \theta ')\vec{1_x}$$
+
+\subsubsection{Équation du mouvement de la corde}
+Pour décrire le mouvement entièrement, associons un indice $n$ à chaque masse. Reprenons un schéma similaire ou le zéro correspond à la position de repos de la chaînette.
+\begin{center}
+\includegraphics[scale=0.55]{oo/image24.png}
+\end{center}
+Sur base de Newton, on peut écrire $m\ddot{x}_n = -F_T(\theta_n + \theta_n')$.
+$$\ddot{x}_n = -\frac{F_T}{m}(\theta_n + \theta_n')$$
+Exprimons les angles grâce à leur hauteur  : $x_n - x_{n-1} = \Delta l tg(\theta_n) = \Delta l \theta_n$ et $x_n - x_{n+1} = \Delta l tg(\theta_n') = \Delta l \theta_n'$. En isolant les angles et en remplaçant dans la formule ci-dessus : 
+$$\ddot{x} = -\frac{F_T}{m\Delta l}(2x_n - x_{n-1} - x_{n+1})$$
+On voit que l'accélération est fonction de sa position mais également de celle des masses adjacentes. Pour ne pas calculer les $N$ équations, repassons à un modèle continu.\\
+
+Pour se faire, multiplions en haut et en bas par $\Delta l$ pour faire apparaître $\mu$.
+$$\ddot{x} = -\frac{F_T}{m\Delta l}(2x_n - x_{n-1} - x_{n+1})\frac{\Delta l}{\Delta l} \Rightarrow \ddot{x} = \frac{F_T}{\mu}\frac{(x_{n-1} + x_{n+1} - 2x_n)}{\Delta l^2}$$
+Pour passer au modèle discret, on doit remplacer la position $x_n(t)$ par la fonction $x(z,t)$ représentant la hauteur de points. En remplaçant la dérivée seconde par la dérivée temporelle, on trouve : 
+$$\frac{\partial^2 x(z, t)}{\partial t^2} = \frac{F_T}{\mu}\frac{x(z-\Delta l, t) + x(z+\Delta l, t) -2x(z, t)}{\Delta l^2}$$
+Transformons le deuxième facteur pour faire apparaitre la dérivée : 
+$$\frac{1}{\Delta l}\left[\frac{x(z+\Delta l, t) - x(z, t)}{\Delta l} - \frac{x(z, t) - x(z-\Delta l, t)}{\Delta l}\right]$$
+Faisons tendre le $\Delta l$ entre [ ] $\rightarrow 0$
+$$\frac{1}{\Delta l}\left[\frac{\partial x(z, t)}{\partial z} - \frac{\partial x(z -\Delta l, t)}{\partial z}\right]$$
+En posant $\partial x(z, t)/\partial z = x'(z, t)$ on retrouve l'expression de la dérivée seconde. On a donc l'égalité :
+$$\frac{\partial^2 x(z, t)}{\partial t^2} = \frac{F_T}{\mu}\frac{\partial^2 x(z, t)}{\partial z^2}$$
+Ceci est le modèle dynamique recherché.\\
+En analysant cette expression, on voit que l'accélération  est proportionnelle à la courbure en ce point.
+
+\subsection{Solutions de l'équation des cordes}
+En analysant le facteur $\frac{F_T}{\mu}$ on se rend compte qu'il s'agit d'une vitesse au carrée. On peut ainsi définir la vitesse $v$ caractéristique de la force $v = \sqrt{F_T/\mu}$. 
+En posant la vitesse et en la faisant passer dans l'autre membre: 
+$$\frac{1}{v^2}\frac{\partial^2 x(z, t)}{\partial t^2} = \frac{\partial^2 x(z, t)}{\partial z^2}$$
+En posant $t' = vt$, l'équation devient : $\frac{\partial^2 x}{\partial t'^2} = \frac{\partial^2 x}{\partial z^2}$.\\
+\textbf{Les variations spatiales de $x$ sont identiques à ses variations temporelles ; la courbure de la corde fixe son accélération}. On peut dès lors vérifier que la solution à la forme suivante (combinant $z$ et $t' = vt$): 
+$$x(z,t) = f(z + vt)$$
+\textit{Pour la "preuve" de la solution, cf. page 59 - 61}\\
+Page \textit{61}, on démontre la linéarité de l'expression : Cela veut dire que l'équation des cordes obéit au principe de superposition. Deux solutions peuvent ainsi se manifester exactement comme si l'autre n'était pas présente, la solution globale étant simplement la somme.
+$$f(z-vt) + g(z+vt)$$
+
+\subsection{Interprétation physique des solutions}
+\subsubsection{Problème aux conditions initiales}
+$f$ étant arbitraire, c'est difficile de l'interpréter. Analysons en $t = 0 \Rightarrow x(z, 0) = f(z)$. Comme $x(z, 0)$ représente la hauteur, on peut dire que $f(z)$ est la fonction qui représente la forme de la corde au temps $t = 0$, c'est la \textbf{condition initiale} de la corde.
+\begin{center}
+\includegraphics[scale=0.55]{oo/image25.png}
+\end{center}
+Connaissant la solution, $f(z - vt)$, il est facile de voir qu'à un temps $t > 0$ la forme de la corde sera identique mais translatée vers les $z$ positifs.\\
+
+Une fois la forme initiale (définie par la fameuse fonction $f$ quelconque) libérée, elle se déplace à la vitesse $v$ sans se déformer. Ceci se nomme \textbf{onde}, une corde peut être ainsi vu comme un "support" d'onde (Lire page \textit{64} pour plus de détails).\\
+
+\textit{NB :} Une perturbation appliquée à un point n'engendre pas d'oscillation, la force dépendant des positions voisines, le mouvement n'est pas harmonique mais de \textit{propagation}.
+
+\subsubsection{Problèmes aux conditions aux limites}
+Agitons une extrémité de la corde et fixons l'autre (à un mur) : On appelle ceci un problème de \textit{condition aux limites}.\\
+
+Si on agite la corde à l'extrémité gauche, l'onde se propage vers la droite (onde progressive). Supposons la fonction $g(t)$, connue, qui provoque une variation de la hauteur $x$ en $z = 0$ : $x(z0o, t) = g(t)$. Calculons l'onde $f(z-vt)$ générée par $g(t)$.
+$$x(z=0, t) = g(t) = f(-vt)$$
+Posons $u = -vt$, ce qui donne $t=-u/v$.
+$$f(u) = g(-\frac{u}{v})$$
+En remplaçant $u = z - vt$, on peut retrouver l'onde : 
+$$x(z, t) = f(z - vt) = g(-\frac{(z-vt)}{v})$$
+On peut remarquer que pour $t=0$, on a le maximum de $g(t)$. De plus, plus la vitesse est grande, plus la forme de l'onde est dilatée le long de l'axe $z$ ; \textit{plus une corde est tendue est légère, plus les ondes se propagent vite et ont tendance à s'étaler spatialement}.
+
+\section{Ondes de compression}
+Section consacrée aux ondes qui se propagent dans les milieux matériels.
+
+\subsection{Ondes dans les milieux cristallins}
+Dans un cristal, les atomes sont rangés selon une structure périodique et ceux-ci subissent une certaine force pouvant être représentée par un potentiel d'interaction.\\
+On peut ainsi voir l'atome d'un cristal comme étant un point massique lié à un ressort.\\
+\textit{NB :} Au repos, les atomes ne subissent aucune force et sont séparé d'une certaine distance : "\textit{constante de réseau}".
+\begin{center}
+\includegraphics[scale=0.4]{oo/image26.png}
+\end{center}
+Limitons la description aux onde longitudinales. Pour l'atome $n$ de la chaîne, on considère la variation de longueur du ressort à sa gauche qui va s'étendre alors que l'allongement du ressort à sa droite verra sa longueur diminuer. \\
+La force totale s'appliquant est la somme de la force des deux ressorts (élongation + compression).
+$$f = -\kappa(x_n - x_{n-1}) - \kappa(x_n - x_{n+1}) = -\kappa(2x_n - x_{n-1} - x_{n+1})$$
+En partant de la deuxième loi de Newton, on peut écrire l'accélération. L'astuce est d'ensuite multiplier en haut et en bas le résultat par $\Delta l^2$.
+$$\ddot{x}_n = \frac{\kappa}{m}\left( \frac{2x_n - x_{n-1} - x_{n+1}}{\Delta l^2} \right)$$
+Comme pour la \textit{section 6.2.3}, on peut voir la forme discrète de la dérivée seconde de déplacement.
+$$\frac{\partial^2 x}{\partial t^2} = \frac{\kappa\Delta l^2}{m}\frac{\partial^2x}{\partial z^2}$$
+La structure est la même que celle trouvée précédemment.  On peut, de par les unités, trouvé la vitesse caractéristique du milieu cristallin.
+$$v = \sqrt{\frac{\kappa}{m}}\Delta l$$
+On parle ici d'onde de compression, le premier atome lors de son déplacement vers son voisin créant une compression locale.\\
+De par la solution de l'équation d'onde $f = (z - vt)$ on sait que la zone de compression va se déplacer jusqu'à l'extrémité du cristal.
+
+\subsection{Ondes dans les milieux amorphes}
+L'absence de structure nous oblige à passer par une procédure de discrétisation du milieu amorphe. 
+\begin{center}
+\includegraphics[scale=0.4]{oo/image27.png}
+\end{center}
+On peut faire le même raisonnement que précédemment pou arriver à la même conclusion que pour les cristaux.
+
+\subsubsection{Module de compressibilité}
+Le souci, c'est que les $\kappa$ font référence à des ressorts imaginaire. On va ainsi introduire le \textit{module de compressibilité} (\textbf{B}) liant la pression appliquée à un matériaux à une variation de longueur. On recherche donc l'élasticité des segments de longueur $\Delta l$ qui en subissant une pression se comprime de $\delta l$. \\
+La variation de longueur valant $\frac{\delta l}{\Delta l}$ et la pression $\frac{f_a}{S}$ on peut écrire :
+$$P_a \equiv B\frac{\delta l}{\Delta l}$$
+Cette pression sera toujours la même pour une pression donnée $\forall \Delta l$ (c'est l'intérêt de $B$)
+\begin{center}
+\includegraphics[scale=0.4]{oo/image28.png}
+\end{center}
+Cette égalité peut en cacher une autre (équilibre des forces) ! 
+$$P_a = \frac{f_a}{S} = B\frac{\delta l}{\Delta l}\ \ \ \Rightarrow\ \ \ f = -f_a = -BS\frac{\delta l}{\Delta l}$$
+Le déplacement $\delta x$ peut être vu comme la variable $x$. On peut ainsi retrouver la notion de force de rappel élastique.
+$$f \equiv -\kappa \delta l\ \ \ \Rightarrow\ \ \ \kappa = \frac{BS}{\Delta l}$$
+Ce résultat permet le calcul de $v$.
+$$v^2 = \frac{BS\Delta l}{\Delta m}$$
+Comme $S\Delta l$ est le volume, le rapport $\Delta m /(S\Delta l)$ n'est que la masse volumique.
+$$v = \sqrt{\frac{B}{\rho}}$$
+
+\subsubsection{Vitesse du son dans l'air}
+Pour calculer celle-ci, il faut trouver $B$ et pour se faire, nous avons besoin de $P_a$. Il faudra utiliser la loi de Laplace, les ondes allant beaucoup plus vite que les échanges thermiques. Le calcul détaillé est donné à la \textit{page 76}, le résultat final est le suivant :
+$$B = \gamma P_0$$
+Notons juste que la \textit{pression acoustique} est la pression responsable du déplacement des molécules d'air.
+
+\subsubsection{Équation d'onde acoustique}
+Les déplacements des molécules de gaz entrainant des variation de pression, il est préférable d'exprimer l'onde en terme de pression.
+\begin{center}
+\includegraphics[scale=0.4]{oo/image29.png}
+\end{center}
+Considérons un petit segment de longueur $\Delta l$ et de volume $V_0 = V\Delta l$, une position de masse $x_n$ et $x_{n+1}$.  La pression acoustique est définie de la façon suivante : $P_{tot} = P_0 + P$. La loi de Laplace ($P_{tot}V^\gamma = P_0V_0^\gamma$) nous permet de relier les position à la pression.
+$$(P_0 + P)\left[V_0 + (x_{n+1} - x_n)S\right]^\gamma = P_0V_0^\gamma$$
+En mettant $P_0$ et $V_0$ en évidence, on peut les éliminer des deux membres et appliquer ensuite l'approximation au premier ordre (hypothèse des petits mouvements).
+$$\left(1 + \frac{P}{P_0}\right)\left[1 + \gamma\frac{(x_{n+1} - x_n)}{\Delta l}\right] = 1$$
+En considérant que $P << P_0$ on peut négliger une partie du produit pour obtenir :
+$$\frac{P}{P_0} + \gamma\frac{(x_{n+1} - x_n)}{\Delta l} = 0$$
+En faisant tendre $\Delta l \rightarrow 0$, on retrouve la dérivée par rapport à $z$ et donc, la relation recherchée.
+$$P = -\gamma P_0\frac{\partial x(z, t)}{\partial z}$$
+
+Pour retrouver la forme de l'équation d'onde, il faut partir de d'ondes, jouer sur sur la commutativité de l'opération dérivée et multiplier de part et d'autres par $-\gamma P_0$ pour faire apparaître la pression acoustique.
+$$\frac{\partial^2}{\partial t^2}\left[-\gamma P_0\frac{\partial x(z, t)}{\partial z}\right] = v^2 \frac{\partial^2}{\partial z^2}\left[-\gamma P_0\frac{\partial x(z, t)}{\partial z}\right]$$
+Ce qui nous donne le résultat attendu ! (Oh joie)
+$$\frac{\partial^2 P(z,t)}{\partial t^2} = v^2 \frac{\partial^2 P(z,t)}{\partial z^2}$$
+\begin{center}
+\includegraphics[scale=0.4]{oo/image30.png}
+\end{center}
+\subsubsection{Équation d'onde "standard"}
+\begin{wrapfigure}[5]{r}{4cm}
+\includegraphics[width=4cm]{oo/image31.png}
+\end{wrapfigure}
+L'équation que nous avons considérée décrit la pluspart des phénomènes ondulatoires qui ont lieu dans la matière, d'ou le "standard". Celle-ci décrit des ondes dites "longitudinales" et "tranversales".
+$$\frac{\partial^2 x}{\partial t^2} = v^2 \frac{\partial^2 x}{\partial z^2}$$
+
+\section{Ondes électromagnétiques}
+\subsection{Équation d'onde électromagnétique}
+Considérons l'équation d'Ampère-Maxwell dans le vide ; $\vec{J} = 0$ et $\rho = 0$ et celle de Faraday.
+$$rot\ \vec{E} = -\frac{\partial\vec{B}}{\partial t}\ \ \ \ \ rot\ \vec{B} = \mu_0\epsilon_0\frac{\partial\vec{E}}{\partial t}$$
+Prenons le rotationnel de la loi de Faraday pour faire intervenir celle d'Ampère-Maxwell.
+$$rot(rot\ \vec{E}) = -rot\ \frac{\partial \vec{B}}{\partial t} = -\frac{\partial}{\partial t} rot\ \vec{B} = -\mu_0\epsilon_0\frac{\partial^2\vec{E}}{\partial t^2}$$
+Pour calculer le double rot, on utilise la notation : $rot(rot\ \vec{E}) = \vec{\nabla}\times\vec{\nabla}\times
+\vec{E}$ et la règle de calcul vectoriel : $\vec{A}\times(\vec{B}\times\vec{C}) = \vec{B}(\vec{A}.\vec{C}) - (\vec{A}.\vec{B})\vec{C}$.\\
+Ce cheat nous permettra de faire apparaître la divergence nulle du champ électrique.
+$$\vec{\nabla}(\vec{\nabla}.\vec{E}) - (\vec{\nabla}.\vec{\nabla})\vec{E} = -\mu_0\epsilon_0\frac{\partial^2\vec{E}}{\partial t^2}$$
+En introduisant la notation $\Delta$ pour le Laplacien, on peut écrire : 
+$$\frac{\partial^2\vec{B}}{\partial x^2} + \frac{\partial^2\vec{B}}{\partial y^2} + \frac{\partial^2\vec{B}}{\partial z^2} = \mu_0\epsilon_0\frac{\partial^2\vec{E}}{\partial t^2} \Rightarrow \Delta\vec{E} = \mu_0\epsilon_0\frac{\partial^2\vec{E}}{\partial t^2}$$
+Le même raisonnement peut être suivi pour le champ magnétique en partant du rotationnel de la loi d'Ampère-Maxwell et non de Faraday.
+$$\Delta\vec{B} = \mu_0\epsilon_0\frac{\partial^2\vec{B}}{\partial t^2}$$
+La ressemblance entre les deux est frappantes, mais surtout celles-ci confirment que le vide peut servir de support d'onde.\\
+La ressemblance avec l'équation standard d'onde l'est également, si ce n'est que l'on a ici la somme de trois dérivées secondes par rapport aux trois coordonnées d'espace plutôt que d'une seule dérivée seconde spatiales. \textbf{Ces deux équations constituent donc des équations d'ondes}
+
+\subsection{Interprétation physique}
+Considérons une paroi de courant générant un champ magnétique uniforme. Si la densité de courant varie brusquement, comment le changement de champ émis va-t-il se faire ? Réponse après la pub.. enfin l'image ( :D ).
+\begin{center}
+\includegraphics[scale=0.4]{oo/image32.png}
+\end{center}
+Un point infiniment proche verra son champ modifier instantanément comme suggéré sur le schéma ci-dessus.\\
+Il faut trouver une relation $B(z,t)$ ce qui est possible compte-tenu qu'il s'agit d'un problèmes aux conditions limites (\textit{section 6.4.2}).\\
+
+Par symétrie, on considère que $J_S$ est modifiée de façon uniforme sur la paroi. Mathématiquement, cela s'exprime =
+$$\frac{\partial\vec{B}}{\partial x} = \frac{\partial \vec{B}}{\partial y} = 0$$
+Cet apsect symétrique simplifie fortement l'équation d'onde car il ne reste que les dérivées par rapport à $z$.
+$$\frac{\partial^2\vec{B}}{\partial z^2} = \mu_0\epsilon_0\frac{\partial t^2\vec{B}}{\partial t^2}\ \ \Rightarrow\ \ \frac{\partial t^22\vec{B}}{\partial t^2}  = \frac{1}{\mu_0\epsilon_0}\frac{\partial^2\vec{B}}{\partial z^2}$$
+Cette dernière équation est formellement identique à l'équation standard. L'augmentation de champ magnétique provoqué par l'augmentation de courant dans la paroi s'établit ainsi progressivement.\\
+De plus, celle-ci nous permet de déduire la vitesse de la lumière.
+$$v^2 = \frac{1}{\mu_0\ \epsilon_0} \equiv c^2\ \ \ \Rightarrow\ \ \ c = 2,997.10^8\ \frac{m}{s}$$
+Nous sommes bien dans le bas d'une solution progressive.
+$$\vec{B} = \vec{f}(z - ct)$$
+La seule différence est qu'il s'agit ici d'une onde vectorielle, le champ magnétique étant orienté perpendiculairement à $\vec{J}_S$.\\
+
+Pour trouver la forme initiale, on sait que $B(0,t) = (\mu_0/2)J_S(t) = f(-ct)$. En posant $u = -ct$ on obtient $f(u) = (\mu_0/2)J_S(-u/c)$ et donc la forme de l'onde est donnée par : 
+$$f(z - ct) = \frac{\mu_0}{2}J_S\left(-\frac{z - ct}{c}\right)$$
+Tout se passe donc comme pour une onde traditionnelle, relayée de proche en proche par une c haine d'oscillateur.\\
+
+On peut aussi également voir que le champ magnétique se comporte exactement comme dans un cristal, un milieu amorphe ou une corde.
+
+\subsection{Équation d'onde scalaire à une dimension}
+Comme les équations d'ondes de champs électriques et magnétiques sont des équations vectorielles, il faut tenir compte des trois composantes ($x$, $y$ et $z$). Par facilité, on traitera qu'une seule de ses composantes, c'est à dire que l'orientation des champ sera bien déterminée et fixe afin de choisir un axe parallèle mais surtout, pour traiter ce champ comme une grandeur scalaire ($\vec{E} \approx E$).
+
+\subsection{Ondes harmoniques}
+Considérons que les sources de champ électrique et magnétiques possèdent des variations harmoniques. Sachant que la solution générale d'onde est $f(z - ct)$, il faut imaginer une antenne d'extension infinie. \\
+On $z = 0$ le champ varie de façon harmonique.
+$$E(0,t) = Acos(\omega t) = f(-ct)$$
+Ceci impose la forme de l'onde. En posant $u = -ct$, on trouve la solution de notre problème.
+$$f(z - ct) = Acos\left[\frac{\omega}{c}\left(z - ct\right)\right]$$
+Pour alléger les notation, on introduit le \textit{nombre d'onde} qui vaut par définition $k = \omega / c$.
+$$E(z,t) = Acos(kz - \omega t)$$
+
+Illustrons! Prenons la coordonnée en $z = 0$. La pulsation détermine la période $T = 2\pi /\omega$. Représentons maintenant la fonction en un temps $t_0$ donné : 
+\begin{center}
+\includegraphics[scale=0.5]{oo/image33.png}
+\end{center}
+Le graphe ci-dessus représente la variation de $z = z_1$ à $z = z_1 + 2\pi/k$ ; la phase du cosinus varie de $2\pi$ et reprend la position occupée en $z = z_1$.
+La période $\lambda = 2\pi / k$ correspond à une période spatiale de l'onde : c'est la \textbf{longueur d'onde}. Sachant que $k = \omega/c$ :
+$$E(z, t_0) = Acos(kz - \omega t_0) \Rightarrow E(z, t_0) = Acos(k(z - \frac{\omega}{k} t_0) \Rightarrow E(z, t_0) = Acos(k(z - c t_0))$$
+On remarque que l'onde est bien animée d'un mouvement de translation à la vitesse de la lumière $c$.\\
+
+En remplaçant $k$ par sa valeur dans $\lambda$ on constate le lien entre la longueur d'onde et la pulsation.
+$$\lambda = \frac{2\pi}{\omega}c$$
+Connaissant la fréquence : 
+$$T = \frac{\lambda}{c}$$
+
+\subsection{Polarisation}
+Le champ $\vec{E}$ d'une onde n'est pas dans n'importe quelle direction. En se rappelant que l'on traite ici un vecteur : 
+$$\vec{E}(z, t) = \vec{A}cos(kz - \omega t)$$
+où $\vec{A}$ est l'amplitude vectorielle qui détermine la \textbf{polarisation} du champ. Sachant que $div\ \vec{E} = 0$ (les dérivées par rapport à $x$ et $y$ sont nulles car le champ est supposé uniforme)
+$$\frac{\partial E_z}{\partial z} = -kA_z sin(kz - \omega t)$$
+En appliquant la loi de Gauss, cette divergence doit être nulle ce qui implique que $A_z = 0$ pour être vrai $\forall t$. \\
+L'onde plane vectorielle de champ électrique \textbf{ne peut pas} avoir de composante en $z$ : \textit{le champ électrique de l'onde est perpendiculaire à sa direction de propagation} : l'onde est transverse.\\
+
+\begin{wrapfigure}[9]{l}{4cm}
+\includegraphics[width=4cm]{oo/image34.png}
+\end{wrapfigure}
+$$\vec{E}(z,t) = (A_x\vec{1_x} + A_y \vec{1_y})cos(kz - \omega t)$$
+Ci-contre est représenté une \textit{polarisation linéaire} car elle a une direction fixe du champ électrique (car en phase). S'il existe un déphasage $\phi$ entre $\vec{E_x}$ et $\vec{E_y}$ cette direction n'est plus constante mais évolue en tournant : \textit{polarisation elliptique}. (\textit{cf. labo 6})
+
+\subsection{Onde plane d'orientation quelconque}
+Imaginons une variation harmonique de la composante $x$ du champ électrique d'une onde plane de polarisation linéaire quelconque (that phrase).\\
+Quand la champ est maximal, on parle de \textit{fronts d'onde}, c'est à dire un lieu de l'espace pour lequel la phase d'onde à toujours la même valeur à un instant donné.
+\begin{center}
+\includegraphics[scale=0.4]{oo/image35.png}
+\end{center}
+La phase dans notre cas valant $\phi = kz - \omega t$, $z$ doit varier selon $z = \phi / k + ct$ ou $\phi \in \mathbb{R}$ montrant que les fronts d'ondes se déplace à vitesse $c$.\\
+
+Pour généraliser, considérons un changement de repère $x, y, z \rightarrow x', z', z'$. L'équation d'onde vaut :
+$$\vec{E}(z', t) = \vec{A}cos(kz' - \omega t)\ \ \ \ \vec{A} \perp \vec{1_{z'}}$$
+Tournons le repère (x,y) de $\theta$ par rapport au repère (x',y').
+\begin{center}
+\includegraphics[scale=0.4]{oo/image36.png}
+\end{center}
+En remplaçant $z'$ dans l'expression du champ électrique et en posant $k_x = ksin\theta$, ... :
+$$\vec{E}(x, y, z, t) = \vec{A}cos(l_x x + k_z z - \omega t)$$
+Grâce au fameux produit scalaire :
+$$\vec{E} (\vec{x}, t) = \vec{A}cos(\vec{k}.\vec{x} - \omega t)$$
+On remarque que l'onde se propage dans la direction de $\vec{k}$ soit le \textit{vecteur d'onde} : donne la direction de propagation et sa norme, la fréquence à partir de $\omega = ck$.
+
+\subsection{Lien entre champs électrique et magnétique}
+Les deux équations de $\vec{B}$ et $\vec{E}$ peuvent laisser penser qu'elles pourraient exister l'une sans l'autre ce qui est faux car la variation de champ électrique engendre un champ magnétique (Ampère Maxwell).\\
+
+Pour connaître le champ magnétique associé, il faut partir de la loi de Faraday $rot\ \vec{E} = -\partial\vec{B}/\partial t$. En considérant un champ en $\vec{1_x}$,en prenant son rotationnel et on intégrant, on trouve le champ magnétique.
+$$\vec{B} = \frac{1}{c}Acos(kz - \omega t)\vec{1_y}\ \ \ \Rightarrow \vec{B} \perp \vec{E}$$
+Ce résultat nous montre que $\vec{B}$ évolue en phase avec $\vec{E}$ (ils ont le même cosinus).\\
+De plus, l'amplitude de $\vec{B}$ vaut celle de $\vec{E}$ divisée par $c$.
+
+\section{Ondes stationnaires}
+Avant tout, il faut garder à l'esprit que ceci est un phénomène universel.
+
+\subsection{Problèmes aux conditions limites}
+Fixons une corde à son extrémité et agitons la de façon harmonique en considérant que $z = 0$ est le nœud du mur de façon à ce que sa position soit nulle ($z = 0$) pour tout $t$.
+\begin{center}
+\includegraphics[scale=0.4]{oo/image37.png}
+\end{center}
+La solution est bien de type harmonique, où $k = \omega / v$.
+$$f_1(z, t) = a cos(kz - \omega t)$$
+Mais cette solution ne s'annulant pas $\forall t$, on va utiliser le principe de superposition en considérant une onde \textit{contrapropageantes} (se déplace dans deux directions opposées) telle que :
+$$f(z, t) = g(z - vt) + h(z +vt)$$
+Comme nous savons que le mouvement est harmonique, on peut ré-écrire : 
+$$f(z,t) = a cos(kz - \omega t) + b cos(kz + \omega t)$$
+Pour que la fonction soit nulle $\forall t$ il faut que $b = -a$. En appliquant la formule $cos(a)cos(b)$ on trouve une solution bien nulle $\forall t$. 
+$$f(z, t) = 2a sin(kz)sin(\omega t)$$
+
+\subsection{L'onde stationnaire}
+On remarque que $t$ et $z$ ne sont plus couplés ensemble : $z$ étant seul dans l'argument du sinus, la forme de l'onde est un sinus possédant un zéro à l'origine et ce pour tout temps ; l'onde n'est plus propagative (elle ne se déplace plus) mais est \textit{stationnaire}.\\
+
+\begin{wrapfigure}[5]{l}{4cm}
+\includegraphics[width=4cm]{oo/image37.png}
+\end{wrapfigure}
+L'amplitude vaut $2a$, signifiant que les ondes contra-propageantes s'additionnent en phases en certaines positions.\\
+La fonction présente des \textit{nœuds}, des points qui ne bougent jamais et qui sont entourés par des \textit{ventres}.
+
+\subsection{Amplification et résonance}
+Cherchons l'amplitude $A$ de l'onde stationnaire en considérant la condition limite du côté gauche à $z = -L$ : 
+$$f(-L, t) = A_S sin(\omega t)$$
+où $A_S$ est l'amplitude du mouvement de la main. Or, avec la solution d'onde stationnaire on sait que : 
+$$f(-L, t) = -A sin(kL)sin(\omega t)$$
+En égalant ces deux résultats, les $sin(\omega t)$ se simplifient et on trouve l'expression de $A$, qui est bien liée à $A_S$.
+$$A = -\frac{A_S}{sin(kL)}$$
+Ce signe ne veut physiquement rien dire, on considèrera la valeur absolue de ce facteur. L'onde stationnaire devient immédiate.
+$$f(z, t) = \frac{A_S}{sin(kL)}sin(kz)sin(\omega t)$$
+Comme $k = \omega / v$, le rapport entre $A$ et $A_S$ est fonction de la pulsation. L'amplitude du mouvement stationnaire est toujours plus grande que celle du mouvement source si $kL \neq (2n + 1)\frac{\pi}{2}$.\\
+Pour certaines valeurs de $\omega$ on obtient des valeurs relativement grande pour avoir un comportement similaire à l'OH : sans amortissement, l'amplitude à la résonance tend vers l'infini.
+
+\subsection{Oscillations propres}
+Si par contre on a un multiple de $\pi$, on sent le malaise s'installer... L'amplitude est bel et bien infinie mais ceci est du au fait que l'on néglige les frottements ! La solution infinie n'a donc pas de signification physique. Ici une amplitude A finie peut avoir lieu si $A_S$ est nul : indétermination $0/0$.\\
+Donc, en l'absence d'excitation, la corde peut vibrer avec n'importe quelle amplitude cela dépend seulement des conditions initiales.\\
+
+On parle alors de \textit{vibration propre} quand il y a mouvement harmonique en l'absence du mouvement source (c'est à dire un mouvement imposé aux limites).(C.I =  forme initiale imposée).\\
+
+Mais ici, la condition de vibration propre est $kn = n\pi$, il y a donc $n$ valeurs qui peuvent donner lieux à une vibration propre ! 
+$$kL = n\pi\ \ \ \Rightarrow\ \ \ \ k_n = \frac{n\pi}{L}\ \ ||\ (\omega = kv) \ \ \Rightarrow \omega_n = n\frac{v\pi}{L}$$
+Chaque $n$ correspond à un \textit{mode propre de vibration}. Alors que l'OH n'a qu'une fréquence propre, l'onde en a une infinité ! Chacune de ces pulsations correspond à un \textit{mode propre} de vibration de la corde.\\
+
+Pour mieux visualiser, on sait que $\lambda = 2\pi /k$ : les modes propres sont caractérisé par une $\lambda$ précise.
+$$L = n\frac{\lambda_n}{2}$$
+La longueur de corde égale ) un nombre entier de demi longueurs constitue la condition pour avoir des points fixes aux deux extrémités.
+
+\section{Composition de fréquences, phénomène de battement}
+Supposons qu'il y ai  deux fréquences générée et étudions l'onde acoustique résultant de la superposition (supposons une amplitude égale).
+$$Acos(k_1z - \omega_1 t) + Acos(k_1z - \omega_2 t)$$
+\subsection{Signal de battement temporel}
+Considérons l'onde en un point de l'espace et pour faire simple en $z = 0$.
+$$f(0,t) = Acos(\omega_1 t) + Acos(\omega_2 t)$$
+En appliquant Simpson
+$$f(0,t) = 2A\ cos\underbrace{\left(\frac{\omega_1 + \omega_2}{2}t\right)}_{f.\ "moyenne"}cos\underbrace{\left(\frac{\omega_1 - \omega_2}{2}t\right)}_{f.\ de\ "battement"}$$
+L'écart entre les fréquences de départ $\omega_1$ et $\omega_2$ étant faible, cette fréquence moyenne est proche des deux fréquences : la fréquence sonore est audible. \\
+L'autre terme est par contre très faible et ne sera pas audible : son seul effet est de moduler périodiquement en amplitude le signal acoustique de fréquence moyenne : phénomène de \textit{battement}.\\
+\begin{wrapfigure}[7]{l}{5cm}
+\includegraphics[width=5cm]{oo/image39.png}
+\end{wrapfigure}
+\ \\
+Le graphique supérieur montre les variation temporelle de fréquence et celui du dessous leur somme qui donne ce que l'on appelle \textit{battement}. Quand les ondes sont en phase on est face à des \textit{inférence constructive ventre} alors qu'en opposition elles forment des \textit{interférences constructives}.\\
+
+La période des battement $T_B$ est donc la période entre deux noeuds.
+$$T_B = \frac{\pi}{(\omega_1 - \omega_2)/2} = \frac{2\pi}{(\omega_1 - \omega_2)}$$
+
+\subsection{Propagation d'une onde de battement}
+Pour décrire la propagation, il suffit de calculer la pression acoustique $f$ en toute valeur de $z$.
+$$f(z, t) = Acos(k_1z - \omega_1 t) + Acos(k_2z - \omega_2 t)$$
+Grâce à Simpson : 
+$$f(z, t) = 2A\ cos\left(\frac{k_1 + k_2}{2}z - \frac{\omega_1 + \omega_2}{2}t\right)cos\left(\frac{k_1 - k_2}{2}z - \frac{\omega_1 - \omega_2}{2}t\right)$$
+En remplaçant $k_i$ pour sa valeur  : $k_i = \omega_i/v$ :
+$$f(z, t) = 2A\ cos\left(\frac{\omega_1 + \omega_2}{2v}(z - vt)\right)cos\left(\frac{\omega_1 - \omega_2}{2v}(z - vt)\right)$$
+Il s'agit bien d'une onde se propagent à vitesse du son $v$ et qui présente le phénomène de battement.
+\begin{center}
+\includegraphics[scale=0.4]{oo/image40.png}
+\end{center}
+Comme précédemment, on peut calculer la longueur de battement $\lambda_B$.
+$$\lambda_B = \frac{\pi}{\frac{\omega_1 - \omega_2}{2v}} = \frac{2\pi}{k_1 - k_2} \Rightarrow \frac{1}{\lambda_B} = \frac{1}{\lambda_1} - \frac{1}{\lambda_2}$$
+
+\section{Effet Doppler}
+Effet valable pour toutes ondes, sauf les électromagnétiques (il faut passer par la relativité restreinte, celles-ci se déplaçant dans la vide).
+
+\subsection{Détecteur en mouvement}
+
+
+\end{document}
