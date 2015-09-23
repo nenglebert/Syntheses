@@ -279,7 +279,7 @@
 	deuxième variable $y$ (c'est à dire $\sup |\partial f/\partial y|$ petit si 
 	$f$ est "brave" (c'est-à-dire lipschitzienne)).
 	
-	
+\setcounter{section}{4}
 \section{Condition de Lipschitz}
 	\subsection{Fonction totalement ou partiellement lipschitzienne}
 	\defi{\textsc{Fonction lipschitzienne}\\
@@ -327,20 +327,85 @@
 	\subsection{CNS pour Lipschitz : composante par composante}
 	\proposition{$\vec{f}$ est lipschitzienne en $\vec{y}$ ssi $\forall i = 1,\dots, p :
 	f_i$ est lipschitzienne en $\vec{y}$}\ 
-	\begin{proof}
-	Flemme, voir slide 38 ou page 20 (\textbf{important pour l'examen!}).
-	\end{proof}
+\begin{proof}\ \\
+$\vec f \quad \Lambda$-{\bf lipschitzienne}  en $\vec y$
+\\
+$
+\begin{array}{ll}
+\Longleftrightarrow & {\displaystyle \forall \: (\vec x , \vec y ) ,
+ (\vec x, \tilde{\vec y} ) \in {\cal U} : || \vec f (\vec x, \vec y
+ ) - \vec f ( \vec x , \tilde{\vec y} ) ||_p ^2 \leq \Lambda ^2 ||
+ \vec y - \tilde{\vec y} ||^2 _m }\\
+\Longleftrightarrow &{\displaystyle \forall \: (\vec x , \vec y )
+, (\vec x, \tilde{\vec y} ) \in {\cal U} : \sum^p _{i=1} (  f_i
+(\vec x, \vec y) -  f_i ( \vec x , \tilde{\vec y} ) )^2  \leq
+\Lambda ^2 || \vec y - \tilde{\vec y} ||^2 _m } \\
+\stackrel{?}{\Longleftrightarrow} &\forall i = 1 , \ldots , p,
+\quad \forall \: (\vec x , \vec y ) , (\vec x, \tilde{\vec y} )
+\in {\cal U} : (f_i (\vec x, \vec y) - f_i ( \vec x , \tilde{\vec
+y} ) )^2  \leq \lambda ^2 _i || \vec y - \tilde{\vec y}
+ ||^2 _m \\
+\Longleftrightarrow  &\forall i = 1 , \ldots , p , \quad f_i
+\mbox{ est } \lambda_i  \mbox{ -lipschitzienne.}
+
+\end{array}
+$ \\
+
+L'équivalence surmontée d'un point d'interrogation
+s'établit comme suit : \\
+
+$\Longrightarrow$ est vraie si on a posé $\lambda_i : = \Lambda
+$. \\
+
+$ \Longleftarrow $ est vraie si on a posé ${\displaystyle
+\Lambda : = \sqrt{\sum_{i=1}^{p} \lambda^2 _i}}$. 
+\end{proof}
+	Cette démonstration est naturelle dans le sens ou si $\vec{f}$ est vectorielle 
+	et lipschitzienne de même constante, chacune de ses composantes l'est également. 
+	Notons que dès que l'on a une constante de Lipschitz, tout nombre supérieur à 
+	celle-ci est également une constante de Lipschitz.
 	
 	
 	\subsection{$C^1$ garantit localement Lipschitz}
+	Le plus simple est de travailler avec des dérivées. Si les dérivées d'ordre 
+	$p$ sont bornées alors la fonction est lipschitzienne.\\
 	\lemme{\ \\
 		Si $\vec{f}$ est différentiable sur int($\mathcal{U}$) et continue sur 
 		$\mathcal{U}$ et que ses fonctions dérivées $\frac{\partial\vec f}{\partial 
 		y_1},\dots,\frac{\partial\vec f}{\partial y_m}$ sont bornées sur int($\mathcal{U}$),
 		alors $\vec{f}$ est lipschitzienne en $\vec{y}$ sur $\mathcal{U}$.}\ 		
-		\begin{proof}
-		Inclure 18.66
+		\begin{proof}\ \\
+		Supposons que $f$ est scalaire (grâce à la précédente proposition). Grâce au 
+		théorème des accroissement fini on peut écrire la différence selon la première 
+		égalité si $\exists \vec{c} \in ]\vec{y}\vec{\tilde{y}}[\subset \mathbb{R}^m$ :		
+\begin{equation}
+\begin{array}{ll}
+| f (\vec x , \vec y ) - f ( \vec x , \tilde{\vec y} ) | & =
+{\displaystyle \left | < \vec {\nabla} f  \right |_{( \vec x , \
+\vec c)} , (\vec x , \vec y ) -  ( \vec x , \tilde{\vec y} ) > | }\\
+
+  & = {\displaystyle | \left . \left . < \left (  \frac{\partial f}
+{\partial y_1}, \ldots , \frac{\partial f}{\partial y_m} \right )
+\right |_{( \vec x , \vec c)} ,  ( y_1 - \tilde{y}_1, \ldots, y_m -
+ \tilde{y}_m ) > \right . | }\\
+
+ & ={\displaystyle | \left . \left . \sum_i \frac{\partial f}
+{\partial y_i} \right |_{( \vec x , \vec c)} ( y_i - \tilde{y_i} )
+\right .  | }\\
+
+  &{\displaystyle \leq \sqrt{\sum_i \left . \frac{\partial f }
+{\partial y_i} \right | ^2 _{(\vec x , \vec c )}} \quad  || \vec y -
+\tilde{\vec y} ||_m }
+\end{array}
+\end{equation}
+	On pourrait directement écrire la 
+	troisième égalité. Comme il n'y a pas de différence entre $\vec{x}$ et $\vec{x}$, 
+	seul intervienne les dérivées par rapports aux $y_i$. La dernière inégalité s'
+	obtient gr\^ace à l'inégalité de Cauchy-Schwarz.\\
+	Si toute les dérivées $\dfrac{\partial f}{\partial y_i}$ sont en valeurs absolue 
+	majorée par $M$, alors $f$ est $\sqrt{mM^2}$-lipschitzienne en $\vec{y}$.
 		\end{proof}
+		
 	
 	\proposition{Si $\vec{f}\in C^1(\mathcal{U})$, alors $\vec{f}$ est localement 
 	lipschitzienne sur int($\mathcal{U}$).}
@@ -348,3 +413,207 @@
 	\begin{proof}
 	Non vu? 
 	\end{proof}
+	
+	\setcounter{subsection}{2}
+	\subsection{Fonctions à variables séparées de Lipschitz}
+	\proposition{Si \begin{itemize}
+	\item[$\bullet$] $f: A \subseteq \mathbb{R} \rightarrow \mathbb{R} : x \mapsto 
+	f(x)$ est continue, 
+	\item[$\bullet$] $g: B \subseteq \mathbb{R} \rightarrow \mathbb{R} : y \mapsto 
+	g(x)$ est localement lipschitzienne,
+	\end{itemize}
+	alors 
+	\begin{equation}
+	F : A\times B \rightarrow \mathbb{R} : (x,y) \mapsto \rightarrow f(x).g(y)
+	\end{equation}
+	est localement lipschitzienne en $y$}\ 	
+	\begin{proof}\ \\
+	Une telle fonction est-elle lipschitzienne? On va essayer de la majorer. Comme 
+	$x$ est constant, je peux écrire 
+	\begin{equation}
+	|f(x)g(y) - f(x)g(\tilde{y})| = |f(x)|.|g(y)-g(\tilde{y})|
+	\end{equation}
+	Je peux toujours majorer de la sorte
+	\begin{equation}
+	|f(x)g(y) - f(x)g(\tilde{y})| \leq \sup_{\mathcal{V}_{x_0}} |f|.\lambda_0.
+	|y-\tilde{y}|
+	\end{equation}
+	Si $\sup_{\mathcal{V}_{x_0}} = M_0\in\mathbb{R}$, $F$ est $\lambda_0 M_0$-
+	lipschitzienne en $y$.\footnote{J'applique la "définition" de Lipschitz pour 
+	la partie en $|g(y)-g(\tilde{y})|$.}
+	\end{proof}
+	
+	
+	
+	\setcounter{subsection}{5}
+	\subsection{Fonctions linéaires en $\vec{y}$ à coefficients continus en $t$}
+	Considérons la fonction
+	\begin{equation}
+	\vec{f}(t,\vec{y}) := A(t)\vec{y} + \vec{b}(y)
+	\end{equation}
+	où $A(y)$ est $\forall t$ une application linéaire $\mathbb{R}^m\rightarrow
+	\mathbb{R}^m$. Une telle fonction est-elle lipschitzienne? On va essayer de 
+	la majorer. Par linéarité, je peux mettre en évidence un facteur $\|y-z\|$ 
+	pour prendre l'image d'un vecteur normé par $A(t)$ ($\vec{y},\vec{z}\in 
+	\mathbb{R}^m$)
+	\begin{equation}
+	\begin{array}{ll}
+	\vec{f}(t,\vec{y}) - \vec{f}(t,\vec{z}) &= A(t)\vec{y}+\vec{b}-(A(t)\vec{z}+\vec{b})\\
+	 &= A(t)(\vec{y}-\vec z) = \|\vec{y}-\vec{z}\|A(t)\left(\frac{\vec{y}- 
+	 \vec{z}}{\|\vec{y}-\vec{z}\|}\right)
+	\end{array}
+	\end{equation}
+	Notons l'utilisation d'une petit artifice de calcul à la deuxième ligne, on à 
+	multiplié par $\frac{\|\vec y - \vec{z}\|}{\|\vec y - \vec{z}\|}.$
+	On peut majorer et y aller à la grosse louche à l'aide de la norme de l'application 
+	linéaire $A(t)$. Je peux en effet dire que le carré d'une somme est majoré par le 
+	carré des éléments de la matrice
+	\begin{equation}
+	\|\vec{f}(t,\vec{y}) - \vec{f}(t,\vec{z})\| \leq \|\vec{y}-\vec{z}\| \underbrace{
+	\max_{\|\vec{u}\| = 1}
+	\|A(t)(\vec{u})\|}_{|||A(t)||| \leq \sqrt{\sum_{ij} (a_{ij}(t))^2} := \Lambda(t)}
+	\qquad (t\ \text{ fixé!})
+	\end{equation}
+	Dernier souci : $\Lambda(t)$ n'est pas constante. Heureusement, si on prend le 
+	suprémum des normes quand $t$ est confiné à un compact, ce suprémum existe dans 
+	$\mathbb{R}$.
+	
+
+\section{Théorèmes d'existence et d'unicité pour Cauchy}
+	\subsection{Méthode des approximations successives de Picard}
+	Considérons l'opérateur intégral\footnote{Revient très souvent à l'examen!} $T : 
+	z\rightarrow T(z)$ où 
+	\begin{equation}
+	T(z)|_t := y_0 + \int_{t_0}^t f(\tau,z(\tau))d\tau
+	\end{equation}
+	relatif au \textbf{problème de Cauchy} $\left\{\begin{array}{ll}
+	y'(t) &= f(t,y)\\
+	y(t_0) &= y_0
+	\end{array}\right.$ dont les solutions sont les points fixes de $T$. Si on arrive 
+	à prouver que $T$ est contractant et que l'on est dans un espace de Banach alors 
+	on prouve que cet opérateur admet un et un seul point fixe, soit une et une seule 
+	solution pour le problème de Cauchy. De plus, d'où que l'on parte, on convergera 
+	vers cette sainte solution.
+	
+	\subsection{Espace normé, cylindres internes et de sécurité}
+	Il faut travailler dans un espace de Banach, c'est-à-dire un espace vectoriel 
+	réel normé et complet. Je m'intéresse à des fonctions au moins dérivables, et 
+	donc continue : $V = C^0(I,\mathbb{R}^m)$ (où $I$ est un intervalle autour de $t_0$ 
+	à préciser) muni de la norme suprémum :
+	\begin{equation}
+	\| \|_\infty : \vec{y} \rightarrow \|\vec{y}\|_\infty = \sup_{t\in I}\|\vec{y}(t)
+	\|
+	\end{equation}
+	On a maintenant un espace de Banach dont la convergence sera même uniforme. Il faut 
+	maintenant définir $E$. Je travaille dans un intervalle centrée sur $t_0$ de demi-
+	côté $l$ et $r$. 
+	\begin{equation}
+	C = [t_0-l, t_0+l]\times\vec{B}(\vec{y_0},\vec{r}) \subseteq \mathcal{U}
+	\end{equation}
+	De façon préventive, le cylindre sera dit \textit{de sécurité} si $l.\sup_C \|\vec{f}
+	\| \leq r$. Autrement dit, le maximum de la pente en valeur absolue ne dépasse pas 
+	$r$ ; on n'en sortira pas.\\
+	
+	Dès lors $E :=$ ensemble des fonctions $y\in C^0(\underbrace{[t_0-l,t_0+l]}_{:= I}, 
+	\mathbb{R}^m)$ telles que gph($y$) $\subset C$, le cylindre de sécurité. C'est-à-
+	dire : $\forall t \in I : \| y(t) - y_0\| \leq r$. On dit bien que $y(t)$ est à une 
+	distance de $y_0$ qui ne dépassera jamais $r$.
+	
+	\subsection{$T$, opérateur interne et lipschitzien dans $E$}
+	La première chose à vérifier est que l'on reste toujours dans $E$
+	\begin{enumerate}
+	\item $T$ est un opérateur interne à $E$ : $y\in E \rightarrow T(y) \in E$.\\
+	Si $y \in C^0(I,\mathbb{R}^m) \Longrightarrow T(\vec{y}) \in C^0(I,\mathbb{R}^m)$
+	Comme le graphe de $T(y)$ reste dans $C$ (et on majore l'intégrale comme d'hab) :
+	\begin{equation}
+	\begin{array}{ll}
+	\|y(t)-y_0\| \leq r \Longrightarrow \|T(y)|_t - y_0\| &= \|\int_{t_0}^t f(\tau,y(
+	\tau))d\tau\| \\
+	 & \leq |t-t_0| \underbrace{\sup_{\tau \in I} \|f(\tau, y(\tau)) \|_m}_{\mu}\\
+	 & \leq l\mu\\
+	 & \leq r\qquad \text{ (par def. du cylindre de sécurité)}
+	\end{array}
+	\end{equation}
+	
+	\item $T$ est lipschitzien (\dots si $f$ l'est par rapport à $y$).\\
+	Il faut avant tout que $f$ ne varie pas trop vite par rapport à $y$, c'est à dire 
+	que pour un même $t$, la pente ne devrait pas varier trop vite.  Je dois prouver 
+	que la distance entre les images est inférieure à une constante*... (def. lips.)
+	\begin{equation}
+	\begin{array}{ll}
+	\| T(y) - T(z)\|_\infty &= \sup_{t\in I} \left\|\int_{t_0}^t(f(\tau,y(\tau))-f(\tau, 
+	z(\tau)))d\tau\right\|\\
+	 &\leq \sup_{\tau\in I}\|f(\tau,y(\tau))-f(\tau,z(\tau))\|.\sup_{t\in I}|t-t_0|\\
+	 &\leq \Lambda.\sup_{\tau\in I}\|y(\tau)-z(\tau)|.l\\	 
+	\end{array}
+	\end{equation}
+	où $\Lambda$ est une constante de Lipschitz de $f_C$ relativement à $y$. On a ici 
+	majoré pour faire apparaître la définition d'une fonction lipschitzienne. D'où
+	\begin{equation}
+	\|T(y)-T(z)\|_\infty \leq \Lambda \|y-a\|_\infty
+	\end{equation}
+	C'est-à-dire que $T$t est $\Lambda l$-lipschitzien.
+	\end{enumerate}
+	
+	\subsection{$T$ est contractant dans $E^*$ (de haute sécurité)}
+	Si $l$ est suffisament petit, on rentre dans les conditions de haute sécurité. Le 
+	cylindre :
+	\begin{equation}
+	C^* [t_0-l^*, t_0+l^*]\times\vec{B}(y_0,r)
+	\end{equation}
+	est dit de \textbf{haute sécurité} si de plus $\Lambda l^* =: \alpha < 1$.\\
+	Si l'on définit l'ensemble $E^*$ des fonctions admissibles associé au cylindre 
+	$C^*$ alors $T : E^* \rightarrow E^*$ est une contraction.
+	
+	\subsection{Théorème d'existence et d'unicité locale}
+	Compte-tenu des deux sections précédentes, le principe de contraction de Banach 
+	peut s'appliquer. On conclut à l'existence et l'unicité de la solution du problème 
+	de Cauchy dont le graphe est inclus dans $C^*$.
+	
+	
+	\theor{\ \\
+	Si $ \vec f : {\cal U} \subseteq \mathbb{R} \times \mathbb{R}^m \rightarrow
+	\mathbb{R}^m :
+ ( t , \vec y) \to \vec f ( t, \vec y) $ 
+est continue et lipschitzienne en $\vec y$ au {\bf voisinage} de
+ $( t_0 , \vec y_0) \in $ {\rm int }${\cal U}$, 
+alors le problème de Cauchy ${\displaystyle  \left \{ \begin{array}{l}
+\vec y \:'  = \vec f ( t , \vec y ) \\
+\vec y (t_0)  = \vec y_0
+\end{array} \right . }$ admet une seule courbe intégrale au
+voisinage de $(t_0 , \vec y_0) $.}
+	
+	\subsection{Théorème d'existence et d'unicité d'une solution maximale}
+	C'est possible de l'étendre, mais ce n'est pas vu !
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
