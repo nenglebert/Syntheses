@@ -237,7 +237,91 @@
 		Noté $p$, c'est la distance entre 2 dents consécutives mesuré sur le cercle primitif (à ne pas confonre avec $p_b$ qui est pour le cercle de base). 
 		\begin{equation}
 			p = 2\pi \frac{R}{N} = \pi \frac{D}{N} = \frac{\pi}{P} \qquad et \qquad p_b = 2\pi \frac{R_b}{N}
+			\label{eq:1.13}
 		\end{equation}
 		
 	\subsubsection{Saillie et creux}
+		\begin{wrapfigure}[7]{l}{5.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/20}
+		\end{wrapfigure}		
+		La saillie est la distance radiale du sommet de la dent au cercle primitif. Le creux est la distance de ce cercle à la racine de la dent. Les cercles passant du sommet et de la racine sont appelés le cercle de \textbf{saillie} et de \textbf{creux}. C'est à cause du creux qu'aparaissent les phénomènes d'\textbf{interférences}. \\
+		La somme de la saillie et du creux est la \textbf{hauteur} (normalisée). \\
+		La ligne de contact est celle selon laquelle le point de contact se déplace, c'est la tangente aux cercles de base. 
+		
+		\begin{wrapfigure}[4]{r}{4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.25]{ch1/21}
+		\end{wrapfigure}				 
+	\subsubsection{Longueur d'action}
+		Le point $A$ et $B$ correspondent respectivement au point d'entrée et de sortie de contact, où les cercles de saillie coupent la ligne d'action. La portion de la ligne d'action délimitée par $AB$ s'appelle la \textbf{longueur d'action}.
+		
+	\subsubsection{Distance des centres C}
+		C'est la distance totale entre les centres des deux engrenages qu'on peut calculer selon
+		\begin{equation}
+			C = R_1 + R_2 = \frac{N_1 + N_2}{2P}
+		\end{equation}
+		
+	\subsubsection{Jeu radial}
+		Il a dit qu'on y reviendra la semaine prochaine. 
+		
+		
+	\subsubsection{Crémaillère}
+		On a vu ce cas particulier plus haut. On ne parle plus ici de cercle primitif mais bien de \textbf{ligne primitive} en raison d'un diamètre infini. 
+		
+\subsection{Etude du mouvement du point de contact}		
+	\begin{wrapfigure}[7]{l}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.35]{ch1/22}
+	\end{wrapfigure}				 
+	Les caractéristiques énoncées pour la longueur d'action sont importantes. Rappelons que la ligne d'action est simultanément la tangente aux deux cercles et au point de contact. \\
+	La figure ci-contre nous montre que le pas de base peut aussi être calculer d'une autre manière.\\
 	
+	\begin{proof} \ \\
+		Remarquons que les profils de développante de cercle nous permettent d'égaliser les longueurs 
+
+		\begin{equation}
+			\mbox{arc } EC = EF \qquad et \qquad \mbox{arc } ED = EG
+		\end{equation}				
+		
+		En soustrayant les deux arcs pour avoir l'arc $CD$ on a 
+		\begin{equation}
+			\mbox{arc } CD = p_b = FG
+		\end{equation}				
+	\end{proof}
+	
+	Par ailleurs, il faut s'assurer qu'une paire au moins de dents est en contact. Pour cela on a définit le \textbf{rapport de conduite}
+	\begin{equation}
+	m = \frac{\mbox{longueur d'action}}{\mbox{pas de base}} = \frac{AB}{p_b}
+	\end{equation}
+	On calcule la longueur d'action de la manière suivante
+	\begin{equation}
+		AB = E_1B + E_2A -E_1E_2
+	\end{equation}
+		Par trigonométrie (triangle rectangle) on a, avec $R_o$ désignant les rayons de saillie, les relations
+		\begin{equation}
+		E_1B = \sqrt{R_{o1}^2-R_{b1}^2} \qquad E_1A = \sqrt{R_{o2}^2-R_{b2}^2} \qquad E_1E_2 = E_1P + PE_2 = (R_1 + R_2) \sin \phi
+		\end{equation}
+		En mettant tout ça dans notre équation de base, on a
+		\begin{equation}
+		AB = \sqrt{R_{o1}^2-R_{b1}^2} + \sqrt{R_{o2}^2-R_{b2}^2} - (R_1 + R_2) \sin \phi
+		\end{equation}
+		Le pas de base $p_B$ de l'équation \autoref{eq:1.13} finalise l'expression de $m$
+		\begin{equation}
+			m = \frac{\sqrt{R_{o1}^2-R_{b1}^2} + \sqrt{R_{o2}^2-R_{b2}^2} - (R_1 + R_2) \sin \phi}{2\pi R_b/N}
+		\end{equation}
+		Pour avoir au moins une pair de dents en contact, il faut que $m$ soit supérieur à l'unité. Les manufacturiers conseillent $m = 1.4$ minimum. Si on a par exemple $1.6$, alors 2 dents sont en contact $60 \%$ du temps.
+		
+	\subsection{Interchangeabilité des engrenages}
+		Comment est-ce qu'on peut faire fonctionner les engrenages ? 
+		\begin{enumerate}
+		\item Il faut absolument que les engrenages aient une normale commune. Pour ça, il faut une ligne d'action commune et donc le même angle de pression.
+		
+		\item Il faut que les deux dents puissent s'engrener, donc le même diamètre et donc le même module ou pas diamétrale. 
+		\end{enumerate}		 
+		On pourrait croire que ça suffit, sauf que ça ne marche pas toujours. Les 2 conditions sont nécessaires mais pas suffisantes. La $3\up{ème}$ à vérifier est que $A$ et $B$ soit à l'intérieur de la longueur de contact maximale $E_1E_2$. Si ce n'est pas le cas, on n'est pas sur la ligne de contact commune quand les deux dents entrent en contact. \\
+		On appelle alors \textbf{phénomène d'interférence} le cas où, si le pignon est trop petit par rapport à l'engrenage, la tête de la dent de l'engrenage ne peut s'engager physiquement dans le creux du pignon et va causer de l'érosion à la racine de la dent du pignon.\\
+		Ceci est dû au fait que le cercle de creux est plus petit que le cercle de base et le profil de développante ne commence qu'au cercle de base. Par conséquent, la condition de rapport de vitesse constante n'est plus respectée. En conclusion, on fera attention à ce que 
+		\begin{equation}
+			AP < E_1P \qquad et \qquad PB < E_2P
+		\end{equation}
