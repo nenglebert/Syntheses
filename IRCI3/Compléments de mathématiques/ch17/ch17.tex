@@ -1,0 +1,390 @@
+\chapter{Polynômes orthogonaux, fonctions spéciales et résolution d'ED 
+par séries de puissances}
+
+\setcounter{section}{16}
+\section{Polynômes orthogonaux}
+	\setcounter{subsection}{1}
+	\subsection{Espaces à produit scalaire}
+	Pour toute fonction $w$ continue et positive sur $[a,b]$ :
+	\begin{equation}
+	<a,b> := \int_a^b w\ f\ g^*
+	\end{equation}
+	Celui-ci défini un produit scalaire hermition sur l'EV $C^0([a,b], 
+	\mathbb{K})$ et un presque" produit scalaire sur\footnote{Fonction de 
+	carré sommable si $\int_a^b |f|^2 w < +\infty$.} $L^2([a,b],\mathbb{
+	K})$.\\
+	
+	Soit $E$ un espace pré-hilbertien et $E_n$ un sous-espace de dimension 
+	$n$ de $E$. Notons $pr_{E_n}\ f$ la projection de $f$ sur $E_n$.
+
+	\proposition{$pr_{E_n}\ f$ existe ($n<\infty$) et est la meilleure 
+	approximation de $f\in E$ par un élément de $E_n$ pour $\|\ \|$.}
+	
+	
+	\subsection{Polynômes orthogonaux}
+	Considérons une fonctions poids $w \in C^0(]a,b[,\mathbb{R}_0^+)$ 
+	telle que $\forall n \in \mathbb{N} : \int_a^b |x|^n w(x)dx$ converge. 
+	Soit $E$ l'EV des fonctions continues dans $]a,b[$ et de carré sommable 
+	pour le produit scalaire
+	\begin{equation}
+	<f,g> := \int_a^b f(x)g^*(x)w(x)dx
+	\end{equation}
+	Notons $\|\ \|_2$ la norme $L_2$, la norme en moyenne quadratique. Donc 
+	\begin{equation}
+	E = C^0(]a,b[,\mathbb{R})\cap L_2(]a,b[, \mathbb{R})
+	\end{equation}
+	Un polynôme $p_n$ de degré $n$ est dit \textbf{unitaire} (ou \textbf{
+	monique}) ssi le coefficient de $x^n$ dans $p_n(x)$ vaut 1.\\
+	
+	\theor{\ \\
+	$\forall w, \exists 1!$ suite de polynôme unitaire $(p_n)_{n\in\mathbb{N}}
+	$ tels que
+	\begin{equation}
+	\left\{\begin{array}{l}
+	\text{deg } p_n = n\\
+	p_n \perp p_m\ \text{ si } n \leq m
+	\end{array}\right.
+	\end{equation}}
+	
+	\begin{proof}\ \\
+	$\forall n$ les polynômes $1,x,x^2,\dots,x^n$ sont L.I. dans $\mathcal{P}$. 
+	Il s'agit d'une suite de polynômes unitaires de degré 0,1,dots, $n$. En 
+	appliquant Gram-Schmidt on obtient une suite satisfaisant aux hypothèses.
+	\begin{equation}
+	\begin{array}{ll}
+	p_0 &:= 1\\
+	p_n &:= x^n - \text{proj }_{\mathcal{P}_{n-1}} x^n\\
+	 & = x^n - \sum_{k=0}^{n-1} \frac{<x^n, p_k>}{<p_k,p_k>}p_k
+	\end{array}
+	\end{equation}
+	\end{proof}
+	Voir le théorème 17.31 page 113 également, un peu la flemme.
+	
+	
+	
+	\theor{\ \\
+	$\forall w|_{[a,b]}, p_n$ possède $n$ zéros distincts dans $]a,b[$.}\ 
+	
+	\begin{proof}\ \\
+	Soit $x_1, \dots, x_k$ les zéros de $p_n$ dans $]a,b[$ et leurs 
+	multiplicités $m_1, \dots, m_k$. On a que $m_1 + \dots + m_k 
+	\leq n = $deg $p_n$. Définissons $\epsilon_i := \left\{\begin{array}{ll}
+	0 & \text{si $m_i$ pair}\\
+	1 & \text{si $m_i$ impair}
+	\end{array}\right.$ et construisons le produit suivant 
+	\begin{equation}
+	q(x) :=\Pi_{i=1}^k (x-x_i)^{\epsilon_i}\qquad \text{ deg } q \leq k \leq n
+	\end{equation}
+	Je multiplie $p_n$ par $q$ : si l'exposant est impair je l'augmente d'une 
+	unité et s'il est pair je ne fais rien. Le polynôme $p_nq$ a pour zéros 
+	$x_1, \dots, x_k$ avec comme multiplicité $m_1+\epsilon_1+\dots+m_k+
+	\epsilon_k$, toutes paires. Dans $]a,b[\backslash\{x_1,\dots,x_k\}, p_nq$ 
+	est de signe constant\footnote{??}. On a alors 
+	\begin{equation}
+	<p_n, q> = \int_a^b p_nqw \neq 0
+	\end{equation}
+	Or $p_n \perp \mathcal{P}_{n-1}$ et deg $q \leq n$. On en déduit que deg $q 
+	= n \Longrightarrow k = n$ et tous les $m_i = 1$.
+	\end{proof}
+	
+	
+	\theor{\ \\
+	$\forall f \in E, \forall n \in \mathbb{N}, \exists 1!$ polynôme $q_n \in 
+	\mathcal{P}_n$ tel que $\| f-q_n\| = \min \{\|f-p\|_2; p \in \mathcal{P}_n
+	\} =: d_2(f, \mathcal{P}_n)$}\ \\
+	On dit que $q_n$ est le polynôme de meilleure approximation quadratique de 
+	$f$ à l'ordre $n$.
+	\begin{proof}
+	Cf. Analyse II
+	\end{proof}
+	
+	\theor{\ \\
+	Si $]a, b[$ est \textbf{borné} (!), alors $\forall f \in E : \lim\limits_{n
+	\rightarrow	\infty} \| f - q_n \|_2 = 0$}
+	Cela signifie que l'ensemble $(p_k)_{k\in\mathbb{N}_0}$ est complet 
+	relativement à $E$ ; le développement de Fourier va converger quadratiquement.
+	
+	\begin{proof}\ \\
+	Pour se simplifier la vie, on travaille dans un fermer et $f$ est continue en 
+	$a$ et $b$ : $f \in C^0([a,b])$. Considérons $r_n$, un polynôme de degré au 
+	plus $n$ étant la meilleure approximation \textsc{uniforme} de $f$ dans 
+	$\mathcal{P}_n$ (alors que $q_n$ est le champion en quadratique). On a donc
+	\begin{equation}
+	\begin{array}{ll}
+	\|f - q_n\|_2^2 \leq \|f-r_n\|_2^2 &= \int_a^b |f-r_n|^2w\\
+	 &\leq \| f-r_n\|_\infty^2\int_a^b w
+	\end{array}
+	\end{equation}
+	En effet\footnote{On peut majorer cette fonction par le suprémum de ce carré 
+	et le sortir de l’intégrale. (On majore l'intégrale comme d'hab?)}, par 
+	définition $\|f-r_n\|_\infty^2 = \sup_{[a,b]} |f-r_n|^2$. Par le théorème de 
+	Weirestrass $\| f - r_n\|_\infty^2 \rightarrow 0$ quand $n \rightarrow\infty$.
+	\end{proof}
+	
+
+
+
+\section{Théorème d'approximation de Weierstrass}
+	\subsection{Fonctions continues comme limites uniformes de polynômes}
+	\theor{\ \\
+	Soit $f : [a,b] \rightarrow \mathbb{R}$ une fonction continue. Pour tout $
+	\epsilon>0$, il existe une fonction polynomiale $p$ telle que $\|f-p\|_\infty 
+	< \epsilon$}\ \\
+	Autrement dit, $\forall \epsilon > 0, \exists$ polynôme $p(x)$ tel que 
+	\begin{equation}
+	\forall x \in [a,b] : p(x) - \epsilon \leq f(x) \leq p(x)+\epsilon
+	+
+	\end{equation}
+	
+	\subsection{Suites de Dirac}
+	On définira l'outil de Dirac 
+	\begin{equation}
+	\varphi_n(x) := \left\{\begin{array}{ll}
+	0 & \text{ si } x \notin [-1,1]\\
+	\mu_n(1-x^2)^n & \text{ si } x \in [-1,1]	
+	\end{array}\right.
+	\end{equation}
+	où $\mu_n$ est un réel tel que $\int_{-1}^1 \varphi_n = 1$ et donc 
+	\begin{equation}
+	\int_{-\infty}^\infty \varphi_n = 1
+	\end{equation}
+	On peut prouver qu'il $\exists\mathcal{C} : \mu_n \leq \mathcal{C}\sqrt{n}$.\\
+	
+	
+	\subsection{Polynôme $p_n$ d'approximation "à la Dirac"}
+	Supposons que $a$ et $b$ sont compris entre 0 et 1 (par changement de variable 
+	par exemple), ceci n'est pas restrictif. Définitions le produit de convolution 
+	suivant (et utilisons l'outil de Dirac) :
+	\begin{equation}
+	\begin{array}{ll}
+	\forall \xi \in [a,b] : p_n(\xi) &:= \int_0^1 f(x)\varphi_n(x-\xi)dx\\
+	 &= \mu_n\int_0^1 f(x)(1-(x-\xi)^2)^ndx
+	\end{array}
+	\end{equation}
+	où $(1-(x-\xi)^2)^n$ est un polynôme en $\xi$ de degré $2n$.\\
+	Deux cas :
+	\begin{enumerate}
+	\item Si $x \notin V_\xi$, alors $\varphi_n(x-\xi).f(x) \approx 0$ au point 
+	que l'$\int = 0$. En effet, $\varphi_n(x-\xi)$ est très centrée autour de 
+	$\xi$. Si on en est loin, le produit est forcément proche de zéro.
+	\item Si $x \in V_\xi$, on remplace brutalement $f(x)$ par $f(\xi)$ et on peut 
+	le sortir de l'intégrale. Il ne reste que l'intégrale de $\varphi_n$ près de $x$ 
+	et celle ci $\approx 1$
+	\begin{equation}
+	\int_{V_\xi} f(x).\varphi_n(x-\xi)dx \approx f(\xi)\int_{V_0}\varphi_n \approx 
+	f(\xi)
+	\end{equation}
+	\end{enumerate}
+	
+\setcounter{section}{8}
+\section{L'ELD de Tchebychev}
+	\subsection{Présentation trigonométrique des polynômes de Tchebychev}
+	On peut utiliser la formule du binôme de Newton sur le deuxième membre de la 
+	formule d'Euler $\cos(n\theta) + i\sin(n\thetaà = (\cos\theta + i\sin\theta)^n
+	$. On obtient alors : 
+	\begin{equation}
+	\cos^n\theta + n\cos^{n-1}\theta(i\sin\theta) + \left(\begin{array}{c}
+	n\\
+	2
+	\end{array}\right) \cos^{n-2}\theta(i\sin\theta)^2 + \dots + (i\sin\theta)^n
+	\end{equation}
+	En identifiant les parties réelles des deux membres :
+	\begin{equation}
+	\cos(n\theta) = \text{ combili}(\cos^{n-2k}\theta\underbrace{(i\sin\theta)^{2
+	k}}_{(-1)^k(1-\cos^2\theta)^k})
+	\end{equation}
+	soit un polynôme en $\cos\theta$.\\
+	On définit le $n^e$ polynôme de Tchebychev à partir de $\cos n\theta =: T_n(\cos
+	\theta)$ où $T_n$ est défini sur $[-1,1]$. Autrement dit :
+	\begin{equation}
+	T_n(x) = \cos(n\arccos x)
+	\end{equation}
+	Ceci revient par exemple à considérer $T_n(\cos\theta)$ comme le développement de $\cos n\theta$ sous forme de polynôme en $\cos\theta$.
+	Le polynôme $T_n : \mathbb{R}\rightarrow\mathbb{R}$ de degré $n$ en $x\in\mathbb{R}$ 
+	est obtenu en prolongeant $T_n|_{[-1,1]}$. Il n'est \textbf{pas} unitaire et est 
+	normé pour la norme sup.
+	
+	\begin{equation}
+	\|T_n\|_{\infty,[-1,1]} = \sup_{x \in [-1,1]}|T_n(x)| = \sup_{\theta \in [0,\pi]} 
+	|\cos n\theta| = 1
+	\end{equation}		
+	
+	La fonction $y = \cos(n\theta)$ est solution de 
+	\begin{equation}
+	\frac{d^2y}{d\theta^2} + n^2y = 0
+	\end{equation}
+	En posant $x:= \cos\theta \rightarrow \tilde{y}(x) = y(\cos n\theta)$ on obtient 
+	l'\textbf{EDL de Tchebychev}
+	\begin{equation}
+	(1-x^2)\frac{d^2\tilde{y}}{dx^2} - x\frac{d\tilde{y}}{dx} + n^2\tilde{y} = 0
+	\end{equation}
+	Une telle EDL (si $n^2 \in \mathbb{R}^+$) admet une solution $\tilde{y}$ dont la 
+	dérivée est bornée pour $x\rightarrow 1 \Leftrightarrow n^2$ est un carré parfait 
+	$\Leftrightarrow \tilde{y}$ est un polynôme de Tchebychev de degré $n$.
+	
+	\setcounter{subsection}{3}
+	\subsection{Quelques propriétés des polynômes de Tchebychev}
+	Voir syllabus page 54 et slide 26.\\
+	Les polynômes unitaires de Tchebychev sont $2^{1-n}T_n$, c'est-à-dire que $\|T_n
+	\|_{\infty, [-1,1]} = \|\cos(n\theta)\|_{\infty, [0,\pi]} = 1$. Donc 
+	\begin{equation}
+	\|2^{1-n}T_n\|_{\infty,[-1,1]} = 2^{1-n} = \left(\frac{1}{2}\right)^{n-1}
+	\end{equation}
+	Ce polynôme réalise le minimum pour cette norme, c'est le "champion" : celui 
+	possédant la plus petite distance dans l'espace des polynômes unitaires est 
+	donné par Tchebychev.\\
+	On en tire la \textit{Proposition du \textbf{minimax}}\\
+	\proposition{Dans $\mathcal{P}\mathcal{U}_n$, les polynômes unitaires de degré 
+	$n > 0$ :
+	\begin{enumerate}
+	\item $2^{1-n}T_n$ minimise $\|\ \|_{\infty,[-1,1]}$ dans l'ensemble des 
+	polynômes unitaires.
+	\item $\|2^{1-n}T_n\|_{\infty,[-1,1]} = 2^{1-n} = \left(\frac{1}{2}\right)^{n-1}$
+	\end{enumerate}
+	}
+	\begin{proof} [Démonstration par l'absurde]\ \\
+	Supposons $P$, un polynôme unitaire dont la norme est plus petite, encore 
+	meilleur que celui de Tchebychev : $\|P\|_{\infty, [-1,1]} < 2^{1-2}$. L'équation
+	\begin{equation}
+	2^{1-n}T_n(x) = 2^{1-n}\cos n\theta
+	\end{equation}
+	prends les valeurs $2^{1-n}, -2^{1-n}, 2^{1-n}, \dots, (-1)^n2^{1-n}$ aux points 
+	$\theta = 0, \pi/n, 2\pi/n, \dots, n\pi/n$. Comme $P$ est la meilleure 
+	approximation, la fonction $Q(x)$ ci-dessous est forcément positive (l'autre 
+	terme étant forcément plus grand)
+	\begin{equation}
+	Q(x) := 2^{1-n}T_n(x) - P(x)
+	\end{equation}
+	$Q(x)$ a le même signe que $2^{1-n}$ en ces points, donc $Q$ à au moins $n$ 
+	zéros sur $[-1,1]$. Or, deg $Q \leq n-1.$ (car $2^{1-n}T_n$ et $P$ sont unitaires, 
+	du coup le terme avec le facteur 1 disparaît d'office : degré $n-1$). On a 
+	contradiction.
+	\end{proof}
+	
+
+\setcounter{section}{18}
+\section{Quadratures et polynômes orthogonaux}
+	\setcounter{subsection}{6}
+	\subsection{Quadrature par interpolation}
+	On préfère le mot quadrature à interpolation. Ces méthodes consistent à 
+	approcher l'intégrale $\int_a^b fw$ par une formule d'interpolation
+	\begin{equation}
+	\int_a^b fw \approx \sum_{k=0}^l A_k f(x_k)
+	\end{equation}
+	où les $A_k$ sont les coefficients d'interpolation.
+	\subsection{Méthode de quadrature $M_{l,X}$}
+	Supposons que l'on possède $l$ points $x_0,\dots, x_l$. Soit $P_l(x_k) \approx 
+	f(x)$, le polynôme d'interpolation de degré $\leq l$ par les $(x_k, f(x_k))$. 
+	Au différents points connus, $f(x_k) = P_l(x_k) \forall k =0,\dots,l$.\\
+	On associe un \textit{polynôme de Lagrange} aux points $x_0,\dots,x_l$. Soit 
+	$L_k(x) :=$ le polynôme de degré $l$ tel que $\left\{\begin{array}{ll}
+	L_k(x_k) &= 1\\
+	L_k(x_j) &= 0\ \forall j \neq k
+	\end{array}\right.$ On l'écrit 
+	\begin{equation}
+	L_l(x) = \prod_{j=0,\dots,l;j\neq k} \frac{x-x_j}{x_k-x_j}
+	\end{equation}
+	Le \textbf{polynôme d'interpolation} est combili des polynômes de Lagrange 
+	\begin{equation}
+	P_l(x) = \sum_{k=0}^l f(x_k)L_k(x)
+	\end{equation}
+	Par exemple, pour $l=1 : P_1(x) = f(x_0)L_0(x) + f(x_1)L_1(x)$. Cette fonction 
+	vérifie bien les points donnés : $P_1(x_0) = f(x_0)*1 + 0, \dots$. Cette fonction 
+	$P_l(x)$ va alors servir à approcher des fonctions dont on connaît une série 
+	de points.\\
+	Ici l'idée est d'approcher $\int_a^b fw$ par $\int_a^b P_lw$ :
+	\begin{equation}
+	\begin{array}{ll}
+	\int_a^b fw \approx \int_a^b P_l(x)w(x) dx &= \int_a^b \sum_{k=0}^l f(x_k)
+	L_k(x)w(x)dx\\
+	 &= \sum_{k=0}^l f(x_k)\int_a^b L_k(x)w(x) dx\\
+	 &= \sum_{k=0}^l f(x_k)\ A_k := M_{l,X}(f)
+	\end{array}
+	\end{equation}
+	Il s'agit de la méthode $M_{l,\{x_0,\dots,x_l\}}$. L'approximation est fournie 
+	par la somme ci-dessous où les $A_k$ sont calculés indépendamment de $f$.\\
+	
+	\lemme{L'ordre de toute méthode de quadrature $M_{l,X}$ (par interpolation) est 
+	$\geq l$.}\ \\
+	Cela signifie que si on prend un polynôme de degré au plus $l$, l'approximation 
+	sera parfaite.
+	
+	\begin{proof}\ \\
+	Les points $x_0, \dots, x_l$ sont donnés. Si $f$ est un polynôme de degré $\leq 
+	l$, alors $f$ \textbf{est} le polynôme d'interpolation de $f$ par les points 
+	$x_0,\dots, x_l$. Donc
+	\begin{equation}
+	\int_a^b fw = \sum_{k=0}^l f(x_k)A_k
+	\end{equation}
+	\end{proof}
+	
+	\subsection{Méthode de Gauss}
+	\proposition{La méthode de quadrature par interpolation $M_{l,X}$ est d'ordre 
+	$2l+1$ ssi les points d'interpolations $x_0,\dots,x_l$ sont les zéros du 
+	$(l+1)^{\text{ème}}$ polynôme (noté $P_{l+1}$) dans la suite des polynômes 
+	unitaires orthogonaux 	de degrés croissants pour le produit scalaire $<f,g> 
+	= \int_a^b fgw$.}\ \\
+	Si $w=1$, on parlera de la \textit{méthode de Gauss}.
+	
+	\begin{proof}\ \\
+	Définissons le polynôme unitaire $\alpha$ de degré $l+1$ : $\alpha(x) := (x-x_0)
+	(x-x_1)	\dots(x-x_l) \perp_w \mathcal{P}_l$. Par hypothèse si l'ordre $\geq 2l+1$ 
+	j'obtiens la solution exacte :
+	\begin{equation}
+	\forall f \in \mathcal{P}_{2l+1} : \int_a^b fw = \sum_{k=0}^l f(x_k)A_k\qquad 
+	\text{ où } A_k = \int_a^b L_k(x)w(x)dx
+	\end{equation}
+	Notons que comme $\alpha'(x) = \prod_{j\neq l} (x_k-x_j)$, on a 
+	\begin{equation}
+	L_k(x) = \frac{\alpha(x)/(x-x_k)}{\alpha'(x)}
+	\end{equation}
+	Si $Q \in \mathcal{P}_l$ un polynôme quelconque\footnote{Attention, $\mathcal{P}_l$ 
+	ne désigne pas seulement les polynômes unitaires!} de degré $\leq l : \alpha Q \in 
+	\mathcal{P}_{2l+1}$, d'où
+	\begin{equation}
+	\int_a^b \alpha Q w = \sum_{k=0} \underbrace{\alpha(x_k)}_{=0}Q(x_k)A_k = 0
+	\end{equation}
+	$\Longrightarrow \forall Q \in \mathcal{P}_l : \alpha \perp_w Q \Rightarrow 
+	\alpha \perp_w \mathcal{P}_l \Rightarrow \alpha = P_{l+1}$.
+	\end{proof}
+	
+	
+	\proposition{Toute méthode de quadrature par interpolation en $x_0, \dots, 
+	x_l$ est d'ordre $\leq 2l+1$.}	\ \\
+	
+	\begin{proof} [Démonstration par l'absurde]\ \\
+	Par le même raisonnement : $\alpha \perp_m \mathcal{P}_{l+1}$ et donc $\alpha 
+	\perp_m \alpha$, ce qui est absurde.
+	\end{proof}
+	
+	\theor{\ \\
+	Les méthodes de quadrature par interpolation polynomiales en $l+1$ points 
+	sont d'ordre $\sigma : l \leq \sigma \leq 2l+1$.}\ \\
+	
+	\begin{proof}
+	Voir les trois lemmes précédents.
+	\end{proof}
+	
+	\theor{\ \\
+	La méthode $M_{l,X}$ est d'ordre maximal $(2l+1)$ ssi les points d'interpolation 
+	$x_0, \dots, x_l$ sont les zéros du polynôme $P_{l+1}$ de degré $l+1 \perp_m 
+	\mathcal{P}_l$ pour le produit scalaire\dots}\ \\
+
+	\begin{proof}
+	Voir lemmes précédents	
+	\end{proof}
+	
+	\proposition{Si $\alpha \perp_m \mathcal{P}_l$, alors la méthode est d'ordre 
+	$\geq 2l+1$.}
+	
+	\begin{proof}
+	Voir page 136.
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	
