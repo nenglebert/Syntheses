@@ -1,42 +1,31 @@
-\documentclass[12pt, a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[french]{babel}
+%Auteurs : Nicolas Englebert
+\documentclass	[11pt, a4paper, openany]{book}
 
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{mathrsfs}
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\usepackage{listings}
-\usepackage[left=3cm,right=3cm,top=2.7cm,bottom=3cm]{geometry}
-\usepackage{url}
-\usepackage{ulem}
+% Règles de bonne pratiques :
+% https://fr.wikibooks.org/wiki/LaTeX/Gestion_des_gros_documents
 
-\usepackage{hyperref} \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black,}
-
-\usepackage[toc]{multitoc}
-
-\setcounter{tocdepth}{2}
-
-\author{Nicolas \bsc{Englebert}}
-\title{Synthèse du cours Mécanique rationelle I}
-\date{Février 2014}
-
-
-
+\input{preambule.tex}
+\usepackage{cancel}
 \begin{document}
-\renewcommand{\proofname}{Démonstration}
-\maketitle
+\def\equationautorefname~#1\null{%
+  (#1)\null
+}
+%%%%%%%%%%%%%%%%%
+% Préliminaires %
+%%%%%%%%%%%%%%%%%
+\frontmatter
+\input{titlepage/titlepage.tex}
+\input{APropos.tex}
 \tableofcontents
-\newpage
+%Si abstract, \input ici
 
+%%%%%%%%%%%%%%%%%%%%%
+% Contenu principal %
+%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
 \section{Statique du solide}
 \subsection{Introduction}
-L'ojbet de la statique est l'étude des conditions d'équilibre. Un \textit{point matériel} est dit en équilibre lorsqu'il reste indéfiniment au repos lorsqu'il est abandonné sans vitesse.
+L'objet de la statique est l'étude des conditions d'équilibre. Un \textit{point matériel} est dit en équilibre lorsqu'il reste indéfiniment au repos lorsqu'il est abandonné sans vitesse.
 
 \subsection{Définitions}
 \subsubsection{Solide ou corps}
@@ -46,7 +35,7 @@ Il s'agit de tout ensemble indéformable de points matériels.
 Un solide est dit \textit{libre} s'il peut se déplacer librement. Dans le cas contraire il sera dit \textit{lié} car soumis à des contraintes matérielles appelées \textit{liaisons}.
 
 \subsubsection{Degré de liberté}
-Le nombre de dégrés de liberté d'un solide est le nombre nécessaire et suffisant de paramètres indépendants permettant de déterminer la position de tous les points de ce corps.\\\\
+Le nombre de degrés de liberté d'un solide est le nombre nécessaire et suffisant de paramètres indépendants permettant de déterminer la position de tous les points de ce corps.\\\\
 \textit{NB : } Dans le plan : 3 DDL. Dans l'espace : 6 DDL.
 
 \subsubsection{Déplacement d'un solide}
@@ -484,10 +473,26 @@ Celui-ci concerne les accélérations.
 \item $\vec{j}_{rel}$ = $\frac{d^2\vec{O'P}}{dt^2}|_{rel} = \frac{d\vec{v}_{rel}}{dt}$
 \item $\vec{j}_{entr}$ =  $\vec{j}_{O'} + \vec{\epsilon}\times \vec{O'P} + \vec{\omega}(\vec{\omega}\times\vec{O'P})$
 \end{itemize}
-
+où $\vec{\epsilon}(t)$ est la dérivée de $\vec{\omega}(t)$ par rapport au temps.
 \newpage
 \section{Dynamique du point}
-Semaine prochaine ! 
+\$
+
+%%%%%%%%%%%%%%%%%
+% Bibliographie %
+%%%%%%%%%%%%%%%%%
+%\newpage
+%\chapter{Bibliographie}
+%\nocite{*}
+%\printbibliography[heading=none]
+
+%%%%%%%%%%%
+% Annexes %
+%%%%%%%%%%%
+\appendix
+%\input{annexes/annexe1.tex}
 
 
-\end{document} 
+\end{document}
+
+
