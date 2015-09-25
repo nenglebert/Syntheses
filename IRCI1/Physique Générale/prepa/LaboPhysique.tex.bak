@@ -1,0 +1,1002 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage[french]{babel}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=2cm]{geometry}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{tikz} 
+\usepackage{verbatim} 
+
+\usepackage{hyperref} \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black,}
+
+\usepackage[toc]{multitoc}
+
+\setcounter{tocdepth}{2}
+
+\author{Nicolas \bsc{Englebert}}
+\title{Physique Générale : Rapport de laboratoire}
+\date{Mars 2014}
+
+
+
+\begin{document}
+\renewcommand{\proofname}{Démonstration}
+\maketitle
+\tableofcontents
+\ \\ \\ \\ \\
+\begin{comment}\ \\
+\section*{A propos de ce rapport}
+Avant tout, merci à Maxime \textsc{Libert} et Nicolas \textsc{Dardenne} qui ont écrit le rapport original avec moi, je n'ai ensuite fait que le numériser et le compléter grâce aux notes de Cédric \textsc{Hannotier} et (ne mentons pas) à internet.\\
+
+Chaque manipulation contient avant tout un petit rappel théorique (formules utiliser, quelques explications complémentaires) suivi ensuite de la manipulation (elles aussi gonflées par quelques explications en plus).\\
+
+Si vous voyez des erreurs, n'hésite pas à me le dire ;\textit{ nicolas.englebert@ulb.ac.be}\\
+En espérant que ça vous aide, bonne étude ! \\
+
+\ \\
+
+\ \\
+\end{comment}
+\begin{center}
+
+\end{center}
+
+\newpage
+\section{Voltmètre et ampèremètre}
+\subsection{Rappel théorique}
+\subsubsection{Notions de base}
+Avant toute chose, définissions ce avec quoi nous allons travailler.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image8.png}
+\end{center}
+Sur ce magnifique schéma, nous avons un \textit{générateur de tension continue} ($V_G$), une \textit{résistance} ($R$), un \textit{ampèremètre} ($A$) en série et un \textit{voltmètre} ($V$) placé en parallèle.\\
+Le sens du courant est conventionnel : $+ \rightarrow -$.
+
+\subsubsection*{Loi d'Ohm}
+Petit rappel de l'électrostatique :
+$$V = RI$$
+
+\subsubsection*{Loi de Kirchoff}
+Deux lois sont à retenir (et genre vraiment, pas pour rire) : 
+\begin{description}
+\item[Loi des nœuds] Un \textit{nœud} d'un circuit électrique est l'endroit où entrent un ou plusieurs fils électriques, et dont sortent un ou plusieurs fils électriques. La loi des nœuds stipule que la somme des intensités des courants électriques entrants est égale à la somme des intensités des courants électriques sortants.
+\item[Loi des mailles] Une \textit{maille} d'un circuit électrique est constitué d'une succession de fils et éléments électriques formant un sous-circuit fermé. La loi des mailles stipule que la somme des d.d.p. (toutes prises dans le même sens) le long de la maille est nulle.
+\end{description}
+
+
+\subsubsection*{Association de résistances}
+Les résistances en série obéissent à la relation :
+$$R = R_1 + R_2$$
+alors que les résistance en parallèle suivent plutôt celle-ci :
+$$\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$$
+
+\subsubsection*{Diviseur de tension}
+Quand deux résistances sont placées en séries, la tension fournie se sépare en deux.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image9.png}
+\end{center}
+\begin{enumerate}
+\item Une fraction $V_1 = R_1I$
+\item Une fraction $V_2 = R_2I$
+\end{enumerate}
+Comme on sait que la d.d.p. vaut la somme des d.d.p. on peut écrire : 
+$$V_1 = \frac{R_1}{R_1 + R_2}V_G\ \ \ \ \ V_2 = V_G - V_1$$
+
+\subsubsection*{Diviseur de courant}
+Le principe est identique : le courant sera divisé en deux.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image10.png}
+\end{center}
+Comme le courant total vaut la somme des courants, on peut écrire : 
+$$I_1 = \frac{R_2}{R_1 + R_2}I_G\ \ \ \ \ \ I_2 = I_G - I_1$$
+
+\subsubsection*{Voltmètre}
+On peut diviser la tension à l'aide du principe vu ci-dessus. On mesurera ainsi une "portion" du courant qu'il faudra multiplier par un certain facteur pour obtenir la mesure réelle.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image11.png}
+\end{center}
+Le diviseur de tension, dans ce cas, donne :
+$$V_0 = \frac{R_p}{R_p + R_s}V_N$$
+
+\subsubsection*{Ampèremètre}
+Le principe est similaire à celui du voltmètre.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image12.png}
+\end{center}
+Le courant passant $I_N$ passe entièrement dans $R_P$.
+$$V_0 = R_pI_N$$
+
+\subsection{Partie expérimentale}
+\subsubsection*{Association de résistance}
+\textbf{Mesure expérimentale 1}\\
+Les mesures correspondent bien aux prédictions théoriques.\\
+
+\textbf{Mesure expérimentale 2}\\
+Diminuer le calibre augmente la précision des mesures. Quand on tente de mesurer $R_3$ on obtient 1. Ceci est dû au fait que la résistance que l'on essaye de quantifier est supérieure au calibre choisi.
+
+\subsubsection*{Générateur de tension continue}
+\textbf{Mesure expérimentale 3}\\
+Peut importe l'endroit ou on mesure la tension, on obtient toujours $9,99 V$. C'est normal, car en utilisant un générateur de tension continue, la tension est la même partout.
+
+\subsubsection*{Le diviseur de tension}
+Dans un tel circuit, on peut calculer l'expression de la différence de potentiel aux bornes de la résistance de droite de la façon suivante = 
+$$V = \frac{R_1}{R_1 + R_2}V_S$$
+Les tensions aux bornes de $R_I$ devrait valoir 8V, aux bornes de $R_3$ 2V et au générateur $V_G = 10V$ (formule ci-dessus).\\
+Ces mesures sont bien vérifiées en pratique. La valeur du potentiel est plus faible après la première résistance, car celle-ci diminue déjà le potentiel.
+
+\subsubsection*{Le diviseur de courant}
+L'expression du courant $I$ dans la résistance de droite s'exprime : 
+$$I = \frac{R_2}{R_1 + R_2}I_G$$
+Les prédictions théoriques se font grâce à $V = RI$. De cette façon, on obtient $5.10^{-3} A$ pour $R_1$ et $2.10^{-3} A$ pour $R_3$. Au bornes du générateur, $I_G = \frac{V_G}{R_{tot}}
+$.
+$$I_G = \frac{10}{\left(\frac{1}{20000} + \frac{1}{5000} \right)^{-1}} = 2,5.10^{-3} A$$
+Expérimentalement, ces mesures sont vérifiées. On voit que $I_G = I_1 + I_2$. 
+On peut également voir que $I_1 < I_2$ car $R_1 > R_2$ (c'est proportionnel).
+
+\subsubsection*{Réalisation d'un voltmètre de calibre donné}
+Tout d'abord, voici l'expression de $R_S$ :
+$$R_S = \frac{V_n R_P}{V_0} - R_P$$
+et l'expression de $R_N$ :
+$$R_N = \frac{V_n R_P}{V_0} = R_p + R_S$$
+Avec les données fournies dans l'énoncé, l'expression de $R_S$ trouvée ci-dessus devient : 
+$$R_S = 10\ R_P$$
+
+\subsubsection*{Utilisation du voltmètre réalisé}
+\textbf{Partie Pratique 9}\\
+Après réalisation de cette partie pratique, on remarque que l'intensité (A) augmente, car un introduit notre voltmètre qui fait diminuer la résistance totale. Il faut donc augmenter au maximum la résistance de notre voltmètre pour éviter qu'il n'influence le système. (Le voltage lui reste inchangé)\\
+
+Avec cette forte résistance, peu de courant passerait par elle : le système ne serait pas perturbé et le peu de courant passant est suffisant pour déterminer la différence de potentiel. \\
+Une résistance idéale serait donc infinie.
+
+\subsubsection*{Réalisation d'un ampèremètre de calibre donné}
+Comme dit dans le rappel théorique, $I_N$ passe entièrement dans $R_P$.
+$$V_0 = R_P I_N$$
+L'expression analytique de $R_P$ vaut donc $\frac{V_0}{I_N}$.\\
+
+Pour déterminer la résistance interne de notre ampèremètre on procède comme suit : 
+$$\frac{1}{R_N} = \frac{1}{R_P} + \underbrace{\frac{1}{R_V}}_{= 0} = \frac{1}{R_P}\ \ \Rightarrow R_N = R_P$$
+Comme $R_V >> R_P$, on peut dire que la participation de $R_V$ dans la résistance totale est nulle.\\
+
+On peut conclure que la résistance d'un ampèremètre idéal doit être la plus faible que possible, idéalement elle devrait valoir $0\ \Omega$. Ceci est "logique" dans le sens ou l'ampèremètre étant placé en série, il ne faudrait pas que sa résistance interne "fausse" les calculs.
+
+
+
+
+
+
+
+\newpage
+\section{Charge et décharge du condensateur}
+\subsection{Rappel théorique}
+\subsubsection*{Charge du condensateur}
+Un condensateur sert à stocker des charges. Quand celui-ci acquiert une charge $+Q$ sur une plaque $-Q$ sur l'autre, une différence de potentiel s'établit : 
+$$Q = CV_C$$
+\textbf{Attention !} Le condensateur attire les charges + sur une plaque et repousse ainsi les "+" de la charge opposée. Même si aucune charge ne traverse l'espace entre les plaques, un courant $I_{ch}$ s'installe dans le circuit RC.\\
+
+Il va y avoir déplacement de charge jusqu'au moment ou la tension d'une plaque vaut celle de l'autre : $V_C = V_g = V_0$. \textbf{Intuitivement} on s'attend à une augmentation de la différence de potentiel au bornes de $C$ très rapide au début, puis de plus en plus lente.
+
+\begin{center}
+\includegraphics[scale=0.5]{labo/image13.png}
+\end{center}
+
+Pour prouver ceci de façon plus formelle, on part du fait que $V_0 = V_R + V_C$. Connaissant la loi d'Ohm et la relation citée un peu plus haut, on peut écrire :
+$$V_0 = RI + \frac{Q}{C}$$
+Comme $Q$ et $I$ sont fonction du temps, en dérivant de part et d'autre (sachant que $dQ/dt = I$): 
+$$\underbrace{\frac{dV_0}{dt}}_{V_0 = cste} = 0 = R\frac{dI}{dt} + \frac{I}{C}$$
+D'où on tire : 
+$$\frac{dI}{dt} = - \frac{1}{RC}I$$
+Ce qui donne après intégration : 
+$$I(t) = I_0e^{\frac{-t}{RC}}$$
+
+où $I_0$ est le courant qui passe dans le circuit quand $t = 0$.
+
+En réinjectant le tout dans l'équation du départ et en utilisant $I_0 = V_0/R$ :
+$$V_C = V_0 - R\frac{V_0}{R}e^{-\frac{t}{RC}}$$
+
+On peut ainsi trouver les équations de la charge et celle du courant dans le circuit : 
+$$V_C(t) = V_0\left(1-e^{-\frac{t}{RC}}\right)\ \ \ \ \ I(t) = I_0e^{-\frac{t}{RC}}$$
+où $\tau = RC$ qui est appelé \textit{constante de charge}.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image14.png}
+\end{center}
+
+\subsubsection*{Décharge du condensateur}
+Supposons qu'en $t = 0$ le condensateur soit chargé. Le générateur n'intervient plus dans l'équation, la branche du circuit sur laquelle il se trouve est ouverte.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image15.png}
+\end{center}
+Lors de la décharge, une charge + de la plaque supérieure va aller traverser la résistance $R$ et aller neutraliser une charge - de l'autre plaque jusqu'à ce que le condensateur soit déchargé (plus de charge sur les plaques).\\
+En faisant le même raisonnement que ci-dessus mais pour la décharge on obtient : 
+$$V_C(t) = V_0e^{-\frac{t}{RC}}$$
+$$I(t) = I_0e^{-\frac{t}{RC}}$$
+\begin{center}
+\includegraphics[scale=0.5]{labo/image16.png}
+\end{center}
+
+\newpage
+\subsection{Partie expérimentale}
+\textbf{Avant les manipulations}\\
+Le temps de demi-vie de la charge est le temps nécessaire pour que la tensions aux bornes du condensateur atteigne la moitié de sa valeur maximale, c'est-à-dire que $V = V_0/2$, $V_0$ étant l'amplitude maximale.
+\begin{proof}
+$$\frac{V_0}{2} = V_0 \left(1-e^{-\frac{t}{RC}}\right)$$
+$$1 - e^{-\frac{t}{RC}} = \frac{1}{2}$$
+$$e^{-\frac{t}{RC}} = \frac{1}{2}$$
+$$\tau_{1/2} = RC\ ln(2)$$
+\end{proof}
+
+\textbf{Partie Pratique 1}\\
+En règlant l'oscilloscope, on obtenait quelque chose dans ce genre la :
+\begin{center}
+\includegraphics[scale=0.5]{labo/image17.png}
+\end{center}
+L'utilité d'un signal en créneaux est de simuler la présence d'un interrupteur passant par intervalle de temps régulier sur \textit{ON}, puis \textit{OFF}, ... \\
+
+\textbf{Partie Pratique 2}\\
+Voici les résultats expérimentaux recueillis selon les trois méthodes : 
+\begin{center}
+ \begin{tabular}{|c|c|c|}
+\hline 
+\textbf{Méthode} & \textbf{Période} (ms) & \textbf{Amplitude} (V) \\ 
+\hline 
+\textit{Graduations} & 150 & 2,5 \\ 
+\hline 
+\textit{Curseurs} & 100 & 2,64 \\ 
+\hline 
+\textit{Programmes} & 100,5 & 2,8 \\ 
+\hline 
+\end{tabular}
+\end{center}
+La méthode semblant être la plus précise est la troisième, soit les mesures programmées au sein de l'oscilloscope.\\
+
+\textbf{Partie Pratique 3}\\
+Avant tout, définissions ce qu'est un câble coaxial. Un tel câble est constitué d'un conducteur intérieur cylindrique plan et d'un conducteur extérieur creux séparé par un matériau isolant. Le potentiel du conducteur extérieur est constant : c'est celui de référence nommé "masse". On le retrouve à la borne \textbf{noire} de l'extrémité du câble coaxial insérer dans le circuit.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image18.png}
+\end{center}
+\textbf{Attention !} Un circuit compte deux de ces "câbles noirs". Ces deux-ci sont reliés l'un à l'autre, c'est-à-dire qu'entre eux deux ils créent une différence de potentiel nulle !\\
+
+
+Revenons à nos moutons. Lorsque l'on connecte donc deux connecteurs coaxiaux, on doit s'arranger pour que leurs points de masses soient branchés au même endroit sinon on créerait une "zone de potentiel nul" ai sein du circuit.\\
+
+\textit{Expliquer l'influence de la largeur du créneau (demi-période du signal carré). À quelles conditions va-t-on observer des signaux de charge et de décharge complets ?}\\
+Après avoir monté un circuit RC et l'avoir alimenté, l'oscilloscope affiche le résultat suivant : 
+\begin{center}
+\includegraphics[scale=0.3]{labo/image19.png}
+\end{center}
+Ceci représente bien un signal de charge et de charge complet (même deux.\\
+Si le créneau est grand, on a plus facile à observer les signaux de charge et de décharge. Attention néanmoins, si le créneau est trop large, on ne peut observer tout la charge/décharge.\\
+Il faut également que le créneau soit assez large, sinon le condensateur commencera sa décharge alors qu'il n'était pas complètement chargé.\\
+
+\textbf{Partie Pratique 4}
+Les réglages effectués, voici une courbe de décharge : 
+\begin{center}
+\includegraphics[scale=0.5]{labo/image22.png}
+\end{center}
+En prenant une série de points et en les plaçant sur papier semi-logarithmique ($VC/t$) on obtient une relation linéaire : le graphique vérifie donc la loi.\\
+La constante de charge théorique $\tau{th} = R.L$ ce qui dans notre cas fait : $40.000 * 100 * 10^{-9} = 4*10^{-3}$.\\
+L'expression à linéariser est la suivante : 
+$$log\left(\frac{V_C}{V}\right) = \frac{-log()}{RC}t + log\left(\frac{V_0}{V}\right)$$
+Celle-ci se linéarise facilement en portant $log(Vc/V)$ on ordonnée et $t$ en abscisse.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image23.png}
+\end{center}
+Graphiquement, ce temps de charge théorique correspond à la pente de notre droite.\\
+
+\textbf{Partie Pratique 6}\\
+En mesurant la tension aux bornes de la résistance, on obtient la courbe suivante pour la charge :
+\begin{center}
+\includegraphics[scale=0.5]{labo/image21.png}
+\end{center}
+Lors de la décharge, la tension au générateur est nulle : $V_G = 0$. La loi des mailles s'écrit alors $V_G = V_C + V_R = 0$, c'est-à-dire que $V_R = - V_C$ ce qui se vérifie bien sur le graphique ci-dessus.\\
+
+\textbf{Partie Pratique 7}
+Comme $ln(I)$ est porté en ordonnée, les points expérimentaux se placent selon une droite d'origine $ln(I_0)$ et de pente $-\frac{1}{RC}$.
+
+De façon théorique, on peut calculer $I_{0, th}$ en partant de la loi d'Ohm $V/R = 38*10^{-4}\ A$.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image24.png}
+\end{center}
+
+ Graphiquement, sil s'agit de la pente de la droite.\\
+
+\textbf{Partie Pratique 8}\\
+\textbf{Si} on double la valeur de la capacité du condensateur, le temps de demi-vie augmente d'un facteur deux. \textbf{Si} on double la valeur de la résistance de décharge, le temps de demi-vie augmente d'un facteur deux. Si on double la valeur de la capacité du conducteur et que l'on divise par deux la valeur de la résistance le temps de demi-vie ne change pas de valeur.\\
+\textit{Le temps de décharge est proportionnel à R et C}. C'est normal, la relation du temps de charge étant $\tau = RC$.
+
+\textbf{Partie Pratique 9}\\
+La loi d'association de condensateur en parallèle est : 
+$$C = C_1 + C_2$$
+et en série : 
+$$\frac{1}{C} = \frac{1}{C_1} + \frac{1}{C_2}$$
+La capacité du condensateur est plus faible en série qu'en parallèle $\Rightarrow \tau_{1/2}$ est plus petit en série qu'en parallèle.\\
+En connaissant la résistance, il suffit de calculer le temps de demi-vie pour 
+
+
+
+
+
+
+
+\newpage
+\section{Lentilles minces}
+\subsection{Rappel théorique}
+\subsubsection*{Sources primaires et secondaires}
+Il est important de bien s'accorder sur l'usage du mot "source" :
+\begin{description}
+\item[Source primaire/directe] Génère la lumière au départ d'une autre forme d'énergie (bougie par combustion, ampoule par électricité, ...)
+\item[Source secondaire/indirecte] Ré-émet la lumière d'une autre source (directe ou indirecte) (lumière d'une lampe au plafond)
+\end{description}
+
+\subsubsection*{Sources ponctuelles et étendues}
+Quand la taille d'une source peut être considérée comme petite par rapport à l’élément d'un montage (flamme d'une bougie dans une pièce, soleil depuis la Terre), on peut considérer la lumière émise d'un seul point : source ponctuelle.\\
+A l'inverse, vu de "près" un écran d'ordinateur ne peut être considéré comme un source ponctuelle : ce sera une source étendue.
+
+\subsubsection*{Rayons lumineux}
+Quand les  hypothèses géométriques sont vérifiées, on peut considérer que l'énergie lumineuse se déplace en ligne droite. Pour une source ponctuelle, elle se déplace en même temps dans toutes les directions : il s'agit de \textit{rayons lumineux}.\\
+Parfois on ne veut de la lumière que d'un côté, avec une lampe de poche par exemple : le système n'est plus isotrope.
+
+\subsubsection*{Réflexion, réfraction, absorption, diffusion}
+Quand un rayon passe d'un milieu à un autre, trois cas sont possibles : réflexion, transmission ou absorption. (En général, un phénomène domine les trois).\\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{labo/image26.png}
+\end{center}
+\caption{Réflexion, réfraction et absorption}
+\label{rra}
+\end{figure}\ \\
+Il reste la \textit{diffusion}, à prendre en compote quand l'interface est très irrégulière : les rayons incidents donne lieu à une infinité de rayons lumineux dans toutes les directions.\\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{labo/image27.png}
+\end{center}
+\caption{Diffusion}
+\label{diff}
+\end{figure}\ \\
+Comme toutes les directions sont possibles, la répartition n'est pas équilibrée et il n'est pas possible de déterminer une image
+
+\subsubsection*{Lentille mince}
+Certaines choses possèdent des propriétés remarquables : on les appelle "optiques" ou "dispositifs optiques" pour les intimes.\\
+
+Une lentille est constitué d'un \textit{indice de réfraction} différent de l'air pour dévier les faisceaux lumineux grâce à la forme de celle-ci.\\
+
+Son axe de symétrie de révolution est l'\textit{axe optique}. L'intersection de la lentille avec l'axe optique est le \textit{centre optique}, O. Une lentille mince est caractérisée par une \textit{distance focale} $f$.\\
+Le \textit{foyer image/objet} sont les deux points situé à une distance $f$ du centre de l'axe optique et les plans focaux sont les plans orthogonaux à l'axe optique passant par les foyers.
+\begin{center}
+\includegraphics[scale=0.6]{labo/image28.png}
+\end{center}
+Deux règles peuvent servir à tracer tous les rayons qui traversent une lentille : 
+\begin{enumerate}
+\item Un rayon incident sur le centre optique de la lentille n'est pas dévié.
+\item Deux rayons incidents parallèles sont déviés de telle manière qu'ils se croisent dans
+le plan focal image
+\end{enumerate}
+\textit{Pour voir comment tracer les rayons, consulter le syllabus de laboratoire.}
+
+\subsubsection*{Image optique}
+On parle d'\textit{image optique} lorsqu'on peut établir une correspondance entre les points sources d'un plan objet et le croisement des rayons dans un autre plan appelé "plan image".\\
+La \textit{loi de conjugaison}, reliant $d_i$ et $d_o$ à $f$ s'exprime : 
+$$\frac{1}{f} = \frac{1}{d_i} - \frac{1}{d_o}$$
+\textit{NB :} la convention de signe pour $d_i$ et $d_o$ sont mesuré par rapport à la lentille, poisitivement dans le sens des rayons.\\
+
+On peut également définir le facteur de grossissement $G$ :
+$$G = \frac{h_i}{h_o} = \frac{d_i}{d_o}$$
+Si celui-ci est négatif, c'est que l'image est retournée. Lorsque $|G| > 1$, l'image apparaît plus grande que l'objet.
+
+\subsubsection*{Retour inverse de la lumière}
+Le principe du retour inverse de la lumière stipule que si l'on inverse le sens de propagation de la lumière, elle refera exactement le même trajet à travers les lentilles, mais en sens inverse.
+
+\newpage
+\subsection{Partie expérimentale}
+\textbf{Partie Pratique 1}\\
+En plaçant l'écran blanc assez loin de la source et en jouant avec la molette de la source, on voit apparaître le filament. Ceci est dû au fait que la source se compose d'une lentille interne convergente.\\
+
+\textbf{Partie Pratique 2}\\
+En posant l'objet, on ne peut pas avoir d'image, car la lumière passe par un verre qui modifie la trajectoire des rayons (changement de milieu).\\
+
+\textbf{Partie Pratique 3}\\
+On ne parvient qu'à obtenir une seule image, $d_o$ ne variant pas (pas d'inversion $d_i/d_o$.\\
+Autrement dit, comme la distance focale $f$ et $d_o$ sont fixés, il ne peut y avoir qu'un seul $d_i$ et donc qu'un seul endroit ou l'image est nette.\\
+
+\textbf{Partie Pratique 4}\\
+En faisant glisser la lentille on pourra identifier deux images nettes. Ceci est dû au \textit{retour inverse de la lumière} : la distance image et objet s'inverse.\\
+Plus mathématiquement, on sait que :
+$$\frac{1}{f} = \frac{1}{d_i} - \frac{1}{d_o}\ \ \ \ et\ \ \ \ \ d_i + d_o = cste$$
+Comme $f$ est fixée, nous avons deux équations à deux inconnues $\rightarrow$ deux solutions sont possibles.\\
+
+\textbf{Partie Pratique 5}\\
+En plaçant la lentille de façon à faire apparaitre une image nette sur l'écran et en déplaçant la molette, rien ne change si ce n'est l'intensité lumineuse (trajectoire des rayons identiques).\\
+
+\textbf{Partie Pratique 6}\\
+\textit{Premier cas : crayon devant objet -} En faisant ceci, on obstrue une partie des rayons d'émaner de la source. L'image ne contient pas la "parties qui a été obstruée.\\
+
+\textit{Deuxième cas : crayon devant lentille -} Ici, aucune modification n'est observée si ce n'est une légère baisse de l'intensité. Comme le crayon est placé à un $d_o$ plus petit que $f$, rien ne peut se produire sur l'écran. Physiquement, c'est dû au fait qu'obstruer une partie des rayons n'empêche pas tous les rayons de la parties obstruées de passer.\\
+
+\textbf{Partie Pratique 7}\\
+Voici un petit texte explicatif (Wiki.) pour bien comprendre comment déterminer la distance focale.\\
+
+\textit{Un objet lointain est un objet dont la distance à la lentille est très supérieure à la distance focale de la lentille. Nous pouvons considérer que les rayons qui proviennent de cet objet sont parallèles.}
+
+\textit{Sur un écran quelconque, regardons l'image d'un paysage lointain fournie par une lentille convergente. Nous observons une image retournée et nette du paysage quand l'écran se situe à la distance focale de la lentille. Une image nette n'est obtenue que pour une seule position de l'écran : l'image est localisée.}\\
+
+\textit{Pour déterminer la distance focale d'une lentille convergente, il suffit donc de mesurer la distance entre la lentille et l'endroit où apparaît nette l'image d'un objet lointain.}\\
+
+\textit{Remarque : avec une lentille divergente, on constaterait que l'on ne peut pas obtenir d'image, quelle que soit la distance entre la lentille et l'écran.}\\
+
+Mathématiquement, ceci s'explique comme ceci :
+$$\frac{1}{f} = \frac{1}{d_i} - \underbrace{\frac{1}{d_o}}_{\approx 0}\ \ \ \ \ \Rightarrow \ \ f = d_i$$
+En effectuant une telle opération ô combien risquée, nous obtenons une distance focale de $20\ cm$.\\
+
+\textbf{Partie Pratique 8, 9}\\
+En déplaçant la lentille, on peut modifier $d_{objet}$. En considérant la position ou l'image est nette, on peut déterminer $d_{image}$.\\
+En reprenant différents points et en les plaçant en considérant $1/d_i$ en abscisse et $1/d_o$ en ordonnée on obtient bien une relation linéaire : la loi de conjugaison est bien vérifiée.\\
+Encore mieux, l'ordonnée à l'origine étant $1/f$, on peut trouver la distance focale.\\
+
+\textit{Ou se forme l'image dans le cas où l'objet est placé à une distance égale à la distance focale ? }\\
+L'image se forme à une distance $d_i = + \infty$. En effet : 
+$$\frac{1}{f} = \frac{1}{d_i} + \frac{1}{f} \Leftrightarrow \frac{1}{d_i} = 0\ \ \Rightarrow d_i = +\infty$$
+
+\textit{Ou se forme l'image si l'objet est placé à une distance inférieure à la distance focale ?}\\
+Aucune image réelle ne sera formée. Par contre il y aura bien une image virtuelle, mais celle-ci n'est pas visible sur l'écran.\\
+Pour bien comprendre comment une loupe "grossit", voici un schéma d'une qualité hors norme : 
+\begin{center}
+\includegraphics[scale=0.6]{labo/image32.png}
+\end{center}\ \\
+
+\textbf{Partie Pratique 10 - 11}\\
+La position de l'écran ou s'affiche l'image nette vaut $x_{écran} = 6\ cm$. La taille de l'image mesurée vaut $1,8\ cm$. On remarque que l'orientation y est inversée comme pour une symétrie centrale.\\
+
+Si on retire l'écran, en regardant dans la direction de la lentille on peut voir une image, en réalité virtuelle.\\
+
+\textbf{Partie Pratique 12}\\
+Cette image virtuelle peut être considérée comme un "objet" et être ainsi "utilisée" par une lentille. Pour le prouver, on mesure une distance objet $d_o = 34\ cm$ et une distance image $d_i = 38\ cm$.\\
+En appliquant la loi de conjugaison, on retrouve une distance focale $f = 17,94\ cm$ qui, compte tenu des erreurs, vérifie bien que cette image est un objet.\\
+\textit{La première image peut être vue comme un objet et peut être utilisée  par une lentille.}\\
+
+\textbf{Partie Pratique 3.3.4}\\
+Pour mesurer une distance focale négative, il faut utiliser une méthode plus complexe. Ceci est dû au fait que l'image se forme du même côté de l'objet (distance focale négative). On ne sait pas à proprement parler "la voir" car on couperait les rayons lumineux.\\
+Pour réussir à mesurer une telle distance, il faudra utiliser deux lentilles. On crée un objet virtuel avec une première pour le "donner" à la lentille divergente.\\
+
+Pour mesurer la distance focale $f$, on considère que $d_i$ est la distance entre la lentille divergente et l'écran et $d_o$ est la distance entre  l'image virtuelle est la lentille divergente.\\
+
+En gros, il faut placer les éléments dans l'ordre : source - lentille convergente - lentille divergente - écran puis appliquer la loi de conjugaison (Source : \textit{Futura-sciences})
+\begin{center}
+\includegraphics[scale=0.5]{labo/image33.png}
+\end{center}
+
+
+\newpage
+\section{Oscillations électriques}
+\subsection{Rappel théorique}
+Travaillant avec un inducteur, le circuit (RLC) sera alimenté par un générateur de tension variable.
+\begin{center}
+\includegraphics[scale=0.1]{labo/image29.png}
+\end{center}
+\subsubsection*{Oscillations électriques libres amorties}
+Deux paramètres gouvernent le comportement du circuit : 
+\begin{enumerate}
+\item le coefficient d'amortissement $\alpha = R/(2L)$
+\item la pulsation propre du circuit $\omega_0 = \sqrt{1/(LC)}$
+\end{enumerate}
+Si $\alpha > \omega_0$ on parle d'amortissement fort (gauche) sinon l'amortissement est dit faible (droite).
+\begin{center}
+\includegraphics[scale=0.5]{labo/image30.png}
+\end{center}
+\textit{NB :} Si l'amortissement est nul, on retrouve une courbe tel un sinus.
+
+\subsubsection*{Énergie stockée}
+L'énergie stockée dans le condensateur de capacité $C$ et l'énergie stockée dans l'inducteur d'inductance $L$ valent : 
+$$W_E = \frac{1}{2}Cv^2\ \ \ \ \ \ \ W_M = \frac{1}{2}Li^2$$
+
+\subsubsection*{Valeurs théoriques et expérimentales}
+La période théorique valant $\frac{2\pi}{\omega}$, dans notre cas elle vaudra : $T_{th} = 2\pi\sqrt{LC}$. Cette période peut être obtenu expérimentalement en mesurant la période sur l'oscilloscope.\\
+
+On peut calculer le coefficient d'amortissement théoriquement grâce à la relation $\alpha_{th} = R/(2L)$. En pratique, on utilise la technique de décroissance (décrément) logarithmique : $\alpha_{exp} = 1/(nT_{exp})\ ln(v_c(t_0) / v_c(t_0 + nT))$
+
+\subsubsection*{Amplitude courant}
+Le graphique de l'amplitude du courant en fonction de la fréquence du générateur est appelé \textit{courbe de résonance}.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image31.png}
+\end{center}
+
+
+\newpage
+\subsection{Partie expérimentale}
+Cette partie est assez épurée, car tous les développements sont présents dans le cours de Physique Générale. De plus, il s'agit d'une manipulation grandement basée sur les vérifications des lois, donc peu technique.\\
+
+\textbf{Partie Pratique 1}\\
+\textit{Q.2}\\
+La période du créneau influence la charge et la décharge du condensateur. Si la période est petite, le condensateur commencera à peine à se décharger qu'il devra se recharger. Pour avoir un amortissement complet, il faudrait une période du signal plus grand que la période de décharge (c'est-à-dire que la fréquence tende vers zéro).
+\begin{center}
+\includegraphics[scale=0.5]{labo/image34.png}
+\end{center}
+On peut donc dire que celle-ci dépend de la fréquence, quand on la diminue elle augmente (la largeur du créneau).\\
+
+\textit{Q.3}\\
+On définit $T_{exp}$ comme étant la distance entre deux crêtes. Attention, celle-ci dépend de l'échelle à laquelle on lit la mesure. Théoriquement, elle vaut : 
+$$T_{th} = 2\pi \sqrt{LC}$$
+Pour la période théorique : $T_{th} = \frac{1}{5}\pi\ ms \approx 628,3\mu s$, et pour la période pratique (mesurée) : $T_{exp} = 646 \mu s$.\\
+
+\textit{Q.4}\\
+Sur base de l'énoncé, nous obtenons $\alpha_{th} = 440\ s^{-1}$. En utilisant la formule du rappel théorique pour trouver l'amortissement de façon expérimentale, nous avons :
+$$\alpha_{exp} = \frac{1}{3 * 649*10^{-6}}\ ln\left[\frac{1,02}{4,28*10^{-3}}\right] = 448,1\ s^{-1}$$
+
+\textbf{Partie Pratique 2}\\
+Il s'agit de la prise de mesures de points expérimentaux, afin de déterminer $T$ et $\alpha$.\\
+
+\textbf{Partie Pratique 3}\\
+\textit{Q.5 ; L'oscilloscope ne permettant de mesurer que des tensions, comment allez-vous vous y prendre pour mesurer le courant qui circule dans le circuit}.
+$$V = RI \Leftrightarrow I = \frac{V}{R} = \frac{156*10^{-3
+}}{10} = 1,56*10^{-4}$$
+La marche à suivre pratique est détaillée ci-dessous :
+\begin{enumerate}
+\item Calculer $V_{max}$ aux bornes de $R$ (faire varier $f$ jusqu'à trouver pour quelle fréquence $V$ est maximum)
+\item $I_{max} = \frac{V_{max}}{R} = 156*10^{-4}\ A$
+\item $I_{eff} = \frac{I_{max}}{\sqrt{2}} = 0,011\ A$
+\item On cherche le voltage qui correspond à $I_{eff}$ : $V_{eff} = I_{eff} R = 110*10^{-3}\ mV$
+\item On place un curseur sur $110*10^{-3}\ mV$ et on regarde pour quelle fréquence on retrouve cette valeur.
+\end{enumerate}
+\ \\
+\textit{Q.5 ;Résonance}\\
+On a bien $\phi = 0$ en fréquence de résonance. Dès que l'on passe celle-ci, on observe un déphasage ($\phi$).\\
+
+\textbf{Partie Pratique 4}\\
+En recueillant une série de points, on peut porter l'intensité en fonction de la fréquence pour représenter la courbe de résonance.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image35.png}
+\end{center}
+\textit{Q.7 ; Que devient l'ellipse de Lissajous à la fréquence de résonance ? Pourquoi ?}\\
+En résonnance, le déphasage est nul : $\phi = 0 \Rightarrow Arctg(0) = 0$.\\
+On se trouve dans le cas ou $X_L$ = $X_C$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Phénomènes ondulatoires}
+\subsection{Rappel théorique}
+\subsubsection*{Battements}
+Le but de la manipulation est de mettre en avant l'effet de battement et l'effet Doppler à l'aide d'\textit{ondes acoustiques}.\\
+Les ondes acoustiques sont des vibrations longitudinales se propagent dans différents milieux avec une vitesse qui dépend \textbf{des caractéristiques physique du milieu}. Cette vitesse se calcule de la sorte : 
+\begin{equation}
+v = \sqrt{\gamma\frac{R\theta}{M}}
+\label{vitesse}
+\end{equation}
+où $R$ est la constante des gaz parfait, $M$ la masse molaire du gaz, $\theta$ la température et pour pour $\gamma$, voir thermo ! La vitesse ne dépend \textbf{pas} de la pression.\\
+
+Si on considère l'équation de deux ondes :
+\begin{equation}
+Y_1 = A\cos(\omega t + \phi_1)
+\label{y1}
+\end{equation}
+\begin{equation}
+Y_2 = A\cos(\omega t + \phi_2)
+\label{y2}
+\end{equation}
+On remarque que leur déphasage relatif vaut $\phi_2 - \phi_1 = \Delta \phi$. D'autre part, l'onde résultante vaut :
+\begin{equation}
+Y_1 + Y_2 = \left[2Acos\left(\frac{\phi_2 - \phi_1}{2}\right)\right]cos\left(\omega t + \frac{\phi_1 + \phi_2}{2}\right)
+\label{y1+y2}
+\end{equation}
+La premier terme ([ ]) désigne l'amplitude résultante. \\
+On remarque que l'onde résultante à la même fréquence que les ondes de départ.\\
+
+\textbf{Si l'amplitude n'est pas constante}, l'onde est dite \textit{modulée en amplitude}. La pulsation varie périodiquement avec le temps avec une pulsation $\frac{\Delta\omega}{2}$. Les variations périodiques de $A'$ portent le nom de \textit{battements}. \\
+La \textit{période de battement} $\tau$ est le temps qui sépare deux annulation successives de l'amplitude de l'onde résultante.
+\begin{equation}
+\tau = \frac{2\pi}{\Delta\omega} = \frac{1}{f_2 - f_i}
+\label{tau}
+\end{equation}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{labo/image1.png}
+\end{center}
+\caption{Battement de deux ondes sinusoïdales de fréquences proches. L'enveloppe de l'onde résultante est en traits discontinus.}
+\label{image0}
+\end{figure}
+
+\subsubsection{Effet Doppler}
+On peut déterminer la vitesse de son si on connait la fréquence d'un son sur base de sa longueur d'onde.
+\begin{equation}
+\lambda = vT = \frac{v}{f}
+\label{lambda}
+\end{equation}
+Pour déterminer la vitesse du mobile, on peut utiliser les relations suivantes (en partant du fait que la fréquence $f$ mesurée par un récepteur est différente de celle initialement émise ($f_0$)):
+\begin{equation}
+f = f_0\frac{v + u_{r}}{v - u_{s}}
+\label{doppler}
+\end{equation}
+
+\subsection{Partie expérimentale}
+\subsubsection{Questions}
+\textbf{Q2} : \textit{Comment la position des bagues modifie-t-elle la fréquence du diapason (diminution, augmentation) ?}\\
+Plus on descend la bague, plus la fréquence diminue et le son perçu est plus grave. Fixer une bague en haut du diapason correspond, par analogie, à l'ajout d'une masse autour d'une perche que l'on tente de faire osciller. Les oscillations seront plus longues du à "l'inertie" causant une diminution de la fréquence.\\
+
+\textbf{Q3} : \textit{Pourquoi les amplitudes des deux signaux doivent-ils être proches pour observer une figure de battement contrastée (différence importante entre les maxima et les minima) ?}\\
+Simplement pour avoir un \textit{beau} zéro : quand la fonction s'annulera, elle passera bien par zéro.\\
+
+\textbf{Q4} : \textit{Expliquez (sans calculs) pourquoi l'ellipse tourne et pourquoi la période de rotation est égale à la période de battement.}\\
+Le mode $XY$ fait apparaître une ellipse ; les $x$ se font dévier vers la gauche et les $y$ vers le haut.
+\begin{center}
+\includegraphics[scale=1]{labo/image2.png}
+\end{center}
+Sur le schéma de gauche, quand un axe est au maximum, l'autre est à son minimum alors que dans celui de droite, les deux sont au maximum d'un côté de l'ordonnée, et au minimum de l'autre côté. Le schéma de gauche correspond ainsi à une opposition de phase alors que celui de droite, à une phase. \\
+Le temps de rotation de l'ellipse est le temps entre deux oppositions de phase.
+
+\subsubsection*{Parties pratiques}
+\textbf{P.1} La fréquence théorique du diapason est de \textit{440 Hz}. Les L'oscilloscope nous donant la période, on peut la calculer expérimentalement.
+$$f_{exp} = \frac{1}{T} = \frac{1}{2,2 . 10^{-3}} = 446,3\ Hz$$
+\ \\
+
+\textbf{P.2}\\
+On préférera la deuxième méthode (\textit{cf. Q.3})  si l'on a de basse fréquence, compter le temps de révolution de l'ellipse étant simple. Par contre, si l'on se trouve dans le cas de haute fréquence, compter les tours étant impossible il faut mesurer la période de battement à l'aide des curseurs de l'oscilloscope.\\
+
+\textbf{P.3}\\
+En partant de la formule ~\eqref{lambda}, on peut mesurer la vitesse du son. En pratique, on place le chariot de façon à ce que l'onde émise soit en superposition avec l'onde perçue. En reculant le chariot jusqu'à la prochaine superposition d'ondes, on peut mesurer la longueur d'onde correspondante au déplacement du chariot.\\
+
+L'incertitude se trouvant sur les mesures via la latte, on prend une longueur d'onde correspondant à $20\lambda$. La fréquence de l'émetteur ($f_0$) valant $41,67\ kHz$ (mesure prise sur l'oscilloscope), on est capable de calculer la vitesse du son.
+$$20\lambda \approx 16,8\ cm\ \ \ \ \ \Rightarrow\ \ \ \ \ \ \lambda = 0,84\ cm$$
+$$\lambda = v.f_0\ \ \ \ \Rightarrow v = 350,028\ \frac{m}{s}$$
+L'incertitude évaluée est de $3\%$. Pour améliorer la précision, il faudrait mesurer un nombre infini de longueur d'onde pour faire tendre l'incertitude vers zéro.\\
+
+\textbf{P.4}\\
+La vitesse estimée du chariot est de $30\ \frac{cm}{s}$. Connaissant $f_0$ (\textit{Cf. P.3}) et le relation ~\eqref{doppler} .
+$$ f = f_0 \frac{v}{v - u} = 41705,74\ Hz$$
+On remarque qu'en s'approchant, la fréquence perçue augmente. Ceci est dû au fait que la "divergence du son" diminue plus on s'approche du capteur.\\
+On peut dès lors calculer la variation de fréquence :
+$$\Delta f =  41701,4 - 41670 = 31,40\ Hz$$
+Notre ordre de grandeur est de $10\ ms$. Partant de la relation ~\eqref{tau}, on peut calculer la période de battement.
+$$\tau = \frac{1}{31,40} = 34,4\ ms$$
+Pour afficher cinq périodes de battement, il faudra approximativement $0,16\ s$. Pour la partie pratique suivante, on idéalisera cette mesure à $15\ ms$ .\\
+
+\textbf{P.5}
+La position pour laquelle les deux signaux ont la même amplitude vaut $x_p = 29,2\ cm$. Partant de ~\eqref{doppler}, on peut isoler $u$ correspondant à la vitesse du charriot ($v$ étant la vitesse du son trouvée à la partie expérimentale 3).
+$$u = \left(\frac{f_0 - f}{f}\right)\left(-v\right)$$
+Pour calculer cette expression, il faut utiliser les deux relations suivantes :
+$$f_0 - f = -\Delta f$$
+$$f = f_0 + \Delta f$$
+En réinjectant dans notre relation : 
+$$u = \left(\frac{-\Delta f}{f_0 + \Delta f}\right)\left(-v\right)$$
+On trouve une vitesse chariot relativement proche (dû aux erreurs et imprécisions) de celle définie lors de la partie pratique 4.
+$$u = 26,75\ cm/s$$
+
+\newpage
+\section{Polarisation de la lumière}
+\subsection{Rappel théorique}
+Avant tout, rappelons qu'une \textit{onde électromagnétique} est une onde constituée d'un champ électrique et d'un champ magnétique qui oscille perpendiculairement l'un à l'autre ainsi que dans la direction de propagation de l'onde.\\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{labo/image3.png}
+\end{center}
+\caption{Fonctionnement d'un polariseur}
+\label{image1}
+\end{figure}
+Ici nous allons étudier la \textbf{polarisation}, c'est-à-dire la manière dont le plan \textsc{électrique} oscille dans le plan. Pour se faire on utilisera des \textit{polariseur} qui bloquent une direction d'oscillation du champ électrique.\\
+Notons que l'on peut toujours décomposer de la lumière qui oscille dans n'importe quelle direction en la décomposant en deux vecteurs parallèles aux axes du polarisateur, comme le montre la \textsc{Figure} ~\ref{image1}.\\
+
+\textbf{Attention !} Ce passage d'un état de polarisation quelconque en état de polarisation rectiligne implique une perte de flux !
+
+\subsubsection*{Lame de retard}
+Il peut parfois être utile (pour comprendre comment ça fonctionne en labo :p ) de passer d'un état de polarisation, par exemple rectiligne en un état de polarisation circulaire.\\
+Pour se faire, on va créer un retard d'une composante de la lumière par rapport à une autre, c'est-à-dire introduire un déphasage qui modifiera la polarisation. Deux outils sont utilisé : la \textit{lame de demi-onde} et la \textit{lame de quart d'onde}.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{labo/image4.png}
+\end{center}
+\caption{Lame de demi-onde ($\lambda/2$)}
+\label{lamedemo}
+\end{figure}\  \\
+
+\textbf{La lame de demi-onde} fonctionne sous le principe de la symétrie orthogonale permettant de modifier l'orientation de l'ellipse de polarisation en induisant un retard d'une moitié de longueur d'onde.\\
+
+\textbf{La lame de quart d'onde} ne permet pas de modifier l'orientation mais permet de changer la polarisation. On peut miraculeusement passer d'une polarisation rectiligne à une polarisation circulaire avec ce précieux objet.\\
+
+Il est important de savoir qu'une lame ne fonctionne pas du tout comme un polariseur ! La lame contient un "cristal" (faisons simple) qui ralenti une composante de la lumière induisant un déphasage alors qu'un polariseur ne "bloque" qu'une direction de celle-ci.
+
+\subsubsection*{Fin du rappel}
+Le reste du rappel théorique n'est que l'application de formule qui sont à première vue peu compréhensible. Mais - bonne nouvelle - avec la partie pratique qui suit, tout devrait devenir simple comme bonjour (enfin, à peu près).
+
+\subsection{Partie expérimentale}
+\subsubsection*{Polariseur et analyseur}
+\textbf{P.1}\\
+En modifiant l'orientation, on remarque une variation de l'intensité lumineuse. Les résultats ont été mesurés pour différents angles et son repris ci-dessous. Notez que l'angle correspond à l'orientation du polariseur et les chiffres l'intensité lumineuse relevée en laboratoire.
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (1,0) ;
+\draw (0,0) -- (1,1) ;
+\draw (0,0) -- (0,1) ;
+\draw (0,0) -- (-1,1) ;
+\draw (0,0) -- (-1,0) ;
+\draw (0,0) -- (-1,-1) ;
+\draw (0,0) -- (0,-1) ;
+\draw (0,0) -- (1,-1) ;
+
+\draw (0,0) circle (1) ;
+\draw (1,0) node[right]{$17,42$} ;
+\draw (1,1) node[above right]{$17,58$} ;
+\draw (0,1) node[above]{$18,09$} ;
+\draw (-1,1) node[above left]{$17,09$} ;
+\draw (-1,0) node[left]{$17,60$} ;
+\draw (-1,-1) node[below left]{$16,50$} ;
+\draw (0,-1) node[below]{$16,78$} ;
+\draw (1,-1) node[below right]{$17,86$} ;
+
+\end{tikzpicture}
+\end{center}
+\ \\
+\textbf{P.2}\\
+En modifiant l'orientation le second polariseur (qui porte le doux nom d'\textit{analyseur}) on remarque que l'intensité lumineuse diminue quand on passe de $0 \rightarrow 90$ degré pour tendre vers 0. Ensuite l'intensité augmente de $90 \rightarrow 180$ pour arriver à son intensité maximum.\\
+Le phénomène se reproduit ensuite de $180 \rightarrow 270$ ou l'intensité diminue vers 0 pour ensuite retrouver sa valeur maximale en augmentant de $270 \rightarrow 360$.\\
+
+Ainsi, lorsque l'on passe de $0 \rightarrow 90$ degré, on bloque petit à petit les deux composantes de la lumière. Les différentes composantes étant bloquées (verticale et horizontale) l'intensité ne peut qu'être nulle.\\
+
+\textbf{P.3}\\
+En faisant augmenter à nouveau de $0 \rightarrow 90$ degré, on ne distingue plus aucune lumière à l'œil nu. Néanmoins, le luxmètre indique encore une faible intensité lumineuse.\\
+
+\textbf{P.4}\\
+En prenant une orientation quelconque, le luxmètre indique $0,43$. Après avoir effectué une modification de l'orientation de $180$ degrés, le luxmètre indique toujours $0,43$ vérifiant bien la proposition.\\
+Ceci est dû au fait qu'en effectuant une modification d'orientation d'un angle $\pi$, on bloque toujours la lumière selon la même composante.\\
+
+\textbf{P.5}\\
+En effectuant cette opération, c'est-à-dire en sommant un flux pris dans une position aléatoire à un flux à place dans une position de $90$ degrés plus loin, on remarque que la somme de l'intensité de ces deux flux est constante.\\
+Pour ceux qui veulent l'explication mathématique, voici la peuve : \\
+\begin{proof}
+$$\phi_1 = \phi_icos^2(\alpha)$$
+$$\phi_2 = \phi_icos^2(\alpha \pm \frac{\pi}{2}) = \phi_isin^2(\alpha)$$
+$$\phi_1 + \phi_2 = \phi_i(cos^2(\alpha) + sin^2(\alpha))$$
+$$\phi_1 + \phi_2 = \phi_i = cste$$
+\end{proof}
+\ \\
+
+\textbf{P.6}\\
+En croisant deux polariseurs, un en position $0$ degré et l'autre en position $90$ degrés, on a vu plus haut que la lumière ne passait pas (ou très peu). En plaçant un polariseur entre les deux polariseurs croisés on pourrait s'attendre que cela ne change rien mais \textsc{kedal}, quelque chose change.. On sent le malaise s'installer..\\
+
+Analysons le problème grâces aux coordonnées cartésiennes (j'ai la flemme de faire une sphère, sinon je l'aurais fait en sphériques bien évidemment).\\
+Revenons au cas initial.  Imaginons que le premier polariseur bloque toute composante selon l'axe $x$. Le deuxième, l'analyseur lui ne laisse passer que les composantes en $x$ (il bloque toutes les composantes en $y$). Comme tout a été bloqué préalablement, plus rien ne peut passer.\\
+Mais ! En introduisant un nouveau polariseur, avec une orientation de $30$ degrés par exemple, en ré-introduit une composante en $x$ \textit{et} en $y$. L'analyseur ensuite bloquera bien la composante en $y$ mais la faible composante en $x$ du à l'ajout d'un autre polariseur permet de laisser passer un peu de lumière.\\
+
+C'est peut être un peu contre intuitif, mais en faisant osciller votre main de haut en bas, si vous passez ensuite votre main le long d'un plan incliné vous aller logiquement un peu dévié de façon analogue à la lumière.\\
+
+\textbf{Malus - 1}\\
+Voici les données expérimentales : 
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+Degré & Intensité \\ 
+\hline 
+0 & 6,44 \\ 
+\hline 
+15 & 5,90 \\ 
+\hline 
+30 & 4,85 \\ 
+\hline 
+45 & 3,56 \\ 
+\hline 
+60 & 2,30 \\ 
+\hline 
+75 & 1,45 \\ 
+\hline 
+90 & 1,09 \\ 
+\hline 
+105 & 1,45 \\ 
+\hline 
+120 & 2,40 \\ 
+\hline 
+135 & 3,80 \\ 
+\hline 
+150 & 5,10 \\ 
+\hline 
+165 & 5,70 \\ 
+\hline 
+180 & 6,12 \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\ \\
+\textbf{Malus - 2}\\
+Rappellons tout d'abord la Loi de Malus :
+$$\frac{\phi_{out}}{\phi_{in}} = \frac{\frac{\epsilon_0 cS}{2}A^2cos^2\alpha}{\frac{\epsilon_0 c S}{2}A^2}$$
+Je vous entends d'ici : "\textsc{Horreur !} Nous n'avons pas $\phi_{in}$, mais seulement $\phi_{out}"$. C'est vrai. C'est pourquoi on va ruser : en normant les résultats obtenus : on prend le flux le plus grand et on divise tous les flux parce $\phi_{out, max}$.\\
+
+En faisant ce gros cheat, on peut considérer que $\phi_{out, max}$ vaut à peu près $\phi_{in}$. En effet, peu de lumière étant absorbée par les polariseurs, on peut négliger cette perte.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image25.png}
+\end{center}
+Pour vérifier la loi, il suffit dès lors de porter $\frac{\phi_{out}}{\phi_{out, max}}$ en ordonnée et $cos^2\alpha$ en abscisse. Avec les données reprises ci-dessus, on obtient une droite de pente $1$ passant par l'origine : la loi de Malus est vérifiée.\\
+
+\textbf{Malus - 3}\\
+Rien ne change, car ce qui compte c'est la différence d'angle entre les deux polariseurs.
+
+\subsubsection*{Lame demi-onde}
+\textbf{P.1, 2}\\
+Comme précédemment, voici ce que l'on observe : \\
+
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (1,0) ;
+\draw (0,0) -- (1,1) ;
+\draw (0,0) -- (0,1) ;
+\draw (0,0) -- (-1,1) ;
+\draw (0,0) -- (-1,0) ;
+\draw (0,0) -- (-1,-1) ;
+\draw (0,0) -- (0,-1) ;
+\draw (0,0) -- (1,-1) ;
+
+
+
+\draw (0,0) circle (1) ;
+\draw (1,0) node[right]{$15,9$} ;
+\draw (1,1) node[above right]{$5,9$} ;
+\draw (0,1) node[above]{$2,6$} ;
+\draw (-1,1) node[above left]{$13,8$} ;
+\draw (-1,0) node[left]{$17,2$} ;
+\draw (-1,-1) node[below left]{$6,5$} ;
+\draw (0,-1) node[below]{$7,1$} ;
+\draw (1,-1) node[below right]{$6,4$} ;
+
+\end{tikzpicture}
+\end{center}\ \\
+On remarque que le flux augmente et diminue périodiquement. À $90$ degrés, c'est comme s'il n 'y avait pas de lame de demi-onde, le déphasage étant de 0.\\
+
+\textbf{P.3}\\
+L'angle pour lequel le flux est minimal vaut : $0 + k\pi$. Le déphasage étant maximal, on perd du flux.
+
+\textbf{P.4}\\
+L'angle pour lequel le flux est maximal vaut : $\pi + k\pi$? Cf. remarque P.3.\\
+
+\textbf{P.5}\\
+Voici les données expérimentales recueillies : 
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+Angle & Intensité & Analyseur sur - angle \\ 
+\hline 
+0 & 2,4 & 17,6 \\ 
+\hline 
+15 & 4,8 & 17,3 \\ 
+\hline 
+30 & 8,7 & 17,0 \\ 
+\hline 
+45 & 12,8 & 16,5 \\ 
+\hline 
+60 & 15,5 & 16,0 \\ 
+\hline 
+17,2 & 17,2 & 15,7* \\ 
+\hline 
+90 & 16,5 & 16,8 \\ 
+\hline 
+\end{tabular} 
+\end{center}\ \\
+L'astérisque (*) souligne un problème de mesure.\\
+En consultant l'\textit{Annexe D}, et en regardant les données expérimentales ainsi que la variation d'intensité apparaissant à l'écran, la polarisation est bien rectiligne.
+
+\subsubsection*{Lame quart d'onde}
+\textbf{P.1, 2}
+Les données recueillies expérimentalement sont les suivantes :
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (1,0) ;
+\draw (0,0) -- (1,1) ;
+\draw (0,0) -- (0,1) ;
+\draw (0,0) -- (-1,1) ;
+\draw (0,0) -- (-1,0) ;
+\draw (0,0) -- (-1,-1) ;
+\draw (0,0) -- (0,-1) ;
+\draw (0,0) -- (1,-1) ;
+
+
+
+\draw (0,0) circle (1) ;
+\draw (1,0) node[right]{$2,1$} ;
+\draw (1,1) node[above right]{$9,1$} ;
+\draw (0,1) node[above]{$2,3$} ;
+\draw (-1,1) node[above left]{$8,7$} ;
+\draw (-1,0) node[left]{$9,0$} ;
+\draw (-1,-1) node[below left]{$9,5$} ;
+\draw (0,-1) node[below]{$7,1$} ;
+\draw (1,-1) node[below right]{$9,2$} ;
+
+\end{tikzpicture}
+\end{center}
+On constate une augmentation dans le sens horloger.\\
+
+\textbf{P.3}
+En modifiant l'orientation, il ne se passe rien. Ceci est dû au fait que la polarisation est de type circulaire. Ce type d'orientation est causé par la lame de quart d'onde qui modifie notre polarisation rectiligne en circulaire.\\
+ 
+ \textbf{P.4}\\
+Nous avons ici deux cas : 
+\begin{enumerate}
+\item 90 degrés - polarisation rectiligne
+\item 135 degrés - polarisation circulaire
+\end{enumerate}
+Ceci s'explique sur base de l'équation suivante : 
+$$tan(\delta) = \frac{A}{B}$$
+Cette équation donne le rapport des axes de l'ellipse de polarisation. On retrouve bien le fait que la polarisation est circulaire pour $\delta = \pm 135\ deg$ et pour $\delta = \pm 135\ deg$.\\
+
+\textbf{P.5}\\
+La maximum s'obtient pour un angle nul : 16,4 alors que la minimum correspondant à un angle de 45 degrés vaut 10,6.\\
+Le rapport entre les deux vaut :l $16,4/10,6 = 1,57 \approx \frac{\pi}{2}$ (Hasard?).\\
+
+\textbf{NB :} Quand on modifie la petite languette de la lame, que modifie-t-on réellement ? En fait, on modifie le rapport des axes. Modifier ce rapport permet de partir d'une polarisation linéaire pour arriver à une polarisation circulaire en passant par une polarisation elliptique comme l'illustre la figure ci-dessous.
+\begin{center}
+\includegraphics[scale=0.5]{labo/image5.png}
+\end{center}
+
+\subsubsection*{Lame quart d'onde et lame demi-onde}
+\textbf{P.1}\\
+Calculons d'abord le rapport suivant : 
+$$\tan\left(\frac{3}{2}\right) \Rightarrow arctg\left(\frac{3}{2}\right) = 56\ degrés$$
+Cet angle ne correspond pas à nos attentes, nous voulons un angle de 20 degrés. Pour se faire, on va utiliser une lame de demi-onde, celle-ci permettant de faire des symétries orthogonales et donc de changer l'orientation.\\
+On recherche ainsi l'angle permettant de faire une symétrie : celui-ci correspond à la bissectrice de l'angle total (76 deg) : il vaut donc 38 degrés.
+\begin{center}
+\includegraphics[scale=0.8]{labo/image6.png}
+\end{center}
+\ \\
+
+\textbf{P.2, 3}\\
+Il suffit ensuite de prendre différentes mesures pour ensuite tracer l'ellipse de polarisation, ce qui ne sera pas fait ici. Pour plus de détails, regarder dans votre cahier de labo.
+\begin{center}
+\includegraphics[scale=0.8]{labo/image7.png}
+\end{center}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{tikzpicture}
+\draw (0,0) -- (1,0) ;
+\draw (0,0) -- (1,1) ;
+\draw (0,0) -- (0,1) ;
+\draw (0,0) -- (-1,1) ;
+\draw (0,0) -- (-1,0) ;
+\draw (0,0) -- (-1,-1) ;
+\draw (0,0) -- (0,-1) ;
+\draw (0,0) -- (1,-1) ;
+
+
+
+\draw (0,0) circle (1) ;
+\draw (1,0) node[right]{$A$} ;
+\draw (1,1) node[above right]{$B$} ;
+\draw (0,1) node[above]{$C$} ;
+\draw (-1,1) node[above]{$D$} ;
+\draw (-1,0) node[left]{$E$} ;
+\draw (-1,-1) node[below left]{$F$} ;
+\draw (0,-1) node[below]{$G$} ;
+\draw (1,-1) node[right]{$H$} ;
+
+\end{tikzpicture}
