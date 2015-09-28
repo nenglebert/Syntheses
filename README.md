@@ -6,6 +6,14 @@ Les `.pdf` des synthèses se trouvent dans le dossier build de chaque
 cours. Il s'agit du fichier le plus récent. Après avoir cliqué sur 
 le fichier, il suffit d'appuyer sur Raw pour le télécharger. 
 
+### 1<sup>ème</sup> année
+- [x] Tronc Commun
+   - [x] [Algèbre Linéaire](IRCI1/Algèbre Linéaire/build/Algèbre Linéaire - Nicolas Englebert.pdf)
+   - [x] [Analyse I](IRCI1/Analyse I/build/Analyse I - Nicolas Englebert.pdf)
+   - [x] [Chimie Générale](IRCI1/Analyse I/build/Analyse I - Nicolas Englebert.pdf)
+   - [x] [Mécanique Rationelle](IRCI1/Mécanique Rationelle/build/Mécanique Rationelle I - Nicolas Englebert.pdf)
+   - [x] [Physique Générale](IRCI1/Physique Générale/build/Physique Générale - Nicolas Englebert.pdf)
+
 ### 2<sup>ème</sup> année
 - [x] Tronc Commun
    - [x] [Analyse II](IRCI2/Analyse II/build/Analyse II - Nicolas Englebert.pdf)
