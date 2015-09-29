@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ch2 : Macro and micro balances %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%$
+
+\chapter{Macroscopic and microscopic balances}
+\section{Conservation principles}
+	The basic conservation principles in fluid mechanics are the conservation of \textbf{mass, energy and momentum.} These conservations are the basis of \textbf{continuity, Bernouilli and Navier-Stokes equations} and can be written in \textbf{integral} (finite volume of a mouving fluid) or \textbf{local} (balances in differential form) form. 
+	
+	\subsection{Macroscopic mass balance and continuity equation}
+		\begin{wrapfigure}[4]{l}{4.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.20]{ch2/1}
+		\end{wrapfigure}
+		In a steady\footnote{Continu, constant.} flow, the mass balance simply states that the mass entering is equal to the one leaving a volume. But we have to consider the variation of mass for transient\footnote{Transitoire.} problems. We define for that the  \textbf{mass flow rate} (débit) that gives the mass per time and is easy to measure. 
+		\begin{equation}
+			\dot{m} = \rho v S \qquad \qquad [\dot{m}] = \frac{[M]}{[T]}
+		\end{equation}
+		
+		\subsubsection{General balance}
+		Let's write what we explained, the mass variation is given by the mass entering at $S_1$ minus mass leaving at $S_2$		
+		\begin{equation}
+			\frac{dM}{dt} = \left(\rho \int _{S} v dS\right)_1 - \left(\rho \int _{S} v dS\right)_2
+		\end{equation}
+		To simplify, we introduce the \textbf{average velocity} $\bar{v} = \frac{1}{S}\int _S vdS$	giving the final expression
+		\begin{equation}
+			\frac{dM}{dt} = \left(\rho \bar{v} S\right)_1 - \left(\rho \bar{v} S\right)_2
+		\end{equation}
+
+		\subsubsection{Steady balance}
+			When the fluid is steady, the velocity and the surface are constant in both 2 sections conducting to a constant mass
+			\begin{equation}
+				\dot{m} = \rho \bar{v}S = c
+				\label{eq:2.4}
+			\end{equation}
+
+		\subsubsection{Streamlines}
+			\begin{wrapfigure}[10]{r}{4.5cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.35]{ch2/2}
+			\end{wrapfigure}
+			Let's first define what's a streamline. It's a curve that is everywhere tangent to the instantaneous local velocity vector and so an indicator of the fluid direction. 
+			Mathematically, if our velocity vector is 
+			\begin{equation}
+				\vec{V} = u\vec{i}+v\vec{j}+w\vec{k}
+			\end{equation}
+			we can take an infinetisimal arc length along a streamline 
+			\begin{equation}
+				d\vec{r} = dx\vec{i}+dy\vec{j}+dz\vec{k}
+			\end{equation}
+			Due to the 2 similar triangles, we have the relations \autoref{eq:2.7} that gives the 2D equation of a streamline.
+			\begin{equation}
+				\frac{dr}{V} = \frac{dx}{u} = \frac{dy}{v} = \frac{dz}{w} \qquad
+				 \Rightarrow \qquad
+				 \left(\frac{dy}{dx}\right)_{\mbox{along a streamline}} = \frac{v}{u}
+				\label{eq:2.7}
+			\end{equation}
+			
+	\subsection{Macroscopic momentum balance}
+		Unlike the mass, momentum can be created and destroyed due to applied forces. The difference between the moementum entering in the control volume at $S_1$ and leaving at $S_2$ is equal to the sum of the forces applied to the fluid element. \\
+		The momentum flow through a section per unit time is given by 
+		\begin{equation}
+			\dot{Q} = \dot{m}v = \rho \bar{v}^2 S
+			\label{eq:2.8}
+		\end{equation}
+			and the forces acting on the fluid element (positive if exerted by the fluid) are :
+			
+		\begin{itemize}
+				\item[•] \textbf{pressure} that is positive at the entry (the fluid push to enter) and negative at the exit (the fluid is pushed).
+				\item[•] \textbf{forces on the walls} (normal and tangential). Negative because it's the reaction of the walls.
+				\item[•] \textbf{Gravity and other volume forces}. Positive because the forces are due to the presence of a fluid volume. \\
+		\end{itemize}
+
+		It allows us to write the equation, considering that the surface is a vector of module equal to the scalar surface and of same direction of the normal to the surface. 
+		\begin{equation}
+			\sum F = p_1S_1 - p_2S_2 - F_w + F_g
+			\label{eq:2.9}
+		\end{equation}
+		
+		\subsubsection{Steady momentum balance}
+			It's simply the use of equations \autoref{eq:2.8} and \autoref{eq:2.9}			
+			\begin{equation}
+				\dot{Q}_2 - \dot{Q}_1 = \sum F \qquad \Leftrightarrow \qquad \dot{m}_2v_2 - \dot{m}_1v_1 = p_1S_1 -p_2S_2 - F_w + F_g
+			\end{equation}
+			We can use equation \autoref{eq:2.4} and have a compact final relation 
+			\begin{equation}
+				\Delta ^2 _1 (\rho \bar{v}S + p) = -F_w+F_g
+			\end{equation}
+			
+		\subsubsection{General momentum balance (transient)}
+			To consider the case within the velocity is not constant into the 2 sections, we have to remind the mechanical relation for the resultant and do an infinitesimal deomposition in volume $V$	
+			\begin{equation}						
+			\begin{aligned}
+				\frac{dR}{dt} = \sum F \qquad \Leftrightarrow \qquad \frac{d}{dt}\int _V \rho v dV &= (\rho \bar{v}^2 +p)_1S_1 - (\rho \bar{v}^2 +p)_2S_2 - F_w + F_g \\
+				&= \Delta ^2 _1 (\rho \bar{v}^2  +p)S-F_w+F_g
+			\end{aligned}
+			\end{equation}
