@@ -1,271 +1,271 @@
 \chapter{Intégrales 2}
 \section{Formules de Cauchy}
-    \subsection{Première formule de Cauchy}
-    Si :
-    \begin{enumerate}
-    \item $f$ est analytique sur $D \cup \mathcal{C}$ où $\mathcal{C}$ est un chemin admissible,
-    simple, fermé, orienté dans un sens positif et $D$ un domaine intérieur à $\mathcal{C}$
-    \item $z_0$ n'importe quel point intérieur à $\mathcal{C}$
-    \end{enumerate}
-    alors\footnote{La valeur de $f(z_0)$ est entièrement déterminée par la valeur de $f(z)$ sur
-    $\mathcal{C}$.} :
-    \begin{equation}
-    f(z_0) = \dfrac{1}{2\pi i}\oint_\mathcal{C}\dfrac{f(z)dz}{z-z_0}
-    \end{equation}
+\subsection{Première formule de Cauchy}
+Si :
+\begin{enumerate}
+	\item $f$ est analytique sur $D \cup \mathcal{C}$ où $\mathcal{C}$ est un chemin admissible,
+	      simple, fermé, orienté dans un sens positif et $D$ un domaine intérieur à $\mathcal{C}$
+	\item $z_0$ n'importe quel point intérieur à $\mathcal{C}$
+\end{enumerate}
+alors\footnote{La valeur de $f(z_0)$ est entièrement déterminée par la valeur de $f(z)$ sur
+	$\mathcal{C}$.} :
+\begin{equation}
+	f(z_0) = \dfrac{1}{2\pi i}\oint_\mathcal{C}\dfrac{f(z)dz}{z-z_0}
+\end{equation}
     
-    Avant de démontrer la \textit{première formule de Cauchy}, énonçons et démontrons un lemme
-    qui nous servira :\\
+Avant de démontrer la \textit{première formule de Cauchy}, énonçons et démontrons un lemme
+qui nous servira :\\
     
-    \lemme{Soit $C_0$ un cercle de rayon $R_0$ centré en $z_0 = x_0 + iy_0$ et orienté dans le
-    sens positif.
-    \begin{equation}
-    \dfrac{1}{2\pi i}\oint_{C_0} \dfrac{dz}{z-z_0} = 1
-    \end{equation}}
-    \begin{proof}
-    Paramétrisons notre $\mathcal{C}$ :
-    \begin{equation}
-    \left\{\begin{array}{ll}
-    x &= x_0 + R_0\cos t  \\
-    y &= y_0 + R_0\sin t 
-    \end{array}\right.\ \ \ \ 0 \leq t \leq 2\pi
-    \end{equation}
-    Considérons $z = \phi(t) = x_0 + iy_0 + R_0(\cos t + i \sin t) = z_0 + R_0\exp(it)$. On a
-    donc $\phi'(t) = R_0 i\exp(it)$ et notre intégrale devient :
-    \begin{equation}
-    \oint_{C_0} \dfrac{dz}{z-z_0} = \int_0^{2\pi} \dfrac{R_0 i \exp(it)}{R_0\exp(it}dt = 2\pi i
-    \end{equation}
-    \end{proof}
-    \exemple{Considérons un cercle de rayon 1 $\mathcal{C}\equiv |z|=1$. Soit
-    \begin{equation}
-    \oint_\mathcal{C} \dfrac{dz}{z}
-    \end{equation}
-    Comme nous avons $f(z)=1$ et $z_0 = 0$, on (re)trouve bien $2\pi i$.}
+\lemme{Soit $C_0$ un cercle de rayon $R_0$ centré en $z_0 = x_0 + iy_0$ et orienté dans le
+	sens positif.
+	\begin{equation}
+		\dfrac{1}{2\pi i}\oint_{C_0} \dfrac{dz}{z-z_0} = 1
+	\end{equation}}
+\begin{proof}
+	Paramétrisons notre $\mathcal{C}$ :
+	\begin{equation}
+		\left\{\begin{array}{ll}
+		x &= x_0 + R_0\cos t  \\
+		y &= y_0 + R_0\sin t 
+		\end{array}\right.\ \ \ \ 0 \leq t \leq 2\pi
+	\end{equation}
+	Considérons $z = \phi(t) = x_0 + iy_0 + R_0(\cos t + i \sin t) = z_0 + R_0\exp(it)$. On a
+	donc $\phi'(t) = R_0 i\exp(it)$ et notre intégrale devient :
+	\begin{equation}
+		\oint_{C_0} \dfrac{dz}{z-z_0} = \int_0^{2\pi} \dfrac{R_0 i \exp(it)}{R_0\exp(it}dt = 2\pi i
+	\end{equation}
+\end{proof}
+\exemple{Considérons un cercle de rayon 1 $\mathcal{C}\equiv |z|=1$. Soit
+	\begin{equation}
+		\oint_\mathcal{C} \dfrac{dz}{z}
+	\end{equation}
+	Comme nous avons $f(z)=1$ et $z_0 = 0$, on (re)trouve bien $2\pi i$.}
 
-    \subsection{Démonstration de la première formule de Cauchy}
-    \begin{proof}\ \\
-    Remarquons que comme $f$ est analytique, elle est forcément continue dans cette région. Je 
-    peux donc dire qu'elle est continue en $z_0$ qui est intérieur à $\mathcal{C}$ : $\forall
-    \epsilon > 0, \exists \delta > 0$ t.q. 
-    \begin{equation}
-    \text{si} |z-z_0| < \delta\ \ \ \text{alors } |f(z)-f(z_0)| < \epsilon
-    \end{equation}
-    Choisissons $R_0 < \delta$ ainsi qu'un cercle $|z-z_0| = R_0$ intérieur à $\mathcal{C}$. Par
-    la deuxième promosition de Cauchy-Goursat :
-    \begin{equation}
-    \oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} = \oint_\mathcal{C_0} \dfrac{f(z) dz}{z-z_0}
-    \end{equation}
-    Cette fonction est analytique partout, sauf en $z_0$. Si je soustrait de part et d'autre 
-    de cette égalité $f(z_0)$. Comme $z_0$ est constant, il faut juste soustraire les intégrales.
-    \begin{equation}
-    \oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} -f(z_0)\oint_\mathcal{C_0} \dfrac{f(z) dz}{z-z_0} 
-    = \oint_{C_0} \dfrac{f(z)-f(z_0)}{z-z_0}dz
-    \end{equation}
-    Par application du lemme :
-    \begin{equation}
-    \oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} - 2\pi i f(z_0) 
-    = \oint_{C_0} \dfrac{f(z)-f(z_0)}{z-z_0}dz
-    \end{equation}
-    Il faut maintenant montrer que le deuxième membre est nul en appliquant le théorème 'ML'. La
-    borne supérieure de l'intégrant (tirée de la définition de la continuité en début de démo):
-    \begin{equation}
-    \left|\dfrac{f(z) - f(z_0)}{z-z_0}\right| < \dfrac{\epsilon}{R_0}
-    \end{equation}
-    Par le théorème 'ML' (où $2\pi R_0$ est la longueur du chemin) :
-    \begin{equation}
-    \left|\dfrac{f(z) - f(z_0)}{z-z_0}\right| < \dfrac{\epsilon}{R_0}2\pi R_0
-    \end{equation}
-    Le melbre de gauche est égal à une constante non négative inférieure à un nombre arbitrairement
-    petit $\Rightarrow 0$. Ceci donne la première formule de Cauchy.
-    \end{proof}
+\subsection{Démonstration de la première formule de Cauchy}
+\begin{proof}\ \\
+	Remarquons que comme $f$ est analytique, elle est forcément continue dans cette région. Je 
+	peux donc dire qu'elle est continue en $z_0$ qui est intérieur à $\mathcal{C}$ : $\forall
+	\epsilon > 0, \exists \delta > 0$ t.q. 
+	\begin{equation}
+		\text{si} |z-z_0| < \delta\ \ \ \text{alors } |f(z)-f(z_0)| < \epsilon
+	\end{equation}
+	Choisissons $R_0 < \delta$ ainsi qu'un cercle $|z-z_0| = R_0$ intérieur à $\mathcal{C}$. Par
+	la deuxième promosition de Cauchy-Goursat :
+	\begin{equation}
+		\oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} = \oint_\mathcal{C_0} \dfrac{f(z) dz}{z-z_0}
+	\end{equation}
+	Cette fonction est analytique partout, sauf en $z_0$. Si je soustrait de part et d'autre 
+	de cette égalité $f(z_0)$. Comme $z_0$ est constant, il faut juste soustraire les intégrales.
+	\begin{equation}
+		\oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} -f(z_0)\oint_\mathcal{C_0} \dfrac{f(z) dz}{z-z_0} 
+		= \oint_{C_0} \dfrac{f(z)-f(z_0)}{z-z_0}dz
+	\end{equation}
+	Par application du lemme :
+	\begin{equation}
+		\oint_\mathcal{C} \dfrac{f(z) dz}{z-z_0} - 2\pi i f(z_0) 
+		= \oint_{C_0} \dfrac{f(z)-f(z_0)}{z-z_0}dz
+	\end{equation}
+	Il faut maintenant montrer que le deuxième membre est nul en appliquant le théorème 'ML'. La
+	borne supérieure de l'intégrant (tirée de la définition de la continuité en début de démo):
+	\begin{equation}
+		\left|\dfrac{f(z) - f(z_0)}{z-z_0}\right| < \dfrac{\epsilon}{R_0}
+	\end{equation}
+	Par le théorème 'ML' (où $2\pi R_0$ est la longueur du chemin) :
+	\begin{equation}
+		\left|\dfrac{f(z) - f(z_0)}{z-z_0}\right| < \dfrac{\epsilon}{R_0}2\pi R_0
+	\end{equation}
+	Le melbre de gauche est égal à une constante non négative inférieure à un nombre arbitrairement
+	petit $\Rightarrow 0$. Ceci donne la première formule de Cauchy.
+\end{proof}
     
     
-    \subsection{Deuxième formule de Cauchy}
-    Soit $f$ analytique sur $D \cup \mathcal{C}$ où $\mathcal{C}$ est un chemin admissible, simple,
-    orienté dans le sens positif et $D$ un domaine intérieur à $\mathcal{C}$. Soit $z_0$, n'importe
-    quel point intérieur à $\mathcal{C}$. On a alors : 
-    \begin{equation}
-    f'(z_0) = \dfrac{1}{2\pi i}\oint_\mathcal{C}\dfrac{f(z)}{(z-z_0)^2}\ dz
-    \end{equation}
+\subsection{Deuxième formule de Cauchy}
+Soit $f$ analytique sur $D \cup \mathcal{C}$ où $\mathcal{C}$ est un chemin admissible, simple,
+orienté dans le sens positif et $D$ un domaine intérieur à $\mathcal{C}$. Soit $z_0$, n'importe
+quel point intérieur à $\mathcal{C}$. On a alors : 
+\begin{equation}
+	f'(z_0) = \dfrac{1}{2\pi i}\oint_\mathcal{C}\dfrac{f(z)}{(z-z_0)^2}\ dz
+\end{equation}
     
-    \begin{proof}
+\begin{proof}
 	\ \\
 	Appliquons la première formule de Cauchy à la définition de la dérivée :
 	\begin{equation}
-	\dfrac{f(z_0 +  \Delta z) - f(z_0)}{\Delta z} = \frac{1}{2\pi i}\oint_\mathcal{C}\left(
-	\dfrac{1}{z-z_0 - \Delta z} - \dfrac{1}{z-z_0}\right)\dfrac{f(z)}{\Delta z}\ dz
+		\dfrac{f(z_0 +  \Delta z) - f(z_0)}{\Delta z} = \frac{1}{2\pi i}\oint_\mathcal{C}\left(
+		\dfrac{1}{z-z_0 - \Delta z} - \dfrac{1}{z-z_0}\right)\dfrac{f(z)}{\Delta z}\ dz
 	\end{equation}
 	En réduisant au même dénominateur, les $\Delta z$ se simplifient pour avoir :
 	\begin{equation}
-	\dfrac{f(z_0 +  \Delta z) - f(z_0)}{\Delta z} = \frac{1}{2\pi i}\underbrace{\oint_\mathcal{C}
-	\dfrac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)}}_{J}
+		\dfrac{f(z_0 +  \Delta z) - f(z_0)}{\Delta z} = \frac{1}{2\pi i}\underbrace{\oint_\mathcal{C}
+			\dfrac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)}}_{J}
 	\end{equation}
 	Nous savons que $0<|\Delta z| < d$ où $d$ est la distance minimale entre $z_0$ et $\mathcal{C}$.
 	On cherche à montrer que :
 	\begin{equation}
-	\lim\limits_{\Delta z \rightarrow 0} J = \oint_\mathcal{C}\frac{f(z)}{(z-z_0)^2}\ dz
+		\lim\limits_{\Delta z \rightarrow 0} J = \oint_\mathcal{C}\frac{f(z)}{(z-z_0)^2}\ dz
 	\end{equation}
 	Afin de montrer que ces deux termes sont identiques, faisons la différence et montrons que 
 	celle-ci est nulle. Après mise au même dénominateur :
 	\begin{equation}
-	\begin{array}{ll}
-	\oint_\mathcal{C}\left(\dfrac{1}{(z-z_0-\Delta z)(z-z_0)} - 
-	\dfrac{1}{(z-z_0)^2}\right)f(z)\ dz &= \oint_\mathcal{C} \frac{z-z_0 - (z-z_0-\Delta z)}{(z-
-	z_0-\Delta z)(z-z_0)^2}f(z)\ dz\\
-	 &= \Delta z\oint_\mathcal{C} \frac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)^2}
-	\end{array}
+		\begin{array}{ll}
+			\oint_\mathcal{C}\left(\dfrac{1}{(z-z_0-\Delta z)(z-z_0)} - 
+			\dfrac{1}{(z-z_0)^2}\right)f(z)\ dz & = \oint_\mathcal{C} \frac{z-z_0 - (z-z_0-\Delta z)}{(z-                
+			z_0-\Delta z)(z-z_0)^2}f(z)\ dz\\
+			                                    & = \Delta z\oint_\mathcal{C} \frac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)^2} 
+		\end{array}
 	\end{equation}
 	Comme il s'agit d'évaluer une fonction continue sur un chemin admissible, simple et fermé, on
 	peut appliquer le théorème ML : la valeur maximale de $|f(z)|$ sur $\mathcal{C}$ est $M$ et la
 	longueur de $\mathcal{C}$ est $L$. Par l'inégalité triangulaire :
 	\begin{equation}
-	|z-z_0| \geq d\ \ et\ \ \ |z-z_0-\Delta z| \geq ||z-z_0| - |\Delta z|| \geq d - |\Delta z|
+		|z-z_0| \geq d\ \ et\ \ \ |z-z_0-\Delta z| \geq ||z-z_0| - |\Delta z|| \geq d - |\Delta z|
 	\end{equation}
 	Par application du théorème ML :
 	\begin{equation}
-	\left|\Delta z\oint_\mathcal{C} \dfrac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)^2}\right| \leq 
-	\dfrac{|\Delta z|ML}{(d-|\Delta z|)d^2}
+		\left|\Delta z\oint_\mathcal{C} \dfrac{f(z)\ dz}{(z-z_0-\Delta z)(z-z_0)^2}\right| \leq 
+		\dfrac{|\Delta z|ML}{(d-|\Delta z|)d^2}
 	\end{equation}
 	Ce terme vaut bien 0 pour $\Delta z \rightarrow 0$. Nous avons donc :
 	\begin{equation}
-	\lim\limits_{\Delta z \rightarrow 0} \oint_\mathcal{C}\left(\dfrac{1}{(z-z_0-\Delta z)(z-z_0)} - 
-	\dfrac{1}{(z-z_0)^2}\right)f(z)\ dz = 0
+		\lim\limits_{\Delta z \rightarrow 0} \oint_\mathcal{C}\left(\dfrac{1}{(z-z_0-\Delta z)(z-z_0)} - 
+		\dfrac{1}{(z-z_0)^2}\right)f(z)\ dz = 0
 	\end{equation}
 	Ou encore :
 	\begin{equation}
-	\lim\limits_{\Delta z \rightarrow 0} \oint_\mathcal{C}\dfrac{1}{(z-z_0-\Delta z)(z-z_0)}
-	f(z)\ dz =
-	\lim\limits_{\Delta z \rightarrow 0}\oint_\mathcal{ C}\dfrac{1}{(z-z_0)^2}f(z)\ dz
+		\lim\limits_{\Delta z \rightarrow 0} \oint_\mathcal{C}\dfrac{1}{(z-z_0-\Delta z)(z-z_0)}
+		f(z)\ dz =
+		\lim\limits_{\Delta z \rightarrow 0}\oint_\mathcal{ C}\dfrac{1}{(z-z_0)^2}f(z)\ dz
 	\end{equation}
 	Soit encore :
 	\begin{equation}
-	\lim\limits_{\Delta z \rightarrow 0} J = \oint_\mathcal{C}\frac{f(z)}{(z-z_0)^2}\ dz = 2\pi i
-	f'(z_0)
+		\lim\limits_{\Delta z \rightarrow 0} J = \oint_\mathcal{C}\frac{f(z)}{(z-z_0)^2}\ dz = 2\pi i
+		f'(z_0)
 	\end{equation}
-    \end{proof}
+\end{proof}
     
 \section{Dérivées d'ordre supérieur à 1}
-	\subsection{Dérivées d'ordre supérieur}
-		\subsubsection{Dérivée seconde}
-		De façon similaire, on retrouve l'existence d'une dérivée du second ordre en tout point
-		intérieur à $\mathcal{C}$ :
-		\begin{equation}
-		f''(z_0) = \frac{1}{\pi i}\oint_\mathcal{C}\dfrac{f(z)}{(z-z_0)^ 3}\ dz
-		\end{equation}
-		On en déduit que si $f$ est analytique en $z_0$, alors $f'$ est analytique en $z_0$.\ \\
+\subsection{Dérivées d'ordre supérieur}
+\subsubsection{Dérivée seconde}
+De façon similaire, on retrouve l'existence d'une dérivée du second ordre en tout point
+intérieur à $\mathcal{C}$ :
+\begin{equation}
+	f''(z_0) = \frac{1}{\pi i}\oint_\mathcal{C}\dfrac{f(z)}{(z-z_0)^ 3}\ dz
+\end{equation}
+On en déduit que si $f$ est analytique en $z_0$, alors $f'$ est analytique en $z_0$.\ \\
 		
-		\retenir{\textbf{corollaire 1 des formules de Cauchy}\\
-		Si une fonction $f$ est analytique en un point, alors sa dérivée d'ordre $n$ (quelconque) 
-		est une fonction analytique en ce point.}
+\retenir{\textbf{corollaire 1 des formules de Cauchy}\\
+	Si une fonction $f$ est analytique en un point, alors sa dérivée d'ordre $n$ (quelconque) 
+est une fonction analytique en ce point.}
 		
-		\subsubsection{Dérivée n-ième}
-		Par induction, on montre que :
-		\begin{equation}
-		f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_\mathcal{C}\frac{f(z)}{(z-z_0)^{n+1}}\ dz\ \ \ n=0,1,
-		2,\dots
-		\end{equation}
+\subsubsection{Dérivée n-ième}
+Par induction, on montre que :
+\begin{equation}
+	f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_\mathcal{C}\frac{f(z)}{(z-z_0)^{n+1}}\ dz\ \ \ n=0,1,
+	2,\dots
+\end{equation}
 		
-		\exemple{Considérons $|z|=1, z_0 = 0$ et $n=3$ pour l'intégrale :
-		\begin{equation}
+\exemple{Considérons $|z|=1, z_0 = 0$ et $n=3$ pour l'intégrale :
+	\begin{equation}
 		\oint_\mathcal{C}\frac{\exp(2z)}{z^4}dz
-		\end{equation}				
-		Identifions $J$ et appliquons  :
-		\begin{equation}
+	\end{equation}				
+	Identifions $J$ et appliquons  :
+	\begin{equation}
 		J = \frac{2\pi i}{3!}\frac{d^3}{dz^3}\left.(\exp(2z))\right|_{z=0} = \frac{8\pi i}{3}
-		\end{equation}}\ \ \\
+	\end{equation}}\ \ \\
 		
-		\retenir{\textbf{corollaire 2 des formules de Cauchy}\\
-		Si une fonction $f(z) = u(x,y) +i v(x,y)$ est analytique en $z=x+iy$, alors $u$ et $v$ ont
-		des dérivées partielles continues de tous les ordres en ce point.}
-		\begin{proof}
-		Considérons la dérivée première de $f$ :
-		\begin{equation}
+\retenir{\textbf{corollaire 2 des formules de Cauchy}\\
+	Si une fonction $f(z) = u(x,y) +i v(x,y)$ est analytique en $z=x+iy$, alors $u$ et $v$ ont
+des dérivées partielles continues de tous les ordres en ce point.}
+\begin{proof}
+	Considérons la dérivée première de $f$ :
+	\begin{equation}
 		f' = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} = \frac{\partial v}{\partial
-		 y} - i \frac{\partial u}{\partial y}
-		\end{equation}
-		Comme $f'$ est analytique et donc dérivable, les dérivées partielles d'ordre 1 de $u$ et $v$ 
-		sont continues. Par argument similaire, les dérivées partielles d'ordre 2 de $u$ et $v$ sont
-		continues, ect ect.
-		\end{proof}
+			y} - i \frac{\partial u}{\partial y}
+	\end{equation}
+	Comme $f'$ est analytique et donc dérivable, les dérivées partielles d'ordre 1 de $u$ et $v$ 
+	sont continues. Par argument similaire, les dérivées partielles d'ordre 2 de $u$ et $v$ sont
+	continues, ect ect.
+\end{proof}
 
-	\subsection{Fonction harmonique}
-	Une fonction réelle de variables réelles $u(x,y)$ est harmonique dans un domaine $D$ du plan $x-
-	y$ si elle admet des dérivées partielles d'ordre 1 et 2 continue dans ce domaine et si $\Delta u
-	= \frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2} = 0$.\\
+\subsection{Fonction harmonique}
+Une fonction réelle de variables réelles $u(x,y)$ est harmonique dans un domaine $D$ du plan $x-
+y$ si elle admet des dérivées partielles d'ordre 1 et 2 continue dans ce domaine et si $\Delta u
+= \frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2} = 0$.\\
 	
-	\retenir{\textbf{Corollaire 3 des formules de Cauchy}\\
+\retenir{\textbf{Corollaire 3 des formules de Cauchy}\\
 	Si $f(z) = u(x,y) + iv(x,y)$ est analytique dans $D$, alors $u$ et $v$ sont harmoniques, c'est-à-dire $\Delta u = 0$ et $\Delta v = 0$.}
-	\begin{proof}
+\begin{proof}
 	Calculons $f''$ :
 	\begin{equation}
-	f'' = \frac{\partial^2 u}{\partial x^2} + i\frac{\partial^2 v}{\partial x^2} = \frac{\partial^2 v
-	}{\partial x\partial y} -i\frac{\partial^2 u}{\partial x \partial y} = -\frac{\partial^2 u}{
-	\partial y^2} - i\frac{\partial^2v}{\partial y^2}
+		f'' = \frac{\partial^2 u}{\partial x^2} + i\frac{\partial^2 v}{\partial x^2} = \frac{\partial^2 v
+			}{\partial x\partial y} -i\frac{\partial^2 u}{\partial x \partial y} = -\frac{\partial^2 u}{
+			\partial y^2} - i\frac{\partial^2v}{\partial y^2}
 	\end{equation}
 	En partant de cette équation et en égalant les dérivées secondes :
 	\begin{equation}
-	\frac{\partial^2u}{\partial x^2} = \frac{\partial^2 v}{\partial x \partial y} \text{et} \frac{
-	\partial^2u}{\partial y^2} = -\frac{\partial^2 v}{\partial x \partial y}
+		\frac{\partial^2u}{\partial x^2} = \frac{\partial^2 v}{\partial x \partial y} \text{et} \frac{
+			\partial^2u}{\partial y^2} = -\frac{\partial^2 v}{\partial x \partial y}
 	\end{equation}
 	En sommant les deux, on retrouve bien $\Delta u = 0$ (faire pareil pour $\Delta v$).
-	\end{proof}
-	Petit zeste de vocabulaire : on dira que $v$ est  harmonique conjuguée de $u$, c'est-à-dire que
-	$u$ et $v$ sont harmoniques et satisfont les équations de Cauchy-Riemann.
+\end{proof}
+Petit zeste de vocabulaire : on dira que $v$ est  harmonique conjuguée de $u$, c'est-à-dire que
+$u$ et $v$ sont harmoniques et satisfont les équations de Cauchy-Riemann.
 	
 	
-	\subsection{Théorème de Morera}
-	\theor{\textsc{Morera}\\
+\subsection{Théorème de Morera}
+\theor{\textsc{Morera}\\
 	Si $f(z)$ est continue pour tout $z$ dans un domaine $D$ et si 
 	\begin{equation}
-	\oint_\mathcal{C}f(z)\ dz = 0
+		\oint_\mathcal{C}f(z)\ dz = 0
 	\end{equation}
 	pour tout $\mathcal{C}$ admissible fermé contenu dans $D$, alors $f(z)$ est analytique dans $D$.
 	\textbf{INCLURE SCHEMA SLIDE 11/23}}\ \\
-	Ce théorème peut être vu comme une sorte de "réciproque" du théorème de Cauchy.
-	\begin{proof}
+Ce théorème peut être vu comme une sorte de "réciproque" du théorème de Cauchy.
+\begin{proof}
 	Provient directement de la démonstration vue dans les primitives, elle ne sera pas reprise ici
 	dans les détails.
-	\end{proof}
+\end{proof}
 		
 \section{Théorèmes résultats des formules de Cauchy}
-	\subsection{Théorème fondamental de l'algèbre}
-	\theor{Tout polynôme
+\subsection{Théorème fondamental de l'algèbre}
+\theor{Tout polynôme
 	\begin{equation}
-	P(z) = a_0+a_1z+a_2z^2 + \dots + a_nz^n\ \ (a_n \neq 0)
+		P(z) = a_0+a_1z+a_2z^2 + \dots + a_nz^n\ \ (a_n \neq 0)
 	\end{equation}
 	de degré $n\geq 1$ possède au moins une racine.}\ \\
 	
-	La démonstration de ce théorème se fait par l'absurde, cf. livre de référence. \\
-	On en tire comme \textbf{corollaire} :
-	\begin{equation}
+La démonstration de ce théorème se fait par l'absurde, cf. livre de référence. \\
+On en tire comme \textbf{corollaire} :
+\begin{equation}
 	P(z) = c(z-z_1)(z-z_2)\dots(z-z_n)\ \ \ \ c,z_k\ (k=1,\dots,n) \in \mathbb{C}
-	\end{equation}
-	\begin{proof}
+\end{equation}
+\begin{proof}
 	Par le théorème fondamental de l'algèbre, $P(z) = (z-z_1)Q_1(z)$ où $Q_1(z)$ est de degré $n-1$.
 	En tenant le même argument pour $Q_1(z)$ (ect.ect.) :
 	\begin{equation}
-	P(z) = (z-z_1)(z-z_2)Q_2(z)
+		P(z) = (z-z_1)(z-z_2)Q_2(z)
 	\end{equation}
-	\end{proof}
+\end{proof}
 	
-	\subsection{Principe du module maximum}
-		\subsubsection{Énoncé}
-		Si $f$ est continue dans $\mathcal{C} \cup D$, analytique et non constante dans $D$, alors le 
-		maximum de $|f(z)|$ pour $z \in \mathcal{C} \cup D$ est atteint \textbf{sur} $\mathcal{C}$.\\
+\subsection{Principe du module maximum}
+\subsubsection{Énoncé}
+Si $f$ est continue dans $\mathcal{C} \cup D$, analytique et non constante dans $D$, alors le 
+maximum de $|f(z)|$ pour $z \in \mathcal{C} \cup D$ est atteint \textbf{sur} $\mathcal{C}$.\\
 		
-		\exemple{Prenons pour chemin $0\leq x \leq \pi$ et $0\leq y \leq 1$ et considérons la fonction
-		$f(z) = \sin(z)$. On a donc :
-		\begin{equation}
+\exemple{Prenons pour chemin $0\leq x \leq \pi$ et $0\leq y \leq 1$ et considérons la fonction
+	$f(z) = \sin(z)$. On a donc :
+	\begin{equation}
 		\begin{array}{ll}
-		|f(z)| &= |sin(x+iy)|\\
-		 &= |\sin(x)\cosh(y) + i\cos(x)\sinh(y)|\\
-		 &= \sqrt{\sin^2(x)\cosh^2(y) + \cos^2(x)\sinh^2(y)}\\
-		 &= \sqrt{\sin^2(x)\cosh^2(y) + (1-\sin^2(x))\sinh^2(y)}\\
-		 &= \sqrt{\sin^2(x)\underbrace{(\cosh^2(y)-\sinh^2(y))}_{=1}+\sinh^2(y)}
+			|f(z)| & = |sin(x+iy)|                                                          \\
+			       & = |\sin(x)\cosh(y) + i\cos(x)\sinh(y)|                                 \\
+			       & = \sqrt{\sin^2(x)\cosh^2(y) + \cos^2(x)\sinh^2(y)}                     \\
+			       & = \sqrt{\sin^2(x)\cosh^2(y) + (1-\sin^2(x))\sinh^2(y)}                 \\
+			       & = \sqrt{\sin^2(x)\underbrace{(\cosh^2(y)-\sinh^2(y))}_{=1}+\sinh^2(y)} 
 		\end{array}
-		\end{equation}
-		Le maximum est atteint (en respectant $0\leq x \leq \pi$ et $0\leq y \leq 1$) pour $x=\frac{\pi
+	\end{equation}
+	Le maximum est atteint (en respectant $0\leq x \leq \pi$ et $0\leq y \leq 1$) pour $x=\frac{\pi
 		}{2}$ et $y=1$. On a donc le maximum qui appartient bien au chemin $\mathcal{C}$.
-		\begin{equation}
+	\begin{equation}
 		\max(|f(z)|) = \frac{\pi}{2} + i \in \mathcal{C}
-		\end{equation}}
+	\end{equation}}
 	
