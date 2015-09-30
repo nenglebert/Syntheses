@@ -1,0 +1,301 @@
+\chapter{Les machines électriques - Généralités}
+\section{Introduction}
+	\subsection{Classification des machines électriques}
+	Tout se base sur l'interaction des courants électriques et des champs 
+	magnétiques. On classes ces bèbètes en trois catégories :
+	
+	\begin{enumerate}
+	\item \textit{Les machines génératrices.} Elles se basent 
+	sur l'induction d'un courant électrique dans un circuit conducteur par
+	\textbf{déplacement relatif} de celui-ci et d'un champ magnétique. La 
+	dynamo et l'alternateur sont de ce type.
+	\item \textit{Les moteurs électriques.} Ils sont basés sur 
+	l'obtention d'un effort mécanique sur un circuit traversé pour un 
+	courant extérieur (pouvant donner lieux à un champ magnétique). Nous 
+	pouvons parler ici du moteur à courant continu ou alternatif.
+	\item \textit{Les machines transformatrices.} Leur rôle est 
+	de modifier la grandeur des courants et tensions alternatifs. Le 
+	transformateur est le grand classique.
+	\end{enumerate}
+	
+	\subsection{Intérêt des moteurs électriques}
+	Ceux-ci ont pas mal d'avantages sur les moteurs thermiques : moins 
+	polluants, bruyants, démarrent seuls, facilité d'emploi, régularité 
+	du couple utile, possibilité de l'inversion du sens de rotation, 
+	fort couple vitesse à faible vitesse et même à l'arrêt, \dots Le 
+	dernier point est très important car cela les affranchis, par 
+	exemple, de boîte à vitesses. En effet, les moteurs thermiques ne 
+	disposent pas de cette jouissante propriété et possèdent tout un 
+	dispositif mécanique à engrenages, dissipant de l'énergie.
+	
+	\subsection{Le moteur asynchrone}
+	C'est \textbf{le} moteur le plus utilisé. Il fonctionne directement 
+	en tension alternative. Celle-ci génère un courant circulant dans le 
+	stator constituant la seule source externe de champ magnétique, le 
+	rotor n'a pas à être relié à une source d'énergie. Cependant, il existe 
+	des courants rotorique mais ceux-ci sont \textbf{induits} : on parle 
+	parfois de \textbf{moteur d'induction}. Ce moteur équipe la quasi 
+	totalité des machines-outils classique (tours, fraiseuses, \dots)
+	
+	\subsection{Le moteur synchrone}
+	Afin de les utiliser, il faut d'abord les faire "roter" à leur 
+	vitesse nominale avant de les couplé au réseau, nécessitant un 
+	moteur auxiliaire. La seule différence avec le moteur asynchrone 
+	se situe dans la conception du rotor. Ce-dernier est constitué 
+	d'aimants (ou alimenté en courant continu). Après le démarrage, le 
+	moteur tourne en synchronisme avec le champ tournant. Ces moteurs 
+	ne dépendent donc que du réseau qui les alimente et sont ainsi 
+	utilisés lorsqu'une rotation uniforme est primordiale.\footnote{
+	Différence à plus expliciter plz}
+	
+	
+	\subsection{Les moteurs à courant continu}
+	Ils sont les champions dans les très faibles puissances (jouets, 
+	essuie-glaces\dots). Leur atout majeur est de posséder une 
+	remarquable capacité de variation de vitesse. Ils jouent un rôle 
+	important dans la traction électrique, utilisé en tant que 
+	moteurs "série".
+	
+	\subsection{Les autres types de machines électriques}
+		\textsc{Les moteurs universels}\\
+		On les trouve dans les robots ménager, ventilateurs, \dots 
+		C'est le moteur de la vie domestique. Leur vitesse chute 
+		rapidement lorsqu'un couple trop important leur est demandé.\\
+		
+		\textsc{Les moteurs pas à pas}\\
+		Utilisés dans les dispositifs à positionnement précis et ont 
+		l'avantage d’être très simple à la conception.
+		
+	\subsection{Associations moteurs - électronique}
+	Les moteurs à faible puissance, ou les synchrones auto-pilotés pour 
+	les fortes sont souvent associés à des équipement électroniques.
+	
+	
+\section{Méthodes d'étude des machines électriques}
+	\subsection{Généralités}
+	Pour étudier les machines, deux méthodes s'offrent à nous :
+	\begin{enumerate}
+	\item \textit{La méthode de Kirchhoff}. On écrit les équations des 
+	circuits, la conservation et l'énergie et on déduit le reste. Le 
+	dispositif décrit par les équations se présente comme une boite noire 
+	s'incluant dans une chaîne de régulation. C'est l'optique de l'
+	\textbf{automaticien}.
+	\item \textit{La méthode de Maxwell}. On part des grandeurs physiques 
+	et on calcule le reste. C'est l'optique du \textbf{constructeur}.
+	\end{enumerate}
+	Si l'on se base sur le critère de l'utilité pratique, en Belgique, il 
+	est plus intéressant de choisir la méthode de Kirchhoff. D'un point de 
+	vue formation, cette méthode est également plus "simple" (car 
+	systématique). La préférence va ainsi pour Kirchhoff, mais n'oublions 
+	pas pour autant la seconde!
+	
+	\subsection{Choix du phénomène physique exploité}
+	On peut concevoir des moteurs capacitifs (loi de Coulomb) ou inductif (
+	Laplace). Quasi tous les moteurs sont de type inductif car la densité 
+	d'énergie potentielle magnétique ($1/2B^2/\mu_0$) est 10,000 fois 
+	supérieure à la densité d'énergie potentielle électrique ($1/2\epsilon_0
+	E^2$).\\
+	Le dispositif magnétique le plus simple est l'électro-aimant dont 
+	la force est donné par $f_{em} = \frac{1}{2} i^2\frac{dL(x)}{dx}$.
+	
+	
+	
+\section{Rappel des lois de l'électromagnétisme}
+	\subsection{Loi de la force magnétomotrice (f.m.m.)}
+	Elle intervient dans le calcul des ampère-tours nécessaire pour 
+	magnétiqer un circuit magnétique. Sous sa forme locale 
+	\begin{equation}
+	\rot \vec{H} = \vec{J}_t
+	\end{equation}
+	où $\vec{H}$ est le champ magnétique local et $\vec{J}_t$ la 
+	densité de courant. On peut également exprimer cette loi 
+	\begin{equation}
+	\mathcal{F} = \oint \vec{H}.\vec{dl} = \sum i
+	\end{equation}
+	où $\mathcal{F}$ est la force électromotrice le long d'un contour 
+	fermé embrassant un faisceau de conducteurs parcourus par des 
+	courants $i$.
+	
+	\subsection{Loi de Maxwell}
+	Elle exprime la force électromotrice induite dans un \textbf{circuit}. 
+	Sous sa forme locale 
+	\begin{equation}
+	\rot \vec{E} = -\frac{\partial \vec{B}}{\partial t}
+	\end{equation}
+	Sous sa forme intégrale 
+	\begin{equation}
+	e = ri = \oint \vec{E}.\vec{dl} = -\frac{d\Phi}{dt}
+	\end{equation}
+	La f.e.m. induite $e$ fait alors circuler un courant $i$. Un 
+	accroissement du flux fait ainsi circuler un courant négatif
+	\footnote{Trigonométrique}. Si le circuit est fixe et l'induction 
+	variable on parle de f.e.m. \textbf{induite}. Si le circuit est 
+	mobile, on dira \textbf{engendrée}. Dans ce dernier cas, on écrit 
+	alors la loi sous la forme
+	\begin{equation}
+	de = -[\vec{B}\times\vec{v}].\vec{dl}]
+	\end{equation}
+	où $\vec{v}$ est la vitesse relative par rapport à un champ d'induction 
+	$\vec{B}$ d'un élément de longueur $\vec{dl}$ du circuit électrique 
+	considéré.\\
+	\textsc{Exemple}. Soit un conducteur linéaire de longueur $l$ se 
+	déplaçant à vitesse constante $\vec{v}$ dans un champ d'induction $\vec{
+	B}$. Celle loi devient 
+	\begin{equation}
+	e = -[\vec{B}\times\vec{v}].\vec{l}
+	\end{equation}
+	Si le déplacement se fait normalement à son axe et à la direction 
+	du champ (en valeur absolue) : $e = Blv$.
+	
+	
+	\subsection{Loi de Laplace}
+	Elle donne l'expression de la force sur un conducteur parcouru par 
+	un courant plongé dans un champ d'induction $\vec{B}$.
+	
+	
+\section{Principes de fonctionnement des machines électriques}
+	\subsection{Éléments constitutifs des machines électriques}
+	Quasi toutes contiennent un élément fixe dénommé \textbf{stator} 
+	et un organe mobile, le \textbf{rotor}, séparés par un entrefer. 
+	L'\textbf{inducteur} est l'organe destiner à créer le flux 
+	magnétique, ou par des aimants permanents ou par des courants 
+	électriques.
+	
+	
+	\subsection{Machines hétéropolaires}
+		\subsubsection{Principes de fonctionnement}
+		Hétéropolaire signifie que $\vec{B}$ n'a pas le même signe 
+		partout dans l'entrefer. Considérons le dispositif suivant, 
+		constitué d'un stator métallique portant un circuit inducteur 
+		de $N_S$ spires parcourues par un courant continu $i_s$ et 
+		un rotor lisse composé de la spire $11'$ constituée de deux 
+		conducteurs diamétralement opposés. Les bornes $1$ et 1' sont 
+		connectées à de disques conducteurs.\\
+		
+		\textsc{Méthode des champs}\\
+		Considérons $i_r=0$. On suppose le fer parfait, de perméabilité 
+		infinie impliquant que tous les ampère-tours se concentrent dans 
+		l'entrefer\footnote{En effet, $H_{fer} = B/\mu$ où $\mu = \infty$. 
+		On peut donc négliger le champ dans le fer.}. En considérant un 
+		contour fermé traversant l'entrefer 
+		\begin{equation}
+		N_Si_S = 2H\delta(\beta)
+		\end{equation}
+		où $\delta(\beta)$ est la largeur de l'entrefer. On a donc
+		\begin{equation}
+		B(\beta) = \mu_0H = \mu_0\frac{N_SI_S}{2\delta(\beta)}
+		\end{equation}
+		Si le rotor tourne à vitesse $\Omega_r$ constante, il apparaît une 
+		f.e.m. aux bornes du conducteur valant
+		\begin{equation}
+		e_1 = Blv = B(\beta)lR\Omega_r
+		\end{equation}
+		où $R$ est le rayon du rotor. Comme $e_{1'} = -e_1$, on a 
+		\begin{equation}
+		e_r = e_1-e_{1'} = 2lRB(\beta)\Omega_r
+		\end{equation}
+		On retrouvera cette relation pour tous les types de machines : la 
+		f.e.m. engendrée est $\propto$ flux*vitesse : $e_r = c^{te}B(
+		\Omega_rt)$ où $e_r(t)$ est une fonction périodique qui reproduit 
+		dans le temps la répartition spatiale de l'induction. \\
+		Notons que pour éviter les problèmes de glissements, on peut 
+		échanger les emplacement de l'inducteur et de l'induit avec un 
+		structure à pôles lisses ou saillants.\\
+		
+		\textsc{Méthode des circuits}\\
+		Vu en cours?
+		
+		
+		\subsubsection{Spire non diamétrale}
+		Si 1' est décalé de $\theta_1$ par rapport à 1'' d'une spire 
+		diamétrale, la connexion d'extrémité est plus courte (bien) 
+		mais la tension à ses bornes est plus faible (bof).
+		
+		\subsubsection{Enroulement}
+		D'un point de vue économique, il est préférable de considérer 
+		plusieurs spires. Soit 22', une spire décalée de $\theta_1$ 
+		par rapport à 11' ; le phaseur à ses bornes est lui aussi 
+		déphasé de $\theta_1$ :
+		\begin{equation}
+		\underline{E_{2'2}} = \underline{E_{1'1}}e^{j\theta_1}
+		\end{equation}
+		\textbf{Attention !} On peut mettre ces deux spires en série, 
+		mais pas en parallèle\footnote{Pq ?}.\\
+		
+		On peut ajouter $m$ spires sur un arc $\theta_m$ du rotor. 
+		Néanmoins, 	il n'est pas économique de dépasser $\theta_m = 
+		\pi/3$, l'accroissement de tension étant faible. Pour $\theta_m = 
+		\pi/3$, le rotor peut accueillir trois enroulements indépendants 
+		aux bornes desquels on peut obtenir une f.e.m. d'amplitudes 
+		égale, mais décalée de $2\pi/3$ : c'est le système \textbf{triphasé 
+		équilibré}. Une telle machine a la particularité de posséder l'induit sur 
+		le stator. Il s'agit d'une machine synchrone à rotor lisse à 
+		une paire de pôles (non-étudié ici).\\
+		
+		Au premier chapitre, nous avons vu comment connecter les enroulements 
+		pour garantir une distribution économique de l'énergie. Si des 
+		impédances égales sont branchées sur les enroulements, le système 
+		est triphasé équilibré : un moteur synchrone connecté à ce réseau 
+		entraînera une vitesse constante.
+		
+		
+		\subsubsection{Machine à courant continu}
+		Les extrémité de la spire sont connectées à un secteur conducteur 
+		tournant, isolé du précédent. Sur ces secteurs appelés \textit{lames 
+		de collecteur} reposent deux balais fixes diamétralement opposés. La 
+		commutation est le passage d'un valai d'un secteur à un autre. En bref, 
+		si un conducteur en forme de spire, parcouru par un courant, est placé
+		dans un champ magnétique, il est soumis à des forces de Laplace. Ces forces 
+		créent un couple de rotation qui fait tourner la spire sur son axe. Quand 
+		la spire a fait un demi tour, il faut inverser la polarité pour inverser le 
+		sens des forces et continuer le mouvement. ce sera le rôle du collecteur.
+		
+		\subsubsection{Machine à plusieurs paire de pôles}
+		Simple généralisation : la période d'induction n'est plus de $2\pi$ mais 
+		de $2\pi/p$.
+		
+		
+		
+\section{Composants des machines électriques}
+Pour canaliser le champ magnétique on utilise du fer : on forme un circuit 
+magnétique, généralement en cuivre. Pour séparer les composants, un isolant 
+est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine 
+électrique.
+
+	\subsection{Circuit magnétique}
+	Son rôle est de conduire le flux qui devra agir sur les courants circulant 
+	dans le circuit électrique placé au milieu de l'entrefer. Ce circuit est 
+	constitué d'un solide de forte perméabilité magnétique forçant\footnote{Une 
+	partie parvient tout de même à s'échapper : le flux de dispersion magnétique.} 
+	le trajet des lignes de champs d'où le nom \textit{circuit magnétique} par analogie 
+	à l'\textit{électrique}.\\
+	
+	\textsc{Matériaux utilisés}\\
+	L'acier, la fonte, le fer, \dots Le plus important et ce peu importe le 
+	matériau est la loi qui lie l'induction au champ magnétique. Ce n'est 
+	pas quelque chose de linéaire : la perméabilité d'un matériau varie en 
+	fonction du champ qui lui est appliqué. Pour représenter ça, on regarde 
+	les \textit{courbes de magnétisation.}
+	
+	
+	\subsection{Circuit électrique}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
