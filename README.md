@@ -34,7 +34,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Mécanique du Solide et Résistance des Matériaux](IRCI3/Mécanique du solide et résistance des matériaux/build/)
   - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
   - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
-  - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/)
+  - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
   - [ ] [Compléments de Mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
   - [ ] [Physique des Semi-conducteurs](IRCI3/Physique des semiconducteurs/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
