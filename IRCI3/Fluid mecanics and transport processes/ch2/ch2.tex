@@ -107,9 +107,8 @@
 		\vspace{-5mm}
 		\includegraphics[scale=0.5]{ch2/3}
 		\end{wrapfigure}
-			The continuity equation caracterise the net rate of change of mass in a control volume. We start from the fact that this rate is equal to the net rate at wich mass flows through the volume. 
+			The continuity equation caracterise the net rate of change of mass in a control volume. We start from the fact that this rate is equal to the net rate at wich mass flows through the volume. \\
 			
-			\begin{proof}
 			The variation of mass in function of time in an infinitesimal volume is given by 
 			\begin{equation}
 				\partial M = \frac{\partial \rho}{\partial t} \partial x \partial y \partial z
@@ -135,7 +134,7 @@
 			\begin{equation}
 				\frac{D\rho}{Dt} + \rho \nabla v = 0
 			\end{equation}
-			\end{proof}
+			
 \section{Momentum equation}
 \subsection{Cauchy equation}
 	To solve this rapidly we use the Langrangian approach. We suppose that the control volume is moving with the fluid and contain a fixed mass. The momentum rate of change is is equal to the net force acting on the control volume (volumetric and superficial)
@@ -148,15 +147,17 @@
 		f(n,r) = nT(r)
 		\label{eq:2.19}
 	\end{equation}
-	\begin{proof}
-		\begin{wrapfigure}[7]{r}{3cm}
+	
+		\begin{wrapfigure}[10]{r}{5cm}
 		\vspace{-5mm}
-		\includegraphics[scale=0.5]{ch2/3}
+		\includegraphics[scale=0.4]{ch2/4}
 		\end{wrapfigure}
 		Let's consider a tetrahedron on the axis $x_1,x_2,x_3$ and the forces exerted by the surrounding fluid. The force balance can be expressed 
 		\begin{equation}
-			f(n) S_{ABC} = f(e_1) S_{AOB} + f(e_2) S_{AOC} + f(e_3) S_{BOC} 
-			= f(e_1) S_{ABC} n e_1 + f(e_2) S_{ABC} n e_2 + f(e_3) S_{ABC} n e_3
+		\begin{aligned}
+			f(n) S_{ABC} &= f(e_1) S_{AOB} + f(e_2) S_{AOC} + f(e_3) S_{BOC} \\
+			&= f(e_1) S_{ABC} n e_1 + f(e_2) S_{ABC} n e_2 + f(e_3) S_{ABC} n e_3
+			\end{aligned}
 		\end{equation}
 		if we do a factorisation and we define the tensor $T$ as
 		\begin{equation}
@@ -175,18 +176,19 @@
 			\rho \frac{Dv}{Dt} = \nabla T + \rho g
 			\label{eq:cauchy}
 		\end{equation}
-	\end{proof}
-	
+
 	\subsection{Constitutive equations}
 		\subsubsection{Static conditions}
 			Imagine that we have a static fluid. The only force $f$ will be due to the pressure $p$ 
 			\begin{equation}
 				f = -pn \Leftrightarrow T = -pI = 
+				\left(
 				\begin{array}{ccc}
 				-p & 0 & 0 \\ 
 				0 & -p & 0 \\ 
 				0 & 0 & -p
 				\end{array} 
+				\right)
 			\end{equation}
 			In that case, the use of equation \autoref{eq:cauchy} give us the information
 			\begin{equation}
@@ -221,9 +223,10 @@
 			\rho \frac{Dv}{Dt} = \rho \left[ \frac{\partial v}{\partial t} + v\nabla v  \right] = - \nabla p + \mu \nabla^2 v + \rho g
 			\label{eq:navier}
 		\end{equation} }
-		Where we used the Cauchy equation \autoref{eq:cauchy} and equation \autoref{eq:incompressible} for $T$. 
+		\ \\ Where we used the Cauchy equation \autoref{eq:cauchy} and equation \autoref{eq:incompressible} for $T$. 
 		
 \section{Bernouilli equation}
+	\subsection{Without friction effects and energy transfer}
 	To access the Bernouilli equation, let's take the Navier-Stokes equation \autoref{eq:navier} and disregard the viscous term (with $\mu$). The scalar multiplication of that equation provides the \textbf{kinetic energy balance}
 	\begin{equation}
 		\rho v \frac{Dv}{Dt} = \rho \frac{D}{Dt} \frac{v^2}{2} = -v\nabla (p + \rho \Phi) 
@@ -241,7 +244,7 @@
 	\begin{equation}
 		\frac{D}{Dt}\left( \rho \frac{v^2}{2} + p + \rho g z \right)	 = 0 
 	\end{equation}	 
-		leading us to the Bernouilli equation after integration
+		leading us to the Bernouilli equation after integration. \\
 		
 		\theor{\textsc{Bernouilli equation}\\
 		The sum of the kinetic, potential and flow energies of a fluid particle is \textbf{constant} along a streamline during \textbf{steady} flow when the \textbf{compressibility} and \textbf{frictional effects} are negligible. 
@@ -253,4 +256,55 @@
 			\item[•] $p$ is the static pressure : thermodynamic pressure of the fluid.
 			\item[•] $\rho g z$ is the \textbf{hydrostatic pressure} : for the elevation effects.
 		\end{itemize} }
-		Finally, we can say that the sum of these 3 type of pressure is the \textbf{total pressure} and that it's constant along a srteamline. 
+		\ \\ Finally, we can say that the sum of these 3 type of pressure is the \textbf{total pressure} and that it's constant along a srteamline. 
+
+		\subsubsection{Limitations of the Bernouilli equation}
+			To use Bernouilli equation we have to make some hypothesis : 
+			\begin{itemize}
+				\item[•] \textbf{Steady flow} : cannot be used for transients (start-up and shut-down) flow or with changes in flow conditions. 
+				\item[•] \textbf{Frictionless flow} : cannot be used when there are components disturbing the flow.
+				\item[•] \textbf{No shaft work} : cannot use in presence of pump, turbine, etc (destroy the streamline structure).
+				\item[•] \textbf{Incompressible flow} : cannot be used when the density changes. Liquids and gases (Mach numbers $<0.3$) are ok.
+				\item[•] \textbf{No heat transfer} : the increase of temperature influe on the density.
+				\item[•] \textbf{Along a streamline} : the constant $c$ is the same for all streamlines if the flow is irrotational.
+			\end{itemize}				
+			Many applications exists like the the Pitot tube, the cavitation or the discharge of a fluid from a tank. 
+			
+			\subsection{With friction effects and energy transfer}
+				We have to generalize the Bernouilli equation. To take care of the friction forces that dissipate the mechanical energy into heat, we introduce a \textbf{pressure drop} $\Delta P_{tot}$ for \textbf{incompressible fluids}. Friction is an \textbf{irreversible process} and this forces are always positive (for potential flow = 0). \\
+				When pumps and turbines are used, we introduce an \textbf{energy transfer by work} $w_p$ and $w_t$. The contributions for pumps are positive whereas they are negative for turbines 
+				\begin{equation}
+					\rho \frac{v_1^2}{2} + p_1 + \rho gz_1 + w_p -w_t - \Delta P_{tot} = c
+				\end{equation}
+				
+\section{Distributed pressure drops}
+	DEMANDER SI LES SLIDES 30-34 SONT A VOIR
+
+\section{Newtonian flow in a pipe}
+	\begin{wrapfigure}[3]{l}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch2/5}
+	\end{wrapfigure}
+	We want to determine the pressure drops for internal flows. Let's begin with the energy balance 
+	\begin{equation}
+			\rho \frac{v_2^1}{2} + p_1 + \rho gz_1 + w_p = \rho \frac{v_2^2}{2} + p_2 + \rho gz_2+w_t + \Delta P_{tot}
+	\end{equation}
+	After simplifying the relation, we find that 
+	\begin{equation}
+		\Delta p = \Delta P_{tot} 
+		\label{eq:2.37}
+	\end{equation}
+	Let's now do the force balance consisting on the pressure force at the entry, the exit and the shear stress whithin the volume
+	\begin{equation}
+		\sum F = \pi R^2 p - \pi R^2 (p-\Delta p) - (2\pi R \Delta x)\tau _{w} = 0 
+	\end{equation}
+	After simplifying the terms and isolating the ratio, we can use the relation \autoref{eq:2.37}
+	\begin{equation}
+		\frac{\Delta p}{\Delta x} = \frac{2\tau _w}{R} = \frac{4 \tau _w}{D} \qquad \Rightarrow \qquad \Delta P_{tot} = \frac{2\tau _w}{R} = \frac{4 \tau _w}{D} L
+	\end{equation}
+	Let's finally introduce the \textbf{Moody coefficient} $\mathbf{\lambda}$ and the \textbf{Fanning coefficient} $\mathbf{f}$ to obtain the final expression 
+	\begin{equation}
+		\lambda = 4f = 4\frac{\tau _w}{\frac{\rho v^2}{2}} \qquad \Rightarrow  \qquad \Delta P_{tot} = \lambda\frac{L}{D}\frac{\rho v^2}{2}
+	\end{equation}
+
+	
