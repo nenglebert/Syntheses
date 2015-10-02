@@ -94,3 +94,163 @@
 				&= \Delta ^2 _1 (\rho \bar{v}^2  +p)S-F_w+F_g
 			\end{aligned}
 			\end{equation}
+			You can find an example of exercice on slide 8 and 9 where we study the forces on an elbow\footnote{Coude}. Keep in mind that we often \textbf{consider a steady-state flow} to simplify $d/dt = 0$.
+			
+		\subsection{Local form of the conservation principles}
+			\subsubsection{Macroscopic balances}
+				They are used to have a general view an a volume, when we are interested in the \textbf{overall features}\footnote{Caractéristiques générales}.
+			\subsubsection{Microscopic balances}
+				They consist on differantial and local equations and are valid on every point of the fluid to give the velocity, density or pressure. 
+
+\section{Continuity equation}
+	\begin{wrapfigure}[7]{l}{3cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.5]{ch2/3}
+		\end{wrapfigure}
+			The continuity equation caracterise the net rate of change of mass in a control volume. We start from the fact that this rate is equal to the net rate at wich mass flows through the volume. 
+			
+			\begin{proof}
+			The variation of mass in function of time in an infinitesimal volume is given by 
+			\begin{equation}
+				\partial M = \frac{\partial \rho}{\partial t} \partial x \partial y \partial z
+			\end{equation}
+			If we do the difference between the enter and the exit of the flow in the volume following axis x, we have $(\rho v S)$
+			\begin{equation}
+				\rho u \partial y \partial z - \left( \rho u + \frac{\partial (\rho u)}{\partial x}\partial x \right) \partial y \partial z
+				= - \frac{\partial (\rho u)}{\partial x}\partial x \partial y \partial z
+			\end{equation}
+			and using the same way for the other axis
+			\begin{equation}
+				- \frac{\partial (\rho v)}{\partial y}\partial x \partial y \partial z
+				 \qquad and \qquad 
+				- \frac{\partial (\rho w)}{\partial z}\partial x \partial y \partial z
+			\end{equation}
+			We take care of the contributions in all direction and simplify the infinitesimal volume in each term
+			\begin{equation}
+				\frac{\partial \rho}{\partial t} + \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} = 0 
+				\qquad \Rightarrow \qquad
+				\frac{\partial \rho}{\partial t} + \nabla (\rho v) = 0
+			\end{equation}
+			Where the final $v$ is global and not specific to an axis. Let's remind that the material derivative is defined as $\frac{D\rho}{Dt} = \frac{\partial \rho}{\partial t} + v \nabla \rho$, we have
+			\begin{equation}
+				\frac{D\rho}{Dt} + \rho \nabla v = 0
+			\end{equation}
+			\end{proof}
+\section{Momentum equation}
+\subsection{Cauchy equation}
+	To solve this rapidly we use the Langrangian approach. We suppose that the control volume is moving with the fluid and contain a fixed mass. The momentum rate of change is is equal to the net force acting on the control volume (volumetric and superficial)
+	\begin{equation}
+		\frac{D}{Dt} \int _{V_m(t)} \rho v \, dV = \int _{V_m(t)} \rho g \, dV + \int _{S_m(t)} f \, dS
+		\label{eq:2.18}
+	\end{equation}
+	$f$ is a function of the position $r$ on the surface defined by the unit vector $n$ perpendicular to the surface and pointing outward. $f$ can be expressed as the scalar product between the tensor $T$ and normal $n$
+	\begin{equation}
+		f(n,r) = nT(r)
+		\label{eq:2.19}
+	\end{equation}
+	\begin{proof}
+		\begin{wrapfigure}[7]{r}{3cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.5]{ch2/3}
+		\end{wrapfigure}
+		Let's consider a tetrahedron on the axis $x_1,x_2,x_3$ and the forces exerted by the surrounding fluid. The force balance can be expressed 
+		\begin{equation}
+			f(n) S_{ABC} = f(e_1) S_{AOB} + f(e_2) S_{AOC} + f(e_3) S_{BOC} 
+			= f(e_1) S_{ABC} n e_1 + f(e_2) S_{ABC} n e_2 + f(e_3) S_{ABC} n e_3
+		\end{equation}
+		if we do a factorisation and we define the tensor $T$ as
+		\begin{equation}
+			T = e_1f(e_1)+e_2f(e_2)+e_3f(e_3)
+		\end{equation}
+		we find the equation \autoref{eq:2.19}. We can so write the equation \autoref{eq:2.18} with this expression and use the \textbf{divergence theorem}
+		\begin{equation}
+			\int _S nT \, dS = \int _V \nabla T \, dV 
+		\end{equation}
+		we obtain the equation 
+		\begin{equation}
+			\int _V \left[ \frac{\partial (\rho v)}{\partial t} + \nabla (\rho vv) - \nabla T - \rho g \right] dV = 0
+		\end{equation}
+		Considering that it must be valid for any and every point of the volume, we get the \textbf{Cauchy equation}\footnote{We can get $\rho$ out of the material derivative because we consider a constant $\rho$}
+		\begin{equation}
+			\rho \frac{Dv}{Dt} = \nabla T + \rho g
+			\label{eq:cauchy}
+		\end{equation}
+	\end{proof}
+	
+	\subsection{Constitutive equations}
+		\subsubsection{Static conditions}
+			Imagine that we have a static fluid. The only force $f$ will be due to the pressure $p$ 
+			\begin{equation}
+				f = -pn \Leftrightarrow T = -pI = 
+				\begin{array}{ccc}
+				-p & 0 & 0 \\ 
+				0 & -p & 0 \\ 
+				0 & 0 & -p
+				\end{array} 
+			\end{equation}
+			In that case, the use of equation \autoref{eq:cauchy} give us the information
+			\begin{equation}
+				\rho g = \nabla p
+			\end{equation}
+			
+		\subsubsection{Dynamic conditions}
+			Let's now take care of the viscosity effects on a Newtonian fluid. In that case we have to add to the pressure the forces function of the velocity gradient 
+			\begin{equation}
+				T = -pI + f(\nabla v)
+			\end{equation}
+			where $(\nabla v)$ has a symetrical (pure deformations) and an antisymetrical (pure rotation) part given by
+			\begin{equation}
+				S = \frac{1}{2}(\nabla v + \nabla v ^T) \qquad and \qquad A = \frac{1}{2}(\nabla v - \nabla v ^T)
+			\end{equation}
+		
+		\subsubsection{Final form of the stress tensor}
+		Given the upper discussion, the final expression is 
+		\begin{equation}
+			T = \left[ -p + \lambda (\nabla v) \right]I + 2\mu S	
+		\end{equation}		 
+		where $S$ is the symetric part of the gradient. Let's precise that for \textbf{incompressible flows}, we have
+		\begin{equation}
+			T = -pI + 2\mu S
+			\label{eq:incompressible}
+		\end{equation}
+		
+		\subsubsection{Navier-Stokes equation}
+		\theor{\textsc{Navier-Stokes equation}\\
+		For incompressible, Newtonian and isothermal flows 
+		\begin{equation}
+			\rho \frac{Dv}{Dt} = \rho \left[ \frac{\partial v}{\partial t} + v\nabla v  \right] = - \nabla p + \mu \nabla^2 v + \rho g
+			\label{eq:navier}
+		\end{equation} }
+		Where we used the Cauchy equation \autoref{eq:cauchy} and equation \autoref{eq:incompressible} for $T$. 
+		
+\section{Bernouilli equation}
+	To access the Bernouilli equation, let's take the Navier-Stokes equation \autoref{eq:navier} and disregard the viscous term (with $\mu$). The scalar multiplication of that equation provides the \textbf{kinetic energy balance}
+	\begin{equation}
+		\rho v \frac{Dv}{Dt} = \rho \frac{D}{Dt} \frac{v^2}{2} = -v\nabla (p + \rho \Phi) 
+		\qquad with \qquad 
+		\Phi = g
+		\left(
+		\begin{array}{c}
+		0 \\
+		0 \\
+		z
+		\end{array}
+		\right)
+	\end{equation}
+	For incompressible and steady fluids, $\frac{d\rho}{dt} = 0 = \frac{dp}{dt}$, so 
+	\begin{equation}
+		\frac{D}{Dt}\left( \rho \frac{v^2}{2} + p + \rho g z \right)	 = 0 
+	\end{equation}	 
+		leading us to the Bernouilli equation after integration
+		
+		\theor{\textsc{Bernouilli equation}\\
+		The sum of the kinetic, potential and flow energies of a fluid particle is \textbf{constant} along a streamline during \textbf{steady} flow when the \textbf{compressibility} and \textbf{frictional effects} are negligible. 
+		\begin{equation}
+			\rho \frac{v^2}{2} + p + \rho g z = c = p_{tot}
+		\end{equation}
+		\begin{itemize}
+			\item[•] $\frac{v^2}{2}$ is the \textbf{dynamic pressure} : pressure rise when the fluid in motion is brought to a stop isentropically. 
+			\item[•] $p$ is the static pressure : thermodynamic pressure of the fluid.
+			\item[•] $\rho g z$ is the \textbf{hydrostatic pressure} : for the elevation effects.
+		\end{itemize} }
+		Finally, we can say that the sum of these 3 type of pressure is the \textbf{total pressure} and that it's constant along a srteamline. 

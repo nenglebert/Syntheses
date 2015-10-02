@@ -279,12 +279,141 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	
 	
 	\subsection{Circuit électrique}
+	\textsc{Rappel.} L'\textbf{inducteur} est chargé de créer le flux utile et l'
+	\textbf{induit} les f.e.m.\footnote{Wiki : L'inducteur est un organe 
+	électrotechnique, généralement un électroaimant, ayant comme fonction d'induire 
+	un champ électromagnétique dans un induit servant à chauffer toutes sortes de 
+	conducteurs comme des métaux de toutes sortes.}
+	
+		\subsubsection{Disposition des enroulements}
+		\textsc{Inducteur}\\
+		Il peut être situé au rotor. On utilise des aimants permanents pour les 
+		petites puissances.\\
 		
+		\textsc{Induit}\\
+		Les conducteurs sont généralement isolés entre eux. On utilise souvent 
+		un bobinage.
 		
+		\subsubsection{Groupement des conducteurs}
+		L'association des conducteurs d'une machine est le \textbf{bobinage}. 
+		\begin{description}
+		\item[Conducteurs.] On peut utiliser un conducteur (massif ou creux) pour 
+		véhiculer un courant $I$.
+		\item[Spire.] Constituée de deux conducteurs
+		\item[Bobine.] Lorsqu'il y a plusieurs conducteurs par encoche.
+		\item[Phase.] Un groupe de bobines associées en série ou en parallèle.
+		\end{description}
 		
+	\subsubsection{Pertes joules dans les conducteurs}
+	Étudions la densité de courant dans un conducteur d'encoche. Les courants 
+	circulants engendrent des pertes ($P_J = RI^2$ où $R=\rho l/S$ en continu).
+	Si le conducteur est massif, en continu, la densité de courant $J=I/S$ est 
+	constante. Démontrons par l'absurde que ce n'est pas le cas en alternatif.\\
+	
+	Soit un conducteur massif dans une encoche et supposons $J = \text{cste}$ :
+	\begin{equation}
+	\begin{array}{lll}
+	
+	& H(x)d + 0 &= \displaystyle\int_0^x Jedx\\
+	\Leftrightarrow& H(x) &= \dfrac{Je}{d}x
+	\end{array}
+	\end{equation}
+	où $H$ varie linéairement avec $x$. Le flux embrassé par le circuit constitué 
+	par cette partie du conducteur et le retour à l’infini vaut, par unité de 
+	longueur :
+	\begin{equation}
+	\begin{array}{ll}
+	\dfrac{\Delta \phi(x)}{\Delta l} &= \text{ cste } - \int_0^x B(x)dx\\
+ 	&= \text{ cste } - \mu_0\int_0^x H(x) dx\\
+	&= \text{ cste } - \dfrac{\mu_0Je}{d}\dfrac{x^2}{2}
+	\end{array}
+	\end{equation}
+	La chute de tension inductive par unité de longueur du conducteur dépend de 
+	la position du filet de courant (et de la fréquence) : il n'est pas correct 
+	de supposer $J = \text{cste}$ : la densité de flux est plus importante à la 
+	"surface".\\
+	La fréquence augmente également les pertes (résistance plus importante). On 
+	peut utiliser des barre de Roebel obligeant le courant à passer à la surface 
+	et en profondeur de l'encoche pour contrer au maximum cet effet.
+	
+	\subsection{Isolation des machines}
+		\subsubsection{Loi de Montsinger - Vieillissement des isolants}
+		La température déteriore la qualité de l'isolant. Une loi expérimentale 
+		décrit cet effet
+		\begin{equation}
+		t = ab^{-\theta}
+		\end{equation}
+		où $t$ est la durée de vie, $a,b$ des constantes pour un isolant donné 
+		et $\theta$ la température. On peut l'écrire :
+		\begin{equation}
+		\log t = \log a - \theta\log b
+		\end{equation}
+		où $\log t$ est une fonction linéaire de $\theta$. Ainsi, élever la 
+		température de 6 à 10$^\circ$ réduit la durée de vie de moitié!
 		
+	\subsection{Refroidissement}
+		\subsubsection{Agents de refroidissement}
+		Le plus courant est d'utiliser l'air, un ventilateur. Des ventilations 
+		intérieures ou extérieure (enceinte close) pour un atmosphère fort 
+		pollués existent également. L'hydrogène peut également refroidir en 
+		le faisant circuler dans les conducteurs. Les diélectriques liquides 
+		sont également une option.
 		
-		
+\section{Grandeurs caractéristiques des machines électriques}
+	\subsection{Grandeurs nominales}
+	Une grandeur physique est dite \textit{nominale} lorsque l'appareil peut 
+	fonctionner indéfiniment à celle-ci sans subir d'usure (avec un coefficient 
+	de sécurité).\\
+	La \textit{puissance nominale} est plus subtile, il faut savoir de quoi on 
+	parle :
+	\begin{itemize}
+	\item[$\bullet$] C'est la puissance électrique développable (en kW) à ses 
+	bornes si on parle d'une génératrice à courant continu.
+	\item[$\bullet$] Pour un alternateur, c'est la puissance électrique 
+	apparente développable (en kVA)
+	\item[$\bullet$] Pour un moteur, cil s'agit de la puissance mécanique 
+	disponible (en kW)
+	\end{itemize}
+	
+	
+	\subsection{Rendements des machines}
+	Par définition, on défini le rendement 
+	\begin{equation}
+	\eta = \frac{P_u}{P_a}
+	\end{equation}
+	où $P_u$ est la puissance utile à la sortie et $P_a$ la puissance 
+	absorbée. On peut écrire cette formule
+	\begin{equation}
+	\eta = \frac{P_u}{P_a} = \frac{P_a-p}{P_a} = \frac{P_u}{P_u+p}
+	\end{equation}
+	où $p$ est la perte. Celles-ci ont un terme fixe et un terme variable avec 
+	la puissance apparente $S$. On utilisera la dernière égalité, plus précise\footnote{
+	Pour les machines génératrices, $P_a$ est mécanique et $P_u$ électrique. C'est 
+	l'inverse pour 	une machine motrice}. Les pertes peuvent être mécaniques, 
+	due aux fer, \dots\\
+	
+	Pour le cuivre, les pertes sont variable en fonction de $I$ : $P_{p,Cu} = 3
+	RI^2$. Comme la tension est supposée constante : $P_{p,Cu} = kV^2I^2 = kS^2$. 
+	Les pertes totales s'expriment ainsi de la forme $p = a+bS^2$ et, par exemple, 
+	on peut écrire l'expression du rendement :\footnote{???}
+	\begin{equation}
+	\eta = \frac{P_a-p}{P_a} = \dfrac{S\cos\varphi-a-bS^2}{S\cos\varphi}
+	\end{equation}
+	La valeur maximale du rendement est donnée par
+	\begin{equation}
+	\frac{d\eta}{dS} = 0\qquad \Leftrightarrow\qquad S = \sqrt{\frac{a}{b}}
+	\end{equation}
+	La forme de la courbe rendement souhaitée dépend de ce que l'on veut faire.\\
+	Pour mesurer le rendement, il est plus intéressant de mesurer les pertes que 
+	de mesurer la puissance électrique et mécanique. On peut le faire en mesurant 
+	l'échauffement ou en mesurer chaque perte une à  une, par essai.
+	
+	
+	\subsection{Caractéristiques des machines tournantes}
+	A lire\\
+	
+	\textsc{Génératrice}\\
+	A lire
 		
 		
 		
