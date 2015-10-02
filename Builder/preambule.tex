@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%
+%%% Packages %%%
+%%%%%%%%%%%%%%%%
+
+%%% Général %%%
+\usepackage[utf8]{inputenc}   
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{lmodern}
+\usepackage{courier}
+\usepackage{graphicx}
+\usepackage{cancel}
+
+%%% Tableau %%%
+\usepackage{tabularx} %Permet d'auto dimensionner les tableaux
+
+
+
+%%% Bibliographie %%%
+\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+\usepackage[autostyle]{csquotes}
+\DeclareNameAlias{sortname}{last-first}
+\DeclareFieldFormat{url}{\space\url{#1}}
+\DeclareNameAlias{labelname}{last-first}
+\addbibresource{sample.bib}
+
+
+%%% Graphiques %%%
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+
+%%% Mise en page %%%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[tt]{titlepic}% Centre le titre
+\usepackage{fancyhdr}   % Permet de modifier l'entête & footer
+\usepackage{caption}     % Permet d'ajouter des légendes en images sans les mettre en float + dans la marge
+\usepackage{wrapfig}
+\usepackage{fullpage}
+\usepackage{multicol}   % pour les liste sur plusieurs colonnes
+\usepackage{subfigure}  % alligne deux images cote a cote
+\usepackage{float}      %permet de mettre du texte entre les figures grace a [H]. Génial! 
+\usepackage{eso-pic}    % Fond d'écran page de garde
+\usepackage{adjustbox}  % Empêche les box de sortir de la page
+
+
+%%% Math %%%
+\usepackage{delarray} % Belles matrices
+\usepackage{siunitx}
+\sisetup{locale = FR,detect-all}
+% Pour mettre siunitx en mode français (virgule plutôt que point etc.)
+
+%%% Codes %%%
+\usepackage{listings}
+\usepackage[final]{pdfpages} %% Inclusion fichier pdf
+
+%% Reference
+\usepackage{hyperref}
+\renewcommand*{\figureautorefname}{fig.}
+\def\appendixautorefname{annexe}
+\def\tableautorefname{tab.}
+\renewcommand*{\chapterautorefname}{ch.}
+
+
+
+
+%%%%%%%%%%%%%%%%%
+%%% Commandes %%%
+%%%%%%%%%%%%%%%%%
+
+%%% Physque %%%
+\newcommand{\cst}{\text{cst}}
+\newcommand{\E}{\vec E}
+\newcommand{\B}{\vec B}
+\newcommand{\F}{\vec F}
+\newcommand{\modu}[1]{|$#1$|}
+
+%%% Math %%%
+\newcommand{\oiint}{\int\!\!\!\!\!\!\! \:\!\subset\!\!\supset\!\!\!\!\!\!\!\int}
+\newcommand{\rot}{\text{rot}\,}
+\newcommand{\divv}{\text{div}\,}
+\newcommand{\phas}[1]{\underline{#1}}
+\newcommand{\RE}{\text{Re}}
+\newcommand{\ft}{\overset{\mathcal{F}}{\longleftrightarrow}}
+\newcommand{\lt}{\overset{\mathcal{L}}{\longleftrightarrow}}
+
+
+
+
+%% Box
+\newcommand{\theor}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Théorème : }#1}}
+\newcommand{\defi}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Définition : }#1}}
+\newcommand{\lemme}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Lemme : }#1}}
+\newcommand{\prop}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Propriété}\\ #1}}
+\newcommand{\proposition}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Proposition}\\#1}}
+\newcommand{\retenir}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textbf{\textit{\textsc{A retenir} : }}#1}}
+\newcommand{\corollaire}[1]{\ \\\begin{tabular}{||c}
+	\begin{minipage}{\textwidth}
+		\textsc{Corollaire : } \textit{#1}
+	\end{minipage}
+	\end{tabular}}
+\newcommand{\exemple}[1]{\ \\\begin{tabular}{|c}
+	\begin{minipage}{\textwidth}
+		\textsc{Exemple : } #1
+	\end{minipage}
+	\end{tabular}}
+    
+    
+
+%\pagestyle{headings} % Titre du ch et numéro page dans l'entete
+\renewcommand{\proofname}{Démonstration}
+\selectlanguage{french}
+
+\addto\captionsfrench{\def\tablename{Tableau}}
+
+
+%%% Background %%%
+\newcommand\BackgroundPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight,%
+			keepaspectratio]{../../Builder/ulb.jpg}%
+			\vfill
+}}}
+
+%%% Annexes Cedu %%%
+%\usepackage{calrsfs}
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\usepackage{fourier-orns}
+
+\setlength{\parindent}{0pt} 
+
+%%% Attributs %%%
+\newcommand*{\NomduCours}[2]{\def\cours{#1}\def\memo{#2}}
+\newcommand*{\auteur}[2]{\def\prenom{#1}\def\nom{#2}}
+\newcommand*{\rappeltheo}[2]{\def\rappeltheoprenom{#1}\def\rappeltheonom{#2}}
+\newcommand*{\professeur}[2]{\def\pprenom{#1}\def\pnom{#2}}
+\newcommand*{\sprofesseur}[2]{\def\spprenom{#1}\def\spnom{#2}}
+\newcommand*{\annee}[2]{\def\adebut{#1}\def\afin{#2}}
