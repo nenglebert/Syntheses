@@ -278,9 +278,6 @@
 				\end{equation}
 				
 \section{Distributed pressure drops}
-	DEMANDER SI LES SLIDES 30-34 SONT A VOIR
-
-\section{Newtonian flow in a pipe}
 	\begin{wrapfigure}[3]{l}{5cm}
 	\vspace{-5mm}
 	\includegraphics[scale=0.2]{ch2/5}
@@ -302,9 +299,117 @@
 	\begin{equation}
 		\frac{\Delta p}{\Delta x} = \frac{2\tau _w}{R} = \frac{4 \tau _w}{D} \qquad \Rightarrow \qquad \Delta P_{tot} = \frac{2\tau _w}{R} = \frac{4 \tau _w}{D} L
 	\end{equation}
-	Let's finally introduce the \textbf{Moody coefficient} $\mathbf{\lambda}$ and the \textbf{Fanning coefficient} $\mathbf{f}$ to obtain the final expression 
+	Let's finally introduce the \textbf{Moody coefficient} $\lambda$ and the \textbf{Fanning coefficient} $\mathbf{f}$ to obtain the final expression 
 	\begin{equation}
 		\lambda = 4f = 4\frac{\tau _w}{\frac{\rho v^2}{2}} \qquad \Rightarrow  \qquad \Delta P_{tot} = \lambda\frac{L}{D}\frac{\rho v^2}{2}
 	\end{equation}
 
+\section{Newtonian flow in a pipe}
+	\subsection{Case of a laminar regime (Re < 2100)}
+		\begin{wrapfigure}[3]{r}{4.5cm}
+		\vspace{-15mm}
+		\includegraphics[scale=0.25]{ch2/6}
+		\end{wrapfigure}
+		Let's take the Nvier-Stokes equation \autoref{eq:navier} and suppose that there is no gravity effect on the fluid and that the flow is \textbf{steady}. 
+		\begin{equation}
+			\cancel{\rho \frac{Dv}{Dt}} = -\nabla p + \mu \nabla ^2 v + \cancel{\rho g} 
+			\qquad \Rightarrow \qquad 
+			0 = -\underbrace{\frac{\partial p}{\partial x}}_{f(x)} + \frac{\mu }{r} \frac{\partial}{\partial r} \underbrace{\left( r\frac{\partial u}{\partial r}\right)}_{f(r)}
+		\end{equation}
+
+		The pressure pressure drop per unit lenght $\frac{\Delta p}{L}$ must be constant because of the steady regime and the sections are equivalent
+		\begin{equation}
+			\frac{1}{\mu}\frac{\partial p}{\partial x} = \frac{1}{r} \frac{\partial}{\partial r} \left( r\frac{\partial u}{\partial r} \right) = c = - \frac{\Delta p}{\mu L}
+		\end{equation}
+		The non-slip conditions on the walls ($r=R$) impose that $U = 0$ and the maximum velocity at $r=0$ impose that $\frac{du}{dr} = 0$. The integration part per part gives
+		\begin{equation}
+			d \left( r\frac{\partial u}{\partial r} \right) = - \frac{\Delta p}{\mu L} r\, dr 
+			\qquad \Rightarrow 
+			\frac{\partial u}{\partial r} = -\frac{\Delta p}{\mu L} \frac{r}{2} + \frac{C_1}{r} 
+			\qquad \Rightarrow 
+			u(r) = -\frac{\Delta p}{\mu L} \frac{r^2}{4} + C_1 \ln r + C_2 
+		\end{equation}
+		The upper conditions give the value of constants $C_1 = 0$ and $C_2 = \frac{\Delta p}{\mu L}\frac{R^2}{4}$. \\
+		
+		It enable us to calcul the :
+		\begin{itemize}
+			\item[•] velocity profile
+			\begin{equation}
+				U = \frac{\Delta p}{16\mu L}D^2 \left(1-\left(\frac{r}{R}\right)^2 \right)
+			\end{equation}
+			
+			\item[•] Maximum velocity 
+			\begin{equation}
+				U_{max} = \frac{\Delta p}{16 \mu L }D^2
+			\end{equation}
+			
+			\item[•] Volumetric flow rate
+			\begin{equation}
+				\dot{V} = \int _0 ^r 2\pi r u(r) \, dr = \frac{\pi}{128 \mu} \frac{\Delta p D^4}{L}
+			\end{equation}
+			
+			\item[•] Mean speed (vitesse moyenne)
+			\begin{equation}
+				\frac{\dot{V}}{S} = \frac{\pi}{128 \mu} \frac{\Delta p D^4}{L} \frac{4}{\pi D^2} = \frac{U_max}{2}
+			\end{equation}
+			
+			\item[•] Wall shear stress
+			\begin{equation}
+				\tau _{max} = -\mu |\frac{du}{dr}| _{r=R} = \frac{4 \mu \bar{U}}{R}
+			\end{equation}
+			
+			\item[•] Friction coefficient
+			\begin{equation}
+				f = \frac{\lambda}{4} = \frac{4 \mu \bar{U}}{\frac{1}{2}\rho \bar{U}^2 R} = \frac{8 \mu \bar{U}}{\frac{1}{2}\rho \bar{U}^2 D} = \frac{16}{Re}
+			\end{equation}
+		\end{itemize}
+		
+	\subsection{Case of a turbulent regime (Re > 3500)}
+		We have to consider two case in that case. When the walls are smooth\footnote{Lisse}, the Moody coefficient is given by 
+		\begin{equation}
+			\lambda = \frac{0.316}{Re_D^{0.25}}
+		\end{equation}
+		When the walls are rough\footnote{Rugueux}, we have the \textbf{Nikuradse equation} and the \textbf{Colebrook equation}
+		\begin{equation}
+			\frac{1}{\sqrt{\lambda}} = 1.14 - 0.868 \, \ln \bar{\Lambda}
+			\qquad and \qquad
+			\frac{1}{\sqrt{\lambda}} = 1.14 - 0.868 \, \ln \left(\bar{\Lambda}+\frac{9.34}{Re\sqrt{\lambda}} \right)
+		\end{equation}
+\begin{center}
+		\includegraphics[scale=0.4]{ch2/7}
+\end{center}
+I REALLY DON'T HAVE UNDERSTOOD ! PLEASE COMPLETE WITH YOUR NOTES.
+
+\section{Concentrated pressure drops}
+	They are caused by inlets and outlets, curves, change in the cross section, offtakes\footnote{Prélèvements}, ... \\
+	They are modelled simirarly to the distributed pressure drops with the \textbf{lack-of-knowledge coefficient} $K$ that differs by geometries and configurations
+	\begin{equation}
+		\Delta P_{tot,c} = \sum _j K_j \frac{\rho U_j^2}{2}
+	\end{equation}
 	
+	\begin{wrapfigure}[3]{l}{8cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.25]{ch2/8}
+	\end{wrapfigure}
+	Here you can find some values for different situations. \\\\\\\\\\\\\\
+	We can now establish the total pressure drops expression 
+	\begin{equation}
+		\Delta P_{tot} = \Delta P_{tot,d} + \Delta P_{tot,c} = \sum _i \lambda _i \frac{L_i}{D_i}\frac{\rho U_i^2}{2} + \sum _j K_j \frac{\rho U_j^2}{2}
+	\end{equation}	 
+	
+	\subsubsection{Hydraulic diameter}
+		To evaluate the Reynolds number we introduce the hydraulic diameter defined by 
+		\begin{equation}
+			D_h = 4\frac{S}{P}
+		\end{equation}
+		Where $S$ is the surface, $P$ the perimeter and the value 4 is introduced to retrieve the normal diameter for a circular section. Let's calcul this diameter.
+		\begin{center}
+		\includegraphics[scale=0.4]{ch2/9}
+		\end{center}
+		\begin{equation}
+			D_h = 4\frac{\pi R^2}{2\pi R} = D \qquad\qquad and \qquad\qquad D_h = 4 \frac{ab}{2a+2b} \approx 2b
+		\end{equation}
+		Finally, we can find the Reynolds number by
+		\begin{equation}
+			Re_h = \frac{D_hU}{\nu}
+		\end{equation}
