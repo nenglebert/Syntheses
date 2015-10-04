@@ -382,9 +382,275 @@ Si $w=1$, on parlera de la \textit{méthode de Gauss}.
 \end{proof}
 	
 	
+\section{Résolution par séries : généralités}
+	\subsection{EDL à coefficients analytiques}
+	Considérons la série entière en $(x-x_0)$ :
+	\begin{equation}
+	\sum_{k=0}^\infty a_k(x-x_0)^k
+	\end{equation}
+	converge dans un voisinage de $x_0$ autour de $x_0$. Si l'on multiplie cette 
+	série par $(x-x_0)^r$, on parlera de \textit{série de Frobenius}.\\
+
+	Une fonction $f$ de classe $C^\infty$ au voisinage de $x_0$ est \textbf{analytique} 
+	en $x_0$ ssi sa série de Taylor de $f$ autour de $x_0$ converge vers $f$ au 
+	voisinage de $x_0$.\\
+	
+	\retenir{\ \\La série $\displaystyle \sum_{k=0}^\infty$ est \textbf{d'exposant $r$} ssi $
+	\forall k > 0 : a_k = 0\quad \text{ et }\quad a_r \neq 0$? Son terme dominant pour $
+	x\rightarrow0$ est le terme de plus bas degré (il donne une première approximation 
+	du comportement pour cette limite.}
+	
+	\proposition{\begin{equation}
+	\frac{P(x)}{Q(x)} = \frac{x^{r_P}(a_0+a_1x+\dots)}{x^{r_Q}(b_0+b_1x+\dots)}
+	\end{equation}
+	est analytique en 0 $\Leftrightarrow r_Q \leq r_P \Leftrightarrow$ 0 n'est pas 
+	racine de $Q$ ou la multiplicité de 0 dans $Q \leq$ multiplicité de 0 dans $P$.}
 	
 	
+	\subsection{EDL et série-solution}	
+	Considérons l'équation (à droite, sous sa forme normale)
+	\begin{equation}
+	P(x)y'' + Q(x)y' + R(x)y = 0,\qquad y''+p(x)y'+q(x)y=0
+	\end{equation}
+	Cette équation est facilement généralisable aux ordres supérieurs, pareil pour la
+	version non-homogène. On va chercher une solution au voisinage d'un point $x_0\in
+	\overline{\mathbb{R}}$ 	de la forme
+	\begin{equation}
+	y(x) = \sum_{k=0}^\infty a_k(x-x_0)^k
+	\end{equation}
+	Si $x_0=0$, il s'agit de la série de Maclaurin. Si l'on désire, on peut effectuer 
+	le changement $t :=x-x_0$ pour travailler autour de 0. Si $x_0=\infty$, poser 
+	$t=1/x$ et travailler autour de zéro.
+	
+	\subsection{Point ordinaire, singulier, régulier ou non}
+	Considérons deux prototypes, une EDLcc et une EDLee :
+	\begin{enumerate}
+	\item $y''+p_0y'+q_0y = 0$
+	\item $x^2y''+xp_0y'+q_0y = 0$
+	\end{enumerate}
+	Remplaçons $p_0$ et $q_0$ par une fonction analytique en zéro, à savoir leur 
+	développement de Maclaurin. Pour le point 0, trois cas sont possibles :
+	\begin{enumerate}
+	\item \textit{Ordinaire} : $y'' +\left(\sum_{k=0}^\infty p_kx^k\right)y' +
+	\left(\sum_{k=0}^\infty q_kx^k\right)y = 0$
+	\item \textit{Singulier régulier} : $x^2y'' + x\left(\sum_{k=0}^\infty p_kx^k
+	\right)y'+\left(\sum_{k=0}^\infty q_kx^k\right)y=0$
+	\item \textit{Singulier irrégulier} : $P(x)y'' + Q(x)y' + R(x)y = 0$
+	\end{enumerate}
+	\retenir{\ \\
+	Soit la définition générale : $P(x)y'' + Q(x)y' + R(x)y = 0$. 
+	\begin{itemize}
+	\item[$\bullet$] $x_0$ est un \textbf{point ordinaire} ssi $P(x_0)\neq0$.
+	\item[$\bullet$] $x_0$ est un \textbf{point singulier} ssi $P(x_0)=0$.
+	\item[$\bullet$] $x_0$ est un \textbf{point singulier régulier} ssi
+		\begin{itemize}
+		\item[*] Soit $x_0$ est un zéro simple de $P$.
+		\item[*] Soit $x_0$ est un zéro double de $P$, mais aussi un zéro de $Q$.
+		\end{itemize}
+	\end{itemize}}\ 
+		
+	Notons que dans ce cours, on travaillera toujours au voisinage de $x_0=0$ par 
+	changement de variable.
 	
 	
+\setcounter{section}{2}
+\section{La théorie autour d'un point ordinaire}
+	\setcounter{subsection}{1}
+	\subsection{Unicité : formules de récurrence pour l'EDL normale}
+	On cherche une solution de la forme $y(x) = \sum_{k=0}^\infty a_kx^k$ de l'
+	équation $y''+p(x)y'+q(x)y=0$. On remplace :
+	\begin{equation}
+	\sum_{k=2}^\infty k(k-1)a_kx^{k-2} + \left(\sum_{k=0}^\infty p_kx^k\right)
+	\left(\sum_{k=0}^\infty ka_kx^{k-1}\right) + \left(\sum_{k=0}^\infty q_kx^k
+	\right)\left(\sum_{k=0}a_kx^k\right)=0
+	\end{equation}
+	Il faut changer un peu les termes pour commencer partout en $k=0$ : 
+	$\displaystyle \sum_{k=2}^\infty k(k-1)a_kx^{k-2} = \sum_{k=0}^\infty (k+2)
+	(k+1)a_{k+2}x^k$ et $\displaystyle\sum_{k=0}^\infty ka_kx^{k-1} 
+	= \sum_{k=0}^\infty (k+1)a_{k+1}x^k$.\\
+	En regroupant les termes en $x^k$ et en effectuant le produit de Cauchy : 
+	\begin{equation}
+	\sum_{k=0}^\infty\left((k+2)(k+1)a_{k+2}+\sum_{n=0}^\infty((n+1)a_{n+1}p_{k-n}
+	+a_nq_{k-n})\right) = 0
+	\end{equation}
+	On trouve alors l'équation de récurrence $(R_k)$ :
+	\begin{equation}
+	\underbrace{(k+2)(k+1)}_{\neq0}a_{k+2}+\sum_{n=0}^\infty((n+1)a_{n+1}
+	p_{k-n}+a_nq_{k-n}=0
+	\end{equation}
+	Grâce à cette équation, si $a_0, a_1$ sont donnés, on peut univoquement 
+	déterminer tout le reste : cela prouve l'unicité des $a_k$. L'ennui est 
+	que beaucoup de calculs ont été fait et il faudrait être assurer de trouver 
+	un résultat avant ça.
 	
+	\subsection{Théorème de convergence de Fuchs}
+	Ce théorème nous donne un \textbf{minorant} du rayon de convergence de la série.
+	On l'énonce ici en toute généralité (et pas autour de 0).\\
+	\theor{(admis)\\
+	Soient $p$ et $q$ analytiques en $x_0$, de rayons de convergences respectifs 
+	$\rho_p$ et $\rho_q$. Soient $a_0,a_1$, deux réels arbitraires. \\
+	La solution de $y''+py'+qy=0$ satisfaisant à $y(x_0)=a_0$ et $y'(x_0)=a_1$ (CI de 
+	Cauchy) est analytique en $x_0$ et peut s'écrire
+	\begin{equation}
+	\sum_{k=0}^\infty a_k(x-x_0)^k
+	\end{equation}
+	qui converge (au moins) sur $]x_0-\rho_m,x_0+\rho_m[$ où $\rho_m :=\min\{\rho_p,
+	\rho_q\}$.}
+	
+	\setcounter{subsection}{4}
+	\subsection{Récurrences pour l'EDL non-normale}
+	Si l'on a une EDL $P(x)y''+Q(x)y'+R(x)y=0$ où $P, Q, R$ sont des polynômes, il 
+	n'est pas utile de se ramener à $y''+p(x)+q(x)y=0$ : on ne s'encombre pas avec 
+	les séries de Taylor
+	
+	
+\setcounter{section}{4}
+\section{EDL et polynômes de Hermite}
+	\subsection{Les séries-solutions canoniques de Hermite}
+	Voici l'\textbf{EDL de Hermite}, définie sur $\mathbb{R}$
+	\begin{equation}
+	y''-2xy'+2py=0\qquad\text{où }p\in\mathbb{R}
+	\end{equation}
+	On peut en tirer une équation de récurrence. En effet, tout point $x_0$ est 
+	ordinaire, les coefficients $a_k$ de toute série solution $\sum_{k=0}^\infty 
+	a_kx^k$ satisfont la relation de récurrence
+	\begin{equation}
+	a_{k+2} = -\frac{2(p-k)}{(k+2)(k+1)}a_k
+	\end{equation}
+	On peut en tirer deux séries-solutions canoniques : une paire et une impaire.
+	Si $p\in\mathbb{N}$, alors une de ces solutions est un polynôme de degré 
+	$n$ (à un multiple scalaire près) alors que l'autre est infinité de termes 
+	non nuls (pas top-top).
+	
+	\subsection{Les polynômes de Hermite}
+	En choisissant le multiple scalaire\footnote{??} comme valant $2^n$, on 
+	définit le $n^{eme}$ polynôme de Hermite, noté $H_n$
+	\begin{equation}
+	\begin{array}{ll}
+	H_n(x) &= \sum_{k=0}^{\lfloor\frac{p}{2}\rfloor} (-1)^k\frac{n!}{k!(n-2k)!}
+	(2x)^{n-2k}\\
+	&= 2^nx^n + \dots\\
+	&= \text{le polynome de Hermite de degré $n$.}
+	\end{array}
+	\end{equation}
+	
+	Les section 17.5.3/4 donnent la fonction génératrice ainsi que quelques 
+	propriétés intéressantes. Je ne l'inclus pas ici, mais à lire.
+	
+	\setcounter{subsection}{6}
+	\subsection{L'EDP de l'oscillateur harmonique quantique 1D}
+	Page 22-25 et slides 27-28. C'est plus une illustration qu'autre chose.
+	
+	
+\setcounter{section}{6}
+\section{Théorie à droite d'un point singulier régulier}
+	\subsection{Série de Frobenius et exposant de la singularité}
+	Considérons une EDLee $x^2y''+xp_0y'+q_0y=0$. Plus généralement, si
+	0 est un point singulier régulier 
+	\begin{equation}
+	x^2y''+x\left(\sum_{k=0}^\infty p_kx^k\right)y'+\left(\sum_{k=0}^\infty 
+	q_kx^k\right)y=0
+	\end{equation}
+	L'\textbf{espoir} et que si $r$ est solution de l'équation indicielle (
+	cette solution est l'\textit{exposant de la singularité})
+	$r(r-1)+p_0r+q_0=0$, alors $x^r$ est solution de l'EDLee et on peut espérer 
+	une solution pour notre cas général de la forme
+	\begin{equation}
+	x^r\sum_{k=0}^\infty a_kx^{k} = \sum_{k=0}^\infty a_kx^{k+r}
+	\end{equation}
+	soit une \textbf{série de Frobenius} d'exposant $r$. Si $a_0\neq0$ on peut 
+	l'écrire sous la forme
+	\begin{equation}
+	a_0x^r\left(1+\sum_{k=1}^\infty \frac{a_k}{a_0}x^k\right)
+	\end{equation}
+	qui sera dite \textbf{canonique} quand $a_0=1$. On verra que si $r_1,r_2$ sont 
+	les deux exposants de la singularité on obtiendra deux solutions L.I. sauf 
+	dans certains cas malheureux.
+	
+	\subsection{Convergence et dérivation des séries de Frobenius}
+	La série $x^r\sum_{k=0}^\infty a_kx^{k}$ converge $\Leftrightarrow\sum_{k=0}^\infty 
+	a_kx^{k+r}$ convergent et leurs sommes sont égales. La dérivée de cette série 
+	converge uniformément sur $]0,R[$, on peut donc la dériver terme à terme.
+	
+	\setcounter{subsection}{3}
+	\subsection{Calcul des coefficients de solutions formelles de type Frobenius}
+	Comme précédemment, on dérive et on remplace ! 
+	\begin{equation}
+	\begin{array}{ll}
+	S(x) &= \sum_{k=0}^\infty a_kx^{r+k}\\
+	xS'(x) &= \sum_{k=0}^\infty (r+k)a_kx^{r+k}\\
+	x^2S''(x) &= \sum_{k=0}	^\infty(r+k)(r+k-1)a_kx^{r+k}
+	\end{array}
+	\end{equation}		
+	On remarque que grâce aux $x, x^2$ il ne faut plus rien modifier : on effectue 
+	le produit de Cauchy et on déduit la relation de récurrence $(R_k)$ :
+	\begin{equation}
+	(r+k)(r+k-1)a_k + \sum_{l=0}^k(a_l(r+l)p_{k-l}+a_lq_{k-l})=0
+	\end{equation}
+	où encore 
+	\begin{equation}
+	((r+k)(r+k-1)+(r+k)p_0+q_0)a_k = -\sum_{l=0}^{k-1}a_l((r+l)p_{k-l}+q_{k-l})=0
+	\end{equation}
+	$R_0$ est ainsi l'équation indicielle et $r$ est forcément solution (sinon 
+	il n'existera pas de solution de Frobenius). En déballant la somme pour 
+	une valeur de $k$, je peux obtenir les premiers $a_k$.\\
+	
+	Définissons le premier membre de l'équation, $\mathcal{P}_0(r) := r(r-1)+p_0r
+	+q_0$, comme étant le polynôme indiciel de degré 2 et $\mathcal{P}_n(r) := p_n
+	r+q_n$ le polynôme de degré $\leq 1$. On peut réécrire $R_k$:
+	\begin{equation}
+	\mathcal{P}_0(r+k)a_k = -\sum_{m=0}\mathcal{P}_{k-l}(r+l)a_l
+	\end{equation}
+	où le premier terme est non nul, si $r+k\neq r_1,r_2$.\\
+	Rappelons que $a_0=1$ et que pour $R_0 \Longrightarrow\mathcal{P}_0(r)=0 
+	\Leftrightarrow r = r_1,r_2$.\\
+	
+	\textbf{Si}\footnote{??} $r_1\in\mathbb{R}$ et $r_1-r_2 \neq \mathbb{Z}$ et 
+	$a_0=1$ alors les $(R_k)$ déterminent univoquement les $a_k(r_1)$ et les $a_k
+	(r_2)$. Les deux séries solutions sont alors
+	\begin{equation}
+	\begin{array}{l}
+	x^{r_1}(1+\sum_{k=1}^\infty a_k(r_1)x^k)\qquad(=y_1(x))\\
+	x^{r_2}(1+\sum_{k=1}^\infty a_k(r_2)x^k)\qquad(=y_2(x))	
+	\end{array}
+	\end{equation}
+	Ces deux solutions ayant un comportement différent pour $x\rightarrow0$, elles 
+	sont forcément L.I.\\
+	
+	\textbf{Si} $r_1\notin \mathbb{R} : r_1 = \alpha +i\beta, r_2 = r_1^*$ comme les
+	coefficients sont réels. On trouve alors en remplaçant $r_1$ dans la série solution 
+	trouvée précédemment pour trouver la série solutions à valeurs dans $\mathbb{C}$. 
+	Pour le reste ça ne change pas et l'on pourra tout déterminer à partir de $a_0 (=1)$.
+	
+	\textbf{Si} $r_1+r_2+\tilde{k}$ avec $\tilde{k}\in\mathbb{N}_0$, alors $R_{\tilde{k}}$ 
+	pour $r=r_2$ est : $0.a_{\tilde{k}} = \underbrace{-\sum_{l=0}^{\tilde{k}-1}\mathcal{P}_{
+	\tilde{k}-l}(r_2+l)a_l}_{?=0}$.\\
+	Si c'est nul, alors $a_{\tilde{k}}$ est indéterminé et l'on peut choisir $a_{\tilde{k}}
+	=0$ pour déterminer tout le reste.  La série-solution vaut alors
+	\begin{equation}
+	x^{r_2}\left(1+\sum_{k\neq\tilde{k},0}^\infty a_kx^k\right)
+	\end{equation}
+	Si c'est non nul, il n'existe pas de série de Frobenius d'exposant $r_2$ et on peut 
+	trouver une solution du type (admis)
+	\begin{equation}
+	b_1y_1(x)\ln(x) + x^{r_1}\left(1+\sum_{k=1}^\infty c_kx^k\right)
+	\end{equation}
+	Pour le cas $r_1=r_2$, voir slide 39.
+	
+	\setcounter{subsection}{9}
+	\subsection{Théorème de Frobenius (admis)}
+	\theor{\ 
+	\begin{itemize}
+	\item[$\bullet$] Toutes les séries solutions formelles trouvées (section 7) convergent 
+	dans $]0,\rho[$.
+	\item[$\bullet$] Leurs sommes sont des solutions de l'EDL 
+	\begin{equation}
+	x^2y''+x\left(\sum_{k=0}^\infty p_kx^k\right)y'+\left(\sum_{k=0}^\infty q_kx^k\right)
+	y=0
+	\end{equation}
+	\end{itemize}
+	où $\rho := \min\{\rho_p,\rho_q\}$.}\ 
+
+
+\section{L'EDL hypergéométrique de Gauss}
 	
