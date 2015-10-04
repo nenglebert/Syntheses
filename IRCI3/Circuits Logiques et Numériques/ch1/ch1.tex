@@ -14,7 +14,8 @@ Les indexes $i,j$ s'appellent les poids. On distingue 2 parties:
 	\item Partie fractionnaire: $m$ chiffres ($b_1,\dots,b_m$)
 \end{itemize}
 Parmi l'infinité de bases $r$ possibles, on en distingue 4:
-\begin{center}
+\begin{table}
+	\centering
 	\begin{tabular}{|c|c|}
 		\hline
 		Type         & Base                                \\
@@ -25,9 +26,9 @@ Parmi l'infinité de bases $r$ possibles, on en distingue 4:
 		Hexadécimal & \{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F\} \\
 		\hline
 	\end{tabular}
-	\captionof{table}{Bases utiles}
+	\caption{Bases utiles}
 	\label{bases utiles}
-\end{center}
+\end{table}
 \section{Conversions}
 De manière générale, pour passer d'une base $p$ à une base $q$, on fera $(N)_p\rightarrow (N)_{10}\rightarrow (N)_q$. \\
 
@@ -35,21 +36,24 @@ Pour passer de la base $p$ à la base $10$, il suffit de réécrire le nombre so
 Pour passer de la base $10$ à la base $q$, il faut séparer la partie entière de la fractionnaire :
 \begin{itemize}
 	\item Partie entière : diviser par la base $q$, noter le reste de la division et répéter l'opération jusqu'à ce que le nombre soit plus petit que $q$. Une fois le résultat obtenu, le chiffre résultant se lit dans le sens \textbf{contraire} que celui du calcul. Exemple :
-	\begin{center}
+	\begin{figure}[H]
+		\centering
 		\includegraphics[scale=0.25]{ch1/image1}
-	\end{center}
+	\end{figure}
 	\item Partie fractionnaire : écrire la partie fractionnaire sous la forme $0.xxx...$, la multiplier par $q$, noter le chiffre avant le $.$ du résultat, réinitialiser ce chiffre à $0$ et répéter l'opération. Le nombre résultant se lit dans le \textbf{même} sens que celui du calcul. Exemple :
-	\begin{center}
+	\begin{figure}[H]
+		\centering
 		\includegraphics[scale=0.22]{ch1/image2}
-	\end{center}
+	\end{figure}
 \end{itemize}
 \danger Faire gaffe avec l'hexadécimal, ne pas oublier de remplacer les chiffres $>9$ par les lettres correspondantes\\
 
 Néanmoins, dans le cas des bases utiles (\autoref{bases utiles}), on préfèrera passer par la base 2. En effet, il suffit de regrouper les chiffres par groupe de $x$ où $x$ vaut l'exposant entre 2 bases (exemple: $x=4$ pour les bases $2\leftrightarrow 16$). On regroupera les chiffres en partant de part et d'autre de la virgule.
-\begin{center}
+\begin{figure}[H]
+	\centering
 	\includegraphics[scale=0.2]{ch1/image3}
-	\captionof{figure}{Conversion entre bases utiles}
-\end{center}
+	\caption{Conversion entre bases utiles}
+\end{figure}
 \danger Surtout ne pas oublier les chiffres manquants pour la partie fractionnaire sinon un $(110)_2$ se transformera en $((0)11)_2$
 \paragraph{Astuce} En binaire, lorsqu'un nombre est composé majoritairement de 1 et qu'on veut sa valeur, comme le nombre $111110010$, comptez le nombre de chiffre $\Rightarrow x$ et faire $2^x-1$ et soustraire $2^i$ pour chaque 0. Dans notre exemple :
 \begin{align}
@@ -139,7 +143,8 @@ N=mantisse\times(base)^{exposant}
 On distingue 2 type de précision:
 \begin{itemize}
 	\item Simple précision: 32 bits\\
-	\begin{center}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			Nombre de bits & 1 & 8 & 23\\
@@ -149,10 +154,11 @@ On distingue 2 type de précision:
 			Biais & & 127 &\\
 			\hline
 		\end{tabular}
-		\captionof{table}{IEEE 754 - Simple Précision}
-	\end{center}
+		\caption{IEEE 754 - Simple Précision}
+	\end{table}
 	\item Double précision: 64 bits\\
-	\begin{center}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			Nombre de bits & 1 & 11 & 52\\
@@ -162,8 +168,8 @@ On distingue 2 type de précision:
 			Biais & & 1023 &\\
 			\hline
 		\end{tabular}
-		\captionof{table}{IEEE 754 - Double Précision}
-	\end{center}
+		\caption{IEEE 754 - Double Précision}
+	\end{table}
 \end{itemize}
 Pour convertir un chiffre en virgule flottante il faut:
 \begin{enumerate}
