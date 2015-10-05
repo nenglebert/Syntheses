@@ -87,9 +87,109 @@ Le code ASCII est utilisé pour coder les caractères dans des systèmes de trai
 	\caption{Table ASCII}
 \end{figure}
 \subsection{Codes correcteurs}
+\paragraph{Distance de Hamming} quantifie la distance (la différence)entre 2 séquences de symboles (ex : $d(0111,1010)=3$).
+\paragraph{n-cube} cube à n dimensions ($2^n$ sommets) où chaque n-bit string est représenté par un des sommets. Les sommets adjacents ont une distance de Hamming de 1.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image3}
+	\caption{n-cube pour $n=3$}
+\end{figure}
+\subsubsection{Principe général}
+Sur n-bits, on peut coder $2^n$ mots différents, si on rajoute 1 bit, nous avons $n$ mots supplémentaires. Nous pouvons donc grâce à cela, définir n mots qualifié d'erronés, ce qui sera utile pour détecter les erreurs (comme des erreurs de transmission).
+\subsubsection{Codes de parité paire ou impaire (\textit{even (odd) parity codes})}
+On code les mots de n-bits sur $(n+1)$ bits, ainsi nous avons autant de mots corrects que d'erronés. Le critère de correction est défini par le $(n+1)$\up{ème} bit.\\
+
+Il faut compter le nombre de \textbf{1} et suivre la convention définie. Les 2 conventions sont: 
+\begin{itemize}
+	\item Bit de parité paire: 1 si c'est un nombre \textbf{impair}
+	\item Bit de parité impair: 1 si c'est un nombre \textbf{pair}
+\end{itemize}
+Lors du calcul de parité, on peut ou non tenir compte du bit de parité (le $(n+1)$\up{ème}). Ici, on en tiendra pas compte.\\
+
+Ce qui est intéressant, c'est de rajouter un bit de parité pour chaque poids (pour m-mits de n-bits, nous aurions donc des mots de $n+1$ pour le bit de parité et $m+1$ mot pour le bit de parité de poids). Ainsi, nous pourrions déterminer exactement le bit qui est erroné.
+\begin{figure}[H]
+
+	\begin{minipage}{0.55\textwidth}
+	\includegraphics[scale=0.4]{ch2/image4}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[scale=0.4]{ch2/image5}
+	\end{minipage}
+\end{figure}
 
 \section{Algèbre de Boole}
-
+\subsection{Définition}
+Algèbre de Boole est un quadruplet $\{B,',\cdot,+\}$ où
+$\left\{
+\begin{array}{l l}
+	B & \text{est un ensemble de 2 valeurs}\\
+	' & \text{est l'opérateur de complément (parfois symbole \ $\bar{ }$ )}\\
+	\cdot & \text{est l'opérateur \textbf{et}}\\
+	+ & \text{est l'opérateur \textbf{ou}}
+\end{array}\right.$\\\\
+En fonction des définitions des opérateurs, on peut définir plusieurs algèbre de Boole. On ne s'intéressera ici que de celle-ci pour 2 valeurs.
+\subsection{Algèbre de Boole à 2 valeurs}
+\subsubsection{Définition}
+L'algèbre de Boole à 2 valeurs est défini par (introduite par \textsc{Shannon}):
+\begin{itemize}
+	\item[$B=$]$\{0,1\}$
+	\begin{itemize}
+		\item[$0=$]faux
+		\item[$1=$] vrai
+	\end{itemize}
+	\item[$+$]ou inclusif (or)
+	\item[$\cdot$]et (and)
+\end{itemize}
+Les opérateurs $+$ et $\cdot$ peuvent être définis par \textbf{Tables de Vérités} (\textit{TdV}) suivantes:
+\begin{table}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+	$\begin{array}{c|c|c}
+		x & y &  x\cdot y\\
+		\hline
+		0 & 0 & 0\\
+		0 & 1 & 0\\
+		1 & 0 & 0\\
+		1 & 1 & 1
+	\end{array}$
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		$\begin{array}{c|c|c}
+		x & y &  x+y\\
+		\hline
+		0 & 0 & 0\\
+		0 & 1 & 1\\
+		1 & 0 & 1\\
+		1 & 1 & 1
+		\end{array}$
+	\end{minipage}
+\end{table}
+\subsubsection{Axiomes}
+E. V. \textsc{Huntigton} posa 6 axiomes pour le cas de l'algèbre de Boole à 2 valeurs $B=\{0,1\}$. Ces axiomes sont vérifiables par \textit{TdV}. Les axiomes sont:
+\begin{itemize}
+	\item[Axiome 1] $B$ est \textbf{fermé} pour $+$ et pour $\cdot$
+	\item[Axiome 2] $B$ a un \textbf{neutre} pour $+$ (noté $0$) et pour $\cdot$ (noté $1$)
+	\item[Axiome 3] $B$ est \textbf{commutatif} par rapport à $+$ et $\cdot$
+	\item[Axiome 4] $\cdot$ \textbf{distribue} $+$ et $+$ distribue $\cdot$
+	\item[Axiome 5] $\exists$ \textbf{complément} de x (noté $x'$, $\bar{x}$ ou not($x$))
+	\item[Axiome 6] Il y a au moins 2 éléments $x,y$ du $B$ tels que $x\neq y$
+\end{itemize}
+L'une des conséquence de ces axiomes est l'\textbf{associativité}
+\begin{equation}
+	(a+b)+c=a+(b+c)\quad\text{et}\quad(a\cdot b)\cdot c=a\cdot(b\cdot c)
+\end{equation}
+\subsubsection{Théorèmes}
+À partir de ces axiomes, nous pouvons définir les théorèmes suivants:
+\begin{itemize}
+	\item[Théorème 1]
+	\item[Théorème 2]
+	\item[Théorème 3]
+	\item[Théorème 4]
+	\item[Théorème 5]
+	\item[Théorème 6]
+	\item[Théorème 7]
+\end{itemize}
 \section{Fonctions logiques}
 
 \section{Réalisation matérielle}
