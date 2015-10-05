@@ -10,7 +10,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 - [x] Tronc Commun
    - [x] [Algèbre Linéaire](IRCI1/Algèbre Linéaire/build/Algèbre Linéaire - Nicolas Englebert.pdf)
    - [x] [Analyse I](IRCI1/Analyse I/build/Analyse I - Nicolas Englebert.pdf)
-   - [x] [Chimie Générale](IRCI1/Analyse I/build/Analyse I - Nicolas Englebert.pdf)
+   - [x] [Chimie Générale](IRCI1/Chimie Générale/build/Chimie Générale - Nicolas Englebert.pdf)
    - [x] [Mécanique Rationelle](IRCI1/Mécanique Rationelle/build/Mécanique Rationelle I - Nicolas Englebert.pdf)
    - [x] [Physique Générale](IRCI1/Physique Générale/build/Physique Générale - Nicolas Englebert.pdf)
 
@@ -29,12 +29,12 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 
 ### 3<sup>ème</sup> année
 - [ ] Tronc Commun
+  - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
   - [ ] [Électronique Appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
   - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy 15.02.11.pdf)
   - [ ] [Mécanique du Solide et Résistance des Matériaux](IRCI3/Mécanique du solide et résistance des matériaux/build/)
   - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
   - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
-  - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
   - [ ] [Compléments de Mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
   - [ ] [Physique des Semi-conducteurs](IRCI3/Physique des semiconducteurs/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
