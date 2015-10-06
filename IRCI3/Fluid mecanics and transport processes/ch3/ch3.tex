@@ -96,7 +96,7 @@
 	 			
 	 			$k$ has some dependence with temperature that is neglect for small changes. \textbf{We have to beware of phase changes!}
 	 			
-	 	\subsection{1D stationnary conductive heat balance}
+	 	\section{1D stationnary conductive heat balance}
 	 		\begin{wrapfigure}[8]{l}{2.2cm}
  			\vspace{-5mm}
  			\includegraphics[scale=0.2]{ch3/5}
@@ -114,7 +114,7 @@
  			\begin{equation}
  				\frac{d\dot{q}_x}{dx} = \frac{d}{dx}\left(- k\frac{dT}{dx} \right) = \frac{d^2T}{dx^2} = 0 \qquad \Rightarrow \qquad T = C_1 x + C_2
  			\end{equation}
- 			\subsubsection{Heat resistance}
+ 			\subsection{Heat resistance}
 	 			The boundary conditions $T =T_1$ for $x = 0$ and $T=T_2$ for $x=L$ gives the constants, so
  				\begin{equation}
  					T = \frac{T_2-T_1}{L}x + T_1
@@ -128,12 +128,60 @@
  					\dot{Q} = \frac{T_1 - T_2}{R}
  				\end{equation}
  				
- 			\subsubsection{Serie of walls}
- 				\begin{wrapfigure}[8]{r}{5cm}
+ 			\subsection{Serie of walls}
+ 				\begin{wrapfigure}[4]{r}{5cm}
  				\vspace{-5mm}
  				\includegraphics[scale=0.2]{ch3/6}
  				\end{wrapfigure}
  				By assuming the temperature continuity and the flux conservation at the boundary of each wall, we have 
  				\begin{equation}
- 					\dot{Q} = \frac{T_1-T_{n}}{•}
+ 					\dot{Q} = \frac{T_1-T_{n+1}}{R} \qquad with \qquad R =\sum R_i = \sum \frac{L_i}{k_iA}
  				\end{equation}
+ 				
+ 			\subsection{Adding two ewtra resistance - the Biot number}
+ 				\begin{wrapfigure}[5]{l}{5.8cm}
+ 				\vspace{-5mm}
+ 				\includegraphics[scale=0.22]{ch3/7}
+ 				\end{wrapfigure}
+ 				Close to the walls the convective effect appears and is described by 
+ 				\begin{equation}
+ 					\dot{q} = h_{in} (T_{in}-T_1) \quad and \quad \dot{q} = h_{out} (T_{n+1} - T_{out})
+ 				\end{equation}
+ 				and the heat transfer rate can be found like 
+ 				\begin{equation}
+ 					\dot{Q} = \frac{T_{in}-T_{out}}{R} \qquad and \qquad R = \frac{1}{h_{in}A} + \sum \frac{L_i}{k_iA} + \frac{1}{h_{out}}
+ 				\end{equation}
+ 				But is it important to take care of the convective effect ? Let's compare the convective and conductive effect in the inner side 
+ 				\begin{equation}
+ 					\left. 
+ 					\begin{aligned}
+ 					 	T_{in}-T_1 &= \frac{\dot{Q}}{h_{in} A} \\
+ 					 	T_1 - T_2 &= \frac{L_1\dot{Q}}{k_1A}
+ 					\end{aligned}
+ 					\right\} \Rightarrow \frac{T_1-T_2}{T_{in}-T_1} = \frac{L_1h_{in}}{k_1} = Bi
+ 				\end{equation}
+ 				That is the \textbf{Biot number} that compares the convection in the fluid aroud the solid to the conduction in the solid.
+ 			
+ 			\subsubsection{Bi < 1}
+	 			\begin{wrapfigure}[2]{r}{3cm}
+ 				\vspace{-5mm}
+ 				\includegraphics[scale=0.35]{ch3/8}
+ 				\end{wrapfigure}
+ 			It means that $k \ll h_{in}$ so that the convection is limiting and that the temperature difference is in the fluid. The variation of $T$ in the solid is negligeable.\\\\
+ 			
+ 			 \subsubsection{Bi < 1}
+	 			\begin{wrapfigure}[3]{l}{3cm}
+ 				\vspace{-5mm}
+ 				\includegraphics[scale=0.35]{ch3/9}
+ 				\end{wrapfigure}
+ 				In that case, the convection is dominating because $h_{in} \gg k$. The temperature difference is in the solid while the variation is in negligeable in the fluid. \\\\\\
+ 			
+\section{Heat conduction in tubes}
+	It's the same principle but in cylindrical coordinates. $\dot{Q}$ is conserved for all radius and is expressed like 
+	\begin{equation}
+		\dot{Q} = \dot{q}2\pi r H
+	\end{equation}
+ 	The fluw then writes 
+ 	\begin{equation}
+ 			\dot{Q} = \frac{T_1-T_2}{R}\qquad R = \frac{1}{2\pi r_1 H h_{in}} + \sum \frac{\ln (r_{i+1}/r_i)}{k_i 2\pi H} + \frac{1}{2 \pi r_{n+1}Hh_{out}}
+ 	\end{equation}
