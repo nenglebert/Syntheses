@@ -1,0 +1,306 @@
+\chapter{Lignes de champ et intégrales premières}
+\section{ED exactes sur $\mathbb{R}^2$ et fonction potentielle}
+	\subsection{Cas des EDO à variables séparées}
+	Soit $y' = f(x).g(x)$. La résolution de cette équation est 
+	maintenant bien connue :
+	\begin{equation}
+	f(x)\text{dx}-\frac{1}{g(y)}\text{dy} = 0 \Leftrightarrow 
+	G(y) := \int\frac{dy}{g(y)}=\int f(x)dx =: F(x) + \text{cste} 
+	\equiv F(x) - G(y) = \text{cste}
+	\end{equation}
+	Posons $h(x,y) = F(x) - G(y)$ : $h$ est une \textbf{intégrale 
+	première} de cette ED car $h$ est constante tout le long de la 
+	courbe intégrale. La 1-forme différentielle de $h$ peut s'écrire 
+	\begin{equation}
+	dh(x,y) = f(x)dx - \frac{1}{g(y)}dy
+	\end{equation}
+	Comme ED $\Leftrightarrow dh = 0$, l'ED est dite exacte et 
+	$h$ est une fonction potentielle. La solution générale de cette 
+	ED n'est rien autre que $h(x,y)=c$.
+	
+\section{ED non exacte, FI et intégrale première}
+	\subsection{ED non exacte}
+	L'ED suivante sous sa forme générale :
+	\begin{equation}
+	P(x,y)dx + Q(x,y)dy = 0
+	\end{equation}
+	est \textbf{exacte} $\displaystyle\Leftrightarrow \exists h : 
+	\frac{\partial h}{\partial x} = P(x,y), \frac{\partial h}{
+	\partial y} = Q(x,y) \Leftrightarrow dh(x,y)=0$. Autrement dit, 
+	si il existe une fonction potentielle exacte pour cette ED. 
+	Cette ED peut ne pas être exacte mais en la multipliant par une 
+	fonction $\mu(x,y)$ elle peut le devenir. Notre ED est alors 
+	essentiellement\footnote{Si l'on rejette $\mu(x,y)=0$.} 
+	équivalente à
+	\begin{equation}
+	\mu Pdx + \mu Pdy = 0
+	\end{equation}
+	où $\mu$ est un \textbf{facteur intégrant}. Bien sur, cette ED 
+	doit avoir les mêmes solutions. Cette ED 
+	sera \textbf{exacte} $\displaystyle\Leftrightarrow \exists h : 
+	\frac{\partial h}{\partial x} = \mu P(x,y), \frac{\partial h}{
+	\partial y} = \mu Q(x,y) \Leftrightarrow dh(x,y)=0$.
+
+	\defi{$\mu$ est un facteur intégrant de 
+	\begin{equation}
+	F_xdx + F_ydy = 0
+	\end{equation}	
+	ssi $F_xdx + F_ydy$ est exacte.}\
+		
+	Les courbes intégrales sont $h(x,y) = c$ qui sont aussi les 
+	intégrales premières de l'ED (avec et sans $\mu$). \textit{L'
+	intégrale première est donc une fonction non constante qui est 
+	constante le long de toute courbe intégrable.} 
+	\textsc{Exemple.} Voir exemple 20.2, page 8, slide 4.
+	
+	\subsection{Existence et multiplicité des facteurs intégrants}
+	Supposons que l'ED suivante 
+	\begin{equation}
+	P(x,y)dx + Q(x,y)dy = 0
+	\end{equation}
+	soit \textbf{non exacte}, c'est-à-dire\footnote{Notation intéressante 
+	car elle permet d'effectuer simplement le rotationnel} $\nexists h(x,y) : 
+	\vec \nabla h = P\vec{1_x}+Q\vec{1_y}$. Comment savoir s'il existe 
+	un facteur intégrant  rendant cette ED exacte ? C'est-à-dire si il 
+	$\exists h(x,y) : \vec\nabla h = (\mu P,\mu Q)$ ?
+	
+	\subsection{EDP des facteurs intégrants}	
+	\subsubsection{a.}
+	La fonction $\mu(x,y)$ est facteur intégrant de $P(x,y)dx+Q(x,y)dy = 0$
+	\begin{equation}
+	\begin{array}{lll}
+	\Leftrightarrow &(\mu P, \mu Q) \text{ dérive d'un potentiel (
+	rotationnel nul)}\\
+	\Leftrightarrow & \dfrac{\partial}{\partial y}	(\mu P) = \dfrac{
+	\partial}{\partial x}(\mu Q) & \text{(dans un domaine simplement 
+	connexe)}\\
+	\Leftrightarrow & P\dfrac{\partial\mu}{\partial y}-Q\dfrac{\partial\mu}{
+	\partial x} = \left(\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{
+	\partial y}\right)\mu
+	\end{array}
+	\end{equation}
+	la dernière ligne est une \textbf{EDP linéaire du premier ordre} en 
+	$\mu$ dont la résolution n'est pas simple mais considérons le cas 
+	particulier très simple où $\mu(x)$ est indépendant de $y$.\\
+	
+	\proposition{Si $\displaystyle \left.\left(\frac{\partial Q}{\partial x}
+	-\frac{\partial P}{\partial y}\right)\right/Q =: \varphi(x)$ est 
+	indépendante de $y$ et si $\phi$ est une primitive de $\varphi 
+	$, alors $\mu(x) := e^{-\phi(x)}$ est un F.I.}
+	
+	
+%	st F.I. ssi
+	
+	\begin{proof}\ \\
+	Avec un facteur 
+	intégrant ne dépendant que de $x$, $\mu(x)$, l'EDP linéaire du premier 
+	ordre en $\mu$ devient\footnote{$\partial \mu/\partial y = 0$ et $
+	\partial\mu/\partial x = \mu'$.}
+	\begin{equation}
+	\mu' = -\left.\mu\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{
+	\partial y}\right)\right/Q
+	\end{equation}
+	Cette équation à variable séparée ne dépend que de $x$. On peut alors 
+	écrire $\frac{\mu'}{\mu} = -\phi$ 
+	\begin{equation}
+	\Leftrightarrow -\mu'=\varphi\mu =-\varphi 
+	\Leftrightarrow \mu(x) = e^{-\phi(x)}
+	\end{equation}
+	Ceci prouve qu'il existe un F.I. $\mu(x)$.
+	\end{proof}
+	La réciproque est vraie : si l'ED admet un F.I. $\mu(x)$ alors $(\dots)$ 
+	est indépendant de $y$.
+	
+\setcounter{section}{1}
+\setcounter{subsection}{4}
+	\subsection{Les courbes intégrales vues comme courbes de niveau}
+	Voir slide 10, il montre que $\vec\nabla h \perp (dx,dy)$.
+
+\setcounter{section}{2}
+\setcounter{subsection}{2}
+	\subsection{EDP des facteurs intégrants (suite)}
+	\subsubsection{b.}
+	Si $Q\neq0$, l'équation $Q(x,y)=0$ décompose le problème $oxy$ en 
+	secteurs délimités par les courbes incluses dans l'ensemble de 
+	niveau $Q(x,y)=0$. Ainsi, dans chacun de ces secteurs $P(x,y)dx + 
+	Q(x,y)dy = 0 \Leftrightarrow y' = -P/Q$.\\
+	
+	\proposition{Si $-P/Q$ est $\left\{\begin{array}{ll}
+	\text{continue}\\
+	\text{localement lipschitzienne en $y$}
+	\end{array}\right.$, alors il existe (localement) \textbf{une} 
+	solution à
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	y' &= -P/Q\\
+	y(x_0) &= y_0
+	\end{array}\right.
+	\end{equation}
+	où la dernière ligne est valable $\forall(x_0,y_0)$ dans le 
+	secteur dans lequel on travail.}\ \\
+	On a changé notre problème en un problème de Cauchy et utilisé 
+	notre unicité locale, fournissant l'existence et l'unicité!\\
+	La solution de ce problème, donc la courbe intégrale correspondante  
+	est $y=y(x;x_0, y_0) = y(x;y_0)$ avec $x_0$ \textbf{fixé}! La 
+	famille des courbe est $y = y(x;c)$ et la résolution par rapport à 
+	$c$ donne $c=h(x,y)$ impliquant que $h$ est intégrale première.\footnote{
+	A éclaircir/reformuler.}
+	
+	\subsubsection{c.}
+	Résumons : $h(x,y)$ est intégrale première de $Pdx+Qdy=0$ ssi ses 
+	courbes intégrales $\equiv h (x,y)=c$ ssi cette ED est (à un facteur 
+	près)
+	\begin{equation}
+	\frac{\partial h}{\partial x}dx + \frac{\partial h}{\partial y}dy=0
+	\end{equation}
+	Soit $g \in C^1(\mathbb{R},\mathbb{R})$ avec $g'\neq0$. Multiplions 
+	notre dernière équation par $g'$ :
+	\begin{equation}
+	g'|_{h(x,y)}\frac{\partial h}{\partial x}dx + g'|_{h(x,y)}\frac{
+	\partial h}{\partial y}dy = 0
+	\end{equation}
+	Cette fonction n'est rien d'autre que la dérivée de la fonction 
+	suivante 
+	\begin{equation}
+	g(h(x,y)) = c \equiv \text{ ses courbes intégrales}
+	\end{equation}
+	qui n'est rien d'autre que ses courbes intégrales !\\
+		
+	\proposition{Si $h$ est intégrale première alors $g\circ h$ est 
+	intégrale 
+	première}\
+	
+	\corollaire{S'il existe au moins une intégrale première, alors 
+	il en existe 
+	une infinité.}
+	
+\section{Lignes de champ dans $\mathbb{R}^2$ et point singulier}
+	\subsection{Ligne de champ vue comme image, ensemble de niveau ou 
+	graphe d'une fonction}
+	Soit $\vec{F} = F_x\vec{1_x}+F_y\vec{1_y}$, un champ de vecteurs dans 
+	$\mathbb{R}^2$.\\
+	
+	\defi{$\mathcal{C}$ est une \textbf{ligne de champ} de $\vec{F}$ ssi
+	\begin{equation}
+	\forall(x,y)\in\mathcal{C}, \vec{F}(x,y)\text{ est tangent à $C$ en $
+	(x,y)$}
+	\end{equation}}\
+	
+	Si $\mathcal{C}$ admet une paramétrisation $\vec{\gamma} :t\mapsto
+	(x(t),y(t))$ (de classe $C^1$ telle que la dérivée $\neq 0$), alors 
+	$\forall t, \exists k(t)\in\mathbb{R} : \vec{\gamma'}(t) = k(t)\vec{F}
+	(\gamma(t))$. On peut écrire ceci sous la forme d'un système qui peut 
+	encore donner\footnote{??} :
+	\begin{equation}
+	\dfrac{dy/dt}{dx/dt} = \dfrac{F_y}{F_x} 
+	\end{equation}
+	Considérons des $\mathcal{C}$ particuliers :
+	\begin{itemize}
+	\item[$\bullet$] Si $\mathcal{C} \equiv y=y(x)$
+	\begin{equation}
+	\frac{dy}{dx}=\frac{F_y}{F_x}
+	\end{equation}
+	\item[$\bullet$] Si $\mathcal{C} \equiv u(x,y) = \text{cste}$
+	\begin{equation}
+	\frac{dx}{F_x} = \frac{dy}{F_y}
+	\end{equation}
+	\end{itemize}
+	On peut bien évidemment généraliser tout ceci à $\mathbb{R}^3$ :
+	\begin{itemize}
+	\item[$\bullet$] Paramétriques ($F_x \neq 0$)
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\frac{dy/dt}{dx/dt} &=\frac{F_y}{F_x}\\
+	\frac{dz/dt}{dx/dt} &= \frac{F_z}{F_x}
+	\end{array}\right.
+	\end{equation}
+	\item[$\bullet$] Cartésienne (graphe)($F_x\neq0$)
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\frac{dy}{dx} &= \frac{F_y}{F_x}\\
+	\frac{dz}{dx} &= \frac{F_z}{F_x}
+	\end{array}\right.
+	\end{equation}	
+	\item[$\bullet$] Cartésienne (ens. de niveau) ($F_x,F_y,F_z\neq0$)
+	\begin{equation}
+	\frac{dx}{F_x}=\frac{dy}{F_y}=\frac{dz}{F_z}\quad\Leftrightarrow\quad
+	\left\{\begin{array}{ll}
+	du &= 0\\
+	dv &= 0	
+	\end{array}\right.
+	\end{equation}	
+	\end{itemize}
+	\textsc{Exemples.} Slide 17 et 18 et section 20.3.2.
+	Comme $\mathbb{R}^3$ c'est pour les n00b, passons à $m$ dimensions!
+	
+\section{Lignes de champ et intégrale première dans $\mathbb{R}^m$}
+	\setcounter{subsection}{2}
+	\subsection{Lignes de champ : cas $mD$}
+	On peut adopter quatre points de vues  pour ses lignes de champ :
+	\begin{enumerate}
+	\item orbites des solutions de :
+	\begin{equation}
+	\vec{y'} = \vec{F}(\vec{y})
+	\end{equation}
+	(vision vision paramétrique qui caractérise les lignes de champ de $\vec{F}$ 
+	comme des orbites de solution du SD autonome en $\vec{y}(t)$)
+	\item courbes intégrales $(F_m\neq0)$ :
+	\begin{equation}
+	\frac{dy_1}{F_1}=\dots=\frac{dy_m}{F_m}
+	\end{equation}
+	\item courbes intégrales de 
+	\begin{equation}
+	\begin{array}{lll}
+	\frac{dy_1}{dy_m} &= \frac{F_1}{F_m} &=: f_i\\
+	\vdots\\
+	\frac{dy_{m-1}}{dy_m} &= \frac{F_{m-1}}{F_m} &=: f_{m-1}
+	\end{array}
+	\end{equation}
+	\item courbes intégrales de 
+	\begin{equation}
+	\frac{d\vec{z}}{dx} = \vec{f}(x,\vec{z})
+	\end{equation}
+	\end{enumerate}
+	\textbf{Attention section pas claire! A retravailler !}
+	
+	\subsection{Intégrales première ou invariant d'un SD}
+	\defi{Dans les notations $\vec{z'} =\vec{f}(x,\vec{z})$, la fonction 
+	$u : \mathbb{R}^m\rightarrow\mathbb{R}$, non constante, est une intégrale 
+	première du SD ssi 
+	\begin{equation}
+	\forall \text{ sol. } \vec{\varphi}(x), \exists c \in\mathbb{R}, \forall 
+	x :u(x,\vec{\varphi}(x)) = c
+	\end{equation}}\ 
+	
+	Autrement dit, $u$ est une \textit{fonction qui reste constante tout le long 
+	de toute courbe intégrale.}\\
+	Pour une même valeur fixée atteinte par $u$, on a plusieurs courbe donnant 
+	une hypersurface, fibrée par des courbes. L'intégrale première permet de 
+	repérer une courbe intégrale mais pas de la caractériser.\\
+	
+	Plus généralement :\\
+	\defi{Une \textbf{intégrale première d'un SD} sur $D\subseteq \mathbb{R}^m$ 
+	est une fonction non constante
+	\begin{equation}
+	u : \mathcal{U} \subseteq D \rightarrow \mathbb{R} = \vec{y}\mapsto u(\vec{y})
+	\end{equation}
+	qui reste constante tout le long de \textit{toute courbe intégrale}.}\ \\
+	
+	La notion d'intégrale première (ou \textbf{invariant}) d'une \textbf{ED d'
+	ordre supérieur} découle du fait qu'une telle ED est équivalent au SD d'ordre 
+	1 en les fonctions inconnues : on peut appliquer ce que nous venons de voir.\\
+
+	Cette fonction $u$ a pour interprétation physique d'être un invariant du 
+	système (énergie totale, moment cinétique, ...). Une loi de conservation 
+	implique la connaissance d'une intégrale première et est un premier par 
+	vers la résolution.
+	
+	\setcounter{subsection}{5}
+	\subsection{Fonctions indépendantes}
+	\defi{$u_1,\dots,u_p$ sont \textbf{fonctionnellement indépendantes} ssi 
+	aucune n'est fonction des autres localement ssi $\nexists G$, une fonction 
+	non constante tel que $G(u_1,\dots,u_p)=0$.}\ \\
+	
+	\proposition{Si $\exists \vec{x_0} : \vec\nabla u_1|_{\vec{x_0}},\dots,
+	\vec\nabla u_p|_{\vec{x_0}}$ sont linéairement indépendant, alors 
+	$u_1,\dots,u_p$ sont fonctionnellement indépendant}
