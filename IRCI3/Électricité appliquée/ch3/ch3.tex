@@ -1,0 +1,414 @@
+\chapter{Inductances et transformateurs}
+\section{Tensions appliquées et induites}
+Si un circuit circulaire fermé est traversé par un flux variant, 
+une f.e.m. induite se créera dans le même sens que le courant $i$ 
+qu'elle génère : $e = -\dfrac{d\phi}{dt}$. Par la convention 
+récepteur, la tension qui équilibre cette force doit avoir un 
+sens opposé au courant. On a donc
+\begin{equation}
+\begin{array}{ll}
+v &= Ri - e\\
+ &= Ri + \dfrac{d\phi}{dt}
+\end{array}
+\end{equation}
+On considérera que $e$ est définie dans le même sens que $v$ (on 
+la voit comme une tension appliquée).
+
+\section{Le transformateur idéal}
+Soit l'illustration ci-dessus avec $N_1$ et $N_2$ spires à gauche 
+et à droite. Supposons que la résistivité du fer soit nulle : tout 
+le flux va passer dans le fer et le flux perçu par les deux bobines 
+sera identique. On définit alors le \textbf{flux totalisé} $\Psi$ :
+\begin{equation}
+\Psi = N\phi
+\end{equation}
+où $\phi$ est le flux d'une spire. La loi de Maxwell devient $v = 
+\frac{d\Psi}{dt} = N\frac{d\phi}{dt}$. Comme le flux est le même 
+dans les deux enroulements
+\begin{equation}
+\frac{\Psi_1}{\Psi_2} = \dfrac{N_1}{N_2},\qquad \frac{v_1}{v_2} = 
+\frac{N_1}{N_2} = \mu.
+\end{equation}
+où $\mu$ est le rapport théorique des tensions. La loi des f.m.m 
+donne
+\begin{equation}
+N_1i_1 + N_2i_2 = \underbrace{\oint_l \vec{H}.\vec{dl}}_{=0
+\Leftrightarrow \mu_{Fe}=\infty}
+\end{equation}
+On sait que $\mu_0 \ll \mu_{Fe}$. Poussons le bouchon un peu plus 
+loin : $\mu_{Fe} = \infty$. Imposer $v_1$ au montage donne un champ 
+d'induction fini, mais un champ magnétique tendant vers 0 : dans un 
+fer parfait, il faut une très petite force magnétomotrice ($\sum i$) 
+pour faire circuler un flux. On a alors
+\begin{equation}
+\frac{i_1}{i_2} = -\frac{N_2}{N_1} = -\frac{1}{\mu}
+\end{equation}
+Ceci décrit le transformateur idéal.
+
+
+\section{Inductances}
+	\subsection{Inductances monophasées dans l'air}
+		\subsubsection{Cas d'une seule spire}
+		La flux passant à travers une spire est donné par $\phi = 
+		LI$ où 		$L$ est l'inductance du circuit.\\
+		\textsc{Exemple : calcul de $L$}. Si la spire est constituée 
+		de deux conducteurs infini de rayon $a$, distant de $d$, 
+		véhiculant un courant $i$, le flux s'écrit
+		\begin{equation}
+		\phi = \frac{\mu_0}{2\pi}\int_{a}^{d-a}\left(\frac{1}{x}+
+		\frac{1}{d-x}\right) i \text{ dx} = \frac{\mu_0}{\pi}\ln
+		\frac{d-a}{a}i
+		\end{equation}
+		L'inductance par unité de longueur vaut alors
+		\begin{equation}
+		l = \frac{\mu_0}{\pi}\ln\frac{d-a}{a}\approx\frac{\mu_0}{
+		\pi}\ln\frac{d
+		}{a}
+		\end{equation}
+		
+		
+		\subsubsection{Cas de plusieurs spires - Notions de flux 
+		totalisé}
+		La généralisation à $N$ spires est immédiate : $\Psi = 
+		N\phi$ où $\phi$ est le flux d'une seule spire. Maxwell 
+		se généralise de la même façon :
+		\begin{equation}
+		v = \frac{d\Psi}{dt} = N\frac{d\phi}{dt}
+		\end{equation}
+		Le milieu restant linéaire $\Psi = Li$. Grâce aux notions 
+		du circuit magnétique et à la relation des Ampère-tours, on 
+		peut écrire $Ni = \mathfrak{R}\phi$ où $\mathfrak{R}$ est la 
+		\textbf{réluctance} du circuit d'induction. La valeur de l'
+		inductance se calcule alors
+		\begin{equation}
+		L = \frac{\Psi}{i} = N\frac{\phi}{u} = \frac{N^2}{\mathfrak{R}} 
+		= N^2 \mathcal{P}
+		\end{equation}
+		où $\mathcal{P}$ est la perméance du circuit. \\
+		Attention cependant : si les spires ne sont pas confondues la 
+		relation $\Psi = N\phi$ n'est \textbf{plus} valable ! En effet, 
+		le flux ne sera pas le même pour chaque spire : on appelle 
+		flux de dispersion le flux non-commun. Bonne nouvelle : on est 
+		encore dans une phase linéaire : $\Psi = Li$ reste valable.
+		
+		
+		
+	\subsection{Inductances monophasées à noyau magnétique}		
+		\subsubsection{Flux et inductance}
+		Soit circuit magnétique fermé de longueur $l$ et de section 
+		constante $S$, constitué de $N$ spires. On suppose que le flux
+		reste entièrement canalisé dans le fer\footnote{Très bonne 
+		approximation} de sorte que $\Psi = N\phi$ reste valable.\\
+		Le souci vient de l'imperfectibilité du fer : le relation entre 
+		$\Psi$ et $i$ n'est plus linéaire : $\Psi = N\phi = BNS$ et 
+		$i= H l/N$. Cette dernière relation est obtenue par la courbe 
+		d'hystérèse magnétique qui n'est ni linéaire, ni univoque.\\
+		
+		Appliquons une tension sinusoïdale $v = V_M\cos\omega t = V
+		\sqrt{2}\cos\omega t$ à l'	enroulement. Le flux résultat sera 
+		sinusoïdal car $v = d\psi/dt$.	En première approximation, notre 
+		tension vaut (toujours vrai:)
+		\begin{equation}
+		v = Ri + \frac{d\Psi}{dt}
+		\end{equation}
+		Si la résistance est non-nulle, il faut résoudre un système à 
+		deux inconnues (dont une équation est donnée par le cycle d'
+		hystérèse, Oh joie), la présence de $i$ compliquant l'ED. Par 
+		contre, si $R=0$ :
+		\begin{equation}
+		\phi = \frac{\Psi}{N} = \frac{1}{N}\int_0^tv\text{ dt} + \text{ 
+		cste}
+		\end{equation}
+		ce qui vaut\footnote{Q: supposez qu'on ai une bobine comme ça et 
+		que l'on met 12V. Si le courant est alternatif c'est un courant 
+		alternatif. Représentez le ? Si on met du ctn, on détruit la bobine 
+		(ça fume, savoir expliqué).} $\phi = \frac{V_M}{N\omega}\cos\left(
+		\omega t - \frac{\pi}{2}\right)$. Le phaseur $\underline{\phi}$ est 
+		déphasé de $-\frac{\pi}{2}$ par rapport à $\underline{V}$.\\
+		Comme $V_M = N\omega\phi_M$ :\footnote{??}
+		\begin{equation}
+		\phi_M : \dfrac{\sqrt{2}}{2\pi f N}V
+		\end{equation}
+		Si la tension appliquée est sinusoïdale, la tension et donc 
+		l'induction le sera également, mais le courant absorbé par la 
+		bobine ne l'est pas.
+			
+		\subsubsection{Courant absorbé}
+		Sur le schéma ci-contre\footnote{Ajouter des explications}, $i_m$ 
+		est le courant obtenu en ne considérant que la courbe d'aimantation 
+		moyenne auquel il faut ajouter $i_{pH}$, le courant de pertes 
+		hystérétiques pour donner le courant total $i$.
+		
+		
+		\subsubsection{Pertes hystérétiques et par courants de Foucault}
+		Si on place $i_{pH}$ sur un phrase, on va remarquer que sa courbe 
+		est en phase sur celle de la tension : on va pouvoir le modéliser 
+		par une résistance.
+		
+		\subsubsection{Schéma équivalent}
+		Le courant absorbé par la bobine est composé d'un courant 
+		magnétisant $I_m$ et un courant de pertes par hystérèse et par 
+		Foucault $I_p$. On a vu que les pertes $\propto V^2$ et qu'elles 
+		peuvent être représentées par une résistance $R_p$ de sort que 
+		\begin{equation}
+		\underline{V} = R_p\underline{I_p}
+		\end{equation}
+		Le courant magnétisant n'est pas sinusoïdal mais on peut définir 
+		un \textit{courant magnétisant sinusoïdal équivalent} déphasé de 
+		$\pi/2$ sur la tension et dont la valeur efficace vaut 
+		\begin{equation}
+		I_m= \sqrt{I_v^2-I_p^2}
+		\end{equation}
+		où $I_V = \sqrt{I_1^2+I_3^2+I_5^2+\dots}$. Dans cette expression, 
+		$I_j$ est la valeur efficace de l'harmonique $j$ du courant. Il est 
+		en effet habituel de définir un courant sinusoïdal équivalent de  
+		même valeur efficace que le courant $i$ : $I_V = I$.\\
+		Pour le fun, on peut définir une réactance de magnétisation $X_m : 
+		\underline{V} = jX_m\underline{I}_m$, réactance qui dépend de l'état 
+		de magnétisation du circuit. Ces constatations nous donnent le 
+		schéma équivalent suivant :\\
+		\begin{center}
+		Photoooo
+		\end{center}
+		
+	\subsection{Inductance à circuit magnétique à entrefer}
+	La réluctance d'un tube de flux d'air d'1mm est équivalent à la 
+	réluctance d'un tube de flux de 5000mm d'épaisseur dans le fer : l'
+	inductance est essentiellement déterminée par l'entrefer : on peut le 
+	voir comme un blindage magnétique.
+	
+	\subsection{Phénomènes transitoire de mise sous tension d'une bobine 
+	de fer}
+	Si on applique brusquement en $t=0$ la tension $v=V\sqrt{2}\cos(\omega 
+	t+\xi_V)$ aux bornes d'une bobine idéale, le flux vaut\footnote{Par 
+	intégration de $v = N\frac{d\phi}{dt}$.} (si l'on néglige le rémanent)
+	\begin{equation}
+	\begin{array}{ll}
+	\phi &= \int_0^t \frac{V\sqrt{2}}{N}\cos(\omega t + \xi_V)\text{ dt}\\
+	 &= \frac{V\sqrt{2}}{\omega N}\left[\cos(\omega t + \xi_V - \frac{\pi}{2}
+	 -\cos(\xi_V-\frac{\pi}{2})\right]
+	\end{array}	
+	\end{equation}
+	En tenant compte des résistances/pertes, le flux rejoint progressivement 
+	sa valeur de régime sinusoïdal, de même pour le courant. Si l'enclenchement 
+	se fait quand la tension est maximale ($\xi_V=0$-, le flux est directement 
+	en régime
+	\begin{equation}
+	\phi = \frac{V\sqrt{2}}{\omega N}\cos\left(\omega t - \frac{\pi}{2}\right)
+	\end{equation}	
+	Mais si on enclenche quand la tension est nulle ($xi_v = -\frac{\pi}{2}$) :
+	\begin{equation}
+	\phi = \frac{V\sqrt{2}}{\omega N}[1-\cos\omega t]
+	\end{equation}
+	ce qui montre que le flux atteint deux fois la valeur de régime : le fer 
+	peut se saturer.
+		
+\section{Transformateurs monophasés}
+	\subsection{Bobines à spires confondues, couplées dans l'air}
+		\subsubsection{Introduction}
+		Soit deux bobines de $N_1$ et $N_2$ spires. Le point $\bullet$ marque 
+		la borne d'entrée afin d'avoir une mutuelle positive. Comme le 
+		système est linéaire
+		\begin{equation}
+		\begin{array}{ll}
+		\Psi_1 &= L_1i_1 + Mi_2\\
+		\Psi_2 &= Mi_1 + L_2i_2
+		\end{array}
+		\end{equation}
+		En utilisant notre fameuse formule toujours vraie
+		\begin{equation}
+		\begin{array}{lll}
+		v_1 &= R_1i_1 + \frac{d\Psi_1}{dt} &= R_1i_1 + L_1\frac{di_1}{dt}+M\frac{
+		di_2}{dt}\\
+		v_Z &= R_2i_2 + \frac{d\Psi_2}{dt} &= R_2i_2 + M\frac{di_1}{dt}+L_2\frac{
+		di_2}{dt}
+		\end{array}
+		\end{equation}
+		Ou encore
+		\begin{equation}
+		\begin{array}{ll}
+		v_1 &= R_1i_1 + (L_1-M)\frac{di_1}{dt} + M\frac{d(i_1+i_2)}{dt}\\
+		v_1 &= R_2i_2 + (L_2-M)\frac{di_2}{dt} + M\frac{d(i_1+i_2)}{dt}		
+		\end{array}
+		\end{equation}
+		Cette équation peut directement être déduit du \textbf{schéma suivant}. 
+		Hélas, on n'utilisera pas ce schéma car il peut conduire à des $L<0$.
+		
+		\subsubsection{Coefficients de couplage et de dispersion}
+		Si $i_1$ (et $i_2=0$) parcoure la bobine 1, le flux se décompose en deux :
+		\begin{enumerate}
+		\item $\phi_{21}|_{i_2=0}$ est créée par 1 et coupée par 2
+		\item $\phi_{d1}|_{i_2=0}$ est créé par 1, mais ne coupe par 2 : c'est le 
+		\textit{flux de dispersion}
+		\end{enumerate}
+		Par définition, le coefficient de couplage $k_1$ est la fraction de flux 
+		créer par une bobine qui atteint une autre :
+		\begin{equation}
+		k_1 = \frac{\phi_{21}|_{i_2=0}}{\phi_1|_{i_2=0}}
+		\end{equation}
+		où $k<1$ sauf si les bobines sont confondues ($k=1$).\\
+		Reprenons nos équations fétiches :
+		\begin{equation}
+		\begin{array}{llll}
+		\Psi_1|_{i_2=0} &= N_1\phi_1|_{i_2=0}& &= L_1i_1\\
+		\Psi_2|_{i_2=0} &= N_2\phi_{21}|_{i_2=0}&= N_2k_1\phi_1|_{i_2=0} &= Mi_1		
+		\end{array}
+		\end{equation}
+		En effectuant le rapport 
+		\begin{equation}
+		M = \frac{N_2}{N_1}k_1L_1\qquad \text{ ou } k_1 = \frac{N_1}{N_2}\frac{M}{L_1}
+		\end{equation}
+		Si $i_1=0$, un raisonnement nous permet à partir de 
+		\begin{equation}
+		k_2 = \frac{(\phi_{12})_{i_1=0}}{(\phi_2)_{i_1=0}}
+		\end{equation}
+		d'obtenir 
+		\begin{equation}
+		M = \frac{N_1}{N_2}k_2L_2\qquad \text{ ou } k_1 = \frac{N_2}{N_1}\frac{M}{L_2}
+		\end{equation}	
+		Par définition, le couplage des deux bobines vaut
+		\begin{equation}
+		k = \sqrt{k_1k_2} = \frac{M}{\sqrt{L_1L_2}}
+		\end{equation}
+		Dans l'air, $k<0.5$. Par contre dans le fer $k \approx 0.998$.\\
+		Le coefficient de Blondel est le rapport entre le flux de dispersion et le flux 
+		total
+		\begin{equation}
+		\sigma_1 = \frac{(\phi_{dl})_{i_2=0}}{(\phi_1)_{i_2=0}} = 1-k_1
+		\end{equation}
+		
+		\subsubsection{Couplage parfait}
+		Comme on l'a dit : $k_1=k_2 \Rightarrow \phi_1=\phi_2$. On est dans le cas du 
+		transformateur parfait (voir plus haut)
+		
+		\subsubsection{Schéma équivalent}
+		Si $k_1>\frac{N_1}{N_2} \rightarrow M>L$ et une inductance négative serait 
+		introduite : pas top, il va falloir procéder autrement. Remarquons que le 
+		flux coupé par 1 est la somme des flux qu'il crée lui même et d'une fraction 
+		du flux créé par 2 :
+		\begin{equation}
+		\Psi_1 = N_1(\phi_1)_{i_2=0} + N_1(\phi_{12})_{i_1=0}
+		\end{equation}
+		On peut décomposer $(\phi_1)_{i_2=0}$ en un flux de dispersion et un flux 
+		coupé par l'enroulement 2. Le flux commun est le flux coupé par les deux 
+		enroulements :
+		\begin{equation}
+		\phi_C = (\phi_{21})_{i_2=0} + (\phi_{12})_{i_1=0}
+		\end{equation}
+		On peut alors réécrire $\Psi_1$ :
+		\begin{equation}
+		\Psi_1 = N_1(\phi_{dl})_{i_2=0} + N_1\phi_C
+		\end{equation}
+		Reprenons la première équation de la section : $\Psi_1 = L_1i_1 + Mi_2$ et 
+		décomposons le premier terme du second membre en\footnote{$N_1\phi = \Psi$.}
+		\begin{itemize}
+		\item[$\bullet$] Flux de dispersion : $N_1(\phi_{dl})_{i_2=0} = (1-k_1)L_1i_i$.
+		\item[$\bullet$] Flux commun : $N_1(\phi_{21})_{i_2=0} = k_1L_1i_1$.
+		\end{itemize}
+		Cette relation devient ainsi (après quelques transformations)
+		\begin{equation}
+		\begin{array}{ll}
+		\Psi_1 &= (1-k_1)L_1i_1 + (k_1L_1i_1 + Mi_2)\\
+		 &= N_1(\phi_{dl})_{i_2=0} + N_1\phi_C\\
+		 &=\displaystyle (L_1-\mu M)i_1 + \mu M\left(i_1+\dfrac{i_2}{\mu}\right)
+		\end{array}
+		\end{equation}
+		On peut faire le même raisonnement pour l'enroulement 2, et un peu cheaté 
+		mathématiquement pour obtenir
+		\begin{equation}
+		\mu\Psi_2 = \mu^2\left(L_2-\frac{M}{\mu}\right)\frac{i_2}{\mu} + \mu M\left(
+		i_1+\frac{i_2}{\mu}\right)
+		\end{equation}
+		Les deux dernières relations obtenues nous permettent de construire le 
+		\textbf{schéma équivalent suivant} ou $D$ est un opérateur dérivatif.\\
+		
+		Le flux $\Psi_2$ et la tension $v_2$ secondaire sont ramené au primaire 
+		par multiplication de $\mu$, alors que le courant doit être divisé par $
+		\mu$. On ramène les impédances au primaire par multiplication de $\mu^2$.
+		Si l'on tient compte des résistances des enroulement, on obtient le schéma 
+		complet, où
+		\begin{itemize}
+		\item[$\bullet$] $L_{dl} = L_1-\mu M$ inductance de dispersion du primaire
+		\item[$\bullet$] $L_{d2} = L_2-\frac{M}{\mu}$ inductance de dispersion du 
+		secondaire
+		\item[$\bullet$] $L_{d2}' = \mu^2L_{d2}$ inductance de dispersion ramenée au 
+		primaire
+		\item[$\bullet$] $\mu M$ inductance de magnétisation vue du primaire
+		\end{itemize}
+		Toutes ces grandeurs peuvent être ramenée au secondaire en multipliant les
+		courants par $\mu$, les tensions par $1/\mu$ et les impédances par $1/\mu^2$.
+		
+		
+		\subsubsection{Applications du schéma équivalent}
+		Avec lui, on peut calculer le comportement statique et dynamique du 
+		transformateur avec $R$ et $L$. Le rapport de transformation à vide, par 
+		exemple, vaut\footnote{??}
+		\begin{equation}
+		\left(\dfrac{v_1}{v_2}\right)_{i_2=0} = \mu\dfrac{R_1+L_1D}{\mu MD}
+		\end{equation}
+		La page 3.23 détaille la recherche de la courbe de réponse en fréquence 
+		d'un transformateur (important).
+		
+	\subsection{Transformateurs à bobines couplées dans l'air}
+		Le système étant linéaire, on peut écrire
+		\begin{equation}
+		\begin{array}{ll}
+		\Psi_1 &= L_1i_1 + Mi_2\\
+		\Psi_2 &= Mi_1 + L_2i_2
+		\end{array}
+		\end{equation}
+		mais $\Psi_1=N_1\phi_1$ n'est plus valable car les flux coupés par chaque 
+		spire d'un enroulement sont différent, on devra utiliser les coefficients 
+		de couplages mesurés ou calculés.
+		
+		
+	\subsection{Transformateurs à noyau magnétique - A COMPLÉTER}
+		\subsubsection{Transformateur sans dispersion}
+		Par hypothèse, tout le flux passe dans le fer. On retrouve les relations 
+		bien connues
+		\begin{equation}
+		\frac{\Psi_1}{\Psi_2} = \frac{N_1}{N_2}\qquad\text{ et }\qquad \frac{v_1}{
+		v_2}=\frac{N_1}{N_2} = \mu
+		\end{equation}
+		Par la loi des f.m.m.
+		\begin{equation}
+		N_1i_1 + N_2i_2 = \oint_l \vec{H}.\vec{dl}
+		\end{equation}
+		où $l$ est une ligne d'induction du fer. Le flux étant imposé par la 
+		tension, il est le même qu'à vide ($i_2=0$) : $\vec{H}$ est le même 
+		qu'à vide : $\oint_l Hdl = N_1i_v$ où $i_v$ est le courant consommé 
+		au primaire, à secondaire ouvert lorsque la tension appliquée $(v_m)$ est 
+		la même qu'en charge : $v_1=v_2'$.\\
+		Comme nous avons la relation
+		\begin{equation}
+		i_1 + \frac{i_2}{\mu} = i_v
+		\end{equation}
+		il faut nécessairement introduire une bobine consommant $i_v$ sous la 
+		tension $v_m$. \textbf{Attention, partie incomplète}.
+		
+		\subsubsection{Transformateurs à spires concentrées}
+		Dans ce cas on peut définir un flux commun $\phi_c$ et des flux de 
+		dispersions $phi_{d1},phi_{d2}$. Comme ceux-ci sont très faible, on 
+		considère que le flux total est le flux commun. Le \textbf{schéma}
+		reste valable si l'on pose $v_m = D\Psi_C=N_1D\phi_C$.
+		\textbf{Partie non-suivie en cours - A compléter.}
+		
+		
+		\subsubsection{Transformateurs réels}
+		Dans le cas $\mathbb{R}$, les spires ne sont plus concentrée mais 
+		supposer que $\phi_c = \phi_{Fe}$ reste valable de sorte que l'on 
+		puisse utiliser nos schémas équivalents.
+		
+		\subsubsection{Applications}
+		Notes prises en cours : \textit{"On connaît les valeurs numériques, 
+		on a calculé en labo. Graphiquement, si je veux calculer V1 je pars 
+		de la tension $\mu$ V2, je dois rajouter la chute de tension du 
+		premier bras : $\mu^2$R2 I2 + chute de tension dans LD2. Je calcule 
+		$I_v$, je l'ajoute à -I'2, je calcule ...\\
+		Petit calcul de phaseur pour avoir ce qui se passe d'un coté à partir 
+		de l'autre.}\\
+		\textbf{Évidemment incomplet\dots}\\
+		\\
+		\\
+		\\
+		\textbf{Fin du chapitre vue ?}
