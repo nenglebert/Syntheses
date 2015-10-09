@@ -31,8 +31,8 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 - [ ] Tronc Commun
   - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
   - [ ] [Électronique Appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
-  - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy 15.02.11.pdf)
-  - [ ] [Mécanique du Solide et Résistance des Matériaux](IRCI3/Mécanique du solide et résistance des matériaux/build/)
+  - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
+  - [ ] ~~[Mécanique du Solide et Résistance des Matériaux](IRCI3/Mécanique du solide et résistance des matériaux/build/)~~
   - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
   - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
