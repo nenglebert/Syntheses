@@ -176,12 +176,36 @@
  				\end{wrapfigure}
  				In that case, the convection is dominating because $h_{in} \gg k$. The temperature difference is in the solid while the variation is in negligeable in the fluid. \\\\\\
  			
-\section{Heat conduction in tubes}
+	\subsection{Heat conduction in tubes}
 	It's the same principle but in cylindrical coordinates. $\dot{Q}$ is conserved for all radius and is expressed like 
 	\begin{equation}
 		\dot{Q} = \dot{q}2\pi r H
+		\label{eq:3.18}
 	\end{equation}
- 	The fluw then writes 
+ 	The flow then writes 
  	\begin{equation}
  			\dot{Q} = \frac{T_1-T_2}{R}\qquad R = \frac{1}{2\pi r_1 H h_{in}} + \sum \frac{\ln (r_{i+1}/r_i)}{k_i 2\pi H} + \frac{1}{2 \pi r_{n+1}Hh_{out}}
  	\end{equation}
+ 	
+\section{1D cylindrical problem with source term}
+	\begin{wrapfigure}[8]{r}{2.5cm}
+ 	\vspace{-5mm}
+ 	\includegraphics[scale=0.2]{ch3/11}
+ 	\end{wrapfigure}
+	Let's consider an infinite cylindrical electric wire\footnote{Fil} of radius $r_0$ in an eviroment of temperature $T_0$. An electric current generates heat \textbf{uniformously} due to \textbf{Joule effect} at a volumetric rate $\dot{e}_J$ $[W/m^3]$. Let's do the heat balance along the radius
+	\begin{equation}
+		\cancel{Accumulation} = (In - Out) Fluxes + (Sources - \cancel{Sink})
+	\end{equation}
+	There are no accumulation because the system is stationary and nothing consume heat. Replacing by mathematical expression
+	\begin{equation}
+		\dot{Q}_r = \dot{Q}_{r+dr} - \dot{e}_J 2\pi r H dr
+	\end{equation}
+	applying the first order Taylor expansion
+	\begin{equation}
+		\dot{Q}_{r+dr} = \dot{Q}_r + \frac{d\dot{Q}_r}{dr}dr \qquad \Rightarrow \qquad \frac{d\dot{Q}_r}{dr} = \dot{e}_J 2\pi rH 
+	\end{equation}
+	Combining with the Fourrier law and equation \autoref{eq:3.18} 
+	\begin{equation}
+		\frac{d}{dr}\left(-k 2\pi rH\frac{dT}{dr}\right) = \dot{e}_J 2\pi r H \qquad \Leftrightarrow \qquad \frac{k}{r}\frac{d}{dr}\left(r\frac{dT}{dr}\right) = -\dot{e}_J
+	\end{equation}
+	
