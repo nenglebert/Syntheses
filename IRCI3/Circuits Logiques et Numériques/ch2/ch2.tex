@@ -165,31 +165,231 @@ Les opérateurs $+$ et $\cdot$ peuvent être définis par \textbf{Tables de Vér
 		\end{array}$
 	\end{minipage}
 \end{table}
+Le nombre de variables ($=a$) détermine le nombre de lignes de la TdV ($2^a$). On remarque entre autre une petite propriété des TdV sur la valeur de chaque variable. Le LSD (ici y), se définit comme : $0,1,0,1,\dots$ ensuite (ici $x$) : $00,11,00,11,\dots$ et encore après $0000,1111,0000,\dots$ Donc chaque variable répète sa valeur $2^n$ fois où $n=$ poids de chaque variable.
 \subsubsection{Axiomes}
 E. V. \textsc{Huntigton} posa 6 axiomes pour le cas de l'algèbre de Boole à 2 valeurs $B=\{0,1\}$. Ces axiomes sont vérifiables par \textit{TdV}. Les axiomes sont:
 \begin{itemize}
-	\item[Axiome 1] $B$ est \textbf{fermé} pour $+$ et pour $\cdot$
-	\item[Axiome 2] $B$ a un \textbf{neutre} pour $+$ (noté $0$) et pour $\cdot$ (noté $1$)
-	\item[Axiome 3] $B$ est \textbf{commutatif} par rapport à $+$ et $\cdot$
-	\item[Axiome 4] $\cdot$ \textbf{distribue} $+$ et $+$ distribue $\cdot$
-	\item[Axiome 5] $\exists$ \textbf{complément} de x (noté $x'$, $\bar{x}$ ou not($x$))
-	\item[Axiome 6] Il y a au moins 2 éléments $x,y$ du $B$ tels que $x\neq y$
+	\item[-- Axiome 1.] $B$ est \textbf{fermé} pour $+$ et pour $\cdot$
+	\begin{table}[H]
+		\begin{minipage}{0.3\textwidth}
+			\centering
+			$\begin{array}{c|c}
+				x & x'\\
+				\hline
+				0 & 1\\
+				1 & 0
+			\end{array}$
+		\end{minipage}
+		\begin{minipage}{0.3\textwidth}
+			\centering
+			$\begin{array}{c|c|c}
+				x & y &x\cdot y\\
+				\hline
+				0 & 0 & 0\\
+				0 & 1 & 0\\
+				1 & 0 & 0\\
+				1 & 1 & 1
+			\end{array}$
+		\end{minipage}
+		\begin{minipage}{0.3\textwidth}
+			\centering
+			$\begin{array}{c|c|c}
+				x & y &x+ y\\
+				\hline
+				0 & 0 & 0\\
+				0 & 1 & 1\\
+				1 & 0 & 1\\
+				1 & 1 & 1
+			\end{array}$
+		\end{minipage}
+	\end{table}
+	\item[-- Axiome 2.] $B$ a un \textbf{neutre} pour $+$ (noté $0$) et pour $\cdot$ (noté $1$)
+	\begin{equation}
+		\begin{array}{l}
+			0+0=0\\
+			1+0=1
+		\end{array}
+		\quad\text{et}\quad 
+		\begin{array}{c}
+			0\cdot 1=0\\
+			1\cdot 1=1
+		\end{array}
+	\end{equation}
+	\item[-- Axiome 3.] $B$ est \textbf{commutatif} par rapport à $+$ et $\cdot$
+	\begin{equation}
+		x+y=y+x\quad\text{et}\quad x\cdot y=y\cdot x
+	\end{equation}
+	\item[-- Axiome 4.] $\cdot$ \textbf{distribue} $+$ et $+$ distribue $\cdot$
+	\begin{equation}
+		x\cdot(y+z)=x\cdot y+x\cdot z\quad\text{et}\quad x+(y\cdot z)=(x+y)\cdot(x+z)
+	\end{equation} 
+	\hfill Preuve par TdV
+	\item[-- Axiome 5.] $\exists$ \textbf{complément} de x (noté $x'$, $\bar{x}$ ou not($x$))
+	\item[-- Axiome 6.] Il y a au moins 2 éléments $x,y$ du $B$ tels que $x\neq y$
 \end{itemize}
-L'une des conséquence de ces axiomes est l'\textbf{associativité}
-\begin{equation}
-	(a+b)+c=a+(b+c)\quad\text{et}\quad(a\cdot b)\cdot c=a\cdot(b\cdot c)
-\end{equation}
 \subsubsection{Théorèmes}
-À partir de ces axiomes, nous pouvons définir les théorèmes suivants:
+À partir de ces axiomes, nous pouvons définir les théorèmes suivant (à droite, les théorèmes issus du \nameref{subsubsec : dualité}):
+\begin{paracol}{2}
+	\textbf{Normaux}
 \begin{itemize}
-	\item[Théorème 1]
-	\item[Théorème 2]
-	\item[Théorème 3]
-	\item[Théorème 4]
-	\item[Théorème 5]
-	\item[Théorème 6]
-	\item[Théorème 7]
+	\item[-- Théorème 1.] Indempotence pour $+$ et $\cdot$
+	\begin{equation}
+		x+x=x\quad\text{et}\quad x\cdot x=x
+	\end{equation}
+	\item[-- Théorème 2.]
+	\begin{equation}
+		x+1=1\quad\text{et}\quad x\cdot 0=0
+	\end{equation}
+	\item[-- Théorème 3.] Absorption
+	\begin{equation}
+		x\cdot(x+y)=x
+	\end{equation}
+	\item[-- Théorème 4.] Involution
+	\begin{equation}
+		(x')'=x
+	\end{equation}
+	\item[-- Théorème 5.] Associativité
+	\begin{equation}
+		\begin{split}
+			(x+y)+z&=x+(y+z)\\&\text{et}\\(x\cdot y)\cdot z&=x\cdot (y\cdot z)
+		\end{split}
+	\end{equation}
+	\item[-- Théorème 6.] Lois de \textsc{De Morgan}
+	\begin{equation}
+		\begin{split}
+			(x+y)'&=x'\cdot y'\\&\text{et}\\ (x\cdot y)'&=x'+y'
+		\end{split}
+	\end{equation}
+	\item[-- Théorème 7.] Consensus
+	\begin{equation}
+		x\cdot y+x'\cdot z+y\cdot z = x\cdot y + x'\cdot z
+	\end{equation}
 \end{itemize}
+\switchcolumn
+ \textbf{Duaux} 
+ \begin{itemize}
+ 	\item[-- Théorème 1.] Indempotence pour $+$ et $\cdot$
+ 	\begin{equation}
+	 	 x\cdot x=x\quad\text{et}\quad x+x=x
+ 	\end{equation}
+ 	\item[-- Théorème 2.]
+ 	\begin{equation}
+ 		x\cdot 0=0\quad\text{et}\quad x+1=1
+ 	\end{equation}
+ 	\item[-- Théorème 3.] Absorption
+ 	\begin{equation}
+ 		x+(x\cdot y)=x
+ 	\end{equation}
+ 	\item[-- Théorème 4.] Involution
+ 	\begin{equation}
+ 		(x')'=x
+ 	\end{equation}
+ 	\item[-- Théorème 5.] Associativité
+ 	\begin{equation}
+	 	\begin{split}
+		 	(x\cdot y)\cdot z&=x\cdot (y\cdot z)\\&\text{et}\\(x+ y)+ z&=x+(y+ z)
+	 	\end{split}
+ 	\end{equation}
+ 	\item[-- Théorème 6.] Lois de \textsc{De Morgan}
+ 	\begin{equation}
+	 	\begin{split}
+		 	(x\cdot y)'&=x'+y'\\&\text{et}\\(x+y)'&=x'\cdot y' 
+	 	\end{split}
+ 	\end{equation}
+ 	\item[-- Théorème 7.] Consensus
+ 	\begin{equation}
+ 	(x+y)\cdot (x'+ z)\cdot(y+ z) = (x+ y) \cdot (x'+ z)
+ 	\end{equation}
+ \end{itemize}
+\end{paracol}
+\subsubsection{Principe de dualité}
+\label{subsubsec : dualité}
+Dans l'algèbre de Boole, tout résultat peut se présenter sous 2 formes dites duales.\\
+Soit $S$ un résultat, son dual $S*$ est obtenu en \textbf{permutant} :
+\begin{itemize}
+	\item les opérateurs $+$ et $\cdot$
+	\item les symboles $0$ et $1$ de $B$
+\end{itemize}
+\textbf{
+	\begin{center}
+		Si un résultat $S$ est vrai dans l'algèbre de Boole,\\il en est de même pour son dual
+	\end{center}
+}
+Nous pouvons bien évidement généraliser ce principe pour une expression Booléenne à $n$-variables
 \section{Fonctions logiques}
+\paragraph{Entrées} arguments d'une fonction logique
+\paragraph{Sorties} évaluation de(s) la(es) fonction(s)\\
 
+Chaque sortie aura une fonction logique qui lui est propre
+\subsection{Représentation des fonctions logiques}
+Il y a différentes formes pour représenter des fonctions logiques :
+\begin{itemize}
+	\item \textbf{Fonctions logiques}: représentation compacte pour un faible nombre de variables. Pratique pour une manipulation manuelle ou «crayon et papier».
+	\item \textbf{Tables de Vérité}: représentation tabulaire, proche de la représentation de type mémoire numérique (style \textit{Look-up-Table}).
+	\item \textbf{Schématique}: représentation graphique ; proche du monde de la réalisation physique ; facile à comprendre (mais peut être très compliqué pour un grand nombre d’arguments).
+	\item \textbf{Diagrammes de Venn}: représentation graphique.
+\end{itemize}
+Peut importe la forme initiale, la fonction peut être transformée d'un forme à l’autre.\\
+
+Exemple de fonction logique :
+\begin{align}
+F &= xz+xy'z+x'yz'\\
+&= x\cdot z+x\cdot y'\cdot z'+x'\cdot y\cdot z'
+\end{align}
+Une fonction logique peut s'écrire sous forme de Somme de Produit (\textit{SdP}) ou sous forme de Produit de Somme (\textit{PdS})
+\subsubsection{Table de Vérité vers SdP}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image6}
+\end{figure}
+Pour écrire sous forme SdP, il suffit de prendre toutes les lignes où $F=1$ de réunir les variables d'une même ligne par $\cdot$ et joindre chaque colonne par $+$ en transformant les variables de cette manière :
+\begin{itemize}
+	\item $a$ si $a=1$
+	\item $a'$ si $a=0$
+\end{itemize}
+Ainsi, la SdP est :
+\begin{equation}
+	F=x'\cdot y'\cdot z'+x\cdot' y'\cdot z+x'\cdot y\cdot z+x\cdot y\cdot z'+x\cdot y\cdot z
+\end{equation}
+\subsubsection{Table de Vérité vers PdS}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image7}
+\end{figure}
+Pour écrire sous forme PdS, il suffit de prendre toutes les lignes où $F=0$ de réunir les variables d'une même ligne par $+$ et joindre chaque colonne par $\cdot$ en transformant les variables de cette manière :
+\begin{itemize}
+	\item $a$ si $a=0$
+	\item $a'$ si $a=1$
+\end{itemize}
+Ainsi, la PdS est :
+\begin{equation}
+F=(x+y'+z)\cdot(x'+y+z)\cdot(x'+y+z')
+\end{equation}
+\begin{center}
+	OU BIEN
+\end{center}
+On peut aussi faire la SdP pour $F=0$ (en gardant bien les conventions pour $SdP$) et noté $F'$ au lieu de $F$ et ensuite faire De Morgan ($(F')'=F$)
+\begin{equation}
+F'= x'\cdot y\cdot z'+x\cdot y'\cdot z'+x\cdot y\cdot z
+\end{equation}
+\begin{align}
+	F &=(F')'=(x'\cdot y\cdot z')'\cdot(x\cdot y'\cdot z')'\cdot(x\cdot y\cdot z)'\\
+	&= (x+y'+z)\cdot(x'+y+z)\cdot(x'+y+z')
+\end{align}
+\subsubsection{Schématique (logigrammes)}
+Voici les différents symboles pour les opérateurs :
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image8}
+\end{figure}
+Dans un circuit en forme de SdP, on finit par une porte OU
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image9}
+\end{figure}
+Dans un circuit en forme de PdS, on finit par une porte ET
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{ch2/image10}
+\end{figure}
 \section{Réalisation matérielle}
