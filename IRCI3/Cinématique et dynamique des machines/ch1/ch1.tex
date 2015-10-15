@@ -208,6 +208,7 @@ En utilisant l'équation \autoref{equation:1.7}, on trouve (de même pour le poi
 L'égalisation des deux équations nous donne la relation finale
 \begin{equation}
 	t_B = 2R_B \left[ \frac{t_A}{2R_A} + (inv \, \phi _A - inv \, \phi _B) \right]
+	\label{eq:1.10}
 \end{equation}
 qui, de nouveau, nous permet de connaître l'épaisseur en nimporte quel rayon à condition de connaître l'épaisseur et l'$inv \, \phi _A$ en un autre rayon.
 	
@@ -317,11 +318,157 @@ Comment est-ce qu'on peut faire fonctionner les engrenages ?
 \begin{enumerate}
 	\item Il faut absolument que les engrenages aient une normale commune. Pour ça, il faut une ligne d'action commune et donc le même angle de pression.
 	      		
-	\item Il faut que les deux dents puissent s'engrener, donc le même diamètre et donc le même module ou pas diamétrale. 
+	\item Il faut que les deux dents puissent s'engrener, donc le même diamètre et donc le même module ou pas diamétrale. \\
 \end{enumerate}		 
+
 On pourrait croire que ça suffit, sauf que ça ne marche pas toujours. Les 2 conditions sont nécessaires mais pas suffisantes. La $3\up{ème}$ à vérifier est que $A$ et $B$ soit à l'intérieur de la longueur de contact maximale $E_1E_2$. Si ce n'est pas le cas, on n'est pas sur la ligne de contact commune quand les deux dents entrent en contact. \\
 On appelle alors \textbf{phénomène d'interférence} le cas où, si le pignon est trop petit par rapport à l'engrenage, la tête de la dent de l'engrenage ne peut s'engager physiquement dans le creux du pignon et va causer de l'érosion à la racine de la dent du pignon.\\
 Ceci est dû au fait que le cercle de creux est plus petit que le cercle de base et le profil de développante ne commence qu'au cercle de base. Par conséquent, la condition de rapport de vitesse constante n'est plus respectée. En conclusion, on fera attention à ce que 
 \begin{equation}
 	AP < E_1P \qquad et \qquad PB < E_2P
 \end{equation}
+On se pose alors la question de si un engrenage comporte un certain nombre de dents, quel doit être le nombre de dents sur l'autre engrenage pour éviter l'interférence ? On sait premièrement que 
+\begin{equation}
+	E_1P-AP \geq 0
+	\label{eq:1.23}
+\end{equation}
+
+	\begin{wrapfigure}[7]{l}{5.5cm}
+	\vspace{-10mm}
+	\includegraphics[scale=0.25]{ch1/23}
+	\end{wrapfigure}				 
+	Utilisons les règles géométriques pour exprimer ces deux longueurs selon le nombre de dents (v. figure ci-contre), sachant que $N_1<N_2$
+	\begin{equation}
+		E_1P = R_1\sin \phi = \frac{N_1}{2P}\sin \phi 
+		\label{eq:1.24}
+	\end{equation}
+	Par ailleurs $AP = E_2A - E_2P$ avec 
+	\begin{equation}
+		E_2A = \sqrt{R_{02}^2-R_{b2}^2} = \sqrt{R_{02}^2-R_{2}^2\cos ^2 \phi}
+	\end{equation}
+	Pour les engrenages normalisés, on peut écrire la relation $R_0 = R+a$ où $a=\frac{k}{P}$. L'équation précédente devient
+	\begin{equation}
+	E_2A= \sqrt{\left( R_2+\frac{k}{P} \right)^2-R_{2}^2\cos ^2 \phi} = \sqrt{\left( \frac{N_2}{2P}+\frac{2k}{2P} \right)^2-\left( \frac{N_2}{2P}\cos \phi \right) ^2}
+	\end{equation}
+	Dernièrement, comme l'équation \autoref{eq:1.24}, $E_2P = \frac{N_2}{2P}\sin \phi$. En réécrivant l'équation \autoref{eq:1.23}, on a 
+	\begin{equation}
+		\frac{N_1}{2P}\sin \phi - \frac{1}{2P}\left[ \sqrt{(N_2 + 2k)^2 - (N_2 \cos \phi )^2} - N_2 \sin \phi \right] \geq 0
+	\end{equation}
+	Les dénominateurs sont positifs d'après la définition de P, on peut donc se concentrer sur le numérateur. Si on met en évidence le $\sin$ dans un membre et qu'on passe la racine dans l'autre membre, après élévation au carré on a 
+	\begin{equation}
+		(N_1+N_2)^2\sin ^2 \phi - (N_2+2k)^2 + (N_2\cos \phi)^2 \geq 0
+	\end{equation}
+	On obtient la fonction $g(N_1,N_2)$ qui permet d'éviter l'interférence en développant les carrés et en remarquant que $N_2$ s'annule
+	\begin{equation}
+		g(N_1,N_2) = (N_1^2 + 2N_1N_2)\sin ^2 \phi - 4kN_2 - 4k^2  \geq 0
+		\label{eq:1.29}
+	\end{equation}
+	
+	\subsubsection{Engagement pignon-crémaillère}
+		\begin{wrapfigure}[8]{l}{4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/24}
+		\end{wrapfigure}				 
+		Dans ce cas, $R_2= \infty$ et pose problème avec notre équation \autoref{eq:1.29}. On la divise alors par $N_2$ et on fait tendre $N_2$ vers l'infini pour obtenir
+		\begin{equation}
+			f(N_1) = 2N_1\sin ^2\phi - 4k \geq 0 
+		\end{equation}
+		Le zéro de la fonction est $N_1 = \frac{2k}{\sin \phi}$. Etudions l'allure de la fonction $f(N_1)$. La dérivée première par rapport à $N_1$ est une constante et le zéro représente le plus petit nombre de dents sur le pignon pour éviter l'interférence. \\
+
+		\begin{wrapfigure}[3]{r}{3.7cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/25}
+		\end{wrapfigure}		
+		Pour un engrenage normalisé $k = 1$. Dans ce cas, le nombre de dents n'est fonction que de l'angle de pression. Le tableau ci-contre reprend les différentes valeurs de $N_1$ pour 3 angles selon l'équation trouvée. Physiquement, si un pignon de $N$ dents s'engage dans une crémaillère, il fonctionnera sans interférence avec un engrenage de même saillie dont le nombre de dents est compris entre l'infini et $N$. Par exemple pour $\phi = 20\degres$, un pignon de 18 dents nécessite un engrenage de minimum 18 dents. 
+		
+	\subsubsection{Engagement de deux engrenages identiques}
+		\begin{wrapfigure}[8]{l}{4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/26}
+		\end{wrapfigure}				
+		Dans le cas où $N_1=N_2=N$, l'équation \autoref{eq:1.29} devient 
+		\begin{equation}
+			g(N) = 3N^2\sin ^2 \phi - 4kN - 4k^2 \geq 0
+		\end{equation}
+		où les zéros sont donnés par 
+		\begin{equation}
+			N_{1,2} = \frac{2k}{3\sin ^2 \phi} (1 \pm \sqrt{3 \sin ^2 \phi})
+		\end{equation}
+		La dérivée première peut être positive, négative ou nulle et la dérivée seconde est toujours positive. On peut voir sur l'image que le zéro positif représente le minimum comme précédemment. 
+
+		\begin{wrapfigure}[3]{r}{4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/28}
+		\end{wrapfigure}				
+		Cette valeur pour un angle de pression de $20\degres$ est de 13 dents. \\
+		On a trouver une valeur au dessus de laquelle on a jamais interférence avec le premier cas et une valeur en dessous de laquelle on a toujours interférence avec le deuxième. Il reste le cas entre ces deux valeurs. 
+		
+		\subsubsection{Engagement de deux engrenages lorsque N1 est connu}
+		\begin{wrapfigure}[8]{l}{3.8cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.3]{ch1/27}
+		\end{wrapfigure}		
+		Supposons que $N_1$ est connu, plus petit que $N_2$ et est situé entre les valeurs déterminées dans les deux cas précédents. On reprend alors l'équation \autoref{eq:1.29} dont le zéro est 
+			\begin{equation}
+				N_2 = \frac{4k^2 - N_1 ^2 \sin ^2 \phi}{2 N_1 \sin ^2 \phi - 4k}
+				\label{eq:1.33}
+			\end{equation}
+			Si nous étudions l'allure de la fonction, on voit que la dérivée première est constante et négative pour toute valeur plus petite que le nombre minimal (v. tableau des 2 autres cas). On peut voir sur la figure que le zéro représente le plus grand nombre pour éviter l'interférence. 
+			
+		\subsubsection{Engagement de deux engrenages lorsque N2 est connu}
+			\begin{wrapfigure}[5]{l}{4cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.3]{ch1/29}
+			\end{wrapfigure}					
+			Toujours pour $N_1<N_2$, on reprend l'équation \autoref{eq:1.29} et ses zéros, exprimés cette fois en tant que $N_1$ sont
+			\begin{equation}
+				(N_1)_i = - N_2 \pm \sqrt{N_2^2 + \frac{4}{\sin ^2 \phi}(kN_2 +k^2)}
+				\label{eq:1.34}
+			\end{equation}
+			Si nous étudions l'allure de la fonction $p(N_1,N_2)$, la dérivée première par rapport à $N_1$ et la dérivée seconde sont toutes les deux positives. On voit que la racine positive représente le plus petit nombre de dents avant interférence. \\
+			
+			En résumé, il faut distinguer les cas pignon-crémaillère et engrenages identiques. Sinon, on doit calculer le \textbf{nombre minimum de dents} avec lequel il peut s'engager en utilisant l'équation \autoref{eq:1.34} et le \textbf{nombre maximum de  dents} avec lequel il peut s'engager en utilisant \autoref{eq:1.33}.
+			
+\section{Jeu entre les deux engrenages}
+	\subsection{Distance entre les centres C}
+		La distance entre les cercles est exprimé selon 
+		\begin{equation}
+			C = \frac{N_1 + N_2}{2P}
+		\end{equation}
+		et le rapport des vitesses est exprimé selon 
+		\begin{equation}
+			\frac{\omega _1}{\omega _2} = \frac{N_2}{N_1}
+		\end{equation}
+		On voit qu'il n'y a pas de lien entre ces deux équations et il peut y avoir incompatibilité. Si en pratique, la distance entre les centres n'est pas la même que celle donnée par l'équation ci-dessus, il y aura un jeu radial plus important que celui prévu et le jeu au cercle primitif ne sera pas nul. Cette condition va se retrouver dans tous les montages à cause des tolérances permises. \\
+		
+		\begin{wrapfigure}[8]{r}{6.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.25]{ch1/30}
+		\end{wrapfigure}			
+		Si la distance entre les centres est augmentée de $\Delta C$, ona $C' = C + \Delta C$. Comme l'illustre le montage ci-contre, les cercles primitifs $R'_1$ et $R'_2$ ne coïncident plus avec ceux de départ, contrairement aux cercles de base et au rapport des vitesses. L'angle de pression devient $\phi '$. Donc 
+		\begin{equation}
+		\frac{\omega _1}{\omega _2} = \frac{N_2}{N_1} = \frac{R'_2}{R'_1} \qquad C' = R'_1 + R'_1 \frac{N_2}{N_1}
+		\end{equation}
+		D'où 
+		\begin{equation}
+			R'_1 = C' \left( \frac{N_1}{N_1+N_2} \right) \qquad et \qquad R'_2 = C' \left( \frac{N_2}{N_1+N_2} \right)
+		\end{equation}
+		D'autre part 
+		\begin{equation}
+			R'_1 = \frac{R_{b1}}{\cos \phi '} \qquad 	R'_2 = \frac{R_{b2}}{\cos \phi '} \qquad et \qquad R_{b1} = R_1 \cos \phi \qquad R_{b2} = R_2 \cos \phi
+		\end{equation}
+		nous donnent la relation pour $C'$ et $\phi '$
+		\begin{equation}
+			C' = \frac{R'_1+R'_2}{\cos \phi '} = \frac{C \cos \phi}{\cos \phi '} \qquad \Rightarrow \qquad \phi ' = \arccos \left( \frac{C}{C'} \cos \phi \right)
+		\end{equation}
+		
+	\subsection{Jeu au cercle primitif}
+		A cause de l'augmentation de la distance entre les centres, les cercles primitifs ne coïncident plus. Pour un jeu $B$, le pas circulaire mesuré sur le cercle primitif d'opération sera exprimé comme
+		\begin{equation}
+			t'_1 + t'_2 + B = \frac{2\pi R'_1}{N_1} = \frac{2\pi R'_2}{N_2}
+		\end{equation}
+		Si on remonte bien plus haut, selon l'équation \autoref{eq:1.10} on peut écrire
+		\begin{equation}
+			t'_1 = 2R'_1\left( \frac{t_1}{2R_1} + inv \phi - inv \phi ' \right) = \frac{R'_1}{R_1} t_1 - 2R'_1(inv\phi ' - inv \phi)
+		\end{equation}
+		De même $t'_2 = \frac{R'_2}{R_2} t_2 - 2R'_2(inv\phi ' - inv \phi)$. 
