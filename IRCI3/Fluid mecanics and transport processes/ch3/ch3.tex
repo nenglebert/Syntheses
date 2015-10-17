@@ -139,6 +139,7 @@
  				\end{equation}
  				
  			\subsection{Adding two ewtra resistance - the Biot number}
+ 				\label{sec:3.3.3}
  				\begin{wrapfigure}[5]{l}{5.8cm}
  				\vspace{-5mm}
  				\includegraphics[scale=0.22]{ch3/7}
@@ -208,4 +209,45 @@
 	\begin{equation}
 		\frac{d}{dr}\left(-k 2\pi rH\frac{dT}{dr}\right) = \dot{e}_J 2\pi r H \qquad \Leftrightarrow \qquad \frac{k}{r}\frac{d}{dr}\left(r\frac{dT}{dr}\right) = -\dot{e}_J
 	\end{equation}
+	The intagration gives the result 
+	\begin{equation}
+		T = \frac{-\dot{e}_J}{4k}r^2 + C_1 \ln (r) +C_2
+	\end{equation}
+	and after applying the coundary conditions $r = 0 \rightarrow T \ finite$ and $r = r_0 \rightarrow T = T_0$
+	\begin{equation}
+		T = T_0 + \frac{\dot{e}_Jr_0^2}{4k}\left( 1-\frac{r^2}{r_0^2} \right)
+	\end{equation}
+	
+	\begin{wrapfigure}[5]{l}{4cm}
+	\vspace{-10mm}
+	\includegraphics[scale=0.15]{ch3/12}
+	\end{wrapfigure}
+	$T_{max} = T_0 + \frac{\dot{e}_Jr_0^2}{4k}$ is obtained in the middle of the cylinder, so there is a moving heat. It's logical to have an equation depending on $r_0$ because if the radius increseases, it will be more difficult for heat to reach the external enviroment. \\
+	
+\section{Generalization : unstationnary 3D heat balance with heat generation - The second Fourrier law}
+	\begin{wrapfigure}[9]{r}{4cm}
+	\vspace{-10mm}
+	\includegraphics[scale=0.4]{ch3/13}
+	\end{wrapfigure}	
+	Always the same principle
+	\begin{equation}
+		Accumulation = (In - Out) Fluxes + (Sources - Sink)
+	\end{equation}		
+	replaced by mathematical expressions
+	\begin{equation}
+		\rho c_p\frac{\partial T}{\partial t} + \frac{\partial}{\partial x} \left( k \frac{\partial T}{\partial x} \right) + \frac{\partial}{\partial y} \left( k \frac{\partial T}{\partial y} \right) + \frac{\partial}{\partial z} \left( k \frac{\partial T}{\partial z} \right) + \dot{e}_{gen} = 0
+	\end{equation}
+	Using the definition of thermal diffusivity $\alpha = \frac{k}{\rho c_p}$, we obtain the \textbf{second Fourrier law}
+	\begin{equation}
+		\frac{\partial T}{\partial t} + \nabla (\alpha \nabla T) + \dot{e}_{gen} = 0 
+	\end{equation}
+	There is the 5 classical boundary conditions to use with the Fourrier law : 
+	\begin{enumerate}
+		\item Fixed temperature : $T = T_0$
+		\item Fixed flux density : $\dot{q} = -k \frac{dT}{dx} = \dot{q}_0$
+		\item Continuity of the flux : $\dot{q}_1 = -k_1\frac{dT}{dx}|_1 = \dot{q}_2 = -k_2\frac{dT}{dx}|_2$
+		\item Convection at the boundary : $\dot{q} = -k\frac{dT}{dx} = h(T-T_b)$
+		\item If we look at an insulated material : $\frac{dT}{dx} = 0 $
+	\end{enumerate}
+	
 	
