@@ -304,3 +304,193 @@
 	\proposition{Si $\exists \vec{x_0} : \vec\nabla u_1|_{\vec{x_0}},\dots,
 	\vec\nabla u_p|_{\vec{x_0}}$ sont linéairement indépendant, alors 
 	$u_1,\dots,u_p$ sont fonctionnellement indépendant}
+	
+	\subsection{Intégrales premières d'un SD}
+	Considérons le SDLH suivant $(m=3)$
+	\begin{equation}
+	\left(\begin{array}{c}
+	y'\\
+	z'
+	\end{array}\right) = \left(\begin{array}{cc}
+	-2 & 0\\
+	0 & -1
+	\end{array}\right)\left(\begin{array}{c}
+	y\\
+	z
+	\end{array}\right)\qquad\Leftrightarrow\left\{\begin{array}{ll}
+	\dfrac{dy}{dx} &= -2y\\
+	\dfrac{dz}{dx} &= -z
+	\end{array}\right.\qquad \Longrightarrow dx = \dfrac{dy}{-2y}=
+	\dfrac{dz}{-z}
+	\end{equation}
+	Notre champ de pentes et notre champ de vecteur $\vec{F}$ valent 
+	tous deux $(1,-2y,-z)$. La solution de ce SDL avec $(y(0),z(0)) =
+	(y_0,z_0)$ est simple. On remarque que si on résout le système 
+	pour $y_0$ et $z_0$ on trouve deux intégrales premières :
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	y &= y_0e^{-2x}\\
+	z &= z_0e^{-x}
+	\end{array}\right.\qquad \Rightarrow \begin{array}{lll}
+	(y_0 =) & y^{2x} &=: u(x,y,z)\\
+	(y_0 =) & z^{x} &=: v(x,y,z)	
+	\end{array}
+	\end{equation}
+	En effet, chacune des intersections d'une courbe intégrale avec le 
+	plan $x=0$ est constant le long de la courbe intégrale.
+	
+	\theor{\ \\
+	Le SD $\displaystyle \left\{\begin{array}{ll}
+	z_1' &= f_1(x,z_1,\dots,z_{n-1})\\
+	\vdots & \vdots\\
+	z_{n-1}' &= f_{n-1}(x,z_1,\dots,z_{n-1})
+	\end{array}\right.$ où $\vec{f} : D\subseteq\mathbb{R}^n\rightarrow 
+	\mathbb{R}^{m-1}$ est de classe $C^1$ possède, \textbf{au voisinage} 
+	de tout point $(x_0,\vec{z_0}) \in \int\ D$, $m-1$ intégrales 
+	premières indépendantes.}\ \\
+	
+	Pour un $x_0$ fixé, l'ensemble des CI (cf. $\vec{z_0}$) est $(m-1)D$ : 
+	ensemble de solution dépendantes de $m-1$ constantes arbitraire. La 
+	résolution par rapport à ces constantes donne les $m-1$ intégrales 
+	premières.\\
+	\corollaire{Le SD $\displaystyle \dfrac{dy_1}{F_1}=\dots=\dfrac{dy_m
+	}{F_m}$ des lignes de champ de $\vec{F}$ possède (au voisinage d'un 
+	point $\vec{y_0}$ t.q. $\vec{F}(\vec{y_0})\neq\vec{0}$) $m-1$ 
+	intégrales premières indépendantes.}	
+	
+	\setcounter{subsection}{8}
+	\subsection{Espace vectoriel des intégrales premières}	
+	\proposition{L'ensemble des intégrales premières de $\vec{z}' = 
+	\vec{f}(x,\vec{z})$($\vec{z}=(z_1,\dots,z_{m-1})$(soit $m-1$ équations 
+	scalaires) (ou le SD du corollaire précédent) est l'espace 
+	fonctionnellement engendré 	par $m-1$ intégrales premières.}\ 
+	
+	
+	On ne travaille plus ici avec des EV linéairement indépendant, 
+	mais \textit{fonctionnellement indépendant.}
+	
+	\begin{proof}\ \\
+	$\supseteq$ \textit{Toute fonction d'intégrales premières d'un SD est 
+	aussi une intégrale première}.\\
+	Soit $u_1,\dots,u_k$ les intégrales premières. $g \in C^1(\mathbb{R}^k,
+	\mathbb{R}) \Rightarrow g(u_1,\dots,u_k)$ est aussi intégrale première.\\
+		
+	$\subseteq$\footnote{Admis.} Soient $u_1,\dots, u_{m-1},\ m-1$ 
+	intégrales premières.\\
+	$u$ intégrale première $\Rightarrow \exists g \in C^1(\mathbb{R}^{m-1},
+	\mathbb{R}) : u = g(u_1,\dots,u_{m-1})$.
+	\end{proof}
+	
+	\subsection{Utilité pratique des intégrales premières}
+	Soit $\vec{z}'=\vec{f}(x,\vec{z})$, un SD à $m-1$ équations. La 
+	connaissance de la solution générale permet la connaissance de $m-1$ 
+	intégrales premières indépendantes. \\
+	Le fait de connaître une intégrale première "réduit" le SD à $m-2$ 
+	inconnues.\\
+	\textsc{Exemple.} Slide 34
+	
+	
+	\setcounter{subsection}{4}
+	\subsection{EDP des intégrales premières}
+	\proposition{Soit $\vec{f} : D \subseteq \mathbb{R}^m\rightarrow 
+	\mathbb{R}^{m-1}$ de classe $C^1$. Alors $u \in C^1(D,\mathbb{R})$ 
+	est une intégrale première du SD 
+	\begin{equation}
+	\vec{z}' = \vec{f}(x,\vec{z})
+	\end{equation}
+	$$\Longleftrightarrow$$
+	\begin{equation}
+	\vec\nabla u \perp (1,\vec{f})\ \ \text{en tout point de }D.
+	\end{equation}}
+
+	\begin{proof}\ \\
+	$\Longrightarrow$ Soit $\vec{\phi}$, l'unique solution du problème de
+	Cauchy $\displaystyle\left\{\begin{array}{ll}
+	\vec{z}' &= \vec{f}(x\vec{z})\\
+	\vec{z}(x_0) &= \vec{z_0}
+	\end{array}\right.$. On a donc $\phi_i'(x) = f_i(x,\phi(x))$.	Comme $u$ est 
+	intégrale première
+	\begin{equation}
+	\exists c \in \mathbb{R} : \forall x \in I : u(x,\vec\phi(x)) = c\qquad
+	\Longrightarrow \dfrac{d}{dx}(\dots) = 0
+	\end{equation}
+	D'où, en calculant la dérivée en $x_0$ :
+	\begin{equation}
+	\left.\dfrac{\partial u}{\partial x}\right|_{(x_0,\vec{\phi}(x_0))} + 
+	\sum_{i=1}^{m-1}\left.\dfrac{\partial u}{\partial z_i}\right|_{(x_0,
+	\vec{\phi}(x_0))}.\left.\dfrac{d\phi_i}{dx}\right|_{x_0} = 0
+	\end{equation}
+	Or, $\vec{\phi}(x_0) = \vec{z}_0$ et $\phi_i'(x_0)=f_i(x_0,\vec{z}_0)$. On 
+	a alors
+	\begin{equation}
+	\left.\left(\dfrac{\partial u}{\partial x}+\sum_{i=1}^{m-1}\dfrac{\partial u
+	}{\partial z_i}.f_i\right)\right|_{(x_0,\vec{z}_0)} = 0
+	\end{equation}
+	Comme ceci est vrai $\forall (x_0,\vec{z}_0)$, donc ($\equiv$ signifie 
+	en tant que fonction de $m$ variable réelle) :
+	\begin{equation}
+	\dfrac{\partial u}{\partial x}+\sum_{i=1}^{m-1}\dfrac{\partial u
+	}{\partial z_i}.f_i\equiv 0
+	\end{equation}
+	On a bien
+	\begin{equation}
+	\vec\nabla u \perp (1,\vec{f})
+	\end{equation}
+	\ \\
+	$\Longleftarrow$ Supposons que $\vec\nabla u \perp (1,\vec f)$ dans $D$:
+	\begin{equation}
+	\dfrac{\partial u}{\partial x}+\sum_{i=1}^{m-1}\dfrac{\partial u
+	}{\partial z_i}.f_i\equiv 0\ \text{ sur } D
+	\end{equation}
+	Soit $\vec{\phi}$ une solution de $\vec{z}' = \vec{f}(x,\vec{z})$ (d'où 
+	$\phi_i'(x) = f_i(x,\vec{\phi}(x))$).\\
+	Or
+	\begin{equation}
+	\left.\left(\dfrac{\partial u}{\partial x}+\sum_{i=1}^{m-1}\dfrac{\partial u
+	}{\partial z_i}.f_i\right)\right|_{(x,\vec{\phi}(x))} = 0\quad\forall x
+	\end{equation}
+	D'où (la dérivée de la fonction composée $u(x,\phi(x))$ prouve que si 
+	$u$ est solution de l'EDP alors d'office $u$ est une intégrale première 
+	du SD) :
+	\begin{equation}
+	\left.\dfrac{\partial u}{\partial x}\right|_{(x_0,\vec{\phi}(x_0))} + 
+	\sum_{i=1}^{m-1}\left.\dfrac{\partial u}{\partial z_i}\right|_{(x_0,
+	\vec{\phi}(x_0))}.\left.\phi_i'\right|_{x_0} = 0\quad \forall x
+	\end{equation}
+	C'est-à-dire $u(x,\vec{\phi}(x)) =\ cste$. Comme ceci est vrai $\forall 
+	\vec{\phi}$, $u$ est bien intégrale première.
+	\end{proof}
+	Le sens direct offre une C.N.et le sens indirect une C.S. Attention, 
+	ceci est une ancienne question d'examen (de même pour le corollaire 
+	ci-dessous)!\\
+	
+	
+	\corollaire{$u(x,y,z)$ est une intégrale premières du SD des lignes de 
+	$\vec{F}(x,y,z)$ (Hyp. $u,\vec{F} \in C^1$) $\Leftrightarrow \vec\nabla 
+	u \perp \vec{F}$ en tout point du domaine.}\ \\
+	
+	Autrement dit : $\vec\nabla u \perp\vec{F} \Longrightarrow u$ est une 
+	intégrale première du SD $ \dfrac{dx}{F_1}=\dfrac{dy}{F_2}=\dfrac{dz}{F_3}$.
+	
+	\begin{proof}
+	Soit $\vec{\nabla}u\perp \vec{F}$. Soit $(x(t),y(t),z(t))$ une ligne de 
+	champ de $\vec{F}$, c'est-à-dire $(F_1,F_2,F_3)//\left(\dfrac{dx}{dt},
+	\dfrac{dy}{dt},\dfrac{dz}{dt}\right)$.\\
+	Ceci implique que 
+	\begin{equation}
+	\vec\nabla u \perp \left(\dfrac{dx}{dt},\dfrac{dy}{dt},\dfrac{dz}{dt}\right)
+	\qquad \Leftrightarrow\qquad \dfrac{\partial u}{\partial x}\dfrac{dx}{dt}+
+	\dfrac{\partial u}{\partial y}\dfrac{dy}{dt}+\dfrac{\partial u}{\partial z}
+	\dfrac{dz}{dt} = 0
+	\end{equation}
+	Autrement dit
+	\begin{equation}
+	\dfrac{d}{dt}u(x(t),y(t),z(t)) = 0
+	\end{equation}
+	Ceci est vrai pour toute ligne de champ de $\vec{F}$. Donc $u$ est intégrale 
+	première du $SD$ des lignes du champ $\vec{F}$.
+	\end{proof}
+	
+	Notons que la réciproque est vraie : si $u$ est une intégrale première, alors 
+	$\forall$ lignes de champ $(x(t),y(t),z(t)) : \dfrac{d}{dt}u(x(t),y(t),z(t)) 
+	= 0$ donc $\vec{\nabla}u\perp\vec{F}$.

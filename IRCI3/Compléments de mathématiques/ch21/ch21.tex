@@ -1,0 +1,221 @@
+\chapter{EDP du premier ordre}
+\section{Introduction}
+Une \textbf{EDP du premier ordre} en la fonction inconnue $u : D \subseteq 
+\mathbb{R}^m\rightarrow\mathbb{R} : \vec{x}\mapsto u(x)$ est une 
+expression de la forme
+\begin{equation}
+f\left(x,y,u,\dfrac{\partial u}{\partial  x},\dfrac{\partial  u}{x}\right)
+\end{equation}
+où $f \in C^1$. Une solution d'une telle expression $u$ sera telle que $
+f(\vec{x},u(\vec{x}),\vec\nabla(\vec{x}))=0$. On restreindra notre étude 
+au cas ou $\dfrac{\partial f}{\partial u}=0$ avec $f$ linéaire en $\vec 
+\nabla u$ : les EDP linéaire  homogène :
+\begin{equation}
+\alpha(x,y)\dfrac{\partial u}{\partial x}+\beta(x,y)\dfrac{\partial u}{
+\partial y}+\gamma(x,y)u = 0
+\end{equation}
+Cette équation peut s'écrire $L(u)=0$ où $L : u\mapsto \alpha(x,y)
+\dfrac{\partial u}{\partial x}+\beta(x,y)\gamma(x,y)u$. On dira que 
+$L$ est un opérateur différentiel. Le noyau de $L$ est un EV réel qui 
+n'est rien d'autre que l'ensemble des solutions (ou combili) de l'EDP.\\
+
+On retrouvera aussi notre EDP préférée d'Analyse II : l'EDP quasi-linéaires 
+\begin{equation}
+\alpha(x,y)\dfrac{\partial u}{\partial x}+\beta(x,y)\dfrac{\partial u}{
+\partial y} = \gamma(x,y,u)
+\end{equation}
+On rencontrera également le cas de trois variables indépendantes : $u(x,
+y,z)$. On aura alors une EDP complètement homogène :
+\begin{equation}
+\alpha(x,y,z)\dfrac{\partial u}{\partial x}+\beta(x,y,z)\dfrac{\partial 
+u}{\partial y} + \gamma(x,y,z)\dfrac{\partial u}{\partial z}+
+\underbrace{\delta(x,y,z)u}_{=0}=0
+\end{equation}
+Cela nous inspire déjà le fameux $\vec \nabla u \perp\vec{F}$ du chapitre 
+20.
+
+\section{EDPL hyper-homogène}
+	\setcounter{subsection}{1}
+	\subsection{La solution générale}
+	Dans le cas ou $F_0=0$ et $F_i$ est le coefficient des $\frac{\partial u}{
+	\partial x_i}$, ces $F_i$ forment le champ de vecteur $\vec{F}=(F_1,\dots,
+	F_m)$ sur $D$ de sorte qu'on puisse écrire l'EDP\footnote{Si $u$ possède 
+	$m$ variable, sa représentation à besoin de $m+1$ axes.} :
+	\begin{equation}
+	\vec{F}\perp\vec\nabla u
+	\end{equation}
+	Les coefficients de l'EDP sont les composantes d'un champ de vecteur 
+	$\vec{F}$ dans l'espace des variables. On a vu au précédent chapitre 
+	que cette relation caractérise $u$ comme des intégrales premières de 
+	$\vec F$\\
+	
+	On définit alors les \textbf{courbes caractéristiques} de l'EDP comme les 
+	lignes de champ de $\vec{F}$, mais surtout les courbes intégrales du 
+	système 
+	\begin{equation}
+	\dfrac{dx_1}{F_1}=\dots=\dfrac{dx_n}{F}
+	\end{equation}
+	Ceci forme le \textbf{système différentiel des caractéristiques.}. Les 
+	solutions de l'EDP $\vec\nabla u \perp\vec{F}$ sont les intégrales 
+	premières de ce système, soit des fonctions qui sont constante tout le 
+	long de toute ligne de champ de $\vec{F}$.\\
+	
+	La résolution d'une telle EDPL est équivalente à la recherche de $m-1$ 
+	solutions particulières fonctionnellement indépendantes de sorte que 
+	la S.G. est :
+	\begin{equation}
+	u = G(u_1,\dots,u_{m-1})
+	\end{equation}
+	\textsc{Exemple.} Voir section 21.2.3 et 21.2.4
+	
+	\setcounter{subsection}{4}
+	\subsection{Problème de Cauchy pour $\vec\nabla u \perp \vec F$}
+	Reprenons notre équation 
+	\begin{equation}
+	F_1(\vec{x})\dfrac{\partial u}{\partial x_1}+\dots+F_n(\vec{x})
+	\dfrac{\partial u}{\partial x_n}=0
+	\end{equation}
+	Supposons que les courbes caractéristiques sont connues. Si $u : 
+	D\subseteq \mathbb{R}^n\rightarrow\mathbb{R}$ est solution de 
+	l'EDP, alors $u$ est connue si on connaît sa valeur sur toute 
+	courbe caractéristique.\\
+	Autrement dit, si l'on a toutes les caractéristiques il suffit 
+	de connaître la valeur de $u$ en un point pour chaque caractéristique 
+	pour déterminer la valeur de $u$ dans tout l'espace (ou tout domaine).
+	Par exemple, en $2D$, il suffit de donner la valeur de $u$ le long 
+	d'une transversale à une courbe caractéristique.\\
+	
+	Soit $H$, une hypersurface coupant chaque caractéristique en 
+	\textbf{un} point $\Rightarrow$ $u$ est univoquement déterminé par 
+	la C.I. $u|_H$ donné\footnote{Qui sera $C^1$.}.
+	
+\section{EDP quasi linéaire sur $\mathbb{R}^m$}
+	\subsection{Interprétation géométrique pour $m=2$}
+	Considérons 
+	\begin{equation}
+	F_x|_{(x,y,z)}\dfrac{\partial z}{\partial x}+F_y|_{(x,y,z)}\dfrac{
+	\partial z}{\partial y} = F_z|_{(x,y,z)}
+	\end{equation}
+	La fonction $Z : (x,y)\mapsto Z(x,y)$ est solution de l'EDPQL ssi 
+	$\forall (x,y)\in D$ : 
+	\begin{equation}
+	F_x|_{(x,y,Z(x,y))}\left.\dfrac{\partial z}{\partial x}\right|_{
+	(x,y,Z(x,y))}+	F_y|_{(x,y,Z(x,y))}\left.\dfrac{\partial z}{\partial 
+	y}\right|_{(x,y,Z(x,y))} = F_z|_{(x,y,Z(x,y))}	
+	\end{equation}
+	L'équation du plan tangent au graphe de $Z$ en $(x_0,y_0,Z(x_0,y_0))$ :
+	\begin{equation}
+	\left.\dfrac{\partial Z}{\partial x}\right|_{(x_0,y_0)}(x-x_0)+
+	\left.\dfrac{\partial Z}{\partial y}\right|_{(x_0,y_0)}(y-y_0)=z-z_0
+	\end{equation}
+	En graphe de $Z$ en ce point est orthogonal aux vecteurs 
+	\begin{equation}
+	\text{gph }Z \perp \left(\left.\dfrac{\partial Z}{\partial x}\right|_{
+	(x_0,y_0)}, \left.\dfrac{\partial Z}{\partial y}\right|_{(x_0,y_0)},
+	-1\right) \perp 	\vec{F}_{x,y,Z(x,y)}
+	\end{equation}
+	La deuxième $\perp$ est donné par l'EDP. On peut voir le vecteur 
+	ci-dessus comme le vecteur directeur du plan. Dès lors, on en déduit 
+	que $\vec{F}$ est tangent au graphe de $Z$.\\
+	\textit{$Z$ est solution de l'EDP ssi son graphe est (en chacun de 
+	ses points) tangent au champ de vecteur $\vec{F}$}.\\
+
+	 Le graphe de $Z$ 
+	n'est rien d'autre qu'une réunion de lignes de champ de $\vec{F}$. Il 
+	forme un ensemble de niveau d'une intégrale première des du système 
+	des caractéristiques de $F$ et est donc le système caractéristique de 
+	l'EDP.
+	
+	\subsection{Résolution pour $m=2$ (= EDPQL)}
+	\proposition{$Z : (x,y)\mapsto Z(x,y)$ est localement solution de 
+	\begin{equation}
+	F_x\dfrac{\partial z}{\partial x}+	F_y\dfrac{\partial z}{\partial y}
+	=F_z
+	\end{equation}
+	ssi $\exists \mathcal{U} : (x,y,z) \mapsto \mathcal{U}(x,y,z)$ 
+	intégrale première du système des caractéristiques
+	\begin{equation}
+	\dfrac{dx}{F_x}=\dfrac{dy}{F_y}=\dfrac{dz}{F_z}
+	\end{equation}
+	et $\exists c\in\mathbb{R}$ t.q. $Z$ est localement solution de 
+	\begin{equation}
+	\mathcal{U}(x,y,Z(x,y)) = c
+	\end{equation}}\
+	
+	
+	\begin{proof}
+	Vue ? 
+	\end{proof}
+	
+	En pratique :
+	\begin{itemize}
+	\item[$\bullet$] On écrit le SD des lignes.
+	\item[$\bullet$] On cherche deux intégrales premières indépendantes 
+	$\mathcal{U}_1$ et $\mathcal{U}_2$.
+	\item[$\bullet$] On l'écrit l'intégrale première $g(\mathcal{U}_1,
+	\mathcal{U}_2) =c$
+	\item[$\bullet$] On résout $g(\mathcal{U}_1,\mathcal{U}_2) =c$ par 
+	rapport à $z$ (si possible)
+	\end{itemize}
+	\textsc{Exemple}. Section 214.3.3 ou slide 14.
+	
+	
+	\setcounter{subsection}{3}
+	\subsection{Condition de Cauchy pour EDPQL}
+	On a vu que si $Z : (x,y)\mapsto Z(x,y)$ est une solution de l'EDPQL 
+	alors le graphe de $Z$ est une réunion des lignes de champ de $\vec 
+	F$. Qu'est ce qu'une bonne C.I. ? Il suffit de considérer une courbe 
+	transversale $\Gamma$ transversale aux caractéristiques de sorte à ce 
+	que le graphe de $Z$ s'appuie sur $\Gamma$.\footnote{Ceci semble naturel 
+	lorsqu'on se rappelle que l'on a ramené la résolution de l'EDPQL à la 
+	résolution de l'EDPLHH : $\vec\nabla \mathcal{U}\perp\vec{F}$.}\\
+	On demande à ce que cette restriction soit au moins de classe $C^1$ 
+	et $z$ non tangent à une courbe caractéristique.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
