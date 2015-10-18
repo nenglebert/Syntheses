@@ -16,7 +16,7 @@ lourds} (cœurs ioniques) autour desquels règne le vide permettant aux électro
 de se déplacer.
 	
 \begin{wrapfigure}[11]{l}{7cm}
-	\includegraphics[scale=0.3]{ch1/image1.png}
+	\includegraphics[scale=0.3]{ch2/image1.png}
 	\captionof{figure}{Métal dans le modèle de Drude}
 \end{wrapfigure}
 \noindent
@@ -155,7 +155,7 @@ Deux grandeurs sont remarquables :
 
 \begin{wrapfigure}[7]{l}{5.2cm}
 	\vspace{-1cm}
-	\includegraphics[scale=0.2]{ch1/image2.png}
+	\includegraphics[scale=0.2]{ch2/image2.png}
 	\captionof{figure}{Expérience de Hall}
 \end{wrapfigure}
 Le signe de $j_x$ est indépendant du signe des porteurs de charge ainsi que de la force
@@ -173,7 +173,8 @@ où $R_H$ est négatif car le champ de Hall est en -$\vec{1_y}$.
 Le plus grand succès de ce modèle est d'avoir su expliquer la loi de 
 Wiedemann-Franz disant que $\kappa/\sigma \propto \alpha T$ où $\alpha$ 
 est une constante de proportionnalité. Dans son modèle, Drude suppose 
-que la chaleur (courant thermique) est l'énergie cinétique des électrons
+que la chaleur (courant thermique) est essentiellement transportée par
+ les électrons de conduction.
 \footnote{Car les métaux conduisent mieux la chaleur.} (suivant une 
 distribution de Maxwell).\\
 Pour estimer $\kappa$, modélisons un barreau de cuivre avec des température 
@@ -183,10 +184,12 @@ moins rapidement, formant un gradient de température.
 \begin{equation}
 	\vec{j}^Q = -\kappa\vec\nabla T
 \end{equation}
-Il s'agit de la loi de Fourier où $\kappa$ est la conductivité thermique. 
-Pour calculer $\kappa$, faisons un bilan de courant de chaleur le tout 
-un une dimension $x$ pour commencer, en considérant une surface transverse 
-à notre belle barre.
+
+où $\vec{j}^Q$ est le courant thermique, soit la chaleur traversant une surface
+ unitaire par unité de temps. Il s'agit de la loi de Fourier où $\kappa$ est la 
+ conductivité thermique. Pour calculer $\kappa$, faisons un bilan de courant de 
+ chaleur le tout un une dimension $x$ pour commencer, en considérant une surface
+ transverse à notre belle barre.
 \begin{itemize}
 	\item[$\bullet$] La moitié des électrons vient de gauche, l'autre de droite.
 	\item[$\bullet$] L'énergie thermique par un électron dans un métal à 
@@ -201,14 +204,18 @@ On obtient alors
 \begin{equation}
 	j^Q = \frac{1}{2}nv[\epsilon(T[x-v\tau]) - \epsilon(T[x+v\tau])]
 \end{equation}
-La variation de température sur un $\ell pm$ étant faible, on peut développer 
+où le premier terme représente la contribution au courant thermique des électrons
+ venant de gauche tandis que le second terme représente celle des électrons venant de droite.
+La variation de température sur un $\ell pm$ \footnote{pour rappel, $\ell pm$ signifie "libre
+ parcours moyen" et est la distance moyenne parcourue par une particule entre deux collisions 
+ succesives } étant faible, on peut développer 
 $\vec{J}^Q$ en série autour de $x$\footnote{??} :
 \begin{equation}
 	j^Q = nv^2\tau\frac{d\epsilon}{dT}\left(-\dfrac{dT}{dx}\right)
 \end{equation}
-Drude suppose qu'après collision on a distribution des vitesses. Quand 
-je passe en 3D, je prendrai comme vitesse moyenne $v_x^2 = \frac{1}{3}v^2$. 
-Comme nous avons également
+Drude suppose qu'après collision on a distribution isotropique des vitesses. Ainsi, 
+en passant en 3D, il faudra considérer $v_x^2 = \frac{1}{3}v^2$, avec $v^2$ la vitesse 
+quadratique moyenne des électrons. Comme nous avons également
 \begin{equation}
 	n\frac{d\epsilon}{dT} = N/V\frac{d\epsilon}{dT} = \frac{dE/dT}{V} = c_v
 \end{equation} 
@@ -243,9 +250,35 @@ le souci du facteur 2 et l'on pourra se passer de la contribution à
 la chaleur spécifique due aux électrons, fait non-observé 
 expérimentalement.\\
 
+Le modèle de Sommerfeld est en fait un modèle similaire au modèle de
+Drude, mais tenant compte de quelques apports de la mécanique quantique.
+Ainsi au lieu d'utiliser la distribution des vitesses de Maxwell
 
-Sommerfeld va supposer qu'un cristal solide peut être décrit par un 
-puits fini, un cube de côté $L$.  En résolvant l'équation d'Erwin  
+\begin{equation}
+f_M(v) = n (\frac{m}{2\pi kT})^{\frac{3}{2}}e^{\frac{-mv^2}{2kT}}
+\end{equation}
+
+il devient possible d'utiliser la distribution de Fermi-Dirac pour décrire le 
+comportement du gaz de fermions que sont les électrons 
+
+\begin{equation}
+f_{FD}(v) = \dfrac{1}{e^{\dfrac{\frac{mv^2}{2} - kT_0}{kT}} + 1}
+\end{equation}
+
+où $T_0$ est une température à déterminer par la normalisation de
+\begin{equation}
+n = \int f_{FD}(v)dv .
+\end{equation}
+
+Cette modification réalisée par Sommerfeld a permis de tenir compte
+du principe d'exclusion de Pauli dans la théorie cinétique des gaz
+et résout l'anomalie thermique du modèle de Drude.
+
+
+Les électrons étant confinés dans un volume $V$ par l'attraction 
+des charges positives des coeurs ioniques, Sommerfeld va supposer
+qu'un cristal solide peut être décrit par des puits finis, des cubes
+de côté $L$.  En résolvant l'équation d'Erwin  
 \begin{equation}
 	\begin{array}{lll}
 		                & H\psi                                            & =  \epsilon\psi      \\
@@ -253,37 +286,49 @@ puits fini, un cube de côté $L$.  En résolvant l'équation d'Erwin
 		\Leftrightarrow & -\frac{\hbar^2}{2m}\Delta \psi                   & = (\epsilon+V_0)\psi 
 	\end{array}
 \end{equation}
-Dont la solution est (notée sous la forme d'onde plane, plus 
-intéressant)
+
+
+dont la solution est notée sous la forme d'onde plane :
 \begin{equation}
-	e^{i(k_xx-\omega t)}
+	e^{i(\vec k . \vec{r}-\omega t)}
 \end{equation}
-Ou seulement la partie spatiale :
+Ou seulement la partie spatiale \footnote{ambigu, à reformuler...} :
 \begin{equation}
-	\Psi_k(\vec r) = \frac{1}{\sqrt{V}} e^{i\vec k \vec{r}}
+	\Psi_k(\vec r) = \frac{1}{\sqrt{V}} e^{i\vec k . \vec{r}}
 \end{equation}
-Si on remplace cette solution dans l'équation de Schrödinger\footnote{
-Le gradient fait apparaître le $k^2$}, on obtient
+\footnote{Notons que $\Psi_k(\vec r)$ est un état propre de l'opérateur
+ $p = -i\hbar \vec{\nabla}$ de valeur propre $\hbar k$, ce qui permet 
+ d'interpréter $p$ comme une impulsion.}
+
+avec une énergie quantifiée :\footnote{
+Le gradient fait apparaître le $k^2$}
 \begin{equation}
 	\frac{\hbar^2k^2}{2m} = (\epsilon-V_0)
 \end{equation}
 On va choisir des conditions aux limites qui sont un peu arbitraires :
 il faudrait le faire via la conductivité électrique mais à l'époque ce 
-n'est pas imaginable. L'état de surface d'un cristal n'est pas 
-l'état en volume de ce cristal. Un électron est rarement influencé 
-par l'état de surface, il ne va jamais très loin. On va introduire 
-des CL arbitraire qui sont toujours utilisée : CI de Born-von Karman.\\
+n'est pas imaginable \footnote{Que voulais-tu dire Nico ???}. L'état de surface d'un cristal n'est pas 
+l'état en volume de ce cristal mais nous nous intéressons ici aux propriétés
+en volume du cristal. Nous utiliserons des conditions aux limites particulières,
+appelées conditions aux limites de Born-Von Karman, qui consistent à 
+supposer qu'un électron arrivant à une face du cube réentre par la face
+opposée plutôt que d'être réfléchi : \\
+
+
+ $\psi (x+L, y, z) = \psi (x, y, z)$ \\
+ $\psi (x, y+L, z) = \psi (x, y, z)$ \\
+ $\psi (x, y, z+L) = \psi (x, y, z)$ \\
 
 On ne veut pas que $\Psi(\vec{r})$ s'annule au bord car cela 
 signifierait la présence d'un état stationnaire alors que le déplacement 
 des électrons ne l'est pas (ondes progressives). On va alors imaginer 
 un "cube" qui se refermerait sur lui même, c'est à dire que la fonction 
 d'onde sur la face gauche du cristal est égal à la 
-fonction d'onde sur la face opposée (droite en 1D) du cristal :
+fonction d'onde sur la face opposée (droite en 1D) du cristal \footnote{On peut virer ce paragraphe ?} :
 \begin{equation}
 	e^{ik_xx} = e^{ik_x(x+L)}
 \end{equation}
-Cela introduit que 
+Cela implique que 
 \begin{equation}
 	e^{ik_xL} = 1
 \end{equation}
@@ -301,8 +346,9 @@ Ces vecteurs $\vec k$ admis vont former un réseau de maille
 $\frac{2\pi}{L}$ dans les direction $k_x,k_y$ et $k_z$.\\
 
 Dans ces condition le nombres de points (états, vecteurs) autorisés 
-est $\approx$ au volume de l'espace $\vec{k}$ divise par le volume 
-de l'espace $\vec{k}$ contenant un seul point ($8\pi^3/V$).La densité 
+est $\approx$ au volume de l'espace $\vec{k}$ divisé par le volume 
+de l'espace $\vec{k}$ contenant un seul point ($8\pi^3/V$) \footnote{
+volume d'un cube de côté $2\pi /L$}.La densité 
 de vecteur $\vec{k}$ autorisée dans l'espace réciproque vaut alors 
 (l'inverse) 
 \begin{equation}
@@ -310,10 +356,10 @@ de vecteur $\vec{k}$ autorisée dans l'espace réciproque vaut alors
 \end{equation}
 
 Les électrons sont des fermions : pour chaque vecteur $\vec k$ 
-autorisé, il y a deux états électroniques possible (spin). Pour un 
+autorisé, il y a deux états électroniques possible (à cause du spin). Pour un 
 grand nombre d'$e^-$, la région de l'espace $\vec{k}$ (réciproque) 
-des états occupé est une sphère dont le rayon $k_F$, est le \textit{
-	rayon de Fermi}. Son volume dans l'espace $\vec{k}$ vaut
+des états occupé est indissociable d'une sphère dont le rayon $k_F$
+est le \textit{rayon de Fermi}. Son volume dans l'espace $\vec{k}$ vaut
 \begin{equation}
 	\sigma = \frac{4\pi}{3}k_F^3
 \end{equation}
@@ -336,14 +382,18 @@ le nombre d'onde de Fermi. Sa surface est la "surface de Fermi" :
 elle sépare les états occupés des états vides.\\
 
 On peut évaluer $k_F$ à partir du paramètre de densité électronique 
-$r_s$ 
+$r_s$ \footnote{rappel : $r_0 = r_s a_0$ est le rayon d'une sphère
+ contenant un seul électron}
 \begin{equation}
 	\frac{3\pi^2}{k_F^3} = \frac{1}{n} = \frac{4\pi}{3}(r_sa_0)^3
 \end{equation}
 Le nombre d'onde de Fermi est de l'ordre de l'$\AA^{-1}$. La vitesse
 de Fermi est donnée par $v_F = \hbar k_F/m$ et vaut $\approx 1000km/s$. 
 Notons également que l'énergie de Fermi a un ordre de grandeur d'une 
-dizaine d'eV.\\
+dizaine d'eV. \footnote{Ces deux grandeurs sont à rattacher à l'impulsion
+de Fermi $p_F = \hbar k_F$ qui est l'impulsion maximale des électrons
+des niveaux occupés.} Définissons en plus la température de Fermi
+$T_F = \epsilon_F/k$\\
 
 En effectuant des calculs relativement simples mais laborieux, on 
 peut obtenir l'expression de $c_v$ :
@@ -354,7 +404,7 @@ peut obtenir l'expression de $c_v$ :
 L'idée est maintenant de calculer la densité d'état en fonction de 
 l'énergie en évaluant le nombre d'états électroniques compris entre 
 deux sphères de rayon $k$ et $k'$. On va être amené à sommer les 
-énergies sur tous les états.
+énergies sur tous les états. \footnote{Cette ligne ne veut rien dire !!!}
 \begin{equation}
 	\sum_k = \alpha(k) \rightarrow \frac{V}{8\pi^3}\int\alpha(k)d\vec{k}
 \end{equation}
@@ -370,7 +420,7 @@ d'état $\mathcal{D}(\epsilon)$.
 \end{equation}
 où $\mathcal{N}(\epsilon)$ est le nombre d'états d'énergie $\leq 
 \epsilon$. Cette énergie $\epsilon$ peut être obtenue via l'équation 
-d'Erwin :
+de quantification de l'énergie :
 \begin{equation}
 	\epsilon = \frac{\hbar^2k^2}{2m} + V_0 \Longrightarrow k = \sqrt{
 		\frac{2m}{\hbar^2}(\epsilon-V_0)}
@@ -383,7 +433,8 @@ le nombre d'électron $N(\epsilon)$.
 	\frac{(2m)^{3/2}}{\hbar^3}(\epsilon-V)^{3/2}
 \end{equation}
 Si on dérive ça, on a la densité d'état par rapport à $\epsilon$ 
-(attention : ne pas confondre $h$ et $\hbar$)
+(attention : ne pas confondre $h$ et $\hbar$) \footnote{Est-ce que Z est
+la fonction de partition ?}
 \begin{equation}
 	\mathcal{D}(\epsilon) = \frac{d\mathcal{N}(\epsilon)}{d\epsilon}= 
 	\frac{V}{2\pi^2}\frac{(Zm)^{(3/2)}}{\hbar^3}(\epsilon-V_0)^{1/2} = 
@@ -487,6 +538,6 @@ Fermi. La condition d'équilibre est que le niveau d'énergie de Fermi soit le
 même dans tous l'espace. \textit{"Je détaille pas trop ici."} 
 
 \begin{center}
-	\includegraphics[scale=0.6]{ch1/image3.png}
+	\includegraphics[scale=0.6]{ch2/image3.png}
 	\captionof{figure}{Condition générale d'équilibre thermique}
 \end{center}
