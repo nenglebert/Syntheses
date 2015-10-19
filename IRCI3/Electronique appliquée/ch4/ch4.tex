@@ -410,21 +410,228 @@ Travaillons directement sur le schéma :
 \end{enumerate}
 
 
-\subsection{Analyse de la rétroaction}
-Les deux montages vu précédemment comportent tous deux une résistance $R_2$ en rétroaction. Clarifier le fonctionnement de cette rétroaction peut répondre à un certains nombres de questions : pourquoi amplifier $V_d$ et pas $V_{in}$, que justifie l'hypothèse du zéro virtuel ?
+	\subsection{Analyse de la rétroaction}
+	Les deux montages vu précédemment comportent tous deux une résistance $R_2$ 
+	en rétroaction. Clarifier le fonctionnement de cette rétroaction peut 
+	répondre à un certains nombres de questions : pourquoi amplifier $V_d$ et 
+	pas $V_{in}$, que justifie l'hypothèse du zéro virtuel ?
+	
+		\subsubsection{Analyse de la rétroaction : principe}
+		Au cours de notre raisonnement, nous adopterons deux règles :
+		\begin{enumerate}
+			\item Raisonner strictement en termes de "cause" et d'"effet"
+			\item L'AOP régit avec un certain délai : raisonnons plus vite que 
+			lui ; supposons que la tension de sortie de l'AOP ne peut subir de 
+			discontinuité (échelon)
+		\end{enumerate}
+		Ce dernier poins signifie que la tension de sortie ne peut pas varier 
+		instantanément.	Nous allons considérer le cas d'un AOP non-inverseur de 
+		gain $\approx 100$, $R_1 = 1k\Omega, R_2 = 99k\Omega$ et le gain de 
+		l'AOP : $30000$.
+		
+		
+		\subsubsection{Echelon sur $V_{in}$}
+		Appliquons un échelon de $10mV$ sur $V_{in}$. Dans l'immédiat, $V^-$ 
+		reste à 0V (pas de raison pour que ça change). Par contre, $V_d$ est 
+		instantanément modifié : $V_d = V^+-V^- = 10mV$. Notre \textit{première 
+		conséquence} de l'augmentation de $V_{in}$ est celle de $V_d$.
+		
+		\subsubsection{Conséquence de l'échelon $V_{out}$}
+		\begin{wrapfigure}[8]{l}{8cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.4]{ch4/image1}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		A priori, la tension de sortie devrait être de 300V, mais ce n'est pas
+		réaliste car l'AOP exploserait mais il se passe quelque chose : on 
+		considère que la sortie croit linéairement et on analyse le moment ou 
+		$V_{out} = 100mV$.\\
+		Comme $V_{out}\neq 0$, du courant circule entre les deux $R$. Si rien 
+		ne rentre dans l'AOP (impédance d'entrée infinie) ce courant vaut 
+		\begin{equation}
+		I = \dfrac{100mV}{100k\Omega} = 1\mu A
+		\end{equation}
+		Ce courant crée sur $R_1$ une chute de tension de $1k\Omega*1\mu A = 
+		1mV$. Or, cette chute n'est autre que $V^-$ qui vaut donc $1mV$.
+		
+		\subsubsection{Conséquence de l'échelon : remarques}
+		$R_1$ et $R_2$ forment un diviseur résistif\footnote{l'hypothèse $Z_{in} = 
+		\infty$ est indispensable pour avoir le même courant dans les deux 
+		résistances.} ; ici, $V^-$ sera toujours 100 fois plus faible que 
+		$V_{out}$.
+		
+		\subsubsection{Conséquence de l'échelon : analyse}
+		Au final, $V^-$ a bien été modifié mais pas directement par $V_{in}$. 
+		Or, si $V^-$ change, $V_d$ également et vaut $9mV$. La rétroaction 
+		réagit en sens inverse : augmenter $V^+$ fait diminuer $V_d$ via une 
+		augmentation de $V^-$. Un "cycle" s'est formé.
+		
+		\subsubsection{Phase de "convergence"}
+		On répète le cycle plusieurs fois, mais quand s’arrêter ? On 
+		s'arrête quand la tension de sortie de l'AOP vaut exactement 
+		3000*$V_d$. C'est cohérent, car à force de "boucler" il apparaissait 
+		clairement que $V_d \rightarrow 0$.
+		
+		\subsubsection{Situation finale : remarques}
+		Au final, $V_{out}$ vaut bien 100 fois $V_{in}$. De plus, la sortie 
+		de l'AOP n'a jamais saturé : ceci justifie le zéro virtuel. Théorie 
+		encore appuyée car $V_d$ est bien extrêmement faible, $V^+\approx 
+		V^-$. On se doute bien qu'en réalité, ce phénomène est très rapide. 
+		Nos équations ne nous informent donc que sur l'état d'équilibre 
+		final du système.
+		
+		\subsubsection{Conclusion}
+		\begin{itemize}
+		\item[$\bullet$] \textit{A quoi sert la rétroaction par $R_2$ ?}\\
+		Assure que $V^-$ "poursuit $V^+$, assurant le zéro virtuel. 
+		Qualitativement, c'est elle qui fixe le gain.
+		\item[$\bullet$] \textit{A quoi sert l'AOP ?}		\\
+		Il assure que $V_{out}$ augmente quand $V_d$ augmente.
+		\end{itemize}
 
-\subsubsection{Analyse de la rétroaction : principe}
-Au cours de notre raisonnement, nous adopterons deux règles :
-\begin{enumerate}
-	\item Raisonner strictement en termes de "cause" et d'"effet"
-	\item L'AOP régit avec un certain délai : raisonnons plus vite que lui ; supposons que la tension de sortie de l'AOP ne peut subir de discontinuité (échelon)
-\end{enumerate}
 
-
-\subsection{Compléments sur la rétroaction}
+		\subsubsection{Notion de "rétroaction négative"}
+		La rétroaction ci-dessus est dite "négative" car elle contrecarre 
+		toute variation de $V_d$. Si les variations de $V_d$ étaient 
+		amplifiées, on parlerait de \textit{rétroaction positive}.
 
 
 
+	\subsection{Compléments sur la rétroaction}
+	Les deux montages vu comportent tous deux une rétroaction, on va ici 
+	tenter de généraliser cette notion.
+		
+		\subsubsection{Montage $A$}
+		\begin{wrapfigure}[5]{r}{8cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.3]{ch4/image2}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Considérons un montage $A$ de gain $A_0$ que l'on définit par 
+		son équivalent de Thévenin : impédance d'entrée $Z_{0in}$, de 
+		sortie $Z_{0out}$ et de gain $A_0$. Pour simplifier, on va 
+		considérer que $A_0 \in \mathbb{R}$ et plus généralement, le 
+		gain est une \textit{fonction de transfert} $A_0(j\omega)$.
+		
+		\newpage
+		\subsection{Gain en boucle ouverte}
+		\begin{wrapfigure}[3]{r}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image3}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Appliquer un signal $E$ au bloc $A$ multiplie le signal par 
+		$A_0$. Rebaptisons $A_0$ le gain en boucle ouverte.
+		
+		\subsubsection{La rétroaction : définition}
+		\begin{wrapfigure}[4]{l}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image4}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Appliquer une rétroaction sur $A$, c'est prendre sa grandeur 
+		de sortie pour la réinjecter, après passage dans un bloc $B$, 
+		à l'entrée du bloc $A$ (où $B$ est défini par $B(j\omega)$. 
+		Appliquer une rétroaction, c'est former une boucle fermée.\\
+		
+		On a ainsi créer un nouveau montage aux propriétés différentes 
+		du bloc $A$ seul : le gain de montage est le \textit{gain en 
+		boucle fermée}, $A_R$, différent du \textit{gain en boucle 
+		ouverte} en l'absence de rétroaction.
+		
+		\subsubsection{Montage avec rétroaction}
+		\begin{wrapfigure}[4]{r}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image5}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		On va maintenant calculer les propriétés de ce nouveau 
+		montage, avec Thévenin. A droite du schéma ci-contre, on 
+		prélève la tension de sortie du bloc $A_0$ ($V_{out}$) et ) 
+		droite, on réinjecte la tension de sortie du bloc $B$ (
+		$B.V_{out}$) \textbf{en série} avec la tension de source $E$.
+		
+		\subsubsection{Rétroaction de tension : calcul du gain $A_R$}
+		Le gain en boucle fermée $A_R$ est défini comme
+		\begin{equation}
+		A_R = \left.\dfrac{V_{out}}{E}\right|_{I_{out}=0} 
+		\end{equation}
+		On a d'une part $V_{out} = A_0*V_1$ et d'autre part $V_1 = 
+		E+B.V_{out}$. En combinant ces deux réactions : 
+		\begin{equation}
+		\left. \begin{array}{ll}
+		V_{out} &= A_0.V_1\\
+		V_1 &= E+B.V_{out}
+		\end{array}\right\}\Rightarrow V_{out} = A_0(E+B.V_{out})\quad 
+		\Longrightarrow A_R = \dfrac{V_{out}}{E}=\dfrac{A_0}{1-A_0B}
+		\end{equation}
+		
+		\subsubsection{Rétroaction de tension: impédances}
+		Comment les impédances d'entrées et de sorties sont-elles 
+		influencées par l'ajout d'une rétroaction? On peut montrer que 
+		\begin{equation}
+		\begin{array}{ll}
+		Z_{R_{in}} &= (1-A_0B)Z_{0_{in}}\\
+		Z_{R_{out}} &= \dfrac{Z_{0_{out}}}{1-A_0.B}
+		\end{array}
+		\end{equation}
+		On remarque que le facteur $1-A_0.B$ apparaît un peu partout. 
+		L'effet d'une rétroaction sur à travers un bloc $B$ consiste à :
+		\begin{itemize}
+		\item[$\bullet$] Diviser le gain par $1-A_0B$
+		\item[$\bullet$] Diviser l'impédance de sortie par $1-A_0B$
+		\item[$\bullet$] Multiplier l'impédance d'entrée par $1-A_0B$
+		\end{itemize}
+		
+		
+		\subsubsection{Rétroaction négative}
+		Quand $B<0$, la rétroaction est dite \textit{négative} (C.S.)
+		\footnote{Si $A_0>0$}. Les propriétés d'une telle rétroaction 
+		sont de diminuer le gain, mais augmenter les impédances pour 
+		une adaptation en tension.
+	
+	
+		\subsubsection{Rétroaction négative: ampli non-inverseur}
+		Ce montage est un cas particulier de rétroaction négative. 
+		Pour un tel montage, nous avons 
+		\begin{equation}
+		V_{out} = A\left(V_{in}-\dfrac{R_1}{R_1+R_2}V_{out}\right)
+		\end{equation}
+		Connaissant l'équation générale de la rétroaction de 
+		tension $A_0(E+B.V_{out})$, on peut identifier :
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		A_0 &= A\\
+		B &= -\dfrac{R_1}{R_1+R_2}
+		\end{array}\right.
+		\end{equation}
+		Et donc
+		\begin{equation}
+		A_R = \dfrac{A_0}{1-A_0B} = \dfrac{A(R_1+R_2)}{AR_1+R_1+R_2}
+		\end{equation}
+		
+		\subsubsection{Forte rétroaction négative}
+		Lorsque $1\ll A_0.|B|$, la rétroaction est dite fortement 
+		négative : $1-A_0B = A_0|B|$. Les propriétés sont identiques 
+		au cas de la rétroaction négative.\\
+		Le montage non-inverseur correspond à une forte rétroaction 
+		négative : $B <0$ et $1\ll A_0.|B|$ car $A$ très élevé. En 
+		appliquant directement la formule du gain en boucle fermée, 
+		on retrouve bien le gain de l'ampli non-inverseur.
+		
+		\subsubsection{Rétroaction positive: définition intuitive}
+		\begin{itemize}
+		\item[$\bullet$] \textit{Rétroaction négative}
+			\begin{itemize}
+			\item Diminution du gain, la rétroaction s'oppose aux 
+			perturbation du signal d'entrée, système stable
+			\end{itemize}
+		\item[$\bullet$] \textit{Rétroaction positive}
+			\begin{itemize}
+			\item Augmentation du gain, la rétroaction amplifie les 
+			perturbations du signal d'entrée, système instable
+			\end{itemize}
+		\end{itemize}
 
-\section{Montages à ampli-op}
+\section{Montages à OPA}
 \section{Ampli-op : propriétés avancées}
