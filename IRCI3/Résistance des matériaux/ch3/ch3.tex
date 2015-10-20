@@ -1,0 +1,215 @@
+\chapter{Traction - Compression}
+\section{Traction}
+	\subsection{Méthode cinématique}
+	\begin{wrapfigure}[8]{r}{6.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch3/image1.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Nous allons ici utiliser la méthode cinématique de sorte que les équations 
+	de compatibilité soient satisfaites lors de l'obtention de notre relation 
+	contrainte $\leftrightarrow N$. Il faut donc postuler un champ de 
+	déplacement :
+	\begin{equation}
+	u = u_0(x),\qquad v=0,\qquad w=0.
+	\end{equation}
+	On considère un déplacement axial $u$, uniquement selon $x$ : ne varie 
+	pas selon $x$ et $y$ et constante dans toute la section : une section 
+	transversale plane, reste plane\footnote{hypothèse de Bernoulli (1694) :
+	les sections droites initialement planes et perpendiculaires à l'axe le 
+	restent dans la configuration déformée}.
+	
+	\subsection{Déplacements - Déformations - Contraintes}
+		\subsubsection{Déformations}
+		Maintenant que nous avons notre déplacement, il faut s'intéresser 
+		aux déformations :
+		\begin{equation}
+		a_{ij} = \frac{1}{2}\left(\dfrac{\partial u_i}{\partial x_j}+\dfrac{
+		\partial u_j}{\partial x_i}\right)
+		\end{equation}
+		De par notre champ, $\epsilon_x$ est constant dans la section 
+		transversale et les autres composantes sont nulles :
+		\begin{equation}
+		\epsilon_x = \dfrac{\partial u_0}{\partial x}
+		\end{equation}
+		
+		\subsubsection{Contraintes}
+		On utilise pour ça la loi de Hooke $ \sigma_x = E\epsilon_x$. Notons 
+		que si $E$ est constant, $\sigma_x$ l'est dans la section transversale.
+		On néglige les composantes de Poisson.
+		
+	\subsection{Éléments de réduction : section homogène}
+	La suite de notre méthode demande le calcul des éléments de réductions. 
+	Supposons que l'on ai une section homogène de sorte que $E$ soit constant. 
+	Dès lors, $\sigma_x$ est également constant. Pour la normale, c'est immédiat :
+	\begin{equation}
+	N = \int_A \sigma_x\ dA \qquad\Longrightarrow\qquad N = \sigma_xA
+	\end{equation}
+	En raison de notre champ uniquement selon $x$, les résultantes en $y$ et $z$ 
+	sont nulles, de même pour le moment selon $x$\\
+		\begin{wrapfigure}[7]{l}{6.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch3/image2.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	\begin{equation}
+	\begin{array}{ll}
+	R_y = \int_A \tau_{xy}\ dA &\Longrightarrow T_y = 0\\
+	\text{Similairement : }&\Longrightarrow T_z = 0\\
+	C_x = \int_A (\tau_{xz}y-\tau_{xy}z)\ dA &\Longrightarrow M_x = 0
+	\end{array}
+	\end{equation}
+	Pour le moment selon $y$ (et similairement pour $z$) nous avons :
+	\begin{equation}
+	C_y = \int_A \sigma_xz\ dA\qquad\Longrightarrow\qquad C_y =  \sigma_x
+	\int_A z\ dA
+	\end{equation}
+	Si l'origine des axes est le \textbf{centre géométrique}\footnote{Centre 
+	de "gravité" sans masse.} défini tel que 
+	\begin{equation}
+	\int_A y\ dA = 0,\qquad \int_A z\ dA = 0.
+	\end{equation}
+	ALors, $M_y$ et $M_z$ sont nuls.
+	
+		\subsubsection{En résumé}
+		La poutre est uniquement soumise à un effort \textbf{normal} (et pas 
+		un fléchissant). Pour une poutre de section homogène ($E$ constant), 
+		nous avons une distribution uniforme de la contrainte axiale 
+		\begin{equation}
+		\sigma_x = \dfrac{aN}{A}
+		\end{equation}
+		Pour une poutre homogène à effort normal constant ($N$ constant) :
+		\begin{equation}
+		\epsilon_x = \dfrac{\Delta L}{L}\qquad\text{où}\quad \Delta L = 
+		\dfrac{NL}{EA}
+		\end{equation}
+		L'hypothèse de Bernoulli est une hypothèse cinématique (\textit{Les 
+		sections droites initialement planes et perpendiculaires à l'axe le
+		restent dans la configuration déformée.}) et ne fait donc \textbf{pas} 
+		intervenir les propriétés physiques du matériau.\\
+		\danger Il n'y aura traction sans flexion \textbf{que si} les moments 
+		des contraintes axiales sont nuls !
+		
+		
+	\subsection{Éléments de réduction : section non homogène}		
+	Si $E \neq\ cste$, les relations générales restent inchangées tant que 
+	$E$ n'apparaît pas explicitement. Dès qu'il apparaît :
+	\begin{equation}
+	\sigma_x(x,y,z) = E(x,y,z)\epsilon_x(x)
+	\end{equation}
+	La répartition de $\sigma_x$ dans une section transversale ($x =\ cste$) 
+	est dès lors donné par 
+	\begin{equation}
+	\sigma_x(y,z) = E(y,z)\epsilon_x
+	\end{equation}
+	Au niveau des éléments de réduction $R_{y,z}, M_{x,y,z}$ restent inchangés 
+	(nuls\footnote{Si l'origine des axes est le centre géométrique!}). Par contre, 
+	$N$ n'a plus la même expression, $\sigma_x$ n'étant plus constant.\\
+	\textsc{Exemple} : slide 15-16.
+	
+\section{Les treillis articulés}
+	\subsection{Hypothèses}
+	Deux hypothèses sont d'application :
+	\begin{enumerate}
+	\item Il s'agit d'un ensemble de poutres rectilignes assemblées par des 
+	nœuds articulés ne transmettant pas de couple (On peut tourner librement 
+	l’extrémité)
+	\item Les forces extérieures sont appliquées uniquement aux nœuds
+	\end{enumerate}
+	
+	\subsection{Équilibre d'une poutre}
+	Dans ce cas-ci, on ne dira pas "poutre" mais \textit{barre}. Celle-ci est 
+	uniquement soumise à un effort normal $N$. Ses équations d'équilibres 
+	s'obtiennent on ne peut plus facilement\\
+	\begin{wrapfigure}[6]{l}{7.5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.4]{ch3/image3.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	F_{xA} + F_{xB} &=0\\
+	F_{yA} + F_{yB} &= 0\\
+	LF_{yB} &=0
+	\end{array}\right.
+	\end{equation}\ \\
+	
+	
+	\subsection{Équilibre des nœuds}
+	\begin{wrapfigure}[7]{r}{6.5cm}
+	\vspace{-4mm}
+	\includegraphics[scale=0.4]{ch3/image4.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		Encore une fois rien de difficile, la méthode est systématique :
+	\begin{itemize}
+	\item[$\bullet$] Isoler un nœud en coupant les barres qui y aboutissent
+	\item[$\bullet$] Appliquer les efforts normaux et les efforts extérieurs
+	\item[$\bullet$] Écrire les équations d’équilibre du nœud
+	\end{itemize}
+	
+	\subsection{Structure isostatique ?}
+	La condition d'isostaticité est que le nombre d'inconnues statiques soit 
+	égal au nombre d'équations d'équilibres. Nous avons :
+	\begin{itemize}
+	\item[$\bullet$] Nombre de barres : $b \rightarrow b$ efforts normaux 
+	inconnus
+	\item[$\bullet$] Nombre de RDL : $R \rightarrow R$ composantes de réactions 
+	inconnues
+	\item[$\bullet$] Nombre de nœuds : $n\rightarrow 2b$ équations d'équilibres 
+	en 2D
+	\end{itemize}
+	Une structure est isostatique si (CN mais pas CNS) :
+	\begin{equation}
+	b + R = 2n
+	\end{equation}
+	\newpage
+	
+	\subsection{Coupe de Ritter}
+		\subsubsection{Principe}
+	\begin{wrapfigure}[7]{r}{7cm}
+	\vspace{-4mm}
+	\includegraphics[scale=0.4]{ch3/image5.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		On cherche à calculer l'effort normal dans une barre. On va
+		\begin{itemize}
+		\item[$\bullet$] Couper la structure en deux parties \textbf{disjointes}
+		\item[$\bullet$] Écrire l'équilibre d'une des parties
+		\item[$\bullet$] S'arranger que cet effort normal soit la seule inconnue
+		\end{itemize}
+		Les slides 24-25 montrent comment appliquer cette méthode.
+		
+	\subsection{Quelques nœuds particuliers}
+	Certains nœuds particuliers permettent de gagner du temps dans les calculs.
+	\begin{center}
+	\includegraphics[scale=0.5]{ch3/image6.png}
+	\captionof{table}{ }
+	\end{center}
+	
+	
+		\subsubsection{Barres à efforts nuls}
+		\begin{wrapfigure}[9]{l}{7cm}
+		\vspace{-6mm}
+		\includegraphics[scale=0.4]{ch3/image7.png}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		En appliquant ce magnifique tableau et en l'appliquant sur la figure 
+		ci-dessous, je peux déjà affirmer que pleins d'efforts normaux seront 
+		nuls avant même de commencer à faire des calculs et donc gagner du 
+		temps (qui, au vu de la longueur de l'examen peut être précieux).\\
+		Notons que la barre du bas doit forcément être en traction, sans quoi 
+		elle se "barrerait" (pfpfpf) avec le rouleau. 
+		
+	\subsection{Dilatation thermique}
+	Il peut y avoir déformation axiale du à une élévation $\Delta T$ de la 
+	température, déformation donnée par $\epsilon_{th} = \alpha\Delta T$. \\
+	Si la structure est isostatique, elle est librement dilatable (car pas de 
+	$T$ dans les équations d'équilibres) et son allongement est 
+	\begin{equation}
+	\Delta L_{th} = L\epsilon_{th} : L\alpha\Delta T
+	\end{equation}
+	Si la dilatation est empêchée, cela provoque un effort normal
+	\begin{equation}
+	N_{th} = -EA\epsilon_{th}\qquad\text{ou}\qquad N_{th} = -EA\alpha \Delta T
+	\end{equation}
