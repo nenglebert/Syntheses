@@ -13,6 +13,7 @@ deux solutions s'offrent à nous:
 	\item Anticiper le report pour un certain nombre de bits (considérer le problème comme combinatoire)
 \end{itemize}
 \subsection{Addition bit à bit}
+\label{subsec:addbitàbit}
 L'addition est faite grâce à:
 \begin{itemize}
 	\item un 1/2 additionneur (deux opérantes d'un bit, deux bits d'entrées)
@@ -111,9 +112,30 @@ Ainsi, pour un additionneur complet sur 4 bits:
 \end{figure}
 Le problème de ce système est la propagation du report entre les étages: le résultat final sera obtenu après la propagation du report à travers tous les étages de l’additionneur ($n$-délais).
 \subsection{Additionneur \textit{Carry Look Ahead} (CLA)}
-
+Le principe est de faire de faire un additionneur complet en un seul circuit combinatoire, permettant d'éviter le problème de délais du à la propagation du report en l'anticipant(\textit{Carry Look Ahead}).\\
+Le problème étant combinatoire avec 4 entrées (4 bits) et 3 sorties ($(11)_2+(11)_2=(110)_2$), nous pouvons faire nos K-Maps:\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ch5/image4}
+\end{figure}
+Pour un plus grand nombre de bits (32, 64 etc.), on préfère mettre en série car si $\nearrow$ entrées/sorties $\rightarrow \nearrow$ taille du circuit (mémoire) $\Rightarrow$ explosion combinatoire.\\
+Il y aura un délai de report du à la mise en série, mais moindre que le système vu en \autoref{subsec:addbitàbit}
 \section{Encodeurs de priorité}
+Un mot D est codé sur $n$ bits. On veut connaitre l'index du bit de poids le plus fort ayant un «1» et signaler la présence d'un 1 par un signal ANY.\\
 
+Pour un mot à 4 bits:
+\begin{itemize}
+	\item 4 entrées
+	\item 3 sorties:
+	\begin{itemize}
+		\item 2 bits pour coder l'index (index max $=4$) 
+		\item 1 bit pour le ANY
+	\end{itemize}
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ch5/image5}
+\end{figure}
 \section{Simplification des fonctions : Méthode Quine-Mc.Cluskey}
 La méthode de Quine-Mc.Cluskey est:
 \begin{itemize}
@@ -124,21 +146,24 @@ La méthode de Quine-Mc.Cluskey est:
 \end{itemize}
 Elle se base sur 2 étapes:
 \begin{enumerate}
-	\item Recherche des implicants premiers (phase d'\textbf{analyse}) par la \textbf{méthode des tris successifs}
-	\item Couverture de la fonction (phase de \textbf{synthèse}) par un choix des implicants premiers
+	\item Recherche des implicants premiers  par la \textbf{méthode des tris successifs} (phase d'\textbf{analyse})
+	\item Couverture de la fonction  par un choix des implicants premiers (phase de \textbf{synthèse})
 \end{enumerate}
 \subsection{Étape 1: Analyse}
-\iffalse
-Elle consiste en 11 étapes:
+Elle consiste en 9 étapes (oui, dans le cours c'est 11):
 \begin{enumerate}
 	\item Pour une fonction $f$ de $n$ variables, on construit $m$ groupements de \textbf{tous les mintermes} de la fonction
 	\item Dans chaque groupement des mintermes (noté $G_i$)
 	\begin{itemize}
 		\item $i$ variables qui valent 1
-		\item $(n-i)$ variables qui valent 0
+		\item $(n-i)$ qui valent 0
 	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.6\textwidth]{ch5/image6}
+	\end{figure}
 	\item On compare chaque minterme de $G_i$ avec \textbf{TOUS} les mintermes appartenant à $G_{i+1}$ en termes de la distance de Hamming ($\forall i$)
-	\item Si la distance de Hamming entre 2 mintermes $=1$, on note \textbf{l'appariement} entre les 2:
+	\item Si la distance de Hamming entre 2 mintermes $=1$, on les marque par un $x$  et on note \textbf{l'appariement} entre les 2:
 	\begin{equation}
 		\left.
 			\begin{array}{r}
@@ -147,13 +172,12 @@ Elle consiste en 11 étapes:
 			\end{array}
 		\right\}\Rightarrow 0\text{-}0
 	\end{equation}
+	impliquant la possibilité de faire un $n$-cube de plus grande taille (taille 2 à ce stade).\\
+	Sinon, il s'agit d'un \textit{impliquant premier} ($n$-cube de taille 1 à ce stade) qu'on notera $IP_k$ dans l'ordre d'apparition
 	\item Tous les appariements de $G_i$ et $G_{i+1}$ sont écrits dans un nouveau groupement, noté $G_i'$
 	\item Après une première passe, il y a donc au moins $m-1$ groupements $G_i'$
-	\item Lors de l'appariement de $G_i$ et $G_{i+1}$, il est possible qu'un minterme n'ait pas été regroupé avec d'autres
-	\begin{itemize}
-		\item c'est un impliquant premier (n-cube de taille 1 à ce stade)
-		\item On les note $IP_k$ dans l'ordre dans lequel ils apparaissent
-	\end{itemize}
-	\item L'ensemble $G_i'$ constitue 
+	\item L'ensemble $G_i'$ constitue donc l'ensemble de tous les $n$-cube de taille 2
+	\item On répète l'opération avec les nouveaux groupements jusqu'à ce qu'il ne soit plus possible d'apparier
+	\item On dresse la liste de tous les implicants premiers (IPs) trouvés.
 \end{enumerate}
-\fi
+\subsubsection{Remarques}
