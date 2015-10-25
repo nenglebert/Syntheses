@@ -32,7 +32,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
   - [ ] [Électronique Appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
   - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
-  - [ ] [Résistance des Matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
+  - [x] [Résistance des Matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
   - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
   - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
