@@ -1,4 +1,4 @@
-\chapter{Synthèse de circuits, Quine Mc.Cluskey}
+\chapter{Synthèse de circuits et Quine Mc.Cluskey}
 \section{Synthèse des circuits à partir de spécification verbales}
 \paragraph{Spécification formelle} Description complète, précise et non-ambiguë de toutes les propriétés d'un système (TdV, K-Map etc.).
 \paragraph{Combinatoire} Les sorties du système ne dépendent que des entrées.\\
@@ -121,7 +121,7 @@ Le problème étant combinatoire avec 4 entrées (4 bits) et 3 sorties ($(11)_2+
 Pour un plus grand nombre de bits (32, 64 etc.), on préfère mettre en série car si $\nearrow$ entrées/sorties $\rightarrow \nearrow$ taille du circuit (mémoire) $\Rightarrow$ explosion combinatoire.\\
 Il y aura un délai de report du à la mise en série, mais moindre que le système vu en \autoref{subsec:addbitàbit}
 \section{Encodeurs de priorité}
-Un mot D est codé sur $n$ bits. On veut connaitre l'index du bit de poids le plus fort ayant un «1» et signaler la présence d'un 1 par un signal ANY.\\
+Un mot D est codé sur $n$ bits. On veut connaître l'index du bit de poids le plus fort ayant un «1» et signaler la présence d'un 1 par un signal ANY.\\
 
 Pour un mot à 4 bits:
 \begin{itemize}
@@ -181,3 +181,30 @@ Elle consiste en 9 étapes (oui, dans le cours c'est 11):
 	\item On dresse la liste de tous les implicants premiers (IPs) trouvés.
 \end{enumerate}
 \subsubsection{Remarques}
+\begin{enumerate}
+	\item On peut avoir $m=n$
+	\item Marquer \textbf{clairement} la séparation entre les $G_i$
+	\item Les \textit{don't care} sont également pris en compte pour la distance de Hamming
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|ccc|}
+			\hline
+			-000 & Distance de Hamming de 1 & -000\\
+			-100 & on \textbf{peut} apparier & -{}-00\\
+			\hline
+			-000 & Distance de Hamming de 2 & \\
+			01-0 & on \textbf{ne peut pas} apparier & \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\item S'il y a présence d'indifférent (\textit{don't care}, \textit{don't happen}) au début du problème:
+	\begin{itemize}
+		\item on fait l'hypothèse qu'ils valent 1 (et donc les rajoutes dans les groupement $G_i$ sans aucune distinction)
+		\item Les implicants premiers non-utile (composés que d'indifférents) seront éliminés lors de la 2\up{ème} phase (couverture)
+	\end{itemize}
+\end{enumerate}
+\subsubsection{Exemple}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ch5/image7}
+\end{figure}
