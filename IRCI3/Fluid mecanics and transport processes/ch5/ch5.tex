@@ -67,6 +67,7 @@
 		\end{equation}
 		
 \section{The heat transfer coefficient}
+	\subsection{The Nusselt number}
 	The rate of convection $\dot{Q}$ is proportional to the temperature difference. 
 	\begin{equation}
 		\dot{Q} = h S(T_p - T_f)
@@ -75,6 +76,265 @@
 	\vspace{-15mm}
 	\includegraphics[scale=0.25]{ch5/3}
 	\end{wrapfigure}	
-	$h$ here is not the enthalpy but the \textbf{heat transfer coefficient}. Let’s give a sens. Imagine that you have a fluid flow and it is approaching a solid. The heat transfer from solid surface to the fluid layer is by pure conduction, since the fluid layer beys the no-slip conditions. Now if you have $T_p$ miner than $T_f$ we have that type of schéma. The heat is then convected 
- 
+	$h$ here is not the enthalpy but the \textbf{heat transfer coefficient}. Let’s give a sens. Imagine that you have a fluid flow and it is approaching a solid. The heat transfer from solid surface to the fluid layer is by pure conduction, since the fluid layer obeys the no-slip conditions. Now if you have $T_p$ miner than $T_f$ we have that type of schéma. The heat is then convected. The heat flux to the first layer is given by (where $\delta '$ is the layer thickness)
+	\begin{equation}
+		\dot{q}_p = -k_f \frac{\partial T}{\partial y}|_p = k_f\frac{(T_p-T_f)}{\delta '}
+	\end{equation}
+	Combining that with the \textbf{Newton law}, we find an expression for $h$
+	\begin{equation}
+		\dot{q}_p = h(T_p-T_f) \qquad \Rightarrow \qquad h = \frac{k_f}{\delta '}
+	\end{equation}
+ 	We can non-dimentionalize that with the \textbf{Nusselt number} that gives the heat transfer enhancement thanks to convection ($Nu = 1$ represents pure conduction)
+ 	\begin{equation}
+ 		Nu = \frac{hL}{k_f}
+ 	\end{equation}
+	
+	\subsection{Comparaison with the Biot number}
+		If we look to the two definition 
+		\begin{equation}
+			Nu = \frac{hL}{k_f} \qquad and \qquad Bi = \frac{hL}{k_s}
+		\end{equation}
+		They seem to be the same. Be careful because it's not the case ! Indeed the \textbf{Nusselt number} can be written as 
+		\begin{equation}
+			Nu = \frac{\frac{\partial (T_p - T)}{\partial y}|_p}{\frac{T_p-T_f}{L}} = \frac{\mbox{Temperature gradient at the surface}}{\mbox{Reference external temperature gradient}}
+		\end{equation}
+		
+		\begin{wrapfigure}[4]{r}{2cm}
+		\vspace{-5 mm}
+		\includegraphics[scale=0.25]{ch5/4}
+		\end{wrapfigure}			
+		The \textbf{Nusselt number} so caracterizes the \textbf{fluid} while the \textbf{Biot number} caracterizes the \textbf{solid}
+		\begin{equation}
+			Bi = \frac{\frac{(T_0 - T_p)}{L}|_p}{\frac{T_p-T_f}{L}} = \frac{\mbox{Internal temperature gradient}}{\mbox{Reference external temperature gradient}}
+		\end{equation}
+	
+	\subsection{Forced convection in pipes and channels}
+	\label{subsec:5.3.3}
+		We know that the heat flux is transversal to the flow (analogy with the momentum flux). Graetz proposed an analyse and here is the result
+		\begin{equation}
+			Nu = \frac{hD_h}{k_f}
+		\end{equation}		
+		Where $D_h$ is the hydraulic diameter and $k_f$ the fluid conductivity. The value for the case of a constant wall temperature or a constant heat flux are given in slide 11 chapter 5. \\
+	Let's precise that for turbulent regime the Nusselt number is given by 
+	\begin{equation}
+	Nu = 0.023 Re^{\frac{4}{5}}Pr^n
+\end{equation}		
+	where $Pr$ is the \textbf{Prandtl number} (yes it's correctly written) and $n=0.4$ or $n=0.3$ respectively for a heated or cooled fluid. We remind that the Reynolds number $Re = \frac{vD}{\nu}$ compares the momentum convection to the momentum diffusion. The Prandtl number 
+	\begin{equation}
+			Pr = \frac{c_p \mu}{k} = \frac{c_p \mu \rho}{k\rho} = \frac{\nu}{\alpha}
+	\end{equation}
+	compares the momentum diffusion to the energy diffusion (wheter momentum diffuse better or not than energy). \\
+	That definition of Nusselt number is limited to the range 
+	\begin{equation}
+		Re > 10^4 \qquad and \qquad 0.7 < Pr < 600
+	\end{equation}
+	\textbf{Bonus :} $RePr = \frac{vD}{\alpha}$ is the \textbf{Peclet number}
 
+	\subsection{Laminar convection for the flow around a submerged object}
+		The professor said for slide 13 that all the formula are in the formulaire and that we just have to know that there is a specific Nussel number for each case (sphere, cylinder, flat plate).
+		
+\section{Local form of the energy equation}
+	\begin{wrapfigure}[6]{l}{3cm}
+	\vspace{-5 mm}
+	\includegraphics[scale=0.25]{ch5/5}
+	\end{wrapfigure}			
+	We are going to do a simple balance where the flux in and out are associated to mass flow rates and conduction. 
+	\begin{equation}
+		\mbox{internal energy variation} = \mbox{Heat in}-\mbox{Heat out}+\mbox{Heat source}
+	\end{equation}
+	The internal energy variation is given by
+	\begin{equation}
+		\frac{\partial (\rho cT\, dx\, dy\, dz)}{\partial t} = (\rho\, dx\, dy\, dz)\, c\frac{\partial T}{\partial t}
+	\end{equation}
+	the difference Heat in - Heat out due to mass tranfer by 
+	\begin{equation}
+		- \rho c_p (u\frac{\partial T}{\partial x} +v\frac{\partial T}{\partial y} + w\frac{\partial T}{\partial z})\, dx\, dy\, dz
+	\end{equation}
+	by conduction
+	\begin{equation}
+		- \left( \frac{\partial q_x}{\partial x} + \frac{\partial q_y}{\partial y} + \frac{\partial q_z}{\partial z} \right) dx\, dy \, dz
+	\end{equation}
+	and the source term 
+	\begin{equation}
+		\dot{Q}_v \, dx \, dy \, dz
+	\end{equation}
+	We put all this together and get the equation and using the \textbf{Fourrier law} for $q$
+	\begin{equation}
+	 \rho c\frac{DT}{Dt} + \nabla (-k\nabla T) = \dot{Q}_v \qquad or \qquad \frac{DT}{Dt} + \nabla (\alpha \nabla T) = \frac{\dot{Q}_v}{\rho c}
+	 \label{eq:5.27}
+	\end{equation}
+	
+\section{Heat transfer in pipe flows}
+	\begin{wrapfigure}[6]{r}{5.2cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch5/6}
+	\end{wrapfigure}			
+	We consider a circular pipe of radius R, with constant temperature walls or constant heat flux at the walls. The flow inside is fully-developped, so the velocity is function of the radius and the friction is known. The system is steady and the flow laminar. 
+	\subsection{Analysis of Graetz}
+		The velocity profile is described by Poiseuille like 
+		\begin{equation}
+			\frac{u}{U_{max}} = 1 - \left( \frac{r}{R} \right)^2
+		\end{equation}
+		Using the energy equation \autoref{eq:5.27}, we can express it in polar coordinates 
+		\begin{equation}
+			u \frac{\partial T}{\partial x} = \alpha \left[ \frac{1}{r}\frac{\partial }{\partial r} \left( r\frac{\partial T}{\partial r}\right) + \cancel{\frac{\partial ^2 T}{\partial x^2}} \right]
+			\label{eq:5.29}
+		\end{equation}
+		where we can neglect the last term because the diffusion in mainly in the radial direction. The boundary conditions due to the symetry and the imposed flux are 
+		\begin{equation}
+			r = 0 \Rightarrow \frac{\partial T}{\partial r} = 0 \qquad and \qquad
+			r = R \Rightarrow \frac{\partial T}{\partial r} = -\frac{q}{k}
+		\end{equation}
+		Before solving we have to do a consideration. The heat flux $q$ and $h$ are constant everywhere on the wall. So the velocity only change in the vertical direction. We express that, noting the mean temperature variation $<T>$, like 
+		\begin{equation}
+			\dot{m}c \frac{d <T>}{dx} = qS \Rightarrow \frac{d <T>}{dx} = \frac{qS}{\dot{m}c} = C_0
+		\end{equation}
+		Giving the final equation for \autoref{eq:5.29}
+		\begin{equation}
+			\alpha \frac{1}{r}\frac{\partial }{\partial r} \left( r\frac{\partial T}{\partial r}\right) = u(r) C_0
+		\end{equation}
+		If we solve that we get the temperature profile ($T_c$ for temperature at centreline)
+		\begin{equation}
+			T-T_c = \frac{C_0 U_{max}R^2}{4\alpha} \left[ \left( \frac{r}{R} \right)^2 - \frac{1}{4}\left( \frac{r}{R} \right)^4 \right]
+		\end{equation}
+	
+	\subsection{Nusselt number for constant temperature and constant heat flux}
+		See slide 20 for the formula. Just to know that the Nusselt numbers are exact values and not an approximations !  We can find the temperature of the wall by considering that. With the heat transfer coefficient we can do what ? We are able to apply the Newton’s law ! \\
+		The Nusselt number changes for other geometries and other friction factors. 
+		
+\section{The thermal boundary layer}
+\subsection{Definition}
+	\begin{wrapfigure}[6]{l}{4cm}
+	\vspace{-5 mm}
+	\includegraphics[scale=0.3]{ch5/7}
+	\end{wrapfigure}			
+	How to estimate the boundary layer thickness in a turbulent flow ? What we can see here is that if we have a high Reynolds number ($Re \gg 1$), we will develop a velocity boundary layer and a high temperature difference will develop a thermal boundary layer. Similarly to the non-sleep conditions, the fluid will be in a temperature on the surface, giving a temperature profile ranged from $T_s to T_\infty$. \\
+In this thermal boundary layer temperature varies in the normal direction to the plate. The boundary layer thickness $\delta _T$ is the distance at wich the difference $T-T_s = 0.99 (T_\infty -T_s)$ and increases in the flow direction. \\
+Convection strongly depends on the developpement of the velocity boundary layer relative to the thermal one. 
+
+\subsection{The Peclet number}
+	We previously defined the \textbf{Peclet number} as 
+	\begin{equation}
+		Pe_t = \frac{J_{E_c}}{J_{E_d}} = \frac{vL}{\alpha} = RePr
+	\end{equation}
+	For high-velocity flows over a flat plate, the Peclet number is much higher than 1. It means that : 
+	\begin{itemize}
+		\item[•] Far from the wall : Convection $\gg$ Diffusion ($Re \gg$)
+		\item[•] At the wall : Convection $\ll$ Diffusion ($Re \ll$)
+		\item[•] At the boundary layer height : Convection = Diffusion ($Re = 1$)
+	\end{itemize}
+	
+\subsection{Governing equations}
+	For an incompressible fluid in 2 dimensions we will use : 
+	\begin{itemize}
+		\item[•] Continuity equation
+		\item[•] Navier-Stokes along x
+		\item[•] Navier-Stokes along y
+		\item[•] Equation de la chaleur
+		\item[•] Boundary conditions 
+			\begin{equation}
+				\left\{
+				\begin{aligned}
+				y&= 0 \Rightarrow u = v = 0 \Rightarrow T = T_0 \\
+				y &\rightarrow \infty \Rightarrow u = U, v=0 \Rightarrow T = T_\infty \qquad p = p
+				\end{aligned}
+				\right.	
+			\end{equation}
+	\end{itemize}
+	
+\subsection{Scaling of the different terms}
+	\begin{itemize}
+		\item[•] Heat flux 
+			\begin{equation}
+				q = -k \left( \frac{d T}{d y} \right)_{y = 0} \approx -k \frac{\Delta T}{\delta _T} 
+			\end{equation}
+		\item[•] Nusselt number 
+			\begin{equation}
+				Nu = \frac{hL}{k} = \frac{L}{\delta _T}
+			\end{equation}
+		\item[•] Heat transfer coefficient 
+	\end{itemize}
+	
+\subsection{Momentum vs thermal boundary layer length}
+	\subsubsection{Re >> 1}
+		In this case, we have the 2 boundary layer, momentum and thermal. We already know that the thickness of momentum boundary layer decreases relatively to the Reynolds number using
+		 \begin{equation}
+		 	\delta \approx LRe^{-\frac{1}{2}}
+		 \end{equation}
+		 We have 2 limiting cases (see definition of Prandtl number in subsection \ref{subsec:5.3.3}): 
+		 \begin{itemize}
+		 	\item[•] If $Pr \ll 1$, $\delta _T \gg \delta$ so heat diffuses very quickly compared to momentum (liquid metals)
+		 	\item[•] If $Pr \gg 1$, $\delta _T \ll \delta$ so heat diffuses very slowly compared to momentum (oil)
+		 \end{itemize}
+		 \begin{center}
+		 \includegraphics[scale=0.3]{ch5/8}
+		 \end{center}
+		 
+	\subsubsection{Re >> 1 and Pr << 1}
+		Let's study that case where the two boundary layer exist. We will assume that $\delta _T \gg \delta$ and verify a posteriori. The heat transfer takes place outside the momentum boundary layer so $u=U$ (fluid upcoming speed) and the velocity $v$ is obtained by \textbf{continuity equation}
+		\begin{equation}
+			\frac{\D u}{\D x} + \frac{\D v}{\D y} = 0 \qquad \Rightarrow \qquad v \approx U\frac{\delta _T}{L}
+		\end{equation}
+		The convective heat transfer terms are of the same order of magnitude 
+		\begin{equation}
+			u\frac{\D T}{\D x} \approx v\frac{\D T}{\D y} \approx \frac{U\Delta T}{L}
+		\end{equation}
+		Only the transversal diffusion term is relevant ($\delta \ll L$)
+		\begin{equation}
+			\alpha \frac{\D ^2 T}{\D x^2} \ll \alpha \frac{\D ^2 T}{\D y^2} \approx \frac{\alpha \Delta T}{\delta _T ^2}
+		\end{equation}
+		We know that at the boundary layer border convection = conduction. It allows us to calculate $\delta _T^2$ equalizing the 2 previous equations
+		\begin{equation}
+			\delta _T^2 = \frac{\alpha L}{U} \Rightarrow Nu = \frac{L}{\delta _T} = Pe ^{\frac{1}{2}} = Re^{\frac{1}{2}} Pr^{\frac{1}{2}} \qquad \Rightarrow  \delta _T = LRe^{-\frac{1}{2}}Pr^{-\frac{1}{2}} = \delta Pr^{-\frac{1}{2}}
+		\end{equation}
+		
+	\subsubsection{Re >> 1 and Pr >> 1}
+		Let's study that case where the 2 boundary layers exist. We will assume that $\delta _T \ll \delta$ and verify a posteriori. The heat transfer takes place \textbf{inside} the boundary layer so we assume a linear velocity profile for $u \Rightarrow u = U\frac{\delta _T}{\delta}$ in the boundary layer and the velocity $v$ is obtained by \textbf{continuity equation}
+		\begin{equation}
+			\frac{\D u}{\D x} + \frac{\D v}{\D y} = 0 \qquad \Rightarrow \qquad v \approx U\frac{\delta _T}{L}
+		\end{equation}
+		The convective heat transfer terms are of the same order of magnitude 
+		\begin{equation}
+			u\frac{\D T}{\D x} \approx v\frac{\D T}{\D y} \approx \frac{U\Delta T \delta _T}{\delta L}
+		\end{equation}
+		Only the transversal diffusion term is relevant ($\delta \ll L$)
+		\begin{equation}
+			\alpha \frac{\D ^2 T}{\D x^2} \ll \alpha \frac{\D ^2 T}{\D y^2} \approx \frac{\alpha \Delta T}{\delta _T ^2}
+		\end{equation}
+		We know that at the boundary layer border convection = conduction. It allows us to calculate $\delta _T^2$ equalizing the 2 previous equations
+		\begin{equation}
+			\frac{\delta _T^3}{\delta} = \frac{\delta _T^3}{LRe^{-\frac{1}{2}}} = \frac{\alpha L}{U} \Rightarrow Nu = \frac{L}{\delta _T} =  Re^{\frac{1}{6}} Pe^{\frac{1}{3}} = Re^{\frac{1}{2}} Pr^{\frac{1}{3}} \qquad \Rightarrow  \delta _T = \delta Pr^{-\frac{1}{3}}
+		\end{equation}
+		
+	\subsubsection{Re << 1}
+		Let's study that case where \textbf{only the thermal boundary layer exists}. Let's precise that if $Pe \ll 1, Nu \approx 1$ so convection can be neglected. If $Pe \gg 1$ we have to do a dimensional analysis. There is no momentum boundary layer so $u$ varies linearly with $y$ $\Rightarrow u = U\frac{\delta _T}{L}$ and the velocity $v$ is obtained by \textbf{continuity equation}
+		\begin{equation}
+			\frac{\D u}{\D x} + \frac{\D v}{\D y} = 0 \qquad \Rightarrow \qquad v \approx U\frac{\delta _T}{L}
+		\end{equation}
+		The convective heat transfer terms are of the same order of magnitude 
+		\begin{equation}
+			u\frac{\D T}{\D x} \approx v\frac{\D T}{\D y} \approx \frac{U\Delta T \delta _T}{L^2}
+		\end{equation}
+		Only the transversal diffusion term is relevant ($\delta \ll L$)
+		\begin{equation}
+			\alpha \frac{\D ^2 T}{\D x^2} \ll \alpha \frac{\D ^2 T}{\D y^2} \approx \frac{\alpha \Delta T}{\delta _T ^2}
+		\end{equation}
+		We know that at the boundary layer border convection = conduction. It allows us to calculate $\delta _T^2$ equalizing the 2 previous equations
+		\begin{equation}
+			\delta _T^3 =  \frac{\alpha L^2}{U} \Rightarrow Nu = \frac{L}{\delta _T} = Pe^{\frac{1}{3}} = Re^{\frac{1}{3}} Pr^{\frac{1}{3}}
+		\end{equation}
+		The 2 graphs below summarizes the 2 cases for $Re$ number	.	\\
+		
+		\begin{minipage}{0.5\textwidth}
+			\begin{flushright}
+				\includegraphics[scale=0.3]{ch5/9}
+			\end{flushright}
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+		%	\begin{flushright}
+				\includegraphics[scale=0.3]{ch5/10}
+			%\end{flushright}
+		\end{minipage}
+		
+\section{The Colburn-Chilton analogy}
+	Coming !
