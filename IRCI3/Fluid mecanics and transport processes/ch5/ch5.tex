@@ -68,6 +68,7 @@
 		
 \section{The heat transfer coefficient}
 	\subsection{The Nusselt number}
+	\label{subsec:5.3.1}
 	The rate of convection $\dot{Q}$ is proportional to the temperature difference. 
 	\begin{equation}
 		\dot{Q} = h S(T_p - T_f)
@@ -337,4 +338,62 @@ Convection strongly depends on the developpement of the velocity boundary layer 
 		\end{minipage}
 		
 \section{The Colburn-Chilton analogy}
-	Coming !
+	In forced convection, it is important to know the friction coefficient $f$ (shear stress) and $Nu$ number (heat transfer rates). It's so usefull to have a relation linking the two. These relations are known as \textbf{Colburn-Chilton} analogy. 
+	
+	\subsection{Relation between f and Nu}
+	Let's begin with the expression of the friction coefficient. We will approximate the shear stress like $|\tau _{xy}|_{y=0} \approx \mu\frac{U}{\delta}$ giving
+	\begin{equation}
+		f = \frac{|\tau _{xy}|_{y=0}}{\frac{1}{2}\rho U^2} = \frac{\mu |\frac{\D u}{\D y}|_{y=0}}{\frac{1}{2}\rho U^2} \approx \frac{\mu \frac{U}{\delta}}{\frac{1}{2}\rho U^2} \qquad \Rightarrow \qquad \delta = \frac{2\nu}{fU}
+	\end{equation}
+	We will make appear the $Re$ number ($Re = \frac{UR}{\nu}$) by dividing the previous equation by the radius
+	\begin{equation}
+		\frac{\delta}{R} = \frac{2}{fRe}
+	\end{equation}
+	We wll now express the Nusselt number (see subsection \ref{subsec:5.3.1}) differently, using the radius as distance $L$
+	\begin{equation}
+		Nu = \frac{hR}{k} = \frac{R}{\delta _T} = \frac{R}{\delta}\frac{\delta}{\delta _T} \qquad \Rightarrow \qquad Nu = \frac{fRe}{2}\frac{\delta}{\delta _T}
+	\end{equation}
+	Colburn concluded his analysis saying that $\delta _T = \delta$ but we've seen it's not the case. Chilton added the dimensional analysis for $Pr \gg 1$ ($Pr > 0.5$ in application) and $Pr \ll 1$
+	\begin{equation}
+		Pr \gg 1 : \frac{\delta }{\delta _T} = Pr ^{\frac{1}{2}} \qquad and \qquad Pr \ll 1 : \frac{\delta}{\delta _T} = Pr ^{\frac{1}{3}}
+	\end{equation}
+
+\subsection{Applications}
+	See slides 35 and 36 for lecture. All the mathematical expression are on the formula sheet. 
+	
+\section{Natural convection}
+	\subsection{Definition}
+		\begin{wrapfigure}[11]{l}{2.5cm}
+		\vspace{-5 mm}
+		\includegraphics[scale=0.3]{ch5/11}
+		\end{wrapfigure}			
+		It's probably something that we experience ourself everyday. In forced convection we have to put an external force (ex : impose a pump). This type of convection is not caused by a pomp in a pipe, there is no velocity gradient. Here it is function of the density gradient (a temperature difference or a non-homogeneous concentration field are origins of density changes).\\ 
+Imagine that you have a coca can. The warmer air coming to the can will be cooled and directed below (due to air density change). This will create a natural convection process. It’s the opposite for the egg. \\
+This is the most complex process you can find. We can’t describe the one without the other (natural and forced).
+
+	\subsection{The Navier-Stokes equations}
+		We can adapt the Navier-Stokes equations to the case of a natural convection. For a fluid at temperature $T$, concentration $c$ and $\rho$ a function of $(T,c)$
+		\begin{equation}
+			\rho \frac{D v}{D t} = -\nabla p + \rho g + \nabla \tau
+		\end{equation}
+		we define the dynamic pressure P, in respect with a reference state. $\rho _0$ is a reference density calculated at a reference temperature and concentraiton
+		\begin{equation}
+			\nabla P = \nabla p - \rho _0 g \qquad with \qquad \rho _ 0 = \rho (T_0,c_0)
+		\end{equation}
+		The resulting equation
+		\begin{equation}
+			\rho \frac{D v}{D t} = -\nabla P + (\rho - \rho _0) g + \nabla \tau
+		\end{equation}		 
+		stresses\footnote{Insister sur} the role of the term reponsible for the natural convection (density gradient). 
+
+		\subsubsection{The Boussinesq hypothesis}
+			We will first assume that the density gradient is smaller than the reference density, leading to $\frac{\Delta \rho }{\rho _0} \ll 1$. 
+			We will secondly assume that the density varies linearly with temperature and solute concentration 
+			\begin{equation}
+				\rho = \rho _0 - \rho \beta _T (T-T_0) - \rho \beta _c (c-c_0)
+			\end{equation}
+			where $\beta _T$ is the \textbf{temperature expansion coefficient} and $\beta _c$ the \textbf{concentration expansion coefficient} given by 
+			\begin{equation}
+				\beta _T = - \frac{1}{\rho} \left( \frac{\D \rho}{\D t} \right) _{p,c} \qquad and \qquad \beta _c = - \frac{1}{\rho} \left( \frac{\D \rho}{\D c} \right) _{p,T}
+			\end{equation}
+			The minus sign here is necessary because the density decreses with temperature and solute concentration. 
