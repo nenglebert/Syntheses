@@ -369,7 +369,7 @@ Convection strongly depends on the developpement of the velocity boundary layer 
 		\end{wrapfigure}			
 		It's probably something that we experience ourself everyday. In forced convection we have to put an external force (ex : impose a pump). This type of convection is not caused by a pomp in a pipe, there is no velocity gradient. Here it is function of the density gradient (a temperature difference or a non-homogeneous concentration field are origins of density changes).\\ 
 Imagine that you have a coca can. The warmer air coming to the can will be cooled and directed below (due to air density change). This will create a natural convection process. It’s the opposite for the egg. \\
-This is the most complex process you can find. We can’t describe the one without the other (natural and forced).
+This is the most complex process you can find. We can’t describe the one without the other (natural and forced).\\
 
 	\subsection{The Navier-Stokes equations}
 		We can adapt the Navier-Stokes equations to the case of a natural convection. For a fluid at temperature $T$, concentration $c$ and $\rho$ a function of $(T,c)$
@@ -397,3 +397,169 @@ This is the most complex process you can find. We can’t describe the one witho
 				\beta _T = - \frac{1}{\rho} \left( \frac{\D \rho}{\D t} \right) _{p,c} \qquad and \qquad \beta _c = - \frac{1}{\rho} \left( \frac{\D \rho}{\D c} \right) _{p,T}
 			\end{equation}
 			The minus sign here is necessary because the density decreses with temperature and solute concentration. 
+			
+		\subsubsection{Pure fluid}
+			For a \textbf{pure ideal gas} there is no notion of concentration so 
+			\begin{equation}
+				\beta _T = \frac{RT}{pM} \frac{pM}{RT^2} = \frac{1}{T} \qquad and \qquad \beta _c = 0
+			\end{equation}
+			The density changes so only in function of the temperature 
+			\begin{equation}
+				\frac{\rho _0}{\rho} = 1 + \beta _T (T-T_0)
+			\end{equation}
+			Knowing that the continuity equation gives us the informatino $\nabla v = 0$, the Navier-Stokes equations become
+			\begin{equation}
+				\frac{Dv}{Dt} = \frac{\D v}{\D t} + v\nabla v = - \frac{1}{\rho _0} \nabla P - (T-T_0) \beta _T g + \nu \nabla ^2 v
+				\label{eq:5.62}
+			\end{equation}
+			In addition to that, we have the energy conservation equation
+			\begin{equation}
+				\frac{DT}{Dt} = \frac{\D T}{\D t} + v \nabla T = \alpha \nabla ^2 T 
+			\end{equation}
+	\subsection{Channel flow}
+		\begin{wrapfigure}[9]{l}{2.5cm}
+		\vspace{-5 mm}
+		\includegraphics[scale=0.3]{ch5/12}
+		\end{wrapfigure}			
+		This is one of the few problems with an exact solution. Let's consider a channel of length $L=2h$, infinite height, $v_z = v(y)$ and $T_z = T(y)$. There are 2 walls, one cold $T_1$ and the other hot $T_2 = T_1 + \Delta T$. The fluid in contact with the colder one will move down and the other up. Finally, there is also conduction in $y$ direction respecting a linear $T$ profile. \\
+		Let's now begin with the Fourrier law and let's apply the boundary conditions
+		\begin{equation}
+			\frac{\D ^2 T}{\D t^2} = 0  \qquad and \qquad 
+			\left\{ 
+			\begin{aligned}
+				y =- h \qquad T &= T_1 \\
+				y = h \qquad T &= T_2
+			\end{aligned}
+			\right.
+		\end{equation}
+		The result is 
+		\begin{equation}
+			\tilde{T} (\eta ) = \frac{T-T_m}{\Delta T} = \frac{1}{2} \eta \qquad where \qquad T_m = \frac{T_1 + T_2}{2}
+		\end{equation}
+		
+	\subsubsection{The Navier-Stokes equations in z direction}
+		Let see what happens to Navier-Stokes equations. Here is the full version 
+		\begin{equation}
+			\cancel{\left( u\frac{\D v}{\D y} + v\frac{\D v}{\D z} \right)} = - \frac{1}{\rho} \frac{\D P}{\D z} - (T-T_0)\beta _T g + \nu \left( \cancel{\frac{\D ^2 v}{\D z^2}} + \frac{\D ^2 v}{\D y^2} \right)
+		\end{equation}
+		We don’t have variation of $v$ in the directions $y$ and $z$. We only have one diffusion term in $y$ direction. Let's introduce the non dimentional velocity and length
+		\begin{equation}
+			\tilde{v} = \frac{v}{\frac{\nu}{h}} \qquad and \qquad \eta = \frac{y}{h}
+		\end{equation}
+	 	Let's now do the modification to make appear these expressions
+	 	\begin{equation}
+	 		\frac{\nu ^2}{h^3} \frac{d^2 \tilde{v}}{d \eta ^2} = \frac{1}{\rho (T_m)} \frac{dP}{dz} - \frac{1}{2} \eta \Delta T \beta _T g \qquad \Leftrightarrow \qquad 
+	 		\frac{d^2 \tilde{v}}{d \eta ^2} = \frac{h^3}{\nu ^2\rho (T_m)} \frac{dP}{dz} - \frac{\eta}{2} \underbrace{\frac{h^3 \Delta T \beta _T g}{\nu ^2}}_{Gr}
+	 	\end{equation}
+		where $Gr$ is the \textbf{Grashof number}. Using the non-		sleep condition at the wall ($\tilde{v} = 0$), we have the 	profile 
+		\begin{equation}
+			\tilde{v} (\tilde{\eta}) = \frac{1}{12} Gr (\eta - \eta ^3) - \frac{h^3}{2\nu ^2\rho (T_m)} \frac{dP}{dz} (1-\eta ^2)
+		\end{equation}
+		valid only in the case of a \textbf{constant pressure gradient}. The first term is the \textbf{Buoyancy term}, a cubic velocity profile with zero mean velocity and the second is the \textbf{Pressure term}, the quadratic Poiseuille velocity profile. Extreamly complex ! 
+		
+		\subsubsection{The mean velocity}
+			\begin{wrapfigure}[5]{l}{3.2cm}
+			\vspace{-5 mm}
+			\includegraphics[scale=0.15]{ch5/13}
+			\end{wrapfigure}		
+		We don't know the pressure gradient so we introduce the mean velocity to determine it
+			\begin{equation}
+				<\tilde{v}> = \frac{1}{2} \int _{-1} ^1 \tilde{v} (\eta) \, d\eta = - \frac{h^3}{3\nu ^2\rho (T_m)} \frac{dP}{dz} 
+			\end{equation}
+			If $<\tilde{v}> = 0$ the pressure definition contains an average buoyancy term, so $P = c$. If $<\tilde{v}> \neq 0$, it's the general case where the net flux in the $z$ direction exists. The velocity profile is represented on the left.
+		
+\subsection{Dimentional analysis}
+	Let's see a little bit in terms of scalings how we behave in natural convection. A classic situation is the case of a body of temperature $T_0 = T_\infty + \Delta T$ and air around it with temperature $T_\infty$. The buoyancy term can be equilibrated by viscous forces or inertial forces, depending on the Reynolds number. We remind the Navier-Stokes equations \ref{eq:5.62} and consider \\
+	\begin{itemize}
+		\item[•] $Re \ll 1$ : Buoyancy term equilibrated by viscous forces (channel flow problem)
+		\begin{equation}
+			\nu \frac{U_{cv}}{L^2} = g \beta _T \Delta T \qquad \Rightarrow \qquad U_{cv} = \frac{L^2 g \beta _T \Delta T}{\nu}
+		\end{equation}
+		
+		\item[•] $Re \gg 1$ : Buoyancy term equilibrated by inertial forces
+		\begin{equation}
+			\frac{U^2_{c}}{L} = g\beta _T \Delta T \qquad \Rightarrow \qquad U_c = \sqrt{L g \beta _T \Delta T}
+		\end{equation}
+	\end{itemize}
+	
+	\subsubsection{Non-dimentional forms of the Navier-Stokes equations for Re << 1}
+	The non-dimentional terms are
+	\begin{equation}
+		U_{cv} = \frac{L^2 g \beta _T \Delta T}{\nu} \qquad \tilde{v} = \frac{v}{U_{cv}} \qquad \tilde{T} = \frac{T-T_\infty}{\Delta T} \qquad \tilde{P} = \frac{P}{\frac{\mu U_{cv}}{L}} \qquad \tilde{r} = \frac{r}{L}
+	\end{equation}
+	Transforming the Navier-Stokes equations in (non-dimentional)
+	\begin{equation}
+		Gr \, \tilde{v} \cdot \tilde{\nabla} \tilde{v} = - \tilde{\nabla} \tilde{P} - \tilde{T} 1_g + \tilde{\nabla ^2} \tilde{v} \qquad where \qquad \tilde{\nabla} = L\nabla \qquad and \qquad 1_g = \left( 
+		\begin{array}{c}
+		0 \\ 
+		0 \\ 
+		-1
+		\end{array} 
+		\right)
+	\end{equation}
+	The $Gr = \frac{L^3 \beta _T g \Delta T}{\nu ^2}$. If $Gr \ll 1$ the inertial term can be omitted but it happens seldom. $Re \ll 1$ is equivalent to $Gr \ll 1$. 
+	
+	\subsubsection{Non-dimentional forms of the Navier-Stokes equations for Re >> 1}
+	The non-dimentional terms are
+	\begin{equation}
+		U_{c} = \sqrt{L g \beta _T \Delta T} \qquad \tilde{v} = \frac{v}{U_{cv}} \qquad \tilde{T} = \frac{T-T_\infty}{\Delta T} \qquad \tilde{P} = \frac{P}{\rho U^2_c} \qquad \tilde{r} = \frac{r}{L}
+	\end{equation}
+	Transforming the Navier-Stokes equations in (non-dimentional)
+	\begin{equation}
+		\tilde{v} \tilde{\nabla} \tilde{v} = - \tilde{\nabla} \tilde{P} - \tilde{T} 1_g + \frac{1}{Gr ^{\frac{1}{2}}} \tilde{\nabla ^2} \tilde{v} \qquad where \qquad \tilde{\nabla} \tilde{v}= 0 \qquad and \qquad \tilde{v} \tilde{\nabla} \tilde{T} = \frac{1}{Pr Gr^{\frac{1}{2}}} \tilde{\nabla}^2 \tilde{T}
+		\label{eq:5.76}
+	\end{equation}
+	In this case, $Gr = \frac{L^3\beta _T g \Delta T}{\nu ^2} = \left( \frac{U_c L}{\nu}\right) ^2= Re^2 $. If $Gr \gg 1$ the viscous term can be omitted and the condition $Re \gg 1$ is equivalent to $Gr \gg 1$.
+	
+	\section{The natural convection thermal boundary layer}
+		In natural convection, Re is replaced by Gr, so a momentum boundary layer will form when $Gr \gg 1$. At the edge of the boundary layer, convection and conduction are of the same order of magnitude. Using \autoref{eq:5.76}, we can approximate
+		\begin{equation}
+			\frac{1}{Gr^{\frac{1}{2}}}\tilde{\nabla}^2 \tilde{v} \approx \frac{1}{Gr^{\frac{1}{2}}} \frac{1}{\tilde{\delta}^2} \approx \frac{1}{Gr^{\frac{1}{2}}} \frac{L^2}{\tilde{\delta}^2} \approx 1 \qquad \Rightarrow \qquad \frac{\delta}{L} \approx \frac{1}{Gr^{\frac{1}{4}}} 
+		\end{equation}
+		Result equivalent to the Blasius solution for momentum
+    	The velocity profile in natural convection is not approximately linear as in forced convection, due to the presence of a buoyancy term. \\
+    	
+		A thermal boundary layer of thickness $\delta _T$ is established when $Pr Gr^{0.5} \gg 1$ (equivalent to $Pe \gg 1$) 
+		\begin{equation}
+			\tilde{v} \tilde{\nabla} \tilde{T} = \frac{1}{Pr Gr^{\frac{1}{2}}} \tilde{\nabla}^2 \tilde{T}
+		\end{equation}
+		\begin{itemize}
+		\item[•]	If $Pr \ll 1$, $\delta _T \gg \delta$, the fluid is outside the momentum boundary layer. Using
+		\begin{equation}
+			\tilde{v}\approx 1 \qquad \tilde{v}\tilde{\nabla}\tilde{T} \approx 1
+		\end{equation}
+		We approximate
+		\begin{equation}
+			\frac{1}{Pr Gr^{\frac{1}{2}}} \frac{1}{\tilde{\delta} _T^2}\approx 1 \qquad \Rightarrow \qquad \tilde{\delta _T} = \frac{\delta _T}{L} = Gr^{-\frac{1}{4}}Pr^{-\frac{1}{2}}
+		\end{equation}
+		Result equivalent to the solution for forced convection. 
+		
+		\item[•] If $Pr \gg 1$, $\delta _T \ll \delta$, the fluid is inside the momentum boundary layer (velocity profile not known). For a given $Gr$, $\delta _T$ will decrease with $Pr$ and $v$ will decrease at the thermal boundary layer border 
+		\begin{equation}
+			\frac{\delta _T}{\delta} = Pr ^{-a} \qquad \tilde{v} = Pr ^{-b}
+		\end{equation}
+		
+		At the border of thermal boundary layer, the viscous term equilibrates the driving force
+		\begin{equation}
+		\frac{1}{Gr ^{\frac{1}{2}}} \tilde{\nabla} ^2 \tilde{v} \approx 1 \Rightarrow \frac{1}{Gr ^{\frac{1}{2}}} \frac{\tilde{v}}{\tilde{\delta}_T ^2} \approx Pr ^{2a-b} \approx 1 \qquad \Rightarrow \qquad 2a - b = 0 
+		\end{equation}
+		In addition to that 
+		\begin{equation}
+			\tilde{v} \tilde{\nabla} \tilde{T} \approx \tilde{v} \approx Pr ^{-b} =\frac{1}{PrGr ^{\frac{1}{2}}}\tilde{\nabla}^2 \tilde{T} = \frac{1}{PrGr ^{\frac{1}{2}}} \frac{1}{\tilde{\delta}_T^2} \approx Pr^{-1+2a} \qquad \Rightarrow \qquad 2a +b = 1
+		\end{equation}
+		The combination of the two equations gives the values of $a = 0.25$ and $b = 0.5$.
+		\end{itemize}
+		
+	\subsubsection{Relation between the momentum and thermal boundary layer thickness}
+	For $Gr \gg 1$
+	\begin{equation}
+		\frac{\delta _T}{L} \approx \frac{\delta }{L}Pr ^{-\frac{1}{4}} = Gr ^{-\frac{1}{4}}Pr ^{-\frac{1}{4}} = Ra ^{-\frac{1}{4}}
+	\end{equation}
+	where $Ra$ is the \textbf{Rayleigh number} 
+	\begin{equation}
+		Ra = GrPr = \frac{L^3 g \beta _T \Delta T}{\nu ^2}\frac{ \nu }{\alpha} = \frac{L^3 g \beta _T \Delta T}{\nu \alpha}
+	\end{equation}
+	Finally, the Nusselt number is given by
+	\begin{equation}
+		Nu = \frac{L}{\delta _T} =C \cdot Gr ^{\frac{1}{4}}Pr ^{\frac{1}{4}} = Ra ^{\frac{1}{4}}
+	\end{equation}
