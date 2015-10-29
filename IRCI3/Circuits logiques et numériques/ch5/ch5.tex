@@ -266,7 +266,7 @@ Le problème survient lorsque nous avons le choix de l'$IP$ pour la couverture d
 \begin{figure}[H]
 	\hspace{-1.5cm}
 	\includegraphics[width=1.2\textwidth]{ch5/image10}
-	\caption{tableau de couverture}
+	\caption{Tableau de couverture}
 	\label{fig:tableaucouverture}
 \end{figure}
 \subsubsection{Équation de couverture}
@@ -300,11 +300,64 @@ Les erreurs suivantes sont \textbf{GRAVES}:
 \begin{itemize}
 	\item Pour la partie analyse:
 	\begin{itemize}
-		\item Faire des groupements des éléments $G_i$ non-adjacents ($G_i$ et $G_{i+2}$ par exemple)
-		\item ne pas considérer l'hypothèse pour les indifférents
+		\item Faire des groupements des éléments $G_i$ non-adjacents ($G_i$ et $G_{i+2}$ par exemple).
+		\item Ne pas considérer l'hypothèse pour les indifférents.
+		\item Considérer toutes les combinaisons des variables (au lieu des mintermes) et obtenir un 1 à la fin (on ne se rend pas compte de l'erreur).
 	\end{itemize}
 	\item Pour la partie synthèse/couverture:
 	\begin{itemize}
-		\item Représenter une solution pour la fonction logique comme un ET des implicants premiers au lieu d'un OU
+		\item Représenter une solution pour la fonction logique comme un ET des implicants premiers au lieu d'un OU.
 	\end{itemize}
 \end{itemize}
+\section{Problème des aléas}
+Jusqu'à présent, nous avons considéré que le temps de commutations des portes logiques est nul. La réalité est toute autre, engendrant quelques problèmes, comme celui des aléas.
+\subsection{Temps de commutation}
+Le temps de commutation est défini comme \textit{le temps moyen nécessaire à ce que le changement à l’entrée provoque le changement de la sortie}.\\
+
+Les circuits logiques (numériques) sont réalisés avec des circuits analogiques $\Rightarrow$ l'instantané n'existe pas!
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{ch5/image11}
+	\caption{temps de commutation}
+	\label{fig:tempscommutation}
+\end{figure}
+
+\subsection{Glitch}
+\subsubsection{Introduction}
+Introduisons la notion de glitch (ou aléa) par  un exemple simple dans lequel on décide de changer les valeurs des variables d'entrées:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{ch5/image12}
+\end{figure}
+Représentons les changements de valeurs des différentes portes en fonction du temps (temps de commutation non nul)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{ch5/image13}
+	\caption{Glitch}
+\end{figure}
+\subsubsection{Définition et problématique}
+Du coup, définissons ce qu'est un glitch: \textit{un glitch est une impulsion de courte durée non-désirée}.\\
+
+Le problème avec les glitchs est que (comme représenté sur la \autoref{fig:tempscommutation}) on peut obtenir (pendant un court instant) une valeur contraire à ce que l'on attend.\\
+Si le système est insensible aux variations courtes, le glitch n'est pas un problème (genre un afficher 7 segments). Mais si le système l'est, gare aux dégâts\dots De manière générale, on essaye d'éviter les glitchs.\\
+\subsubsection{Explication et solution}
+Une représentation sous forme de K-Map montre bien les endroits susceptibles d'apparition de glitch
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{ch5/image14}
+\end{figure}
+Les endroits susceptibles sont les endroits où l'on passe d'un $n$-cube à un autre.\\
+
+La solution consiste à recouvrir ces «sauts» par un terme redondant, maintenant ainsi la sortie à 1 et évitant donc la possibilité de glitch\\
+\begin{minipage}{.5\textwidth}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.9\textwidth]{ch5/image15}
+	\end{figure}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.9\textwidth]{ch5/image16}
+	\end{figure}
+\end{minipage}
