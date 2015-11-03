@@ -332,7 +332,8 @@ plus d'indices.
 
 \section{La chaleur spécifique du réseau cristallin}
 Dans l'approximation harmonique, l'énergie du cristal est la somme des énergies 
-des modes normaux indépendants. L'énergie de vibration moyenne $<U>$ du cristal 
+des modes normaux indépendants. L'énergie de vibration moyenne $<U>$ du cristal, 
+c'est à dire la contribution à l'énergie moyenne pour chaque mode de phonon,
 est :
 \begin{equation}
 <\mathcal{U}> = \sum_{\vec{q}s} \hbar\omega_{\vec qs}\left(<n_{\vec{q}s}>_T+
@@ -352,10 +353,14 @@ On remarque que l'énergie et la chaleur spécifique ne dépend que de la
 température et de la fréquence des modes ; indépendances des propriétés de 
 polarisations et des déplacements. Que le mode soit optique ou acoustique, 
 il contribue pareillement à la chaleur spécifique s'ils ont la même 
-fréquence.\\
+fréquence.
+\newpage
 \danger Les phonons ne sont pas des bosons, ou seulement dans l'approximation 
 harmonique, mais évitons. Ce sont des quanta d'un mode propre de vibration, 
-associé à un ensemble d'atomes dans le cristal.\newpage
+associé à un ensemble d'atomes dans le cristal. Pourquoi ce n'en sont pas ? 
+Parce que l'approximation harmonique n'est pas valable pour toute température. 
+Par contre, bien que ça ne soit pas des bosons, tout se passe (avec cette 
+approximation) exactement comme si s'en était.\\
 
 Si le nombre de maille $N$ est grand, on néglige les effets de surface et 
 $C(T)$ peut être considérée comme un effet "volumique" aux modes distribués 
@@ -415,23 +420,30 @@ des phonons linéaires en $q$ dans la première zone de Brillouin.
 	\begin{equation}
 	C_E(T) = 3rNk_B
 	\end{equation}
+	Ceci nous informe que nous avons $3rN$ modes et que chacun ont une 
+	contribution de $k_B$ : \textbf{tous} les modes participent à haute énergie.
+
+	\newpage
 		\begin{wrapfigure}[10]{l}{5cm}
-	\vspace{-0.6cm}
+	\vspace{-0.2cm}
 	\includegraphics[scale=0.4]{ch7/image2.png}
 	\captionof{figure}{ }
 	\end{wrapfigure}
-	Et pour basse température, l'exponentielle domine de sorte à avoir
+	Et pour basse température, l'exponentielle domine de sorte à avoir (formule 
+	déduite à partir de Bose-Einstein) 
 	\begin{equation}
 	C_E(T) = 3rNk_B\left(\dfrac{\theta_E}{T}\right)^2e^{-\theta/T}
 	\end{equation}
 	Ceci est la première justification de la décroissance exponentielle de la 
 	chaleur spécifique à basse température. Ceci est vrai  pour tous les solides. 
 	Par contre, la valeur de $C(T)$ est sous-estimée à basse température à cause 
-	de la non-considération des modes de vibrations de très faibles fréquences.
+	de la non-considération des modes de vibrations acoustiques de très faibles 
+	fréquences: ce modèle est bien meilleur pour les modes optiques.	
 
-	\newpage
+
+
 	\subsection{Le modèle de Debye}
-	Son apprixmation est d'ignorer la dispersion (une seule vitesse de propagation 
+	Son approximation est d'ignorer la dispersion (une seule vitesse de propagation 
 	des ondes) et de remplacer les branches $\omega_{\vec{q}s}$ par 1! branche 
 	acoustique
 	\begin{equation}
@@ -447,8 +459,8 @@ des phonons linéaires en $q$ dans la première zone de Brillouin.
 	\begin{equation}
 	g_D(\omega) = B\omega^2
 	\end{equation}
-	Cette équations 'applique jusqu'à une fréquence maximale de sorte à toujours 
-	vérifier 
+	Cette équations s'applique jusqu'à une fréquence maximale de sorte à toujours 
+	vérifier (normalisation sur le nombre total de mode)
 	\begin{equation}
 	\int_0^{\omega_D} g_D(\omega)\ d\omega = 3rN
 	\end{equation}
@@ -472,31 +484,47 @@ des phonons linéaires en $q$ dans la première zone de Brillouin.
 	C_D(T) = 9rNk_B\left(\dfrac{T}{\theta_D}\right)^3\int_0^{x_D}\dfrac{x^4e^x}{
 	\left[e^x-1\right]^2}\ dx
 	\end{equation}
+	Comme la valeur de l'intégrale dans $C_D(T)$ ne dépend que de $x_D=\theta_D/T$, 
+	$C_D(T)$ doit être la même pour tous les matériaux.\\
+	La chaleur spécifique d'Albert est bien plus faible que celle de Debye, reflétant 
+	la difficulté d’exciter thermiquement des modes optiques à faible température.	
 	A basse température, ce modèle est bien meilleur que celui d'Einstein. En effet, 
 	$C_D(T)$ est bien plus grande que $C_E(T)$ à faible température.
 	\begin{center}
 	\includegraphics[scale=0.5]{ch7/image4.png}
 	\captionof{figure}{ }
 	\end{center}
+	Reprenons les cas limites. Si $\theta_D \ll T$, on retrouve le résultat classique 
+	(développement en série de $e^x,\dots$)
+	\begin{equation}
+	C_D(T) = 3rNk_B
+	\end{equation}
+	Si $T \rightarrow 0$, l'intégrale vaut $4\pi^4/15\approx 26$ et on trouve la loi 
+	en $T^3$ de la chaleur spécifique d'un cristal à trois dimensions :
+	\begin{equation}
+	C_D(T) = \dfrac{12\pi^4}{5}rNk_B\left(\dfrac{T}{\theta_D}\right)^3,\qquad T \ll 
+	\theta_D
+	\end{equation}
+	A basse température, ce sont donc principalement les phonons acoustiques qui vont 
+	jouer (il faut une certaine température pour que les phonons optiques s'activent).\\
+	Pour ces faibles températures, nous avons vu que Debye fonctionnait très bien, à 
+	un tel point qu'il n'est pas pertinent de considérer Einstein ici. Par contre, ce 
+	dernier sera plus pertinent pour l'étude des phonons optiques. On peut dès lors 
+	constituer un modèle "hybride" : Debye pour l'acoustique, Einstein pour l'optique.
+	
 
+\section{L'effet Mössbauer}
+Il s'agit d'un effet résultant de la combinaison entre un effet de la physique nucléaire 
+et de la physique du solide. Supposons qu'un atome radioactif émette un phonon $\gamma$. 
+Cette émission va faire "reculer" l'atome et le photon $\gamma$ émis n'aura pas 
+exactement l'énergie de la transition.\\
+Considérons un second atome qui "reçoit" le photon $\gamma$. Par le même effet que 
+précédemment, cet atome va reculer dépensant un peu d'énergie. Pour avoir une transition 
+électronique, il faut donc une énergie légèrement plus grande : il n'y a pas de 
+recouvrement entre l'émission et la vibration.\\
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Ceci est généralement vrai, sauf si on se trouve au sein d'un cristal : le mouvement de 
+recul va se décomposer en un mouvement vibratoire, transmettant l'énergie de recul dans 
+tout le cristal. Il existe une probabilité non nulle d'émission à zéro phonons : dans 
+ce cas, la raie d’absorption vaut celle d'émission et aucune énergie n'est "perdue" 
+en énergie cinétique.
