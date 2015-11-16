@@ -654,4 +654,185 @@ Si $w=1$, on parlera de la \textit{méthode de Gauss}.
 
 \section{L'EDL hypergéométrique de Gauss}
 	\subsection{Définition}
+
+\newpage
+\setcounter{section}{11}
+\section{Fonctions de Bessel}
+	\subsection{L'EDL de Bessel}
+	L'EDL suivante, où $p\in\mathbb{R}^+$, est celle de Bessel
+	\begin{equation}
+	x^2y'' + xy' + (x^2-p^2)y = 0
+	\end{equation}
+	On retrouve cette équation lors de l'étude des mouvements d'une chaînette, des 
+	planètes, \dots 
+	
+	\subsection{La fonction $J_p$}
+	On peut ré-écrire cette équation de la façon suivante
+	\begin{equation}
+	y'' + \dfrac{1}{x}y' + \dfrac{x^2-p^2}{x^2}y = 0
+	\end{equation}
+	On voit alors clairement que $0$ est un \textit{point singulier régulier} : $xp(x) 
+	= 1$ et $x^2q(x) = x^2-p^2$. L'équation indicielle vaut dès lors
+	\begin{equation}
+	r^2 - p^2 = 0
+	\end{equation}
+	Celle-ci est d'exposant $r_{1,2} = \pm p$. On peut alors chercher des solutions 
+	de cette équation, des fonctions de Bessel, de la forme d'une série de Frobenius. 
+	Intéressons-nous ici au cas $r_1 = +p$ en considérant une série de Frobenius 
+	d'exposant $p$ :
+	\begin{equation}
+	y = \sum_{k=0}^\infty a_kx^{p+k}
+	\end{equation}
+	Pour la résoudre, on peut faire comme au TP2 et dans le syllabus (équation indicielle, 
+	de récurrence,\dots). Je propose ici une autre approche : on remplace $y$ dans 
+	l'équation et on en déduit la relation de récurrence :
+	\begin{equation}
+	\begin{array}{ll}
+	x^2 y'' &= \displaystyle \sum_{k=0}^\infty (k+p)(k+p-1)a_kx^{p+k}\\
+	xy' &= \displaystyle  \sum_{k=0}^\infty (k+p)a_kx^{p+k}\\
+	x^2 y &= \displaystyle  \sum_{k=0}^\infty (k+p)a_{k-2}x^{p+k}\quad \text{ avec } 
+	a_{-1}=a_{-2}=0\\
+	-p^2 y &= \displaystyle \sum_{k=0}^\infty -p^2 a_kx^{p+k}
+	\end{array}
+	\end{equation}
+	En mettant tout ensemble, on se rend compte que le terme de la série doit forcément 
+	s'annuler : c'est l'équation de récurrence
+	\begin{equation}
+	k(k+2p)a_k = -a_{k-2}
+	\end{equation}
+	Si l'on choisit $\displaystyle a_0 := \dfrac{1}{2^pp'}$, la solution de Bessel 
+	dite \textit{paire} (car on a posé $a_1=0 \Rightarrow a_{2n+1}=0$) :
+	\begin{equation}
+	J_p =  \sum_{k=0}^\infty (-1)^k \dfrac{\left(\dfrac{x}{2}\right)^{2k+p}}{
+	k!(p+k)!}
+	\end{equation}
+	C'est la \textit{fonction de Bessel de première espèce d'ordre $p$}
+
+	\subsection{La S.G. de l'EDL de Bessel}	
+	Nous avions aussi $r_2 = -p$, la solution d'exposant $-p$. Cependant, on 
+	voit avec l'équation de récurrence qu'il peut ici y avoir un problème. Considérons 
+	le gentil cas ou $2p \notin 2\mathbb{N}$. Par un raisonnement similaire :
+	\begin{equation}
+	k(k-2p)a_k = a_{k-2}\quad \rightarrow a_0=\dfrac{1}{2^{-p}(-p)!}, a_1=0, \quad 
+	J_{-p} = \sum_{k=0}^\infty (-1)^k \dfrac{\left(\dfrac{x}{2}\right)^{2k-p}}{
+	k!(-p+k)!}
+	\end{equation}
+	où $(-p)! = \Gamma(1-p)$. Par contre, pour le cas ou $2p\in\mathbb{N}$ :
+	\begin{equation}
+	0.a_{2p} = -a_{2p-2} = \dots = c^{te}.a_0,\qquad a_0\neq 0
+	\end{equation}
+	Ceci est \textit{incompatible} : pas de solution d'exposant $-p$. La solution 
+	générale est alors
+	\begin{equation}
+	y(x) = c_1J_p(x) + c_2J_{-p}(x)
+	\end{equation}
+	Une fonction de Bessel de seconde espèce d'ordre $p$ est toute solution de Bessel 
+	d'ordre $p$ linéairement indépendante de $J_p$. Petite remarque : si $p\notin 
+	\mathbb{N}$, $J_p$ et $J_{-p}$ sont L.I. car leur comportant pour $x$ tendant vers 
+	zéro n'est pas le même\footnote{Parce que dans $J_{-p}$, $x^{-p}$ n'est pas borné 
+	au voisinage de 0, alors que $J_p$ l'est.}.\\
+	Par le théorème de Fuchs, on peut conclure que ces séries ont un rayon de convergence 
+	infini!
+
+	\subsubsection*{La fonction Gamma}
+	Comment obtenir la factorielle d'un nombre négatif ? La fonction $\Gamma$ généralise 
+	la factorielle à tout $\mathbb{R}_0^+$. On la définit
+	\begin{equation}
+	\Gamma(p) := \int_0^\infty t^{p-1}e^{-t}\text{d}t
+	\end{equation}
+	Cette fonction vérifie $\Gamma(p+1)=p\gamma(p)$. En corollaire, on peut dire que 
+	$\Gamma(p) = (p-1)!$. Notons que $\frac{1}{\Gamma}$ est bien définie sur $\mathbb{R}$ 
+	et s'annule exactement sur $-\mathbb{N}$.
+	
+	\subsection{La fonction $\mathcal{Y}_p$}
+	La \textbf{fonction de Bessel standard de seconde espèce} (ou fonction de Weber ou 
+	Neumann) est définie :
+	\begin{equation}
+	\mathcal{Y}_p(x) := \left\{\begin{array}{ll}
+	\dfrac{J_p(x)\cos(p\pi)-J_{-p}(x)}{\sin(p\pi)} & \text{ si } p\in \mathbb{R}^+\backslash 
+	\mathbb{N}\\
+	\lim\limits_{q \rightarrow p} \mathcal{Y}_q(x) & \text{ si } p\in\mathbb{N}
+	\end{array}\right.
+	\end{equation}
+	On peut montrer qu'il s'agit bien d'une solution de l'EDL de sorte à pouvoir écrire 
+	comme solution générale
+	\begin{equation}
+	y(x) = c_1J_p(x) + c_2\mathcal{Y}_p(x)
+	\end{equation}
+	Notons que $c_1J_p(x)$ sont les seules solutions bornées ! La fonction $\mathcal{Y}_p$ 
+	est bien définie sur $\mathbb{R}$, non bornée en $0^+$ et indépendante de $J_p$.
+
+
+	\setcounter{subsection}{6}
+	\subsection{Formules de dérivation et de récurrence}
+	La démonstration est donnée faite en séance d'exercices. Voici les deux résultats 
+	\begin{equation}
+	\begin{array}{ll}
+	2 J_p' &= J_{p-1}(x) - J_{p+1}(x)\\
+	\dfrac{2p}{x}J_p(x) &= J_{p-1}(x) + J_{p+1}(x)
+	\end{array}
+	\end{equation}
+	
+	\subsection{Les zéros des fonction $J_p$}
+	Encore une application des TP. Notons juste que, sous certaines conditions sur $p$ 
+	(très peu contraingnantes, voir page 76), la différence entre deux zéros consécutifs 
+	tend vers $\pi$.
+
+
+	\subsection{$x$-orthogonalité des fonction $J_p(x)$}
+	Le système $\{ J_p(\lambda_mx); n\in\mathbb{N}_0, 0\leq x \leq 1\}$ où $\lambda_n$ 
+	est le $n^e$ zéro de $J_p$ est $x$-orthogonal sur $[0,1]$. Autrement dit
+	\begin{equation}
+	<\sqrt{x}J_p(\lambda_nx),\sqrt{x}J_p(\lambda_mx)> = 0 \text{ si } m \neq n
+	\end{equation}
+	ou encore 
+	\begin{equation}
+	\int_0^1 xJ_p(\lambda_mx)J_p(\lambda_nx) dx = \left\{\begin{array}{ll}
+	0 & \text{ si } m \neq n\\
+	\dfrac{1}{2}J_{p+1}(\lambda_n)^2 & \text{ si } m = n 
+	\end{array}\right.
+	\end{equation}
+	
+	\subsection{Séries de Bessel}
+	Par définition 
+	\begin{equation}
+	f(x) \backsim \sum_{n=1}^\infty a_nJ_p(\lambda_nx) =: S(x)
+	\end{equation}
+	où $a_n = \dfrac{2}{(J_{p+1}(\lambda_n))^2}\int_0^1 xf(x)J_p(\lambda_nx)\text{d}x$.
+	
+	\ 
+	
+	\theor{\textsc{Développement de Bessel}\\
+	Soit $f \in C^1_{morc}[0,1]$.
+	\begin{itemize}
+	\item[i.] Si $x \in ]0,1[$, alors $S(x)$ converge vers sa régularisée $\dfrac{f(x-)+
+	f(x+)}{2}$
+	\item[ii.] Si $x=1$, alors $S(x) = 0$	
+	\item[iii.] Si $x=0$, alors $S(x)$ converge vers $\left\{\begin{array}{ll}
+	0 & \text{ si } p > 0\\
+	f(0+) & \text{ si } p = 0.
+	\end{array}\right.$
+	\end{itemize}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
