@@ -308,7 +308,7 @@ Soit $\underline{E_A}=E \angle \xi_v$, définissons l'opérateur de déphasage $
 \underline{\alpha}^2\underline{E_A}$ et $\underline{E_C} = \underline{\alpha}
 \underline{E_A}$.\\
 Des relations intéressantes sont reprises en (1.3-19). Notons juste que 
-la somme des courants est bien nulle : $1+\underline{\alpha}+\underline{
+la somme des tensions est bien nulle : $1+\underline{\alpha}+\underline{
 	\alpha}^2 = 0$.
 		
 \subsubsection{Couplage en étoile}
@@ -320,7 +320,7 @@ la somme des courants est bien nulle : $1+\underline{\alpha}+\underline{
 On peut relier $A',B',C'$ en un point neutre $N$ et $A,B,C$ sont les 
 sorties de l'alternateur raccordées aux fils de lignes. Les tensions 
 sont égales aux f.e.m. engendrées et sont dès lors également un 
-système triphasé équilibre. Pour les tensions composées, on les 
+système triphasé équilibré. Les courants de ligne correspondent aux courants de phase. Pour les tensions composées, on les 
 obtient par composition vectorielle :
 \vspace{1cm}
 \begin{equation}
@@ -348,7 +348,10 @@ $A$ de la ligne :
 \end{equation}
 Le centre de gravité du triangle des tensions peut représenter le 
 potentiel d'un neutre fictif $N$ pour définir un système de tension 
-simple. Pour les résultats, voir page 1.23.
+simple. Pour les résultats, voir page 1.23. Spécifions néanmoins qu'on retrouve les tensions $V$ par relations vectorielles sur base des $U$. Il en est de même pour les courants de ligne puisque les courants de phase constituent un système triphasé équilibré, donc construction vectorielle. La puissance est donné par 
+\begin{equation}
+	P = 3 U_{BA} I_{BA} \cos \varphi
+\end{equation}
 \begin{center}
 	\includegraphics[scale=0.4]{ch1/image10.png}
 	\captionof{figure}{ }
@@ -357,8 +360,8 @@ simple. Pour les résultats, voir page 1.23.
 		
 \subsection{Influence des harmoniques dans les circuits polyphasés}
 Les tensions ne sont pas toujours sinusoïdales. On peut décomposer une courbe 
-périodique par une somme de sinusoïdes. Ici, les fonctions du temps 
-présentent deux alternances identiques, c'est-à-dire superposables par 
+périodique en une somme de sinusoïdes. Ici, les fonctions du temps 
+présentent deux \textbf{alternances identiques}, c'est-à-dire superposables par 
 retournement :
 \begin{equation}
 	f(t+\frac{T}{2}) = -f(t)
@@ -372,7 +375,29 @@ Soit la f.e.m. $e_A$ sous la forme d'une série de Fourier :
 avec $i$ impair. Les f.e.m. développées par les phases $e_B$ et $e_C$ s'
 obtiennent en remplaçant $\omega t$ par $\omega t - 2\pi/3$ et $\omega t 
 +2\pi/3$.\\
-Cas du couplage triangle et étoile vu en cours ? Passé ici.
+
+\subsubsection{Couplage triangle}
+Les tensions entre phase dans ce montage correspondent bien sûr aux forces électromotrices. La tension recueilli est la somme de ces tensions
+\begin{equation}
+	\sum _{i = 1}^\infty A_i \left( \cos (i\omega t + \xi _i) + \cos (i(\omega t - \frac{2\pi}{3}) + \xi _i) + \cos (i(\omega t +\frac{2\pi}{3}) + \xi _i) \right)
+\end{equation}
+En passant par simpson, on peut la réécrire sous la forme
+\begin{equation}
+	\sum _{i = 1}^\infty A_i \cos (i\omega t + \xi _i) \left( 1+2\cos (i\frac{2\pi}{3}) \right)
+\end{equation}
+On remarque que cette somme est nulle pour toutes les valeurs de i non multiple de 3 en raison du dernier $\cos$. Pour les valeurs de i multiple de 3, le dernier $\cos$ valant 1, la somme vaut 
+\begin{equation}
+	\sum _{i = 1}^\infty 3A_i \cos (i\omega t + \xi _i) \qquad \mbox{i multiple de 3}
+\end{equation}
+Ceci a pour conséquence qu'un voltmètre introduit en série dans le couplage en triangle mesure trois fois la valeur efficace résultant de la somme des harmoniques 3 et multiple de 3. Il en résulte que le courant entre phase est aussi d'harmonique 3. Ces courants sont étouffés par les courant induits provenant de la loi de Lenz. 
+
+\subsubsection{Couplage étoile}
+Cette fois, proposons-nous de trouver la tension entre phase $e_{BC} = e_C - e_B$ qu'on écrit, après passage par Simpson 
+\begin{equation}
+	e_{BC} = -\sum _{i=1}^\infty 2 A_i \left(\sin (i\omega t + \xi _i )\sin (i\frac{2\pi}{3})\right)
+\end{equation}
+	Cette fois, ce sont les valeurs de i multiple de 3 qui annulent cette somme. Le couplage en étoile annule donc les composantes d'harmonique 3 et multiple de 3. 
+	
 	
 \subsection{Mesure de la puissance dans les circuits polyphasés}
 \subsubsection{Méthode des $m$ wattmètres - Circuit sans fil neutre}
