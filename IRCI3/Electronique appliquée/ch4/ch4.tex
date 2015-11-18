@@ -634,4 +634,158 @@ Travaillons directement sur le schéma :
 		\end{itemize}
 
 \section{Montages à OPA}
+La grande diversité des fonctions proposés par les montages à OPA 
+réside dans la rétroaction. De tels montages agissent sur des 
+grandeurs analogiques, même si ils peuvent véhiculé une information 
+logique ou numérique. Regroupons ici, les diverses fonctions remplies 
+par la bête en trois catégories.
+	
+	\newpage
+	\subsection{Amplificateurs}
+	\begin{wrapfigure}[9]{l}{7.1cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.3]{ch4/image6}
+	\captionof{figure}{AOP en montage inverseur}
+	\end{wrapfigure}
+	L'amplificateur non-inverseur amplifie un signal, dont le gain est
+	\begin{equation}
+	A = 1 + \dfrac{R_2}{R_1}
+	\end{equation}
+	si l'on considère le même schéma que précédemment. Le montage 
+	amplificateur fait de même, mais avec un gain en rétroaction 
+	de
+	\begin{equation}
+	A = -\dfrac{R_2}{R_1}
+	\end{equation}
+	L'intérêt du montage inverseur réside dans la présence d'une 
+	masse virtuelle à l'entrée inverseuse impliquant que la ddp 
+	sur $R_1$ soit $V_{in}$ et celle sur $R_2$ soit $-V_{out}$.\\
+	
+	\begin{wrapfigure}[9]{r}{2.4cm}
+	\vspace{-1.2cm}
+	\includegraphics[scale=0.3]{ch4/image7}
+	\captionof{figure}{Tension/courant}
+	\end{wrapfigure}
+	Ces deux montages permettent aussi la conversion tension $\rightarrow$ tension. 
+	En effet, le courant dans $R_2 \propto V_1/R_1$ : il est 
+	indépendant de $R_2$. Si l'on considère que la grandeur de sortie 
+	$I_{out}$, le courant traversant $R_2,$, en considérant $R_2$ comme 
+	charge on a bien un convertisseur tension/courant.\\
+	
+	Le convertisseur courant $\rightarrow$ tension assure aussi la conversion inverse. 
+	En injectant du courant dans $R_2$ ($Z_{entree}=\infty$), la tension 
+	de sortie, $V_{out}$, doit forcément être $\propto$ au courant $I_{in}$.
+	
+	\begin{center}
+		\includegraphics[scale=0.43]{ch4/image8}
+	\captionof{figure}{Convertisseur courant/tension à droite, suiveur à 
+	gauche}
+	\end{center}
+	Il existe aussi le "suiveur", un montage particulier non-inverseur 
+	d'un gain $A=1$. Son avantage est de ne pas modifier le signal et son 
+	utilité est de pouvoir résoudre des soucis d'adaptation d'impédance en 
+	tension.
+	
+	
+	\subsection{Circuits opérationnels}
+	\begin{wrapfigure}[9]{r}{4.4cm}
+	\vspace{-1.2cm}
+	\includegraphics[scale=0.27]{ch4/image9}
+	\captionof{figure}{Dérivation}
+	\end{wrapfigure}
+	On utilise ici l'OPA pour faire des opérations mathématique, d'où son 
+	joli nom \textit{opérationnel}. Commençons par l'intégration : il faut 
+	tout d'abord remplacer l'impédance de rétroaction $Z_2$ par une 
+	capacité qui réalise cette fonction "intégration" : la tension à ses 
+	bornes est directement lié à la tension d'entrée du montage $V_{in}$. 
+	On peut ainsi convertir une onde carrée en onde triangulaire ! 
+	\begin{equation}
+	V_{C_2} = \dfrac{Q}{C}\qquad \text{ avec }\qquad Q = \int I\ dt = \int 
+	\dfrac{R_1}{V_{in}}\ dt
+	\end{equation}		
+	\newpage
+	Pour la 
+	dérivation, il faut permuter les impédances. Cela se "voit" directement 
+	en calculant la tension de sortie
+	\begin{equation}
+	V_{out} = -R_2C_1\left(\dfrac{\text{d}V_{in}}{dt}\right)
+	\end{equation}
+		\begin{wrapfigure}[7]{r}{4cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image10}
+	\captionof{figure}{Sommateur}
+	\end{wrapfigure}
+	On peut également créer un sommateur de $N$ tensions avec un circuit 
+	inverseur. Par la loi des nœuds, le courant dans l'impédance $R_R$ est 
+	la somme des courants parcourant les différentes impédances $R_i$. Cette 
+	somme peut être pondérée en jouant sur la valeurs de $R_i$. On peut 
+	également trouver la tension moyenne ou une amplification simultanée en 
+	réglant $R_R$.\\
+	
+	\begin{wrapfigure}[9]{l}{5cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image11}
+	\captionof{figure}{Analogique/Numérique}
+	\end{wrapfigure}
+	Une autre fonction fondamentale est le convertisseur numérique/
+	analogique	en utilisant le principe du sommateur : on divise chacune des 
+	résistances d'entrée par un multiple de 2. Chacune des tension d'entrées 
+	est binaire : 0 ou 1 V. Ci-contre, un cas à trois bits (3 tensions) formant un 
+	mot binaire. La tension de sortie ne peut prendre que huit valeurs différentes.
+	\footnote{??}
+	\begin{equation}
+	V = \dots + 2^2 v_2 + 2^1v_1 + 2^0 v_0
+	\end{equation}
+	
+	\subsection{Comparateurs}
+	\begin{wrapfigure}[9]{r}{3.5cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image12}
+	\captionof{figure}{Comparateur}
+	\end{wrapfigure}
+	Le but est de comparer une tension d'entrée $V_{in}$ par rapport à
+	un seuil $V_{Th}$ et envoyer une information binaire (+10V ou -10V) 
+	si oui ou non, cette tension est supérieur au seuil. \\
+	L'idée est d'exploiter le fait que l'AOP sature dès qu'il sort de sa zone 
+	linéaire, zone très étroite $(<1\ mV)$. Si la tension s'écarte du seuil 
+	l'AOP sort de sa zone linéaire et sature à la tension d'alimentation 
+	correspondante.\\
+	\danger Ce montage ne comporte pas de rétroaction et ne respecte pas le 
+	zéro virtuel ! On peut le voit comme un convertisseur A/N à un bit de 
+	sortie.\\
+
+	\begin{wrapfigure}[9]{l}{4cm}
+	\vspace{-0.98cm}
+	\includegraphics[scale=0.35]{ch4/image13}
+	\captionof{figure}{Flash}
+	\end{wrapfigure}	
+	Ce précédent principe peut être utilisé pour créer un convertisseur A/N 
+	de type FLASH : on mets plusieurs comparateurs à seuils régulièrement 
+	espacés, mis en place via un dispositif résistif (pour avoir des seuils 
+	différents). On peut alors "catégoriser" le signal d'entrée en fonction 
+	de quels AOP ont saturés ou non. L'analyse de la sortie permet de déduire 
+	l'intervalle de la tension d'entrée et convertir cette information en 
+	binaire.\\
+
+	\begin{wrapfigure}[6]{r}{4cm}
+	\vspace{-0.98cm}
+	\includegraphics[scale=0.35]{ch4/image14}
+	\captionof{figure}{Schmitt}
+	\end{wrapfigure}		
+	Si l'entrée est bruitée, notre comparateur pourrait indiquer une fausse 
+	information et perturber l'appareil en aval. Créer une hystérèse\footnote{
+	Cycle dans la caractéristique du composant.} permet d'éviter ces 
+	oscillations : c'est le \textit{trigger de Schmitt}. L'idée est de créer 
+	deux seuils différent, selon que $V_{in}$ croit ou décroît. On introduit 
+	une hystérèse en ajoutant une instabilité via une rétroaction 
+	\textbf{positive}. La borne $V_+$ est celle avec laquelle va être comparé 
+	$V_{in}$. La rétroaction positive modifie $V_+$ dès que le seuil est 
+	franchi dans un sens pour qu'une légère variation ne la fasse pas 
+	"rebasculer" dans l'autre sens.\\
+	
+	Bien sûr, il existe d'autres montages : ampli d'isolation, filtres actifs, 
+	isolateurs,\dots Ce qu'il faut retenir est que tout est dans la 
+	rétroaction !
+	
+	
 \section{Ampli-op : propriétés avancées}
