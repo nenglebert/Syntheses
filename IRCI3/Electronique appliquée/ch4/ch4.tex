@@ -788,4 +788,203 @@ par la bête en trois catégories.
 	rétroaction !
 	
 	
-\section{Ampli-op : propriétés avancées}
+\section{L'AOP $\mathbb{R}$}
+	\subsection{Imperfections statiques}
+	Les variations de fréquences peuvent un peu tout foutre en l'air. Le terme 
+	\textit{statique} désigne les basses fréquences, dont le continu. Nous allons 
+	ici étudier les différentes imperfections.
+	
+		\subsubsection{L'offset}
+		\begin{wrapfigure}[9]{r}{4cm}
+		\vspace{-0.98cm}
+		\includegraphics[scale=0.35]{ch4/image15}
+		\captionof{figure}{Offset}
+		\end{wrapfigure}	
+		Il s'agit d'un décalage en tension de la caractéristique de transfert : 
+		une tension continue vient s'ajouter au signal. Pour l'AOP, cela se 
+		manifeste par un décalage horizontal de la caractéristique de 
+		transfert, qui ne passe plus par l'origine : la sortie n'est plus 
+		nulle si la tension appliquée l'est. Comme cette tension "s'ajoute", 
+		la caractéristique se retrouve bien translatée vers la gauche. Parfois, 
+		celui-ci est tellement grand que même une tension différentielle nulle 
+		fait saturer notre bête !
+		Pour le compenser, on peut ajouter à $V_d$ une tension d'entrée 
+		correctrice (qu'il faut souvent réajuster, l'offset étant fonction de $T$).
+		
+		\subsubsection{Courants d'entrée}
+		Les entrées de l'AOP bouffent ou vomissent un léger courant, pas forcément 
+		identique\footnote{On les note souvent $i^+$ et $i^-$ en fonction de 
+		l'entrée}. Les datasheet reprennent souvent deux paramètres 
+		\begin{enumerate}
+		\item Courant de polarisation ($i_{biais}$) ; moyenne des courants d'entrée.
+		\item Courant de décalage ($i_{offset}$) ; différence des courants d'entrée.
+		\end{enumerate}
+		\danger Cette notion n'a \textbf{rien} avoir avec celle d'impédance 
+		d'entrée : ici cela traduit le fait que l'AOP, même sans tension, 
+		consomme un courant supplémentaire. Ces tensions viennent de la consommation 
+		de transistors bipolaires, constituants de l'AOP.
+		
+		\subsubsection{Modélisation des imperfections}
+		\begin{wrapfigure}[10]{l}{4.5cm}
+		\vspace{-0.5cm}
+		\includegraphics[scale=0.3]{ch4/image16}
+		\captionof{figure}{AOP $\mathbb{R}$}
+		\end{wrapfigure}	
+		On considère le schéma d'un AOP idéal auquel on ajoute deux sources de 
+		courant et une source de tension. Pour tenir compte de ces différents 
+		effets, on applique la superposition : on annule les sources de tension 
+		par un court circuit et les sources de courant par un circuit ouvert. Pour 
+		appliquer ce principe, il faut faire l'hypothèse que l'AOP ne sature pas.\\
+		
+		On peut remarquer que lorsqu'on annule la tension d'entrée $V_{in}$, les 
+		schémas inverseurs et non-inverseurs sont identiques.\\
+		
+		\newpage
+			\begin{wrapfigure}[10]{l}{4.2cm}
+		\vspace{-0.5cm}
+		\includegraphics[scale=0.25]{ch4/image17}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Commençons par l'offset $e_0$ seul : on ouvre $i^-$ et $i^+$ et on court 
+		circuite $V_{in}$. Après résolution, on trouve
+		\begin{equation}
+		V_{out,e_0} = A_{non-inv}*e_0
+		\end{equation}
+		Ce résultat est valable quelque soit le montage, même inverseur !\\
+		
+		Considérons maintenant les courants d'entrées. Le souci est que ces courants 
+		circulent forcément, et ils le font dans les résistances ce qui crée une 
+		perte de tension. L'effet est donc indirect : un offset. Ceci est illustré 
+		ci-dessous (droite) par l'application d'une tension $V_{in}$ sur deux 
+		résistances $R^\pm$.
+		\begin{center}
+		\includegraphics[scale=0.3]{ch4/image18}
+		\captionof{figure}{ }
+		\end{center}
+		Forcément, nous avons
+		\begin{equation}
+		V_d = V_{in} + (R^-i^-)-(R^+i^+)
+		\end{equation}				
+		Si les deux résistances ou les courants ne sont pas identiques, la tension 
+		est bien modifiée. Au sens de Thévenin, il s'agit de résistance d'entrée que 
+		l'on nomme ici \textit{résistance de source}. Appliquons maintenant le 
+		principe de superposition. Il faut commencer par voir quels sont les $R$ de 
+		notre circuit :
+		\begin{itemize}
+		\item[$\bullet$] Entrée inverseuse : $i^-$ peut circuler via $R_1$ et/ou 
+		$R_2$.
+		\item[$\bullet$] Entrée non-inverseuse : on a pour l'instant juste la masse, 
+		$V_{in}$ étant court-circuitée. Cependant, la source de tension n'est pas 
+		parfaite et contient une résistance $R_S$ que l'on désigne \textit{résistance 
+		de sortie}.
+		\end{itemize}
+		La résolution du circuit ci-dessus (droite) donne
+		\begin{equation}
+		V_{out_{i_{pol}}} = R_2i^- - R_SA_{non-inv}.i^+
+		\end{equation}
+		\danger Ici on ne peut pas considérer qu'aucun courant rentre dans l'AOP 
+		$\mathbb{R}$ ! Mais cette hypothèse reste valable pour l'AOP idéal.\\
+		
+		On applique maintenant notre précieux théorème en sommant tout :
+		\begin{equation}
+		V_{out} = A_{non-inv}*V_{in} + A_{non-inv}*e_0 + R_2i^- - R_SA_{non-inv}.i^+
+		\end{equation}
+		Ce résultat n'est valable que si l'AOP ne sature \textbf{pas}. \danger Pour 
+		un montage inverseur, seul le premier terme de gain change ! Les deux autres 
+		sont identiques, les calculs étant valables pour les deux montages.\\
+		
+		\textbf{Question d'examen } :On donne un gain, courant, fréquence, \dots et on 
+		donne qquelques AOP. Il faut choisir lequel est le plus adapté et pourquoi 
+		(si on peut négliger quelque chose,\dots).
+		
+		\subsubsection{Imperfections statiques : plus loin !}
+		On peut évidemment tenir compte d'autres imperfections comme par exemple 
+		tenir compte de $Z_d$ et $Z_{out}$. On peut faire encore mieux en considérant 
+		la tension en mode commun ; la moyenne des deux signaux. Même si on l'a 
+		négligé, deux choses en dépendent 
+		\begin{enumerate}
+		\item La tension de sortie. L'idéal est d'avoir un \textit{taux de réjection 
+		en mode commun"} (CMRR) le plus grand possible car cela signifie que cet 
+		effet est petit.
+		\item L'impédance d'entrée. Elle traduit le fait que l'AOP dépend aussi de 
+		cette tension en mode commun qu'on lui applique.
+		\end{enumerate}
+		
+	\subsection{Comportement fréquentiel}
+		\subsubsection{Fonction de transfert d'un RC passe-bas}
+		Il s'agit d'un circuit à un pôle étudier en long et en large au premier labo. 
+		Sa fonction de transfert est la suivante
+		\begin{equation}
+		H(j\omega) = \dfrac{1}{1+j\omega RC}
+		\end{equation}
+		\begin{center}
+		\includegraphics[scale=0.53]{ch4/image19}
+		\captionof{figure}{Fonction de transfert d'un RC passe-bas}
+		\end{center}
+		En première approximation, l'AOP réel est un circuit à un pôle. Un AOP réel 
+		comporte une impédance de sortie non-nulle et des capacités parasite. On 
+		obtient alors un "montage" constitué d'un AOP idéal de gain $A_0$avec une 
+		résistance et une capacité. La seule différence avec le circuit RC est le 
+		gain $A_0$ : l'asymptote horizontale de $\log|H|$ vaudra dès lors $A_0$ et 
+		non plus 1. L'AOP agit ainsi comme un filtre passe-bas : au delà d'une 
+		certaine fréquence le gain diminue jusqu'à devenir nul.\\
+		
+		Quel est l'effet de la rétroaction sur la fonction de transfert? Soit un 
+		montage non-inverseur. Pour calculer la fonction de transfert, on applique 
+		les formules générales de la rétroaction :
+		\begin{itemize}
+		\item[$\bullet$] Bloc A : L'AOP à un pole. Fonction de transfert : $A(j\omega) 
+		= A_0/(1+j\omega RC)$.
+		\item[$\bullet$] Bloc B : La rétroaction. Fonction de transfert\footnote{Voir 
+		plus haut, déjà étudié.} : $B(j\omega) = -R_1/(R_1+R_2)$.
+		\end{itemize}
+		Comme vu précédemment, la fonction de transfert du bloc $A$ avec une rétroaction 
+		devient 
+		\begin{equation}
+		A_R(j\omega) = \dfrac{A(j\omega)}{1-A(j\omega).B(j\omega)}
+		\end{equation}
+		En première approximation, le gain est divisé par $1-A_0B$ et la pulsation de 
+		coupure (et donc sa bande passante) est multipliée par ce même facteur. La fonction 
+		de transfert voit donc 	son gain descendre et le graphique de la phase se voit translaté 
+		vers la droite.
+	
+	
+		\subsubsection{Produit "gain * bande passante"}
+		On vient de le voir, une rétroaction augmente la bande passante. Comme un 
+		même facteur intervient dans deux cas, on peut dire que le produit suivant, 
+		le produit "gain * bande passante" est constant 
+		\begin{equation}
+		A_0'\omega_0' = A_0\omega_0
+		\end{equation}
+		Cela signifie qu'il n'est pas possible d'avoir à la fois un gain élevé et une 
+		bande passante élevée mais aussi que ce produit, constant, est une caractéristique 
+		intrinsèque de l'AOP.\\
+		Pour l'info, on peut aussi modéliser l'AOP comme ayant trois pôles.
+		
+	\setcounter{subsection}{3}
+	\subsection{Dimensionnement d'un montage à ampli-op}
+	Il faut suivre ces quelques étapes ! Rajoutons qu'il est important de savoir 
+	dimensionner un AOP en tant qu'ingénieur!
+	\begin{enumerate}
+	\item Établir le cahier des charges
+	\item Calculer le nombre d'étages (via le produit gain * bande passante)
+	\item Choisir le type d'étages (impédances et phase)
+	\item Calculer les tensions de décalage en sortie (offset et courants d'entrée)
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
