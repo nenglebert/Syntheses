@@ -151,25 +151,280 @@ c'est l'objectif de ce chapitre.
 		\end{equation}
 		ce qui est assez délicat à intégrer.
 	
+		\newpage
+		
+	\section{Deux relations thermodynamiques importantes}
+	Soit une transfo réversible d'un système fermé, par le premier principe 
+	\begin{equation}
+	dU = \delta Q + \delta WW
+	\end{equation}
+	La transfo étant réversible (quasi-statique)
+	\begin{equation}
+	\delta W = -pdV,\qquad \delta Q = TdS
+	\end{equation}
+	On en déduit
+	\begin{equation}
+	dU = TdS - pdV
+	\end{equation}
+	En prenant l'hentalpie $H \equiv U + pV$ et en différenciant 
+	\begin{equation}
+	dH = dU + pdV + Vdp = TdS + Vdp
+	\end{equation}
+	On en déduit les formes massiques, hautement utilisées dans ce cours
+	\begin{equation}
+	\begin{array}{ll}
+	du &= Tds- pdv\\
+	dh &= Tds + pdv
+	\end{array}
+	\end{equation}
+	
+	\section{Transformations ouvertes irréversibles de systèmes fermés}
+	Reconsidérons nos deux transformations, sauf que cette fois-ci $A-C$ est 
+	irréversible. Pour le cycle réversible :
+	\begin{equation}
+	\int \dfrac{\delta Q}{T} = \int_1^2 \left(\dfrac{\delta Q}{T}\right)_A + 
+	\int_2^1 \left(\dfrac{\delta Q}{T}\right)_B = 0
+	\end{equation}
+	Pour le cycle de Clausius, l'inégalité s'écrit
+	\begin{equation}
+		\oint \dfrac{\delta Q}{T} = \int_1^2 \left(\dfrac{\delta Q}{T}\right)_A + 
+	\int_2^1 \left(\dfrac{\delta Q}{T}\right)_C < 0
+	\end{equation}
+	On en déduit
+	\begin{equation}
+	\int_1^2\left(\dfrac{\delta Q}{T}\right)_C < \int \left(\dfrac{\delta Q}{T}
+	\right)_A = \int_1^2 dS = S_2-S_1
+	\end{equation}
+	On peut écrire
+	\begin{equation}
+	\dfrac{\delta Q}{T} \leq dS,\qquad\qquad \int_1^2 \dfrac{\delta Q}{T} \leq 
+	S_2-S_1
+	\end{equation}
+	Ces deux relations sont toujours applicable. Si $\delta Q <0$, l'entropie 
+	diminuent bien, mais les irréversibilité font toujours grandir celle-ci. 
+	"À quantité de chaleur échangée constante, la variation d’entropie est 
+	toujours plus élevée pour une transformation irréversible que pour une 
+	transformation réversible".
+	
+	\section{Le travail non compensé}
+	Il s'agit du travail perdu à cause des irréversibilités. Considérons un 
+	système constitué de deux parties, une vide et une remplie de gaz. 
+	\begin{center}
+	\includegraphics[scale=0.45]{ch7/image3.png}
+	\captionof{figure}{ }
+	\end{center}	
+	Perçons 
+	la paroi : aucun travail n'est effectué (température maintenue constante). 
+	Comparons avec la situation réversible ou on a 
+	\begin{equation}
+	\delta Q = TdS,\qquad \delta W^* = pdV
+	\end{equation}
+	Le travail fourni dans le cas irréversible est plus petit que dans le cas 
+	réversible : on a "perdu" du travail 
+	\begin{equation}
+	(\delta W^*)_{irr} = pdV - \delta W_i^*
+	\end{equation}
+	Avec le premier principe et le relation de Gibbs
+	\begin{equation}
+	(\delta Q)_{irr} = (\delta W^*)_{irr} + dU = TdS - \delta W_i^*
+	\end{equation}
+	on voit que la chaleur reçue est plus petite que dans le cas réversible : 
+	c'est la \textit{chaleur non compensée}. En résolvant pour $dS$ :
+	\begin{equation}
+	dS = \dfrac{\delta Q}{T}+\dfrac{\delta W_i^*}{T}
+	\end{equation}
+	En comparant avec $dS \leq \dfrac{\delta Q}{T}$, on voit un terme de 
+	\textit{production d'entropie}
+	\begin{equation}
+	dS_i = \dfrac{\delta W_i^*}{T}
+	\end{equation}
 	
 	
+	\section{Le principe de l’accroissement de l’entropie}
+	Soit une transfo infinitésimale dans un système fermé durant laquelle le 
+	système reçoit $\delta Q$ et fourni $\delta W^*$. Le système est à $T$ et 
+	le milieu extérieur $T_0>T$. On a 
+	\begin{equation}
+	dU_{syst} \geq \dfrac{\delta Q}{T}
+	\end{equation}
+	et pour le milieu extérieur 
+	\begin{equation}
+	dS_{ext} = -\dfrac{\delta Q}{T_0}
+	\end{equation}
+	En sommant
+	\begin{equation}
+	dS_{tot} = dS_{syst} + dS_{ext} \geq \dfrac{\delta Q}{T}-\dfrac{\delta Q}{
+	T_0} = \dfrac{\delta Q}{T}\left(1-\dfrac{T}{T_0}\right) > 0
+	\end{equation}
+	Si $T < T_0$ l'échange est dans l'autre sens ($\delta Q <0$) et on trouve 
+	aussi $dS_{tot} \geq 0$, montrant que la variation totale est toujours 
+	positive : c'est le \textit{principe d'accroissement d'entropie}. Seule les 
+	transfo qui augmente (ou laisse constante) l'entropie globale sont possibles.\\
+	
+	On peut décomposer cet accroissement global entre contributions interne et 
+	externe :
+	\begin{equation}
+	dS_{syst} =  \dfrac{\delta Q}{T} + dS_i
+	\end{equation}
+	où $dS_i$ est la production d'entropie due aux irréversibilités internes.
+	On a donc
+	\begin{equation}
+	dS_{tot} = dS_i + \underbrace{\dfrac{\delta Q}{T}\left(1-\dfrac{T}{T_0}\right)
+	}_{dS_e} = dS_i+dS_e
+	\end{equation}
+	où $dS_e$ est la production d’entropie externe due à l'irréversibilité des 
+	échanges de chaleur avec le milieu extérieur.
+	
+	\section{L'entropie d’un solide ou d’un liquide}
+	Précédemment, en \textit{Thermodynamique Appliquée} : $dh\approx du \approx cdT$. 
+	Comme $du = Tds-pdV$ (et $dh = Tds+vdp$), on a 
+	\begin{equation}
+	ds \approx \dfrac{du}{T} \approx c \dfrac{dT}{T}
+	\end{equation}
+	d'où $s_2-s_1 \approx c\ln\left(\dfrac{T_2}{T_1}\right)$.
+	
+	\section{L’entropie d’un gaz parfait}
+	Par Gibbs, $du$, $dh$ et la loi des gaz parfaits : $Tds = du+pdv = c_vdT+pdv$. 
+	Après division par $T$ :
+	\begin{equation}
+	ds = c_v \dfrac{dT}{T}+\dfrac{p}{T}dv = c_v\dfrac{dT}{T} +R\dfrac{dv}{v}
+	\end{equation}
+	En intégrant, on trouve l'entropie d'un gaz parfait
+	\begin{equation}
+	s_2 - s_1 = \int_1^2 c_v\dfrac{dT}{T}+R\ln\dfrac{v_2}{v_1}
+	\end{equation}
+	On aurait aussi pu partir de\footnote{On ajoute $vdp$ dans $dh$ et on le 
+	soustrait.} $ds = c_p\dfrac{dT}{T}-\dfrac{v}{T}dp = c_p
+	\dfrac{dT}{T}-R\dfrac{dp}{p}$, qui donne une autre relation en intégrant :
+	\begin{equation}
+	s_2 - s_1 = \int_1^2 c_p\dfrac{dT}{T}-R\ln\dfrac{p_2}{p_1}
+	\end{equation}
+	Les slides 177-179 montrent comment obtenir le \textit{loi de Laplace}
+	\begin{equation}
+	pv^k = \text{cste}
+	\end{equation}
+	
+	\section{La transformation polytropique réversible d’un gaz parfait}
+	Une transformation $pV^n = \text{cste}$ est dite \textbf{polytropique}. Par 
+	exemple, entre deux états 
+	\begin{equation}
+	p_2V_2^n = p_1V_1^n
+	\end{equation}
+	Comme le gaz est parfait : $p_1V_1/T_1=p_2V_2/T_2$. En éliminant $V$ ou $P$ 
+	on peut obtenir une expression sympa :
+	\begin{equation}
+	\dfrac{T_2}{T_1}=\left(\dfrac{p_2}{p_1}\right)^{\frac{n-1}{n}} = \left(\dfrac{
+	V_1}{V_2}\right)^{n-1}
+	\end{equation}
+	Des applications sont données slide 181.
 	
 	
+	\section{Le second principe de la thermodynamique pour les systèmes ouverts}
+	On faisant comme en 5.10, on peut obtenir la douce relation suivante 
+	\begin{equation}
+	\dfrac{dS_F}{dt} = \dfrac{dS_O}{dt} + \oint_S\rho s(\vec{c}-\vec{b_O}).\vec{n}\ 
+	dS = \dfrac{dS_O}{dt} + \sum \dot{m_s}s_s - \sum \dot{m_e}s_e
+	\end{equation}
+	On avait vu que le second principe appliqué aux systèmes fermés s'écrit 
+	\begin{equation}
+	dS = \dfrac{\delta Q}{T}+dS_i
+	\end{equation}
+	mais c'était dans le cas ou l'on avait des variables uniformes, ce qui n'est 
+	pas souvent le cas pour $T$ sur les frontières ou un échange de chaleur se produit. 
+	Il faut remplacer $\delta Q/T$ par une somme sur chaque élément de frontière dont 
+	la température est différente. A la limite infinitésimale, on obtiendrait : 
+	\begin{equation}
+	\dfrac{\delta Q}{T} \leftarrow \oint_{\mathcal{A}} \dfrac{d\Phi}{T}d\mathcal{A}
+	\end{equation}
+	En rassemblant tout, on obtient alors
+	\begin{equation}
+	\dfrac{dS_O}{dt} +\sum\dot{m_s}s_s - \sum \dot{m_e}s_e = \sum \dfrac{\dot{Q}}{T}
+	+\dot{S_i} = \oint_{\mathcal{A}}\dfrac{\Phi}{T}d\mathcal{A}+\dot{S_i}
+	\end{equation}
+	
+	\section{Les systèmes ouverts en régime permanent et les systèmes ouverts avec
+			 écoulement uniforme}
+	Si le système est permanent, l'expression se simplifie en : 
+	\begin{equation}
+	\sum \dot{m_s}s_s - \sum \dot{m_e}s_e = \sum\dfrac{\dot{Q}}{T}+\dot{S_i}
+	\end{equation}
+	Pour une transfo adiabatique :
+	\begin{equation}
+	s_s-s_e = \dfrac{\dot{S_i}}{m}\geq 0.
+	\end{equation}
+	Pour le système ouvert avec écoulement uniforme :
+	\begin{equation}
+	\dfrac{d(ms)_O}{dt} + \sum \dot{m_s}s_s - \sum \dot{m_e}s_e = \dfrac{\dot{Q}}{T} 
+	+\dot{S_i}
+	\end{equation}
 	
 	
+	\section{Les transformations réversibles des systèmes ouverts en régime permanent}
+	Cherchons une expression du travail échangé par un système ouvert permanent dans le 
+	cas d'une transformation réversible. On avait trouvé, dans le cas d'une entrée/sortie :
+	\begin{equation}
+	\left(h+\dfrac{c^2}{2}+gz\right)_s - \left(h+\dfrac{c^2}{2}+gz\right)_e = q+w
+	\end{equation}
+	et le second principe
+ 	\begin{equation}
+ 	\dot{m}(s_s-s_e)=\sum\dfrac{\dot{Q}}{T}+\dot{S_i}\geq \sum\dfrac{\dot{Q}}{T}
+ 	\end{equation}
+ 	Voyons maintenant deux transformations réversibles:
+ 	\begin{enumerate}
+ 	\item \textit{Transformation adiabatique}.\\
+ 	Le second principe se réduit à $s_s=s_e$. Avec la relation de Gibbs $dh = Tds+vdp, 
+ 	h_s-h_e = \int_e^s vdp$ et on a 
+ 	\begin{equation}
+ 	w = \int_e^s vdp +\dfrac{c_s^2+c_e^2}{2} + g(z_s-z_e)
+ 	\end{equation}
+ 	\item \textit{Transformation isotherme}.\\ 	
+ 	La température est uniforme : $\sum \dfrac{\dot{Q}}{T} = \dfrac{\dot{Q}}{T}=\dot{m}
+ 	\dfrac{q}{T}$ et le second principe devient $s_s-s_e = \dfrac{q}{T}$. Par application 
+ 	de la même relation de Gibbs
+ 	\begin{equation}
+ 	h_s-h_e = T(s_s-s_e) + \int_e^s vdp
+ 	\end{equation}
+ 	l'expression du travail $w$ est identique.
+ 	\end{enumerate}
+ 	Notre expression $w$ est donc bonne pour toute transfo réversible de systèmes ouvert 
+ 	en régime permanent. Cette expression est employée pour tous les systèmes ouverts avec
+	échange de travail comme les turbomachines. Si les variations d’énergie cinétique et 
+	potentielle sont négligeables :
+	\begin{equation}
+	w = \int_e^s vdp
+	\end{equation}
+	Le travail en système ouvert est directement lié à la variation de pression. On en 
+	déduit que s'il n'y a pas de travail, la pression reste constante. Petit exemple slide 
+	191.
 	
+	\section{Principe d’accroissement de l’entropie pour un système ouvert}
+	Suivons un raisonnement semblable à celui fait précédemment mais pour un système 
+	ouvert dont la variation d'entropie s'écrit
+	\begin{equation}
+	\dfrac{dS_{syst}}{dt}+\sum \dot{m_s}s_s - \sum \dot{m_e}s_e = \sum\dfrac{\dot{Q}}{T}+\dot{S_i}
+	\end{equation}
+	Le milieu extérieur est aussi un milieu ouvert 
+	\begin{equation}
+	\dfrac{dS_{ext}}{dt}-\sum \dot{m_s}s_s + \sum \dot{m_e}s_e = -\sum\dfrac{\dot{Q}}{T_0}
+	\end{equation}
+	En sommant les deux équations :
+	\begin{equation}
+	\dfrac{dS_{tot}}{dt} = \dfrac{dS_{syst}}{dt}+\dfrac{dS_{ext}}{dt} = \underbrace{
+	\sum\dfrac{\dot{Q}}{T}-\dfrac{\sum \dot{Q}}{T_0}}_{\dot{S_e}} + \dot{S_i} = \dot{S_e}
+	+\dot{S_i} > 0
+	\end{equation}
+	avec $\dot{S_e}$ toujours positif : c'est le taux de production d'entropie externe due 
+	à l'irréversibilité de l'échange de chaleur.\\
+	Pour un système ouvert en régime permanent, l’entropie du système est constante\footnote{??} :
+	\begin{equation}
+	\dfrac{dS_{tot}}{dt} = \dfrac{dS_{ext}}{dt} = \sum\dot{m_s}s_s-\sum\dot{m_e}s_e - 
+	\dfrac{\dot{Q}}{T_0}
+	\end{equation}
+	Si l'écoulement est uniforme, on intégrera cette relation.
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	\section{Les rendements}
+	Cette partie n'est pas détaillée ici, tout est clair et limpide avec le formulaire ! Et 
+	j'avoue avoir un peu la flemme de \LaTeX iser tous ça pour pas grand chose!
 	
 	
 	
