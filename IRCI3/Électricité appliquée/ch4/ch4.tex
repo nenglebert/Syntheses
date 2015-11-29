@@ -441,7 +441,7 @@ source de tension une résistance $R_a$ et une inductance $L_a$.
 		$OP_1$ à $OP_2$ sur le schéma page 4.33). \textbf{Lire le texte 
 		sur cette page, c'est assez confus.}
 		
-		\subsubsection{Couple électromécanique - Couple extérieur}
+		\subsection{Couple électromécanique - Couple extérieur}
 		La loi de Laplace ($F+ilB$) permet de calculer la somme sur 
 		chaque conducteur pour ensuite les sommer, mais il est plus 
 		simple d'utiliser la conservation de la puissance : la somme 
@@ -456,16 +456,395 @@ source de tension une résistance $R_a$ et une inductance $L_a$.
 		magnétiques existent tout de même (hystérèse, Foucault, ...). Les 
 		pertes méca sont dues aux frottement (fonction de $\Omega_r$). La 
 		puissance mécanique appliquée à un moteur est négative. On peut 
-		calculer le couple électromécanique $P_{em} = C_{em}\Omega_r$.
+		calculer le couple électromécanique $P_{em} = C_{em}\Omega_r$.\\
+		
+		\textbf{Partie en cours de réédition}.
 		
 		
+\newpage
+
+	\subsection{Inconvénients de la réaction d'induit}
+	Cette réaction cause trois effets néfastes :
+	\begin{enumerate}
+	\item Déplacement de la ligne neutre ($B=0$) gênant la commutation
+	\item Augmente l'indiction : risque de claquage entre les lames
+	\item Cause de l'inductance du rotor, s’opposant aux variations rapides 
+	du courant induit et donc du couple
+	\end{enumerate}
+	
+	
+	\subsection{La commutation}
+	La commutation concerne tous les phénomènes inversant le signe du courant 
+	par court-circuit/circuit ouvert avec les balais. Comme il y a frottement, 
+	il peut y avoir étincelles !
+	
+	\begin{description}
+	\item[Causes mécaniques] Certaines lames bombées, vibrations, mauvais 
+	équilibrage, \dots
+	\item[Causes électriques] Théoriquement très compliqué
+	\end{description}
+	Détaillons légèrement ce point \textit{compliqué} avec la théorie de ARNOLD. 
+	On se débarasse d'abord de toute imperfections mécaniques en trois hypothèses :
+	état mécanique parfait, résistivité balais/collecteur constante, égalité de 
+	la largeur d'un balai et d'une lame.\\
+	
+	Le souci est inductif. Au moment de la commutation, l'inductance à tendance 
+	à ne pas laisser passer le courant. Plus mathématiquement, à cet instant la 
+	dérivée du courant subit une discontinuité causant une surtension importante : 
+	rupture de l’isolation et risque de claquage.\\
+	
+	\textsc{Le remède de grand-mère}. L'idée est de créer un phénomène d'amplitude 
+	contraire et même encore plus fort (pour être sûr) pour contrecarrer cet 
+	effet. On crée alors une fem opposée, favorable à la variation de courant afin 
+	de réduire la variation de courant en fin de commutation. On crée cette fem 
+	grâce a un flux d'axe neutre (transversal) au sens opposé à la réaction d'induit.\\
+	On pourrait aussi se dire \textit{"Pourquoi ne pas prendre un entrefer plus grand?"} 
+	Effectivement, l'inductance diminue mais le flux d'excitation également ce qui 
+	est moins avantageux.
+		
+
+\newpage
+\section{Étude de la dynamique des machines}
+	\subsection{Modèles mathématiques - schémas équivalents}
+		\begin{wrapfigure}[10]{l}{8.7cm}
+	%\vspace{-25mm}
+	\includegraphics[scale=0.34]{ch4/image15.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Reprenons ce qui a été vu précédemment et synthétisons le sur le schéma ci-contre. 
+	On va supposer que le modèle magnétique, les pertes, \dots sont linéaires. On 
+	trouve 
+	\begin{description}
+	\item[$R_e$;] Résistance du circuit inducteur
+	\item[$L_e$;] Inductance du circuit inducteur
+	\item[$R_a$;] Résistance du circuit d'induit
+	\item[$\Delta V_b$;] Chute de tension du contact balais-collecteur
+	\item[$L_a$;] Inductance du circuit d'induit
+	\item[$e$;] Force électromotrice engendrée $= Gi_e\Omega_r$
+\end{description}		
+	Notre tension d'excitation $V_e$ pourra être éventuellement réglable : $V_x$. La 
+	zone en pointillé représente la machine, tandis que la partie de droite représente 
+	le rotor, possédant une fem $e$ du à sa rotation.\\
+	
+	Lors de l'allumage, il faut fournir énormément de flux. Pour limiter ce courant, on 
+	introduit des réhostas :
+	\begin{description}
+	\item[$R_d$ : rhéostat de démarrage;]  Sert à limiter le courant à la mise sous tension 
+	$V_{al}$ car à vitesse nulle, $e=0$ et le courant est juste limité par $R_a$ et $L_a$ 
+	de faible valeur.
+	\item[$R_{exc}$ : rhéostat d'excitation;] Règle le courant d'excitation $i_e$ pour une 
+	tension d'excitation $v_x$ donnée.
+	\end{description}
+	Les équations de ce modèles sont, pour rappel :
+	\begin{equation}
+	\begin{array}{ll}
+	v_x &= (R_e+R_{exc}-i_e + L_e\frac{di_e}{dt}\\
+	v_{al} &= e+\Delta V_b + (R_a+R_d)i_a + L_a\frac{di_a}{dt}\\
+	e &= k\phi\Omega_r = Gi_e\Omega_r
+	\end{array}
+	\end{equation}
+	Cette fois-ci, on doit ajouter l'équation de mouvement :
+	\begin{equation}
+	j\dfrac{d\Omega_r}{dt} = C_{em}+C_r
+	\end{equation}
+	avec $C_r$, le couple résistant du moteur (pertes magnétiques et mécanique). 
+	Il doit être vu comme négatif, diminuant le couple appliqué par le moteur à l'arbre, 
+	$C_{em}$.\\
+	Il s'agit d'un modèle dynamique (dérivée). En laboratoire, tout peut être mis comme 
+	étant constant. Sous la forme canonique, on obtient :
+	\begin{equation}
+	\begin{array}{ll}
+	Di_e &= \frac{1}{L_e}[v_x-(R_e+R_{exc}i_e]\\
+	Di_a &= \frac{1}{L_a}[v_{al} - \Delta V_b - Gi_e\Omega_r - (R_a+R_d)i_a]\\
+	D\Omega_r &= \frac{1}{J}[Gi_ei_a - C_r(\Omega_r)]
+	\end{array}
+	\end{equation}
+	Avec ces équations, il est facile d'obtenir le schéma bloc ci-dessous.  
+	\begin{itemize}
+	\item[$\bullet$] Notre sortie est bien la vitesse de rotation, définie par le couple 
+	moteur.
+	\item[$\bullet$] La première équation est représenté à gauche sur la branche $V_x$ : 
+	on calcule $i_e$ à partir de $V_x$.
+	\item[$\bullet$] La grandeur d'entrée de la deuxième équation est la tension d'alimentation. 
+	Il faut ainsi partir de $V_{al}$, soustraire $Gi_e\Omega_r,\dots$. Le $Gi_e$ avait déjà été 
+	calculé, $\Omega_r$ est à la sortie. Le rectangle central correspond ainsi à une partie de 
+	cette deuxième équation
+	\item[$\bullet$] Pour la troisième équation, nous avons $K\phi i_a$ et il faut rentrer 
+	le couple résistant : on peut dire que le couple résistant dépend de la vitesse de 
+	rotation
+	\end{itemize}
+	
+	\begin{center}
+	\includegraphics[scale=0.34]{ch4/image21.png}
+	\captionof{figure}{ }
+	\end{center}
+	
+	Supprimons la dernière rétroaction. Mettons notre pied sur l'intégrale pour avoir un couple 
+	constant. Le couple moteur étant constant, la vitesse ne change pas directement (du à la grande 
+	inertie)(nous 
+	étions en situation de régime, on vient de briser cet équilibre). Mais maintenant, on sait que 
+	la vitesse va diminuer. Sachant cela,  le carré avec (*) au milieu va être affecté. Comme 
+	$i_e$ est contant, la fem $e$ va diminuer : déséquilibre le rond avec $\pm$.\\
+	
+	A l'examen oral, je peux négliger le bras tout en haut en affirmant que c'est un effet 
+	correcteur pas très important, que l'ordinateur peut se charger de le calculer.\\
+	
+	Ceci étant dit, La valeur $V-e$ va commencer à être positive, le courant va alors 
+	augmenter. Le couple moteur va alors lui aussi augmenter pour retrouver le couple appliqué 
+	par mon pied et on retrouvera un nouveau point d'équilibre, avec une vitesse plus faible 
+	mais un courant plus important (car couple plus important).\\
+	
+	Si la vitesse diminue de 1\%, la vitesse fait-elle de même ? Le courant augmentera en 
+	réalité plus rapidement que cette diminution. Pour savoir à quel point, il faut annuler 
+	toutes les dérivée pour se rendre compte que le terme $1/R_a$ est très important : le couple 
+	va vite réagir à une petite variation.\\
+	
+	En faisant une analyse semblable, on peut voir que si on augmente $V_x$, le moteur va 
+	tourner moins vite. L'augmentation de $V_d$ cause par contre une augmentation de la 
+	vitesse.
+	
+	
+\section{Courbes caractéristiques des génératrices}
+	
+	\subsection{Les différents types de génératrices}
+	\begin{wrapfigure}[4]{l}{3cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.34]{ch4/image16.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	On a toujours considéré que le courant d'excitation était fourni par une source 
+	extérieure. Or, à cause du rémanent, une tension existe lors de la rotation entre 
+	les balais de la machine pour un courant d'excitation nul. L'idée est d'utiliser 
+	ce courant pour exciter la machine.\\
+	S'il n'y a pas de charge, $i_e$ est très petit et on considère que la tension aux 
+	bornes est la fem. Pour $\Omega_r$ donné, on a deux caractéristiques :
+	\begin{enumerate}
+	\item Caractéristique à vide $e = f(i_e)$.
+	\item Loi d'Ohm du circuit d’excitation $e=(R_{exc}+R_e)i_e$.\footnote{En régime, 
+	il n'y a que les résistances : la self se comporte comme un fil.}
+	\end{enumerate}
+	\begin{center}
+	\includegraphics[scale=0.37]{ch4/image17.png}
+	\captionof{figure}{ }
+	\end{center}
+	L'intersection donne le point de fonctionnement. On voit qu'il existe une valeur 
+	de $R_{exc}$ au dela de laquelle la tension aux bornes est très faible (a). Si 
+	on inverse les bornes, la machine ne s'amorce pas et si la machine est linéaire, 
+	le seul point de fonctionnement est $e=0,i_e=0$ sauf si $R_{exc}+R_e=G\Omega_r$.\\
+	
+	En pratique, on rencontre trois types de génératrices :
+	\begin{description}
+	\item[Excitation dirigée / shunt] Beaucoup de spires pour avoir beaucoup 
+	d'ampères-tours avec peu de flux
+	\item[Excitation série] Ce type de moteur est caractérisé par le fait que 
+	le stator (inducteur) est raccordé en série avec le rotor (induit) : le même 
+	courant traverse le rotor et le stator. Cela offre une faible résistance, et 
+	le nombre de spire nécessaire est moins important ($\approx 100$ fois moins qu'en 
+	shunt).\footnote{ On fait tourner le moteur : entre les balais on obtient $e$. Pour avoir 
+	le flux, on passe tout le courant dans l'excitation.}
+	\item[Compoundage] Les deux en même temps.
+	\end{description}
+	
+	
+	\subsection{Caractéristiques à vide et en charge d'une machine à excitation 
+	indépendante}
+		\subsubsection{Fem à vide}
+			\begin{wrapfigure}[7]{r}{3.3cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.34]{ch4/image18.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		Négligeons l'hystérèse. Ici on place le voltmètre sur les balais pour mesurer 
+		la fem à vide. Le courant $i_e$ comprend le rhéostat et le rémanent n'est 
+		pas représenter. Initialement la courbe est "droite" puis on arrive à saturation.
 		
 		
+		\subsubsection{Fem et tension en charge}
+		La tension aux bornes de la machine est donnée par (courant de charge fixé) :
+		\begin{equation}
+		v_a = e - R_ai_a - \Delta V_b
+		\end{equation}
+		où $e$ vaut la fem à vide correspondant à $i_e' = i_e-i_{eri}$ où $i_{eri}$ 
+		est le courant d’excitation correspondant aux A.t. démagnétisant de la réaction 
+		d'induit.\\
+		\danger Si le flux est perpendiculaire, cela n'influe pas sur d'autres flux.\\
+		\newpage
+
+		\begin{center}
+		\includegraphics[scale=0.43]{ch4/image19.png}
+		\captionof{figure}{ }
+		\end{center}		
+		
+		\begin{wrapfigure}[9]{l}{3.3cm}
+		\includegraphics[scale=0.34]{ch4/image20.png}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		On déduit le caractéristique en charge de celle à vide en décalant chaque 
+		point du triangle des pertes $ABC$ où $AB$ vaut $i_{eri}$ et $BC$ vaut 
+		$R_ai_a + \Delta V_b$. En supposant que pour $i_a$ fixé, $R_a/i_{eri} =\ cste$, 
+		on déduit la caractéristique en charge par translation $AC$.\\
+				
+		En pratique, $i_{eri} =\ cste$ si $i_a =\ cste$ n'est vérifiée que pour un 
+		petit domaine, les courbes ne sont pas des parfaites translation. On remarque 
+		sur la courbe réelle, qu'au début, il n'y a pas de réaction d'induit. Ces 
+		courbes sont également commune "à la fin" à cause de la saturation.
 		
 		
+\section{Courbes caractéristiques des moteurs}
+On cherche à caractériser le courant consommé par le moteur, $i_a$ et $-C$ le couple 
+net appliqué à la charge tel que
+\begin{equation}
+-C = C_{em} - C_{pmeca} - C_{pmagn}
+\end{equation}
 		
+	\subsection{Caractéristique à vide en moteur $\Omega_r = f(i_e)$}
+	Supposons $V_{al}$ constante, $R_d=0$ (en régime), $R_a$ constante (pas d'effet 
+	thermique) et négligeons $\Delta V_b$. On suppose que la caractéristique à vide,
+	en génératrice, 	prise à la vitesse de référence $\Omega_g$ est connue :
+	\begin{equation}
+	e_{0g} = f(i_e)
+	\end{equation}
+	Mais aussi la famille des courbe des f.e.m. en charge :
+	\begin{equation}
+	e_g = f(i_e,i_a)\qquad \forall i_a
+	\end{equation}
+	La caractéristique à vide du moteur lie $\Omega_r = f(i_e)$ pour $V_a=\ cste$ et 
+	couple moteur nul. Le couple EM sert alors juste à compenser les pertes mécaniques : 
+	courant absorbé très faible\footnote{Car le moteur n'entraîne rien}, tension aux 
+	bornes $\approx$ fem à vide :
+	\begin{equation}
+	v_a = e+R_ai_a + \Delta V_B \approx e \approx e_0
+	\end{equation}
+	On on sait que (en moteur) $\displaystyle e_0 = K\Phi(i_e)\Omega_r \Longrightarrow 
+	\Omega_r = 	\dfrac{e_0}{K\Phi(i_e)}$. Pour la même valeur du courant d’excitation, 
+	la caractéristique à vide (en génératrice) donne $e_{0g} = K\Phi(i_e)\Omega_g$. On a donc :
+	\begin{equation}
+	\Omega_r = 	\dfrac{e_0}{K\Phi(i_e)}\ \ \text{ feat. }\ \ \left\{\begin{array}{ll}
+	v_a &\approx e_0\\
+	\frac{1}{K\Phi(i_e)} &= \frac{\Omega_g}{e_{0g}(i_e)}
+	\end{array}\right.\quad  \Longrightarrow\quad \Omega_r = \Omega_g\dfrac{v_a}{e_{0g}(i_e)}
+	\end{equation}\newpage
+	
+	\begin{wrapfigure}[9]{l}{5.3cm}
+	\includegraphics[scale=0.34]{ch4/image22.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	On remarque que la caractéristique à vide en moteur est, à une constante près, 
+	l'inverse de celle en génératrice. On voit que la vitesse \textbf{diminue} quand 
+	$i_e$ \textbf{augmente}\footnote{Comme vu précédemment sur le schéma bloc à cause 
+	de la rétroaction!} Il faut démarrer le moteur à pleine excitation ($i_e=i_{max}$) 
+	pour avoir le couple moteur maximal. On voit également que si on diminue trop 
+	l'excitation (coupe un fil) la vitesse augmente : danger mécanique $\rightarrow$ le 
+	courant n'est plus limité que par la résistance d'induit et peut atteindre dix 
+	fois le courant nominal. Les disjoncteurs se chargent de protéger la machine.
+	
+	
+	\subsection{Caractéristiques en charge - moteur à excitation indépendante}
+	On peut voir le "en charge" comme un freinage, charge dont le couple résistif est 
+	connu. La puissance mécanique va changer et il y aura des effets sur la vitesse et 
+	la consommation (le courant d'alimentation change même si la tension d'alimentation 
+	est constante).\\
+	On suppose que $i_e=\ cste$ et $v_a =\ cste = V_{al}$. On sait que :\\
+	
+	\retenir{\begin{equation}
+	\begin{array}{ll}
+	v_a &= e+ \Delta V_b + R_ai_a\\
+	e &= K\Phi\Omega_r\\
+	C_{em} &= K\Phi i_a\\
+	-C &= C_{em} - C_p\\
+	e_g &= f(i_e,i_a)\quad \text{à $\Omega_g$ donné)}\\
+	K\Phi &= \frac{e}{\Omega_r} = \frac{e_g}{\Omega_g}
+	\end{array}
+	\end{equation}
+	avec $C_p$ le couple des pertes (frottement, Foucault, \dots). L'ensemble des 
+	courbes mesurées en génératrice est donnée par $e_g$. Comme le flux est difficile 
+	à mesurer, 	on le calculera via $e_g/\Omega_g$ avec $\Delta V_b$ négligé (dernière 
+	équation). Notons qu'il n'y a ici pas de dérivée : nous sommes en régime.}\ 
+	
+	Nous avons donc
+	\begin{equation}
+	\begin{array}{ll}
+	\Omega_r &= \dfrac{e}{K\Phi}\\
+	&= \dfrac{v_a -\Delta V_b\text{sign}(i_a) - R_ai_a}{e_g/\Omega_g}\\
+	&= \Omega_g\dfrac{v_a -\Delta V_b - R_ai_a}{e_g}	
+	\end{array}
+	\end{equation}
+	
+		\subsubsection{a. $\Omega_r = f(i_a)$}
+		Supposons la réaction d'induit négligeable : $e_g(i_e,i_a) = e_{0g}(i_e)$. D'où
+		\begin{equation}
+		\Omega_r = \Omega_g \dfrac{v_a-\Delta V_b\text{ sign}(i_a)}{e_{0g}(i_e)}- 
+		\Omega_g \dfrac{R_ai_a}{e_{0g}(i_e)}
+		\end{equation}
+
+\begin{center}
+	\includegraphics[scale=0.34]{ch4/image23.png}
+	\captionof{figure}{ }
+\end{center}
+		Comme $R_a$ est très petit, notre terme sera presque une droite horizontale : à 
+		$V_a, i_e=\ cste$, la vitesse de rotation à excitation indépendante dépend peu de 
+		la charge. C'est rassurant, car nous avions vu que la vitesse n'allait que peu 
+		changer quand on dépose son pied ! Le 	"saut" à l'intersection avec l'ordonnée 
+		correspond à la variation de signe au niveau des balais. \\
+		Quand on augmente $i_e$, $e_{0g}$ augmente aussi\footnote{Nos fameuses courbes $e_0$ 
+		en fonction de $i_e$ (sans tenir compte de $i_a$ ici.} et la vitesse à vide diminue : 
+		déplacement caractéristique (idem si $V_a$ diminue). \\
 		
-		
-		
+		Avec une réaction d'induit, pour $i_e$ fixé, la fem en charge $e_g$ diminue quand 
+		$i_a$ augmente : augmentation de la vitesse de rotation en moteur aux valeurs 
+		élevée du courant.
+		\begin{center}
+			\includegraphics[scale=0.5]{ch4/image24.png}
+	\captionof{figure}{Pour l'oral, ceci est un bon complément au schéma bloc vu plut haut! 
+	Donne une explication plus matheuse.}
+		\end{center}
+	
+		\subsubsection{b. $-C = f(i_a)$}
+		Dans ce cas-ci on a : 
+		\begin{equation}
+		C_{em} = K\Phi i_a = \dfrac{g(i_e,i_a)}{\Omega_g}i_a
+		\end{equation}
+		avec $-C = C_{em}-C_p$. Attention, $C_{em}$ n'est pas le couple mécanique net utile ! 
+		Pour $e_g(i_e,i_a)$ on utilise la courbe en génératrice et $\Omega_g$ est constante 
+		en génératrice. \\
+		Si la réaction d'induit est négligeable avec $i_e$ constant et $e_g=e_{0g}$ constant, 
+		$C_{em}$ est linéaire en fonction du courant absorbé $i_a$. Comme la vitesse ne varie 
+		que peu, il en est de même pour le couple de perte : le couple moteur est aussi linéaire 
+		en fonction de $i_a$.
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 		
