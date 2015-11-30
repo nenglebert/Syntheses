@@ -65,7 +65,7 @@
 			\begin{equation}
 			\left\{\begin{array}{ll}
 			V_{AK} &< 0.6\ V\\
-			I_A &0 0
+			I_A &= 0
 			\end{array}\right.
 			\end{equation}	
 			On peut, avec un raisonnement semblable, associer une diode bloquante à
@@ -81,7 +81,7 @@
 		
 	\section{Résoudre un circuit à diodes}
 	\danger Ne surtout pas confondre potentiel (par exemple, sur une des bornes de 
-	la diode ($V_A, V_L$)) avec une ddp (tension sur la diode ($V_{AK}-V_A-V_K$). 
+	la diode ($V_A$, $V_L$)) avec une ddp (tension sur la diode ($V_{AK}=V_A-V_K$). 
 	C'est bien $V_{AK}$ qui figure sur la caractéristique, ne mélangeons pas tout!
 	
 		\subsection{Méthode canonique}
@@ -91,7 +91,7 @@
 	\captionof{figure}{ }
 	\end{wrapfigure}
 		La première chose à faire est définir les signes des tension et des courants. 
-		Il y a alors trois inconnues ($V_{AK}, V_R, I_A$) et il nous faut autant 
+		Il y a alors trois inconnues ($V_{AK}$, $V_R$, $I_A$) et il nous faut autant 
 		d'équations :
 		\begin{enumerate}
 		\item Loi des mailles $E = V_{AK}+V_R$
@@ -117,14 +117,14 @@
 		bon (vérifiez quand même l'autre cas!). On aurait pu également prendre la 
 		seconde hypothèse : remplacer la diode par un circuit ouvert. Si $V_{AK}<0.6\ V$
 		alors ce serait bon.\\
-		On remarque que le test de l'hypothèse se fait avec l’Inégalité. Pour des 
-		exemples de calcul, voir pages 20 à 23.\\
+		On remarque que le test de l'hypothèse se fait avec l’inégalité. Pour des 
+		exemples de calcul, voir p.~20--23.\\
 		
 		Une résolution graphique est également possible : il faut dessiner, sur le 
 		même graphique, la caractéristique de la diode et celle du circuit extérieur. 
 		En fonction du point d'intersection, on peut déterminer l'état de la diode. 
 		Ceci n'est faisable que pour des circuits extérieurs simples !\\
-		\danger En synthèse, il faut bien raisonner par hypothèses pas \textbf{pas} 
+		\danger En synthèse, il faut bien raisonner par hypothèses et surtout ne \textbf{pas} 
 		utiliser la superposition!
 			
 			
@@ -189,14 +189,14 @@
 		\end{wrapfigure}
 		Il faut appliquer la méthode vue, pour quatre cas possibles : chacune des 
 		deux diodes peut être dans les deux états. Supposons $E_1>E_2>0$ et 
-		calculons $V_{out}$. Soit $D_1, D_2$, nos deux diodes.\\
+		calculons $V_{out}$. Soit $D_1$, $D_2$, nos deux diodes.\\
 		Si $D_1$ est passante, $V_K = E_1-0.6\ V$.
 		\begin{itemize}
 		\item[$\bullet$] Si $D_2$ est passante, $V_K = E_2-0.6\ V$ ce qui est 
 		impossible : les deux ne peuvent pas être passantes.
 		\item[$\bullet$] Si $D_2$ est bloquante, on peut la modéliser par un 
-		court-circuit : le courant dans $D_1$ est positif, elle peut donc être 
-		passante. La ddp sur $D_2$ vaut $V_{A2}-V_L < 0.6\ V$ c'est bon !
+		circuit ouvert : le courant dans $D_1$ est positif, elle peut donc être 
+		passante. La ddp sur $D_2$ vaut $V_{A2}-V_K < 0.6\ V$ c'est bon !
 		\end{itemize}
 		La situation $D_1$ passante et $D_2$ bloquante est bonne. On peut faire 
 		un même raisonnement dans le cas inverse pour en venir à la conclusion 
@@ -237,14 +237,14 @@
 			\item Si $E>0 \rightarrow V_A>V_B$
 				\begin{itemize}
 				\item[$\bullet$] $D_1/D_2$ prends le max, c'est à dire $V_C=V_A$.
-				\item[$\bullet$] $D_3/D_4$ prends le max, c'est à dire $V_D=V_B$.
+				\item[$\bullet$] $D_3/D_4$ prends le min, c'est à dire $V_D=V_B$.
 				\item[$\bullet$] $V_{out} = V-C-V_D = V_A-V_B=E$
 				\end{itemize}\ \\
 				
 			\item Si $E<0 \rightarrow V_A<V_B$
 				\begin{itemize}
 				\item[$\bullet$] $D_1/D_2$ prends le max, c'est à dire $V_C=V_B$.
-				\item[$\bullet$] $D_3/D_4$ prends le max, c'est à dire $V_D=V_A$.
+				\item[$\bullet$] $D_3/D_4$ prends le min, c'est à dire $V_D=V_A$.
 				\item[$\bullet$] $V_{out} = V-C-V_D = V_B-V_A=-E >0$
 				\end{itemize}			
 			\end{enumerate}
@@ -262,12 +262,12 @@
 		Si la diode est passante $V_L=V_{AK}=0.6\ V$.
 		\begin{itemize}
 		\item[$\bullet$] Le courant dans $R_L$ vaut $I_L = 0.6/R_L$
-		\item[$\bullet$] Le courant dans $R_L$ vaut $I_L = (E-0.6)/R_1$		
+		\item[$\bullet$] Le courant dans $R_1$ vaut $I_1 = (E-0.6)/R_1$		
 		\item[$\bullet$] Le courant dans $D$ est la différence entre les deux : $I_D 
 		= I_1-I_L$.
 		\item[$\bullet$] $I_D > 0 \Rightarrow E.R_L(R_1+R_L)>V_{TH}$
 		\end{itemize}
-		Si la diode est passante 
+		Si la diode est bloquante 
 		\begin{itemize}
 		\item[$\bullet$] Diviseur résistif  $V_{out} = E.R_L(R_1+R_L)$
 		\item[$\bullet$] Valable que si la ddp sur la diode $<V_{TH}$ : 
