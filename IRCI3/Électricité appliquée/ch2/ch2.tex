@@ -386,20 +386,46 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	Sur la \autoref{fig:2.6} on peut voir cette expression par l'air hachuré pour $\Delta \psi$. Si la relation entre $\psi$ et i est biunivoque, l'énergie sera tantôt absorbée tantôt redistribué tel que l'intégrale est nulle après une période. Par contre, si ce n'est pas le cas, l'énergie absorbée en une période est proportionnelle à l'air du cycle d'hystérèse B-H. Pour réduire cette perte, on cherchera le matériau d'hystérèse la plus étroite. \\
 	
 	\textsc{Pertes par courant de Foucault}\\
-	A FAIRE
-	
+	\begin{wrapfigure}[18]{r}{2.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch2/image7} 
+	\captionof{figure}{}
+	\label{fig:2.7}
+	\end{wrapfigure}
+	Considérons une tôle d'épaisseur $e$ et prenons un élément de surface ABCD au sein de celui-ci, de hauteur $h$, longueur $l$ et constitué d'un tube d'épaisseur $dx$. La f.e.m induite sera d'après la loi de Faraday $e = \int \vec{E}\, \vec{dl} = -\int \frac{\D \vec{B}}{\D  t} \vec{dS}$
+	\begin{equation}
+		\sqrt{2} E_{ABCD} = 2\pi f B_M 2xh
+	\end{equation}	 
+	La résistance du circuit et par Ohm, le courant sont 
+	\begin{equation}
+		R = \rho\frac{2h}{ldx} \qquad et \qquad dI = \frac{\sqrt{2}\pi f B_M lxdx}{\rho}
+	\end{equation}
+	La perte de puissance vaut alors
+	\begin{equation}
+		dP_{pF} = EdI = \frac{(\sqrt{2}\pi f B_M)^2  2lhx^2dx}{\rho}
+	\end{equation}
+	Après intégration de la puissance de 0 à $e/2$	et sachant que $V = \sqrt{2}\pi f NB_MS$\footnote{Démontré plus tard dans le cours.}, on a 
+	\begin{equation}
+		P_{pF} = \mbox{volume}\frac{V^2e^2}{12\rho N^2 S^2}
+	\end{equation}
+	où $S$ est supposé constant et $V$ est la valeur efficace de la tension au borne d'un circuit sans résistance. On conclue que les pertes par Foucault sont proportionnelles au carré de la fréquence alors que les pertes par hystérèse sont directement proportionnelle à la fréquence. \\
+	En pratique on réalise de tels circuits par empilage de tôles de petites épaisseur ($e^2$ dans l'équation) et les pertes globales sont de l'ordre de $3.5\, W/kg$. \footnote{Ramené à $1\, W/kg$ avec du silicium.}
 	
 	\subsubsection{Matériau utilisé}
-	L'acier, la fonte, le fer, \dots Le plus important et ce peu importe le 
-	matériau est la loi qui lie l'induction au champ magnétique. Ce n'est 
-	pas quelque chose de linéaire : la perméabilité d'un matériau varie en 
+	\begin{wrapfigure}[6]{r}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch2/image8} 
+	\captionof{figure}{}
+	\label{fig:2.7}
+	\end{wrapfigure}
+	L'acier, la fonte, le fer, \dots Le plus important est la loi qui lie l'induction au champ magnétique. Ce n'est 
+	pas quelque chose de linéaire : la perméabilité $\mu _r$ d'un matériau varie en 
 	fonction du champ qui lui est appliqué. Pour représenter ça, on regarde 
-	les \textit{courbes de magnétisation.}
-	
+	les \textit{courbes de magnétisation.} On y observe le phénomène de saturation. 
 	
 	\subsection{Circuit électrique}
 	\textsc{Rappel.} L'\textbf{inducteur} est chargé de créer le flux utile et l'
-	\textbf{induit} chargé de créer les f.e.m.\footnote{Wiki : L'inducteur est un organe 
+	\textbf{induit} chargé de créer les f.e.m (génératrices) ou couples (moteurs).\footnote{Wiki : L'inducteur est un organe 
 	électrotechnique, généralement un électroaimant, ayant comme fonction d'induire 
 	un champ électromagnétique dans un induit servant à chauffer toutes sortes de 
 	conducteurs comme des métaux de toutes sortes.}
@@ -407,23 +433,29 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 		\subsubsection{Disposition des enroulements}
 		\textsc{Inducteur}\\
 		Il peut être situé au rotor. On utilise des aimants permanents pour les 
-		petites puissances.\\
+		petites puissances. On distingue les inducteurs à pôles saillants (enroulement autour d'aimant) et ceux à pôles lisse (conducteurs déposés dans les encoches).\\
 		
 		\textsc{Induit}\\
 		Les conducteurs sont généralement isolés entre eux. On utilise souvent 
-		un bobinage.
+		un bobinage creux pour le refroidissement, déposé dans une encoche fermée par des cales (meilleurs résistance mécanique et réduction de l'entrefer).  
 		
 		\subsubsection{Groupement des conducteurs}
 		L'association des conducteurs d'une machine est le \textbf{bobinage}. 
 		\begin{description}
-		\item[Conducteurs.] On peut utiliser un conducteur (massif ou creux) pour 
-		véhiculer un courant $I$.
-		\item[Spire.] Constituée de deux conducteurs
+		\item[Conducteurs.] On peut utiliser un conducteur (massif ou creux) ou plusieurs conducteur en parallèle pour 
+		véhiculer un courant $I$ de densité allant de $2.5$ à $5\, A/mm^2$.
+		\item[Spire.] Constituée de deux conducteurs avec les tensions déphasées de 180\degres .
 		\item[Bobine.] Lorsqu'il y a plusieurs conducteurs par encoche.
 		\item[Phase.] Un groupe de bobines associées en série ou en parallèle.
 		\end{description}
 		
 	\subsubsection{Pertes joules dans les conducteurs}
+	\begin{wrapfigure}[10]{l}{3cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch2/image9} 
+	\captionof{figure}{}
+	\label{fig:2.9}
+	\end{wrapfigure}
 	Étudions la densité de courant dans un conducteur d'encoche. Les courants 
 	circulants engendrent des pertes ($P_J = RI^2$ où $R=\rho l/S$ en continu).
 	Si le conducteur est massif, en continu, la densité de courant $J=I/S$ est 
@@ -452,8 +484,15 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	de supposer $J = \text{cste}$ : la densité de flux est plus importante à la 
 	"surface".\\
 	La fréquence augmente également les pertes (résistance plus importante). On 
-	peut utiliser des barre de Roebel obligeant le courant à passer à la surface 
+	peut utiliser des barres de Roebel obligeant le courant à passer à la surface 
 	et en profondeur de l'encoche pour contrer au maximum cet effet.
+	
+	\subsubsection{Matériau utilisé}
+	Les matériaux les plus utilisés sont le cuivre et l'alluminium. Considérons deux conducteur de sections différentes mais de résistance et longueur égale. On a
+	\begin{equation}
+		\rho _{Al}\frac{l}{S_{Al}} = \rho _{Cu}\frac{l}{S_{Cu}} \qquad \Rightarrow S_{Al} = 1.6 \, S_{Cu}
+	\end{equation}
+	On voit donc que la surface d'Al est plus grande que celle du Cu, mais la masse volumique de l'Al étant inférieur à celle de Cu, l'Al est plus avantageux\footnote{Mais encombrements et résistance mécanique moindre dans les machines.}. 
 	
 	\subsection{Isolation des machines}
 		\subsubsection{Loi de Montsinger - Vieillissement des isolants}
@@ -468,13 +507,13 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 		\log t = \log a - \theta\log b
 		\end{equation}
 		où $\log t$ est une fonction linéaire de $\theta$. Ainsi, élever la 
-		température de 6 à 10$^\circ$ réduit la durée de vie de moitié!
+		température de 6 à 10$^\circ$ réduit la durée de vie de moitié !
 		
 	\subsection{Refroidissement}
 		\subsubsection{Agents de refroidissement}
 		Le plus courant est d'utiliser l'air, un ventilateur. Des ventilations 
 		intérieures ou extérieures (enceinte close) pour une atmosphère fort 
-		polluée existent également. L'hydrogène peut également refroidir en 
+		polluée existent également. L'hydrogène (conductibilité thermique >>) peut également refroidir en 
 		le faisant circuler dans les conducteurs. Les diélectriques liquides 
 		sont également une option.
 		
@@ -486,14 +525,13 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	La \textit{puissance nominale} est plus subtile, il faut savoir de quoi on 
 	parle :
 	\begin{itemize}
-	\item[$\bullet$] C'est la puissance électrique développable (en kW) à ses 
-	bornes si on parle d'une génératrice à courant continu.
+	\item[$\bullet$] Pour une génératrice à courant continu, c'est la puissance électrique développable (en kW) à ses 
+	bornes
 	\item[$\bullet$] Pour un alternateur, c'est la puissance électrique 
 	apparente développable (en kVA)
 	\item[$\bullet$] Pour un moteur, il s'agit de la puissance mécanique 
 	disponible (en kW)
 	\end{itemize}
-	
 	
 	\subsection{Rendements des machines}
 	Par définition, on défini le rendement 
@@ -508,24 +546,26 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	où $p$ est la perte. Celles-ci ont un terme fixe et un terme variable avec 
 	la puissance apparente $S$. On utilisera la dernière égalité, plus précise\footnote{
 	Pour les machines génératrices, $P_a$ est mécanique et $P_u$ électrique. C'est 
-	l'inverse pour 	une machine motrice}. Les pertes peuvent être mécaniques, 
+	l'inverse pour une machine motrice}. Les pertes peuvent être mécaniques, 
 	due aux fer, \dots\\
 	
 	Pour le cuivre, les pertes sont variable en fonction de $I$ : $P_{p,Cu} = 3
 	RI^2$. Comme la tension est supposée constante : $P_{p,Cu} = kV^2I^2 = kS^2$. 
 	Les pertes totales s'expriment ainsi de la forme $p = a+bS^2$ et, par exemple, 
-	on peut écrire l'expression du rendement :\footnote{???}
+	on peut écrire l'expression du rendement :\footnote{La puissance absorbée correspond à la puissance active.}
 	\begin{equation}
 	\eta = \frac{P_a-p}{P_a} = \dfrac{S\cos\varphi-a-bS^2}{S\cos\varphi}
 	\end{equation}
-	La valeur maximale du rendement est donnée par
+	Dans le cas où $\cos \varphi$ est constant, la valeur maximale du rendement est donnée par
 	\begin{equation}
 	\frac{d\eta}{dS} = 0\qquad \Leftrightarrow\qquad S = \sqrt{\frac{a}{b}}
 	\end{equation}
-	La forme de la courbe rendement souhaitée dépend de ce que l'on veut faire.\\
+	pour lequel, les pertes constantes sont égales aux pertes variables. \\
+	Pour le cas de $\cos \varphi$ variable, on doit tracer des courbes de rendement. 
+	La forme de la courbe rendement souhaitée dépend des conditions d'utilisation.\\
 	Pour mesurer le rendement, il est plus intéressant de mesurer les pertes que 
 	de mesurer la puissance électrique et mécanique. On peut le faire en mesurant 
-	l'échauffement ou en mesurer chaque perte une à  une, par essai.
+	l'échauffement ou en mesurant chaque perte une à une, par essai.
 	
 	
 	\subsection{Caractéristiques des machines tournantes}
