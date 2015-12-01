@@ -569,10 +569,29 @@ est utilisé. Comme ça chauffe, il sera nécessaire de refroidir toute machine
 	
 	
 	\subsection{Caractéristiques des machines tournantes}
-	A lire\\
+		\subsubsection{Moteurs}
+			La caractéristique fondamentale d'un moteur est la relation entre le couple moteur et la vitesse de rotation. Pareillement pour la charge, on définit le couple résistance 
+			\begin{equation}
+				C_m = f(N) \qquad C_r = f(N)
+			\end{equation}
+			Le fonctionnement de l'ensemble moteur + charge est fixé par la position relative des deux caractéristiques. \\
+			
+			\textsc{Mise en vitesse}\\
+				Les phénomènes transitoire mécanique ont des constantes de temps plus élevées que les phénomènes électriques (établissement de flux). De ce fait, on suppose le régime électrique établi. Pour que la machine démarre, il faut que $C_{md} > C_{r0}$\footnote{Couple moteur de démarrage plus grand que couple résistance initial.}. De plus, il ne faut pas que l'écart entre les deux grandeurs soit trop grand pour éviter une trop grande accélération. On définit le \textbf{couple accélérateur}
+				\begin{equation}
+					C_m - C_r = J\frac{d\Omega _r}{dt}
+				\end{equation}
+	où $J$ est le moment d'inertie. Il faut que le temps de démarrage soit court, mais d'autre part il faut éviter l'échauffement. Pour la durée, reprenons l'équation et intégrons membre à membre
+	\begin{equation}
+		\int _0^{\Omega _n} \frac{d\Omega _r}{C_m	- C_r} = \frac{1}{J}\int _0 ^{t_d} dt = \frac{t_d}{J}
+	\end{equation}
+	Par difficulté d'exprimer les couples, on procède à des intégrations numériques.\\
+	
+	\textsc{Vitesse normale}\\
+	La vitesse de régime est atteinte lorsque $\frac{d\Omega _r}{dt} = 0$ donc quand les deux couples sont égaux\footnote{Les vitesses de rotation ne sont égaux que dans le cas d'accouplement direct.}. Il faut dès lors que l'équilibre soit stable. Si ce n'est pas le cas, soit on a un emballement du moteur, soit la machine cale et s'arrête progressivement (dans le cas d'un couple résistant pour lequel les courbes caractéristiques ne se croisent pas). \\
 	
 	\textsc{Génératrice}\\
-	A lire
+	C'est la caractéristique externe qui nous intéresse dans ce cas, pour $\cos \varphi et N = cst$ on a $U_g = f(I)$ et $U_r = f(I)$ (circuit de consommation). Le point de fonctionnement $U_g = U_r$, $I_g = I_r$ sera stable si le système revient à son état initial quand on fait varier $I$. 
 		
 		
 		
