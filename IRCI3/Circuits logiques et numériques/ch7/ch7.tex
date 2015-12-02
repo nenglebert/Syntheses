@@ -279,3 +279,51 @@ L'un des problèmes fondamental des circuits réels logiques à rétroaction est
 	\item Action sur la \textbf{mise à jour} des variables d'état $\Rightarrow$ conception des systèmes \textbf{séquentiels synchrones}
 \end{itemize}
 \subsection{Origine du problème des courses critiques}
+Prenons une table d'état déjà codée et faisons l'hypothèse que nous sommes dans l'état $00$ stable (c-à-d $ab=00$). Changeons les valeurs d'entrée $ab=00\rightarrow 11$. D'après la table, nous devons aller à l'état $11$. Nous avons donc $Y_1Y_2=00\rightarrow 11$. Regardons ce qu'il se passe en pratique
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.3\textwidth]{ch7/image29}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{ch7/image30}
+\end{figure}
+Dans la boucle de rétroaction, la valeur de chacune des deux variables ($Y_1$ et $Y_2$) passe de $0$ à $1$. Or la transition dit $00\rightarrow 11$ donc le changement de valeur de chacune doit s'effectuer exactement en \emph{même temps} ! Si ces valeurs ne changent pas au même moment (fils de rétroaction de longueur différentes par exemple), il y a deux cas :
+\begin{itemize}
+	\item $Y_1$ a été plus vite que $Y_2$ ($Y_1Y_2=10$)
+	\item $Y_2$ a été plus vite que $Y_1$ ($Y_1Y_2=01$)
+\end{itemize} 
+Donc au lieu de faire $00\rightarrow 11$ on fera $00\rightarrow 01\rightarrow ?$ ou  $00\rightarrow 10\rightarrow ?$. \emph{Le système présente un comportement non voulu (non-déterministe)}\dots
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.3\textwidth]{ch7/image31}
+\end{figure}
+Ainsi, les courses critiques se présenterons lorsque la distance de Hamming entre 2 états codées sera $>1$.
+\subsection{Courses critiques et circuits logiques}
+Il y a deux approches de résolutions des courses critiques :
+\begin{itemize}
+	\item on résout en les éliminant $\Rightarrow$ \emph{circuits asynchrones}
+	\item on résout en synchronisant afin de mettre à jour le «futur» et ainsi attendre les variables d'états les plus lentes $\Rightarrow$ \emph{circuits synchrones} 
+\end{itemize}
+
+\paragraph{Remarque :} 
+\begin{itemize}
+	\item Ne pas confondre variables d'états et d'entrées
+	\item Le changement des variables d'états n'a rien à voir avec le changement des entrées (les entrées sont des variables aléatoires)
+	\item On considère que le changement simultané des variables d'entrées est possible
+	\item On spécifie dans le cahier des charges le comportement du système dans le cas des variations simultanées des entrées
+	\item Parfois, les variations simultanées sont impossibles (réservoir par exemple)
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\textwidth]{ch7/image32}
+\end{figure}
+\subsection{Méthodes de résolution des courses critiques pour des circuits asynchrones}
+Il existe 3 méthodes, chacune devant être employée si la précédente n'a pas fonctionné (sauf la 1\up{ère} bien évidement), donc \emph{Méthode 1 $\rightarrow$ Méthode 2 $\rightarrow$ Méthode 3}\\
+\danger On résout les courses (c-à-d en utilisant ces méthodes) uniquement pour le cas des systèmes asynchrones
+\subsubsection{Méthode 1 : codage des états}
+Cette méthode consiste à choisir un codage des états tels qu'il n'y ait pas de courses critiques (vu que le codage est arbitraire). Pour ce faire, on dessine un \emph{graphe de codage des états}, permettant de trouver le bon codage ou prouver qu'il n'en existe pas.
+\paragraph{Graphe de codage des états :} 
+\subsubsection{Méthode 2 : transitions}
+
+\subsubsection{Méthode 3 : état supplémentaire}
