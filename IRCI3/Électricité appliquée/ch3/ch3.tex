@@ -265,14 +265,14 @@ Ceci décrit le transformateur idéal.
 		
 	\subsection{Inductance à circuit magnétique à entrefer}
 		\begin{wrapfigure}[5]{l}{3.5cm}
-		\vspace{-8mm}
+		\vspace{-5mm}
 		\includegraphics[scale=0.273]{ch3/image7.png}
 		\captionof{figure}{ }
 		\end{wrapfigure}
 	La réluctance d'un tube de flux d'air d'1mm est équivalent à la 
 	réluctance d'un tube de flux de 5000mm d'épaisseur dans le fer : l'
 	inductance est essentiellement déterminée par l'entrefer : on peut le 
-	voir comme un blindage magnétique.\\
+	voir comme un blindage magnétique.\\\\
 	
 	
 	\subsection{Phénomènes transitoire de mise sous tension d'une bobine 
@@ -358,7 +358,7 @@ Ceci décrit le transformateur idéal.
 		k_1 \equiv \frac{\phi_{21}|_{i_2=0}}{\phi_1|_{i_2=0}}\leq 1
 		\end{equation}
 		où $k<1$ sauf si les bobines sont confondues ($k=1$).\\
-		Reprenons nos équations fétiches (en considérant les spires confondues) :
+		Reprenons nos équations fétiches :
 		\begin{equation}
 		\begin{array}{llll}
 		\Psi_1|_{i_2=0} &= N_1\phi_1|_{i_2=0}& &= L_1i_1\\
@@ -476,14 +476,18 @@ Ceci décrit le transformateur idéal.
 		\subsubsection{Applications du schéma équivalent}
 		Avec lui, on peut calculer le comportement statique et dynamique du 
 		transformateur avec $R$ et $L$. Le rapport de transformation à vide, par 
-		exemple, vaut\footnote{$v_1 = R_1i_1 + (L_1-\mu M)Di_1 + \mu MDi_2$.}
+		exemple, vaut\footnote{$v_1 = R_1i_1 + (L_1-\mu M)Di_1 + \mu MD(i_1+i_2)$.}
 		\begin{equation}
 		\left(\dfrac{v_1}{v_2}\right)_{i_2=0} = \mu\dfrac{R_1+L_1D}{\mu MD}
 		\end{equation}
-		La page 3.23 détaille la recherche de la courbe de réponse en fréquence 
-		d'un transformateur (important). Ce rapport vaut $\mu/k$ si $R$ est 
+		Ce rapport vaut $\mu/k$ si $R$ est 
 		négligeable. Pour le cas parfait, on retrouve bien $\mu$. Plus il y 
 		aura de la dispersion, plus ce rapport s'écartera de $\mu$.
+		La page 3.23 détaille la recherche de la courbe de réponse en fréquence 
+		d'un transformateur (important). En gros, pour les basses fréquences, on peut
+		négliger les réactances devant les résistances (filtre passe-haut) et en haute 
+		fréquence le
+		contraire (filtre passe-bas). 
 		
 	\subsection{Transformateurs à bobines couplées dans l'air}
 		Le système étant linéaire, on peut écrire
@@ -557,7 +561,7 @@ Ceci décrit le transformateur idéal.
 		&= R_1i_1 + N_1D(\phi_{d1}+\phi_C)
 		\end{array}
 		\end{equation}
-		Comme le flux de dispersion est dans l'air, un milieu linéaire $\phi = Li_1$. 
+		Comme le flux de dispersion est dans l'air, un milieu linéaire, $\phi = Li_1$. 
 		Donc
 		\begin{equation}
 		v_1 = R_1i_1 + L_{d1}Di_1+N_1D\phi_C
@@ -608,7 +612,9 @@ Ceci décrit le transformateur idéal.
 		au secondaire pour que $I_v\approx0$.
 		
 		
-	\setcounter{subsection}{4}	
+	\subsection{Grandeurs réduites en monophasé}
+	Les grandeurs réduites (typiquement l'utilisation de $\mu$) permettent de ramener les valeurs du circuit à des mêmes ordre de grandeurs, vu par rapport au premier ou deuxième. C'est un changement de base dans laquelle les valeurs sont exprimées. 
+	
 	\subsection{Pertes et rendement}
 	La puissance au primaire est égale à la somme de la puissance dans la charge, 
 	des pertes magnétiques et joules
@@ -626,7 +632,7 @@ Ceci décrit le transformateur idéal.
 	\eta = \dfrac{P_c}{P_1} = \dfrac{P_c}{P_c+P_{pFe} + P_{pCu}}
 	\end{equation}
 	Après analyse, le rendement maximal est atteint pour une charge $P_c$ telle 
-	que $P_{pFe} = P_{pCu}$.
+	que $P_{pFe} = P_{pCu}$. Les transformateurs utilisés en centrale auront leur rendement maximal pour un fonctionnement nominale alors que ceux pour la distribution, ce sera pour un fonctionnement à faible charge. 
 	
 	\begin{center}
 	\includegraphics[scale=0.35]{ch3/imager4.png}
@@ -672,7 +678,7 @@ Ceci décrit le transformateur idéal.
 
 				Considérons la tension simple de la phase $A$ du primaire et $a$ du secondaire. 
 		On obtient $V_a$ en divisant $\underline{V_2}$ par $\sqrt{3}$ ainsi qu'en 
-		effectuant une rotation du phaseur de $30^\circ$. Le rapport de tension est 
+		effectuant une rotation du phaseur de $30^\circ$. Le rapport de tension va 
 		devenir $\mathbb{C}$ :
 		\begin{equation}
 		\mu \approx \dfrac{\underline{V_A}}{\underline{V_a}} = \dfrac{N_1}{N_2}\sqrt{3}
