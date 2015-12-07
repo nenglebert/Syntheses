@@ -173,12 +173,12 @@ mais leurs capacité de réglage de vitesse nous pousse à les étudier.
 		
 		\retenir{\begin{equation}
 		e = K\ \Omega_r\ \Phi
+		\label{eq:4.5}
 		\end{equation}
 		où	$\Phi$ est le flux utile (coupé par une spire diamétrale 
 		d'axe longitudinal de l'induit) par pôle, $\Omega_r$ en rad/s et 
-		$K$, une constante qui dépend des données de l'enroulement.}
-		
-		\newpage
+		$K$, une constante qui dépend des données de l'enroulement.}\ \\
+
 		\begin{wrapfigure}[12]{l}{4.8cm}
 		\includegraphics[scale=0.4]{ch4/image6.png}
 		\captionof{figure}{ }
@@ -198,7 +198,7 @@ mais leurs capacité de réglage de vitesse nous pousse à les étudier.
 		collecteur.
 
 		\subsubsection{Méthode des circuits}
-		\begin{wrapfigure}[1]{r}{2.8cm}
+		\begin{wrapfigure}[10]{r}{2.8cm}
 		\vspace{-5mm}
 		\includegraphics[scale=0.5]{ch4/image7.png}
 		\captionof{figure}{ }
@@ -248,7 +248,6 @@ mais leurs capacité de réglage de vitesse nous pousse à les étudier.
 		immédiatement à la détermination de $K, \Phi$ en fonction de 
 		$i_e$, il en est de même pour $G$ en fonction de $i_e$.
 		
-	\newpage
 	\subsection{Effet de décalage des balais}
 	\begin{wrapfigure}[7]{r}{9.5cm}
 	\vspace{-8mm}
@@ -266,7 +265,7 @@ mais leurs capacité de réglage de vitesse nous pousse à les étudier.
 	\begin{enumerate}
 	\item Adapté au but poursuivi, ça ne sert à rien de faire trop.
 	\item Il doit être simple, sinon avoues que tu ne le liras pas.
-	\item Il doit être homogène, si on applique un hypothèse il faut 
+	\item Il doit être homogène, si on applique une hypothèse il faut 
 	toujours l'appliquer.
 	\end{enumerate}\ \\
 	
@@ -314,7 +313,6 @@ mais leurs capacité de réglage de vitesse nous pousse à les étudier.
 		nous fournissent un schéma équivalent dont la caractéristique 
 		permet le passage de $\Psi_e$ à $i_e$.
 		
-		\newpage
 		Il est également possible, via $D\Psi_e = v_e - R_ei_e(\Psi_e)$ 
 		d'obtenir le schéma-bloc suivant :
 		\begin{center}
@@ -422,8 +420,10 @@ source de tension une résistance $R_a$ et une inductance $L_a$.
 		et une fois démagnétisant (corde de sortie). La figure ci-contre 
 		montre comment obtenir $B$ par la somme de l'induction de l'inducteur 
 		$B_e$ et la réaction d'induit $B_a$.\\
-		Notons que le flux n'a pas changé, la f.e.m. en charge est la 
-		même qu'à vide.
+		Notons que le flux par pôle n'a pas changé, la f.e.m. en charge est la 
+		même qu'à vide. Cependant, l'induction est tantôt plus grande tantôt plus 
+		faible par endroit, donc certaines spires supportent plus de tensions et il y a 
+		risque de claquage entre les lames du collecteur. 
 		
 		\subsubsection{Avec saturation}
 		L'induction en charge est plus petite que la somme de l'excitation 
@@ -449,7 +449,7 @@ source de tension une résistance $R_a$ et une inductance $L_a$.
 		\end{equation}
 		Les A.t. varient ainsi linéairement de $N_ei_e-A$ à $N_ei_e+A$ (
 		$OP_1$ à $OP_2$ sur le schéma page 4.33). \textbf{Lire le texte 
-		sur cette page, c'est assez confus.}
+		sur cette page, c'est assez confus. Enes confirme.}
 		
 		\subsection{Couple électromécanique - Couple extérieur}
 		La loi de Laplace ($F+ilB$) permet de calculer la somme sur 
@@ -466,13 +466,22 @@ source de tension une résistance $R_a$ et une inductance $L_a$.
 		magnétiques existent tout de même (hystérèse, Foucault, ...). Les 
 		pertes méca sont dues aux frottement (fonction de $\Omega_r$). La 
 		puissance mécanique appliquée à un moteur est négative. On peut 
-		calculer le couple électromécanique $P_{em} = C_{em}\Omega_r$.\\
+		calculer le couple électromécanique $P_{em} = C_{em}\Omega_r$. D'autre part,
+		\begin{equation}
+		\begin{aligned}
+			P_{em} &= P_{électrique} - P_{pJ}\\
+						 &= v_a i_a - \Delta V_b i_a -R_a i_a^2\\
+						 &= e i_a
+		\end{aligned}
+		\end{equation}
+		En utilisant \autoref{eq:4.5}, on trouve que 
+		\begin{equation}
+			C_{em} = K\Phi i_a = Gi_ei_a.
+		\end{equation}
+		En moteur, la réaction d'induit change de signe : magnétisante sous la corne polaire d'entrée.\\
 		
-		\textbf{Partie en cours de réédition}.
+		\textbf{Réécriture de Nicolas Englebert}
 		
-		
-\newpage
-
 	\subsection{Inconvénients de la réaction d'induit}
 	Cette réaction cause trois effets néfastes :
 	\begin{enumerate}
