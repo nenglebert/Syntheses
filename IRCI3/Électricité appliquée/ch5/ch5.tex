@@ -409,6 +409,445 @@ comme pour le transformateur.
 	
 	\newpage
 \section{Champs pulsant et champs tournants}
+	\subsection{Les champs créés par une bobine unique}
+	La f.m.m. d'une bobine d'axe $f$ parcouru par un courant $i_f$ réduit à son 
+	fondamental vaut (on reprend les notations précédemment définies)
+	\begin{equation}
+	\mathcal{F}_{(\beta)} = \dfrac{N_fi_f}{2p}\dfrac{4}{\pi}\cos\beta
+	\end{equation}
+	Le vecteur $\vec{\mathcal{F}}$ est aligné selon l'axe électrique de la bobine. 
+	Rappelons que le facteur $4/\pi$ vient des spires diamétrales (la surface étant 
+	de ce facteur plus grand que le cas rectangulaire)
+	Son amplitude vaut 
+	\begin{equation}
+	\mathcal{F}^M = \dfrac{N_fi_f}{2p}\dfrac{4}{\pi}
+	\end{equation}
+	$\mathcal{F}^M \propto$ valeur \textbf{instantanée} de $i_f$. On définit alors 
+	un \textbf{vecteur} courant $\vec{i_f} = i_fe^{i\theta}$
+
+
+
+		\subsection{Cas particuliers}
+			\begin{wrapfigure}[11]{r}{4cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch5/image16.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		$\triangleright$ Si la bobine est \textbf{fixe} et le courant \textbf{constant} 
+		alors f.m.m. est constante dans le temps et se réparti sinusoïdalement. On trouve 
+		la valeur de cette f.m.m. en un point $X$ par projection de $\vec{\mathcal{F}}$ 
+		sur $OX$.\\
+		Avec $\vec{\mathcal{F}}$ et $\vec{i_f}$, on trouve :
+		\begin{equation}
+		\mathcal{F}_{(x)} = \Re(\vec{\mathcal{F}}.\vec{1_X}^*) = \mathcal{F}^M\cos(
+		\theta_0-\gamma)
+		\end{equation}
+		On peut voir cette projection comme la f.m.m. consommée en ce point.\\
+		
+		
+		$\triangleright$ Si la bobine est \textbf{tournante} et le courant est 
+		\textbf{constant}, la f.m.m. est dite \textbf{tournante}. Nous avons 
+		cette fois-ci :
+		\begin{equation}
+		\vec{\mathcal{F}} = \frac{4}{\pi}\dfrac{N_fi_f}{2p}e^{j(\omega_rt+\theta_0)}, 
+		\qquad \vec{i_f} = i_fe^{j(\omega_rt+\theta_0)}
+		\end{equation}
+		Au point $X$, notre f.m.m sera sinusoïdale dans le temps (normal, vu que ça 
+		tourne), de pulsation $\omega_r$.
+		\begin{equation}
+		\mathcal{F}_{(X)} = \mathcal{F}^M\cos(\omega_rt+\theta_0-\gamma)
+		\end{equation}\ \\
+		
+				
+		$\triangleright$ Si la bobine est \textbf{fixe} et le courant est 
+		\textbf{sinusoïdal} $i_f = I_{Mf}\cos(\omega t+\xi_f)$, la f.m.m. est 
+		dite \textbf{pulsante} et, à chaque endroit, elle est sinusoïdale dans 
+		le temps\footnote{??}.\\
+		
+		En développant les calculs on peut montrer que \textit{tout champ pulsant 
+		est la somme de deux champs tournants de même amplitude, de même vitesse 
+		mais de sens contraire. Celui dans le sens positif est dit "direct" et 
+		"indirect pour l'autre". Leur amplitude vaut la moitié de celle du champ 
+		pulsant. Leurs vitesse de rotation est celle du courant}.\\
+		
+		Pour la machine synchrone, nous allons réaliser un stator à trois enroulements 
+		parcouru par un courant triphasé. Chacune des bobines crée un champ pulsant. 
+		La recombinaison de ces trois champs donne un champ tournant.
+		
+\newpage		
+\section{La machine asynchrone à rotor bobiné en régime}
+En régime équilibré, la somme des courants est nulle à tout instant. En développant 
+la masta-matrice vue plus haut, le flux totalisé se compose de trois termes :
+\begin{equation}
+\Psi_A = l_1i_A + \dfrac{3}{2}N_1^2\mathcal{P}_mi_a + M^M[\dots]
+\end{equation}
+Le premier terme est le flux de dispersion, le second le flux commun d'entrefer dû 
+au stator et le dernier le flux commun d'entrefer dû au rotor.
+
+	\subsection{Alimentation symétrique d'ordre direct - machine à l’arrêt}
+		\subsubsection{Alimentation par le stator - rotor ouvert}
+		Le stator est alimenté par un système de trois tension équilibré et 
+		comme le rotor est ouvert $i_2=0 (=i_a=i_b=i_c)$. On obtient alors
+		\begin{equation}
+		\begin{array}{ll}
+		\Psi_A &= l_1i_A + \frac{3}{2}N_1^2\mathcal{P}_mi_A\\
+		v_a &= r_1i_A + (l_1+\frac{3}{2}N_1^2\mathcal{P}_m)\frac{di_a}{dt}
+		\end{array}
+		\end{equation}
+					\begin{wrapfigure}[15]{r}{5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch5/image17.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		Comme nous avons un système de tensions équilibrés au stator, il circule
+		un système de tensions équilibrés d'ordre direct au stator:
+		\begin{equation}
+		\underline{V_1} = (r_1+j\omega l_1)\underline{I_1}+j(\omega\frac{3}{2}
+		N_1^2\mathcal{P})\underline{I_1}
+		\end{equation}
+		avec $\underline{V_1}$ le phaseur de la composante directe de tension, 
+		$\underline{I_1}$ le phaseur de la composante directe de courant, 
+		$x_1=\omega l_1$ la réactance de dispersion statorique. En définissant 
+		$\underline{z_1} = r_1+jx_1$ et $X_{lm} = 3/2\omega N_1^2P_m$ la 
+		réactance de magnétisation statorique (dont la valeur dépend de l'état 
+		magnétique), on peut écrire
+		\begin{equation}
+		\underline{V_1} = (r_1+jx_1)\underline{I_1}+jX_{1m}\underline{I_1}
+		\end{equation}
+		conduisant au schéma équivalent ci-contre.\\
+		
+		La phaseur de la composante directe du \textbf{flux rotorique} vaut 
+		\begin{equation}
+		\underline{\Psi_2}=M^M[\underline{I_A}\cos\theta + \underline{I_B}
+		\cos(\theta-\frac{2\pi}{3}) + \underline{I_C}\cos(\theta+\frac{2\pi}{3})]
+		\end{equation}
+		En explicitant les phaseurs du courant en fonction de $\underline{I_A}$ 
+		et en exprimant les cosinus grâce aux exponentielles complexes (détail 
+		page 5.43) on peut écrire
+		\begin{equation}
+		\underline{\Psi_2} = \dfrac{3}{2}N_1N_2\mathcal{P}_m\underline{I_1}e^{-j
+		\theta}
+		\end{equation}
+		La tension appliquée au rotor vaut donc
+		\begin{equation}
+		\begin{array}{ll}
+		\underline{V_2} = j\omega\underline{\Psi_2} = j\omega\dfrac{3}{2}N_1N_2
+		\mathcal{P}_m\underline{I_1}e^{-j\theta}\\
+		&= j\left[\dfrac{N_2}{N_1}\right]X_{1m}\underline{I_1}e^{-j\theta}
+		\end{array}
+		\end{equation}
+		Posons $\mu = N_1/N_2$ le rapport de transformation stator-rotor. On a 
+		donc, comme pour les transfo :
+		\begin{equation}
+		\mu\underline{V_2} = jX_{1m}\underline{I_1}e^{-j\theta}
+		\end{equation}
+		\newpage
+		\begin{wrapfigure}[10]{l}{9cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.5]{ch5/image18.png}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		On obtient alors le schéma équivalent d'une machine d'induction à l'arrêt, 
+		rotor ouvert. On voit que le champ tournant induit au rotor un système 
+		symétrique de tension \textbf{déphasée en arrière} de $\theta$ car la phase 
+		$a$ du rotor est décalée en avant de $\theta_m$ par rapport à la phase $A$ 
+		du stator.\\
+		
+		
+		
+		\subsubsection{Alimentation par le rotor - Stator ouvert}		
+		Ici, le rotor crée un champ tournant et la tension est induite dans le 
+		stator (qui ne tourne bien évidemment pas). On obtient exactement le 
+		schéma, mais dans l'autre sens : $-\theta\rightarrow\theta, 1\rightarrow 2,
+		\mu \rightarrow 1/\mu$. Par un raisonnement identique, on obtient le 
+		schéma équivalent dans lequel on trouve
+		\begin{equation}
+		X_{2m} = \frac{3}{2}\omega N_2^2\mathcal{P}_m = \dfrac{X_{1m}}{\mu^2}
+		\end{equation}
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image19.png}
+		\captionof{figure}{ }
+		\end{center}
+		avec $X_2$ la réactance de dispersion, $r_2$ la résistance de la bobine 2, 
+		$X_{2m}$ la réactance de magnétisation. On peut transformer ce schéma en 
+		multipliant les tensions par $\mu$, les courants par $1/\mu$, les impédances 
+		par $\mu^2$ et en inversant le sens du déphaseur
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image20.png}
+		\captionof{figure}{ }
+		\end{center}		
+		
+		\newpage
+		\subsubsection{Alimentation par le stator et le rotor}
+		Le schéma équivalent d'une machine d'induction \textbf{à l’arrêt} s'obtient 
+		en superposant l'effet des courants statoriques et rotoriques. Il va falloir 
+		procéder à une mise à échelle. En effet $X_{1m} = N_1^2\mathcal{P}_m \neq 
+		X_{2m} = N_2^2\mathcal{P}_m$ (l'une restant en grande partie dans le stator). 
+		Pour mettre à l'échelle, on retrouve notre $\mu^2$ pour les impédances, 
+		le $\mu$ pour les tensions et le $1/\mu$ pour le courant. Le schéma ci-dessous
+		est très semblable à celui d'un transformateur
+		
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image21.png}
+		\captionof{figure}{ }
+		\end{center}		
+		Notons que la réactance de magnétisation est beaucoup plus faible ici que 
+		dans le transformateur (dû au grand entrefer dans le transfo). Sur notre 
+		schéma équivalent, deux flux tournants vont s'additionner et on obtiendra 
+		le flux commun dans l'entrefer.  Ce flux commun passe par le fer du rotor 
+		et du stator, il subit des pertes par hystérèses et courants de Foucault 
+		(représenté par la résistance mise en parallèle).\\
+		On a créé ici le circuit parfait pour déphasé du triphasé.
+		
+		\subsubsection{Couple à l’arrêt}
+		Soit les résistances/réactances statoriques ($r_1,x_1=0$) négligeables et
+		le rotor en court-circuit. Si on applique $\underline{V_1}$, cela va induire 
+		dans le rotor un courant déphasé en arrière par rapport à $\underline{V_1}$. 
+		Ces courants rotoriques, couplés au champ tournant, créent un couple.
+		
+		
+	\subsection{Alimentation symétrique d'ordre direct - machine en rotation imposée 
+	par l'extérieur}
+		\subsubsection{Alimentation par le stator - Rotor ouvert}
+		Comme les courants rotoriques sont nuls (rotor ouvert) il  n'y a pas de couple 
+		moteur. Entraînons le rotor à la vitesse $\Omega_r$. Par rapport au rotor, le 
+		champ tourne à vitesse \textbf{électrique} $= <-p\Omega_R = \omega-\omega_r$. 
+		Les tensions engendrée au rotor on une pulsation $\omega-\omega_r$.\\		
+		On définit le \textbf{glissement} de la façon suivante :
+		\begin{equation}
+		g = \dfrac{\omega-\omega_R}{\omega}
+		\end{equation}
+		où $\omega_R$ est la vitesse de rotation électrique. Si celui-ci vaut 1, 
+		la machine est à l'arrêt. S'il est nul, c'est qu'il n'y a plus de tension 
+		dans la bobine. S'il vaut 2, le rotor tourne à la même vitesse que le champ 
+		tournant mais en sens inverse. En général, $g$ est petit. Ce facteur exprime 
+		que le rotor tourne un peu en arrière par rapport au champ généra d’où 
+		l'asynchronisme.\\
+		
+		Le calcul de $\Psi_1$ est identique au cas précédent (où le rotor était à 
+		l'arrêt): la rotation du rotor ne change rien.Le schéma équivalent est donc 
+		le même.\\
+
+		Pour $\Psi_2$ :
+		\begin{equation}
+		\underline{\Psi_2} = \frac{3}{2}N_1N_2\mathcal{P}_m\underline{i_1}e^{-j\theta} 
+		= \dfrac{X_{1m}}{\mu\omega}\underline{i_1}e^{-j\theta}
+		\end{equation}
+		C'est ici que les choses changent. Nous avons en effet
+		\begin{equation}
+		\begin{array}{ll}
+		\theta &= \theta_0 + \omega_rt\\
+		\underline{i_1} &= I_1\sqrt{2}e^{j(\omega t+\xi_I)}
+		\end{array}
+		\end{equation}
+		Il en vient que
+		\begin{equation}
+		\underline{\Psi_2} = \dfrac{X_{1m}}{\mu\omega}I_1\sqrt{2}e^{j(g\omega t+\xi_I
+		-\theta_0)}
+		\end{equation}
+							\begin{wrapfigure}[10]{l}{10cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.35]{ch5/image22.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+		On peut déduire la tension correspondante 
+		\begin{equation}
+		\underline{v_2} = jg\dfrac{X_{1m}}{\mu}I_1\sqrt{2}e^{j(g\omega t + \xi_I-\theta_0)}
+		\end{equation}
+		La pulsation des tensions rotoriques vaut $g\omega$. La machine est un \textbf{
+		changeur de fréquence}. On définit alors le phaseur $\underline{V_2}$  :\\
+		
+		\begin{equation}
+		\underline{V_2} = jg\dfrac{X_{1m}}{\mu}\underline{I_1}\qquad\Leftrightarrow\qquad 
+		\dfrac{\mu\underline{V_2}}{g} = jX_{1m}\underline{I_1}
+		\end{equation}
+		et on en déduit le schéma équivalent. Le changeur de fréquence modifie la fréquence 
+		de la tension, mais sans changer son amplitude.\\
+		\danger Au synchronisme $\omega_r=\omega \Rightarrow g=0$, le champ est fixe par 
+		rapport au stator : il ne peut y avoir de f.e.m. induite !
+		
+		\subsubsection{Alimentation par le rotor - Stator ouvert}
+		Raisonnement similaire ! Notons que la pulsation des tensions et courants rotorique 
+		doit valoir $g\omega$. Si c'est le cas, on obtient le schéma ci-dessous.
+		\begin{center}
+		\vspace{-3mm}
+		\includegraphics[scale=0.45]{ch5/image23.png}
+		\captionof{figure}{ }
+		\end{center}
+		\newpage
+		On peut transformer ce schéma en le schéma suivant, en multipliant les tensions par 
+		$\mu/g$, les courants par $1/\mu$, les impédances par $\mu^2/g$ et en déplaçant le 
+		changeur de fréquence.
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image24.png}
+		\captionof{figure}{ }
+		\end{center}
+
+		\subsubsection{Alimentation par le stator et le rotor}
+		En superposant l'effet des courants statoriques et rotoriques, on obtient le 
+		\textbf{schéma équivalent d'une machine asynchrone en rotation}.
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image25.png}
+		\captionof{figure}{ }
+		\end{center}
+		Deux grandes différences par rapport au schéma équivalent de la machine à 
+		l'arrêt : le déphaseur est remplacé par un changeur de fréquence et une 
+		résistance supplémentaire apparaît au rotor (voir plus bas).
+		
+		\newpage
+		\subsubsection{Couples mécaniques}
+		\begin{wrapfigure}[8]{l}{6.5cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.45]{ch5/image26.png}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Souvent, on court-circuite le rotor (moteur à cage) et l'on obtient le schéma 
+		équivalent ci-contre; La puissance électrique appliquée au stator se décompose 
+		en trois :
+		\begin{enumerate}
+		\item Pertes Joule au stator : $P_{pJ1} = 3r_1I_1^2$.
+		\item Pertes magnétiques : $P_{pm} = 3V_m^2/R_{1m}$.
+		\item Puissances transmise par l'entrefer au rotor : $P_{entr}$.
+		\end{enumerate}
+		On peut décomposer $P_{entr}$ en pertes Joules au rotor ($P_{pJ2} = 3r_2I_2^2$) 
+		et en puissance électromagnétique brute à l'arbre ($P_{em} = C_{em}\Omega_r$). 
+		L'analyse du schéma équivalent montre que cette puissance électromagnétique brute 
+		doit valoir les pertes Joule dans la résistance supplémentaire $\mu^2[(1-g)g]r_2$.\\
+		
+		Après quelques calculs (page 5.52), on trouve pour le couple électromécanique brut :
+		\begin{equation}
+		C_{em} = \dfrac{p}{\omega}\dfrac{3r_2I_2^2}{g}
+		\end{equation}
+		Ce couple est proportionnel aux pertes Joule du rotor. Au synchronisme ($g=0$) 
+		nous savons que $I_2=0$ et donc $C_{em}=0$. La machine n'est utilisable qu'en 
+		dehors du synchronisme : machine \textbf{asynchrone}.
+
+
+
+	\subsection{Diagramme des courants (ou du cercle)}
+		\subsubsection{Préliminaires}
+		Considérons un circuit $RX$, faisons varier $R$ et 0 à $\infty$ et notons la 
+		tensions $V$ en fonction du courant. Lorsque $R$ varie, l'extrémité du phaseur 
+		$\underline{I}$ décrit un lieu géométrique : demi-cercle.
+
+		\subsubsection{Diagramme du cercle}
+		Il indique la variation du courant \textbf{statorique} en fonction du 
+		\textbf{glissement} lorsque la tension statorique est maintenue \textbf{constante}. 
+		On maintient les impédances constantes\footnote{Attention néanmoins, $X_{1m}$ dépend 
+		de l'état magnétique ($V_m$) et $r_2$ est fonction de la fréquence des courants 
+		rotoriques (effet pelliculaire).}
+
+			\begin{center}
+		\includegraphics[scale=0.45]{ch5/image27.png}
+		\captionof{figure}{ }
+		\end{center}
+		\newpage
+		A droite, le courant magnétisant, à gauche le courant lié à la 
+		puissance mécanique. Le champ tournant est bien $V_m$. On verra plus tard que la partie 
+		entourée de vert peut être vu comme  un équivalent de Thévenin.\\
+		Sur ce schéma, posons :
+		\begin{itemize}
+		\item[$\bullet$] $\underline{Z_{1m}} = R_{1m} // X_{1m} ;$ impédance de magnétisation 
+		vue du stator
+		\item[$\bullet$] $\underline{z_1} = r_1+jx_1$; impédance de dispersion du stator
+		\item[$\bullet$] $\underline{z_2} = r_2+jx_2$; impédance de dispersion du rotor
+		\item[$\bullet$] $\underline{z_2}' = \mu^2r_2+j\mu^2x_2 = r_2'+jx_2'$; impédance de 
+		dispersion du rotor vue du 	stator.
+		\end{itemize}
+		Avec ces nouvelles définitions, on peut écrire l'équation de maille :
+		\begin{equation}
+		\underline{V_1} = \underline{z_1}\underline{I_1} + \underline{Z_{1m}}(\underline{I_1}+
+		\underline{I_2}')
+		\end{equation}
+		Et donc
+		\begin{equation}
+		\underline{I_1} = \underbrace{\dfrac{\underline{V_1}}{\underline{z_1}+\underline{Z_{1m
+		}}}}_{(*)}
+		+ \underline{k_1}(-\underline{I_2}')
+		\end{equation}
+		où $(*)$ est le courant consommé au synchronisme (car $I_2=0, g=0$). En posant 
+		\begin{equation}
+		\underline{k_1} = \dfrac{\underline{Z_{1m}}}{\underline{z_1}+\underline{Z_{1m}}} = 
+		k_1\angle\epsilon_1
+		\end{equation}
+		
+						\begin{wrapfigure}[8]{r}{4.5cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.45]{ch5/image28.png}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		le coefficient de couplage \textbf{généralisé} dont son module est proche de l'unité et 
+		son argument faible (mais positif). Regardons le graphique de notre dernière relation. 
+		$\underline{OA_0}$ représente $\underline{I_0}$, le courant statorique absorbé au 
+		synchronisme (pas tout à fait -90$^\circ$ (car sert essentiellement à la magnétisation, 
+		donc inductif) à cause des pertes Joules). Son amplitude est inversement proportionnel 
+		(voir $(*)$) à la réactance de magnétisation. Pour améliorer le facteur de puissance du 
+		courant, il faut réduire $I_0$ au maximum $\rightarrow$ augmenter $X_{1m} \rightarrow$ 
+		réduire l'entrefer.\\
+		
+		Le phaseur $\underline{A_0A}$ est proportionnel au courant secondaire : il faut connaître 
+		la variation en fonction du glissement. On applique Thévenin comme dit plus haut. On 
+		peut successivement obtenir, après changements de variables 
+		\begin{center}
+		\includegraphics[scale=0.35]{ch5/image29.png}
+		\captionof{figure}{ }
+		\end{center}
+		Sur le dernier schéma, en première approximation ($\underline{k_1}\approx 1$) 
+		$\underline{z}$ vaut
+		\begin{equation}
+		\underline{z} = (r_1+\mu^2r_2) + j(x_1+\mu^2x_2)
+		\end{equation}
+		On construit alors le lieu	du point $A$ : 
+		\begin{center}
+		\includegraphics[scale=0.5]{ch5/image30.png}
+		\captionof{figure}{ }
+		\end{center}
+		Sur ce graphe, $\underline{k_1}^2\underline{V_2}\approx\underline{V_1}$. L'amplitude 
+		du courant dépend de $g$. Pour $g=1$, la résistance est celle du moteur à l'arrêt et 
+		le courant ($I =V/R$) est 4.5* plus grand. On sait aussi que la machine à vide, à 
+		part les frottements, tourne au synchronisme ($g=0$)(point $A_0$). Le point $A$ possède 
+		un petit $g$ et un bon rendement car son $\cos\phi$ est proche de l'unité.
+		
+		On comprend alors que le lieu représente tous les $I$ possibles pour une résistance 
+		variable (fonction de $g$).
+
+		\textsc{A compléter avec les notes de labo. Éclaircir la dépendance en $g$.}
+		
+		
+		
+	\subsection{Caractéristique mécanique $C_{em} = f(\Omega_r)$ ou $C_{em} = f(g)$}
+	On peut déduire la caractéristique du diagramme du cercle complété pour les glissements 
+	négatifs (fonctionnement en génératrice, le rotor tourne plus vite que le champ tournant) en 
+	"fermant le cercle".\\
+	On distingue trois zones de fonctionnement :
+	\begin{description}
+	\item[Moteur] Entre $A_1$ et $A_0$ : le couple au démarrage doit être assez élevé pour faire 
+	bouger la charge. La charge a généralement une caractéristique positive.
+	\item[Freinage] Entre $A_\infty$ et $A_1$, la machine tourne en sens inverse du champ tournant.
+	\item[Génératrce] Demi-cercle symétrique ("négatif) entre $A_\infty$ et$ A_0$.
+	\end{description}
+			\begin{center}
+		\includegraphics[scale=0.4]{ch5/image31.png}
+		\captionof{figure}{ }
+		\end{center}
+
+
+
+\section{Le moteur asynchrone en cage d’écureuil en régime}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	
