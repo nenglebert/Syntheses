@@ -226,13 +226,232 @@ toujours des pertes de charges (cf. \textit{PDT}),\dots
 		
 \newpage
 \section{Cycles à gaz}
+	\subsection{Intro : moteurs à combustion interne}
+	Avant d'étudier ces moteurs, il est nécessaire de formuler quelques hypothèses: le 
+	débit d'air est constant, le gaz est comme moi ($c_p$), la combustion est remplacée 
+	par un échangeur de chaleur d'une source externe. De plus, on complète le cycle par 
+	un échange de chaleur avec l'ambiance (remplace l'admission/échappement) et toutes 
+	les transformations sont supposées réversibles.
 	
+	\subsection{Cycle de Joule-Brayton}
+		\subsubsection{Cycle idéal}
+		\begin{wrapfigure}[11]{l}{10cm}
+		\vspace{-5mm}
+	\includegraphics[scale=0.35]{ch9/image11.png}
+	\captionof{figure}{Cycle de Joule-Brayton}
+		\end{wrapfigure}			
+	Il s'agit du cycle \textbf{idéal} pour les turbines à gaz, composé de deux échanges 
+	de chaleurs isobares et deux variations de pressions isentropiques, exactement comme 
+	le cycle de Rankine à une exception : le fluide est \textbf{toujours} à l'état 
+	gazeux.\\
 	
+	Procédons à l'analyse énergétique. Nous savons que les échanges de chaleurs sont 
+	isobares ($q = \Delta h$) et que la compression/détente sont adiabatiques ($w=\Delta h$).
 	
+	\begin{itemize}
+	\item[$\bullet$] Compresseur ($q=0$) : $w_c = h_2-h_1 = c_p(T_2-T_1)$
+	\item[$\bullet$] Chambre de combustion ($w=0$) : $q_{in} = h_3-h_2 = c_p(T_3-T_2)$
+	\item[$\bullet$] Turbine ($q=0$) : $w^*_t = h_3-h_4 = c_p(T_3-T_4)$
+	\item[$\bullet$] Échangeur ($w=0$) : $q_{out} = h_1-h_4 = c_p(T_1-T_4)$
+	\end{itemize}
+	L'efficacité thermique se définit alors (attention au $-w_p$ !) :
+	\begin{equation}
+	\epsilon_{th} = \dfrac{w_t^*-w_p}{q_{in}} = \dfrac{q_{in}-|q_{out}|}{q_{in}} = 1-
+	\dfrac{|q_{out}|}{q_{in}}
+	\end{equation}
+	Avec nos expressions fraîchement écrites, on trouve
+	\begin{equation}
+	\epsilon_{th} = 1-\dfrac{T_4-T_1}{T_3-T_2} - 1-\dfrac{T_1(T_4/T_1-1)}{T_2(T_3/T_2-1)}
+	\end{equation}
+	Il est possible de ré-écrire ce rendement en fonction du ration de pression $\Pi$ en 
+	utilisant les transformations adiabatiques réversibles ($pv^k =\ cste$) :
+	\begin{equation}
+	T_2 = T_1 \dfrac{P_2^{\frac{k-1}{k}}}{P_1} = T_1\Pi^{\frac{k-1}{k}}, \quad 
+	T_3 = T_4 \dfrac{P_2^{\frac{k-1}{k}}}{P_1} = T_4\Pi^{\frac{k-1}{k}}, \quad k = \dfrac{c_p}{
+	c_v}.
+	\end{equation}
+	On en déduit que
+	\begin{equation}
+	\dfrac{T_4}{T_1}=\dfrac{T_3}{T_2},n \qquad \dfrac{T_1}{T_2} = \dfrac{1}{\Pi^{\frac{k-1}{k}}}
+	\end{equation}
+	Le rendement s'écrit alors 
+	\begin{equation}
+	\epsilon_{th} = 1- \dfrac{1}{\Pi^{\frac{k-1}{k}}}
+	\end{equation}
+	On remarque directement deux inconvénients majeurs : l'importance de $w_c$ par rapport 
+	à $w_t$ (différent de Rankine-Hirn) mais surtout la puissance onéreuse est plus élevée 
+	que la puissance utile.
 	
+	\newpage
+			\begin{wrapfigure}[12]{l}{4.5cm}
+	\includegraphics[scale=0.45]{ch9/image12.png}
+	\captionof{figure}{ }
+		\end{wrapfigure}			
+	Analysons le rendement. On se rend compte que quand $\Pi$ augmente (avec $T_3/T_2$ constant), 
+	le rendement fait de même : le cycle devient $1-2'-3'-4-1$. Ceci implique que $w'>w, |q_L'|=|q_L|$.\\
+	En pratique, la température $T_3$ est limitée de sorte que lorsque $\Pi$ augmente avec 
+	$T_3$ constante, le cycle devient $1-2'-3"-4"-1$. Calculons dès lors l'expression du 
+	travail pour un tel cycle :
+	\begin{equation}
+	w = (h_3-h_4)-(h_2-h_1) = c_p(T_3-T_4)-c_p(T_2-T_1)
+	\end{equation}
+	En mettant $T_1$ en évidence, on peut obtenir
+	\begin{equation}
+	w = c_pT_1\left[\left(\dfrac{T_3}{T_1}-\dfrac{T_4}{T_1}\right)-\left(\dfrac{T_2}{T_1}-1\right)
+	\right] = 
+	c_pT_1\left[\dfrac{T_3}{T_1}\left(1-\dfrac{T_4}{T_3}\right)-\left(\dfrac{T_2}{T_1}-1\right)
+	\right]
+	\end{equation}
+					\begin{wrapfigure}[10]{r}{6.5cm}
+					\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch9/image13.png}
+	\captionof{figure}{ }
+		\end{wrapfigure}
+	On obtient finalement
+	\begin{equation}
+	w = c_p.T_1\left[\dfrac{T_3}{T_1}\left(1-\dfrac{1}{\Pi^{\frac{k-1}{k}}}\right)-\left(
+	\Pi^{\frac{k-1}{k}}-1\right)\right]
+	\end{equation}
+
+	En dérivant cette expression par rapport à $\Pi^\lambda$, il est possible de trouver le 
+	travail maximum\footnote{On pose $\lambda = \frac{k-1}{k}$.} :
+	\begin{equation}
+	\dfrac{dw}{d\Pi^\lambda} = 0 \Leftrightarrow \Pi^{2\lambda} = \dfrac{T_3}{T_1}
+	\end{equation}
+	En en tire 
+	\begin{equation}
+	\Pi = \left(\dfrac{T_3}{T_1}\right)^{\frac{1}{2\lambda}} = \left(\dfrac{T_3}{T_1}\right)^{
+	\frac{k}{2(k-1)}}
+	\end{equation}
+	Le rendement peut alors s'écrire 
+	\begin{equation}
+	\epsilon_{th} = 1-\sqrt{\dfrac{T_1}{T_3}}
+	\end{equation}
 	
+		\subsubsection{Cycle réel}
+							\begin{wrapfigure}[11]{l}{4.5cm}
+					\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch9/image14.png}
+	\captionof{figure}{ }
+		\end{wrapfigure}
+		Nous avons jusqu'ici discuter du cas idéal mais il est clair que pour obtenir une 
+		description réelle il faut introduire les différentes pertes. Commençons par les 
+		pertes par dissipation visqueuses (rendements isentropiques). Nous pouvons simplifier 
+		les $c_p$ pour obtenir
+		\begin{equation}
+		\eta_c = \dfrac{h_{2*}-h_1}{h_2-h_1}=\dfrac{T_{2*}-T_1}{T_2-T_1}
+		\eta_t = \dfrac{h_3-h_4}{h_3-h_{4*}} =\dfrac{T_3-T_4}{T_3-T_{4*}}
+		\end{equation}
+		Il faut également tenir compte des pertes de charges et des pertes mécaniques. Sur 
+		le diagramme ci-contre, on peut symboliser ceci par les lignes 1-2 et 3-4 qui ne 
+		représentent \textbf{pas} une transformation mais jusque les états finaux\footnote{On 
+		ne peut pas représenter ici une transformation réversible}.\\
+		
+		L'efficacité du cycle réel est alors modifiée par la présence des rendements isentropiques. 
+		Nous avions
+		\begin{equation}
+		\epsilon_{th} = \dfrac{w_{net}}{q_{in}} = \dfrac{c_p(T_3-T_4)-c_p(T_2-T_1)}{c_p(T_3-T_2)}
+		\end{equation}
+		En introduisant les expressions, on peut obtenir (calculs non détaillés ici, mais l'idée 
+		est d'ajouter et soustraire $T_1$ au numérateur pour faire apparaître $T_{2*}-T_1$ et 
+		l'exprimer avec le rendement isentropique du compresseur) :
+		\begin{equation}
+		\epsilon_{th} = \dfrac{\tau\eta_t\left(1-\dfrac{1}{\Pi^\lambda}\right)-\dfrac{\left(
+		\Pi^\lambda-1\right)}{\eta_c}}{(\tau-1)-\dfrac{(\Pi^\lambda-1)}{\eta_c}}
+		\end{equation}
+		où $\tau = T_3/T_1$. On remarque que \\
+		
+		\retenir{L'efficacité du cycle réel est fonction de la température maximale du cycle 
+		$T_3$ ainsi que des rendements isentropiques $\eta_c$ et $\eta_t$.}\
+		
+		Les graphiques de l'efficacité se voient aussi modifier : ce n'est plus du tout 
+		asymptotique, on tend ici vers un maximum avant de décroître.
+		\begin{center}
+		\includegraphics[scale=0.3]{ch9/image15.png}
+		\captionof{figure}{ }
+		\end{center}
+		Si on fixe les $\eta_c/\eta_t, k$ on observe le diagramme de gauche représentant 
+		l'efficacité $\epsilon = f(\Pi,\tau)$. Si on fait cette fois-ci varier $\eta_t$ 
+		pour obtenir le graphe $\epsilon = f(\Pi,\eta_t)$ (droite) on voit que l'effet d'une 
+		variation est \textsc{énorme} : avoir une turbine plus ou moins isentropique 
+		joue énormément.
+		
+		
+		\subsubsection{Cycle à récupération}
+		L'avantage de chauffer l'air est que l'on doit moins utiliser nos échangeurs 
+		thermiques : on gagne donc en chaleur. 
+		\begin{center}
+		\includegraphics[scale=0.3]{ch9/image16.png}
+		\captionof{figure}{ }
+		\end{center}	
+		Dans le meilleur des cas, $T_2'=T_2$ et $T_4'=T_4$ mais ne rêvons pas car cela 
+		signifierait un $\Delta T=0$. Calculons l'efficacité du cycle de Joule à 
+		récupération :
+		\begin{equation}
+		\epsilon_{th} = \dfrac{c_p(T_3-T_4)-c_p(T_2-T_1)}{c_p(T_3-T_2)} = 1-\dfrac{T_2-T_1}{
+		T_3-T_4} = 1-\dfrac{T_1}{T_3}\dfrac{\left(\dfrac{T_2}{T_1}-1\right)}{\left(1-
+		\dfrac{T_4}{T_3}\right)}
+		\end{equation}
+		En ré-écrivant ceci à l'aide de $\Pi^{\frac{k-1}{k}}$ on obtient
+		\begin{equation}
+		\epsilon_{th} = 1-\dfrac{T_1}{T_3}\dfrac{\left(\Pi^{\frac{k-1}{k}}-1 \right)}{\left( 
+		1-\dfrac{1}{\Pi^{\frac{k-1}{k}}}\right)} = 1-\dfrac{T_1}{T_3}\Pi^{\frac{k-1}{k}}
+		\end{equation}
+		Et finalement : 
+		
+		\retenir{\begin{equation}
+		\epsilon_{th} = 1-\dfrac{\Pi^{\frac{k-1}{k}}}{\tau} > \epsilon_{JB}
+		\end{equation}
+		Cette efficacité augmente avec $\tau$ (plus de chaleur disponible pour la 
+		récupération) et diminue avec $\Pi$ (moins de chaleur disponible pour la 
+		récupération)}\ 
+		
+		Au niveau des diagramme, quelle est la différence ? Avant nous avions $h_3-h_2$ 
+		et maintenant on considère $h_4'$, la partie 2-4' n'a plus de transfert de 
+		chaleur et l'effet onéreux n'est plus que $h_3-h_4"$. Le principal avantage 
+		c'est qu'on récupère plus de chaleur. Par contre, il a fallu mettre un tuyau 
+		en plus et la construction est devenue plus cher (bien qu'énergétiquement plus 
+		avantageux).
+
+		\begin{center}
+		\includegraphics[scale=0.35]{ch9/image17.png}
+		\captionof{figure}{Cycle à récupération idéal}
+		\end{center}			
+		
+		Un tel cycle n'est pas toujours possible, il faut que la température à la  sortie 
+		de la turbine soit plus élevée qu'à l'entrée du compresseur. Graphiquement, si 
+		$T_4<T_2$ nous somme au delà de la courbe noire ci-dessus, représentant 
+		l'efficacité de Joule idéale. Si ce n'est pas le cas, il faut considérer les 
+		différentes courbes en fonction de $\tau$ à gauche de cette courbe. Notons que 
+		l'intersection de ces courbes correspond à $T_4=T_2$.\footnote{Tout ceci est pour 
+		le cas idéal. Pour le cas réel, voir slides 50-52. L'efficacité réelle est définie 
+		par rapport au seuil enthalpique maximum que l'on pourrait obtenir (4-2)}
+		
 	
-	
+		\subsubsection{Cycle à	compression	et détente	étagée}
+		Le but est toujours de maximiser le travail dans la turbine. Pour avoir du travail 
+		dans la turbine (travail isotherme > travail adiabatique), il faut "payer" un travail 
+		au compresseur : il faut donc minimiser ce travail. Une autre façon de voir les choses 
+		est de penser au diagramme $p-V$. Nous sommes en système ouvert $w = \int vdp$. Le travail 
+		d'une adiabatique (pour la compression) ($k=1.4$)	 projeté sur l'axe $P$ sera plus 
+		important que le travail d'une isotherme ($k=1$). Cependant, pour passer au point 1 au 
+		point 2 (détente) on souhaite avoir un travail maximal : c'est l'isotherme qui donne 
+		un travail maximal dans cette situation\footnote{Pour s'en rendre compte, tracer un 
+		diagramme !}
+		
+				\begin{center}
+		\includegraphics[scale=0.4]{ch9/image18.png}
+		\captionof{figure}{Cycle à compression et détente étagée}
+		\end{center}			
+		
+		L'installation fonctionne de la sorte : après une première compression, la température 
+		est refroidie puis le gaz est à nouveau compressé. Le coût de l'installation augmente 
+		mais c'est bien mieux énergétiquement. A la sortie de la turbine (7) réchauffer le gaz
+		avant d'entrer dans la seconde turbine est aussi plus avantageux. Le souci d'une telle 
+		installation est qu'il faut tout avoir en double.\\
+		Le cycle du turboréacteur repose sur une variante du cycle de Joule.
+		
+	\subsection{Cycle de Ericsson}
 	
 	
 	
