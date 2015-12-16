@@ -323,7 +323,50 @@ Il existe 3 méthodes, chacune devant être employée si la précédente n'a pas
 \danger On résout les courses (c-à-d en utilisant ces méthodes) uniquement pour le cas des systèmes asynchrones
 \subsubsection{Méthode 1 : codage des états}
 Cette méthode consiste à choisir un codage des états tels qu'il n'y ait pas de courses critiques (vu que le codage est arbitraire). Pour ce faire, on dessine un \emph{graphe de codage des états}, permettant de trouver le bon codage ou prouver qu'il n'en existe pas.
-\paragraph{Graphe de codage des états :} 
+\paragraph{Graphe de codage des états :} un carré dont chaque sommet est un état stable, on représente les transitions (états futurs possibles pour chaque état) par un arc orienté. On attribue des codes et on réarrange de manière à ne plus avoir de courses critiques (distance d'Hamming de 1, arcs orientés formeront les arrêtes du carré). 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ch7/image33}
+\end{figure}
+Il faut néanmoins faire gaffe a switcher les lignes de tel manière a obtenir une K-map !
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\textwidth]{ch7/image34}
+\end{figure}
+On remarquera qu'il existe plusieurs combinaisons pour le codage des états, influençant la complexité du circuit (mais on ne doit pas en tenir compte :) ).\\
+Il n'existe pas toujours une combinaison résolvant les courses critiques $\Rightarrow$ méthode 2
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.2\textwidth]{ch7/image35}
+\end{figure}
 \subsubsection{Méthode 2 : transitions}
-
+On peut transformé une transition pour éviter la course critique (seul le point d'arrivé compte).
+\begin{itemize}
+	\item Utiliser les \textit{don't cares} :
+	\begin{itemize}
+		\item on transforme un \textit{don't care} en une transition pour éviter la course critique (par ex. $\textbf{1}\rightarrow 2\rightarrow 3\rightarrow \textbf{3}$)
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.3\textwidth]{ch7/image36}
+	\end{figure}
+	\item Modifier les transitions :
+	\begin{itemize}
+		\item on utilise une transition déjà existante en passant par un autre état (par ex. $\textbf{1}\rightarrow 4\rightarrow 3\rightarrow \textbf{3}$)
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.3\textwidth]{ch7/image37}
+	\end{figure}
+\end{itemize}
+Les 2 sont bons !\\
+Si ce n'est pas possible $\Rightarrow$ méthode 3
 \subsubsection{Méthode 3 : état supplémentaire}
+\textbf{Si et uniquement si} les 2 méthodes précédentes ont échouées, on rajoute une variable d'états (plutôt couteux me direz-vous\dots) et on utilise ces nouveaux états comme intermédiaire de transition afin de résoudre les problèmes de courses.\\
+Remarquons que toute course qui peut être résolue par les méthodes 1 et 2 avant, doit l'être.
+\subsubsection{fautes graves}
+\begin{enumerate}
+	\item Laisser une course critique alors qu'on demande de faire la synthèse d'un circuit asynchrone.
+	\item Ne pas appliquer les méthodes dans le bon ordre.
+	\item dériver une K-map qui n'en est pas une (distance de Hamming $>1$ entre les lignes et les colonnes adjacentes).
+\end{enumerate}
