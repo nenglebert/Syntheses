@@ -48,7 +48,7 @@ Voici une table pour bien comprendre comment fonctionnent les codes auto-complé
 	\caption{Code auto-complémentaire}
 \end{table}
 \subsubsection{Addition en BCD}
-L'addition en BCD est simple, on additionne par 4 bits (chaque chiffre composant la base 10). Si le chiffre est $\geq 10$, on ajoute $+6\,(0110)_2$ car cela correspond à un report de 10 en binaire. En effet, regroupé par 4 correspond à de l'hexadécimal, du coup, pour passer de 10 à 0, il faut ajouter 6 ($A\overset{+1}{\rightarrow}B\overset{+1}{\rightarrow}\dots\overset{+1}{\rightarrow}F\overset{+1}{\rightarrow}0$). Exemple:
+L'addition en BCD est simple, on additionne par 4 bits (chaque chiffre composant la base 10). Si le chiffre est $\geq 10$ (i.e. $1010$), on ajoute $+6\,(0110)_2$ car cela correspond à un report de 10 en binaire. En effet, regroupé par 4 correspond à de l'hexadécimal, du coup, pour passer de 10 à 0, il faut ajouter 6 ($A\overset{+1}{\rightarrow}B\overset{+1}{\rightarrow}\dots\overset{+1}{\rightarrow}F\overset{+1}{\rightarrow}0$). Exemple:
 \begin{table}[H]
 	\centering
 	\includegraphics[scale=0.5]{ch2/image1}
@@ -80,14 +80,14 @@ Le code Gray est un code suivant le principe de \textit{Look-up Table}, c'est-à
 	\caption{Code Gray}
 \end{table}
 \subsubsection{Code ASCII}
-Le code ASCII est utilisé pour coder les caractères dans des systèmes de traitement numérique, comme les majuscules, les signes de ponctuation et cetera. Le code est basé sur 8 bits, donc 256 possibilités, mais en réalité, on en utilise que 128.
+Le code ASCII est utilisé pour coder les caractères dans des systèmes de traitement numérique, comme les majuscules, les signes de ponctuation, et cetera. Le code est basé sur 8 bits, donc 256 possibilités, mais en réalité, on en utilise que 128.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{ch2/image2}
 	\caption{Table ASCII}
 \end{figure}
 \subsection{Codes correcteurs}
-\paragraph{Distance de Hamming} quantifie la distance (la différence)entre 2 séquences de symboles (ex : $d(0111,1010)=3$).
+\paragraph{Distance de Hamming} quantifie la distance (la différence) entre 2 séquences de symboles (ex : $d(0111,1010)=3$).
 \paragraph{n-cube} cube à n dimensions ($2^n$ sommets) où chaque n-bit string est représenté par un des sommets. \textbf{Les sommets adjacents ont une distance de Hamming de 1}.
 \begin{figure}[H]
 	\centering
@@ -95,7 +95,7 @@ Le code ASCII est utilisé pour coder les caractères dans des systèmes de trai
 	\caption{n-cube pour $n=3$}
 \end{figure}
 \subsubsection{Principe général}
-Sur n-bits, on peut coder $2^n$ mots différents, si on rajoute 1 bit, nous avons $n$ mots supplémentaires. Nous pouvons donc grâce à cela, définir n mots qualifié d'erronés, ce qui sera utile pour détecter les erreurs (comme des erreurs de transmission).
+Sur n-bits, on peut coder $2^n$ mots différents, si on rajoute 1 bit, nous avons $2^n$ mots supplémentaires. Nous pouvons donc grâce à cela, définir n mots qualifié d'erronés, ce qui sera utile pour détecter les erreurs (comme des erreurs de transmission).
 \subsubsection{Codes de parité paire ou impaire (\textit{even (odd) parity codes})}
 On code les mots de n-bits sur $(n+1)$ bits, ainsi nous avons autant de mots corrects que d'erronés. Le critère de correction est défini par le $(n+1)$\up{ème} bit.\\
 
@@ -106,7 +106,7 @@ Il faut compter le nombre de \textbf{1} et suivre la convention définie. Les 2 
 \end{itemize}
 Lors du calcul de parité, on peut ou non tenir compte du bit de parité (le $(n+1)$\up{ème}). Ici, on en tiendra pas compte.\\
 
-Ce qui est intéressant, c'est de rajouter un bit de parité pour chaque poids (pour m-mits de n-bits, nous aurions donc des mots de $n+1$ pour le bit de parité et $m+1$ mot pour le bit de parité de poids). Ainsi, nous pourrions déterminer exactement le bit qui est erroné.
+Ce qui est intéressant, c'est de rajouter un bit de parité pour chaque poids (pour m-mots de n-bits, nous aurions donc des mots de $n+1$ pour le bit de parité et $m+1$ mot pour le bit de parité de poids). Ainsi, nous pourrions déterminer exactement le bit qui est erroné.
 \begin{figure}[H]
 
 	\begin{minipage}{0.55\textwidth}
@@ -134,11 +134,11 @@ L'algèbre de Boole à 2 valeurs est défini par (introduite par \textsc{Shannon
 \begin{itemize}
 	\item[$B=$]$\{0,1\}$
 	\begin{itemize}
-		\item[$0=$]faux
-		\item[$1=$] vrai
+		\item[$0$]= faux
+		\item[$1$]= vrai
 	\end{itemize}
-	\item[$+$]ou inclusif (or)
-	\item[$\cdot$]et (and)
+	\item[$+$]= ou inclusif (or)
+	\item[$\cdot$]= et (and)
 \end{itemize}
 Les opérateurs $+$ et $\cdot$ peuvent être définis par \textbf{Tables de Vérités} (\textit{TdV}) suivantes:
 \begin{table}[H]
@@ -229,7 +229,7 @@ E. V. \textsc{Huntigton} posa 6 axiomes pour le cas de l'algèbre de Boole à 2 
 \end{itemize}
 \subsubsection{Théorèmes}
 À partir de ces axiomes, nous pouvons définir les théorèmes suivant (à droite, les théorèmes issus du \nameref{subsubsec : dualité}):
-\begin{paracol}{2}
+\begin{multicols}{2}
 	\textbf{Normaux}
 \begin{itemize}
 	\item[-- Théorème 1.] Indempotence pour $+$ et $\cdot$
@@ -265,7 +265,7 @@ E. V. \textsc{Huntigton} posa 6 axiomes pour le cas de l'algèbre de Boole à 2 
 		x\cdot y+x'\cdot z+y\cdot z = x\cdot y + x'\cdot z
 	\end{equation}
 \end{itemize}
-\switchcolumn
+\columnbreak
  \textbf{Duaux} 
  \begin{itemize}
  	\item[-- Théorème 1.] Indempotence pour $+$ et $\cdot$
@@ -301,18 +301,19 @@ E. V. \textsc{Huntigton} posa 6 axiomes pour le cas de l'algèbre de Boole à 2 
  	(x+y)\cdot (x'+ z)\cdot(y+ z) = (x+ y) \cdot (x'+ z)
  	\end{equation}
  \end{itemize}
-\end{paracol}
+\end{multicols}
+\danger Consensus (et son dual) pas évident (et utile)
 \subsubsection{Principe de dualité}
 \label{subsubsec : dualité}
 Dans l'algèbre de Boole, tout résultat peut se présenter sous 2 formes dites duales.\\
-Soit $S$ un résultat, son dual $S*$ est obtenu en \textbf{permutant} :
+Soit $S$ un résultat, son dual $S^*$ est obtenu en \textbf{permutant} :
 \begin{itemize}
 	\item les opérateurs $+$ et $\cdot$
 	\item les symboles $0$ et $1$ de $B$
 \end{itemize}
 \textbf{
 	\begin{center}
-		Si un résultat $S$ est vrai dans l'algèbre de Boole,\\il en est de même pour son dual
+		Si un résultat $S$ est vrai dans l'algèbre de Boole,\\il en est de même pour son dual $S^*$
 	\end{center}
 }
 Nous pouvons bien évidement généraliser ce principe pour une expression Booléenne à $n$-variables
@@ -343,7 +344,7 @@ Une fonction logique peut s'écrire sous forme de Somme de Produit (\textit{SdP}
 	\centering
 	\includegraphics[scale=0.6]{ch2/image6}
 \end{figure}
-Pour écrire sous forme SdP, il suffit de prendre toutes les lignes où $F=1$ de réunir les variables d'une même ligne par $\cdot$ et joindre chaque colonne par $+$ en transformant les variables de cette manière :
+Pour écrire sous forme SdP, il suffit de prendre toutes les lignes où $F=1$, de réunir les variables d'une même ligne par $\cdot$ et joindre chaque colonne par $+$ en transformant les variables de cette manière :
 \begin{itemize}
 	\item $a$ si $a=1$
 	\item $a'$ si $a=0$
@@ -358,7 +359,7 @@ Ainsi, la SdP est :
 	\centering
 	\includegraphics[scale=0.6]{ch2/image7}
 \end{figure}
-Pour écrire sous forme PdS, il suffit de prendre toutes les lignes où $F=0$ de réunir les variables d'une même ligne par $+$ et joindre chaque colonne par $\cdot$ en transformant les variables de cette manière :
+Pour écrire sous forme PdS, il suffit de prendre toutes les lignes où $F=0$, de réunir les variables d'une même ligne par $+$ et joindre chaque colonne par $\cdot$ en transformant les variables de cette manière :
 \begin{itemize}
 	\item $a$ si $a=0$
 	\item $a'$ si $a=1$
@@ -368,7 +369,7 @@ Ainsi, la PdS est :
 F=(x+y'+z)\cdot(x'+y+z)\cdot(x'+y+z')
 \end{equation}
 \begin{center}
-	OU BIEN
+	\textbf{OU BIEN}
 \end{center}
 On peut aussi faire la SdP pour $F=0$ (en gardant bien les conventions pour $SdP$) et noté $F'$ au lieu de $F$ et ensuite faire De Morgan ($(F')'=F$)
 \begin{equation}
@@ -395,4 +396,4 @@ Dans un circuit en forme de PdS, on finit par une porte ET
 	\includegraphics[scale=0.6]{ch2/image10}
 \end{figure}
 \section{Réalisation matérielle}
-Plus tard...
+Chez soi (à partir du slide 50 cours 2).
