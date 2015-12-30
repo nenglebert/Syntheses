@@ -254,7 +254,7 @@ On dresse un tableau consisté des :
 	\item mintermes pour les lignes
 	\item implicants premiers pour les colonnes (\textit{C.f.} \autoref{subsec:analyse})
 \end{itemize}
-Ensuite, pour chaque $IP$ il faut marquer \textbf{tous les mintermes} qu'il permet de couvrir. Enfin, les implicants qui sont les \textbf{seuls} à couvrir un minterme sont des implicants premiers essentiels (les mintermes couverts ne doivent pas être recouvert).\\
+Ensuite, pour chaque $IP$ il faut marquer \textbf{tous les mintermes} qu'il permet de couvrir. Enfin, les implicants qui sont les \textbf{seuls} à couvrir un minterme sont des implicants premiers essentiels (il n'est plus nécessaire de couvrir des mintermes déjà couvert).\\
 
 Le problème survient lorsque nous avons le choix de l'$IP$ pour la couverture d'un minterme. Comme nous avons un choix à faire, on aura une combinaison de solution possible. Cette combinaison est "chiante" a trouvé graphiquement, c'est pourquoi nous aurons recourt à l'équation de couverture.
 
@@ -284,7 +284,7 @@ Que l'on peut bien évidement simplifier
 Les termes isolés ($i_3$) sont des implicants essentiels.\\
 Ensuite, il suffit de distribuer au maximum tout en simplifiant lorsque cela est possible (petit exercice). On obtient
 \begin{equation}
-	1=i_3i_4i_1i_7+i_3i_1i_5i_6+i_3i_2i_4i_7+i_3i_2i_4i_5i_6
+	1=\underbrace{i_3i_4i_1i_7}_{F_1}+\underbrace{i_3i_1i_5i_6}_{F_2}+\underbrace{i_3i_2i_4i_7}_{F_3}+\underbrace{i_3i_2i_4i_5i_6}_{F_4}
 \end{equation}
 Chaque terme de la somme est donc un solution possible!\\
 
@@ -339,7 +339,7 @@ Représentons les changements de valeurs des différentes portes en fonction du 
 Du coup, définissons ce qu'est un glitch: \textit{un glitch est une impulsion de courte durée non-désirée}.\\
 
 Le problème avec les glitchs est que (comme représenté sur la \autoref{fig:tempscommutation}) on peut obtenir (pendant un court instant) une valeur contraire à ce que l'on attend.\\
-Si le système est insensible aux variations courtes, le glitch n'est pas un problème (genre un afficher 7 segments). Mais si le système l'est, gare aux dégâts\dots De manière générale, on essaye d'éviter les glitchs.\\
+Si le système est insensible aux variations courtes, le glitch n'est pas un problème (genre un afficher 7 segments). Mais si le système l'est, gare aux dégâts\dots\ De manière générale, on essaye d'éviter les glitchs.\\
 \subsubsection{Explication et solution}
 Une représentation sous forme de K-Map montre bien les endroits susceptibles d'apparition de glitch
 \begin{figure}[H]
