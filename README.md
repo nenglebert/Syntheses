@@ -37,11 +37,14 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
   - [ ] [Compléments de Mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
+  - [ ] [Mécanique Quantique I](IRCI3/Mécanique quantique I/build/Mécanique quantique I - Nicolas Englebert.pdf)
   - [ ] [Physique des Semi-conducteurs](IRCI3/Physique des semiconducteurs/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
+  - [ ] [Physique des Télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 - [ ] Option Électromécanique
   - [ ] [Cinématique et Dynamique des Machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
 - [ ] Option Électronique et Télécommunication
   - [ ] [Circuits Logiques et Numériques](IRCI3/Circuits logiques et numériques/build/Circuits logiques et numériques - Cédric Hannotier.pdf)
+  - [ ] [Physique des Télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors
