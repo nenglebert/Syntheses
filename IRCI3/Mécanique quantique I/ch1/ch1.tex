@@ -294,14 +294,14 @@ u_n
 
 
 \section{Opérateur adjoint}
-A toute opérateur $\hat{A}$, on peut associer un nouvel opérateur noté $\hat{A}^\dagger$. 
+A tout opérateur $\hat{A}$, on peut associer un nouvel opérateur noté $\hat{A}^\dagger$. 
 Soit $\ket{\psi}$ :
 \begin{equation}
 \hat{A} \text{ agit dans }\mathcal{E} ; \ket{\psi'} = \hat{A}\ket{\psi}
 \label{eq:16}
 \end{equation}
 Chaque ket est associé à un bra ; dans ce cas ci il s'agit de $\bra{\psi'}$ et
-$\bra{psi}$. Existe-t-il une relation entre ces bra ? Mais à quoi cet objet 
+$\bra{\psi}$. Existe-t-il une relation entre ces bra ? Mais à quoi cet objet 
 correspond-t-il ? Un bra est une forme linéaire, il faut déterminer comment 
 agit $\psi'$ sur n'importe quel ket de l'espace.
 \begin{equation}
@@ -623,10 +623,49 @@ $\hat{P_\alpha}$. La relation de fermeture s'écrit alors
 \mathbb{1}}
 \end{equation}
 Comme nous l'avons fait pour le cas de la base discrète, montrons comment écrire 
-un bra, ket, opérateur linéaire,\dots
+un bra, ket, opérateur linéaire, \dots
 \begin{equation}
-14
+\begin{array}{llll}
+\text{ket } & \ket{\psi} &= \int d\alpha\ c(\alpha)\ket{u_\alpha} & \text{ où } 
+c(\alpha) = \bra{u_\alpha}\ket{\psi}\\
+& \ket{\varphi} &= \int d\alpha\ b(\alpha)\ket{u_\alpha} & \text{ où } b(\alpha) 
+= \bra{u_\alpha}\ket{\varphi}\\
+\text{bra } & \bra{\varphi} &= \int d\alpha\ b^*(\alpha)\bra{u_\alpha}
+\end{array}
 \end{equation}
+Voyons maintenant pour le produit scalaire
+\begin{equation}
+\begin{array}{ll}
+\bra{\varphi}\ket{\psi} = \bra{\varphi}\mathbb{1}\ket{\psi} &= \int d\alpha\ 
+\underbrace{\bra{\varphi}\ket{u_\alpha}}_{b^*(\alpha)}\underbrace{\bra{u_\alpha}
+\ket{\psi}}_{c(\alpha)}\\
+&= \int d\alpha\ b^*(\alpha)c(\alpha)
+\end{array}
+\end{equation}
+Comme précédemment, par une analyse semblable pour les opérateurs. 
+Définissons $\hat{A}$ :
+\begin{equation}
+\hat{A} = \mathbb{1}\hat{A}\mathbb{1} = \iint d\alpha\ d\alpha'\ \ket{u_\alpha}
+\underbrace{\bra{u_\alpha}\hat{A}\ket{u_{\alpha'}}}_{A(\alpha,\alpha')}\bra{u_{\alpha'}}
+\end{equation}
+où $A(\alpha,\alpha')$ correspond aux éléments de matrice. \\
+Pour finir, intéressons nous au cas de l'opérateur adjoint\footnote{TT : détaille plus 
+ce qu'on essaye de montrer, c'est un peu pas clair :/}
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi'} = \hat{A}\ket{\psi} = \int d\alpha\ \overbrace{a(\alpha)}^{?}\ket{u_\alpha},\qquad a(\alpha) &= \bra{u_\alpha}\ket{\psi'} = \bra{u_\alpha}\hat{A}\ket{\psi}\\
+&= \int d\alpha'\ \underbrace{\bra{u_\alpha}\hat{A}\ket{u_{\alpha'}}}_{A(\alpha,
+\alpha')}\underbrace{\bra{u_{\alpha'}}\ket{\psi}}_{c(\alpha)}
+\end{array}
+\end{equation}
+Nous nous intéressions à savoir ce qu'était $a(\alpha)$, c'est maintenant chose faite
+\begin{equation}
+\underline{a(\alpha) = \int d\alpha\ A(\alpha,\alpha')c(\alpha)}
+\end{equation}
+Dans le cas discret, nous avions $a_i = \sum_j A_{ij}c_j$. Ici le résultat est identique, 
+mais sous forme intégrale. Cette expression illustre bien à quel point la notation de 
+Dirac est compacte.
+
 
 \subsection{Exemple de base (représentation) continue}
 Base position : 
