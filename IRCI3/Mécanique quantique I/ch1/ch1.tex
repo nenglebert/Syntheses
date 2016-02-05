@@ -417,4 +417,353 @@ On peut justifier la dernière propriété de la façon suivante :
 \end{array}
 \end{equation}
 Le produit position et impulsion n'est pas un opérateur hermitien (ces deux états ne 
-commutent pas) ; ce n'est donc pas une quantité observable en physique quantique.
+commutent pas) ; ce n'est donc pas une quantité observable en physique quantique.\\
+
+
+
+
+%COURS 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Pour obtenir le complexe conjugué avec les notations de Dirac, il suffit de lire à 
+l'envers pour obtenir ce que l'on souhaite :
+\begin{equation}
+\begin{array}{ll}
+\hat{A}\ket{\psi} &\rightarrow \bra{\psi}\hat{A}^\dagger\\
+\bra{\varphi}\hat{B}&\rightarrow \hat{B}^\dagger \ket{\varphi}\\
+\bra{\psi}\hat{A}\ket{\varphi} &\rightarrow  \bra{\varphi}\hat{A}^\dagger\ket{\varphi} =
+\bra{\psi}\hat{A}\ket{\varphi}^*
+\end{array}
+\end{equation}
+Un autre exemple, un peu moins trivial est de considérer l'opérateur suivant
+\begin{equation}
+\ket{u}\bra{v} \rightarrow (\ket{u}\bra{v})^\dagger= \ket{v}\bra{u}
+\end{equation}
+Avec la notation $\ket{u}\bra{v}\ket{\varphi}$, on se rend 
+compte qu'il s'agit bien d'un opérateur agissant sur l'état $\ket{\varphi}$. Afin de 
+s'en rendre compte, développons ceci à titre d'application
+\begin{equation}
+\begin{array}{lll}
+\bra{\varphi}\underline{\left(\ket{u}\bra{v}\right)^\dagger}\ket{\psi} &= (\bra{\psi}(\ket{u}\bra{v})
+\ket{\varphi})^* & (*)\\
+&=(\bra{\psi}\ket{u})^*(\bra{v}\ket{\varphi})^*\\
+&=(\bra{u}\ket{\psi})(\bra{\varphi}\ket{v})\\
+&=(\bra{\varphi}\ket{v})(\bra{u}\ket{\psi}) & \text{Commutativité}\\
+&=\bra{\varphi}\underline{(\ket{v}\bra{u})}\ket{\psi}
+\end{array}
+\end{equation}
+Il est possible de voir $(*)$ de deux façons différentes. On peut le comprendre comme 
+un objet (opérateur) dont on fait l'élément de matrice entre $\psi$ et $\varphi$ (comme 
+le suggère les parenthèses). On peut également le voir comme deux produits scalaire dont 
+on fait le produit simple (en omettant cette fois-ci les parenthèses).
+
+
+\subsection{Base Hilbertienne}
+Une base hilbertienne est une base de l'espace de Hilbert. Il en existe deux particulières:
+la base discrète de dimension finie et la base continue.
+
+\subsubsection{Base discrète}
+Nous parlons de l'espace de Hilbert et donc d'un espace des états, soit encore un ensemble 
+de ket :
+\begin{equation}
+\left\{\ket{u_i}\right\}
+\end{equation}
+Ces bases sont orthonormées
+\begin{equation}
+\bra{u_i}\ket{u_j} = \delta_{ij}
+\end{equation}
+Le but d'une telle base est d'exprimer n'importe quel ket, n'importe quel état, comme une 
+combili des vecteurs de cette base. En toute généralité, on peut écrire un ket comme une 
+somme sur $i$ de coefficients multiplicatifs $C_i$ (qui joueront le rôle d'amplitude de 
+probabilité, mais ils sont avant tout des coefficients de Fourier)
+\begin{equation}
+\ket{\psi} = \sum_i C_i\ket{u_i}
+\label{eq:2.5}
+\end{equation}
+En remarquant que
+\begin{equation}
+\bra{u_j}\ket{\psi} = \sum_iC_i\underbrace{\bra{u_j}\ket{u_i}}_{\delta_{ij}} = C_j
+\end{equation}
+On peut réécrire \autoref{eq:2.5} :
+\begin{equation}
+\begin{array}{lll}
+\ket{\psi} &= \sum_i \bra{u_i}\ket{\psi}\ket{u_i} & \text{Notations de Dirac}\\
+&= \sum_i \ket{u_i}\bra{u_i}\ket{\psi} & \text{(Somme d') Op. lin. appliqué(e) à $\psi$}\\
+&\underbrace{\left(\sum_i \ket{u_i}\bra{u_i}\right)}_{\mathbb{1}}\ket{\psi} & \forall\psi
+\end{array}
+\end{equation}
+
+Il s'agit de la relation de fermeture. Dès que j'ai une base complète, la somme des
+$\ket{u_i}\bra{u_i}$ donnera l'opérateur identité. On appelle alors la \textbf{relation 
+de fermeture} :
+\begin{equation}
+\sum_i \ket{u_i}\bra{u_i} = \hat{\mathbb{1}}
+\end{equation}
+On peut alors définir l'opérateur \textit{projecteur} $\hat{P_i}$ :
+\begin{equation}
+\hat{P_i} = \ket{u_i}\bra{u_i}
+\end{equation}
+Cet opérateur possède deux propriétés remarquables. La première est qu'il est hermitien, 
+c'est-à-dire $\hat{P_i} = \hat{P_i}^\dagger$.
+\begin{equation}
+\hat{P_i}^\dagger = (\ket{u_i}\bra{u_i})^\dagger = \ket{u_i}\bra{u_i} = P_i
+\end{equation}
+La seconde est qu'il est idempotent. Autrement dit, plus d'une application successive ne 
+change rien au résultat obtenu : $\hat{P_i}^2 = \hat{P_i}$.
+\begin{equation}
+\begin{array}{ll}
+\hat{P_i}^2 &= (\ket{u_i}\bra{u_i})(\ket{u_i}\bra{u_i})\\
+&= \ket{u_i}\underbrace{\bra{u_i}\ket{u_I}}_{=1}\bra{u_i}\\
+&= \hat{P_i}
+\end{array}
+\end{equation}
+On interprète le projecteur comme on le ferrait dans l'espace euclidien\footnote{Inclure 
+graphe}. La relation de fermeture peut ainsi être réécrite :
+\begin{equation}
+\sum_i \hat{P_i} = \hat{\mathbb{1}}
+\end{equation}
+Le développement suivi ici est valable pour toute base. Prenons
+Ceci est valable pour toute base. Prenons l'exemple d'un ket
+\begin{equation}
+\text{ket }\ \ket{\psi} = \sum_i c_i\ket{u_i},\qquad c_i = \bra{u_i}\ket{\psi}
+\end{equation}
+On peut faire de même pour un bra. Pour définir un bra, il faut premièrement définir 
+un ket puis prendre son élément dual.
+\begin{equation}
+\begin{array}{lll}
+& \ket{\varphi} &= \sum_i b_i\ket{u_i},\qquad b_i = \bra{u_i}\ket{\varphi}\\
+\text{bra } & \bra{\varphi} &= \sum_i b_i^* \bra{u_i}
+\end{array}
+\end{equation}
+Comment faire pour exprimer un produit scalaire ? Il suffit de faire apparaître 
+l'opérateur identité et jouer avec les notations de Dirac
+\begin{equation}
+\begin{array}{lll}
+\bra{\varphi}\ket{\psi} &= \bra{\varphi}\mathbb{1}\ket{\psi}\\
+&= \sum_i \underbrace{\bra{\varphi}\ket{u_i}}_{b_i^*}\underbrace{\bra{c_i}\ket{\psi}}_{c_i} &
+\text{Relation de fermeture}\\
+&= \sum_i b_i^*c_i & (*)
+\end{array}
+\end{equation}
+Dans $(*)$, $b_i^*$ est un vecteur ligne et $c_i$ un vecteur colonne. Si l'espace de Hilbert 
+est complet, il s'agit la d'un produit scalaire.\\
+Cela fonctionne également pour un opérateur, en effectuant la même astuce mathématique:
+\begin{equation}
+\begin{array}{ll}
+\hat{A} &= \hat{\mathbb{1}}\hat{A}\hat{\mathbb{1}}\\
+&=\sum_{i,j} \ket{u_i}\underbrace{\bra{u_i}\hat{A}\ket{u_i}}_{A_{i,j}}\bra{u_j}
+\end{array}
+\end{equation}
+Appliquons $\hat{A}$ sur un ket
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi'} &= \hat{A}\ket{\psi}\\
+&\equiv \sum_i a_i\ket{u_i}
+\end{array},\qquad \begin{array}{ll}
+a_i &= \bra{u_i}\ket{\psi'}\\
+&=\bra{u_i}\hat{A}_\mathbb{1}\ket{\psi} = \sum_j \underbrace{\bra{u_i}\hat{A}\ket{u_j}}_{A_{i,j}}
+\underbrace{\bra{u_j}\ket{\psi}}_{c_j}
+\end{array}
+\end{equation}
+où l'on a utilisé $\ket{\psi'} = \hat{A}\ket{\psi}$ et $a_i = \sum_jA_{ij}c_j\  "=" 
+\left(\begin{array}{c}
+\vdots\\
+\vdots\\
+\vdots
+\end{array}\right) = \left(\begin{array}{ccc}
+  & \dots &  \\
+\vdots &\ddots &\vdots\\
+  & \dots &  
+\end{array}\right)\left(\begin{array}{c}
+\vdots\\
+\vdots\\
+\vdots\\
+\end{array}\right)$.
+
+
+\subsubsection{Base continue}
+On va ici partir d'une famille ou cette fois ci l'indice sera "continu". 
+\begin{equation}
+\{\ket{u_\alpha}\}\quad \alpha\in\mathbb{R}
+\end{equation}
+On peut comme précédemment fabriquer des états orthogonaux, ce qui va jouer 
+le rôle orthonormalisation standard est le relation
+\begin{equation}
+\underline{\bra{u_\alpha}\ket{u_{\alpha'}} = \delta(\alpha-\alpha')}
+\end{equation}
+où $\delta$ est la fonction de Dirac. La subtilité est que $u_\alpha$ n'est 
+pas toujours un état physique. Cependant, il peut toujours être utilisé pour 
+décrire un état qui lui, est bien physique. Comme pour le cas continu, il 
+est possible d'exprimer le ket dans la base. Les sommes seront ainsi 
+remplacées par es intégrales et les coefficients de Fourier par une fonction 
+jouant le même rôle.
+\begin{equation}
+\ket{\psi} = \int d\alpha\ C(\alpha)\ket{u_\alpha}
+\label{eq:2.12}
+\end{equation}
+où les $C(\alpha)$ renseignent sur le poids. Il est possible, comme précédemment, 
+de déterminer ceux-ci en multipliant ce ket par un autre élément de la base.
+\begin{equation}
+\bra{u_{\alpha'}}\ket{\psi} = \int d\alpha\ C(\alpha) \underbrace{
+\bra{u_{\alpha'}}\ket{u_\alpha}}_{=\delta(\alpha-\alpha')} = C(\alpha')
+\end{equation}
+On peut alors ré-écrire \autoref{eq:2.12}
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi} &= \int d\alpha\ \bra{u_\alpha}\ket{\psi}\ket{u_\alpha}\\
+&= \int d\alpha\ \ket{u_\alpha}\bra{u_\alpha}\ket{\psi}\\
+&=\displaystyle\left(\int d\alpha\ \ket{u_\alpha}\bra{u_\alpha}\right)\ket{\psi}
+\qquad \forall\psi
+\end{array}
+\end{equation}
+Le terme entre parenthèse n'est, pas identification, rien d'autre que l'opérateur 
+identité $\mathbb{1}$ que l'on peut également voir comme un opérateur projecteur
+$\hat{P_\alpha}$. La relation de fermeture s'écrit alors
+\begin{equation}
+\int d\alpha\ \underbrace{\ket{u_\alpha}\bra{u_\alpha}}_{\hat{P_\alpha}} = \hat{
+\mathbb{1}}
+\end{equation}
+Comme nous l'avons fait pour le cas de la base discrète, montrons comment écrire 
+un bra, ket, opérateur linéaire,\dots
+\begin{equation}
+14
+\end{equation}
+
+\subsection{Exemple de base (représentation) continue}
+Base position : 
+\begin{equation}
+15
+\end{equation}
+N'importe quel ket pourra s'exprimer dans cette base position. Le relation 
+fermerture pour la base position nous dis que l'intégration l'espace, en 
+prenant le projecteur pour une position donnée, cela donne l'identité.
+\begin{equation}
+16
+\end{equation}
+Compte-tenu de cette relation, on peut exprimer les ket tel que
+\begin{equation}
+17
+\end{equation}
+Si je viens mettre la relation d'identité à droite de mon bras
+\begin{equation}
+18
+\end{equation}
+J'ai défini la définition ???
+\begin{equation}
+19
+\end{equation}
+Le delta n'est pas physique car il représente un état infiniment localisé. Or 
+de telles solutions diverge. Malgré tout, même si ce n'est pas un état 
+physique c'est bien pratique pour former une base.
+
+
+
+
+
+\section{7. Observable}
+Il s'agit d'un observateur linéaire hermitien $\hat{A}$ associa à une grandeur 
+physique observable $A$. Si l'on a une grandeur physique observable, je 
+sais que je peux lui associer un opérateur linéaire hermitien. 
+\begin{equation}
+20
+\end{equation}
+Une autre classification importante est selon le spectre. Le spectre est
+l'ensemble de toutes les valeurs propres possibles $\{\lambda\}$. Si celui-ci 
+est discret, on retrouvera un système lié (particule dans une boîte). On 
+peut également avoir des spectres continu (système libre), utile dans la 
+\textit{théorie des collisions/diffusion}.\\
+
+On peut s'intéresser aux propriétés de bases
+\begin{equation}
+21
+\end{equation}
+Ceci va nous amener à la décomposition spectrale des opérateurs; on peut 
+toujours les réprésenter dans une base. Unbase particulièrement intégrassante 
+est celle des vecteurs propres de l'observable qui nous intéresse; 
+
+\subsubsection{Décomposition spectrale de A}
+L'idée c'est que j'ai les vecteurs propres et un second indice si les valeurs propres sont dégénérées
+\begin{equation}
+22
+\end{equation}
+On a tjs la relation d'orthonormalité
+\begin{equation}
+23
+\end{equation}
+On peut toujours trouver une base grace à GS.
+
+La relation de fermeture dis que si je somme le sprojecteurs sur tous les 
+vecteurs de ma base j'aurai l'identité. La relation de fermeture sera donnée 
+par (pour chaque base on peut écrire cette rel)
+\begin{equation}
+24
+\end{equation}
+
+Théorème spectral
+\begin{equation}
+25
+\end{equation}
+Si s'agit d'un projecteur de rang $g_n$. On va montrer que ces $P_n$ forment
+des projecteurs orthogonaux
+\begin{equation}
+26
+\end{equation}
+...
+
+
+OBSERVABLE SPECTRE CONTINU
+\begin{equation}
+27
+\end{equation}
+Décomposition spectrale de $\hat{\vec{r}}$
+\begin{equation}
+28
+\end{equation}
+J'ai une intégrale d'opérateur qui me donne un opérateur (bon en fait 3 car
+j'ai un triplet d'opérateur). La décomposition spectrale peut s'écrire comme 
+ceci. Si au lieu de parler de l'opérateur r je parle de 1, il n'a que une 
+seule valeur propre, je retrouve
+\begin{equation}
+29
+\end{equation}
+Soit la relation de fermeture, qui n'est rien d'autre que la décomposition 
+spectrale d'un opérateur particulier.\\
+
+La base impulsion est liée à la décomposition en valeur propre de l'omérateur impulsion (triplet d'opérateur) :
+\begin{equation}
+30
+\end{equation}
+COnnaitre l'impulsion implique une position étalée sur l'infinie d'énergie 
+infinie, ce n'est pas physique. Je peux considérere la décomposition 
+sepctrale
+\begin{equation}
+31
+\end{equation}
+On peut exprimer la fonction d'onde dans la ase impulsion
+\begin{equation}
+32
+\end{equation}
+Je peux faire de meme dans la base position.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
