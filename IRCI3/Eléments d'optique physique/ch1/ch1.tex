@@ -231,19 +231,224 @@ En conclusion:
 
 \newpage
 \section{Transformée de Fourier : introduction}
+La transformée de Fourier s'applique à une fonction $f(x)$. Pour transformer celle-ci, il 
+faut préalablement mutliplier par $e^{i\alpha x}$ puis intégration :
+\begin{equation}
+TF(f) \equiv \int_{-\infty}^\infty f(x)e^{i\alpha x}\ dx = F(\alpha)
+\end{equation}
+où $F(\alpha)$ est la transformée de Fourier de $f(x)$. Le résultat est bien une fonction 
+du paramètre $\alpha$ ! Afin d'illustrer cette définition, reconsidérons le premier exemple 
+du chapitre, la fonction fenêtre, cette fois-ci non normalisée.
+\begin{equation}
+f_a(x) =\left\{\begin{array}{ll}
+a &\text{ si } |x| \leq L\\
+0 &\text{ si } |x| > L
+\end{array}\right.
+\end{equation}
+Calculons sa transformée de Fourier
+\begin{equation}
+\begin{array}{ll}
+TF(f) &= \int_{-L}^L ae^{i\alpha x}\ dx = a\left[\dfrac{1}{i\alpha}e^{i\alpha x}\right]^L_{-L}\\
+&= a\dfrac{1}{1\alpha}\left[e^{i\alpha L}-e^{-i\alpha L}\right] = 2a\dfrac{\sin(\alpha L)}{\alpha}
+\end{array}
+\end{equation}
+
+\begin{wrapfigure}[8]{l}{4.5cm}
+\vspace{-25mm}
+\includegraphics[scale=0.45]{ch1/image7.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+On reconnaît ce que l'on trouvait pour la fonction de Dirac. En multipliant par $L/L$, on obtient 
+la transformée de Fourier de la fonction fenêtre
+\begin{equation}
+TF(f) = 2aL\text{sinc}(\alpha L)
+\end{equation}
+Il n'y a pour l'instant pas grand chose à comprendre, il ne s'agit que de l'application d'une 
+définition. Quel est l'intérêt mathématique de cette transformation? Cette transformation est-elle
+réversible ? Oui, c'est son intérêt majeur: la transformée de Fourier inverse.\\
+Pour y arriver, étudions la fonction suivante
+\begin{equation}
+\int_{-\infty}^\infty F(\alpha)e^{-i\alpha x}\ d\alpha  = g(x)
+\end{equation}
+\danger Il s'agit bien d'un moins, d'où le \textit{inverse}. Le but est de calculer cette intégrale 
+pour déterminer notre fameuse inverse dont le résultat sera une fonction de $x$. Remplaçons $F(\alpha)$ 
+par son expression (on note $x'$ pour ne pas confondre les variables)
+\begin{equation}
+g(x)= \int_{-\infty}^\infty \int_{-\infty}^\infty  f(x')e^{i\alpha x'}\ dx'\ e^{-i\alpha x}\ d\alpha
+\end{equation}
+Par Fubini
+\begin{equation}
+\begin{array}{ll}
+g(x) &= \int_{-\infty}^\infty  f(x') \int_{-\infty}^\infty  e^{i\alpha x'}e^{-i\alpha x}\ d\alpha\ dx'\\
+&= \int_{-\infty}^\infty  f(x') \int_{-\infty}^\infty  e^{i\alpha (x'-x)}\ d\alpha\ dx'
+\end{array}
+\end{equation}
+En utilisant une des définition de la distribution de Dirac : $\dfrac{1}{2\pi}\int_{-\infty}^\infty 
+e^{i\alpha x}\ dx  = \delta(\alpha)$ en remplaçant $\alpha$ par $x$ et l'ancien $\alpha$ par $L$ :
+\begin{equation}
+g(x) = \int_{-\infty}^\infty  f(x')\ 2\pi\delta(x'-x)\ dx' = 2\pi f(x)
+\end{equation}
+Cette intégrale ne sélectionne que la valeur de la fonction $f$ lorsque $x=x'$. 
+\begin{equation}
+g(x) = \int_{-\infty}^\infty F(\alpha)e^{-i\alpha x}\ d\alpha  = g(x) = 2\pi f(x)
+\end{equation}
+La \textbf{transformée de Fourier inverse} est donne par
+\begin{equation}
+TF^{-1}(F) = \frac{1}{2\pi}\int_{-\infty}^\infty F(\alpha)e^{-i\alpha x}\ d\alpha = f(x)
+\end{equation}
+Petite relation intéressante :
+\begin{equation}
+TF^{-1}[TF(f)] = f(x)
+\end{equation}
+
+\begin{wrapfigure}[6]{l}{5.5cm}
+\vspace{-10mm}
+\includegraphics[scale=0.45]{ch1/image8.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Ceci montre que la transformée de Fourier est une bijection dans l'espace des fonctions. A 
+quelques restrictions près, on peut transformer toutes les fonctions par Fourier. Il s'agit 
+d'une bijection car deux fonctions distinctes donneront deux transformées différentes, ceci 
+vient de l'existence de la transformée inverse. 
+\begin{proof}\ \\
+\begin{equation}
+\begin{array}{ll}
+TF(f) = F &\Longrightarrow TF^{-1}[TF(f)] = TF^{-1}[F] = f\\
+TF(g) = F &\Longrightarrow TF^{-1}[TF(g)] = TF^{-1}[F] = f = g
+\end{array}
+\end{equation}
+\end{proof}
+Il sera dès lors toujours possible de "défaire" une transformée de Fourier de façon univoque. 
+Illustrons à nouveau, cette fois-ci avec une gaussienne :
+\begin{equation}
+f(x) = e^{-x^2/x_0^2}\quad \ft \quad F(\alpha) = x_0\sqrt{\pi}e^{-\alpha^2x_0^2/4}
+\end{equation}
+Résultat un peu plus compliqué à trouver, il est nécessaire d'utiliser l’analyse complexe. On 
+remarque que le résultat est également une gaussienne dont la largeur est inversement 
+proportionnelle à $x_0$. Plus la gaussienne est étroite, plus $x_0$ est petit, plus la transformée 
+inverse sera large\footnote{Aussi valable pour la fonction fenêtre.}.
+Plus la fonction est large, plus sa transformée est étroite et vice-versa la règle est vraiment 
+très générale.
+\begin{center}
+\includegraphics[scale=0.45]{ch1/image9.png}
+\captionof{figure}{ }
+\end{center}
+
+En faisant tendre $x_0 \rightarrow$ et en supposant une normalisation, on retrouve le delta de 
+Dirac $f(x) = \delta(x)$. On peut montrer que si on fait ça, la gaussienne dans le domaine de 
+Fourier tend vers l'infini : c'est une constante. Pour trouver la valeur de celle-ci, calculons
+\begin{equation}
+F(\alpha) = \int_{-\infty}^\infty \delta(x) e^{i\alpha x}\ dx = 1
+\end{equation}\\
+
+Considérons un autre exemple : $f(x) = e^{-i\alpha_0x}$. Par application de la définition
+\begin{equation}
+F(\alpha) = \int_{-\infty}^\infty e^{i(\alpha-\alpha_0)}\ dx = 2\pi\delta(\alpha-\alpha_0)
+\end{equation}
+\begin{center}
+\includegraphics[scale=0.45]{ch1/image10.png}
+\captionof{figure}{ }
+\end{center}
+Le $\alpha_0$ imposant la périodicité de la fonction harmonique localise le "pic" du delta 
+de Dirac. La transformée de Fourier de l'exponentielle imaginaire donne directement le delta 
+de Dirac. Plutôt que de prendre l'exponentielle je peux faire de même avec le cosinus directement :
+\begin{equation}
+f(x) = \cos(\alpha_0x) = \frac{e^{i\alpha_0x}+e^{-i\alpha_0x}}{2}
+\end{equation}
+La seule différence est la contribution de la partie imaginaire
+\begin{equation}
+F(\alpha) = \int_{-\infty}^\infty f(x)e^{i\alpha x}\ dx = \pi[\delta(\alpha+\alpha_0)+\delta(\alpha
+-\alpha_0)]
+\end{equation}
+\begin{center}
+\includegraphics[scale=0.45]{ch1/image11.png}
+\captionof{figure}{ }
+\end{center}
+Dans le cas d'un sinus, il faudra mettre un signe négatif entre les delta et diviser par $i$.\\
+
+Passons en revues les propriétés des transformées de Fourier. Soit la transformée de Fourier
+\begin{equation}
+F(\alpha) = \int_{-\infty}^\infty f(x)e^{i\alpha x}\ dx
+\end{equation}
+\begin{equation}
+\begin{array}{lll}
+\bullet & TF[f(x-x_0)] &= \int_{-\infty}^\infty f(x-x_0)e^{i\alpha x}\ dx\\
+&&= \int_{-\infty}^\infty f(x')e^{i\alpha (x'+x_0)}\ dx'\\
+&&= e^{i\alpha x_0}\int_{-\infty}^\infty f(x')\ dx'\\
+&&= F(\alpha)e^{i\alpha x_0}\ \\
+\ \\
+\bullet & TF^{-1}[F(\alpha-\alpha_0)] &= f(x)e^{-i\alpha_0 x}\\
+\bullet & TF[f(x)e^{-i\alpha_0x}] &= F(\alpha-\alpha_0)
+\end{array}
+\end{equation}
+Ceci peut se résumer avec la fonction de Dirac
+\begin{equation}
+TF[\delta(x-x_0)] = e^{i\alpha x_0},\qquad TF[e^{-i\alpha_0x}] = \delta(\alpha-\alpha_0)
+\end{equation}
+Intéressons-nous maintenant à la transformée de Fourier de la dérivée de $f(x)$. Le plus 
+simple est d'utiliser la notion de transformée de Fourier inverse
+\begin{equation}
+f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty F(\alpha)e^{-i\alpha x}\ d\alpha
+\end{equation}
+En dérivant
+\begin{equation}
+\begin{array}{ll}
+\dfrac{df(x)}{dx} &= \frac{1}{2\pi}\int_{-\infty}^\infty -i\alpha F(\alpha)e^{-i\alpha x}\ 
+d\alpha\\
+&= TF^{-1}[-i\alpha F(\alpha)]
+\end{array}
+\end{equation}
+On a donc
+\begin{equation}
+TF\left[\dfrac{df(x)}{dx}\right] = -i\alpha F(\alpha)
+\end{equation}
+Pour une dérivée seconde, on trouvera $(-i\alpha)^2$, \dots\\
+
+Terminons la section par une généralisation de la transformée de Fourier à deux dimensions. 
+Considérons une fonction à deux variables que l'on va multiplier par deux exponentielles de 
+sorte à avoir deux variables de Fourier (dites conjuguées, l'une à $x$, l'autre à $y$):
+\begin{equation}
+F(\alpha,\beta) = \int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)e^{i\alpha x}e^{i\beta y}\ 
+dx\ dy
+\end{equation}
+A condition de montrer que $f(x,y)$ peut être écrite à partir de la transformée de Fourier 
+inverse, on obtient la transformée de Fourier inverse à deux dimensions
+\begin{equation}
+f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty F(\alpha,\beta)
+e^{-i\alpha x}e^{-i\beta y}\ d\alpha\ d\beta
+\end{equation}
+Ceci est cohérent et pour s'en rendre compte, substituons l'expression de $F(\alpha,\beta)$ :
+\begin{equation}
+f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty \int_{-\infty}^\infty
+\int_{-\infty}^\infty f(x',y')e^{i\alpha x'}e^{i\beta y'}\ e^{-i\alpha x}e^{-i\beta y}\
+ d\alpha\ d\beta\ dx'\ dy' 
+\end{equation}
+Par Fubini
+\begin{equation}
+f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y') \int_{-\infty}^\infty
+\int_{-\infty}^\infty e^{i\alpha x'}e^{i\beta y'}\ e^{-i\alpha x}e^{-i\beta y}\
+ d\alpha\ d\beta\ dx'\ dy' 
+\end{equation}
+En intégrant sur $\alpha$
+\begin{equation}
+f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y') \underbrace{
+\int_{-\infty}^\infty e^{i\alpha(x'-x)}\ d\alpha}_{2\pi\delta(x'-x)} \underbrace{\int_{-\infty}^\infty 
+e^{i\beta(y'-y)}\ d\beta}_{2\pi\delta(y'-y)}\ dx'\ dy'
+\end{equation}
+On voit apparaître la distribution de Dirac, de sorte à pouvoir écrire
+\begin{equation}
+f(x,y) = \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y')\delta(x'-x)\delta(y'-y)\ dx'\ dy'
+\end{equation}
+En appliquant la notion de Distribution de Dirac qui "sélectionne" l'argument de la fonction tel 
+que l'argument de la fonction de Dirac s'annule c'est à dire que $x'=x$ et $y'=y$. Ce résultat-ci 
+est bien $f(x,y)$, pas besoin d'aller plus loin. Ceci prouve que le résultat est cohérent.
 
 
 
 
 
-
-
-
-
-
-
-
-
+\newpage
+\section{Transformée de Fourier : convolution}
 
 
 
