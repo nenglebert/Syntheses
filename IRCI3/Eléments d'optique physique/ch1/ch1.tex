@@ -24,7 +24,7 @@ l'unité.
 \int_{-\infty}^\infty f_a(x)\ dx = 1
 \label{eq:lim1}
 \end{equation}
-La distribution de dirac peut etre définie à partir de cette fonction 
+La distribution de dirac peut être définie à partir de cette fonction 
 en prenant la limite de $a$ tendant vers l'infini : sa hauteur tend vers 
 l'infini tandis que sa largeur tend vers zéro.
 \begin{equation}
@@ -45,7 +45,7 @@ du paramètre $a$, d'où la surface unitaire :
 \captionof{figure}{ }
 \end{wrapfigure}
 L'intérêt de cette distribution ne se remarque que par combinaison avec d'autres 
-fonction. Considérons le produit d'une fonciton quelconque avec la fonction de 
+fonction. Considérons le produit d'une fonction quelconque avec la fonction de 
 Dirac. La seule fonction qui sera considérée est celle qui se trouve en zéro :
 \begin{equation}
 f(x)\delta(x) = f(0)\delta(x)
@@ -232,7 +232,7 @@ En conclusion:
 \newpage
 \section{Transformée de Fourier : introduction}
 La transformée de Fourier s'applique à une fonction $f(x)$. Pour transformer celle-ci, il 
-faut préalablement mutliplier par $e^{i\alpha x}$ puis intégration :
+faut préalablement multiplier par $e^{i\alpha x}$ puis intégration :
 \begin{equation}
 TF(f) \equiv \int_{-\infty}^\infty f(x)e^{i\alpha x}\ dx = F(\alpha)
 \end{equation}
@@ -449,6 +449,233 @@ est bien $f(x,y)$, pas besoin d'aller plus loin. Ceci prouve que le résultat es
 
 \newpage
 \section{Transformée de Fourier : convolution}
+\begin{wrapfigure}[9]{l}{10.5cm}
+\vspace{-6mm}
+\includegraphics[scale=0.45]{ch1/image12.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Le théorème de convolution est un théorème fondamental d'un point de vue pratique, il 
+justifie l'utilisation de la transformée de Fourier. Considérons un système physique 
+linéaire permanent (SLP) dans laquelle rentre un signal $s(t)$ et sort $s'(t)$. Considérons 
+que ce SLP soit une fibre optique dans laquelle on peut faire rentrer une impulsion lumineuse. 
+Au cours de sa propagation elle va subir des transformation de sorte à avoir une sortie modifiée.
+Le système est dit linéaire, il obéit au principe de superposition. Permanent, c'est lorsque 
+ce système reste inchangé dans le temps. \\
+
+On peut appliquer le théorème de superposition
+\begin{equation}
+s(t) = \sum_n s_n(t) \Longrightarrow \text{SLP} \Longrightarrow s'(t) = \sum_n s_n'(t)
+\end{equation}
+
+\begin{wrapfigure}[7]{r}{10.5cm}
+\vspace{-6mm}
+\includegraphics[scale=0.45]{ch1/image13.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+L'idée est de construire une grosse impulsion à partir de la somme d'impulsion plus petite d'amplitude 
+progressive pour créer une grosse amplitude gaussienne à partir de la somme de petite gaussienne 
+$g(t)$ chacune centrée en $t_n$ donnant lieu à l'enveloppe du signal $s(t)$. Comme on peut le voir, 
+l'amplitude d'une gaussienne donne à peu près l'amplitude du champ. Le signal d'entrée peut alors 
+être écrit comme étant la somme de toutes ces petites gaussiennes centrée en $t_1,t_2,\dots$ chaque 
+fois avec une amplitude qui va donner l'amplitude de l'enveloppe en ce $t_n$\footnote{$s(t_n)$ est 
+l'amplitude de la Gaussienne.} :
+\begin{equation}
+s(t) = \sum_n s(t_n)g(t-t_n)
+\end{equation}
+A la sortie du SLP, on retrouvera la sortie à chacune des gaussiennes prises séparément.
+\begin{equation}
+s'(t) = \sum_n s(t_n)g'(t-t_n)
+\end{equation}
+\danger On retrouve bien $s(t_n)$ et pas $s'(t_n)$ car si l'on place un facteur $a$, par linéarité, 
+on retrouvera celui-ci à la sortie.\\
+
+En sommant des gaussiennes, nous n'aurons pas exactement un signal très lisse, il y aura forcément 
+des bosses, défauts, \dots Pour représenter des détails arbitrairement fin, on va passer de 
+gaussiennes à des distributions de Dirac $g(t-t_n) \rightarrow \delta(t-t_n)$, changeant les 
+sommes en intégrales
+\begin{equation}
+s(t) = \int_{-\infty}^\infty s(t_n)\delta(t-t_n)\ dt_n
+\end{equation}
+L'amplitude est donnée par $s(t_n)$ et on multiplie par la Dirac en suivant le même raisonnement 
+qu'avec des gaussiennes : un continuum de fonction de Dirac
+\begin{equation}
+s(t) = \int_{-\infty}^\infty s(t')\delta(t-')\ dt'
+\end{equation}
+Comment interpréter ça ? En effet, la fonction de Dirac monte jusqu'à l'infini et est arbitrairement 
+étroite, ça a du sens ? Oui, le delta de Dirac sélectionne la valeur de la fonction pour laquelle 
+celui-ci s'annule, on retrouve bien $s(t)=s(t)$ pour $t'=t$, le raisonnement intuitif suivi ici est bien 
+rigoureux. Cette intégrale désigne le \textit{produit de convolution}. On peut alors voir $s(t)$ 
+comme sa convolution avec le delta de Dirac. Ceci sera vu en détail plus tard, l'importance est 
+de voir ici la cohérence mathématique. En appliquant le principe de superposition on retrouve 
+aisément la sortie
+\begin{equation}
+s'(t) = \int_{-\infty}^\infty s(t')g'(t-t')\ dt'
+\end{equation}
+
+Illustrons en considérant que le signal d'entrée est une impulsion de Dirac $s(t) = \delta(t)$, 
+il en sortira une certaine réponse $g'(t)$, la \textit{réponse impulsionnelle}, souvent notée $h(t)$. 
+La sortie sera alors donnée par la convolution de la réponse impulsionnelle multipliée par le signal 
+d'entrée
+\begin{equation}
+\left\{\begin{array}{ll}
+s(t) &= \int_{-\infty}^\infty s(t')\delta(t-t')\ dt'\\
+s'(t) &= \int_{-\infty}^\infty s(t')h(t-t')\ dt'
+\end{array}\right.
+\end{equation}
+Une fonction peut vue comme une combili de delta de Dirac multiplié par la fonction elle-même. Cela 
+peut paraître trivial mais aussi utile. La sortie sera simplement donnée par la fonction d'entrée 
+multipliée par la réponse impulsionnelle ; ce sont les \textit{produits de convolution}.\\
+
+En toute généralité, le système sera entièrement caractérisé par sa réponse impulsionnelle, c'est-à-dire 
+si je connais $h(t)$ tout le système est caractérisé ; tout signal d'entrée sera transformé en 
+signal de sortie au travers de cette convolution.\\
+
+Hélas le produit de convolution peut être difficile à calculer. Nous allons ici montrer qu'il peut 
+être appréhender de façon simple à partir de la notion de transformée de Fourier en introduisant 
+les transformations de $s$ et $h$ via la transformation inverse :
+\begin{equation}
+\left\{\begin{array}{ll}
+s(t) &= \frac{1}{2\pi}\int_{-\infty}^\infty S(\omega)e^{-i\omega t}\ d\omega\\
+h(t) &= \frac{1}{2\pi}\int_{-\infty}^\infty H(\omega)e^{-i\omega t}\ d\omega
+\end{array}\right.
+\end{equation}
+En ré-écrivant l'intégrale de convolution (substituer $t$ par $t'$) :
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \int_{-\infty}^\infty \left[\dfrac{1}{2\pi}
+\int_{-\infty}^\infty S(\omega)e^{-i\omega t'}\ d\omega\right]h(t-t')\ dt'
+\end{equation}
+En faisant de même pour $h(t-t')$ (en substituant $t$ par $t-t'$)
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \int_{-\infty}^\infty \left[\dfrac{1}{2\pi}
+\int_{-\infty}^\infty S(\omega)e^{-i\omega t'}\ d\omega\right]\left[\frac{1}{2\pi}
+\int_{-\infty}^\infty H(\omega')e^{-i\omega'(t-t')}\ d\omega' \right]\ dt'
+\end{equation}
+En passant à des notation efficaces
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \int_{t'} \left[\dfrac{1}{2\pi}
+\int_{\omega} S(\omega)e^{-i\omega t'}\ d\omega\right]\left[\frac{1}{2\pi}
+\int_{\omega'} H(\omega')e^{-i\omega'(t-t')}\ d\omega' \right]\ dt'
+\end{equation}
+Commençons par aborder l'intégrale sur $t'$ (et en sortant le terme en $t$)
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \frac{1}{2\pi}\int_\omega\int_{\omega'}
+S(\omega)H(\omega')\ \frac{1}{2\pi}\int_{t'}e^{-i\omega t'}e^{+i\omega't')}\ dt'\ e^{-i
+\omega' t}\ d\omega'\ d\omega
+\end{equation}
+Par propriété des exponentielles
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \frac{1}{2\pi}\int_\omega\int_{\omega'}
+S(\omega)H(\omega')\ \underbrace{\frac{1}{2\pi}\int_{t'}e^{-i(\omega-\omega')t'}\ dt'}_{\delta
+(\omega-\omega')}\ e^{-i
+\omega' t}\ d\omega'\ d\omega
+\end{equation}
+On retrouve la définition de delta de Dirac grâce au facteur $2\pi$ restant.
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \frac{1}{2\pi}\int_\omega\int_{\omega'}
+S(\omega)H(\omega')\ \delta(\omega-\omega')\ e^{-i\omega' t}\ d\omega'\ d\omega
+\end{equation}
+Effectuons l'intégrale en $\omega'$. Cette intégrale contenant un delta de Dirac, elle 
+n'est non nulle qu'en $\omega'=\omega$. 
+\begin{equation}
+\int_{-\infty}^\infty s(t')h(t-t')\ dt' = \frac{1}{2\pi}\int_\omega
+S(\omega)H(\omega)e^{-i\omega t}\ d\omega = TF^{-1}[S(\omega)H(\omega)]
+\end{equation}
+On reconnaît la transformée de Fourier inverse du produit algébrique de $S$ par $H$.
+\begin{equation}
+s(t) \otimes h(t) = TF^{-1}[S(\omega)H(\omega)]
+\end{equation}
+Où encore
+\begin{equation}
+TF[s(t) \otimes h(t)] = S(\omega)H(\omega)
+\end{equation}
+C'est le \textbf{théorème de convolution}, fondamental d'un point de vue pratique. En 
+effet, plutôt que de devoir effectuer une intégrale contenant un fonction $h$ difficilement 
+trouvable on se rapporte à un simple produit dans l'espace de Fourier de la transformée de 
+Fourier de la fonction d'entrée par la transformée de Fourier de la fonction de transfert 
+qui est bien plus simple à trouver : $H(\omega)$ suffit à caractériser tout le système.\\
+
+\begin{wrapfigure}[11]{r}{10.5cm}
+\vspace{-6mm}
+\includegraphics[scale=0.45]{ch1/image14.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Considérons le delta de Dirac dans le domaine spectral $S(\omega) = \delta(\omega-\omega_0)$. 
+La sortie sera donnée par $S'(\omega) = \delta(\omega-\omega_0)H(\omega)$ qui n'est rien 
+d'autre que $H(\omega_0)\delta(\omega-\omega_0)$ ! Si l'on repasse dans le domaine temporel, 
+on trouve $s(t) = e^{-i\omega_0t}$. A ce signal harmonique correspond une certaine sortie 
+donnée par la réponse elle même donnée par la transformée inverse de $S'(\omega)$, c'est à dire 
+$H(\omega_0)e^{-i\omega_0t}$. Un système linéaire va conserver le caractère harmonique de 
+l'entrée à un facteur près, $H(\omega_0)$.\\
+
+Pour connaître $H(\omega)$, on sait déjà que la fréquence de sortie sera la même : la mesure 
+des amplitudes donnera la fonction de transfert. Le système linéaire effectue un transfert 
+du signal, une "propagation" entre les deux : un signal harmonique le reste, mais l'amplitude 
+se verra être modifiée.\\
+
+En pratique, on ne se contentera pas du domaine temporel. Remontrons la convolution en partant 
+depuis l'espace de Fourier pour montrer que ce théorème s'applique aussi pour la transformée 
+de Fourier inverse.
+\begin{equation}
+\left\{\begin{array}{ll}
+F(\alpha) &= \int_{-\infty}^\infty f(x)e^{i\alpha x}\ dx\\
+G(\alpha) &= \int_{-\infty}^\infty g(x)e^{i\alpha x}\ dx
+\end{array}\right.
+\end{equation}
+Montrons que l'on peut, de façon similaire, écrire
+\begin{equation}
+H(\alpha) = \int_{-\infty}^\infty f(x)g(x)e^{i\alpha x}\ dx
+\end{equation}
+Pour se faire, écrivons nos deux fonctions via leurs transformées de Fourier inverse
+\begin{equation}
+f(x) = \frac{1}{2\pi}\int_{-\infty}^\infty F(\alpha)e^{-i\alpha x}\ d\alpha,\qquad 
+g(x) = \frac{1}{2\pi}\int_{-\infty}^\infty G(\alpha)e^{-i\alpha x}\ d\alpha
+\end{equation}
+En substituant
+\begin{equation}
+H(\alpha) = \int_x \left[\dfrac{1}{2\pi}\int_{\alpha'} F(\alpha)e^{-i\alpha' x}\ d\alpha'
+ \right]\left[\frac{1}{2\pi}\int_{-\alpha''} G(\alpha'')e^{-i\alpha x}\ d\alpha'' \right]
+\end{equation}
+En commençant par l'intégrale pourtant sur les $x$ afin de refaire apparaître le 
+delta de Dirac
+\begin{equation}
+H(\alpha) = \int_{\alpha'}\int_{\alpha''} F(\alpha')G(\alpha'')\underbrace{\left[\dfrac{1}{2\pi}\int_x 
+e^{-i(\alpha'+ \alpha'' -\alpha )x}\ dx\right]}_{\delta(\alpha'+ \alpha'' -\alpha)}\ d\alpha'\ d\alpha''
+\end{equation}
+En faisant l'intégrale sur $\alpha''$, avec le delta de Dirac il faudra que $\alpha'' = \alpha-\alpha'$. 
+On retrouve comme résultat la convolution des deux spectres, des deux transformées de Fourier de 
+départ 
+\begin{equation}
+H(\alpha) = \frac{1}{2\pi}\int_{\alpha'} F(\alpha')G(\alpha-\alpha')\ d\alpha'
+\end{equation}
+
+\begin{wrapfigure}[8]{r}{4.5cm}
+\vspace{-6mm}
+\includegraphics[scale=0.45]{ch1/image15.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Représentons ces deux variables et faisons le produit. On peut voir ce produit comme un 
+recouvrement, les valeurs ne seront non-nulles que la ou elles se recouvrent. Ce recouvrement 
+est représenté en bleu ci-contre (vision intuitive). Le résultat de $H(\alpha)$ représente 
+ce recouvrement en fonction de $\alpha$ : cette variable représente la \textbf{position} de la
+fonction $G$ retournée (car $-\alpha$ en argument). Plus $\alpha$ est proche de $F$, plus 
+je me rapproche du recouvrement de mes fonction : c'est ça que représente la convolution ; un 
+recouvrement de fonctions dont l'une à été renversée. En conclusion
+\begin{equation}
+TF[f(x)g(x)] = \frac{1}{2\pi}F(\alpha)\otimes G(\alpha)
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
