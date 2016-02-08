@@ -196,13 +196,13 @@ E(x,y,z,t) = a(x,y,z)e^{-i\omega_0t}
 \end{equation}
 où $a$ est l'amplitude indépendante du temps. On a donc
 \begin{equation}
-a(x,y,z) = \iint_{-\infty}^\infty A(k_x,k_y) e^{ik_xx}e^{ik_yy}e^{i 
+a(x,y;z) = \iint_{-\infty}^\infty A(k_x,k_y) e^{ik_xx}e^{ik_yy}e^{i 
 \sqrt{k^-k_x^2-k_y^2} z}\ dk_xdk_y
 \end{equation}
 où $k^2 = \omega_0^2/c^2$. Ceci est à coup sur une solution des équations de Maxwell. Allégeons 
 les notations : $k_x=\rho, k_y=\sigma, k_z=\beta=\sqrt{k^2-\rho^2-\sigma^2}$ pour avoir
 \begin{equation}
-a(x,y,z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
 \sigma^2}z}\ d\rho d\sigma
 \end{equation}
 Il s'agit d'une intégrale de Fourier, une combinaison linéaire d'onde plane qui ont certaines 
@@ -211,11 +211,224 @@ générale des équations de Maxwell pour une onde monochromatique}, le point de
 théorie de diffraction.
 
 
+\newpage
+\section{Diffraction et transformée de Fourier}
+Histoire de nous habituer aux notations, reprenons la définition de la transformée de Fourier
+\begin{equation}
+F(\rho) = \int_{-\infty}^\infty f(x)e^{-i\rho x}\ dx
+\end{equation}
+\danger Il y a un signe négatif. Ce signe ne change physiquement rien, il faudra simplement 
+inverser le signe de la transformée inverse. Il faut juste remarquer que le $i$ de l'exponentielle 
+n'a pas le même signe dans la partie temporelle et spatiale : pour le temporelle, on utilise un 
+moins et pour les variation spatiales un plus\footnote{Confusion, à éclaircir}. La transformée 
+inverse vaudra alors
+\begin{equation}
+f(x) = \dfrac{1}{2\pi}\int_{-\infty}^\infty F(\rho)e^{i\rho x}\ d\rho = TF^{-1}[F(\rho)]
+\end{equation}
+Il faut remarquer que $a(x,y;z)$ est une transformée inverse. L'idée est que comme nous ne nous 
+mesurerons jamais de valeur précise, il n'est pas utile de garder le facteur $1/2\pi$.\\
+
+On remarque que le rôle de $z$ est différente des autres variables, les bornes d'intégrations 
+ne portent pas sur lui : il n'apparaît que comme un simple paramètre. Il s'agit donc bien d'une 
+fonction de $x$ et $y$. On remarque que l'on calcule la transformée inverse d'une fonction dans 
+l'expression de $a(x,y;z)$ :
+\begin{equation}
+A(\rho,\sigma)e^{i\sqrt{k^2-\rho^2-\sigma^2}z}
+\end{equation}
+Il s'agit du \textit{spectre de Fourier} de la distribution transverse du champ en une valeur $z$, 
+$a(x,y;z)$. Les $\rho,\sigma$ sont les fréquences spatiales. On peut ainsi écrire
+\begin{equation}
+a(x,y;z) = TF^{-1}\left[ A(\rho,\sigma)\underbrace{e^{i\sqrt{k^2-\rho^2-\sigma^2}z} }_{(*)}\right]
+\end{equation}
+Commençons l'étude en $z=0$ (C.I., connue)
+\begin{equation}
+a(x,y;z) = TF^{-1}\left[ A(\rho,\sigma) \right]\quad \Rightarrow \quad A(\rho,\sigma) = TF[
+a(x,y;0)]
+\end{equation}
+On remarque que ceci n'est rien autre que le spectre de la transformée de Fourier de la distribution 
+initiale. Le problème de diffraction est que connaissant la distribution initiale, on veut connaître 
+la distribution $a(x,y;z)$ pour tout $z$. Si $z\neq0$, un facteur exponentiel supplémentaire apparaît 
+: ce n'est rien d'autre que le \textbf{propagateur} $(*)$ de spectre. Le spectre initial est multiplié 
+par un simple facteur de phase, une sorte de phaseur. Hélas, s'exprimer dans le spectre ne donne pas 
+grand chose, le problème est la conversion spatiale.\\
 
 
+Intéressons-nous avant tout à l'interprétation physique de la S.G., rappelée ici
+\begin{equation}
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
+\sigma^2}z}\ d\rho d\sigma
+\end{equation}
+Posons $\beta = \sqrt{k^2-\rho^2-\sigma^2}$
+\begin{equation}
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i(\rho x + \sigma y + \beta z)}\ d\rho d\sigma
+\end{equation}
+On peut alors dire que le phaseur a une phase $\varphi \rho x + \sigma y + \beta z$. Si on considère 
+cette phase constante, on considère le lieu des points vérifiant 
+\begin{equation}
+\varphi \rho x + \sigma y + \beta z = 2m\pi
+\end{equation}
+Il s'agit d'une équation de plan dont $\rho,\sigma$ et $\beta$ sont les cosinus directeur, les 
+composantes du vecteur $k$. Ce phaseur n'est qu'une onde plane qui se propage avec un certain 
+angle par rapport à l'axe $z$. Analysons l'intégrale dans sa globalité en faisant passé le 
+faisceau laser par une fonction fenêtre (une fente infinie en $y$) :
+\begin{equation}
+\left\{\begin{array}{ll}
+a(x';0) = a_0 & \text{ si } |x'| < l\\
+a(x';0) = 0 & \text{ si } |x'| > l
+\end{array}\right.\quad \Rightarrow\quad A(\rho) = 2l\ \text{sinc}(l\rho)
+\end{equation}
 
 
+\begin{wrapfigure}[7]{l}{3cm}
+\vspace{-4mm}
+\includegraphics[scale=0.45]{ch2/image8.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Admettons que l'on rentre le spectre dans l'intégrale, on remarque que pour des valeurs de $z>0$, 
+le champ peut s'exprimer comme une sorte d'onde plane. Chaque valeur de $\rho$ représente un certain 
+angle $\theta$ (projection sur $x$) et à chaque valeur de $\rho$ est associé une certaine amplitude : 
+a chaque angle est associé une amplitude. Les équations de Maxwell (ici, sa solution) dit que l'on 
+peut représenter par une somme d'onde plane dont l'amplitude est donnée par la transformée de 
+Fourier.\\
 
+Pour des $z>0$, on a une ensemble d'onde plane dont l'amplitude est donnée par la transformée de 
+Fourier de la condition initiale : $\rho$ représente l'angle qui est $\theta = \arcsin(\rho/k)$. 
+On a bien une somme d'onde plane qui donne lieu au phénomène de diffraction. Passons en revue 
+quelques exemples triviaux.
+\begin{enumerate}
+\item Onde plane en $z=0 : a(x,y;0) = a_0$.\\
+Le spectre recherché est le spectre de la condition initiale, c'est-à-dire la constante $a_0$\footnote{
+$A(\rho) = \int_{-\infty}^\infty a_0e^{-i\rho x}\ dx = 2\pi a_0\delta(\rho)$}
+\begin{equation}
+A(\rho,\sigma) = TF[a(x,y;0)] = a_0\delta(\rho,\sigma)
+\end{equation}
+Après substitution
+\begin{equation}
+a(x,y;z) = a_0\iint_{-\infty}^\infty \delta(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
+\sigma^2}z}\ d\rho d\sigma
+\end{equation}
+Dès lors
+\begin{equation}
+a(x,y;z) = a_0e^{ikz}
+\end{equation}
+Ce qui est bien la réponse attendue. Il n'y a pas de diffraction, c'est un "mode de propagation" qui 
+est invariant.
+\item Onde plane inclinée selon $x = a(x,y;0) = a_0e^{i\rho_0x}$.\\
+Ceci représente bien une onde avec un certain angle car $\rho_0 = l\sin\theta_0$. Après 
+substitution (on choisit $\sigma=0$).
+\begin{equation}
+A(\rho,\sigma) = a_0\int e^{i\rho_0x}e^{-i\rho x}\ dx \int e^{-i\sigma y}\ dy
+\end{equation}
+On obtient le produit de deux Dirac, noté 
+\begin{equation}
+A(\rho,\sigma) = a_0\delta(\rho-\rho_0,\sigma)
+\end{equation}
+On retrouve une onde plane qui ne sera pas non plus modifiée par sa propagation
+\begin{equation}
+a(x,y;z) = a_0e^{i\rho_0x}e^{i\sqrt{k^2-\rho_0^2}z}
+\end{equation}
+Notons que $\beta_0 = k\cos\theta_0$. Les fronts d'onde seront les lieux de phase 
+constantes
+\begin{equation}
+\varphi = k\sin\theta_0x + k\cos\theta_0 z = 2m\pi
+\end{equation}
+Un mode de Fourier est une onde plane, il s'agit de quelque chose qui ne se déforme pas.
+
+\item Modulation harmonique transverse : $a(x,y;0) = a_0\cos(\rho_0x)$.\\
+On retrouvera le même résultat si on se souvient que l'on peut écrire
+\begin{equation}
+a(x,y;0) = a_0\frac{e^{i\rho_0x}+e^{-i\rho_0x}}{2}
+\end{equation}
+Le spectre vaut
+\begin{equation}
+A(\rho,\sigma) = a_0\frac{\delta(\rho-\rho_0,\sigma)+\delta(\rho+\rho_0,\sigma)}{2}
+\end{equation}
+Le spectre est composé de deux delta de Dirac qui sélectionneront deux $\rho_0$ et 
+$\sigma$ sera toujours bien nul:
+\begin{equation}
+a(x,y;z) = a_0\cos(\rho_0x)e^{i\sqrt{k^2-\rho_0^2}z}
+\end{equation}
+Il s'agit d'un autre mode. Le cosinus n'est la somme de deux ondes planes : une se 
+déplaçant à un angle $\theta_0$ et l'autre avec un angle $-\theta_0$.
+
+\item Diffraction par une fente infinie. En $z=0$ :
+\begin{equation}
+\left\{\begin{array}{ll}
+a(x;0) = a_0 & \text{ si } |x| < l\\
+a(x;0) = 0 & \text{ si } |x| > l
+\end{array}\right.
+\end{equation}
+On considère une onde plane sur un écran qui va l'absorber sauf sur une largeur $2l$. 
+Réduisons le problème en $2D$ ($x$ et $z$- : rien ne change en y, la fente est infinie.  
+La transformée de Fourier est bien connue
+\begin{equation}
+A(\rho) = 2l\ sinc(\rho l)\qquad a_0=1
+\end{equation}
+Ci-dessous, la densité spectrale du spectre $|A(\rho)|^2$. 
+\begin{center}
+\includegraphics[scale=0.45]{ch2/image9.png}
+\captionof{figure}{L'angle en abscisse (indirect) est celui de propagation. Pour une certaine 
+direction, ceci donne l'amplitude correspondante.}
+\end{center}
+Cette fois-ci, la fonction est 
+moins triviale : on ne calculera pas on se contentera de la physique. Si l'on place un 
+détecteur, un certain $\rho$ va sélectionné un certain $\theta$ et cette valeur donne une 
+certaine amplitude. On tombe sur une difficulté conceptuelle : on trouve la valeur de $k$ 
+puis $\rho$ dépasse $k$ ; on recherche l'arc dont le sinus est supérieur à 1\footnote{$\theta =
+\arcsin\frac{\rho}{k}$}.\\
+
+Regardons le problème de la diffraction
+\begin{equation}
+a(x;z) = \int 2l\ \text{sinc}(l\rho)e^{i\sqrt{k^2-\rho_0^2}z}e^{i\rho x}\ d\rho
+\end{equation}
+A cause des bornes d'intégration, nous aurons d'office des valeurs de $\rho$ dépassant 
+$k$. Passons outre et calculons :
+\begin{equation}
+\text{Si } \rho > k\quad \text{alors}\quad \beta = \sqrt{k^2-\rho^2} = i\sqrt{\rho^2-k^2} = 
+i\alpha
+\end{equation}
+Ceci implique que l'exponentielle imaginaire présente dans $a(x;z)$ devient réelle :
+\begin{equation}
+e^{i\beta z} = e^{-\alpha z}
+\end{equation}
+On a ce que l'on appelle des \textbf{ondes évanescentes} : plutôt que d'avoir un comportement 
+périodique à un comportement amorti. Ce que l'on va faire, c'est séparer l’intégrale en deux 
+parties :
+\begin{equation}
+a(x;z) = \int_{-k}^k  2l\ \text{sinc}(l\rho)e^{i\sqrt{k^2-\rho_0^2}z}e^{i\rho x}\ d\rho + 
+\int_{|\rho|>k}  2l\ \text{sinc}(l\rho)e^{-\sqrt{k^2-\rho_0^2}z}e^{i\rho x}\ d\rho
+\end{equation}
+Le deuxième terme somme des ondes évanescentes. En $z$, elles évoluent en exponentielles 
+négatives. Quelle est cette absorption ? Il s'agit d'un phénomène de réflexion (il représente 
+des photons qui passent l'écran et retournent de la ou ils viennent). 
+
+\begin{center}
+\includegraphics[scale=0.25]{ch2/image10.png}
+\captionof{figure}{ }
+\end{center}
+Par simplification, 
+on ne va s'arranger pour qu'elles soient négligeables. Pour se faire, analysons le spectre. 
+La fonction sinus cardinal a un lobe principal : toute l'énergie est proche de l'origine. Nous 
+allons travailler de sorte que les objets diffractant vérifient
+\begin{equation}
+\dfrac{2\pi}{l} \ll k = \dfrac{2\pi}{k}
+\end{equation}
+A ce moment la, le spectre est fort ramené à l'origine de sorte à ce que les ondes évanescentes 
+soient négligées. Autrement dit
+\begin{equation}
+\int_{|\rho|>l} |A(\rho)|^2\ d\rho \ll \int_{-k}^{+k} |A(\rho)|^2\ d\rho
+\end{equation}
+Ce qui exprime que le spectre soit centrée sur l'origine et très étroit. Il faut dès lors que 
+les objets diffractant sont significativement plus grand que la longueur d'onde : $\lambda \ll l$.\\
+
+Le calcul de l'intégrale n'est pas évident (le facteur de phase gène). Nous allons utiliser 
+l'approximation faite pour les ondes évanescentes :
+\begin{equation}
+\rho \approx \dfrac{2\pi}{l} \ll k
+\end{equation}
+On va pouvoir approximer le propagateur permettant de  ce cas, mais ceci est l'objet de la 
+suivante section.
+\end{enumerate}
 
 
 
