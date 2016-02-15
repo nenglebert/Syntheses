@@ -1,0 +1,249 @@
+\documentclass{book}
+\usepackage{preambule}
+\usepackage{fullpage}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[scaled=0.95]{helvet}
+\usepackage{courier}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+ \setlength{\parindent}{0pt}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\renewcommand*{\figureautorefname}{Fig.}
+\usepackage[style=alphabetic,backend=biber,url=true,natbib=true]{biblatex}
+\DeclareFieldFormat{url}{\space\url{#1}}
+\DeclareNameAlias{default}{last-first}
+\renewcommand\nameyeardelim{, }
+\addbibresource{a.bib}
+\usepackage[autostyle]{csquotes}
+\usepackage{multicol}
+\newcommand{\prop}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{
+#1}}
+
+\begin{document}
+\input{titlepage.tex}
+\chapter{ELDA}
+
+\section{Première manipulation}
+\subsection{Montage expérimental}
+
+
+\chapter{TFO}
+\section{Couplages}
+	\prop{Réaliser un couplage $Yd11$. Que représente cette notation ? Quels problèmes 
+	liés à l'observation de l'étoile des tensions va se présenter ? Relier les bobines 
+	de manière à réaliser l'indice horaire et la vérifier en pratique.}\ 
+	
+	Considérons le schéma le plus basique du transformateur. Si le fer est parfait, 
+	tout le flux reste confiné à l’intérieur de celui-ci. Les tensions sont dès 
+	lors égales, au nombre de spires près 
+	\begin{equation}
+	V_1  = N_1\dfrac{d\phi}{dt},\qquad\qquad\qquad V_2 = N_2\dfrac{d\phi}{dt}.
+	\end{equation}
+	On s'intéresse ici à l'indice horaire suivant : $Yd11$. Pour rappel, nous 
+	travaillons ici avec un systèmes triphasé : le $Y$ signifie que la disposition 
+	du primaire est en étoile alors que le secondaire est disposé en triangle :
+	\begin{center}
+	Inclure schéma de l'énoncé complété
+	\end{center}
+	Les deux dispositions, celle du primaire et du secondaire, vont être "assemblées" 
+	de sorte que $V_{ab}$ soit en phase avec $V_a$, $V_{bc}$ avec $V_B$ et $V_{ca}$ 
+	avec $V_C$. Notons que chaque bobine capte la même tension, car chacune des 
+	bobines est connectée à l'autre.\\
+	Représentons maintenant le diagramme des phaseurs $V_A,V_B$ et $V_C$. Comme on 
+	sait que $V_{ab}$ est en phase avec $V_{A}$, il faut tracer une droite parallèle 
+	à $V_A$. En suivant le même raisonnement pour $V_{bc}$ et $V_{ca}$, on obtient 
+	un "nouveau" triangle de sommets $a,b$ et $c$. Il faut ensuite relier chacun de 
+	ces sommets par une flèche partant de l'origine. Si les échelles sont respectées, 
+	l'angle entre $a$ et $A$ est de $-30^\circ$, correspondant bien à 11h.\\
+	\begin{center}
+	Inclure schéma final
+	\end{center}
+	En pratique, il est difficile de déterminer l'indice  horaire avant de câbler : 
+	on commencera donc par câbler puis en on déduira l'indice horaire.\\
+	
+	Pour se faciliter la tâche, il serait bénéfique d'obtenir un point neutre pour 
+	notre secondaire, comme c'est le cas pour le primaire. Il est possible d'obtenir 
+	un point neutre \textit{virtuel} (100\% mathématique) en disposant des résistances, 
+	identiques de la façon suivante, pour le peu que celles-ci ne déforment pas tout :
+	\begin{center}
+	Inclure schéma $R$
+	\end{center}
+	On aura ainsi créer un point neutre virtuel. Le câblage étant réalisé\footnote{
+	Diagramme ?}, le PC nous montre bien le $Yd11$.
+	
+\section{Paramètres de transformateur}
+	\prop{Décrire, grâce à deux essais, comment calculer les paramètres d'un 
+	transformateur triphasé afin de pouvoir représenter son équivalent monophasé dont 
+	le secondaire est ramené au primaire.}\ 
+	
+	On va ici tenter une modélisation des imperfections du transformateur. La première 
+	chose à faire est de se débarrasser du couple de magnétisation en ramenant le 
+	secondaire au primaire, en multipliant la tension du secondaire par le rapport de 
+	transformation
+	\begin{center}
+	Image ou deux bobines => ramené
+	\end{center}
+	Il faut maintenant modéliser les différentes pertes possibles :
+	\begin{itemize}
+	\item[$\bullet$] Pertes d'hystérèses et courant de Foucault : $R_p$.
+	\item[$\bullet$] Imperfection du fer ; relation $I-\phi$ non linéaire : $X_m$ car 
+	courant magnétisant
+	\item[$\bullet$] Pertes par effet Joule : $R_1$ et $\mu^2R_2$
+	\item[$\bullet$] Flux de dispersion $X_1$ et $\mu^2X_2$
+	\end{itemize}
+	Si l'on représente le flux magnétisant et le courant magnétisant sur le même 
+	graphique en fonction du temps, on se rend compte que le flux est en avance 
+	sur le courant de $\pi/2$ : $X_m$ sera modélisé par une bobine.
+	\begin{center}
+	Inclure schéma avec ordre de grandeur
+	\end{center}
+	En pratique, on utilise les \textit{per unit}. Il s'agit d'une normalisation de 
+	la grandeur afin de pouvoir les comparer (indispensable pour comparer des puissances). 
+	Par exemple, si l'on possède un $I_{nominal} = 5A$, on divisera chacune mesure par 
+	$5A$ pour l'exprimer en $pu$. On peut également calculer $Z_b = V_b/I_b$.\\
+	
+	Le premier test à réaliser est de faire un \textit{court-circuit à droite}. En faisant 
+	ça, on remarque que l'impédance des pertes est beaucoup plus importante que celles 
+	dans l'entrefer : on peut négliger le courant magnétisant et prendre la mesure de 
+	$|Z|$. Si en plus on mesure le déphasage $\phi$ entre la tension et le courant, on 
+	peut tout retrouver grace aux relations suivantes :
+	\begin{equation}
+	\Re(Z) = R_1,\qquad\qquad\qquad \Im(Z) = X_1
+	\end{equation}
+
+		
+	Le second test à réaliser est cette fois en \textit{circuit ouvert à droite}. Cette 
+	fois-ci, c'est l'impédance de l'entrefer qui est beaucoup plus élevée que celles des 
+	pertes et je peux mesurer celle-ci. Comme vu au cours, on fait l'hypothèse que 
+	$R_1\approx \mu^2R_2$ et $X_1\approx \mu^2X_2$.\\
+		
+	
+	\prop{Donner le schéma de câblage et décrire les manœuvres permettant de réaliser 
+	l'essai.}\ 
+	
+	Schéma de câblage ?\\
+	
+	
+	\prop{Quels sont les grandeurs à surveiller durant cet essai.}\ 
+	
+	Pour le court-circuit, il est important de monitorer le courant, afin de ne pas 
+	griller les circuits! Ceci n'est pas important dans le second cas\footnote{Justif?} 
+	(circuit ouvert).\\
+		
+	\prop{Indiquez les résultats et calculs de cet essai.}\ 
+	
+	Il faut considérer les courants, tensions et puissances moyennes (on est en circuit 
+	triphasé, ne l'oublions pas!) On obtient :
+	\begin{equation}
+	\overline{I} := 5.30\ A\,\qquad\qquad \overline{V} = 6.21\ V,\qquad\qquad \overline{W} 
+	= 27.09\ W.
+	\end{equation}	
+	On peut dès lors calculer le $\cos\phi$ :
+	\begin{equation}
+	\overline{P} = \overline{V}\overline{I}\cos\phi \Rightarrow \cos\phi = 0.82
+	\end{equation}
+	
+	
+\section{Saturation}
+	\prop{Qu'est ce que le phénomène de saturation d'un cœur ferromagnétique ? Comment se 
+	manifeste-t-il ? Comment l'observer ?}\ 
+	
+	Le matériau magnétique d'un transformateur est constitué de fer (en tôles) ou de ferrite. 
+	Ce sont des aimants microscopiques qui sont, à priori, orientés dans n'importe quelle 
+	direction (aucune direction privilégiée). Les aimantations de chaque aimant microscopique 
+	se compensent donc globalement. Lorsque ce matériau est soumis à un champ magnétique 
+	croissant, les aimants vont s'orienter progressivement selon ce champ. L'aimantation 
+	globale tendra à suivre le champ appliqué. Si on continue d'augmenter le champ magnétique 
+	extérieur, il arrive un moment où tous les aimants sont orientés selon le champ et ne
+	peuvent donc plus faire augmenter l'aimantation globale du matériau. L'aimantation globale 
+	n'est plus proportionnelle au champ magnétique extérieur : c'est la saturation magnétique.\\
+	
+	On peut observer un tel effet en imposant une tension importante au primaire puis en 
+	continuant d'augmenter celle-ci.\\
+		
+	\prop{Donner le schéma de câblage et décrire les manœuvres permettant de réaliser 
+	l'essai.}\ 
+	
+	\begin{center}
+	Schéma de câblage
+	\end{center}
+
+	Le transformateur du laboratoire est dimensionné pour que les bobines puissent recevoir 
+	400V. Pour rendre la saturation pleinement visible, on peut utiliser la seconde encoche 
+	permettant de n'utiliser que 90\% des bobines, et non l'entièreté. De cette façon, si 
+	l'on applique à nouveau 400V, on sera beaucoup plus loin dans la courbe de saturation. \\
+	
+	On cherche à obtenir une courbe de $\phi \backsim v$ en fonction du courant nominal. Pour 
+	obtenir une telle courbe, on augmente petit à petit la tension et on mesure le courant 
+	de magnétisation. Pour mesurer le courant de magnétisation, il faut mettre le secondaire 
+	à vide.\\
+		
+	\prop{Quelles sont les grandeurs à surveiller durant cet essai ?}\ 
+		
+	Comme précédemment, nous somme dans le cas d'un circuit ouvert, à vide. Il ne faut donc 
+	pas surveiller de grandeurs ici.\\
+		
+	\prop{Donner la courbe de saturation du transformateur ainsi que l'allure temporelle 
+	de $i$.}\ 
+	
+	\begin{center}
+	Inclure graphe Badr-Ali
+	\end{center}
+	
+	Notons que la pente de cette courbe vaudra toujours, au minimum, $\mu_0$.
+	
+	
+	
+	
+	
+	
+\section{Enclenchement}
+	\prop{Quel phénomène apparaît lors d'un enclenchement de la tension sur un transformateur ?}\ 
+	
+	On sait que la tension peut être donnée par $v = \dfrac{d\phi}{dt}$. Dès lors, on a 
+	\begin{equation}
+	\phi = \int v\text{d}t
+	\end{equation}
+	Deux situations peuvent se produire :
+	\begin{itemize}
+	\item[$\bullet$] Si on enclenche au moment ou la tension est à son maximum, le flux est 
+	directement en régime.
+	\item[$\bullet$] Si on enclenche au moment ou la tension est à son minimum, il y a un 
+	risque de surintensité.
+	\end{itemize}
+	On peut justifier ceci mathématiquement (cf. cours). Une autre façon de voir est de 
+	regarder l'aire sous la courbe de $v$, représentant le flux. On remarque que l'aire 
+	sous la courbe de $v$ si on enclenche à un minimum est deux fois plus grande que 
+	dans l'autre cas : le flux est dès lors deux fois plus grand et le risque de saturation 
+	est bien présent.\\
+		
+	
+	\prop{Donner le schéma de câblage et décrire les manœuvres permettant de réaliser 
+	l'essai.}\ 
+	
+	\begin{center}
+	Schéma de câblage
+	\end{center}
+	
+	Le souci se situe au niveau de l'enclenchement et donc au niveau du transitoire. Pour 
+	réaliser cet essai, il faudra connecter directement le transformateur au secteur et 
+	l'allumer rapidement. Cette fois ci encore, on cherche à mesurer le courant magnétisant :
+	il faut placer le secondaire en court-circuit.\\
+		
+		
+	\prop{Donner une courbe représentative d'un enclenchement}\ 
+	
+	\begin{center}
+	Inclure graphe Badr-Ali
+	\end{center}
+	
+	Si l'on enclenche au mauvais moment, on peut entendre un bruit : le flux trop 
+	important a déplacé les bobines. Heureusement c'est sans danger, ce n'est qu'un 
+	effet transitoire.
+	
+\end{document}

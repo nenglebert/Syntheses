@@ -8,40 +8,45 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 
 ### 1<sup>ème</sup> année
 - [x] Tronc Commun
-   - [x] [Algèbre Linéaire](IRCI1/Algèbre Linéaire/build/Algèbre Linéaire - Nicolas Englebert.pdf)
+   - [x] [Algèbre linéaire](IRCI1/Algèbre Linéaire/build/Algèbre Linéaire - Nicolas Englebert.pdf)
    - [x] [Analyse I](IRCI1/Analyse I/build/Analyse I - Nicolas Englebert.pdf)
-   - [x] [Chimie Générale](IRCI1/Chimie Générale/build/Chimie Générale - Nicolas Englebert.pdf)
-   - [x] [Mécanique Rationelle](IRCI1/Mécanique Rationelle/build/Mécanique Rationelle I - Nicolas Englebert.pdf)
-   - [x] [Physique Générale](IRCI1/Physique Générale/build/Physique Générale - Nicolas Englebert.pdf)
+   - [x] [Chimie générale](IRCI1/Chimie Générale/build/Chimie Générale - Nicolas Englebert.pdf)
+   - [x] [Mécanique rationelle](IRCI1/Mécanique Rationelle/build/Mécanique Rationelle I - Nicolas Englebert.pdf)
+   - [x] [Physique générale](IRCI1/Physique Générale/build/Physique Générale - Nicolas Englebert.pdf)
 
 ### 2<sup>ème</sup> année
 - [x] Tronc Commun
    - [x] [Analyse II](IRCI2/Analyse II/build/Analyse II - Nicolas Englebert.pdf)
-   - [x] [Analyse Complexe](IRCI2/Analyse complexe/build/Analyse Complexe - Nicolas Englebert.pdf)
-   - [x] [Chimie-Physique](IRCI2/Chimie - Physique/build/Chimie Physique - Nicolas Englebert.pdf)
-   - [x] [Économie Politique et Sociale](IRCI2/Economie/build/Economie politique et sociale - Enes Ulusoy.pdf)
+   - [x] [Analyse complexe](IRCI2/Analyse complexe/build/Analyse Complexe - Nicolas Englebert.pdf)
+   - [x] [Chimie-physique](IRCI2/Chimie - Physique/build/Chimie Physique - Nicolas Englebert.pdf)
+   - [x] [Économie politique et sociale](IRCI2/Economie/build/Economie politique et sociale - Enes Ulusoy.pdf)
    - [x] [Électricité](IRCI2/Electricité/build/Electricité - Nicolas Englebert.pdf)
    - [x] Informatique
      - [x] [Micro-informatique](IRCI2/Informatique/syntheseOO.pdf)
-     - [x] [Orientée Objet](IRCI2/Informatique/MicroInformatique/build/syllab_microinfo.pdf)
-   - [x] [Mécanique des Solides et des Fluides](IRCI2/Mécanique des fluides/build/Mécanique des fluides - Nicolas Englebert.pdf)
-   - [x] [Physique Quantique et Statistique](IRCI2/Physique quantique et statistique/build/Physique quantique et statistique - Nicolas Englebert.pdf)
+     - [x] [Orientée objet](IRCI2/Informatique/MicroInformatique/build/syllab_microinfo.pdf)
+   - [x] [Mécanique des solides et des fluides](IRCI2/Mécanique des fluides/build/Mécanique des fluides - Nicolas Englebert.pdf)
+   - [x] [Physique quantique et statistique](IRCI2/Physique quantique et statistique/build/Physique quantique et statistique - Nicolas Englebert.pdf)
 
 ### 3<sup>ème</sup> année
 - [ ] Tronc Commun
-  - [ ] [Électricité Appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
-  - [ ] [Électronique Appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
-  - [ ] [Fluid Mecanics and Transport Processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
-  - [ ] [Résistance des Matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
-  - [ ] [Sciences des Matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
-  - [ ] [Thermodynamique Appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
+  - [ ] [Électricité appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
+  - [ ] [Électronique appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
+  - [ ] [Fluid mecanics and transport processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
+  - [x] [Résistance des matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
+  - [ ] [Sciences des matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
+  - [ ] [Thermodynamique appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
-  - [ ] [Compléments de Mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
-  - [ ] [Physique des Semi-conducteurs](IRCI3/Physique des semiconducteurs/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
+  - [ ] [Compléments de mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
+  - [ ] [Éléments d'optique physique](IRCI3/Eléments d'optique physique/build/Eléments d'optique physique - Nicolas Englebert.pdf)
+  - [ ] [Mécanique quantique I](IRCI3/Mécanique quantique I/build/Mécanique quantique I - Nicolas Englebert.pdf)
+  - [ ] [Physique des semiconducteurs et de l'état solide](IRCI3/Physique des semiconducteurs et de l'état solide/build/Physique des semiconducteurs - Nicolas Englebert.pdf)
+     - [ ] [Questions d'examen](IRCI3/Physique des semiconducteurs et de l'état solide/Questions_examen.pdf)
+  - [ ] [Physique des télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 - [ ] Option Électromécanique
-  - [ ] [Cinématique et Dynamique des Machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
+  - [ ] [Cinématique et dynamique des machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
 - [ ] Option Électronique et Télécommunication
-  - [ ] [Circuits Logiques et Numériques](IRCI3/Circuits Logiques et Numériques/build/Circuits Logiques et Numériques - Cédric Hannotier.pdf)
+  - [ ] [Circuits logiques et numériques](IRCI3/Circuits logiques et numériques/build/Circuits logiques et numériques - Cédric Hannotier.pdf)
+  - [ ] [Physique des télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors

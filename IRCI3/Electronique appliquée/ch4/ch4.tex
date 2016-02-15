@@ -24,7 +24,7 @@ Un ampli-op se présente le plus classiquement sous forme d'un circuit intégré
 	\includegraphics[scale=0.4]{img/image38}
 	\captionof{figure}{Représentation schématique d'un AOP}
 \end{center}
-Les deux bornes sont respectivement notée "+" et "-" et correspondent respectivement à l'\textit{entrée inverseuse} et à l'\textit{entrée non-inverseuse}.
+Les deux bornes sont respectivement notée "+" et "-" et correspondent respectivement à l'\textit{entrée non-inverseuse} et à l'\textit{entrée inverseuse}.
 
 \subsubsection{Tension d'entrée et de sortie}
 Chacune des \textit{entrées} reçoit un signal de tension mesurée par rapport à la masse : $V^+$ et $V^-$. Même topo pour la tension de sortie $V_{out}$.\\
@@ -410,21 +410,581 @@ Travaillons directement sur le schéma :
 \end{enumerate}
 
 
-\subsection{Analyse de la rétroaction}
-Les deux montages vu précédemment comportent tous deux une résistance $R_2$ en rétroaction. Clarifier le fonctionnement de cette rétroaction peut répondre à un certains nombres de questions : pourquoi amplifier $V_d$ et pas $V_{in}$, que justifie l'hypothèse du zéro virtuel ?
+	\subsection{Analyse de la rétroaction}
+	Les deux montages vu précédemment comportent tous deux une résistance $R_2$ 
+	en rétroaction. Clarifier le fonctionnement de cette rétroaction peut 
+	répondre à un certains nombres de questions : pourquoi amplifier $V_d$ et 
+	pas $V_{in}$, que justifie l'hypothèse du zéro virtuel ?
+	
+		\subsubsection{Analyse de la rétroaction : principe}
+		Au cours de notre raisonnement, nous adopterons deux règles :
+		\begin{enumerate}
+			\item Raisonner strictement en termes de "cause" et d'"effet"
+			\item L'AOP régit avec un certain délai : raisonnons plus vite que 
+			lui ; supposons que la tension de sortie de l'AOP ne peut subir de 
+			discontinuité (échelon)
+		\end{enumerate}
+		Ce dernier poins signifie que la tension de sortie ne peut pas varier 
+		instantanément.	Nous allons considérer le cas d'un AOP non-inverseur de 
+		gain $\approx 100$, $R_1 = 1k\Omega, R_2 = 99k\Omega$ et le gain de 
+		l'AOP : $30000$.
+		
+		
+		\subsubsection{Echelon sur $V_{in}$}
+		Appliquons un échelon de $10mV$ sur $V_{in}$. Dans l'immédiat, $V^-$ 
+		reste à 0V (pas de raison pour que ça change). Par contre, $V_d$ est 
+		instantanément modifié : $V_d = V^+-V^- = 10mV$. Notre \textit{première 
+		conséquence} de l'augmentation de $V_{in}$ est celle de $V_d$.
+		
+		\subsubsection{Conséquence de l'échelon $V_{out}$}
+		\begin{wrapfigure}[8]{l}{8cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.4]{ch4/image1}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		A priori, la tension de sortie devrait être de 300V, mais ce n'est pas
+		réaliste car l'AOP exploserait mais il se passe quelque chose : on 
+		considère que la sortie croit linéairement et on analyse le moment ou 
+		$V_{out} = 100mV$.\\
+		Comme $V_{out}\neq 0$, du courant circule entre les deux $R$. Si rien 
+		ne rentre dans l'AOP (impédance d'entrée infinie) ce courant vaut 
+		\begin{equation}
+		I = \dfrac{100mV}{100k\Omega} = 1\mu A
+		\end{equation}
+		Ce courant crée sur $R_1$ une chute de tension de $1k\Omega*1\mu A = 
+		1mV$. Or, cette chute n'est autre que $V^-$ qui vaut donc $1mV$.
+		
+		\subsubsection{Conséquence de l'échelon : remarques}
+		$R_1$ et $R_2$ forment un diviseur résistif\footnote{l'hypothèse $Z_{in} = 
+		\infty$ est indispensable pour avoir le même courant dans les deux 
+		résistances.} ; ici, $V^-$ sera toujours 100 fois plus faible que 
+		$V_{out}$.
+		
+		\subsubsection{Conséquence de l'échelon : analyse}
+		Au final, $V^-$ a bien été modifié mais pas directement par $V_{in}$. 
+		Or, si $V^-$ change, $V_d$ également et vaut $9mV$. La rétroaction 
+		réagit en sens inverse : augmenter $V^+$ fait diminuer $V_d$ via une 
+		augmentation de $V^-$. Un "cycle" s'est formé.
+		
+		\subsubsection{Phase de "convergence"}
+		On répète le cycle plusieurs fois, mais quand s’arrêter ? On 
+		s'arrête quand la tension de sortie de l'AOP vaut exactement 
+		3000*$V_d$. C'est cohérent, car à force de "boucler" il apparaissait 
+		clairement que $V_d \rightarrow 0$.
+		
+		\subsubsection{Situation finale : remarques}
+		Au final, $V_{out}$ vaut bien 100 fois $V_{in}$. De plus, la sortie 
+		de l'AOP n'a jamais saturé : ceci justifie le zéro virtuel. Théorie 
+		encore appuyée car $V_d$ est bien extrêmement faible, $V^+\approx 
+		V^-$. On se doute bien qu'en réalité, ce phénomène est très rapide. 
+		Nos équations ne nous informent donc que sur l'état d'équilibre 
+		final du système.
+		
+		\subsubsection{Conclusion}
+		\begin{itemize}
+		\item[$\bullet$] \textit{A quoi sert la rétroaction par $R_2$ ?}\\
+		Assure que $V^-$ "poursuit $V^+$, assurant le zéro virtuel. 
+		Qualitativement, c'est elle qui fixe le gain.
+		\item[$\bullet$] \textit{A quoi sert l'AOP ?}		\\
+		Il assure que $V_{out}$ augmente quand $V_d$ augmente.
+		\end{itemize}
 
-\subsubsection{Analyse de la rétroaction : principe}
-Au cours de notre raisonnement, nous adopterons deux règles :
-\begin{enumerate}
-	\item Raisonner strictement en termes de "cause" et d'"effet"
-	\item L'AOP régit avec un certain délai : raisonnons plus vite que lui ; supposons que la tension de sortie de l'AOP ne peut subir de discontinuité (échelon)
-\end{enumerate}
 
-
-\subsection{Compléments sur la rétroaction}
+		\subsubsection{Notion de "rétroaction négative"}
+		La rétroaction ci-dessus est dite "négative" car elle contrecarre 
+		toute variation de $V_d$. Si les variations de $V_d$ étaient 
+		amplifiées, on parlerait de \textit{rétroaction positive}.
 
 
 
+	\subsection{Compléments sur la rétroaction}
+	Les deux montages vu comportent tous deux une rétroaction, on va ici 
+	tenter de généraliser cette notion.
+		
+		\subsubsection{Montage $A$}
+		\begin{wrapfigure}[5]{r}{8cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.3]{ch4/image2}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Considérons un montage $A$ de gain $A_0$ que l'on définit par 
+		son équivalent de Thévenin : impédance d'entrée $Z_{0in}$, de 
+		sortie $Z_{0out}$ et de gain $A_0$. Pour simplifier, on va 
+		considérer que $A_0 \in \mathbb{R}$ et plus généralement, le 
+		gain est une \textit{fonction de transfert} $A_0(j\omega)$.
+		
+		\newpage
+		\subsection{Gain en boucle ouverte}
+		\begin{wrapfigure}[3]{r}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image3}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Appliquer un signal $E$ au bloc $A$ multiplie le signal par 
+		$A_0$. Rebaptisons $A_0$ le gain en boucle ouverte.
+		
+		\subsubsection{La rétroaction : définition}
+		\begin{wrapfigure}[4]{l}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image4}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Appliquer une rétroaction sur $A$, c'est prendre sa grandeur 
+		de sortie pour la réinjecter, après passage dans un bloc $B$, 
+		à l'entrée du bloc $A$ (où $B$ est défini par $B(j\omega)$. 
+		Appliquer une rétroaction, c'est former une boucle fermée.\\
+		
+		On a ainsi créer un nouveau montage aux propriétés différentes 
+		du bloc $A$ seul : le gain de montage est le \textit{gain en 
+		boucle fermée}, $A_R$, différent du \textit{gain en boucle 
+		ouverte} en l'absence de rétroaction.
+		
+		\subsubsection{Montage avec rétroaction}
+		\begin{wrapfigure}[4]{r}{5cm}
+		\vspace{-7mm}
+		\includegraphics[scale=0.3]{ch4/image5}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		On va maintenant calculer les propriétés de ce nouveau 
+		montage, avec Thévenin. A droite du schéma ci-contre, on 
+		prélève la tension de sortie du bloc $A_0$ ($V_{out}$) et ) 
+		droite, on réinjecte la tension de sortie du bloc $B$ (
+		$B.V_{out}$) \textbf{en série} avec la tension de source $E$.
+		
+		\subsubsection{Rétroaction de tension : calcul du gain $A_R$}
+		Le gain en boucle fermée $A_R$ est défini comme
+		\begin{equation}
+		A_R = \left.\dfrac{V_{out}}{E}\right|_{I_{out}=0} 
+		\end{equation}
+		On a d'une part $V_{out} = A_0*V_1$ et d'autre part $V_1 = 
+		E+B.V_{out}$. En combinant ces deux réactions : 
+		\begin{equation}
+		\left. \begin{array}{ll}
+		V_{out} &= A_0.V_1\\
+		V_1 &= E+B.V_{out}
+		\end{array}\right\}\Rightarrow V_{out} = A_0(E+B.V_{out})\quad 
+		\Longrightarrow A_R = \dfrac{V_{out}}{E}=\dfrac{A_0}{1-A_0B}
+		\end{equation}
+		
+		\subsubsection{Rétroaction de tension: impédances}
+		Comment les impédances d'entrées et de sorties sont-elles 
+		influencées par l'ajout d'une rétroaction? On peut montrer que 
+		\begin{equation}
+		\begin{array}{ll}
+		Z_{R_{in}} &= (1-A_0B)Z_{0_{in}}\\
+		Z_{R_{out}} &= \dfrac{Z_{0_{out}}}{1-A_0.B}
+		\end{array}
+		\end{equation}
+		On remarque que le facteur $1-A_0.B$ apparaît un peu partout. 
+		L'effet d'une rétroaction sur à travers un bloc $B$ consiste à :
+		\begin{itemize}
+		\item[$\bullet$] Diviser le gain par $1-A_0B$
+		\item[$\bullet$] Diviser l'impédance de sortie par $1-A_0B$
+		\item[$\bullet$] Multiplier l'impédance d'entrée par $1-A_0B$
+		\end{itemize}
+		
+		
+		\subsubsection{Rétroaction négative}
+		Quand $B<0$, la rétroaction est dite \textit{négative} (C.S.)
+		\footnote{Si $A_0>0$}. Les propriétés d'une telle rétroaction 
+		sont de diminuer le gain, mais augmenter les impédances pour 
+		une adaptation en tension.
+	
+	
+		\subsubsection{Rétroaction négative: ampli non-inverseur}
+		Ce montage est un cas particulier de rétroaction négative. 
+		Pour un tel montage, nous avons 
+		\begin{equation}
+		V_{out} = A\left(V_{in}-\dfrac{R_1}{R_1+R_2}V_{out}\right)
+		\end{equation}
+		Connaissant l'équation générale de la rétroaction de 
+		tension $A_0(E+B.V_{out})$, on peut identifier :
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		A_0 &= A\\
+		B &= -\dfrac{R_1}{R_1+R_2}
+		\end{array}\right.
+		\end{equation}
+		Et donc
+		\begin{equation}
+		A_R = \dfrac{A_0}{1-A_0B} = \dfrac{A(R_1+R_2)}{AR_1+R_1+R_2}
+		\end{equation}
+		
+		\subsubsection{Forte rétroaction négative}
+		Lorsque $1\ll A_0.|B|$, la rétroaction est dite fortement 
+		négative : $1-A_0B = A_0|B|$. Les propriétés sont identiques 
+		au cas de la rétroaction négative.\\
+		Le montage non-inverseur correspond à une forte rétroaction 
+		négative : $B <0$ et $1\ll A_0.|B|$ car $A$ très élevé. En 
+		appliquant directement la formule du gain en boucle fermée, 
+		on retrouve bien le gain de l'ampli non-inverseur.
+		
+		\subsubsection{Rétroaction positive: définition intuitive}
+		\begin{itemize}
+		\item[$\bullet$] \textit{Rétroaction négative}
+			\begin{itemize}
+			\item Diminution du gain, la rétroaction s'oppose aux 
+			perturbation du signal d'entrée, système stable
+			\end{itemize}
+		\item[$\bullet$] \textit{Rétroaction positive}
+			\begin{itemize}
+			\item Augmentation du gain, la rétroaction amplifie les 
+			perturbations du signal d'entrée, système instable
+			\end{itemize}
+		\end{itemize}
 
-\section{Montages à ampli-op}
-\section{Ampli-op : propriétés avancées}
+\section{Montages à OPA}
+La grande diversité des fonctions proposés par les montages à OPA 
+réside dans la rétroaction. De tels montages agissent sur des 
+grandeurs analogiques, même si ils peuvent véhiculé une information 
+logique ou numérique. Regroupons ici, les diverses fonctions remplies 
+par la bête en trois catégories.
+	
+	\newpage
+	\subsection{Amplificateurs}
+	\begin{wrapfigure}[9]{l}{7.1cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.3]{ch4/image6}
+	\captionof{figure}{AOP en montage inverseur}
+	\end{wrapfigure}
+	L'amplificateur non-inverseur amplifie un signal, dont le gain est
+	\begin{equation}
+	A = 1 + \dfrac{R_2}{R_1}
+	\end{equation}
+	si l'on considère le même schéma que précédemment. Le montage 
+	inverseur fait de même, mais avec un gain en rétroaction 
+	de :
+	\begin{equation}
+	A = -\dfrac{R_2}{R_1}
+	\end{equation}
+	L'intérêt du montage inverseur réside dans la présence d'une 
+	masse virtuelle à l'entrée inverseuse impliquant que la ddp 
+	sur $R_1$ soit $V_{in}$ et celle sur $R_2$ soit $-V_{out}$.\\
+	
+	\begin{wrapfigure}[9]{r}{2.4cm}
+	\vspace{-1.2cm}
+	\includegraphics[scale=0.3]{ch4/image7}
+	\captionof{figure}{Tension/courant}
+	\end{wrapfigure}
+	Ces deux montages permettent aussi la conversion tension $\rightarrow$ courant. 
+	En effet, le courant dans $R_2 \propto V_1/R_1$ : il est 
+	indépendant de $R_2$. Si l'on considère que la grandeur de sortie 
+	$I_{out}$, le courant traversant $R_2$, en considérant $R_2$ comme 
+	charge on a bien un convertisseur tension/courant.\\
+	
+	Le convertisseur tension $\rightarrow$ courant assure aussi la conversion inverse. 
+	En injectant du courant dans $R_2$ ($Z_{entree}=\infty$), la tension 
+	de sortie, $V_{out}$, doit forcément être $\propto$ au courant $I_{in}$.
+	
+	\begin{center}
+		\includegraphics[scale=0.43]{ch4/image8}
+	\captionof{figure}{Convertisseur courant/tension à droite, suiveur à 
+	gauche}
+	\end{center}
+	Il existe aussi le "suiveur", un montage particulier non-inverseur 
+	d'un gain $A=1$. Son avantage est de ne pas modifier le signal et son 
+	utilité est de pouvoir résoudre des soucis d'adaptation d'impédance en 
+	tension.
+	
+	
+	\subsection{Circuits opérationnels}
+	\begin{wrapfigure}[9]{r}{4.4cm}
+	\vspace{-1.2cm}
+	\includegraphics[scale=0.27]{ch4/image9}
+	\captionof{figure}{Dérivation}
+	\end{wrapfigure}
+	On utilise ici l'OPA pour faire des opérations mathématique, d'où son 
+	joli nom \textit{opérationnel}. Commençons par l'intégration : il faut 
+	tout d'abord remplacer l'impédance de rétroaction $Z_2$ par une 
+	capacité qui réalise cette fonction "intégration" : la tension à ses 
+	bornes est directement lié à la tension d'entrée du montage $V_{in}$. 
+	On peut ainsi convertir une onde carrée en onde triangulaire ! 
+	\begin{equation}
+	V_{C_2} = \dfrac{Q}{C}\qquad \text{ avec }\qquad Q = \int I\ dt = \int 
+	\dfrac{R_1}{V_{in}}\ dt
+	\end{equation}		
+	\newpage
+	Pour la 
+	dérivation, il faut permuter les impédances. Cela se "voit" directement 
+	en calculant la tension de sortie
+	\begin{equation}
+	V_{out} = -R_2C_1\left(\dfrac{\text{d}V_{in}}{dt}\right)
+	\end{equation}
+		\begin{wrapfigure}[7]{r}{4cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image10}
+	\captionof{figure}{Sommateur}
+	\end{wrapfigure}
+	On peut également créer un sommateur de $N$ tensions avec un circuit 
+	inverseur. Par la loi des nœuds, le courant dans l'impédance $R_R$ est 
+	la somme des courants parcourant les différentes impédances $R_i$. Cette 
+	somme peut être pondérée en jouant sur la valeurs de $R_i$. On peut 
+	également trouver la tension moyenne ou une amplification simultanée en 
+	réglant $R_R$.\\
+	
+	\begin{wrapfigure}[9]{l}{5cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image11}
+	\captionof{figure}{Analogique/Numérique}
+	\end{wrapfigure}
+	Une autre fonction fondamentale est le convertisseur numérique/
+	analogique	en utilisant le principe du sommateur : on divise chacune des 
+	résistances d'entrée par un multiple de 2. Chacune des tension d'entrées 
+	est binaire : 0 ou 1 V. Ci-contre, un cas à trois bits (3 tensions) formant un 
+	mot binaire. La tension de sortie ne peut prendre que huit valeurs différentes.
+	\footnote{??}
+	\begin{equation}
+	V = \dots + 2^2 v_2 + 2^1v_1 + 2^0 v_0
+	\end{equation}
+	
+	\subsection{Comparateurs}
+	\begin{wrapfigure}[9]{r}{3.5cm}
+	\vspace{-0.5cm}
+	\includegraphics[scale=0.35]{ch4/image12}
+	\captionof{figure}{Comparateur}
+	\end{wrapfigure}
+	Le but est de comparer une tension d'entrée $V_{in}$ par rapport à
+	un seuil $V_{Th}$ et envoyer une information binaire (+10V ou -10V) 
+	si oui ou non, cette tension est supérieur au seuil. \\
+	L'idée est d'exploiter le fait que l'AOP sature dès qu'il sort de sa zone 
+	linéaire, zone très étroite $(<1\ mV)$. Si la tension s'écarte du seuil 
+	l'AOP sort de sa zone linéaire et sature à la tension d'alimentation 
+	correspondante.\\
+	\danger Ce montage ne comporte pas de rétroaction et ne respecte pas le 
+	zéro virtuel ! On peut le voit comme un convertisseur A/N à un bit de 
+	sortie.\\
+
+	\begin{wrapfigure}[9]{l}{4cm}
+	\vspace{-0.98cm}
+	\includegraphics[scale=0.35]{ch4/image13}
+	\captionof{figure}{Flash}
+	\end{wrapfigure}	
+	Ce précédent principe peut être utilisé pour créer un convertisseur A/N 
+	de type FLASH : on mets plusieurs comparateurs à seuils régulièrement 
+	espacés, mis en place via un dispositif résistif (pour avoir des seuils 
+	différents). On peut alors "catégoriser" le signal d'entrée en fonction 
+	de quels AOP ont saturés ou non. L'analyse de la sortie permet de déduire 
+	l'intervalle de la tension d'entrée et convertir cette information en 
+	binaire.\\
+
+	\begin{wrapfigure}[6]{r}{4cm}
+	\vspace{-0.98cm}
+	\includegraphics[scale=0.35]{ch4/image14}
+	\captionof{figure}{Schmitt}
+	\end{wrapfigure}		
+	Si l'entrée est bruitée, notre comparateur pourrait indiquer une fausse 
+	information et perturber l'appareil en aval. Créer une hystérèse\footnote{
+	Cycle dans la caractéristique du composant.} permet d'éviter ces 
+	oscillations : c'est le \textit{trigger de Schmitt}. L'idée est de créer 
+	deux seuils différent, selon que $V_{in}$ croit ou décroît. On introduit 
+	une hystérèse en ajoutant une instabilité via une rétroaction 
+	\textbf{positive}. La borne $V_+$ est celle avec laquelle va être comparé 
+	$V_{in}$. La rétroaction positive modifie $V_+$ dès que le seuil est 
+	franchi dans un sens pour qu'une légère variation ne la fasse pas 
+	"rebasculer" dans l'autre sens.\\
+	
+	Bien sûr, il existe d'autres montages : ampli d'isolation, filtres actifs, 
+	isolateurs,\dots Ce qu'il faut retenir est que tout est dans la 
+	rétroaction !
+	
+	
+\section{L'AOP $\mathbb{R}$}
+	\subsection{Imperfections statiques}
+	Les variations de fréquences peuvent un peu tout foutre en l'air. Le terme 
+	\textit{statique} désigne les basses fréquences, dont le continu. Nous allons 
+	ici étudier les différentes imperfections.
+	
+		\subsubsection{L'offset}
+		\begin{wrapfigure}[9]{r}{4cm}
+		\vspace{-0.98cm}
+		\includegraphics[scale=0.35]{ch4/image15}
+		\captionof{figure}{Offset}
+		\end{wrapfigure}	
+		Il s'agit d'un décalage en tension de la caractéristique de transfert : 
+		une tension continue vient s'ajouter au signal. Pour l'AOP, cela se 
+		manifeste par un décalage horizontal de la caractéristique de 
+		transfert, qui ne passe plus par l'origine : la sortie n'est plus 
+		nulle si la tension appliquée l'est. Comme cette tension "s'ajoute", 
+		la caractéristique se retrouve bien translatée vers la gauche. Parfois, 
+		celui-ci est tellement grand que même une tension différentielle nulle 
+		fait saturer notre bête !
+		Pour le compenser, on peut ajouter à $V_d$ une tension d'entrée 
+		correctrice (qu'il faut souvent réajuster, l'offset étant fonction de $T$).
+		
+		\subsubsection{Courants d'entrée}
+		Les entrées de l'AOP bouffent ou vomissent un léger courant, pas forcément 
+		identique\footnote{On les note souvent $i^+$ et $i^-$ en fonction de 
+		l'entrée}. Les datasheet reprennent souvent deux paramètres 
+		\begin{enumerate}
+		\item Courant de polarisation ($i_{biais}$) ; moyenne des courants d'entrée.
+		\item Courant de décalage ($i_{offset}$) ; différence des courants d'entrée.
+		\end{enumerate}
+		\danger Cette notion n'a \textbf{rien} avoir avec celle d'impédance 
+		d'entrée : ici cela traduit le fait que l'AOP, même sans tension, 
+		consomme un courant supplémentaire. Ces tensions viennent de la consommation 
+		de transistors bipolaires, constituants de l'AOP.
+		
+		\subsubsection{Modélisation des imperfections}
+		\begin{wrapfigure}[10]{l}{4.5cm}
+		\vspace{-0.5cm}
+		\includegraphics[scale=0.3]{ch4/image16}
+		\captionof{figure}{AOP $\mathbb{R}$}
+		\end{wrapfigure}	
+		On considère le schéma d'un AOP idéal auquel on ajoute deux sources de 
+		courant et une source de tension. Pour tenir compte de ces différents 
+		effets, on applique la superposition : on annule les sources de tension 
+		par un court circuit et les sources de courant par un circuit ouvert. Pour 
+		appliquer ce principe, il faut faire l'hypothèse que l'AOP ne sature pas.\\
+		
+		On peut remarquer que lorsqu'on annule la tension d'entrée $V_{in}$, les 
+		schémas inverseurs et non-inverseurs sont identiques.\\
+		
+		\newpage
+			\begin{wrapfigure}[10]{l}{4.2cm}
+		\vspace{-0.5cm}
+		\includegraphics[scale=0.25]{ch4/image17}
+		\captionof{figure}{ }
+		\end{wrapfigure}
+		Commençons par l'offset $e_0$ seul : on ouvre $i^-$ et $i^+$ et on court 
+		circuite $V_{in}$. Après résolution, on trouve
+		\begin{equation}
+		V_{out,e_0} = A_{non-inv}*e_0
+		\end{equation}
+		Ce résultat est valable quelque soit le montage, même inverseur !\\
+		
+		Considérons maintenant les courants d'entrées. Le souci est que ces courants 
+		circulent forcément, et ils le font dans les résistances ce qui crée une 
+		perte de tension. L'effet est donc indirect : un offset. Ceci est illustré 
+		ci-dessous (droite) par l'application d'une tension $V_{in}$ sur deux 
+		résistances $R^\pm$.
+		\begin{center}
+		\includegraphics[scale=0.3]{ch4/image18}
+		\captionof{figure}{ }
+		\end{center}
+		Forcément, nous avons
+		\begin{equation}
+		V_d = V_{in} + (R^-i^-)-(R^+i^+)
+		\end{equation}				
+		Si les deux résistances ou les courants ne sont pas identiques, la tension 
+		est bien modifiée. Au sens de Thévenin, il s'agit de résistance d'entrée que 
+		l'on nomme ici \textit{résistance de source}. Appliquons maintenant le 
+		principe de superposition. Il faut commencer par voir quels sont les $R$ de 
+		notre circuit :
+		\begin{itemize}
+		\item[$\bullet$] Entrée inverseuse : $i^-$ peut circuler via $R_1$ et/ou 
+		$R_2$.
+		\item[$\bullet$] Entrée non-inverseuse : on a pour l'instant juste la masse, 
+		$V_{in}$ étant court-circuitée. Cependant, la source de tension n'est pas 
+		parfaite et contient une résistance $R_S$ que l'on désigne \textit{résistance 
+		de sortie}.
+		\end{itemize}
+		La résolution du circuit ci-dessus (droite) donne
+		\begin{equation}
+		V_{out_{i_{pol}}} = R_2i^- - R_SA_{non-inv}.i^+
+		\end{equation}
+		\danger Ici on ne peut pas considérer qu'aucun courant rentre dans l'AOP 
+		$\mathbb{R}$ ! Mais cette hypothèse reste valable pour l'AOP idéal.\\
+		
+		On applique maintenant notre précieux théorème en sommant tout :
+		\begin{equation}
+		V_{out} = A_{non-inv}*V_{in} + A_{non-inv}*e_0 + R_2i^- - R_SA_{non-inv}.i^+
+		\end{equation}
+		Ce résultat n'est valable que si l'AOP ne sature \textbf{pas}. \danger Pour 
+		un montage inverseur, seul le premier terme de gain change ! Les deux autres 
+		sont identiques, les calculs étant valables pour les deux montages.\\
+		
+		\textbf{Question d'examen } :On donne un gain, courant, fréquence, \dots et on 
+		donne qquelques AOP. Il faut choisir lequel est le plus adapté et pourquoi 
+		(si on peut négliger quelque chose,\dots).
+		
+		\subsubsection{Imperfections statiques : plus loin !}
+		On peut évidemment tenir compte d'autres imperfections comme par exemple 
+		tenir compte de $Z_d$ et $Z_{out}$. On peut faire encore mieux en considérant 
+		la tension en mode commun ; la moyenne des deux signaux. Même si on l'a 
+		négligé, deux choses en dépendent 
+		\begin{enumerate}
+		\item La tension de sortie. L'idéal est d'avoir un \textit{taux de réjection 
+		en mode commun"} (CMRR) le plus grand possible car cela signifie que cet 
+		effet est petit.
+		\item L'impédance d'entrée. Elle traduit le fait que l'AOP dépend aussi de 
+		cette tension en mode commun qu'on lui applique.
+		\end{enumerate}
+		
+	\subsection{Comportement fréquentiel}
+		\subsubsection{Fonction de transfert d'un RC passe-bas}
+		Il s'agit d'un circuit à un pôle étudier en long et en large au premier labo. 
+		Sa fonction de transfert est la suivante
+		\begin{equation}
+		H(j\omega) = \dfrac{1}{1+j\omega RC}
+		\end{equation}
+		\begin{center}
+		\includegraphics[scale=0.53]{ch4/image19}
+		\captionof{figure}{Fonction de transfert d'un RC passe-bas}
+		\end{center}
+		En première approximation, l'AOP réel est un circuit à un pôle. Un AOP réel 
+		comporte une impédance de sortie non-nulle et des capacités parasite. On 
+		obtient alors un "montage" constitué d'un AOP idéal de gain $A_0$avec une 
+		résistance et une capacité. La seule différence avec le circuit RC est le 
+		gain $A_0$ : l'asymptote horizontale de $\log|H|$ vaudra dès lors $A_0$ et 
+		non plus 1. L'AOP agit ainsi comme un filtre passe-bas : au delà d'une 
+		certaine fréquence le gain diminue jusqu'à devenir nul.\\
+		
+		Quel est l'effet de la rétroaction sur la fonction de transfert? Soit un 
+		montage non-inverseur. Pour calculer la fonction de transfert, on applique 
+		les formules générales de la rétroaction :
+		\begin{itemize}
+		\item[$\bullet$] Bloc A : L'AOP à un pole. Fonction de transfert : $A(j\omega) 
+		= A_0/(1+j\omega RC)$.
+		\item[$\bullet$] Bloc B : La rétroaction. Fonction de transfert\footnote{Voir 
+		plus haut, déjà étudié.} : $B(j\omega) = -R_1/(R_1+R_2)$.
+		\end{itemize}
+		Comme vu précédemment, la fonction de transfert du bloc $A$ avec une rétroaction 
+		devient 
+		\begin{equation}
+		A_R(j\omega) = \dfrac{A(j\omega)}{1-A(j\omega).B(j\omega)}
+		\end{equation}
+		En première approximation, le gain est divisé par $1-A_0B$ et la pulsation de 
+		coupure (et donc sa bande passante) est multipliée par ce même facteur. La fonction 
+		de transfert voit donc 	son gain descendre et le graphique de la phase se voit translaté 
+		vers la droite.
+	
+	
+		\subsubsection{Produit "gain * bande passante"}
+		On vient de le voir, une rétroaction augmente la bande passante. Comme un 
+		même facteur intervient dans deux cas, on peut dire que le produit suivant, 
+		le produit "gain * bande passante" est constant 
+		\begin{equation}
+		A_0'\omega_0' = A_0\omega_0
+		\end{equation}
+		Cela signifie qu'il n'est pas possible d'avoir à la fois un gain élevé et une 
+		bande passante élevée mais aussi que ce produit, constant, est une caractéristique 
+		intrinsèque de l'AOP.\\
+		Pour l'info, on peut aussi modéliser l'AOP comme ayant trois pôles.
+		
+	\setcounter{subsection}{3}
+	\subsection{Dimensionnement d'un montage à ampli-op}
+	Il faut suivre ces quelques étapes ! Rajoutons qu'il est important de savoir 
+	dimensionner un AOP en tant qu'ingénieur!
+	\begin{enumerate}
+	\item Établir le cahier des charges
+	\item Calculer le nombre d'étages (via le produit gain * bande passante)
+	\item Choisir le type d'étages (impédances et phase)
+	\item Calculer les tensions de décalage en sortie (offset et courants d'entrée)
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

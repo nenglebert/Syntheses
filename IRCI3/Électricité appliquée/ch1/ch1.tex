@@ -7,13 +7,13 @@
 	\includegraphics[scale=0.4]{ch1/image1.png}
 	\captionof{figure}{ }
 \end{wrapfigure}
-La convention \textit{récepteur} sera celle utilisée : la puissance 
-sera positive lorsqu'elle sera absorbée par la machine. Pour une 
-source de tension $v$, c'est le contraire : le courant - défini par 
-les charges positives -sera dans le sens de la flèche.\\
+On utilisera la convention \textit{récepteur} : la puissance 
+est positive lorsqu'elle est absorbée par la machine. Pour une 
+source de tension $v$, c'est le contraire : le courant, défini par 
+les charges positives, sera dans le sens de la flèche.\\
 
-L'astérisque 
-marque ainsi la borne d'entrée d'un dipôle ou un cercle plein.\\
+L'astérisque ou un cercle plein
+marque la borne d'entrée d'un dipôle.\\
 	
 Dernière convention : la flèche de tension désigne la borne à 
 laquelle il faut appliquer une tension positive pour faire circuler 
@@ -39,7 +39,7 @@ un courant positif.
 
 \section{Rappel de quelques notions relatives aux courants alternatifs}
 \subsection{Représentation des fonctions sinusoïdale du temps}
-Un telle grandeur, de pulsation $\omega$ est représentée par :
+Une telle grandeur, de pulsation $\omega$ est représentée par :
 \begin{equation}
 	\begin{array}{lll}
 		v & = V_M\cos(\omega t + \xi_v)       & \text{où $V_M$ est la valeur de crete} \\
@@ -50,10 +50,10 @@ Ceci peut s'écrire
 \begin{equation}
 	\begin{array}{ll}
 		v & = \Re (V\sqrt{2}\cos(\omega t + \xi_v) + jV\sqrt{2}\sin(\omega t + \xi_v)) \\
-		  & = \Re (V\sqrt{2}e^{j(\omega t + \xi_v})                                    
+		  & = \Re (V\sqrt{2}e^{j(\omega t + \xi_v)})                                    
 	\end{array}
 \end{equation}
-La \textbf{valeur instantannée complexe} $\overline{v}$ est définie par \\
+La \textbf{valeur instantannée complexe} $\underline{v}$ est définie par \\
 \begin{wrapfigure}[12]{r}{5cm}
 	\vspace{-15mm}
 	\includegraphics[scale=0.4]{ch1/image2.png}
@@ -61,7 +61,7 @@ La \textbf{valeur instantannée complexe} $\overline{v}$ est définie par \\
 \end{wrapfigure}
 \begin{equation}
 	\begin{array}{ll}
-		\overline{v} & = V \sqrt{2}e^{j(\omega t + \xi_V)} \\
+		\underline{v} & = V \sqrt{2}e^{j(\omega t + \xi_V)} \\
 		             & = V e^{j\xi_V}\sqrt{2}e^{j\omega t} 
 	\end{array}
 \end{equation}
@@ -69,16 +69,15 @@ où le \textbf{phaseur} $\underline{V}$ est
 \begin{equation}
 	\underline{V} = Ve^{j\xi_V}
 \end{equation}
-Dans le plan de Gauss $\overline{V}$ a un module valant la valeur efficace 
+Dans le plan de Gauss $\underline{V}$ a un module valant la valeur efficace 
 de la grandeur et un argument valant $\xi_V$, c'est un vecteur \textsc{fixe}.
 La valeur instantanée complexe $\underline{v}$ a un module $V\sqrt{2}$ et est 
-décalée de $V\sqrt{2}$ par rapport à $\overline{V}$ : c'est un vecteur 
-\textsc{tournant} (à $\omega$). On obtient la valeur instantanée en projetant 
+décalée de $\omega t$ par rapport à $\underline{V}$ : c'est un vecteur 
+\textsc{tournant} (à vitesse $\omega$). On obtient la valeur instantanée en projetant 
 la valeur instantanée complexe sur l'axe réel : $v = \Re(\underline{v})$.\\
 	
-Les déphasages entre grandeurs sont constants : on considère comme référence un 
-courant $\underline{I}$ et on définit l'argument de la tension par rapport à 
-celui-ci à l'aide de l'\textbf{angle de charge} $\varphi$.
+Pour une même pulsation, les déphasages entre grandeurs de nature différente sont constants : on définit l'\textbf{angle de charge} $\varphi$ comme argument de la tension par rapport à un
+courant $\underline{I}$ pris comme référence. 
 	
 \begin{center}
 	\includegraphics[scale=0.4]{ch1/image3.png}
@@ -88,11 +87,11 @@ celui-ci à l'aide de l'\textbf{angle de charge} $\varphi$.
 Si l'on applique la tension $\underline{V} = V\angle \xi_V$ à une impédance 
 $\underline{Z} = R + jX = Z\angle \xi$, le courant vaut 
 \begin{equation}
-	\underline{I} = \frac{\underline{V}}{\underline{Z}} = \frac{V}{Z}\angle 
+	\underline{I} = \frac{\underline{V}}{\underline{Z}} = \frac{V}{Z}\, \angle 
 	\xi_V-\xi
 \end{equation}
 On remarque avec l'argument du courant qu'une impédance inductive ($X>0, 
-\xi <0$) déphase le courant en arrière par rapport à la tension et l'inverse 
+\xi >0$) déphase le courant en arrière par rapport à la tension ($\xi _I < \xi _V$) et l'inverse 
 pour une impédance capacitive.
 	
 	
@@ -109,20 +108,21 @@ La valeur instantanée de la puissance vaut :
 		  & = \underbrace{VI \cos\varphi}_{1} + \underbrace{VI \cos(2\omega t +  
 		\xi_V+\xi_I)}_{2}
 	\end{array}
+	\label{eq:1.6}
 \end{equation}
 Cette expression contient deux termes :
 \begin{enumerate}
 	\item La puissance active, c'est la valeur moyenne de $p$.
-	\item Un terme pouvant causer des vibrations indésirables.
+	\item Un terme de moyenne nulle sur un nombre entier de périodes pouvant causer des vibrations indésirables.
 \end{enumerate}
 La \textbf{puissance utile} est celle correspondant à un travail 
-effectué :
+effectué, donc la puissance active :
 \begin{equation}
 	P = VI \cos\varphi
 \end{equation}
 		
 \subsubsection{Puissance apparente}
-Par définition
+Par définition (attention à $I^*$ qui est le complexe conjugué)
 \begin{equation}
 	\begin{array}{ll}
 		\underline{S} & \equiv \underline{V}\underline{I^*} \\
@@ -138,7 +138,7 @@ au courant.
 \end{center}	
 		
 \subsubsection{Puissance réactive}
-Dans l'expression $P = VI \cos\varphi = \Re(\underline{S})$, on définit la 
+Dans l'expression, $P = VI \cos\varphi = \Re(\underline{S})$. On définit alors la 
 \textbf{puissance réactive} :
 \begin{equation}
 	Q = VI\sin\varphi = \Im(\underline{S})
@@ -150,8 +150,17 @@ Si $P>0, Q<0$ si $\varphi<0$ c'est à dire que la charge est capacitive.\\
 La puissance réactive ne correspond à aucun travail effectif et est une 
 notion difficile à saisir. Retenons juste que sa circulation amène des 
 pertes et des chutes de tension. Cette puissance n'apparaît que si la 
-charge est réactive, c'est-à-dire peut stocker de l'énergie\footnote{Voir 
-1.2-14 du syllabus pour une image intuitive}.
+charge est réactive, c'est-à-dire peut stocker de l'énergie.\\
+Pour une image plus intuitive, reprenons l'expression \autoref{eq:1.6} et jouons avec
+\begin{equation}
+	\begin{array}{ll}
+		p & = \frac{V_MI_M}{2}(\cos(\xi_V-\xi_I) + \cos(2\omega t +\xi_V+\xi_I)) \\     
+		&= VI(\cos \varphi + \cos (2\omega t + 2\xi _V - \phi))\\
+		&= VI(\cos \varphi + \cos \varphi \cos (2\omega t + 2\xi _V) + \sin \varphi \sin (2 \omega t + 2\xi _V))\\
+		&= P (1 +\cos (2\omega t +2\xi _V)) + Q\sin (2\omega t+2\xi _V)
+	\end{array}
+\end{equation}
+	On voit que le terme qui affecte \textbf{P} est toujours positif. Son produit avec P représente la puissance qui s'écoule toujours dans le même sens. Alors que le terme qui affecte \textbf{Q} est alternative. Son produit avec Q représente la puissance alternativement échangée dans les deux sens entre la source et la charge. 
 \newpage		
 \section{Caractéristiques d'un système polyphasé}
 \subsection{Modes de couplage des circuits polyphasés}
@@ -164,12 +173,11 @@ Soit $m$ sources électrique indépendantes $S_1, S_2,\dots,S_m$ dont les tensio
 ont la même valeur efficace et sont déphasées de $2\pi/m$ : système $m-$phasé 
 équilibré d'ordre direct :
 \begin{equation}
-	\underline{E_i} = E_{1} \langle -(i-1)\frac{2\pi}{m}
+	\underline{E_i} = E_{1} \angle -(i-1)\frac{2\pi}{m}
 \end{equation}
 
 
-\textsc{Convention :} la phase 2 est située en arrière de la phase 1 et la 
-phase 3 en arrière de la phase 2 (en arrière signifie "[...] dans le temps").\\
+\textsc{Convention :} la phase 2 est située en arrière de la phase 1 et ainsi de suite (en arrière dans le temps).\\
 	
 Ci-dessus, un schéma de principe pour un tel système. Chacun des enroulements d'
 induit est raccordé par deux fils, il faudrait donc $2m$ conducteurs. Il existe 
@@ -195,8 +203,8 @@ de potentiel entre deux conducteurs. Par exemple : $\underline{U}_{12} =
 		
 		
 \subsubsection{b. Couplage en étoile sans fil neutre}
-Si toutes les impédances sont identiques, le circuit est équilibre et 
-la somme des courants de ligne est nulle : $\sum_{i=1}^m i_i=0$. Comme 
+Si toutes les impédances sont identiques, le circuit est équilibré et 
+la somme des courants de ligne est nulle (voir le montage comme des phaseurs de courant en étoile) : $\sum_{i=1}^m i_i=0$. Comme 
 le neutre n'est plus parcouru, on peut le supprimer. Le point $N'$, 
 neutre, possède le même potentiel que le point $N$ par symétrie : $N$ 
 est un point neutre artificiel. Cette installation comporte $m$ fils.\\
@@ -222,12 +230,12 @@ Le phaseur de la tension mesurée entre les phases 1 et 2 s'écrit
 \begin{equation}
 	\underline{U}_{12} = \underline{V_2}-\underline{V_1}
 \end{equation}
-On voit que\footnote{??} 
+On voit que\footnote{D'abord, se souvenir que sin = opposé/hypoténuse. Ensuite, pour l'exponentielle, retrouver l'angle formé entre $V_1$ et $U_{12}$ en se souvenant que la somme des angles dans un triangle vaut 180\degres .} 
 \begin{equation}
 	\begin{array}{ll}
+		U_{12}             & = 2V_1\sin\frac{\pi}{m}                    \\  
 		\underline{U}_{12} & = 2\underline{V}_1\sin \frac{\pi}{m}e^{-j\left( 
-		\frac{\pi}{m}+\frac{\pi}{2}\right)}\\
-		U_{12}             & = 2V_1\sin\frac{\pi}{m}                         
+		\frac{\pi}{m}+\frac{\pi}{2}\right)}
 	\end{array}
 \end{equation}
 		
@@ -242,7 +250,7 @@ $U_{12}$ :
 \begin{equation}
 	P = \frac{m}{2\sin\frac{\pi}{m}}U_{12}I_1\cos\varphi
 \end{equation}
-\textbf{Attention :} $\varphi$ est le déphasage entre tension simple 
+\textbf{Attention :} $\varphi$ est le déphasage entre tension \textbf{simple }
 et courant et rien d'autre!
 		
 		
@@ -274,7 +282,7 @@ relations vectorielles :
 	\underline{I}_2 = \underline{I}_{12}\sin\frac{\pi}{m}e^{-j\left(\frac{
 		\pi}{m}-\frac{\pi}{2}\right)}
 \end{equation} 
-		
+		Les tensions entre phases $U_{12}, ...$ sont bien sûr égales entre elles, ainsi que les tensions simples $V_1,... $
 		
 \subsubsection{d. Puissance électrique transportée par une ligne}
 Cette puissance s'exprime par 
@@ -295,12 +303,12 @@ les exprimer :
 		e_C & = E\sqrt{2}\cos(\omega t +\xi_V + \frac{2\pi}{3}) 
 	\end{array}
 \end{equation}
-Définissions l'opérateur de déphasage $\underline{\alpha} = \angle \frac{2
+Soit $\underline{E_A}=E \angle \xi_v$, définissons l'opérateur de déphasage $\underline{\alpha} = \angle \frac{2
 	\pi}{3} = -\frac{1}{2}+j\frac{\sqrt{3}}{2}$ tel que $\underline{E_B} = 
 \underline{\alpha}^2\underline{E_A}$ et $\underline{E_C} = \underline{\alpha}
 \underline{E_A}$.\\
 Des relations intéressantes sont reprises en (1.3-19). Notons juste que 
-la somme des courants est bien nulle : $1+\underline{\alpha}+\underline{
+la somme des tensions est bien nulle : $1+\underline{\alpha}+\underline{
 	\alpha}^2 = 0$.
 		
 \subsubsection{Couplage en étoile}
@@ -312,7 +320,7 @@ la somme des courants est bien nulle : $1+\underline{\alpha}+\underline{
 On peut relier $A',B',C'$ en un point neutre $N$ et $A,B,C$ sont les 
 sorties de l'alternateur raccordées aux fils de lignes. Les tensions 
 sont égales aux f.e.m. engendrées et sont dès lors également un 
-système triphasé équilibre. Pour les tensions composées, on les 
+système triphasé équilibré. Les courants de ligne correspondent aux courants de phase. Pour les tensions composées, on les 
 obtient par composition vectorielle :
 \vspace{1cm}
 \begin{equation}
@@ -340,7 +348,10 @@ $A$ de la ligne :
 \end{equation}
 Le centre de gravité du triangle des tensions peut représenter le 
 potentiel d'un neutre fictif $N$ pour définir un système de tension 
-simple. Pour les résultats, voir page 1.23.
+simple. Pour les résultats, voir page 1.23. Spécifions néanmoins qu'on retrouve les tensions $V$ par relations vectorielles sur base des $U$. Il en est de même pour les courants de ligne puisque les courants de phase constituent un système triphasé équilibré, donc construction vectorielle. La puissance est donné par 
+\begin{equation}
+	P = 3 U_{BA} I_{BA} \cos \varphi
+\end{equation}
 \begin{center}
 	\includegraphics[scale=0.4]{ch1/image10.png}
 	\captionof{figure}{ }
@@ -349,8 +360,8 @@ simple. Pour les résultats, voir page 1.23.
 		
 \subsection{Influence des harmoniques dans les circuits polyphasés}
 Les tensions ne sont pas toujours sinusoïdales. On peut décomposer une courbe 
-périodique par une somme de sinusoïdes. Ici, les fonctions du temps 
-présentent deux alternances identiques, c'est à dire que superposables par 
+périodique en une somme de sinusoïdes. Ici, les fonctions du temps 
+présentent deux \textbf{alternances identiques}, c'est-à-dire superposables par 
 retournement :
 \begin{equation}
 	f(t+\frac{T}{2}) = -f(t)
@@ -364,7 +375,29 @@ Soit la f.e.m. $e_A$ sous la forme d'une série de Fourier :
 avec $i$ impair. Les f.e.m. développées par les phases $e_B$ et $e_C$ s'
 obtiennent en remplaçant $\omega t$ par $\omega t - 2\pi/3$ et $\omega t 
 +2\pi/3$.\\
-Cas du couplage triangle et étoile vu en cours ? Passé ici.
+
+\subsubsection{Couplage triangle}
+Les tensions entre phase dans ce montage correspondent bien sûr aux forces électromotrices. La tension recueilli est la somme de ces tensions
+\begin{equation}
+	\sum _{i = 1}^\infty A_i \left( \cos (i\omega t + \xi _i) + \cos (i(\omega t - \frac{2\pi}{3}) + \xi _i) + \cos (i(\omega t +\frac{2\pi}{3}) + \xi _i) \right)
+\end{equation}
+En passant par simpson, on peut la réécrire sous la forme
+\begin{equation}
+	\sum _{i = 1}^\infty A_i \cos (i\omega t + \xi _i) \left( 1+2\cos (i\frac{2\pi}{3}) \right)
+\end{equation}
+On remarque que cette somme est nulle pour toutes les valeurs de i non multiple de 3 en raison du dernier $\cos$. Pour les valeurs de i multiple de 3, le dernier $\cos$ valant 1, la somme vaut 
+\begin{equation}
+	\sum _{i = 1}^\infty 3A_i \cos (i\omega t + \xi _i) \qquad \mbox{i multiple de 3}
+\end{equation}
+Ceci a pour conséquence qu'un voltmètre introduit en série dans le couplage en triangle mesure trois fois la valeur efficace résultant de la somme des harmoniques 3 et multiple de 3. Il en résulte que le courant entre phase est aussi d'harmonique 3. Ces courants sont étouffés par les courant induits provenant de la loi de Lenz. 
+
+\subsubsection{Couplage étoile}
+Cette fois, proposons-nous de trouver la tension entre phase $e_{BC} = e_C - e_B$ qu'on écrit, après passage par Simpson 
+\begin{equation}
+	e_{BC} = -\sum _{i=1}^\infty 2 A_i \left(\sin (i\omega t + \xi _i )\sin (i\frac{2\pi}{3})\right)
+\end{equation}
+	Cette fois, ce sont les valeurs de i multiple de 3 qui annulent cette somme. Le couplage en étoile annule donc les composantes d'harmonique 3 et multiple de 3. 
+	
 	
 \subsection{Mesure de la puissance dans les circuits polyphasés}
 \subsubsection{Méthode des $m$ wattmètres - Circuit sans fil neutre}
@@ -399,11 +432,11 @@ autre que $\cos\varphi$ de l'un des circuit :
 	P_A = V_AI_A\cos\varphi
 \end{equation}
 La puissance totale débitée vaut alors $P = mP_A$. Quand les phases sont 
-équilibrés, on peut toujours écrire
+déséquilibrés, on peut toujours écrire
 \begin{equation}
 	P = \sum_1^m V_jI_j\cos\varphi_j
 \end{equation}
-Comme $\varphi_j$ peut être différent dans chacune des phases : on ne peut 
+Comme cette fois $\varphi_j$ peut être différent dans chacune des phases : on ne peut 
 plus définir un $\cos\varphi$ global mais un facteur de puissance :
 \begin{equation}
 	FP = \frac{P}{S} = \frac{P}{\sqrt{P^2+Q^2}}
@@ -477,7 +510,7 @@ Les indications des deux wattmètres vaudront alors forcément
 	\end{array}
 \end{equation}
 			
-La puissance totale vaut évidemment 
+La puissance totale vaut évidemment (conformément aux résultats précédents)
 \begin{equation}
 	P = W_1+W_2 = \sqrt{3}UI\cos\varphi
 \end{equation}
