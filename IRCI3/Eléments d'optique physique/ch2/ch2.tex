@@ -601,9 +601,9 @@ une combili d'ondes harmoniques}. \\
 
 Le champ est un produit de convolution du champ d'entrée avec une fonction de phase quadratique qui 
 ne représente rien d'autre qu'une phase sphérique. Nous voyons une sommes d'ondes sphériques en 
-approximation paraboliques mis sous la forme d'une convolution. En effet, le produit $x-x'$ montre 
-que l'onde part d'un point qui n'est plus à l'origine mais au point $(x',y')$. Si l'on se place à 
-un point $x$, distant de $r$ du point $x'$
+approximation paraboliques mis sous la forme d'une convolution. En effet, le $x-x'$ représente le 
+fait que l'onde ne vient plus de l'origine (comme dans $h_z$) mais désigne un point qui n'est plus 
+à l'origine mais au point $(x',y')$.
 \begin{equation}
 r = \sqrt{(x-x')^2+z^2}
 \end{equation}
@@ -611,16 +611,22 @@ En approchant ceci par l'approximation parabolique
 \begin{equation}
 r \approx z+\dfrac{(x-x')^2}{2z}
 \end{equation}
-Ceci est précisément ce qui apparaît dans notre convolution. Nous ne travaillons finalement 
-que avec la "\textit{réponse impulsionnelle}" du système où l'impulsion est cette source 
-ponctuelle. Nous avons en effet la réponse à une source ponctuelle (un delta, cette fois ci non 
-temporel mais spatial).\\
+Ceci est précisément ce qui apparaît dans notre convolution\footnote{Débarrassée des constantes.} :
+\begin{equation}
+a(x,y;z) = \frac{k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+ e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\  e^{ikz}
+\end{equation}
+
+Nous ne travaillons finalement que avec la "\textit{réponse impulsionnelle}" du système où 
+l'impulsion est cette source ponctuelle située en $(x',y')$. Nous avons en effet la réponse 
+à une source ponctuelle (un delta, cette fois ci non temporel mais spatial) générant l'onde 
+$h_z$ (l'onde sphérique approchée de façon parabolique) $\rightarrow$ réponse impulsionnelle.\\
 
 
 Un point source donne lieu à une certaine répartition de champ. La réponse globale s'obtient en 
 prenant la convolution avec cette réponse, c'est-à-dire en considérant que chaque point a une 
 certaine amplitude $a(x',y';0)$ : l'objet à une certaine amplitude et chaque de ces amplitude 
-rayonne une onde sphérique partant de $x',y'$ ou l'on a une certaine amplitude. \\
+rayonne une onde sphérique partant de $(x',y')$ ou l'on a une certaine amplitude. \\
 
 \begin{wrapfigure}[9]{l}{6.5cm}
 \vspace{-5mm}
@@ -628,26 +634,37 @@ rayonne une onde sphérique partant de $x',y'$ ou l'on a une certaine amplitude.
 \captionof{figure}{ }
 \end{wrapfigure}
 On retrouve le 
-principe de Huygens : un écran laisse passé un trou laissant passé la lumière. Chaque point de 
-cet objet peut être considéré comme un point source générant une onde sphérique pouvant être 
-absorbée paraboliquement. En $z$, nous sommons chaqunes de ces ondes sphériques. Nous avons une 
+principe de Huygens : un écran laisse passé un trou laissant passé la lumière avec une certaine 
+amplitude dépendant de $x'$ et $y'$. Chaque point de cet objet peut être considéré comme un point 
+source générant une onde sphérique pouvant être approchée paraboliquement. En $z$, nous sommons 
+(à travers l'intégrale) les champs de chacune de ces ondes sphériques. Nous avons une 
 superposition d'onde sphérique d'amplitude donnée par l'amplitude de l'objet de départ : la 
-figure de difraction résultera des interférences entre toutes ces ondes sphériques.\\
+figure de diffraction résultera des interférences entre toutes ces ondes sphériques (seulement une 
+est représentée ci-contre).\\
 
-Ceci est ainsi l'intégrale de Fresnel qui ne représente rien d'autre qu'une superpositon d'ondelettes 
-de Huygens.
+Ceci est ainsi de la formule de diffraction de Fresnel, cette intégrale de Fresnel ne représente 
+rien d'autre qu'une superposition d'ondelettes de Huygens.
 \begin{equation}
 a(x,y;z) = \frac{2k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
  e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\ e^{-i\dfrac{\pi}{2}}\ e^{ikz}
 \end{equation}
 
 
-Analysons les amplitudes des ondelettes de Huygens. Nous avons une onde sphérique 
-approchée par une onde parabolique dont le profil d'intensité est donné par
+Analysons les amplitudes des ondelettes de Huygens, ici en analysant leur amplitude. Considérons 
+une de ces ondes, celle venant de l'origine ($x'=y'=0$) :
+\begin{equation}
+a(x,y;z) = \dfrac{k}{z}e^{i\dfrac{k}{2z}(x^2+y^2)}\ e^{ikz}
+\end{equation}
+Il s'agit de la fonction $h_z$ que nous avions précédemment\footnote{Pq?}
+
+
+
+Nous avons une onde sphérique approchée par une onde parabolique dont le profil d'intensité 
+(le module carré du champ) est donné par
 \begin{equation}
 I(x,y;z) = |a(x,y;z)|^2 \propto \dfrac{1}{z^2}
 \end{equation}
-Ceci peut paraître curieux car la décroissance réelle de $I$ est en $\frac{1}{r^2}$.
+Ceci peut paraître curieux car la décroissance réelle d'une onde est en $\frac{1}{r^2}$.
 \begin{equation}
 I(x,y;z) \propto \frac{1}{r^2}
 \end{equation}
@@ -659,17 +676,27 @@ sphère est donnée par $4\pi r^2 I$ où $r$ est le rayon de la sphère sur laqu
 Or, cette intensité doit bien être constante (indépendante de $r$) : peu importe la sphère, 
 la puissance émise de la source est constante, d'où la variation en $r^{-2}$.\\
 
+\begin{wrapfigure}[9]{r}{5cm}
+\vspace{-5mm}
+\includegraphics[scale=0.4]{ch2/image16.png}
+\captionof{figure}{ }
+\end{wrapfigure}
 Or, nous obtenons $1/z^2$ et non pas $1/r^2$. Analysons pour cela l'onde sphérique en un 
 point de coordonnée $(x,y,z)$ correspondant à un certain rayon : il y a une différence 
 entre $z$ et $r$ (voir schéma ci-contre). Faisons la comparaison. Considérons $r$ dans le 
-cadre de l'approximation paraxiale
+cadre de l'approximation paraxiale $x,y \ll z$ :
 \begin{equation}
 r = z+\frac{1}{2z}(x^2+y^2) + \mathcal{O}(2)
 \end{equation}
-Nous avions utilisé cette approximation pour la phase où nous avions gardé le second ordre 
-du développement. Or, nous sommes passé de $1/r$ à $1/z$ car nous n'avons pas fait la même 
-approximation pour l'amplitude ($r=z$). Ceci peut paraître paradoxal, mais c'est parce que 
-nous avons considérer que 
+
+
+
+En réalité, pour décrire cette onde, le front d'onde en $e^{ikz}$ a été approché : la 
+sphère a été approché par une parabole, l'ordre un du développement a été gardé. Or, nous 
+sommes passé de $1/r$ à $1/z$ car nous n'avons pas fait la même 
+approximation. Pour la phase on considère que $r = z +\frac{1}{2z}(x^2+y^2)$ et pour l'amplitude 
+on dit que $r=z$ (l'ordre un pour l'amplitude a été supprimé). Ceci peut paraître paradoxal, 
+mais c'est parce que nous avons considéré 
 \begin{equation}
 \frac{1}{z^2}\approx\frac{1}{r^2}
 \end{equation}
@@ -679,8 +706,6 @@ erreur : $\delta r \approx 10^{-6}m\approx \lambda$) peut créer une erreur sur 
 de l'ordre de 100\% alors que sur l'amplitude, cela ne change quasiment rien. Il est donc 
 tout à fait légitime de garder l'approximation d'ordre 1 pour évaluer la distance dans le 
 terme de phase et de se contenter de l'approximation d'ordre 0 pour l'amplitude.
-
-
 
 
 
