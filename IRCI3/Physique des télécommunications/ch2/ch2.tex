@@ -227,6 +227,7 @@ un point)
 	
 \section{Les lignes en régime sinusoïdal permanent}
 	\subsection{Tension et courant sur la ligne}
+	\label{sec:2.5.1}
 	Considérons cette fois-ci une source sinusoïdale : légèrement plus compliqué, car tout 
 	variera de façon sinusoïdale également (en supposant que la charge en fin de ligne est 
 	linéaire).
@@ -351,21 +352,259 @@ un point)
 	\end{equation}}\ \\
 	
 	L'impédance d'entrée va non seulement dépendre de l'impédance de charge connectée, mais également de 
-	la longueur de la ligne.
+	la longueur de la ligne (un déphasage pouvant causer des interférences est à prendre en compte).
 	
 	
+	\subsection{Ondes stationnaires}
+	Nous avons vu que pour bien bosser à HF, il fallait que les éléments soient adaptées pour le 
+	traitement des signaux. Or, les composants présentent toujours des tolérances : comment 
+	caractériser la désadaptation ? Un outil est le taux d'ondes stationnaires. La tension sur 
+	la ligne est la somme d'une onde progressive et régressive (où l'on a utilisé la définition 
+	de $V_-$ de la \autoref{sec:2.5.1}) :
+	\begin{equation}
+	\begin{array}{ll}
+	\underline{V}(z) &= V_+(e^{-j\beta z} + \Gamma_L e^{-2j\beta L}e^{j\beta z}\\
+	&= V_+e^{-j\beta z}(1+\Gamma_Le^{-2j\beta(L-z)})
+	\end{array}
+	\end{equation}
+	Si la charge est adaptée $\Gamma_L = 0 \rightarrow \underline{V}(z) = V_+e^{-j\beta z}$, 
+	soit une seule onde progressive d'amplitude constante $|\underline{V}(z)|=|V_+|$ : en 
+	chaque point de la ligne l'oscillation est la même. On remarque bien l'onde progressive 
+	dans le temporel
+	\begin{equation}
+	v(z,t) = V_+\cos(\omega t-\beta z)
+	\end{equation}
+	Si la ligne est ouverte $\Gamma_L=1$, on peut faire apparaître un cosinus après mise 
+	en évidence :
+	\begin{equation}
+	\underline{V}(z) = V_+e^{-j\beta z}(1+e^{-2j\beta(L-z)}) = 2V_+e^{-j\beta L}\cos(
+	\beta(L-z))\quad\Rightarrow\quad |\underline{V}(z)| = |2V_+\cos(\beta(L-z))|
+	\end{equation}
+	Ici l'amplitude dépend de la position. En temporel (si $V_+\in\mathbb{R}$)
+	\begin{equation}
+	v(z,t) = 2V_+\cos(\beta(L-z))\cos(\omega t-\beta L)
+	\end{equation}
+	Il n 'y a plus de terme de propagation ($\omega t \pm \beta z$) : ceci est une onde 
+	stationnaire\footnote{On peut s'en rendre compte en remarquant que les zéros ne 
+	dépendent pas de $t$.}. Si on repère des zéros parfait ou des "doublement d'amplitude" 
+	parfait c'est que rien n'est absorbé, le récepteur ne fonctionne donc pas.\\
+	
+	\danger Si la ligne est ouverte mais de longueur $L=\lambda/4 \rightarrow \beta L = 
+	\pi/2$ la tension de ligne est nulle et cette ligne apparaît pour la source comme un 
+	court-circuit :
+	\begin{equation}
+	\underline{I}(z) = \dfrac{V_+}{Z_c}e^{)j\beta z}(1-e^{-2j\beta(L-z)}) = \dfrac{2jV_+}{
+	Z_c}e^{-j\beta L}\sin(\beta(L-z))
+	\end{equation}
+	Le courant est bien nul en bout de ligne, mais pas mailleurs : le courant est du à 
+	des oscillations locales et non globales des $e^-$, un courant local peut donc exister. 
+	S'il y a du courant, il y a production d'onde EM, c'est le principe de fonctionnement 
+	des antennes : un fil suffit car le courant passe même si le fil est ouvert.\\
+	
+	Étudions maintenant le cas général (tension le long de la ligne en phaseur) :
+	\begin{equation}
+	\underline{V}(z) = V_+e^{-j\beta z}(1+\Gamma_Le^{-2j\beta(L-z)})\quad\rightarrow\quad
+	|\underline{V}(z)| = |V_+||1+\Gamma_Le^{-2j\beta(L-z)}|
+	\end{equation}
+	Le module de l'imaginaire valant l'unité, l'amplitude varie entre :
+	\begin{equation}
+	|\underline{V}(z)|_{\max} = |V_+|(1+|\Gamma_L|),\qquad
+	|\underline{V}(z)|_{\min} = |V_+|(1-|\Gamma_L|)
+	\end{equation}
+	Ces deux valeurs ne sont égale que si la charge est adaptée. La désadaptation est 
+	alors caractérisée par\\
+	\retenir{\textbf{\ VSWR}
+	\begin{equation}
+	\dfrac{|\underline{V}(z)|_{\max}}{|\underline{V}(z)|_{\min}} = 
+	\dfrac{(1+|\Gamma_L|)}{(1-|\Gamma_L|)}
+	\end{equation}}\ \\
+	
+	Soit le \textbf{taux d'onde stationnaire en tension}. Plus il est proche de l'unité, 
+	mieux c'est. En pratique, on espère $VSWR \leq 2$.
+	
+	\subsection{Puissance transmise à la charge}
+	La puissance moyenne dissipée dans une impédance vaut 
+	\begin{equation}
+	P = \dfrac{1}{T}\int_0^T v(t)i(t)\ dt\qquad\leftrightarrow\qquad P=\dfrac{1}{2}
+	\Re(\underline{V}\underline{I}^*)
+	\end{equation}
+	La puissance de l'onde progressive et régressive vaudront (on remplace, distribue,\dots) 
+	\begin{equation}
+	\begin{array}{lll}
+	P_+ &= \dfrac{1}{2}	\Re(\underline{V}_+\underline{I}_+^*) &= \dfrac{|V_+|^2}{2Z_c}\\
+	P_- &= \dfrac{1}{2}	\Re(\underline{V}_-\underline{I}_-^*) &= \dfrac{|V_-|^2}{2Z_c}	 
+	= |\Gamma_L|^2\dfrac{|V_+|^2}{2Z_c}
+	\end{array}
+	\end{equation}
+	où l'on a remplacé $V_-$ par son expression utilisant le coefficient de réflexion.
+	Calculons la puissance consommée
+	\begin{equation}
+	\begin{array}{ll}
+	P_L &= \dfrac{1}{2}\Re[\underline{V}(L)\underline{I}^*(L)]\\
+	&= \Re\left[\dfrac{|V_+|^2}{Z_c}\left(e^{-j\beta L}+\Gamma_Le^{-j\beta L}\right)
+	\left(e^{j\beta L}-\Gamma_L^*e^{j\beta L}\right)\right]\\
+	&=\Re\left[\dfrac{|V_+|^2}{Z_c}(1-|\Gamma_L|^2) + \dfrac{|V_+|^2}{Z_c}(\Gamma_L-
+	\Gamma_L^*\right]
+	\end{array}
+	\end{equation}
+	Comme $\Gamma_L-\Gamma_L^*$ est purement imaginaire :
+	\begin{equation}
+	P_L = \dfrac{1}{2}\dfrac{|V_+|^2}{Z_c}(1-|\Gamma_L|^2) = P_+-P_-
+	\end{equation}
+	Ce que l'utilisateur "utilise" est bien la différence entre ce qui est injecté et 
+	réfléchi. Conventionnellement on fixe $\Gamma_L=1/3$ pour avoir une puissance 
+	transmise de 90\%.
+	
+	\subsection{Les pertes}
+	\begin{wrapfigure}[6]{r}{6.5cm}
+	\vspace{-7mm}
+	\includegraphics[scale=0.45]{ch2/image7.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	IRL, il y a toujours des pertes (joules dans les fils et dans les diélectriques 
+	(ils chauffent, effet four à micro-onde)). 
+	Modélisons les pertes joues par une résistance linéaire $R_1$ et les pertes 
+	diélectriques par une conductance linéique $G_1$ en parallèle. Les équations des 
+	télégraphistes s'écrivent
+	\begin{equation}
+	\begin{array}{ll}
+	\dfrac{d\underline{V}(z)}{dz} &= -(R_1+j\omega L_1)\underline{I}(z)\\
+	\dfrac{d\underline{I}(z)}{dz} &= -(G_1+j\omega C_1)\underline{V}(z)	
+	\end{array}
+	\end{equation}
+	En découplant
+	\begin{equation}
+	\begin{array}{lll}
+	\dfrac{d^2\underline{V}(z)}{dz^2} &= (R_1+j\omega L_1)(G_1+j\omega C_1)\underline{V}(z)
+	&= \gamma^2\underline{V}(z)\\
+	\dfrac{d^2\underline{I}(z)}{dz^2} &= (R_1+j\omega L_1)(G_1+j\omega C_1)\underline{I}(z)
+	&= \gamma^2\underline{I}(z)	
+	\end{array}
+	\end{equation}
+	où $\gamma = \alpha+j\beta= \sqrt{(R_1+j\omega L_1)(G_1+j\omega C_1)}$, la constante de 
+	propagation complexe. Les solutions de la première équations sont
+	\begin{equation}
+	\begin{array}{lllll}
+	\underline{V}_+(z) &= V_+e^{-\gamma z} &= V_+e^{-\alpha z}e^{-j\beta z} \quad &\rightarrow
+	\quad v_+(z,t) &= 	V_+e^{-\alpha z}\cos(\omega t-\beta z)\\
+	\underline{V}_-(z) &= V_-e^{\gamma z} &= V_-e^{\alpha z}e^{j\beta z}  \quad &\rightarrow
+	\quad v_-(z,t) &= 	V_-e^{\alpha z}\cos(\omega t+\beta z)	
+	\end{array}
+	\end{equation}
+	Les pertes causent une atténuation exponentielle du signal. Pour l'onde régressive, on 
+	pourrait croire que l'exponentielle positive n'est pas physique mais il n'en n'est rien : 
+	les $z$ décroissent. On retrouve des solution semblables pour le courant
+	\begin{equation}
+	\begin{array}{ll}
+	\underline{I}_+(z) &= I_+e^{-\gamma z}\\
+	\underline{I}_-(z) &= I_-e^{\gamma z}	
+	\end{array}
+	\end{equation}
+	Selon les équations des télégraphistes $\displaystyle \dfrac{V_+}{I_+}=\dfrac{V_-}{I_-}=Z_c$, 
+	désormais $Z_c\in\mathbb{C}$ :
+	\begin{equation}
+	Z_c=\sqrt{\dfrac{R_1+j\omega L_1}{G_1+j\omega C_1}}
+	\end{equation}
+	La puissance de l'onde progressive vaut, à l'aide de la précédente sous-section :
+	\begin{equation}
+	P_+(z) = \Re\left(\dfrac{|V_+|^2}{2Z_c^*}\right)e^{-2\alpha z}
+	\end{equation}
+	où $\alpha$ est bien la partie réelle de la constante de propagation : cette constante 
+	est à connaître. Hélas, elle n'est jamais directement donnée (trop facile). On peut 
+	néanmoins la retrouver avec
+	\begin{equation}
+	\alpha_d[\text{dB}] = 10\log\dfrac{\Re\left(\dfrac{|V_+|^2}{2Z_c^*}\right)e^{-2\alpha z}}{
+	\Re\left(\dfrac{|V_+|^2}{2Z_c^*}\right)e^{-2\alpha (z+d)}} = 20\log e^{\alpha d} = 
+	(20\log e)\alpha d = 8,686\alpha d
+	\end{equation}
+	où $d$ est une distance.
 	
 	
+\section{Scattering parameters}
+
+	\begin{wrapfigure}[7]{l}{5.15cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch2/image8.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Considérons un quadripôle. Nous allons essayer de trouver une matrice de transformation entre 
+l'entrée et la sortie, non plus en terme de tension mais en terme d'onde progressive et 
+régressive. Il s'agit d'une théorie complexe mais assez simple dans le cas ou $Z_c\in\mathbb{R}$.\\
+Afin d'éliminer les $Z_c$, définissons les paramètres (d'entrée ($a)$ et de sortie $(b)$ des 
+entrées 1 et 2) :
+\begin{equation}
+\begin{array}{lll}
+a_1 &= \dfrac{V_{1+}}{\sqrt{Z_c}},\qquad a_2 &= \dfrac{V_{2+}}{\sqrt{Z_c}}\\
+b_1 &= \dfrac{V_{1-}}{\sqrt{Z_c}},\qquad b_2 &= \dfrac{V_{2-}}{\sqrt{Z_c}}
+\end{array}
+\end{equation}
+La \textbf{matrice de répartition} (\textit{scattering matrix}) permet de lier la sortie 
+à l'entrée
+\begin{equation}
+\left(\begin{array}{c}
+b_1\\
+b_2
+\end{array}\right) = \left(\begin{array}{cc}
+S_{11} & S_{12}\\
+S_{21} & S_{22}
+\end{array}\right)\left(\begin{array}{c}
+a_1\\
+a_2
+\end{array}\right)
+\end{equation}
+La mesure des $S-$paramètres ne nécessite que la connaissance de l'impédance des ports. Par 
+exemple, pour $S_{11}$ :
+\begin{equation}
+S_{11} = \left.\dfrac{b_1}{a_1}\right|_{a_2=0}
+\end{equation}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+\section{The Smith Chart}
+	\begin{wrapfigure}[9]{l}{5.15cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.25]{ch2/image9.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'abaque de Smith est historiquement important : il était utilisé avant l'arrivée de Matlab 
+et ses srabs. Nous avions vu que le coefficient de réflexion en \textbf{bout de ligne} était 
+donné par
+\begin{equation}
+\Gamma(L) = \dfrac{Z_L-Z_c}{Z_L+Z_c}
+\end{equation}
+Connaissant les phaseurs des ondes progressives et régressives, on peut obtenir une expression 
+donnant le coefficient de réflexion en chaque point
+\begin{equation}
+\Gamma(z) = \dfrac{\underline{V}_-(z)}{\underline{V}_+(z)}=\Gamma(L)e^{2j\beta(z-L)} 
+\end{equation}
+où $\beta = \omega\sqrt{L_1C_1}$. On peut encore écrire cette expression avec celle de l'impédance 
+d'entrée
+\begin{equation}
+\Gamma(z) = \dfrac{Z_{in}(z)-Z_c}{Z_{in}(z)+Z_c}
+\end{equation}
+où $Z_{in}(z) = Z_c\dfrac{1+\Gamma(z)}{1-\Gamma(z)}$. On peut définir une impédance d'entrée 
+normalisée $z_in = r+jx = Z_{in}(z)/Z_c$. En écrivant
+\begin{equation}
+\Gamma(z) = \Gamma_r + j\Gamma_i
+\end{equation}
+Avec cette décomposition et celle de $z_{in}$, on peut écrire
+\begin{equation}
+r+jx = \dfrac{1+\Gamma_r+j\Gamma_i}{1-\Gamma_r-j\Gamma_i} = \dfrac{1-\Gamma_r^2-\Gamma_i^2+2j
+\Gamma_i}{(1-\Gamma_r)^2+\Gamma_i^2}
+\end{equation}
+En identifiant $r$ et $x$, on peut obtenir deux équations de cercles après réarrangement :
+\begin{equation}
+\begin{array}{ll}
+\left(\Gamma_r -\dfrac{r}{r+1}\right)^2 + \Gamma_i^2 &= \left(\dfrac{1}{1+r}\right)^2\\
+(\Gamma_r-1)^2 +\left(\Gamma_i-\dfrac{1}{x}\right)^2 &= \left(\dfrac{1}{x}\right)^2
+\end{array}
+\end{equation}
+On obtient ainsi un ensemble de cercles $r$ et $x$ constant. En les superposant et en 
+choisissant un point $x$ et $r$, il est possible de trouver $\Gamma_i$ et $\Gamma_r$. C'est 
+un bazooka pour quelque chose d'assez simple, mais il faut au moins en avoir entendu 
+parlé une fois.
+
+\section{Impedance matching}
+Flemme :D
 	
 	
 	
