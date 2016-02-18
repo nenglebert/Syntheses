@@ -1,0 +1,161 @@
+\chapter{Les états variables}
+\section{Les champs en régime sinusoïdal permanent}
+	\subsection{Les équations de Maxwell}	
+	Si le milieu est linéaire et que la fréquence est fixée il  n'y aura pas de modification 
+	de la fréquence et tous les champs oscilleront à celle-ci. En un point $\vec{r}$, le champ 
+	électrique polarisé en $x$ varie selon
+	\begin{equation}
+	\vec{E}(\vec{r},t) = E_x(\vec{r},\omega)\cos(\omega t + \phi_x(\vec{r},\omega))\vec{1_x}
+	\end{equation}
+	On peut écrire ça sous forme de phaseur. Seule différence: le phaseur est un \textbf{vecteur 
+	complexe} : $\underline{\vec{E}}(\vec{r},\omega) = \underline{E_x}(\vec{r},\omega)\vec{1_x}$.
+	Bien sûr, il faudrait normalement considérer les trois composantes :
+	\begin{equation}
+	\underline{\vec{E}} = \underline{E_x}(\vec{r},\omega)\vec{1_x}+\underline{E_y}(\vec{r}
+	,\omega)\vec{1_y}+\underline{E_z}(\vec{r},\omega)\vec{1_z}
+	\end{equation}
+	On peut également définir les phaseurs suivant :$\underline{\vec{B}}(\vec{r},\omega), 
+	\underline{\vec{J}}(\vec{r},\omega)$ et $\underline{\vec{\rho}}(\vec{r},\omega)$. L'avantage 
+	est que les équations de Maxwelle deviennent algébriques
+	\begin{equation}
+	\begin{array}{ll}
+	\rot \underline{\vec{E}}(\vec{r},\omega) &= -j\omega\underline{\vec{B}}(\vec{r},\omega)\\
+	\rot \underline{\vec{B}}	(\vec{r},\omega) &= \mu\underline{\vec{J}}(\vec{r},\omega) +
+	j\omega\epsilon\mu\underline{\vec{E}}(\vec{r},\omega)\\
+	\div \underline{\vec{B}}(\vec{r},\omega) &= 0\\
+	\div \underline{\vec{E}}(\vec{r},\omega) &= \dfrac{\underline{\rho}(\vec{r},\omega)}{\epsilon}
+	\end{array}
+	\end{equation}
+	Ce système couple le champ électrique et magnétique. Exprimons sous forme intégrale la 
+	première équation (intégration sur la surface)
+	\begin{equation}
+	\int_S \rot \underline{\vec{E}}(\vec{r},\omega)\ .\ \vec{dS} = -j\omega\int_S\underline{
+	\vec{B}}(\vec{r},\omega)\ .\ \vec{dS}
+	\end{equation}
+	Par le théorème de Stokes :\\
+	\retenir{\textbf{\ Loi de Faraday en phaseur}
+	\begin{equation}
+	\oint_C \underline{\vec{E}}(\vec{r},\omega)\ .\ \vec{dl} = -j\omega\int_S\underline{
+	\vec{B}}(\vec{r},\omega)\ .\ \vec{dS}	
+	\end{equation}
+	A toute variation temporelle du champ magnétique est associé un champ électrique.}\ \\
+	
+	De même, pour la seconde équation
+	\begin{equation}
+	\int_S \rot\underline{\vec{B}}	(\vec{r},\omega)\ .\ \vec{dS} = \mu\underbrace{\int_S \underline{
+	\vec{J}}(\vec{r},\omega)\ .\ \vec{dS}}_{=\underline{I}} + 	j\omega\epsilon\mu\int_S\underline{
+	\vec{E}}(\vec{r},\omega)\ .\ \vec{dS}
+	\end{equation}
+	Par le théorème de Stokes\\
+	\retenir{\textbf{\ Loi d'Ampère en phaseur}
+	\begin{equation}
+	\oint_C \underline{\vec{B}}	(\vec{r},\omega)\ .\ \vec{dS} = \mu\underline{I} + 
+	j\omega\epsilon\mu\int_S\underline{\vec{E}}(\vec{r},\omega)\ .\ \vec{dS}
+	\end{equation}
+	A tout courant ou à toute variation temporelle du champ électrique, est associé un champ 
+	magnétique.}
+	
+	\subsection{Résolution des équations de Maxwell}
+	A part si la géométrie le permet, il est plus simple de passer par la méthode des potentiels 
+	retardés. Montrons que si $\underline{\vec{J}}(\vec{r},\omega)$ est le phaseur associé à la 
+	densité de courant, alors
+	\begin{equation}
+	\underline{\vec{J}}e^{-j\beta|\vec{r}-\vec{r'}|}
+	\end{equation}
+	où $\beta = \omega/c$ est le nombre d'onde, est le phaseur associé à la densité de courant 
+	\textbf{retardée}. En effet
+	\begin{equation}
+	\begin{array}{ll}
+	\Re\left(\underline{\vec{J}}(\vec{r},\omega)e^{-j\beta|\vec{r}-\vec{r'}|}e^{j\omega t}\right) &=
+	\Re\left(\underline{\vec{J}}(\vec{r},\omega)e^{j\omega t - j\frac{\omega}{c}	|\vec{r}-\vec{r'}|}
+	\right)	 \\
+	&=\Re \left(\underline{\vec{J}}(\vec{r},\omega)e^{j\omega\left(t-\frac{\vec{r}-\vec{r'}}{c}\right)}
+	\right)\\
+	&= \vec{J}\left(\vec{r},t-\dfrac{|\vec{r}-\vec{r'}|}{c}\right)
+	\end{array}
+	\end{equation}
+	Ceci montre que l'exponentielle implique bien ce retard : chaque $e^{j\beta\clubsuit}$ modélise 
+	le délai de propagation jusqu'à ce $\clubsuit$. En suivant un même raisonnement pour $\underline{
+	\rho}$,  on peut écrire l'expression phaseurs des potentiels retardés\\
+	
+	\retenir{\begin{equation}
+\underline{V}(\vec{r}) = \frac{1}{4\pi\epsilon_0}\int_\mathcal{D}\underline{\rho}(\vec{r'})\frac{e^{-j\beta|\vec{r}-
+\vec{r'}|}}{|\vec{r}-\vec{r'}|}dV',\qquad
+\underline{\vec{A}}(\vec{r}) = \frac{\mu_0}{4\pi}\int_\mathcal{D}\underline{\vec{J}}(\vec{r'})\frac{e^{-j\beta|\vec{r}-\vec{r'}|}}{|\vec{r}-\vec{r'}|}dV'
+\end{equation}}
+
+	En phaseurs, on obtient (à une constante près) les potentiels en intégrant les sources 
+	multipliées par le \textbf{propagateur} (ou \textit{fonction de Green})
+	\begin{equation}
+	G(\vec{r},\vec{r'}) = \dfrac{e^{-j\beta|\vec{r}-\vec{r'}|}}{|\vec{r}-\vec{r'}|}
+	\end{equation}
+	Si on possède la densité en $\vec{r'}$ et qu'on la désire en $\vec{r}$, il suffira juste 
+	de la multiplier par le propagateur qui va décrire comment l'effet se manifestera jusque la 
+	(ce n'est pas instantané. Remarquons que en statique ceci vaudrait 1 et on retrouverait la 
+	fonction de Green de l'électrostatique). Le dénominateur sera justifié plus loin. En bref
+	\begin{equation}
+	e^{-j\beta|\vec{r}-\vec{r'}|}
+	\end{equation}
+	modélise le délai de propagation entre $\vec{r'}$ et $\vec{r}$.\\
+		\exemple{Considérons une ligne de courant. Avec le précédent chapitre, on peut calculer le 
+	courant en tout point en en déduire $\underline{J}$. On peut faire de même pour $\underline{
+	\rho}$. Par intégration avec le propagateur, on peut calculer $\underline{V}$ et $\underline{
+	A}$ en tout point et donc $\underline{E}$ et $\underline{B}$.}
+	
+	
+	\subsection{La jauge de Lorentz}
+	Si l'on effectue une étude des dimensions de notre problème, nous pouvons nous rendre compte 
+	que nous avons un degré de liberté de moins que ce nous pouvions penser : c'est la qu'intervient 
+	la théorie des jauges, où le cas de l'électromagnétisme est le prototype le plus simple de 
+	cette théorie\footnote{Merci à Philippe Grégoire pour l'explication complémentaire.}.\\
+	\retenir{\ \textbf{Jauge de Lorentz}
+	\begin{equation}
+	\vec{\nabla}\ .\ \vec{A}(\vec{r},\omega) = -j\omega\mu_0\epsilon_0\underline{V}(\vec{r},
+	\omega)
+	\end{equation}}\ \\
+	
+	En calculant cette jauge, on peut tout déduire : elle permet de se passer de l'équation du 
+	potentiel scalaire (on peut obtenir $\underline{V}$ à partir de $\underline{\vec{A}}$ et 
+	qui plus est de façon plus simple). La démonstration n'est pas à connaître.
+	
+\section{Application : l'effet pelliculaire}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
