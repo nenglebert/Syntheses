@@ -1,0 +1,245 @@
+\chapter{Principes fondamentaux de la mécanique quantique}
+
+ Nous allons ici reformaliser les bases en nous basant sur le formalisme de Dirac. 
+ On souhaite décrire l'\textit{état} du système, la \textit{mesure} et
+ l'\textit{évolution} temporelle. Nous avions vu au début du premier chapitre 
+ que la façon de définir une mesure était quelque peu particulière. Nous 
+ allons ici nous baser sur l'interprétation de \textsc{Copenhagen} (Niels Bohr) mais 
+ il faut savoir qu'il y en existe d'autre (\textsc{Bohm} (interprétation de l'onde 
+ pilote), interprétation des \textsc{mondes multiples}, \dots).\\
+
+  Cette interprétation 
+ pose des  problèmes d'interprétation mais est bonne d'un point de vue pragmatique (
+ les résultats expérimentaux correspondent très bien avec la théorie). Dès lors, si 
+ l'on n'essaye pas d'interpréter la chose, tout fonctionne très bien\\
+ 
+ Dans ce cours nous allons nous limiter aux \textit{états purs} : idéalisation 
+ de la description s'il n'y a aucun bruit. Il existe évidemment des 
+ \textit{états mixtes} (voir cours MA1) qui tient compte du bruit. 
+ 
+ \section{1er principe : État d'un système}
+ \subsection{Premier principe}
+ Un état sera défini par un ket $\ket{\psi(t)} \in \mathcal{E}_H$. Cet 
+ état doit être normé ($\|\psi(t)\|^2 = 1 \forall t$). Ceci a pour 
+ conséquence immédiate le principe de superposition, toute combili d'état 
+ étant un état possible
+ \begin{equation}
+ \ket{\psi} = \sum_i\ket{\psi_i},\qquad \sum_i |c_i|^2 = 1
+ \end{equation}
+ En effet, ceci est nécessaire pour la normalisation de la fonction d'onde
+ \begin{equation}
+ \begin{array}{ll}
+ \|\psi\| &= \sum_{ij} c_j^*c_i\overbrace{\bra{\psi_j}\ket{\psi_i}}^{\delta_{ij}}\\
+ &= \sum_i |c_i|^2 \\
+ &= 1
+ \end{array}
+ \end{equation}
+ L'état d'un système est déterminé à une indétermination de phase près : on 
+ défini la phase globale
+ \begin{equation}
+ e^{i\delta}\ket{\psi}
+ \end{equation}
+ Cet état sera totalement indistinguable de l'état $\ket{\psi}$. Cette phase 
+ globale disparaît d'ailleurs dans le traitement plus général des états mixtes. 
+ Cette phase globale n'a pas d'interprétation physique. Par contre un phase 
+ locale pondérant les différents états d'une superposition est pourvue de 
+ sens physique (interférences)
+ \begin{equation}
+ \sum_j c_je^{i\delta_j}\ket{\psi_j}\quad\neq\quad \sum_j c_j\ket{\psi_j}
+ \end{equation}
+ 
+ Avant de s'attaquer à un problème, il faut s'intéresser au nombre de 
+ degrés de liberté du système.
+ \begin{equation}
+ \text{Degré de liberté}\quad \rightsquigarrow\quad \mathcal{H}
+ \end{equation}
+ où $\mathcal{H}$ est l'espace de Hilbert. A chaque degré de liberté, on 
+ confond un espace de Hilbert donnant lieu à des produits tensoriels d'espace 
+ de Hilbert.
+ 
+ \subsection{Structure de l'espace de Hilbert}
+ Prenons l'exemple d'une particule à une dimension. En terme de fonction d'onde
+ (qui se traduit aisément en notation de Dirac)
+ \begin{equation}
+ \psi(x) = \sum c_n\phi_n(x)\quad \rightarrow\quad \ket{\psi} = \sum_n c_n
+ \ket{\phi_n}
+ \label{eq:3.7}
+ \end{equation}
+ En étudiant les fonctions propres de l'Hamiltonien on peut écrire la fonction 
+ d'onde sous la forme \autoref{eq:3.7}.\\
+ A deux dimensions
+ \begin{equation}
+ \psi(x,y) = \sum_{n,m} c_{n,m}\phi_n(x)\phi_m(y)\quad\rightarrow\quad
+ \ket{\psi} = \sum_{n,m} c_{n,m} \underbrace{\ket{\phi_n}\otimes\ket{\phi_m}}_{(*)}
+ \end{equation}
+ où $(*)$ est un produit tensoriel entre deux ket. Il en résultera un autre ket, 
+ mais appartenant à un espace de Hilbert plus grand (ceci est équivalent à 
+ $|\phi_n\ket{\phi_m}$. Plus généralement, on peut également exprimer une base :
+  cela pourrait être n'importe quel fonction de la base multipliée par une autre. Ce p
+ produit forme une base des fonctions d'ondes à deux dimension. \\
+ 
+ Arrêtons avec les exemples et considérons deux ket de deux espaces de Hilbert
+ \begin{equation}
+ \left.\begin{array}{ll}
+ \ket{u} \in \mathcal{E}_H\\
+ \ket{v} \in \mathcal{F}_H 
+ \end{array}\right\}\quad\rightarrow\quad \ket{u}\otimes\ket{v} \in\mathcal{G}_H 
+ \equiv \mathcal{E}H_\otimes\mathcal{F}_H
+ \end{equation}
+ où $\otimes$ désigne le produit tensoriel. De façon encore plus générale :
+ \begin{equation}
+ \left.\begin{array}{l}
+ \text{Si } \ket{e_n} \text{forme une base de } \mathcal{E}_H\\
+ \text{Si } \ket{f_n} \text{forme une base de } \mathcal{E}_F 
+ \end{array}\right\}\Rightarrow \left\{\ket{e_n}\otimes\ket{f_n}\right\} \begin{array}{l}
+ \text{ forme  une base de l'espace de Hilbert }\\
+ \text{  de produit $\mathcal{E}_H\otimes\mathcal{E}_F$}
+ \end{array}
+ \end{equation}
+ On peut ainsi écrire tout $\psi$
+ \begin{equation}
+ \ket{\psi} = \sum_{n,m} \ket{e_n}\otimes\ket{f_m}
+ \end{equation}
+ 
+ Il en découle une série de propriétés. Par exemple
+ \begin{equation}
+ \dim(\mathcal{E}_F\otimes\mathcal{F}_H) = \dim(\mathcal{E}_F).
+ \dim(\mathcal{F}_H)
+ \end{equation}
+ Le produit sera simplement le produit scalaire espace par espace
+ \begin{equation}
+ 11
+ \end{equation}
+ Même si cet état est parfaitement possible, certains états ne peuvent 
+ \textbf{jamais} s'écrire sous cette forme la. C'est le principe d'\textit{intrication 
+ quantique }: l'état quantique ne peut pas se voir comme un produit 
+ tensoriel c'est-à-dire une situation ou on ne peut pas décrire les deux particules 
+ de façon séparées. Il faudrait les décrire simultanément et l'on n'arriverait donc jamais \\
+ à écrire $\psi$ sous cette forme.\\
+ 
+ Petite note supplémentaire: on peut considérer cet exemple de produit tensoriel dans 
+ le cas d'un système à deux degrés de liberté discrets.
+ \begin{equation}
+ \begin{array}{ll}
+ \ket{u} &= \left(\begin{array}{c}
+ u_1\\
+ u_2
+ \end{array}\right)\\
+ &\\
+  \ket{v} &= \left(\begin{array}{c}
+ v_1\\
+ v_2
+ \end{array}\right) 
+ \end{array}\qquad \ket{u}\otimes\ket{v} = \left(\begin{array}{c}
+ u_1v_1\\
+ u_1v_2\\
+ u_1v_3\\
+ u_2v_1\\
+ u_2v_2\\
+ u_2v_3  
+ \end{array}\right)
+ \end{equation}
+ Le produit tensoriel donne bien lieu à toutes les combinaisons possibles.
+ 
+ 
+ \section{2e principe : Mesure}
+ \subsection{Observable}
+ A toute grandeur physique mesurable $A$ on peut associer $\hat{A}$ un 
+ opérateur linéaire hermitien qui agit dans $\mathcal{E}_H$. Ceci dit 
+ que dès qu'on a une grandeur mesurable il doit exister un certain opérateur
+ hermition. Ceci ne dit rien sur cet opérateur, mais les règles de 
+ correspondances permettent de apsser d'un opérateur classique à quantique. 
+ Tout ce qui existe en classique existe en quantique, l'inverse n'est pas
+ vrai (spin).
+ 
+ \subsection{Principe de quantification}
+ Les seuls résultats de la mesure de l'observalbe $\hat{A}$ sont les 
+ valeurs propres $a_n$ de l'observable. C'est vrai pour les systèmes liés 
+ (boite bien quantifiée) et non liés (on est dans un cas plus classique ou 
+ on a un continuum, tout est observable)
+ 
+ \subsection{Principe de décomposition spectrale}
+ La probabilité d'obtenir un résultat $a_n$ est donné par l'élément de 
+ matrice diagonal de l'opérateur projection associé
+ \begin{equation}
+ 13
+ \end{equation}
+ Pour rappel
+ \begin{equation}
+ 14
+ \end{equation}
+ Il s'agit de la règle de Born. Mais qu'est ce qui se passe après la 
+ mesure ?
+ 
+ \subsection{Réduction du paquet d'onde}
+ Juste après la mesure, on va se retrouver dans un nouvel état :
+ \begin{equation}
+ 15
+ \end{equation}
+ Au niveau de l'interprétation : comment interpréter ces probabilités 
+ qui apparaissent ? Problème toujours non résolu : les proba observées 
+ sont liées à la connaissance du systeme (fct d'onde objet de type 
+ théorie desproba) ou faut il comprendre fct d'onde comme objet 
+ physique existant comme une onde EM ? Exist phys ou objet décrivant 
+ la connaissance du syst ? \\
+ 
+ la limite (de la fréquence d'apparition de l'apparition de $a_n$) =
+ $\mathbb{P}(a_n)$ Pour une mesure particuliere la MQ ne donne pas précisement 
+ la valeur observée mais juste le "chance" de pouvoir l'observer. C'est 
+ la raison pour laquelle Einstein et co disait que la MQ était incimplete  : 
+ les proba ne feraitque cacher un mecénisme sous jascean. Ajd on sait que 
+ c'était faux, il n'y a pas de variable caché dont on ne connait pas la 
+ mécanique (montrable expérimentalement) : ces propriétés sont intrinsèques 
+ à cette théorie.\\
+ 
+ Remarquons que la probabilité correspond bien à toutes les propriétés 
+ usuelles
+ \begin{equation}
+ 16
+ \end{equation}
+ 
+ \subsection{Reproductibilité de la mesure}
+ Si on a un systeme dans un état quelconque, on fait une mesure et 
+ on observa $a_n$. Pour que ça ai un sens, il faut que si on remesure 
+ directement après la mesure soit identique. \\
+ 
+ On définit la valeur moyenne de l'obs hat A
+ \begin{equation}
+ 17
+ \end{equation}
+ Ceci désigne un valeur moyenne, c'est l'élément de matrice diagonal de 
+ l'observable $\hat{A}$. On peut montrer qu'en partant de cette 
+ expression de la valeur moyenne pour interpréter que seules les valeurs 
+ propres apparaissent dans une mesure
+ \begin{equation}
+ 18
+ \end{equation}
+ Les seuls état à donner une variance nuls sont les états propre. Au 
+ deuxième coup la variance doit forcément etre nulle et ceci montre que 
+ seul les valeurs propres peuvent etre observées e qu'il faut que juste 
+ après la mesure on ai l'état propre de la grandeur mesurée. \\
+ 
+ De façon générale, si on prend tjs pour acquis que la valeur moyenne 
+ d'une quantité physique est donné par l'élément de matrice diagonal 
+ de l'opérateur en question, alors
+ \begin{equation}
+ 19
+ \end{equation}
+ La probabilité est donnée par le module carré du coefficient, tout ça 
+ en faisant une seule hypothèse.\\
+ 
+ \subsection{Relation d'incertitude de Heisenberg}
+ Initialement nous avons un ket psi et considérons deux observables qui 
+ a priori ne commutent pas
+ \begin{equation}
+ 20
+ \end{equation}
+ On va préparer un grand nombre de systeme, sur un partie on va observer
+ A ou A' et sur l'autre B et B' pour en déduire les variance. On veut 
+ voir à quel point l'une est liée à l'autre et montrer qu'elles ne peuvent 
+ pas etre toutes les deux petites. Définissons un nouvel op math 
+ \begin{equation}
+ 21
+ \end{equation}
+ Ceci donnera un nombre strictement positif, les deux ne peuvent donc 
+ pas être très petits. 
