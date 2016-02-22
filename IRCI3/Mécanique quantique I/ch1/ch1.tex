@@ -653,7 +653,8 @@ Pour finir, intéressons nous au cas de l'opérateur adjoint\footnote{TT : déta
 ce qu'on essaye de montrer, c'est un peu pas clair :/}
 \begin{equation}
 \begin{array}{ll}
-\ket{\psi'} = \hat{A}\ket{\psi} = \int d\alpha\ \overbrace{a(\alpha)}^{?}\ket{u_\alpha},\qquad a(\alpha) &= \bra{u_\alpha}\ket{\psi'} = \bra{u_\alpha}\hat{A}\ket{\psi}\\
+\ket{\psi'} = \hat{A}\ket{\psi} = \int d\alpha\ \overbrace{a(\alpha)}^{?}\ket{u_\alpha},
+\qquad a(\alpha) &= \bra{u_\alpha}\ket{\psi'} = \bra{u_\alpha}\hat{A}\ket{\psi}\\
 &= \int d\alpha'\ \underbrace{\bra{u_\alpha}\hat{A}\ket{u_{\alpha'}}}_{A(\alpha,
 \alpha')}\underbrace{\bra{u_{\alpha'}}\ket{\psi}}_{c(\alpha)}
 \end{array}
@@ -668,141 +669,234 @@ Dirac est compacte.
 
 
 \subsection{Exemple de base (représentation) continue}
-Base position : 
+Il existe bien évidemment plusieurs bases. L'une d'entre elle se nomme 
+\textbf{base position}
 \begin{equation}
-15
+\left\{\ket{\vec{R}}\right\}\qquad \vec{R}\in\mathbb{R}^3
 \end{equation}
 N'importe quel ket pourra s'exprimer dans cette base position. Le relation 
-fermerture pour la base position nous dis que l'intégration l'espace, en 
-prenant le projecteur pour une position donnée, cela donne l'identité.
+fermeture pour la base position nous dis que l'intégration sur tout l'espace
+du projecteur pour une position donnée donnée l'identité.
 \begin{equation}
-16
+\int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}} = \vec{\mathbb{1}}
 \end{equation}
 Compte-tenu de cette relation, on peut exprimer les ket tel que
 \begin{equation}
-17
+\ket{\psi} = \int d\vec{r}\ \ket{\vec{r}}\underbrace{\bra{\vec{r}}\ket{
+\psi}}_{\psi(\vec{r})}
 \end{equation}
-Si je viens mettre la relation d'identité à droite de mon bras
+où $\psi(\vec{r})$ est la \textit{fonction d'onde}. En plaçant la relation 
+d'identité à droite du bra, on obtient
 \begin{equation}
-18
+\bra{\varphi} = \int d\vec{r}\ \underbrace{\bra{\varphi}\ket{\vec{r}}}_{
+\varphi^*(\vec{r})}
+\bra{\vec{r}}
 \end{equation}
-J'ai défini la définition ???
+où $\varphi^*(\vec{r})$ est le complexe conjugué de la fonction d'onde du 
+ket associé. En effet, nous avons\footnote{Dans quel but ? TT?}
 \begin{equation}
-19
+\begin{array}{ll}
+\bra{\varphi}\ket{\psi} = \bra{\varphi}\mathbb{1}\ket{\psi} &= \int d\vec{r}\ 
+\bra{\varphi}\ket{\vec{r}}\bra{\vec{r}}\ket{\psi}\\
+&= \int d\vec{r}\ \varphi^*(\vec{r})\psi(\vec{r})
+\end{array}
 \end{equation}
-Le delta n'est pas physique car il représente un état infiniment localisé. Or 
-de telles solutions diverge. Malgré tout, même si ce n'est pas un état 
-physique c'est bien pratique pour former une base.
-
-
-
-
-
-\section{7. Observable}
-Il s'agit d'un observateur linéaire hermitien $\hat{A}$ associa à une grandeur 
-physique observable $A$. Si l'on a une grandeur physique observable, je 
-sais que je peux lui associer un opérateur linéaire hermitien. 
+Considérons le cas où $\ket{\psi}=\ket{\vec{r}'}$ \footnote{TT : complète plz, 
+j'sais plus pq on fait ça}
 \begin{equation}
-20
+\begin{array}{ll}
+\ket{\vec{r}'} &= \displaystyle \int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}}\ket{
+\vec{r}'}\\
+&=\ket{\vec{r}'} =\displaystyle \delta(\vec{r}-\vec{r}')
+\end{array}
 \end{equation}
-Une autre classification importante est selon le spectre. Le spectre est
+Le delta de Dirac est dépourvu de sens physique, celui-ci représentant un étant 
+infiniment localisé. Or, nous savons que de telle solutions diverges. Malgré tout, 
+même sans être un état physique, 
+il est pratique pour former une base.
+
+
+
+\section{Observable}
+Un \textit{observable} est un opérateur linéaire hermitien $\hat{A}$ associé à 
+une grandeur physique observable $A$. A toute grandeur physique observable, il 
+est possible de lui associer un opérateur linéaire  hermitien. 
+\begin{equation}
+\hat{A}\ket{\psi} = \lambda\ket{\psi}
+\end{equation}
+où $\lambda$ est en réalité une valeur propre pouvant être dégénérée (la dimension 
+du sous-espace propre associé à $\lambda$ donne alors la \textit{dégénérescence}) 
+ou non dégénérée.\\
+Une classification importante se base sur le \textit{spectre}. Le spectre est
 l'ensemble de toutes les valeurs propres possibles $\{\lambda\}$. Si celui-ci 
 est discret, on retrouvera un système lié (particule dans une boîte). On 
 peut également avoir des spectres continu (système libre), utile dans la 
 \textit{théorie des collisions/diffusion}.\\
 
-On peut s'intéresser aux propriétés de bases
+Intéressons-nous aux propriétés de notre base.
+\begin{enumerate}
+\item La valeur propre $\lambda$ est réelle.
 \begin{equation}
-21
+\begin{array}{ll}
+A\ket{\psi} &= \lambda \ket{\psi}\qquad\qquad\qquad \left(\hat{A}^\dagger = 
+\hat{A}\right)\\
+\bra{\psi}A\ket{\psi} = \lambda\underbrace{\bra{\psi}\ket{\psi}}_{=1}
+\end{array}
 \end{equation}
-Ceci va nous amener à la décomposition spectrale des opérateurs; on peut 
-toujours les réprésenter dans une base. Unbase particulièrement intégrassante 
-est celle des vecteurs propres de l'observable qui nous intéresse; 
+En prenant le complexe conjugué, on trouve
+\begin{equation}
+\lambda^* = \bra{\psi}A^\dagger\ket{\psi} = \bra{\psi}A\ket{\psi}=\lambda\in
+\mathbb{R}
+\end{equation}
+\item Les vecteurs propres associés à deux valeurs propres distinctes sont 
+orthogonaux.\\
+Soit $\lambda_1\neq\lambda_2$
+\begin{equation}
+\left\{\begin{array}{ll}
+A\ket{\psi_1} &=\lambda_1\ket{\psi_1}\\
+A\ket{\psi_2} &=\lambda_2\ket{\psi_2}
+\end{array}\right.
+\end{equation}
+En multipliant la première ligne par $\psi_1$ et la seconde par $\psi_2$
+\begin{equation}
+\left\{\begin{array}{ll}
+\bra{\psi_1}A\ket{\psi_1} &=\lambda_1\bra{\psi_2}\ket{\psi_1}\\
+\bra{\psi_2}A\ket{\psi_2} &=\lambda_2\bra{\psi_1}\ket{\psi_2}
+\end{array}\right.
+\label{eq:Syst}
+\end{equation}
+Considérons le complexe conjugué de la deuxième équation de \autoref{eq:Syst} 
+\begin{equation}
+\bra{\psi_2}A^\dagger\ket{\psi_1} = \lambda_2^*\bra{\psi_2}\ket{\psi_1}\qquad
+\leftrightarrow
+\qquad\bra{\psi_2}A\ket{\psi_1} = \lambda_2\bra{\psi_2}\ket{\psi_1}
+\end{equation}
+Le membre de gauche de cette expression est identique au membre de gauche de 
+la première équation de \autoref{eq:Syst}. En effectuant la différence :
+\begin{equation}
+0 = (\lambda_1-\lambda_2)\bra{\psi_2}\ket{\psi_1},\qquad \lambda_1\neq\lambda_2 
+\quad\Rightarrow\quad \bra{\psi_2}\ket{\psi_1} = 0
+\end{equation}
+\end{enumerate}
+Dans le cas ou $\lambda_n$ est $g_n$ fois dégénérée, on utiliser a la notation
+\begin{equation}
+\hat{A}\ket{\psi_n^i} = \lambda_n\ket{\psi_n^i}\qquad \lambda_n \rightarrow i=
+1,2,\dots, g_n
+\end{equation}
+Ceci va nous amener à la décomposition spectrale des opérateurs ; il est 
+toujours possible de les représenter dans une base. Une base particulièrement 
+intéressante est celle composée des vecteurs propres de l'observable qui nous 
+intéresse.
 
 \subsubsection{Décomposition spectrale de A}
-L'idée c'est que j'ai les vecteurs propres et un second indice si les valeurs propres sont dégénérées
+Comme introduit en fin de section précédente, deux indices sont utilisés : 
+un pour désigner le vecteur propre et l'autre pour la dégénérescence.
 \begin{equation}
-22
+\hat{A}\ket{\psi_n^i} = \lambda_n\ket{\psi_n^i}\qquad \lambda_n \rightarrow i=
+1,2,\dots, g_n
 \end{equation}
-On a tjs la relation d'orthonormalité
+La relation d'orthonormalité est toujours d'application
 \begin{equation}
-23
+\bra{\psi_n^i}\ket{\psi_{n'}^{i'}} = \delta_{n,n'}\delta_{i,i'}
 \end{equation}
-On peut toujours trouver une base grace à GS.
-
-La relation de fermeture dis que si je somme le sprojecteurs sur tous les 
-vecteurs de ma base j'aurai l'identité. La relation de fermeture sera donnée 
-par (pour chaque base on peut écrire cette rel)
+Rappelons-nous que la relation de fermeture nous indique que si on somme les 
+projecteurs sur tous les vecteurs de la base, on retrouvera l'identité. Dans 
+notre cas, la relation de fermeture s'énonce (notons que pour chaque base, il 
+est toujours possible d'écrire une relation équivalente) 
 \begin{equation}
-24
+\sum_n\sum_{i=1}^{g_n} \ket{\psi_n^i}\bra{\psi_n^i} = \vec{\mathbb{1}}
 \end{equation}
 
-Théorème spectral
+\textsc{Théorème spectral}\\
 \begin{equation}
-25
+\begin{array}{ll}
+\hat{A} &= \hat{A}\mathbb{1} = \sum_n\sum_{i=1}^{g_n} \hat{A}\ket{\psi_n^i
+}\bra{\psi_n^i}\\
+\hat{A} &= \sum_n \lambda_n \overbrace{\sum_{i=1}^{g_n} \ket{\psi_n^i}\bra{
+\psi_n^i}}^{\text{Somme de proj. = proj.}}\\
+\hat{A} &= \sum_n \lambda_n \hat{P}_n
+\end{array}
 \end{equation}
-Si s'agit d'un projecteur de rang $g_n$. On va montrer que ces $P_n$ forment
-des projecteurs orthogonaux
+où $\hat{P}_n$ est le projecteur sur l'espace propre associé à $n$. Ce 
+projecteur est de rang $g_n$. Montrons $\hat{P}_n$ sont des projecteurs 
+orthogonaux
 \begin{equation}
-26
+\text{Voir feuille Terence}
 \end{equation}
-...
 
 
-OBSERVABLE SPECTRE CONTINU
+
+
+\textsc{Observable spectre continu}\\
+Considérons un triplet d'opérateur\footnote{Deuxième relation montre la valeur 
+propre. On n'adopterait pas une autre notation pour désigner la valeur propre 
+(genre $\overline{r}$) ? Un peu ambigu.}
 \begin{equation}
-27
+\hat{\vec{r}} = (\hat{x},\hat{y},\hat{z}),\qquad \hat{\vec{r}}\ket{\vec{r}} = 
+\vec{r}\ket{\vec{r}}
 \end{equation}
-Décomposition spectrale de $\hat{\vec{r}}$
+Effectuons la décomposition spectrale de $\hat{\vec{r}}$
 \begin{equation}
-28
+\hat{\vec{r}} = \int d\vec{r}\ \vec{r}\ \ket{\vec{r}}\bra{\vec{r}}
 \end{equation}
-J'ai une intégrale d'opérateur qui me donne un opérateur (bon en fait 3 car
-j'ai un triplet d'opérateur). La décomposition spectrale peut s'écrire comme 
-ceci. Si au lieu de parler de l'opérateur r je parle de 1, il n'a que une 
-seule valeur propre, je retrouve
+Ceci est l'intégrale d'un opérateur, donnant lieu à un opérateur (en réalité 
+trois, car il s'agit d'un triplet d'opérateur).La décomposition spectrale peut 
+s'écrire comme ceci. \\
+A la place de l'opérateur $\hat{\vec r}$, considérons l'opérateur $\vec\hat{\mathbb{
+1}}$ : comme il n'a que une seule valeur propre, nous retrouvons
 \begin{equation}
-29
+\hat{\vec{\mathbb{1}}} = \int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}}
 \end{equation}
-Soit la relation de fermeture, qui n'est rien d'autre que la décomposition 
-spectrale d'un opérateur particulier.\\
+Ceci montre que le relation de fermeture n'est rien d'autre que la 
+décomposition spectrale d'un opérateur particulier.\\
 
-La base impulsion est liée à la décomposition en valeur propre de l'omérateur impulsion (triplet d'opérateur) :
+La base impulsion est liée à la décomposition en valeur propre de l'opérateur 
+impulsion (triplet d'opérateur) :
 \begin{equation}
-30
+\hat{\vec{p}} = \left(\hat{p_x};\hat{p_y},\hat{p_z}\right),\qquad \hat{
+\vec{p}}\ket{\vec{p}} = \vec{p}\ket{\vec{p}}
 \end{equation}
-COnnaitre l'impulsion implique une position étalée sur l'infinie d'énergie 
-infinie, ce n'est pas physique. Je peux considérere la décomposition 
-sepctrale
+Connaître exactement l'impulsion implique une position étalée sur l'infini 
+d'énergie infinie, ce n'est pas physique. Je peux considérer la décomposition 
+spectrale
 \begin{equation}
-31
+\hat{\vec{p}} = \int d\vec{p}\ \vec{p} \ket{\vec{p}}\bra{\vec{p}}
 \end{equation}
-On peut exprimer la fonction d'onde dans la ase impulsion
+La fonction d'onde peut elle aussi s'exprimer dans la base impulsion
 \begin{equation}
-32
+\bra{\vec{p}}\ket{\psi}
 \end{equation}
-Je peux faire de meme dans la base position.
+Il sera possible d'utiliser le changement de base de Fourier ($\bra{\vec{r}}\ket{
+\vec{p}})$ pour exprimer cette fonction d'onde dans la base position 
+$\bra{\vec{r}}\ket{\psi}$.\\
 
+Afin d'introduire la notion d'\textit{ECOC}, rappelons la décomposition spectrale
+\begin{equation}
+\hat{A}\ket{\psi_n'} = a_n\ket{\psi_n'}\quad i=1,\dots,g_n\qquad\rightarrow\qquad
+\hat{A} = \sum_na_n\hat{P_n}\quad\text{ où }\ \hat{P_n}=\sum_i\ket{\psi_n'}\bra{
+\psi_n'}
+\end{equation}
+On peut montrer que \textit{lorsque l'ensemble des observables commutent
+deux à deux alors il existe une base de vecteurs propres communs.} 
+\begin{equation}
+\left\{\hat{A},\hat{B},\hat{C},\dots\right\}\quad\rightarrow\quad \left\{n_a,
+n_b,n_c,\dots\right\}
+\end{equation}
+où $n_a$ est le nombre quantique associé à $\hat{A}$.Il s'agira  d'une base 
+privilégiée pour l'étude du problème. A priori, dans ces conditions,
+la base obtenue ne sera pas forcément unique. On parle ainsi d'\textit{ECOC} 
+(ensemble \textbf{complet} d'observables qui commutent deux à deux) : si la 
+valeur propre de chacune des observable est fixée il existe un unique état de 
+la base. \\
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Par exemple, si on étudie la dépendance angulaire
+\begin{equation}
+\left\{\hat{L}^2, \hat{L_z}\right\} \rightarrow \ket{l,m}
+\end{equation}
+Ces deux opérateurs commutent. On retrouve par ailleurs le nombre quantique 
+orbital ainsi que le nombre quantique magnétique. Pour une particule dans un 
+potentiel central 
+\begin{equation}
+\left\{\hat{H},\hat{L}^2, \hat{L_z}\right\} \rightarrow \ket{n_r,l,m}
+\end{equation}
+où $n_r$ est le nombre quantique radial associé à $\hat{H}$.
