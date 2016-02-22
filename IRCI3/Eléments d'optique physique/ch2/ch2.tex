@@ -430,9 +430,511 @@ On va pouvoir approximer le propagateur permettant de  ce cas, mais ceci est l'o
 suivante section.
 \end{enumerate}
 
+\newpage
+\section{Formule de diffraction de Fresnel}
+Nous nous attarderons ici à reconstruire la fameuse formule de diffraction proposée par 
+Fresnel sans se baser sur la transformée de Fourier (juste naissant) et les équations 
+de Mawell (n'existant pas encore). Cependant, dans le cadre de ce cours, nous utiliserons 
+ces deux outils.\\
+
+Repartons de l'approximation de la solution générale des équations de Maxwell (on retrouve 
+bien la contrainte sur les modes de Fourier)
+\begin{equation}
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
+\sigma^2}z}\ d\rho d\sigma
+\end{equation}
+
+\begin{wrapfigure}[8]{l}{9.5cm}
+\vspace{-4mm}
+\includegraphics[scale=0.4]{ch2/image11.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Nous allons ici approcher l'expression du propagateur. Une onde plane arrivée sur un écran 
+percé. Chacune de ces ondes possédant un certain poids ($A$) se propage avec un certain 
+angle ($\rho$ par rapport à $x$ et $\sigma$ par rapport à $y$). Nous travaillons dans la 
+limite $\lambda \ll l$ pour négliger les ondes évanescentes de sorte à ce que les seules 
+valeurs significatives\footnote{La pondération, c'est-à-dire l'amplitude $A$, n'est 
+significative que pour les valeurs de $\rho$ proche de l'origine : $\rho,\sigma \ll k$} de 
+$\rho$ soient incluent dans $\left[\frac{-\pi}{l};\frac{\pi}{l}\right]$.\\
+
+\danger Le spectre limite les valeurs de $\rho$ et $\sigma$, ne pas confondre avec les 
+(grandes) bornes d'intégration : le spectre sera bien toujours étroit et donc notre 
+fonction est large.\\
+
+Intéressons-nous à l'\textit{approximation paraxiale} : petits angles $\rho,\sigma\ll k$. 
+En effet, lorsque $\rho,\sigma\ll k$ on travaille avec un arcsinus très faible, d'où le 
+\textit{petits angles}. Ceci va permettre d'éliminer la racine, bien gênante dans notre 
+S.G.
+\begin{equation}
+\beta = \sqrt{l^2-\rho^2-\sigma^2} = k\sqrt{1-\dfrac{\rho^2}{k^2}-\dfrac{\sigma^2}{k^2}}
+\end{equation}
+On peut dès lors utiliser l'approximation de McLaurin $\sqrt{1+\epsilon} \approx 1+\frac{1
+}{2}\epsilon$ :
+\begin{equation}
+\beta \approx k\left[1-\dfrac{1}{2}\frac{\rho^2}{k^2}-\dfrac{1}{2}\dfrac{\sigma^2}{k^2}\right] =
+k-\dfrac{1}{2}\dfrac{\rho^2}{k}-\dfrac{1}{2}\dfrac{\sigma^2}{k}\qquad\qquad\beta \in\mathbb{R}
+\ \forall (\rho,\sigma)
+\end{equation}
+\begin{wrapfigure}[8]{r}{4cm}
+\vspace{-4mm}
+\includegraphics[scale=0.4]{ch2/image12.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Le $\beta$ (la composante en $z$ du vecteur d'onde) obtenu est toujours réelle : la possibilité 
+d'avoir des ondes évanescentes à été éliminée. Nous avons donc remplacé la contrainte sur 
+les modes de Fourier (le vecteur d'onde devant se déplacer sur une sphère) a été changée en 
+une contrainte de type parabolique. Ceci n'est valable que si la distribution angulaire est 
+limitée ce qui n'est vrai que si la taille de l'objet est significativement grande devant la 
+longueur d'onde.\\
+Effectuons cette approximation par substitution :
+\begin{equation}
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\frac{\rho^2}{2k}z
+-i\frac{\sigma^2}{2k}z}\ d\rho d\sigma\ e^{ikz}
+\end{equation}
+Ceci est une simplification considérable, il va être possible de traiter ce terme de phase. Il 
+suffit pour cela de remarquer que cette intégrale n'est que la transformée de Fourier inverse 
+du spectre initial multiplié par le propagateur
+\begin{equation}
+a(x,y;z) = TF^{-1}\left[A(\rho,\sigma)e^{-i\frac{z}{2k}(\rho^2+\sigma^2)}\right]e^{ikz}
+\end{equation}
+Le facteur de phase étant quadratique, il est traitable analytiquement. Simplifions le problème 
+en considérant que rien ne se passe en $y$ (le spectre est une delta de Dirac en $\sigma$) :
+\begin{equation}
+a(x;z) = TF^{-1}\left[A(\rho)\underbrace{e^{-\frac{z}{2k}\rho^2}}_{H_z(\rho)}\right]e^{ikz}
+\end{equation}
+On peut considérer que notre plaque percée obéit à la fonction fenêtre, suffisamment large devant 
+la longueur d'onde\footnote{$z$ est un paramètre dans cette analyse.}. Plus proprement :
+\begin{equation}
+a(x;z) = TF^{-1}[A(\rho)H_z(\rho)]e^{ikz}
+\end{equation}
+Cette écriture nous permet d'utiliser le théorème de convolution de Fourier
+\begin{equation}
+a(x;z) = TF^{-1}[A(\rho)]\otimes TF^{-1}[H_z(\rho)]\ e^{ikz}
+\end{equation}
+Ou encore
+\begin{equation}
+a(x;z) = a(x;0)\otimes h_z(x)\ e^{ikz}
+\end{equation}
+où $a(x;0)$ est le champ initial, à l'endroit du plan diffractant. Avec la transformée de 
+Fourier inverse (pour le peu que l'on intègre sur $\rho$) :
+\begin{equation}
+h_z(x) = \int e^{-i\frac{z}{2k}\rho^2}\ e^{i\rho x}\ d\rho
+\end{equation}
+Les tables mathématiques peuvent directement nous donner la solution de cette intégrale
+\begin{equation}
+h_z(x) = \sqrt{\frac{2k}{z}}\ e^{-i\dfrac{\pi}{4}}\ e^{i\dfrac{k}{2z}x^2}
+\end{equation}
+Ceci étant fait, explicitons la convolution à effectuer
+\begin{equation}
+a(x;z) = \int a(x':0)h_z(x-x')\ dx'\ e^{ikz}
+\end{equation}
+Après substitution
+\begin{equation}
+a(x;z) = \sqrt{\frac{2k}{z}}\int a(x';0) \ e^{-i\dfrac{\pi}{4}}\ e^{i\dfrac{k}{2z}(x-x')^2}\ 
+dx'
+\end{equation}
+Il est aisé d'en dériver le résultat à deux dimensions transverses
+\begin{equation}
+h_z(x,y) = \sqrt{\frac{2k}{z}}\ e^{-i\dfrac{\pi}{4}}\ e^{i\dfrac{k}{2z}x^2} \times 
+\sqrt{\frac{2k}{z}}\ e^{-i\dfrac{\pi}{4}}\ e^{i\dfrac{k}{2z}y^2}
+\end{equation}
+Après substitution
+\begin{equation}
+a(x,y;z) = \frac{2k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+ e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\ e^{-i\dfrac{\pi}{2}}\ e^{ikz}
+\end{equation}
+Ne faisant ici que du qualitatif, nous pouvons nous débarrasser des constantes. Intéressons
+nous à cette fonction dont nous effectuons la convolution en incluant cette fois-ci le facteur 
+de phase (la convolution ne portant que sur $x,y$ cela ne change rien)
+\begin{equation}
+a(x,y;z) = a(x,y:z)\otimes\left(h_z(x,y)\ e^{ikz}\right)
+\end{equation}
+où l'on s'intéresse à 
+\begin{equation}
+h_z(x,y)\ e^{ikz} = \frac{k}{z}\ e^{i\dfrac{k}{2z}(x^2+y^2)}\ e^{ikz}
+\end{equation}
+Qu'est ce que cette fonction? Nous savons qu'il s'agit de la fonction permettant de décrire 
+le champ diffracté. C'est intéressant, mais qu'est ce qui permet de faire ça? Analysons la 
+phase (quadratique, voir même parabolique) de ce terme
+\begin{equation}
+\varphi = \dfrac{k}{2z}x^2+\dfrac{k}{2z}y^2+kz
+\end{equation}
+Analysons la répartition de champ d'une onde sphérique $\frac{1}{r}e^{ikr}$ décrite en $kr$ 
+où $k$ est un \textbf{nombre} d'onde (et pas un vecteur). On s'intéresse ici à la phase de 
+cette onde : exprimons les lieux de phases constantes ou, autrement dit, les fronts d'ondes
+\begin{equation}
+\varphi = kr = 2m\pi
+\end{equation}
+
+\begin{wrapfigure}[8]{r}{4cm}
+\vspace{-4mm}
+\includegraphics[scale=0.4]{ch2/image13.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+où $r = \sqrt{x^2+y^2+z^2}$. En se plaçant dans des conditions paraxiales (très proche de 
+l'axe $z$) : $x,y \ll z$. On se propose donc d'analyser la phase d'une onde sphérique dans 
+la zone ou les conditions paraxiales sont réunies. On peut approximer la racine
+\begin{equation}
+r\sqrt{1+\dfrac{x^2}{z^2}+\dfrac{y^2}{z^2}} \quad \Rightarrow \quad\left[1+\dfrac{x^2}{2z^2}+
+\dfrac{y^2}{2z^2}\right]
+\end{equation}
+Dès lors
+\begin{equation}
+\varphi = kr = kz+ \dfrac{k}{2z}x^2+\dfrac{k}{2z}y^2 = 2m\pi
+\end{equation}
+Il s'agit d'un paraboloïde, c'est bien une approximation parabolique de fronts d'onde 
+sphériques, généralement générés par des petites sources ponctuelles d'ondes électromagnétiques 
+assimilables à des delta de Dirac, le champ magnétique vibre en un point de l'espace et 
+génère une onde sphérique.\\
+
+\begin{wrapfigure}[11]{l}{3.5cm}
+\vspace{-5mm}
+\includegraphics[scale=0.4]{ch2/image14.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Revenons à notre problème. Le champ initial est la fameuse fonction fenêtre. Après une certaine 
+distance parcourue, on récupère un certain profil donne par (ici) un profil à deux dimensions. 
+Nous pouvons voir ça comme un système linéaire (en effet, des ondes rentrent et en sortent 
+modifiées). Nous avions déjà rencontré ce système en  utilisant le principe de superposition, 
+les équations de Maxwell étant linéaires dans le vide\footnote{On peut voir toute onde comme 
+une combili d'ondes harmoniques}. \\
+
+Le champ est un produit de convolution du champ d'entrée avec une fonction de phase quadratique qui 
+ne représente rien d'autre qu'une phase sphérique. Nous voyons une sommes d'ondes sphériques en 
+approximation paraboliques mis sous la forme d'une convolution. En effet, le $x-x'$ représente le 
+fait que l'onde ne vient plus de l'origine (comme dans $h_z$) mais désigne un point qui n'est plus 
+à l'origine mais au point $(x',y')$.
+\begin{equation}
+r = \sqrt{(x-x')^2+z^2}
+\end{equation}
+En approchant ceci par l'approximation parabolique
+\begin{equation}
+r \approx z+\dfrac{(x-x')^2}{2z}
+\end{equation}
+Ceci est précisément ce qui apparaît dans notre convolution\footnote{Débarrassée des constantes.} :
+\begin{equation}
+a(x,y;z) = \frac{k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+ e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\  e^{ikz}
+\end{equation}
+
+Nous ne travaillons finalement que avec la "\textit{réponse impulsionnelle}" du système où 
+l'impulsion est cette source ponctuelle située en $(x',y')$. Nous avons en effet la réponse 
+à une source ponctuelle (un delta, cette fois ci non temporel mais spatial) générant l'onde 
+$h_z$ (l'onde sphérique approchée de façon parabolique) $\rightarrow$ réponse impulsionnelle.\\
+
+
+Un point source donne lieu à une certaine répartition de champ. La réponse globale s'obtient en 
+prenant la convolution avec cette réponse, c'est-à-dire en considérant que chaque point a une 
+certaine amplitude $a(x',y';0)$ : l'objet à une certaine amplitude et chaque de ces amplitude 
+rayonne une onde sphérique partant de $(x',y')$ ou l'on a une certaine amplitude. \\
+
+\begin{wrapfigure}[9]{l}{6.5cm}
+\vspace{-5mm}
+\includegraphics[scale=0.4]{ch2/image15.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+On retrouve le 
+principe de Huygens : un écran laisse passé un trou laissant passé la lumière avec une certaine 
+amplitude dépendant de $x'$ et $y'$. Chaque point de cet objet peut être considéré comme un point 
+source générant une onde sphérique pouvant être approchée paraboliquement. En $z$, nous sommons 
+(à travers l'intégrale) les champs de chacune de ces ondes sphériques. Nous avons une 
+superposition d'onde sphérique d'amplitude donnée par l'amplitude de l'objet de départ : la 
+figure de diffraction résultera des interférences entre toutes ces ondes sphériques (seulement une 
+est représentée ci-contre).\\
+
+Ceci est ainsi de la formule de diffraction de Fresnel, cette intégrale de Fresnel ne représente 
+rien d'autre qu'une superposition d'ondelettes de Huygens.
+\begin{equation}
+a(x,y;z) = \frac{2k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+ e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\ e^{-i\dfrac{\pi}{2}}\ e^{ikz}
+\end{equation}
+
+
+Analysons les amplitudes des ondelettes de Huygens, ici en analysant leur amplitude. Considérons 
+une de ces ondes, celle venant de l'origine ($x'=y'=0$) :
+\begin{equation}
+a(x,y;z) = \dfrac{k}{z}e^{i\dfrac{k}{2z}(x^2+y^2)}\ e^{ikz}
+\end{equation}
+Il s'agit de la fonction $h_z$ que nous avions précédemment\footnote{Pq?}
 
 
 
+Nous avons une onde sphérique approchée par une onde parabolique dont le profil d'intensité 
+(le module carré du champ) est donné par
+\begin{equation}
+I(x,y;z) = |a(x,y;z)|^2 \propto \dfrac{1}{z^2}
+\end{equation}
+Ceci peut paraître curieux car la décroissance réelle d'une onde est en $\frac{1}{r^2}$.
+\begin{equation}
+I(x,y;z) \propto \frac{1}{r^2}
+\end{equation}
+Pourquoi donc ? Il ne faut pas oublier que la notion d'intensité est locale : c'est la 
+densité de flux énergétique de l'onde ($W/m^2$). S'il y a une certaine radiation la puissance 
+totale s'obtient par l'intégration de cette radiation sur une sphère : on obtient la 
+puissance radiée par la source (on obtient de $W$). La puissance rayonnée au travers de cette 
+sphère est donnée par $4\pi r^2 I$ où $r$ est le rayon de la sphère sur laquelle on intègre. 
+Or, cette intensité doit bien être constante (indépendante de $r$) : peu importe la sphère, 
+la puissance émise de la source est constante, d'où la variation en $r^{-2}$.\\
+
+\begin{wrapfigure}[9]{r}{5cm}
+\vspace{-5mm}
+\includegraphics[scale=0.4]{ch2/image16.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Or, nous obtenons $1/z^2$ et non pas $1/r^2$. Analysons pour cela l'onde sphérique en un 
+point de coordonnée $(x,y,z)$ correspondant à un certain rayon : il y a une différence 
+entre $z$ et $r$ (voir schéma ci-contre). Faisons la comparaison. Considérons $r$ dans le 
+cadre de l'approximation paraxiale $x,y \ll z$ :
+\begin{equation}
+r = z+\frac{1}{2z}(x^2+y^2) + \mathcal{O}(2)
+\end{equation}
+
+
+
+En réalité, pour décrire cette onde, le front d'onde en $e^{ikz}$ a été approché : la 
+sphère a été approché par une parabole, l'ordre un du développement a été gardé. Or, nous 
+sommes passé de $1/r$ à $1/z$ car nous n'avons pas fait la même 
+approximation. Pour la phase on considère que $r = z +\frac{1}{2z}(x^2+y^2)$ et pour l'amplitude 
+on dit que $r=z$ (l'ordre un pour l'amplitude a été supprimé). Ceci peut paraître paradoxal, 
+mais c'est parce que nous avons considéré 
+\begin{equation}
+\frac{1}{z^2}\approx\frac{1}{r^2}
+\end{equation}
+On peut se permettre de faire ça car une petite erreur sur la phase peut résulter en de 
+grandes erreurs du profil diffracté. Mais si on se trompe sur la valeur de $r$ (petite 
+erreur : $\delta r \approx 10^{-6}m\approx \lambda$) peut créer une erreur sur la phase 
+de l'ordre de 100\% alors que sur l'amplitude, cela ne change quasiment rien. Il est donc 
+tout à fait légitime de garder l'approximation d'ordre 1 pour évaluer la distance dans le 
+terme de phase et de se contenter de l'approximation d'ordre 0 pour l'amplitude.
+
+
+
+\newpage
+\section{Formule de diffraction de Fraunhofer}
+Pour établir cette nouvelle formule, repartons de la formule de diffraction de Fresnel
+\begin{equation}
+a(x,y;z) = \frac{k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+ e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\  e^{ikz}
+\end{equation}
+Rappelons l'interprétation physique de cette formule.
+A partir de la connaissance du champ électromagnétique lumineux dans un certain plan 
+($z=0$) on peut connaître le champ en toute position $z$ grâce à cette formule. Dans 
+celle-ci nous retrouvons la phase des ondelettes de Huygens. Ce phaseur d'ondelette 
+est multiplié par une amplitude puis on sommera tout via les intégrales. Intéressons-
+nous à la phase de ces ondelettes où les carrés ont été développés
+\begin{equation}
+\varphi = kz + \frac{k}{2z}\left[x^2 + y^2 + x^{'2} + y^{'2} - 2xx'-2yy'\right]
+\end{equation}
+La diffraction de Fraunhofer fait un pas supplémentaire dans l'approximation de ces 
+ondelettes : on va négliger les termes\footnote{Les axes en prim' sont ceux du repère 
+attaché à l'objet diffractant.} $x^{'2}$ et $y^{'2}$ (mais on les garde au premier 
+ordre). Pour se faire, nous allons limiter la taille de l'objet
+\begin{equation}
+x',y' \ll x,y
+\end{equation}
+En réalité, c'est la phase $\frac{kx^{'2}}{2z}$ que l'on choisi de négliger, c'est-à-dire
+\begin{equation}
+e^{i\dfrac{k}{2z}\|\vec{x'}\|^2_{\max}} \approx 1\qquad\Rightarrow\qquad \dfrac{k}{2z}\|
+\vec{x'}\|^2_{\max}\ll 1
+\end{equation}
+où $\|\vec{x'}\|^2_{\max}$ est la plus grande distance depuis l'origine à l'extrémité 
+de l'objet. Si ce facteur de phase est proche de l'unité, ce terme en prim' carré peut 
+bien être supprimé. On peut écrire
+\begin{equation}
+\dfrac{k}{2}\|\vec{x'}\|^2_{\max} \ll z
+\end{equation}
+Or $k = \frac{2\pi}{\lambda}$, dès lors
+\begin{equation}
+\dfrac{\pi}{\lambda}\|\vec{x'}\|^2_{\max} \ll z
+\end{equation}
+
+\begin{wrapfigure}[9]{r}{7.5cm}
+\vspace{-5mm}
+\includegraphics[scale=0.45]{ch2/image17.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Si la distance $z$ est plus grande que la taille de l'objet au carré divisée par la longueur 
+d'onde (le facteur pi ne change pas l'ordre de grandeur), cette approximation est bien valide
+et on  parlera de \textit{zone de Fraunhofer}. Il ne reste que des termes linéaires dans notre 
+phase
+\begin{equation}
+\varphi = kz + \frac{k}{2z}\left[x^2 + y^2 - 2xx'-2yy'\right]
+\end{equation}
+Après substitution
+\begin{equation}
+a(x,y:z) = \frac{k}{z}\int a(x',y';0) e^{i\frac{k}{2}(x^2+y^2)}e^{-i\frac{k}{z}(xx'+yy')}\ 
+dx'dy'\ e^{ikz}
+\end{equation}
+En regroupant les termes de phases, on peut écrire
+\begin{equation}
+a(x,y:z)e^{ikz} e^{i\frac{k}{2}(x^2+y^2)} = \frac{k}{z}\int a(x',y';0) e^{-i\frac{k}{z}(xx'+yy')}\ 
+dx'dy'\ 
+\end{equation}
+En séparant le terme de phase en deux
+\begin{equation}
+a(x,y:z) = \dfrac{k}{z} e^{ikz} e^{i\dfrac{k}{2}(x^2+y^2)} \underbrace{\int a(x',y';0) e^{-i\dfrac{k
+}{z}xx'}e^{-i\dfrac{k}{z}yy'}\ dx'dy'}_{A\left(\frac{kx}{z},\frac{ky}{z}\right)}
+\end{equation}
+En posant $\rho = k/zx$ et $\sigma = k/zy$ on retrouve la définition de la transformée de Fourier 
+$A(\rho,\sigma)$ : il s'agit de la transformée de Fourier du champ objet. Dès lors\\
+
+\retenir{\textbf{Formule de diffraction de Fraunhofer}
+\begin{equation}
+a(x,y;z) = \dfrac{k}{z} e^{ikz} e^{i\dfrac{k}{2}(x^2+y^2)}\ A\left(\frac{kx}{z},\frac{ky}{z}\right)
+\end{equation}
+où $A$ est la transformée de Fourier du champ objet en $z=0$.}\ 
+
+Ce qui n'est rien d'autre qu'un facteur de phase multiplié par un certain spectre aux variables 
+un peu plus particulière que d'habitude. Le profil d'intensité sera ainsi directement 
+proportionnel à la densité spectrale
+\begin{equation}
+I(x,y) \propto \left| \left(\frac{kx}{z},\frac{ky}{z}\right) \right|^2
+\end{equation}
+
+\begin{wrapfigure}[10]{l}{7cm}
+\vspace{-5mm}
+\includegraphics[scale=0.45]{ch2/image18.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Intéressons-nous à l'interprétation physique de cette formule. Plutôt que de considérer le 
+problème tridimensionnel des ondelettes de Huygens, revenons à un cas plus simple (une 
+dimension transverse $x'$. Commençons par interpréter le premier facteur. Considérons 
+"l'ondelette centrale" c'est-à-dire celle donnée par la formule de Fresnel en $x'=y'=0$ : 
+dans ce cas, la phase est identique à celle présente dans le terme de hase de la 
+formule de diffraction de Fraunhofer. On reconnaît donc l'ondelette de Huygens pour un 
+point centré à l'origine. Ceci est normal, car à grande distance les deux sources 
+ponctuelles ne semblent former qu'une de sorte à ce qu'à grande distance, les fronts d'
+ondes soient superposés. La répartition de phase est très proche de celle de l'ondelette 
+d'Huygens centrée à l'origine, avec le fameux décroissement en $1/z^2$.\\
+
+
+\begin{wrapfigure}[10]{r}{7cm}
+\vspace{-3mm}
+\includegraphics[scale=0.45]{ch2/image19.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+Le second terme, la modulation d'amplitude, est plus délicat à interpréter. Pour se faire, 
+repartons du point de départ de l'établissement de la formule de diffraction de Fresnel :
+\begin{equation}
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-
+\sigma^2}z}\ d\rho d\sigma
+\end{equation}
+Ce qui n'est rien d'autre que la S.G. de Maxwell. Passons à une dimension transverse (une 
+delta pour le $\sigma$) $x'$ :
+\begin{equation}
+a(x;z) = \int A(\rho)e^{i\rho x} e^{i\sqrt{k^2-\rho^2}z}\ d\rho 
+\end{equation}
+De même, le résultat de Fraunhofer devient
+\begin{equation}
+I(x) \propto \left|A\left(\dfrac{kx}{z}\right)\right|^2
+\end{equation}
+Dans Fresnel, $A(\rho)$ est le spectre en $z=0$, chaque valeur de $\rho$ représentant une 
+onde plane avec un certain angle ($\rho = k\sin\theta$, soit la projection en $x$ du 
+vecteur d'onde)(comme nous travaillons à petit angle : $\rho = k\theta$). L'intensité à une 
+certaine hauteur $x$ vient d'une onde possédant un certain angle $\theta$. On en tire
+\begin{equation}
+\tan \theta = \dfrac{x}{z}\qquad \rightarrow \qquad \rho = k\frac{x}{z}
+\end{equation}
+
+\begin{wrapfigure}[10]{l}{6.5cm}
+\vspace{-3mm}
+\includegraphics[scale=0.45]{ch2/image20.png}
+\captionof{figure}{ }
+\end{wrapfigure}
+On sélectionne ainsi l'onde plane ayant pour valeur de $\rho = kx/z$. On comprend maintenant 
+bien pourquoi on observe ce $A(kx/z)$. Hélas, sur notre schéma ci-dessous les ondes planes 
+sont dessinées "limitées". Or, en réalité, elles ont bien une extension infinie ce qui rend 
+l'interprétation physique bien moins satisfaisante. Du moins, c'est ce que l'on pourrait 
+croire (que l'onde plane éclaire tout le plan) mais c'est faux (ouf!). Comment le justifier 
+? Pourquoi n'éclaire-t-elle qu'un seul point ? Il faut aller plus loin dans l'interprétation. 
+Pour se faire, il est nécessaire d'utiliser le \textit{théorème des phases stationnaires}.
+
+	\subsection{Théorème des phases stationnaires}
+	Nous allons appliquer ce théorème au calcul de l'intégrale de Fourier suivante
+	\begin{equation}
+	a(x;z) = \int A(\rho)\ e^{i\rho x}e^{i\sqrt{k^2-\rho^2}z}\ d\rho
+	\end{equation}
+	sur laquelle nous appliquer l'approximation paraxiale
+	\begin{equation}
+	\sqrt{k^2-\rho^2} = k-\frac{1}{2}\frac{\rho^2}{k}
+	\end{equation}
+	Après substitution
+	\begin{equation}
+	a(x;z) = \int A(\rho)\ e^{i\rho x}e^{-i\frac{z}{2k} z}\ d\rho\ e^{ikz}
+	\end{equation}
+	Intéressons-nous à la phase de cette intégrande 
+	\begin{equation}
+	\varphi(\rho) = \rho x - \dfrac{z}{2k}\rho^2
+	\end{equation}
+	
+	\begin{wrapfigure}[15]{r}{4.5cm}
+	\vspace{-3mm}
+	\includegraphics[scale=0.5]{ch2/image21.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Il s'agit d'une parabole, la dépendance de $\varphi$ en $\rho$ présente bien un 
+	maximum. Regardons le phaseur (l'exponentielle de $i\varphi$). Représentons la 
+	partie réelle de cette exponentielle (par facilité, mais n'oublions pas qu'il 
+	existe une partie imaginaire). Au moment du maximum, $\varphi$ ne varie que peu 
+	et l'on observe un état "stationnaire" du cosinus. Lorsque $\varphi$ varie 
+	rapidement, on observe bien des oscillations rapide du cosinus. Comme nous avons 
+	considéré un objet petit, le spectre sera forcément large. Or, nous avons le 
+	produit du spectre par l'exponentielle imaginaire représentée par le cosinus. Dans 
+	les zones de variation rapide, le produit sera approximativement nul, la seule 
+	partie ayant une contribution notable est celle correspondant à une variation 
+	lente du cosinus, donnant quelque chose de proportionnel au spectre (le cosinus 
+	valant $\approx 1$). On nomme ci-contre $\rho^*$ la valeur pour laquelle nous 
+	avons la stationarité de la phase, c'est-à-dire
+	\begin{equation}
+	\varphi'(\rho^*)=0\quad \Leftrightarrow\quad \rho^* = \dfrac{kx}{z}
+	\end{equation}
+	\newpage
+	
+		\begin{wrapfigure}[15]{l}{4.5cm}
+%	\vspace{-3mm}
+	\includegraphics[scale=0.5]{ch2/image22.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	On retrouve le résultat de Fraunhofer, $a(x;z) \propto A\left(\dfrac{kx}{z}
+	\right)$. Il faut maintenant vérifier que nous sommes dans les conditions de 
+	notre approximation. Considérons la phase stationnaire et descendons de $\pi$ (car 
+	au déla, les oscillations sont rapides, le résultat du produit est nul). Ceci 
+	correspond à une largeur $\delta \rho$ (la largeur de la fonction cosinus). Or, 
+	il est possible d'évaluer ce $\delta\rho$ car nous avons connaissance de l'expression 
+	de notre parabole
+	\begin{equation}
+	\dfrac{z}{2k}\delta\rho^2 = \pi\quad\Leftrightarrow\quad \delta\rho^2 = \dfrac{
+	2\pi k}{z}
+	\end{equation}
+	Pour que le théorème des phases soit variable, il faut que le $\delta \rho$ soit 
+	beaucoup plus petite que la variation du spectre (on considère que le spectre 
+	est constant sur $\Delta \rho$ (extension spectrale suffisamment grande)
+	\begin{equation}
+	\delta\rho^2 = \dfrac{2\pi k}{z} \ll \Delta \rho^2
+	\end{equation}
+	Or, la largeur spectrale de notre fonction fenêtre vaut $2\pi/l$, on peut dire que 
+	$\Delta \rho \approx \frac{2\pi}{\|\vec{x'}\|_{\max}}$. Dès lors
+	\begin{equation}
+	\dfrac{2\pi k}{z}\ll \dfrac{4\pi^2}{\|\vec{x'}\|_{\max}^2}
+	\end{equation}
+	En explicitant $k=2\pi/\lambda$, en simplifiant : $\frac{\|\vec{x'}\|^2_{\max}}{\lambda}
+	\ll z$ ce qui est la zone de Fraunhofer ! Ce théorème est donc applicable.\\
+	
+
+\begin{wrapfigure}[10]{l}{6.5cm}
+	\vspace{-3mm}
+	\includegraphics[scale=0.45]{ch2/image23.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}	
+Le théorème des phases stationnaires nous dit que si l'on observe $A\left(\dfrac{kx}{z}
+\right)$ à un seul point (et non pas tout l'écran) c'est parce que en ce point la il va 
+y avoir interférences constructives entre les ondes. Représentons une onde plane qui a une 
+valeur de $\rho$ légèrement supérieure. Ces ondes ont des interférences constructives au 
+point considéré et quelconques ailleurs : toutes les zones au $\rho$ proche vont 
+construire un champ important au point $x$. Aux autre points, on sommes des champs aléatoires 
+pour obtenir finalement zéro. C'est ce que dit notre théorème, nous n'avons interférences 
+constructives que proche de $\rho \approx \rho^*$, le reste ne contribue pas.
+	
 
 
 
