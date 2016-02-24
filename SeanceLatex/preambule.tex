@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%
+%%% Packages %%%
+%%%%%%%%%%%%%%%%
+
+%%% Général %%%
+\usepackage[utf8]{inputenc}   
+\usepackage[french,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[scaled=0.95]{helvet}
+\usepackage{courier}
+\usepackage{graphicx}
+
+%%% Tableau %%%
+\usepackage{tabularx} %Permet d'auto dimensionner les tableaux
+%\usepackage{slashbox} %Slash dans les tableau
+
+
+%%% Bibliographie %%%
+\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+\usepackage[autostyle]{csquotes}
+\DeclareNameAlias{sortname}{last-first}
+\DeclareFieldFormat{url}{\space\url{#1}}
+\DeclareNameAlias{labelname}{last-first}
+\addbibresource{a.bib}
+
+
+
+%%% Graphiques %%%
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+
+%%% Mise en page %%%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[tt]{titlepic} % Centre le titre
+\usepackage{fancyhdr} % Permet de modifier l'entête & footer
+\usepackage{caption} % Permet d'ajouter des légendes en images sans les mettre en float + dans la marge
+\usepackage{wrapfig}
+\usepackage{fullpage}
+\usepackage{multicol} % pour les liste sur plusieurs colonnes
+\usepackage{subfigure} % alligne deux images cote a cote
+\usepackage{float} %permet de mettre du texte entre les figures grace a [H]. Génial! 
+
+%%% Math %%%
+\usepackage{delarray} % Belles matrices
+\usepackage{siunitx}
+\sisetup{locale = FR,detect-all}
+% Pour mettre siunitx en mode français (virgule plutôt que point etc.)
+
+
+
+
+%%%%%%%%%%%%%%%%%
+%%% Commandes %%%
+%%%%%%%%%%%%%%%%%
+
+%%% Physque %%%
+\newcommand{\cst}{\text{cst}}
+\newcommand{\E}{\vec E}
+\newcommand{\B}{\vec B}
+\newcommand{\F}{\vec F}
+\newcommand{\module}[1]{||#1||}
+
+%%% Math %%%
+\newcommand{\oiint}{\int\!\!\!\!\!\!\! \:\!\subset\!\!\supset\!\!\!\!\!\!\!\int}
+\newcommand{\rot}{\text{rot}\,}
+\newcommand{\divv}{\text{div}\,}
+\newcommand{\phas}[1]{\underline{#1}}
+\newcommand{\RE}{\text{Re}}
+
+%\pagestyle{headings} % Titre du ch et numéro page dans l'entete
+\renewcommand{\proofname}{Démonstration}
+\selectlanguage{english}
+
+\addto\captionsfrench{\def\tablename{Tableau}}
+
+
+
+%%%%%%%%%%%%%%%%%
+%%% CHEAT OMG %%%
+%%%%%%%%%%%%%%%%%
+%Donne le style Book à un Article héhé
+\makeatletter
+
+\newcommand\frontmatter{%
+    \cleardoublepage
+  %\@mainmatterfalse
+  \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+    \cleardoublepage
+ % \@mainmattertrue
+  \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+ % \@mainmatterfalse
+   }
+
+\usepackage{eso-pic}
+
+%%% Background %%%
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ulb.jpg}%
+\vfill
+}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% QUEL SALAUD CE CEDRIC %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{abstract}
+\AtBeginDocument{\renewcommand{\abstractname}{\Large Abstract}}
