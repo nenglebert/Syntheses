@@ -405,13 +405,40 @@
 	The total unknowns number is 14.  The number of disponible equations is 5, 1 thanks to the energy, 1 thanks to the continuity and 3 thanks to the vectorial momentum equation. In this stage, we haven't made any assumption on the nature of the material we're considering. These equations are valid for an elastic solid as a fluid. The main difference is that solids resist to a deformation whereas fluid doesn't. But fluid resists to a rate of deformation. The way that stress tensor $\sigma _{ji}$ is related to the displacement field is called the constitutuve equations. 
 	
 	\subsubsection{Constitutive relations} 
-		For a fluid, the stress tensor depends on the fluid rate of deformation (rate of strain). To express $\sigma _{ji}$, we have to find a quantity in the field of motion of the fluid that represents the rate of strain. If the velocity field $\vec{u}(\vec{x},t)$ was uniform, not depending on $\vec{x}$, the fluid will be moving as a bulk and there is no rate of deformation. The rate of strain must be somehow related to the velocity gradient tensor $\nabla \otimes \vec{u}$. We know that all tensors can be decomposed on an antisymetric and symetric part like 
+		For a fluid, the stress tensor depends on the fluid rate of deformation (rate of strain). To express $\sigma _{ji}$, we have to find a quantity in the field of motion of the fluid that represents the rate of strain. If the velocity field $\vec{u}(\vec{x},t)$ was uniform, not depending on $\vec{x}$, the fluid will be moving as a bulk and there is no rate of deformation. The rate of strain must be somehow related to the velocity gradient tensor $\nabla \otimes \vec{u}$. We know that all tensors can be decomposed in an antisymetric and symetric part like 
 		\begin{equation}
-			\nabla \otimes \vec{u} = \frac{\D u_j}{\D x_i} = \Omega _{ij} + S _{ij} = \frac{1}{2} \left( \frac{\D u_j}{\D x_i} - \frac{\D u_i}{\D x_j} \right) + \frac{1}{2} \left( \frac{\D u_j}{\D x_i} + \frac{\D u_i}{\D x_j} \right).
+			\nabla \otimes \vec{u} = \frac{\D u_j}{\D x_i} = \Omega _{ji} + S _{ij} = \frac{1}{2} \left( \frac{\D u_j}{\D x_i} - \frac{\D u_i}{\D x_j} \right) + \frac{1}{2} \left( \frac{\D u_j}{\D x_i} + \frac{\D u_i}{\D x_j} \right).
 		\end{equation}
 		
 		For a constant gradient velocity field, the velocity field is linear in the coordinates
 		\begin{equation}
-			u_j = \frac{\D u_j}{\D x_i}x_i = \Omega _{ij} x_i + S _{ij} x_i
+			u_j = \frac{\D u_j}{\D x_i}x_i = \Omega _{ji} x_i + S _{ij} x_i
+			\label{eq:1.51}
 		\end{equation}
-		The first term consists in a pure rotation and does not imply any deformation. Unlike, the second term is the only one that can represent a rate of strain. We conclude that for a fluid, $\sigma _{ji}$ must depend on the symetric part. $S_{ij}$ will be the rate of strain tensor. 
+		
+		Let's look to the mathematical nature of the antisymetric part.  If we express using Kronecker $\delta$, we have
+		\begin{equation}
+			\Omega _{ji} =\frac{1}{2} \left( \frac{\D u_j}{\D x_i} - \frac{\D u_i}{\D x_j} \right) = \frac{1}{2} \delta _{kij}\delta _{kqp} \frac{\D u_p}{\D x_q} \qquad 
+			with \quad \delta _{kij}\delta _{kqp} = \delta _{iq}\delta _{jp} - \delta _{ip}\delta _{jq} 
+		\end{equation}
+		Knowing that $(a \times b)_k = \delta _{kpq} a_p b_q$, we can introduce the \textbf{curle} (rotationnel) of velocity called vorticity $\vec{\omega}$
+		\begin{equation}
+			\delta _{kqp} \frac{\D u_p}{\D x_q} = (\nabla \times \vec{u})_k \qquad \Rightarrow \nabla \times \vec{u} = \vec{\omega}
+		\end{equation}		 
+		Let's look to the way this is linked to \autoref{eq:1.51}
+		\begin{equation}
+			 u_j^{AS} = \Omega _{ji}x_i = \frac{1}{2} \delta _{jki} \omega _k x_i = \frac{1}{2} (\vec{\omega} \times \vec{x})_j
+			\qquad \Leftrightarrow \qquad 
+			\vec{u}^{AS} = \frac{1}{2} \vec{\omega}\times \vec{x}
+		\end{equation}
+	 	In conclusion, we see that the antisymetric part consists in a pure rotation velocity field, a rigid body motion of angular velocity $\frac{1}{2}\vec{\omega}$ without strain. $\vec{\omega}$ is twice the angular velocity of fluid particles around themselves. The quantity representative of the fluid rate of strain can only be the symetric part of the velocity gradient tensor called the rate of strain tensor. For a fluid, $\sigma _{ij} = f(S_{ij})$. \\
+	 	
+	  To determine the nature of this relationship, we will assume that $\sigma _{ij} $ is a linear function of $S_{pq}$. This is called \textbf{Newton's assumption for stresses}
+	  \begin{equation}
+	  	\sigma _{ij} = a_{ij} + b_{ijpq} S_{pq}.
+	  \end{equation}
+	  In this equation, $b_{ijpq}$ is a tensor with four indices, but we know that it's symetric with respect to $pq$ and $ij$ because $S$ is symetric with respect to $pq$ and $ij$, leading to $6 \times 6 = 36$ coefficients. Symetric tensor $a_ij$ counts 6 coefficients, for a total of 42 coefficients. \\
+	  If we assume that the fluid is \textbf{isotropic}, meaning that the fluid react in the same way whatever the sollicitation direction. For example, let's take a case of $S_{ij}$ where all coefficients are null except the $S_{11}$ term. Diagonal terms reprensent a rate of elongation/stretch while the off-diagonal terms represent an angular deformation between two perpendicular direction. The assumption means that if the rate of stress is not in 1 direction but 2, the fluid reaction will be the same. In other words, if we make a rotation of coordinates, the relation in the rotated frame of reference must be the same. In that case, the relation reduces to
+	  \begin{equation}
+	  	\sigma _{ij} = a \delta _{ij} + bS _{ij} + c \delta _{ij}S_{kk}
+	  \end{equation}
