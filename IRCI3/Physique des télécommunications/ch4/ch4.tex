@@ -276,10 +276,147 @@ emmagasiné dans $\mathcal{D}$ soit à l'extérieur à travers $S$.
 	
 	
 	\subsection{Régime sinusoïdal permanent}
+	On notera la moyenne sur une période < . >. Exprimons les champs en phaseur
+	\begin{equation}
+	\begin{array}{lll}
+	\vec{E}(\vec{r},t) &= \Re\left(\underline{\vec{E}}e^{j\omega t}\right) &= \dfrac{1}{2}\left(
+	\underline{\vec{E}}e^{j\omega t}+\underline{\vec{E}}^*e^{-j\omega t}\right)\\
+	\vec{B}(\vec{r},t) &= \Re\left(\underline{\vec{B}}e^{j\omega t}\right) &= \dfrac{1}{2}\left(
+	\underline{\vec{B}}e^{j\omega t}+\underline{\vec{B}}^*e^{-j\omega t}\right)
+	\end{array}
+	\end{equation}
+	Par multiplication vectorielle
+	\begin{equation}
+	\vec{E}(\vec{r},t)\times\vec{B}(\vec{r},t) = \frac{1}{\mu}\underline{\vec{E}}\times\underline{
+	\vec{B}}e^{2j\omega t} +\frac{1}{4}\underline{\vec{E}}\times\underline{\vec{B}}^* + \frac{1}{4}
+	\underline{\vec{E}}^*\times\underline{\vec{B}}+\frac{1}{4}
+	\underline{\vec{E}}^*\times\underline{\vec{B}}^*
+	\end{equation}
+	Les termes ayant une dépendance temporelle ont une moyenne nulle sur une période\footnote{Les 
+	exponentielle pouvant être vues comme "constantes au niveau du temps"} :
+	\begin{equation}
+	\vec{\mathcal{S}}(\vec{r},\omega) = \frac{1}{\mu}\langle\vec{E}\times\vec{B}\rangle 
+	=\dfrac{1}{4\mu}\underline{\vec{E}}\times\underline{\vec{B}}^* + \frac{1}{4\mu}
+	\underline{\vec{E}}^*\times\underline{\vec{B}}
+	\end{equation}
+	
+	\retenir{\begin{equation}
+	\vec{\mathcal{S}}(\vec{r},\omega) = \dfrac{1}{2\mu}\Re\left(
+	\underline{\vec{E}}\times\underline{\vec{B}}^*\right)
+	\end{equation}
+	Soit le vecteur de Poynting (valeur moyenne et \textbf{non} instantanée)}\ 
+	
+	Dans le champ lointain ($\vec{B} = \frac{1}{c}\vec{1_r}\times\vec{E}$ dans 
+	l'expression ci-dessus) l'expression se simplifie. La puissance totale est donnée par 
+	l'intégration du vecteur de Poynting sur toute surface fermée entourant le circuit\footnote{
+	Soit le flux du vecteur de Poynting} :\\
+	\retenir{\begin{equation}
+	\vec{\mathcal{S}}(\vec{r},\omega) = \dfrac{1}{2Z_0}|\vec{E}|^2\vec{1_r},\qquad\qquad\qquad
+	P_r = \oint_S \vec{\mathcal{S}}(\vec{r},\omega)\ .\ \vec{dS}
+	\end{equation}}
+	
+	\subsection{Puissance rayonnée par un élément de courant}
+	Comme notre vecteur de Poynting est en $\vec{1_r}$, choisissons une surface ou le produit 
+	scalaire $\vec{\mathcal{S}}.\vec{dS}$ est simple (soit parallèle à ce vecteur) : intégrons 
+	sur une sphère de rayon $r$ centrée sur l'élément
+	\begin{equation}
+	\begin{array}{lll}
+	P_r &= \oint_S \vec{\mathcal{S}}(\vec{r},\omega)\ .\ \vec{dS} &\DS = \int_0^{\pi}\int_0^{2\pi}
+	\vec{\mathcal{S}}.\vec{1_r}r^2\sin\theta d\theta d\phi\\
+	&&= \dfrac{2\pi}{2Z_0}\left(\dfrac{\mu_0|\underline{I}|l\omega}{4\pi}\right)^2 \int_0^\pi 
+	\dfrac{\sin^2\theta}{r^2}r^2\sin\theta d\theta\\
+	&&= \dfrac{1}{12\pi Z_0}\left(\omega\mu_0|\underline{I}|l\right)^2
+	\end{array}
+	\end{equation}
+	Remarquons la simplifications des $r^2$ : sans celle-ci, cela voudrait dire que la puissance 
+	observée dépendrait de la distance de la source ce qui est absurde. Ceci donne la justification 
+	du terme en $1/r$ du propagateur, nécessaire à la conservation de l'énergie. Ce terme n'est 
+	donc pas une atténuation mais une "\textit{dilution}". Remarquons que la puissance rayonnée 
+	dépend du carré de la fréquence, mais également du courant.
+	
+\section{Réception}
+Pour détecter un courant, $\underline{\vec{E_i}}$ de l'onde incidente doit mettre les $e^-$ 
+en oscillation : un élément $\vec{dl}$ est soumis à une tension $\vec{E_i}.\vec{dl}$ générant 
+un courant $\underline{I}\vec{dl}$. N'oublions cependant pas que ce champ ne fait que propager 
+l'information (interaction entre charges) du circuit émetteur à récepteur. On pourrait 
+vouloir utiliser $q\vec{v}\times\vec{B}$ mais c'est mort sans vitesse. Il va falloir ruser.
+
+	\subsection{Le théorème de réciprocité}
+	Ce théorème ne sera pas démontré. Considérons deux circuits rayonnants à deux accès : 
+	équivalent à un biporte
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\underline{V_1} &= Z_{11}\underline{I_1} +Z_{12}\underline{I_2}\\
+	\underline{V_2} &= Z_{21}\underline{I_1} +Z_{22}\underline{I_2}	
+	\end{array}\right.\qquad\Leftrightarrow\qquad
+	\left\{\begin{array}{ll}
+	\underline{I_1} &= Y_{11}\underline{V_1} + Y_{12}\underline{V_2}\\
+	\underline{I_2} &= Y_{21}\underline{V_1} + Y_{22}\underline{V_2}	
+	\end{array}\right.
+	\end{equation}
+	\begin{center}
+	\includegraphics[scale=0.45]{ch4/image3.png}
+	\captionof{figure}{ }
+	\end{center}
+	Le théorème affirme que $Z_{12}=Z_{21}$ et donc $Y_{12}=Y_{21}$.
 	
 	
-	
-	
+	\subsection{Calcul de la tension induite}
+	\begin{wrapfigure}[4]{r}{4cm}
+	\vspace{-15mm}
+	\includegraphics[scale=0.25]{ch4/image4.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Soit le circuit ci-contre d'impédance d'entrée $Z_a$. Quand $\underline{\vec{E_i}}$ se frah 
+	sur lui, une tension $\underline{V}_{oc}$ est induite : nous la cherchons. Appliquons le 
+	théorème de réciprocité sur un élément $\vec{dl}$ à distance $l$ de l'accès\footnote{Le courant 
+	est considéré comme une grandeur locale $\underline{I}(l)$ hors quasi-statique.}. Voyons 
+	trois cas :
+	\begin{enumerate}
+	\item Appliquons $\underline{V_a}$ à l'accès \textbf{sans} champ incident $\underline{\vec{E_i}}$. 
+	Un courant $\underline{I}(l)$ circule dans $\vec{dl}$, le circuit est un \textit{émetteur}. Par 
+	Thévenin 
+	\begin{equation}
+	\underline{I}_a = \dfrac{\underline{V}_a}{Z_a}
+	\end{equation}
+		\begin{center}
+	\includegraphics[scale=0.45]{ch4/image5.png}
+	\captionof{figure}{ }
+	\end{center}
+	\item Un rayonnement extérieur $\underline{\vec{E_i}}$ est présent : récepteur. La tension appliquée 
+	en $l$ vaut $\underline{\vec{E_i}}(l).\vec{dl}$. Par Thévenin, c'est équivalent à une source de 
+	tension $\underline{dV}_{oc}$ placée à cet endroit.
+			\begin{center}
+	\includegraphics[scale=0.45]{ch4/image6.png}
+	\captionof{figure}{ }
+	\end{center}
+	\item Court-circuit : courant $\underline{dI}_{sc}$. Par Thévenin
+	\begin{equation}
+	\underline{dI}_{sc} = -\dfrac{\underline{dV}_{oc}}{Z_a}
+	\end{equation}
+			\begin{center}
+	\includegraphics[scale=0.45]{ch4/image7.png}
+	\captionof{figure}{ }
+	\end{center}
+	\end{enumerate}
+	Par application du théorème de réciprocité
+	\begin{equation}
+	\dfrac{\underline{I}(l)}{\underline{V_a}} = \dfrac{\underline{dI}_{sc}}{\underline{\vec{E_i}}(l).
+	\vec{dl}}\qquad\text{ ou }\qquad
+	\dfrac{\underline{I}(l)}{\underline{I_a}} = \dfrac{-\underline{dV}_{oc}}{\underline{\vec{E_i}}(l).
+	\vec{dl}}
+	\end{equation}
+	Dès lors
+	\begin{equation}
+	\underline{dV}_{oc} = -\dfrac{1}{\underline{I}_a}\underline{I}(l)\underline{\vec{E_i}}(l).\vec{dl}
+	\end{equation}
+	La tension est la somme des tensions locale, mais cette somme est pondérée par la valeur du courant 
+	que l'on trouverait à ce point la \textbf{si le circuit fonctionnait en émetteur}:\\
+	\retenir{\begin{equation}
+	\underline{V}_{oc} = -\dfrac{1}{\underline{I}_a}\int_c \underline{I}(l)\underline{\vec{E_i}}(l).\vec{dl}
+	\end{equation}
+	où $\underline{\vec{E_i}}(l)$ est le champ incident sur le circuit, $\underline{I_a}, \underline{I}(l)$ 
+	sont les courant à l'accès et en $l$ si le circuit fonctionnait en \textbf{émission}.}
 	
 	
 	
