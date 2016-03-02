@@ -179,15 +179,18 @@ y(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)H\left(e^{j\frac{2\pi}{N}k}\right)
 e^{j\frac{2\pi}{N}kn}\qquad \text{ où }\quad H\left(e^{j\frac{2\pi}{N}k}\right) = 
 \sum_{k=-\infty}^\infty h(n)e^{-j\frac{2\pi}{N}kn}
 \end{equation}
+Il s'agit d'une convolution où $x$ est remplacé par sa série de Fourier.
 	
 \section{Réponse en fréquence d'un système discret}
-En considérant comme signal d'entrée discret $x(n) = e^{j\omega n}$, celle-ci étant 
-fonction propre notre sortie sera
+En considérant comme signal d'entrée discret $x(n) = e^{j\omega n}$ (exponentielle unitaire), 
+celle-ci étant fonction propre notre sortie sera
 \begin{equation}
 y(n) = H\left(e^{j\omega }\right)e^{j\omega n}
 \end{equation}
 où $\displaystyle H\left(e^{j\omega }\right) = \sum_{k=-\infty}^\infty h(k)e^{-j
-\omega k}$ est la réponse en fréquence du système. Il s'agit d'une constante complexe 
+\omega k}$ est la réponse en fréquence du système\footnote{On met une grandeur unitaire 
+en entrée et on fait varier $\omega$ pour voir comment déduire en fréquence.}. L'idée 
+est que $H$ ne soit évalué que sur le cercle unitaire. Il s'agit d'une constante complexe 
 pour $\omega$ fixé
 \begin{equation}
 H\left(e^{j\omega }\right) = \left|H\left(e^{j\omega }\right)\right|e^{j\text{arg} 
@@ -200,8 +203,9 @@ y(n) = A \left|H\left(e^{j\omega_0 }\right)\right|\cos\left(\omega_0n+\varphi+\t
 H\left(e^{j\omega n}\right)\right)
 \end{equation}
 On peut considérer $H\left(e^{j\omega}\right)$ comme le développement de la fonction 
-périodique $H$ en série de Fourier. Dès lors, on peut exprimer les échantillons $h(k)$ 
-par la formule classique de calcul des coefficients d'une série de Fourier
+périodique $H$ en série de Fourier (où $\omega$ est continu). Dès lors, on peut exprimer 
+les échantillons $h(k)$ par la formule classique de calcul des coefficients d'une série 
+de Fourier
 \begin{equation}
 h(k) = \frac{1}{2\pi}\int_{-\pi}^\pi H\left(e^{j\omega }\right)e^{j\omega k}\ d\omega
 \end{equation}
@@ -210,22 +214,124 @@ exprimant la réponse impulsionnelle en fonction de la réponse fréquentielle.
 
 \exemple{Slide T32/34}
 
+\newpage
+\section{Transformée de Fourier d'un signal discret}
+Les deux relations
+\begin{equation}
+H(e^{j\omega}) = \sum_{k=-\infty}^\infty h(k)e^{-j\omega k},\qquad\qquad h(k) = \dfrac{1}{2\pi}
+\int_{-\pi}^\pi H(e^{j\omega}) e^{j\omega k}\ d\omega
+\end{equation}
+Celles-ci étaient utilisées pour calculer le spectre de la réponse impulsionnelle et son 
+retour au domaine temporel ne se limite \textbf{pas} à elle : n'importe quel signal discret 
+peut être transformé, même les \textbf{apériodiques} (différence avec la série de Fourier qui 
+est nécessairement périodique).\\
+La \textit{transformée de Fourier (et inverse) d'un signal apériodique} est définie par
+\begin{equation}
+X(e^{j\omega}) = \sum_{n=-\infty}^\infty x(n)e^{-j\omega n},\qquad\qquad x(n) = \dfrac{1}{2\pi}
+\int_{-\pi}^\pi H(e^{j\omega}) e^{j\omega n}\ d\omega
+\end{equation}
+La limitation sur $(-\pi,\pi)$ permet de considérer toutes les exponentielles complexes 
+distinctes, évitant ainsi les répétitions. \\
+Étudions la convergence de $X(e^{j\omega})$. Pour converger, $x(n)$ doit être absolument sommable
+\begin{equation}
+\sum_{n=-\infty}^\infty |x(n)|<\infty
+\end{equation}
+Si ceci est vrai, cela implique la convergence uniforme vers une fonction continue de $\omega$ : 
+la réponse en fréquence d'un système stable converge toujours.  Une autre manière de vérifier la 
+convergence est de vérifier que la transformée est de carré sommable (énergie finie)
+\begin{equation}
+\sum_{n=-\infty}^\infty |x(n)|^2<\infty
+\end{equation}
+Notons que toute fonction de carré sommable est forcément absolument sommable.
+
+	\subsection{Propriétés de la transformée de Fourier}
+	Bien évidemment, cette transformée est linéaire (étant elle même une combili, ceci peut 
+	paraître logique). Différentes symétries sont proposées au slide T37, ceci ne sera pas 
+	revu ici.
+	
+		\subsubsection{Glissement}
+		\begin{equation}
+		\begin{array}{ll}
+		x(n-n_0) &\Leftrightarrow e^{-j\omega n_0}X(e^{j\omega})\\
+		e^{j\omega_0n}x(n) &\Leftrightarrow X\left(e^{j(\omega-\omega_0)}\right)
+		\end{array}		
+		\end{equation}
 
 
+		\subsubsection{Parseval}
+		\begin{equation}
+		\sum_{n=-\infty}^\infty |x(n)|^2 = \dfrac{1}{2\pi}\int_{-\pi}^\pi \left|X(e^{j\omega}\right|^2\ 
+		d\omega
+		\end{equation}
+		Ceci montre que les énergie dans le domaine temporel correspondent aux énergie dans le 
+		domaine fréquentiel. 
+		
+		\subsubsection{Convolution}
+		Considérons notre convolution fétiche : $y(n) = h(n)*x(n) = \DS \sum_{k=-\infty}^\infty 
+		h(n-k)x(k)$. Calculons le spectre de $y(n)$
+		\begin{equation}
+		\begin{array}{ll}
+		Y(e^{j\omega}) &= \DS \sum_{n=-\infty}^\infty y(n)e^{-j\omega n} = \sum_{n=-\infty}^\infty
+		\sum_{k=-\infty}^\infty h(n-k)x(k)e^{-j\omega n}\\
+		&= \DS\sum_{k=-\infty}^\infty x(k) \sum_{n=-\infty}^\infty h(n-k)e^{-j\omega n}\\
+		&= \DS \sum_{k=-\infty}^\infty x(k)e^{-j\omega k} \sum_{n=-\infty}^\infty h(n-k)e^{-j\omega n}
+		e^{-j\omega(n-k)} = X(e^{j\omega})H(e^{j\omega})
+		\end{array}
+		\end{equation}
+		La dernière étape fait apparaître la définition des spectres $X$ et $H$. Le résultat 
+		n'est qu'une simple multiplication dans le domaine fréquentiel.
+		
+		\subsubsection{Modulation}
+		Soit $y(n) = x_1(n)x_2(n)$. En calculant le spectre\footnote{Explications complémentaires plz}
+		\begin{equation}
+		\begin{array}{ll}
+		Y(e^{j\omega}) &= \DS \dfrac{1}{2\pi}\int_{-\pi}^\pi X_1(e^{j\theta})X_2(e^{j(\omega-\theta)})\ 
+		d\theta\\
+		&= \DS \dfrac{1}{2\pi}X_1(e^{j\omega}) \otimes X_2(e^{j\omega})
+		\end{array}
+		\end{equation}
+		où $\otimes$ est la convolution périodique des deux spectres.
 
 
+\section{Transformée de Fourier des signaux périodiques}
+Regardons ce que donne cette transformée pour un signal périodique ("\textit{qui peut le plus peut 
+le moins" }). Soit $x_1(n)$ un signal \textbf{a}périodique, de transformée de Fourier $X_1(e^{j\omega})$.
+Construisons un signal périodique $x(n)$ de période $N$ 
+\begin{equation}
+x(n) = \sum_{r=-\infty}^{N-1} x_n(n+rN)
+\end{equation}
+Il existe d'autres façon de construire un tel signal. Calculons les coefficients $X_d(k)$ de la 
+série (car périodique) de Fourier (discrète) de $x(n)$ (en substituant l'expression de $x(n)$) :
+\begin{equation}
+\begin{array}{ll}
+X_d(k) &=\DS \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} = \sum_{n=0}^{N-1}\sum_{r=-\infty}^{N-1} x_n(n+rN)
+ e^{-j\frac{2\pi}{N}nk}\\
+ &=\DS \sum_{n=0}^{N-1}\sum_{r=-\infty}^{N-1} x_1(n+rN) e^{-j\frac{2\pi}{N}(n+rN)k}
+ \end{array}
+\end{equation}
+En décomposant l'expression ci-dessous, on retrouve l'exponentielle de départ avec en plus un
+nombre fixe de fois $2\pi$ ($e^{jx}$ est périodique, de période $2\pi : e^{j2\pi}=1$, cela ne 
+change donc rien) :
+\begin{equation}
+X_d(k) = \sum_{k=-\infty}^\infty x_1(m)e^{-j\frac{2\pi}{N}mk} = X_1(e^{j\frac{2\pi}{N}k})
+\end{equation}
+On passe ainsi en revue toutes les valeurs de $x_1(n)$ avec une exponentielle complexe associée : 
+ces coefficients sont les échantillons de $X_1(e^{j\omega})$ prélevés à intervalle $2\pi/N$. Le 
+spectre est quelque chose de connu : $X_d(k)$ échantillons à intervalles réguliers, directement 
+relié à la transformée de Fourier du signal qui n'était \textbf{pas} périodique.\\
 
-
-
-
-
-
-
-
-
-
-
-
+Prenons la transformée de Fourier du signal périodique $x(n)$ en appliquant la propriété du 
+glissement ($\DS x(n) = \sum_{r=-\infty}^\infty x_1(n+rNn)$)
+\begin{equation}
+X(e^{j\omega}) = \sum_{r=-\infty}^\infty X_1(e^{j\omega})e^{j\omega rN} = X_1(e^{j\omega})\sum_{
+r=-\infty}^\infty e^{j\omega rN}
+\end{equation}
+Le spectre du signal périodique est directement lié au spectre du signal apériodique. Il en vient que
+\begin{equation}
+\sum_{r=-\infty}^\infty e^{j\omega rN} = \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(
+\omega-k\dfrac{2\pi}{N}\right)
+\end{equation}
+Ce qui n'est rien d'autre qu'un train d'impulsions.
 
 
 
