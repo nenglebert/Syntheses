@@ -326,14 +326,61 @@ glissement ($\DS x(n) = \sum_{r=-\infty}^\infty x_1(n+rNn)$)
 X(e^{j\omega}) = \sum_{r=-\infty}^\infty X_1(e^{j\omega})e^{j\omega rN} = X_1(e^{j\omega})\sum_{
 r=-\infty}^\infty e^{j\omega rN}
 \end{equation}
-Le spectre du signal périodique est directement lié au spectre du signal apériodique. Il en vient que
+Le spectre du signal périodique est directement lié au spectre du signal apériodique. On établit que
 \begin{equation}
 \sum_{r=-\infty}^\infty e^{j\omega rN} = \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(
 \omega-k\dfrac{2\pi}{N}\right)
 \end{equation}
-Ce qui n'est rien d'autre qu'un train d'impulsions.
+Ce qui n'est rien d'autre qu'un train d'impulsions.\\
 
+Cet "établi" peut sembler suspect. Comme nous sommes à l'ULB (libre examen patatipatata), montrons 
+en effet que 
+\begin{equation}
+\Delta_T(t) := \sum_{k=-\infty}^\infty \delta(t-kT)
+\end{equation}
+Comme celui-ci est périodique ($\Delta_T(t+T)=\Delta_T(t)$), on peut calculer sa série de Fourier 
+(définie ici en discret pour la somme, mais le domaine est bien \textbf{continu} ! (On l'a déjà 
+fait en discret dans le passé). 
+\begin{equation}
+\Delta_T(t) = \sum_{n=-\infty}^\infty c_ne^{i2\pi nt/T}
+\end{equation}
+Calculons donc ses coefficients
+\begin{equation}
+\begin{array}{ll}
+c_n &= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \Delta_T(t)e^{-i2\pi nt/T}\ dt\qquad (-\infty < t_0<+\infty)\\
+&= \DS \dfrac{1}{T}\int_{-T/2}^{T/2} \Delta_T(t)e^{-i2\pi nt/T}\ dt \\
+&= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \delta(t) e^{-i2\pi nt/T}\ dt \\
+&= \DS \dfrac{1}{T} e^{-i2\pi n0/T}\ dt\\
+&= \DS \dfrac{1}{T}
+\end{array}
+\end{equation}
+En effet, une période correspond à l'intervalle $[-T/2,T/2]$. Sur cette intervalle on retrouve une 
+seule impulsion (en zéro), les autre sont en dehors d'où le $\delta(t)$. On a donc
+\begin{equation}
+\Delta_T(t) = \dfrac{1}{T}\sum_{n=-\infty}^\infty e^{i2\pi nt/T}
+\end{equation}
+En effectuant le changement de variable $t\rightarrow\omega$ et $T\rightarrow 2\pi/N$,  on retrouve
+\begin{equation}
+\sum_{r=-\infty}^\infty = \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(\omega-k\frac{2\pi}{N}
+\right)
+\end{equation}
 
+Revenons à notre somme de train d'impulsion. Comme le signal n'est non-nul que lorsque 
+$\omega = k\frac{2\pi}{N}$ :
+\begin{equation}
+\begin{array}{ll}
+X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty e^{j\omega rN}\delta\left(
+\omega-k\dfrac{2\pi}{N}\right)\\
+&=\DS \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty X_1\left(e^{j\frac{2\pi}{N}k}\right)\delta\left(
+\omega-k\dfrac{2\pi}{N}\right)\\
+&=\DS \sum_{k=-\infty}^\infty \frac{2\pi}{N} X_d(k)\delta\left(\omega-k\dfrac{2\pi}{N}\right)\\
+\end{array}
+\end{equation}
+Il s'agit de la transformée de Fourier d'un signal périodique en fonction de son développement 
+en série de Fourier discrète sur le spectre du signal apériodique : on retrouve "seulement" les 
+coefficnets de la série de Fourier. Le signal périodique $x(n)$ possède une série de raie espacée de $2\pi/N$.\\
+
+Un exemple et un résumé du chapitre sont donnés au slide T45 et T46.
 
 
 
