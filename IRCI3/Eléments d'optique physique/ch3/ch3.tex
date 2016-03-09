@@ -146,25 +146,226 @@ dans le verre avec celle dans le vide pour la même longueur traversée c'est à
 \begin{equation}
 \Delta\varphi = k_0d(n-1)
 \end{equation}
-\textbf{Remarque} : Un retard de phase est une phase qui évolue plus vite dans le diélectrique, mais 
+\textbf{Remarque} : un retard de phase est une phase qui évolue plus vite dans le diélectrique, mais 
 il faut se souvenir que pour une distance donnée on a une "plus grande densité de fronts d'onde". Phase 
 qui évolue rapidement veut dire retard de phase.\\
 
 
+\newpage
+\section{Fonction de transfert d'une lentille "mince"}
+Le terme \textit{mince} a été introduit pour faire plusieurs approximation, on verra ça plus tard ! Le 
+but de la fonction de transfert est de connaître le champ transmis par un simple produit avec le champ 
+incident.
+\begin{equation}
+E_t(\vec{x}) = T(x,y)\times E_i(\vec{x})
+\end{equation}
 
+	\subsection{Lentilles à surfaces sphériques}
+	\begin{wrapfigure}[7]{l}{4.4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch3/image7.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	L'idée d'une telle surface est que la surface est constituée de "morceau de surface de sphère", 
+	la lentille peut être vue comme l'intersection de deux sphères. On nomme l'axe $z$ 
+	l'\textit{axe optique} (axe reliant le centre des deux sphères) de la lentille (voir ci-contre). 
+	L'épaisseur est variable en fonction de la position dans le plan transverse : son épaisseur 
+	maximale est nommée $\Delta_0$.\\
+	
+	\begin{wrapfigure}[9]{r}{4.4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch3/image8.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Pour l'analyse, décomposons la lentille en deux : $\Delta_0 = \Delta_{01}+\Delta_{02}$. Ceci est 
+	pour la hauteur maximale, mais on peut faire de même pour toute épaisseur
+	\begin{equation}
+	\Delta (x,y) = \Delta_1(x,y) + \Delta_2(x,y)
+	\end{equation}
+	Commençons par décrire la fonction $\Delta_1(x,y)$. Considérons un point du plan transverse $(x,y)$. 
+	On se situe à $R_1$ du centre de courbure, que vaut cette épaisseur ? Faisons un peu de géométrie. 
+	La distance de l'axe optique vaut $\sqrt{x^2+y^2}$ et celle depuis le centre de courbure vaut 
+	$\sqrt{R_1^2-x^2-y^2}$ (par Pythagore). La distance entre l'extérieur de la lentille et la 
+	coordonnée en $z$ de $(x,y)$ vaut $R_1-\sqrt{R_1^2-x^2-y^2}$. Pour exprimer $\Delta_1$, il suffit 
+	de retirer à $\Delta_{01}$ cette distance que nous venons de calculer
+	\begin{equation}
+	\Delta_1(x,y) = \Delta_{01}-\left[ R_1-\sqrt{R_1^2-x^2-y^2}\right]
+	\end{equation}
+	De façon similaire, on trouve
+	\begin{equation}
+	\Delta_1(x,y) = \Delta_{02}-\left[ R_2-\sqrt{R_2^2-x^2-y^2}\right]	
+	\end{equation}
 
+	\begin{wrapfigure}[9]{l}{6.4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.18]{ch3/image9.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}	
+	Comme nous l'avons précisé, nous allons considérer des lentilles \textit{minces} : fondamental 
+	pour simplifier ces expressions. Il s'agit d'une lentille dont les rayons de courbures sont 
+	très importants. Une lentille est mince lorsque sa distance transverse (taille de la lentille) 
+	est petite par rapports aux rayons de courbures de ses surfaces 
+	\begin{equation}
+	\text{Lentilles "minces"} \qquad\Longrightarrow\qquad x^2+y^2 \ll R_1^2,R_2^2
+	\end{equation}
+	Il est dès lors possible d'utiliser l'approximation paraxiale/parabolique 
+	\begin{equation}
+	\Delta_1(x,y) = \Delta_{01}-\left[R_1-R_1\sqrt{1-\dfrac{x^2+y^2}{R_1^2}}\right] \approx \Delta_{01} -
+	\left[R_1-R_1\left(1-\dfrac{x^2+y^2}{2R_1^2}\right)\right]
+	\end{equation}
+	En faisant les math
+	\begin{equation}
+	\begin{array}{ll}
+	\Delta_1(x,y) &= \Delta_{01} - \dfrac{x^2+y^2}{2R_1}\\
+	\Delta_2(x,y) &= \Delta_{02} - \dfrac{x^2+y^2}{2R_2}
+	\end{array}
+	\end{equation}
+	La fonction $\Delta(x,y)$ est donnée en faisant la somme des deux termes
+	\begin{equation}
+	\Delta(x,y) = \Delta_0-\dfrac{x^2+y^2}{2}\left(\frac{1}{R_1}+\frac{1}{R_2}\right)
+	\end{equation}
+	
+		\begin{wrapfigure}[9]{l}{6.4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch3/image10.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}	
+	Cette expression permet d'étudier la fonction de transfert d'une lentille mince. Une lentille 
+	propage des déphasages variables $\Delta \varphi(x,y)$. Afin de rester précis (la longueur d'onde 
+	de la lumière étant petite, il vaut mieux), on va étudier 	les déphasages dans un plan $z$ précis : 
+	le profil de phase $\Delta\varphi(x,y)$ sera donné pour un plan bien précis. On définit alors le plan 
+	d'entrée (tangeant à la première surface) et de sortie (tangent à la seconde). 
+	
+	\subsection{Lentilles "minces"}
+	La fonction de transfert relie la champ incident aux champs transmis dans ce second plan. Ces deux 
+	plans sont séparés de $\Delta_0 \ll R_1,R_2$. Nous allons faire l'approximation que ces deux plans 
+	sont tellement rapprochés que l'ont peu négliger la diffraction. Montrons le 
+	\begin{equation}
+	a(x,y;z) = \iint A(\rho,\sigma) e^{i\rho x}e^{i\sigma y} e^{i\sqrt{k^2-\rho^2-\sigma^2}z}\ d\rho d\sigma
+	\end{equation}
+	Dans le contexte de Fresnel (approximation paraxiale)
+	\begin{equation}
+	a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\frac{\rho^2}{2k}z
+	-i\frac{\sigma^2}{2k}z}\ d\rho d\sigma\ e^{ikz}
+	\end{equation}
+	Si on supprime les deux premières exponentielles de $z$ (le propagateur du spectre), on supprime 
+	la diffraction
+	\begin{equation}
+	a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y}\ d\rho d\sigma\ e^{ikz}
+	\end{equation}
+	Ceci est valable si $\max\rho$ est telle que $\max z = \Delta_0$
+	\begin{equation}
+	\frac{\rho^2}{2k}\Delta_0 \ll 1
+	\end{equation}
+	Admettons le pour le moment, on y reviendra. On a alors
+	\begin{equation}
+	a(x,y;z) = a(x,y;0)e^{ikz} = |a(x,y;0)|e^{i\varphi(x,y)}e^{ikz}
+	\label{eq:amod}
+	\end{equation}
+	On retrouve un champ qui pris en module sera inchangé (le champ en $z$ sera le même que en 0). Le 
+	propagateur à été réduit à son expression minimale : à une distance $z$ j'accumule une phase $kz$ quel 
+	que soit le point du plan transverse dans lequel on se trouve. Cela correspond à une translation des 
+	fronts d'onde comme illustré ci-dessous.
+	
+	\newpage
 
+	\begin{wrapfigure}[8]{l}{6.4cm}
+	\vspace{-3mm}
+	\includegraphics[scale=0.45]{ch3/image11.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}		
+	Regardons le lieu des points de phase constantes (de constante valant $2n\pi$)(def. front d'onde).
+	Pour des valeurs de $x$ et $y$ fixé $\varphi(x,y) = c^{te}$ et on peut considérer que 
+	l'équation ci-dessous, pour $x$ et $y$ donnés, donne les position en $z$ ou on trouve les 
+	fronts d'onde.
+	\begin{equation}
+	\varphi(x,y) + kz_m = 2m\pi
+	\end{equation}
 
+	\begin{wrapfigure}[8]{r}{3.4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch3/image12.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}				
+	L'écart entre deux front d'onde est le même partout et vaut $\Delta z = 2\pi/k$, la longueur d'onde et 
+	ce peut importe où on se situe. Ce n'est "normal" que si on supprime la diffraction. Il faut remarquer 
+	que le $\Delta z$ est pris parallèlement à l'axe $z$ alors que l'on considère la longueur d'onde 
+	perpendiculairement au front d'onde, les deux situations sont différentes. Dans la lentille on translate (rien 	    ne change entre 0 et $z$, pas de diffraction), alors que dans l'air le rayon de courbure devient de plus en plus petit (il y a en quelque sorte diffraction).\\
 
-
-
-
-
-
-
-
-
-
+	Supposons que la variation du champ transverse incident se fait à une longueur caractéristique $\Delta l$. 
+	On peut voir la lentille comme une fonction "fenêtre", limitant la taille du champ. C'est ce $\Delta l$ qui 
+	va donner la valeur de $\rho$ pour étudier l'approximation. Pour se faire, regardons $A(\rho)$ la 
+	transformée de Fourier de la fonction fenêtre, un sinc. La valeur maximal de $\rho$ vaut $\approx 2\pi/
+	\Delta l$. Dans notre approximation
+	\begin{equation}
+	\frac{\rho^2}{2k}\Delta_0 \ll 1\qquad \Leftrightarrow\qquad \dfrac{4\pi^2\Delta_0}{2k\Delta l^2}\ll 1
+	\end{equation}
+	avec $k=2\pi/\lambda$ :
+	\begin{equation}
+	\Delta_0 \ll \dfrac{\Delta l^2}{\lambda}
+	\end{equation}
+	Il s'agit de l'inégalité inverse de celle de Fraunhofer : il fallait avoir une taille beaucoup plus grande 
+	mais cette fois-ci comme la diffraction est négligée il faut être beaucoup plus petit.\\
+	
+	Pour exprimer la fonction de transfert, il faut exprimer le déphasage accumulé dans la lentille. Pour 
+	un chemin optique $\Delta z$ parallèle à l'axe optique on peut facilement exprimer le déphasage. En effet 
+	avec \autoref{eq:amod} 
+	\begin{equation}
+	\Delta\varphi = k\Delta z
+	\end{equation}
+	\begin{wrapfigure}[12]{l}{5.4cm}
+	%\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch3/image13.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}		
+	Dès lors, la phase accumulé dans la lentille vaudra simplement $\Delta \varphi(x,y) = k\Delta (x,y)$. 
+	Comme on travaille sur la phase, il faut la définir pour une valeur de $z$ donnée (passage du plan 
+	d'entrée au 	plan de sortie). Il faudra alors considérer la passage dans l'air, sans diffraction :
+	\begin{equation}
+	\Delta \varphi(x,y) = k\Delta (x,y) + k_0[\Delta_0-\Delta(x,y)]
+	\end{equation}
+	Il s'agit du déphasage introduit par la lentille en un point $(x,y)$ du plan transverse. Or, 
+	$\Delta(x,y)$ est connu : à partir du champ dans le plan d'entrée $a(x,y)$ on pourra connaître le 
+	champ $a'(x,y)$	dans le plan de sortie 
+	\begin{equation}
+	a'(x,y) = a(x,y)\underbrace{e^{i\Delta\varphi(x,y)}}_{T(x,y)}
+	\end{equation}
+	Le facteur de phase représente le déphasage accumulé du plan d'entrée au plan de sortie, y compris les 
+	passages dans l'air. Attention, si la fonction de transfert ne contient que ceci, cela signifie que 
+	que toute variation de l'amplitude du champ est négligée : l’absorption et les réflexion dans le 
+	diélectrique sont négligées. Ceci définit la fonction de transfert $T(x,y)$.\\
+	
+	On peut écrire, en distribuant : $\Delta\varphi(x,y) = k_0\Delta_0 + (k-k_0)\Delta(x,y)$. Comme 
+	$k=k_0n$, l'expression devient
+	\begin{equation}
+	\Delta\varphi(x,y) = k_0\left[\Delta_0+(n-1)\Delta(x,y)\right]
+	\end{equation}
+	En substituant l'expression de $\Delta(x,y)$ et après simplifications
+	\begin{equation}
+	\Delta \varphi(x,y) = k_0\left[n\Delta_0-(n-1)\dfrac{x^2+y^2}{2}\left(\dfrac{1}{R_1}+\dfrac{1}{R_2}\right)
+	\right]
+	\end{equation}
+	Introduisons un nouveau paramètre
+	\begin{equation}
+	\frac{1}{f} \equiv (n-1)\left(\dfrac{1}{R_1}+\dfrac{1}{R_2}\right)
+	\end{equation}
+	afin d'écrire
+	\begin{equation}
+	\Delta\varphi(x,y) = k_0\left[n\Delta_0 - \dfrac{x^2+y^2}{2f}\right]
+	\end{equation}
+	Notre fonction de transfert devient alors
+	\begin{equation}
+	T(x,y) = e^{ik_0 n\Delta_0}\ e^{-i\frac{k_0}{2f}(x^2+y^2)}
+	\end{equation}
+	Le premier terme, de phase constante, revient à changer l'origine : on n'en tiendra pas compte ici (pas 
+	d'interprétation physique si l'on n'étudie pas la dynamique de passage dans la lentille). On ne garde 
+	que le terme de phase quadratique, ce qui est normal vu notre approximation parabolique. 
+	\begin{equation}
+	T(x,y) =\DS e^{\DS -i\frac{k_0}{2f}(x^2+y^2)}
+	\end{equation}
+	On verra que $f$ n'est que la \textit{distance focale} de la lentille (qui ne contient que l'indice de 
+	réfraction et les rayons de courbures).
+	
 
 
 
