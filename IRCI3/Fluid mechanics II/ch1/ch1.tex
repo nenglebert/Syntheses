@@ -587,4 +587,88 @@ In \eqref{eq:1.55} $a$ is a constant that represents the stress present when the
 			
 \section{Special cases}
 	\subsection{General case}
-		The generale equations are the following
+		The generale equations are the following : 
+		\begin{itemize}
+			\item[•] Mass conservation equation 
+			\begin{equation}
+				\dot{\rho} + \rho \nabla \vec{u} = 0 
+			\end{equation}
+			
+			\item[•] Momentum equation
+			\begin{equation}
+				\rho \dot{\vec{u}} = - \nabla p + \nabla \bar{\bar{\tau}} + \rho \vec{F}
+			\end{equation}
+			
+			\item[•] Energy equation
+			\begin{equation}
+				\rho \dot{e} = - p \nabla \vec{u} + \underbrace{\bar{\bar{u}} .. \nabla \otimes \vec{u}}_{\epsilon _V} - \nabla \vec{q}
+			\end{equation}
+			where $\nabla \otimes \vec{u}$ can be replace by the symetric part, rate of strain tensor $\bar{\bar{S}}$ and $\epsilon _V$ is the viscous dissipation. \\
+			
+			\item[•] Constituve relation
+			\begin{equation}
+			\begin{aligned}
+				\tau _{ij} &= 2\mu \left( S _{ij} - \frac{1}{3}\delta_{ij}\nabla \vec{u} \right) + \mu _V S_{ij}\nabla \vec{u}\\
+				&= \mu \left( \frac{\D u_i}{\D x_j} + \frac{\D u_j}{\D x_i} - \frac{2}{3}\delta _{ij}\nabla \vec{u} \right) + \mu _V S_{ij}\nabla \vec{u}
+			\end{aligned}
+			\label{eq:1.83}
+			\end{equation}
+			
+			\item[•] Conductive heat flux 
+			\begin{equation}
+				\vec{q} = -\kappa \nabla T
+			\end{equation}
+		\end{itemize}
+		
+	\subsection{Steady flow} 
+		This is caracterized by the fact that $\frac{\D }{\D t} = 0$ and implies for example that 
+		\begin{equation}
+			\dot{\rho} = \frac{\D \rho}{\D t} + \vec{u} \nabla \rho = \vec{u} \nabla \rho
+		\end{equation}
+		and for the others. 
+		
+	\subsection{Inviscid flows}
+		They are defined as flows in which vicous stresses and conduction heat flux can be neglected.  We are talking about flows and not fluids because there is no fluid with $\mu = 0$ or $\kappa = 0$. This happens for superfluids but we don't care. When we look at the fluid properties tables, in SI units, water and air have very small $\mu$ but we can't say that there are negligible because it depends on the system of refference used. If something is negligible  it is with respect to something else. Let's start with the viscous stresses. Momentum equation can be written as 
+		\begin{equation}
+			\rho \dot{\vec{u}} = \frac{\D \rho}{\D t} + \nabla \rho \vec{u} \otimes \vec{u} = -\nabla p + \nabla \bar{\bar{\tau}} + \rho \bar{F}
+		\end{equation}
+		where the viscous stress tensor is a tensor as the momentum flux tensor. They correspond to the same physical phenomenon but at different scales, the viscous stress tensor is due to the molecular agitation whereas the momentum flux tensor is for the macroscopic scale, the average scale. So it makes sense to compare the order of magnitude of the two ones. \\
+		
+		\begin{wrapfigure}[6]{l}{4cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.38]{ch1/7}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		Let's consider a fluid flows of far field velocity $\vec{U}$ around a solid body of characteristic lenght $L$, if we consider the momentum flux tensor, we know that the velocity around the body will vary between 0 and $U$ so the order of magnitude will be $\theta (\rho U^2)$. What about $\tau$? We see that in \eqref{eq:1.83} appears the velocity gradient, derivative. What is the order of magnitude of the derivative of a function?  
+		
+		\begin{wrapfigure}[8]{l}{3.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.5]{ch1/8}
+		\captionof{figure}{}
+		\label{fig:1.8}
+		\end{wrapfigure}
+		Let's consider a function $f(x)$ represented on \autoref{fig:1.8}. If the function is smooth, so if the function doesn't vary much in the interval, its derivative keeps a constant order of magnitude in the integral. We see it in the figure, the slope varies between $a$ and $b$, can be twice the slope at the center but keeps the same order of magnitude. So for a smooth function, the order of magnitude of $f'$ remains the same over the interval $f' = \theta \left(\frac{\Delta f}{\Delta x}\right)$. Let's use this to have an approximation for the velocity gradient tensor 
+		\begin{equation}
+			\nabla \otimes \vec{u} = \theta \left( \frac{U}{L} \right) \qquad \Rightarrow \bar{\bar{\tau}} = \theta \left( \mu \frac{U}{L} \right)
+		\end{equation}
+		The relative order of magnitude of viscous stresses with respect to momentum flow is 
+		\begin{equation}
+			\frac{\mu \frac{\cancel{U}}{L}}{\rho U^{\cancel{2}}} = \frac{\mu}{\rho UL} = \frac{1}{Re_L}
+		\end{equation}
+		We conclude that viscous stresses can be neglected in the case of high Reynolds number. \\
+		
+		\begin{wrapfigure}[7]{r}{3.5cm}
+		\vspace{-8mm}
+		\includegraphics[scale=0.53]{ch1/9}
+		\captionof{figure}{}
+		\label{fig:1.9}
+		\end{wrapfigure}
+		Now we have to verify the assumption that velocity is a smooth function of the coordinates. Examples of not smooth functions are represented on \autoref{fig:1.9} where the green curve is smooth close to the limits but not smooth in a small interval and the yellow one is a periodic function with the characteristic wave length. In these cases, $\Delta x$ is not the appropriate length scale to determine the order of magnitude of the derivative. \\\\\\
+
+		\begin{wrapfigure}[6]{l}{4cm}
+		\vspace{-15mm}
+		\includegraphics[scale=0.35]{ch1/10}
+		\captionof{figure}{}
+		\label{fig:1.10}
+		\end{wrapfigure}
+		Now what about the velocity field? Let's assume that velocity is smooth and the fluid inviscid, the boundary conditions to respect are the slip conditions. But we know that $\mu$ is not strictly 0, so the velocity must be 0 at the wall and therefore, there exists an area of rapidly changing velocity close to the wall. 
