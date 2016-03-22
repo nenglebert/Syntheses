@@ -1,65 +1,174 @@
-\chapter{z}
-qques rappels
+\chapter{Représentations position - impulsion}
+Commençons par quelques rappels
 \begin{equation}
-1
+\ket{\psi} = \int d\vec r\ \psi(\vec{r})\ket{\vec{r}}
 \end{equation}
-Pour motiver physiquement l'opérateur impulsion, repartons de la notion d'onde de de broglie que 
-'lon peut associer à une particule libre ayant une certaine vitesse. 
-\subsection{Onde de De Broglie}
-On peut voir une particule comme une onde, De broglie a réussi à donner les "paramètres" de cette 
-onde. Voyons ça comme une onde, par analogie à l'électromagnétisme
+où $\psi(\vec{r}) = \bra{\vec{r}}\ket{\psi}$.
 \begin{equation}
-2
+\bra{\psi}\ket{\psi} = \iint d\vec r\ d\vec r'\psi^*(\vec{r'})\psi(\vec{r})\underbrace{
+\bra{\vec{r'}}\ket{\vec{r}}}_{\delta(\vec{r},\vec{r'})}\qquad\qquad \int d\vec r |\psi(\vec{r}|^2=1
 \end{equation}
-De Broglie posse les valeurs qu'il faut associer à k et omega pour une particule ayant une certaine 
-vitesse et energie. Le point de départ c'est
+Avec la décomposition spectrale $\hat{\vec{r}} = \int d\vec{r}\ \vec{r}\ket{\vec{r}}\bra{\vec{r}}$, 
+on peut écrire
 \begin{equation}
-3
+\mathbb{P}(\vec{r}) = \underbrace{\bra{\psi}\ket{\vec{r}}}_{\psi^*(\vec{r})}\underbrace{
+\bra{\vec{r}}\ket{\psi}}_{\psi(\vec{r})} = |\psi(\vec{r})|^2,\qquad\qquad\langle\hat{\vec{r}}\rangle = 
+\bra{\psi}\hat{\vec{r}}\ket{\psi} = \int d\vec{r}\ \vec{r}\underbrace{\bra{\psi}\ket{\vec{r}}
+\bra{\vec{r}}\ket{\psi}}_{|\psi(\vec{r})|^2}
 \end{equation}
-Pour la fréquence, analogie à l'optique
-\begin{equation}
-4
-\end{equation}
-Commeécrit par analogie avec l'EM, je peux écrire une équation d'onde que cette onde va vérifier. 
-Regardons par exemple si l'on effectue
-\begin{equation}
-5
-\end{equation}
-ED de type eq d'onde qui est vérifiée par l'onde plane construite ci-dessous. Cette ED correspond
-à une particule libre. Elle estlinéaire : toute combili de solution est solution. Au lieu de prendre
-une onde de De Broglie monocinétique correspondant à une onde monocrhomatique on peut considérer
-un paquet d'onde. Par ex
-\begin{equation}
-6
-\end{equation}
-Un paquet d'onde est une superposition continue de particules avec toute une gamme de vitesse 
-possible. Il y correspondra une onde de de broglie nommée \textit{paquet d'onde}.
 
-\subsection{Paquet d'onde}
-Le psi 0 étant le préfacteur, on obtient
-\begin{equation}
-7
-\end{equation}
-On voudrait faire la meme chose mas en intégrant la phase dans le ket
-\begin{equation}
-8
-\end{equation}
-Prenons par exemple le théorème de Parseval : le produit scalaire de deux fonction vaut le 
-produit scalaire des TF des deux fonctions, onva voir ce que ça va donner ici
-\begin{equation}
-9
-\end{equation}
-La normalisation est tjs valable
-\begin{equation}
-10 (prop i) )
-\end{equation}
-On peut voir Robertson comme une conséquence de ces TF : la TF d'une fct étroite sera large, il y 
-a quelque chose qui peut s'apparenter à une relation d'incertitude
-\begin{equation}
-11 (prop ii) )
-\end{equation}
-Si on a une paire de fct (ici psi et phi) qui sont connectée par une TF, dans la th. des TF le 
-produit des cste peut etre majoré par une cste, ici on démontre rien mais c'est fort similaire.\\
+\section{Opérateur impulsion}
+Pour motiver physiquement l'opérateur impulsion, repartons de la notion d'onde de de Broglie que 
+l'on peut associer à une particule libre ayant une certaine vitesse. 
+\subsection{Onde de De Broglie, paquets d'onde}
+		\subsubsection{Onde de De Broglie}
+		On peut voir une particule comme une onde, de Broglie a réussi à donner les "paramètres" de 
+		cette onde. Voyons ça comme une onde, par analogie à l'électromagnétisme
+		\begin{equation}
+		\psi(\vec{r},t) = \psi_0e^{i(\vec{k}\vec{r}-\omega t)}
+		\end{equation}
+		De Broglie pose les valeurs qu'il faut associer à $\vec k$ et $\omega$ pour une particule ayant 
+		une certaine vitesse et énergie. Le point de départ est
+		\begin{equation}
+		\lambda = \dfrac{h}{p},\qquad k=\dfrac{2\pi}{\lambda},\qquad \vec k=\dfrac{\vec{p}}{\hbar}
+		\end{equation}
+		Pour la fréquence, par analogie à l'optique
+		\begin{equation}
+		\nu = \dfrac{E}{h},\qquad \omega = 2\pi\nu = \dfrac{E}{\hbar}
+		\end{equation}
+		En substituant ces expressions dans l'expression de l'onde plane
+		\begin{equation}
+		\psi(\vec{r},t) = \psi_0\ e^{\frac{i}{\hbar}\left(\vec{p}\vec{r}-Et\right)}\qquad \text{ où }\ \psi_0 =
+		\dfrac{1}{(2\pi\hbar)^{3/2}}
+		\end{equation}
+		Cette solution étant écrite par analogie avec l'EM, il est possible d'écrire une équation 
+		d'onde que cette onde va vérifier. Regardons par exemple si l'on effectue
+		\begin{equation}
+		\begin{array}{lll}
+		\bullet i\hbar\frac{\partial}{\partial t}\psi &= i\hbar \psi_0\frac{E}{i\hbar}e^{\dots} &=
+		E\psi(\vec{r},t)\\
+		\bullet \Delta \psi(\vec{r},t) &= \psi_0\dfrac{p_x^2+p_y^2+p_z^2}{(-i\hbar)^2}e^{\dots} &= -
+		\dfrac{p^2}{\hbar^2}\psi(\vec{r},t)
+		\end{array}
+		\end{equation}
+		En en tire
+		\begin{equation}
+		-\dfrac{\hbar^2}{2m}\Delta \psi(\vec{r},t) = \dfrac{p^2}{2m}\psi(\vec{r},t) = E\psi(\vec{r},t)
+		\end{equation}
+		On retrouve le classique
+		\begin{equation}
+		\underline{i\hbar\dfrac{\partial}{\partial t}\psi(\vec{r},t)= -\dfrac{\hbar}{2m}\Delta\psi(\vec{r},t)}
+		\end{equation}
+		Il s'agit d'une ED de type d'onde qui est bien vérifiée par l'onde plane construite ci-dessus. 
+		Cette ED correspond à une particule libre. Elle est linéaire : toute combili de solution est 
+		solution. Au lieu de prendre une onde de de Broglie monocinétique correspondant à une onde 
+		monochromatique, on peut considérer un paquet d'onde. Par exemple
+		\begin{equation}
+		\left.\begin{array}{ll}
+		p_1 \rightarrow \psi_1\\
+		p_2 \rightarrow \psi_2
+		\end{array}\right\}\longrightarrow \alpha\psi_1+\beta\psi_2
+		\end{equation}
+		Un paquet d'onde est une superposition continue de particules avec toute une gamme de vitesse 
+		possible. Il y correspondra une onde de de Broglie nommée \textit{paquet d'onde}.
+
+		\subsubsection{Paquet d'onde}
+		En substituant le préfacteur $\psi_0$, on obtient
+		\begin{equation}
+		\psi(\vec{r},t) = \dfrac{1}{(2\pi\hbar)^{3/2}}\int d\vec{p}\ \phi(\vec{p})e^{\frac{i}{\hbar}(\vec{p}
+		\vec{r}-Et)}
+		\end{equation}
+		La même expression, en notation de Dirac :
+		\begin{equation}
+		\ket{\psi} = \int d\vec{p}\ \phi(\vec{p})\ket{\vec{p}}
+		\end{equation}
+		Il s'agit d'un mélange (avec un certain poids) de kets $\vec{p}$. En refermant
+		\begin{equation}
+		\psi(\vec{r},t) = \bra{\vec{r}}\ket{\psi} = \int d\vec{p}\ \phi(\vec{p})\underbrace{
+		\bra{\vec{r}}\ket{\vec{p}}}_{(*)}
+		\end{equation}
+		où $\DS (*) = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}(\vec{p}\vec{r}-Et)}$. On voudrait 
+		faire la même chose mais en intégrant la phase dans le ket
+		\begin{equation}
+		\psi(\vec{r},t) = \frac{1}{(2\pi\hbar)^{3/2}}\int d\vec{p} \underbrace{\phi(\vec{p})e^{-\frac{i}
+		{\hbar}Et}}_{\phi(\vec{p},t)}e^{\frac{i}{\hbar}\vec{p}.\vec{r}}
+		\end{equation}
+		\textbf{Attention} : ce n'est plus le même $\ket{\vec{p}}$ qu'à la précédente expression, la 
+		définition à ici changée afin de pouvoir écrire
+		\begin{equation}
+		\ket{\psi} = \int d\vec{p}\ \phi(\vec{p},t)\ket{p}
+		\end{equation}
+		En refermant
+		\begin{equation}
+		\psi(\vec{r},t) = \bra{\vec{r}}\ket{\psi} = \int d\vec{p}\ \phi(\vec{p},t)
+		\underbrace{\bra{\vec{r}}\ket{\vec{p}}}_{(**)}
+		\end{equation}
+		où $\DS (**)= \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}\vec{r}}$ est le 
+		\textbf{noyau de la transformée de Fourier}.\\
+		
+		Résumons
+		\begin{equation}
+		\ket{\psi}\left\{\begin{array}{ll}
+		= \int d\vec{r}\ \psi(\vec{r},t)\ket{\vec{r}} & \rightarrow\text{Base pos.}\\
+		= \int d\vec{p}\ \phi(\vec{p},t)\ket{\vec{p}} & \rightarrow\text{Base imp.}		
+		\end{array}\right.
+		\end{equation}
+		avec
+		\begin{equation}
+		\underline{\bra{\vec{r}}\ket{\vec{p}} = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}\vec{r}}}
+		\end{equation}
+		Il s'agit de la \textit{formule de changement de base}. Elle est particulièrement intéressante :
+		\begin{equation}
+		\begin{array}{ll}
+		\psi(\vec{r},t) = \bra{\vec{r}}\ket{\psi} &= \int d\vec{p}\ \phi(\vec{p},t)\ \bra{\vec{r}}\ket{\vec{p}}\\
+		&= \frac{1}{(2\pi\hbar)^{3/2}}\int d\vec{p}\ \phi(\vec{p},t)e^{\frac{i}{\hbar}\vec{p}\vec{r}}\\
+		\phi(\vec{p},t) = \bra{\vec{p}}\ket{\psi} &= \int d\vec{r}\ \psi(\vec{r},t)\ \bra{\vec{p}}\ket{\vec{r}}\\
+		&= \frac{1}{(2\pi\hbar)^{3/2}}\int d\vec{r}\ \psi(\vec{r},t)e^{-\frac{i}{\hbar}\vec{p}\vec{r}}		
+		\end{array}
+		\end{equation}
+		On peut écrire
+		\begin{equation}
+		\underline{\phi(\vec p) = TF[\psi(\vec{r})]},\qquad\qquad \underline{\psi(\vec r) = TF^{-1}
+		[\phi(\vec{p})]}
+		\end{equation}
+		
+		
+		Il en découle une série de propriétés
+		\begin{itemize}
+		\item[i.] Théorème de Parseval : le produit scalaire de deux fonctions vaut le produit scalaire 
+		des TF de ces deux fonctions. 
+		\begin{equation}
+		\int f_1(\vec{r})f_2^*(\vec{r}) d\vec{r} = \int F_1(\vec{p})F_2(\vec{p})d\vec{p}
+		\end{equation}
+		Dans notre cas :
+		\begin{equation}
+		\bra{\psi_1}\ket{\psi_2} \left\{\begin{array}{ll}
+		= \int d\vec{r}\ \underbrace{\bra{\psi_1}\ket{\vec{r}}}_{\psi_1^*(\vec{r})}
+		\underbrace{\bra{\vec{r}}\ket{\psi_2}}_{\psi_2(\vec{r})}\\
+		= \int d\vec{p}\ \underbrace{\bra{\psi_1}\ket{\vec{p}}}_{\phi_1^*(\vec{p})}
+		\underbrace{\bra{\vec{p}}\ket{\psi_2}}_{\phi_2(\vec{p})}		
+		\end{array}\right.
+		\end{equation}
+		La normalisation est toujours valable
+		\begin{equation}
+		1 = \bra{\psi}\ket{\psi} = \int d\vec{r}\ |\psi(\vec{r})|^2 = \int d\vec{p}\ |\phi(\vec{p})|^2
+		\end{equation}
+		
+		\item[ii.] On peut voir Robertson comme une conséquence de ces TF : la TF d'une fonction étroite 
+		sera large, il y a quelque chose qui peut s'apparenter à une relation d'incertitude $x-p$
+		\begin{equation}
+		11 (prop ii) )
+		\end{equation}
+		Si on a une paire de fct (ici psi et phi) qui sont connectée par une TF, dans la th. des TF le 
+		produit des cste peut etre majoré par une cste, ici on démontre rien mais c'est fort similaire.\\
+
+		\end{itemize}
+		
+		
+		
+		
+
+
 
 La dérivée d'une fct, au niveau de sa tf, c'est juste multiplié par i* variable conj. Ceci va 
 nous permettrede définir proporement l'opérateur impulsion en base position.
