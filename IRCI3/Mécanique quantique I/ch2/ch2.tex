@@ -748,8 +748,138 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	\text{Voir feuille TT : dernières notes cours 4}
 	\end{equation}
  
+
  
- 
+Regardons maintenant comment évolue dans le temps l'observable $\hat{A}$, dans l'image 
+d'Heisenberg
+\begin{equation}
+\begin{array}{ll}
+\dfrac{d}{dt}\hat{A}_H(t) &= \DS \frac{d}{dt}\left(\hat{U}^\dagger \hat A \hat U\right)\\
+&= \DS \underbrace{\left(\frac{1}{i\hbar}\hat{H}\hat{U}\right)^\dagger}_{\frac{-1}{i\hbar}\hat{U}^\dagger 
+\hat{H}} \hat{A}\hat{U}+\hat{U}^\dagger 
+\frac{\partial \hat{A}}{\partial t}\hat{U}+\hat{U}^\dagger\hat{A}\left(\frac{1}{i\hbar}\hat{H}
+\hat{U}\right)\\
+&=\DS \frac{1}{i\hbar}\underbrace{\hat{U}^\dagger[\hat{A},\hat{H}]\hat{U}^\dagger}_{\text{Commut. 
+Heis.}} \hat{U}^\dagger \dfrac{\partial\hat{A}}{\partial t}\hat{U}
+\end{array}
+\end{equation}
+où $i\hbar\frac{\partial \hat{U}}{\partial t} = \hat{H}\hat{U}$ est l'ED régissant l'opérateur 
+évolution.\\
+On trouve alors
+\begin{equation}
+\underline{\dfrac{d}{dt}\hat{A}_H(t) = \dfrac{1}{i\hbar}[\hat{A},\hat{H}]_H + \left(\dfrac{\partial\hat{A}}{\partial 
+t}\hat{U}\right)_H}
+\end{equation}
+Ceci rappelle le théorème d'Ehrenfest, on peut alors parler de constante de mouvement. Si $\hat{A}$ 
+ne dépend pas explicitement du temps (image de Schrödinger), le terme dérivatif s'annule pour obtenir
+\begin{equation}
+i\hbar \dfrac{\partial \hat{A}_H}{\partial t} = [\hat{A},\hat{H}]_H
+\end{equation}
+Si $\hat{A}$ commute avec $\hat{H}$, on retrouve bien une constante du mouvement : $\DS \frac{d\hat{A}_H}{
+dt}=0$. On peut montrer que si il y a commutation dans l'image de Schrödinger, il y aura également 
+commutation dans l'image d'Heisenberg :
+\begin{equation}
+\begin{array}{ll}
+[\hat{A}_H,\hat{B}] = [\hat{U}^\dagger\hat{A}\hat{U},\hat{U}^\dagger B\hat{U}] &= \hat{U}^\dagger\hat{A}
+\underbrace{\hat{U}\hat{U}^\dagger}_{\mathbb{1}}\hat{B}\hat{U}-\hat{U}^\dagger\hat{B}\underbrace{\hat{U}
+\hat{U}^\dagger}_{\mathbb{1}}\hat{A}\hat{U}\\
+&= \hat{U}^\dagger[\hat{A},\hat{B}]\hat{U} = [\hat{A},\hat{B}]_H
+\end{array}
+\end{equation}
+En théorie  des collisions il existe même une troisième image (l'image d'interaction) 
+intéressante en pratique. En prenant le point de vue d'Heisenberg on peut facilement 
+retrouver les équations de mouvements de la mécanique classique. C'est un des intérêts de 
+jongler avec les points de vue. Considérons $\hat{H}=\frac{p^2}{2m}+V(\vec{r})$ :
+\begin{equation}
+\begin{array}{ll}
+\dfrac{d\vec{r}_H}{dt} &=\DS \frac{1}{i\hbar}[\vec{r},\hat{H}]_H\\
+&= \dfrac{1}{2m i\hbar}[\hat{r},p^2]_H
+\end{array}
+\end{equation}
+Notre commutateur est ici un vecteur. Développons le pour un composante
+\begin{equation}
+[x,p^2] = þx, p_x^2+p_y^2+p_z^2] = p_x[x,p_x]+[x,p_x]p_x = 2i\hbar p_x
+\end{equation}
+où nous avons utilisé le fait que deux opérateurs agissant sur deux espaces de Hilbert différents 
+commutent ($[x,p_y]=0$). En 3D, on obtient alors
+\begin{equation}
+\dfrac{d\vec{r}_H}{dt} = 2i\hbar \vec{p}_H = \dfrac{\vec{p}_H}{m}
+\end{equation}
+On peut voir une analogie avec le cas classique
+\begin{equation}
+\vec{p}_H = m\dfrac{d}{dt}\vec{r}_H 
+\end{equation}
+Bien sûr ce n'est qu'une analogie, nous travaillons ici avec des opérateurs. Néanmoins, la forme est 
+assez similaire. On peut faire de même pour l'opérateur impulsion. Écrivons celui-ci dans l'image 
+d'Heisenberg
+\begin{equation}
+\dfrac{d}{dt}\vec{p}_H = \dfrac{1}{i\hbar}[\vec{p},\hat{H}]_H = \frac{1}{i\hbar}[\vec{p},V(\vec{r})]_H =
+-[\vec{\nabla}_r,V(\vec{r})]_H
+\end{equation}
+Cette fois-ci, c'est le terme énergie cinétique qui tombe dans l'expression du commutateur.  Considérons 
+la première composante
+\begin{equation}
+\begin{array}{ll}
+\left[\frac{\partial}{\partial x}, V(r)\right]f(r) &=\DS \dfrac{\partial}{\partial x}V(r)f(r) - V(r)\frac{
+\partial}{\partial x}f(r)\\
+&=\DS \frac{\partial V(t)}{\partial x}f(r) + V(r)\frac{\partial f(r)}{\partial x}-V(r)\frac{\partial f(r)}{\partial x}\qquad \forall f
+\end{array}
+\end{equation}
+Dès lors
+\begin{equation}
+\left[\frac{\partial}{\partial x}, V(r)\right] = \dfrac{\partial V(r)}{\partial x} \qquad \Longrightarrow\qquad
+[\vec{\nabla}_r,V(\vec{r})] = \vec{\nabla}_r.V(\vec{r}) \equiv \text{grad } V(\vec{r})
+\end{equation}
+On trouve alors 
+\begin{equation}
+\dfrac{d}{dt}\vec{p}_H = -\vec{\nabla}_rV(\vec{r}_H)
+\end{equation}
+Par analogie, comme précédemment : $\frac{d}{dt}\vec{p_H} =m\frac{d^2}{dt^2}\vec{r_H} -\text{grad }V(\vec{r_h})$.
+
+
+\subsection{Relation d'incertitude temps-Énergie}
+Il s'agit d'une autre relation d'incertitude, un peu spéciale car le le temps n'est pas une observable. Or, 
+la relation d'incertitude reliait les variances des écarts types de deux observables ce qui n'est pas le cas ici : le principe de Robertson ne peut s'y appliquer. On peut néanmoins arriver à une forme proche. Nous avions prouvé que
+\begin{equation}
+\Delta A_\psi \Delta B_\psi \geq \frac{1}{2}\left|\langle [A,B]\rangle_\psi\right|
+\end{equation}
+Considérons un système dans un certain état avec un hamiltonien $\hat H$ qui ne dépend pas du 
+temps, de même pour $\hat A$ qui ne commute pas avec $\hat{H}$. 
+\begin{equation}
+\begin{array}{lll}
+\bullet\ \text{Ehrenfest} & \frac{d}{dt}\langle \hat{A}\rangle_\psi &= \frac{1}{i\hbar}|\langle\hat{A},\hat{H}
+\rangle|\\
+\bullet\ \text{Robertson} & \Delta A_\psi\Delta\hat{H}_\psi &\geq \frac{1}{2}|\langle [\hat{A},\hat{H} \rangle|
+\end{array}
+\end{equation}
+En mesurant $\Delta\hat{H}_\psi$, on n'obtiendra pas toujours la même énergie : nommons cette grandeur $\Delta E$, 
+la dispersion de l'énergie dans l'état $\psi$. En combinant ces deux relations
+\begin{equation}
+\Delta\hat{H}.\Delta E \geq \dfrac{\hbar}{2}\left|\dfrac{d}{dt}\langle A\rangle \right|
+\end{equation}
+Pour le temps il est utile de définir un temps caractéristique en rapport avec l'observable 
+$\hat{A}$
+\begin{equation}
+\tau_A \equiv \dfrac{\Delta\hat{H}}{\left|\dfrac{d}{dt}\langle A\rangle \right|}
+\end{equation}
+Le dénominateur donne la vitesse de l'évolution de la valeur moyenne. Le numérateur est l'écart
+type, soit la dispersion de l'observable $\hat A$. La division donne le temps nécessaire pour que la 
+valeur moyenne de $\hat A$ bouge d'un écart type.\textit{Temps pour que $<\hat A>$ évolue de un écart-type}. 
+On peut voir ceci comme une normalisation. En substituant
+\begin{equation}
+\tau.\Delta E \geq \dfrac{\hbar}{2}
+\end{equation}
+On se rend compte que l'observable $\hat A$ ne joue plus aucun rôle, on peut noter $\tau$ à 
+la place de $\tau_A$, où même
+\begin{equation}
+\Delta t.\Delta E \geq\dfrac{\hbar}{2}
+\end{equation}
+Le temps caractéristique du système regardé sur n'importe quel observable ne peut pas être 
+infiniment petit. Pour un système, plus l'énergie est connue (écart type $\Delta E$) plus le 
+système va évoluer de façon lente. Le cas limite st l'état stationnaire : par definition, il 
+s'agit d'un état propre de $\hat H$, d'où $\Delta E=0$. Dans ce cas la, le temps caractéristique 
+de l'évolution est infini, $\tau=\infty$. On peut directement faire un lien entre le temps de 
+désintégration et l'énergie libérée.
  
  
  
