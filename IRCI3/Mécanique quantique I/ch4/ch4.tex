@@ -1,0 +1,351 @@
+\chapter{Algèbre des moments cinétiques}
+\section{Moment cinétique orbital}
+	\subsection{Règle de correspondance, relation de commutation}
+	Classiquement, un moment cinétique est défini par la relation
+	\begin{equation}
+	\vec{L_d} = \vec{r_d}\times\vec{p_d}
+	\end{equation}
+	On pourrait être tenter d'appliquer le principe de correspondance mais c'est faux car 
+	$\hat{x}\hat{p}$ n'est pas hermitien
+	\begin{equation}
+	(\hat{x}\hat{p})^\dagger = \hat{p}^\dagger\hat{x}^\dagger = \hat{p}\hat{x}\neq\hat{x}\hat{p}
+	\end{equation}		
+	Il est cependant possible de le rendre hermitien	en le symétrisant : $\frac{1}{2}(\hat{x}\hat{p}
+	+\hat{p}\hat{x})$. L'opérateur "quantique" est donné par la forme symétrisée 
+	\begin{equation}
+	\vec{L} = \frac{1}{2}\left(\hat{\vec{r}}\times\hat{\vec{p}}-\underbrace{\hat{\vec{p}}\times
+	\hat{\vec{r}}}_{-\hat{\vec{r}}\times\hat{\vec{p}}}\right) = \hat{\vec{r}}\times\hat{\vec{p}}
+	\end{equation}
+	où le signe négatif compense le changement de signe du produit vectoriel. Calculons ce moment 
+	cinétique\footnote{\danger\ Les opérateurs ne commutent pas forcément, ne pas être "trop rapide" !}
+	\begin{equation}
+	\vec{L}=\vec{r}\times\vec{p} = \left|\begin{array}{ccc}
+	\vec{1_x} & \vec{1_y} & \vec{1_z}\\
+	\hat{x} & \hat{y} & \hat{z}\\
+	\hat{p_x} & \hat{p_y} & \hat{p_z}
+	\end{array}\right|\qquad\Longrightarrow\qquad\left\{\begin{array}{ll}
+	L_x &= \hat{y}\hat{p_z} - \hat{z}\hat{p_y}\\
+	L_y &= \hat{z}\hat{p_x}-\hat{x}\hat{p_z}\\
+	L_z &= \hat{x}\hat{p_y}-\hat{y}\hat{p_x}
+	\end{array}\right.
+	\end{equation}
+	Imaginons que l'on ai défini l'opérateur $\hat{L'}=\hat{p}\times\hat{r}$. Calculons une de 
+	ses composante :
+	\begin{equation}
+	\hat{L_z'} = \hat{p_x}\hat{y}-\hat{p_y}\hat{x} = \hat{y}\hat{p_x}-\hat{x}\hat{p_y}=-\hat{L_z}
+	\end{equation}
+	L'inversion de $\hat{r}$ et $\hat{p}$ donne un signe négatif comme différence (pfpfp). On a bien 
+	défini un \textbf{observable} $\hat{\vec{r}}\times\hat{\vec{p}}$. Vérifions que celui-ci est bien
+	hermitien
+	\begin{equation}
+	\hat{L_z}^\dagger = (\hat{x}\hat{p_y}-\hat{y}\hat{p_x})^\dagger = \hat{p_y}^\dagger\hat{x}^\dagger
+	-\hat{p_x}^\dagger\hat{y}^\dagger=\hat{p_y}\hat{x}-\hat{p_x}\hat{y} = \hat{x}\hat{p_y}-\hat{y}
+	\hat{p_x} = L_z
+	\end{equation}
+	Il est intéressant de réaliser au moins une fois le commutateur entre deux composantes
+	\begin{equation}
+	\begin{array}{ll}
+	[L_x,L_y] &= [yp_z-zp_y, zp_x-xp_z]\\
+	&= [yp_z,zp_x]-[yp_z,xp_z]-[zp_y-zp_x]+[zp_y,xp_z]\\
+	&=y[p_z,zp_x]+[y,zp_x]p_z+z[p_y,xp_z]+[z,xp_z]p_y\\
+	&= yz[p_z,p_x]+y[p_z,z]+x[z,p_z]+[z,x]p_zp_y\\
+	&= i\hbar(xp_y-yp_x) = i\hbar L_z
+	\end{array}
+	\end{equation}
+	Les commutateurs 2 et 3 de la seconde ligne sont nuls ($p_z$ commute avec lui même et $y$ 
+	commute avec $x$). De même pour la troisième ligne. Quatrième ligne, le premier et le dernier 
+	commutateur sont nuls (deux éléments de deux espaces distincts commutent). Pour la dernière 
+	ligne, on a utilisé $[p_z,z] = -i\hbar$ et $[z,p_z]=i\hbar$.\\
+	
+	En résumé
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\left[L_x,L_y\right] &= i\hbar L_z\\
+	\left[L_y,L_z\right] &= i\hbar L_x\\
+	\left[L_z,L_x\right] &= i\hbar L_y		
+	\end{array}\right.\qquad\Longrightarrow\qquad \hat{\vec{L}}\times\hat{\vec{L}} = i\hbar
+	\hat{\vec{L}}
+	\end{equation}
+	A droite, une notation condensée qui donnerait zéro dans un cas classique (mais nous sommes 
+	en quantique héhé). On peut vérifier que cela donne bien le résultat attendu
+	\begin{equation}
+	\left|\begin{array}{ccc}
+	\vec{1_x} & \vec{1_y} & \vec{1_z}\\
+	L_x & L_y & L_z\\
+	L_x & L_y & L_z	
+	\end{array}\right|\qquad \longrightarrow \qquad(\hat{\vec{L}}\times\hat{\vec{L}})_z = L_xL_y-L_yL_x
+	 = i\hbar L_z
+	\end{equation}
+	Pour la composition, on s'intéresse à l'opérateur suivant
+	\begin{equation}
+	\hat{L}^2 \equiv \hat{L_x^2}+\hat{L_y^2}+\hat{L_z^2}
+	\end{equation}
+	Calculons son commutateur avec ses différentes composantes\footnote{Je l'admets, c'est un peu 
+	moche mais passons.}
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\begin{array}{ll}
+	\left[L_x,L_x^2+L_y^2+L_z^2\right] &= \left[L_xL_y^2, L_xL_z^2\right]\\
+	&= L_y\overbrace{\left[L_x,L_y\right]}^{i\hbar L_z}+\left[L_x,L_y\right]L_y + L_z\overbrace{\left[L_x,L_z\right]}^{-i\hbar L_y}
+	+\left[L_x,L_z\right]L_z\\
+	&= 0
+	\end{array}\\
+	\left[L_y,L^2\right] &= 0\\
+	\left[L_z,L^2\right] &= 0
+	\end{array}\right.
+	\end{equation}
+	Ceci implique que
+	\begin{equation}
+	[\hat{\vec{L}},L^2] = 0
+	\end{equation}
+	On peut voir que $\left\{\hat{L_z},\hat{L^2}\right\}$ va commuter et former un \textit{ECOC} 
+	: il existe une \textbf{base propre commune} formée de l'ensemble des états
+	\begin{equation}
+	\left\{\ket{l,m}\right\}
+	\end{equation}
+	où $l$ est le nombre quantique orbital, associé à la distribution des valeurs propres du 
+	spectre de $L_z$ et $m$ le nombre quantique magnétique associé à la valeur propre de $L_z$. 
+
+
+\section{Moment cinétique total}
+L'idée est de regarder plus loin que l'orbital. Imaginons que l'on ai $N$ particules : 
+chacune a une position $\hat{r_i}$ et impulsion $\hat{p_i}$. On peut créer un moment total
+\begin{equation}
+\vec{L}^{(tot)} = \sum_{i=1}^N \vec{L_i} = \sum_{i=1}^N r_i\times p_i
+\end{equation}
+Dans ce cas la déjà, cet opérateur va toujours vérifier les mêmes relations de 
+commutation
+\begin{equation}
+[L^{(tot)}_x,L^{(tot)}_y] = \left[ \sum_{i=1}^N L_x^{(i)}, \sum_{j=1}^N L_y^{(j)}\right] 
+= \sum_{i=1}^N[L_x^{(i)},L_y^{(i)}] = i\hbar L_z^{(tot)}
+\end{equation}
+En effet, pour donner un commutateur non-nul, il faut nécessairement que $i=j$ : les seules 
+composantes restantes sont alors celles désignant la même particule.\\
+
+
+On s’intéresse à tout triplet de trois opérateurs qui satisfont ces relation 
+de commutation : c'est ce qu'on appellera moment cinétique. On va pour ça 
+s'intéresser aux valeurs propres et tout ce qu'on peut dire. Pour les distinguer, 
+on va les appeler $\vec J$, le \textit{moment cinétique} : ça pourrait être un orbital, une 
+combili d'orbital, un spin, \dots
+\begin{equation}
+\text{Moments cinétiques : }\ \hat{\vec{J}} \equiv (\hat{J_x},\hat{J_y},\hat{J_z})\ \text{ satisfont }\ 
+\left\{\begin{array}{ll}
+\vec{J}\times\vec{J} &= i\hbar\vec{J}\\
+\left[\vec{J},\vec{J^2}\right] &= 0\quad \text{ avec } \vec{J^2}=J_x^2+J_y^2+J_z^2
+\end{array}\right.
+\end{equation}
+De 	façon similaire
+\begin{equation}
+\left\{\hat{J_z}, J^2\right\}\quad\rightarrow\quad \text{ECOC}
+\end{equation}
+Il existe donc une \textbf{base propre commune}
+\begin{equation}
+\left\{\ket{j,m}\right\}	
+\end{equation}
+où $j$ est associé à la quantification des valeurs propres de $J_z$. Le but de la sous-section 
+suivante sera de montrer que $j$ est discret et en nombre fini. Pour se faire, on utilisera les 
+opérateurs élévateurs et abaisseurs. Notons la relation d'orthogonalité
+suivante
+\begin{equation}
+\bra{j',m'}\ket{j,m} = \delta_{jj'}\delta_{mm'}
+\end{equation}
+
+	\subsection{Quantification, opérateurs élévateurs $J_+$ et abaisseurs $J_-$}
+	Par définition
+	\begin{equation}
+	\hat{J}_+ = J_x + iJ_y,\qquad\qquad
+	\hat{J}_- = J_x - iJ_y	
+	\end{equation}
+	Il ne s'agit pas d'observables, mais d'outils : $(\hat{J_+})^\dagger = \hat{J_-}$. Par additions 
+	et différences
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\hat{J_x} &= \frac{1}{2}\left(J_++J_-\right)\\
+	\hat{J_x} &= \frac{1}{2i}\left(J_++J_-\right)	
+	\end{array}\right.
+	\end{equation}
+	Deux relations de commutations sont directement visibles
+	\begin{enumerate}
+	\item $[\hat{J^2},J_\pm] = 0$
+	\item $[\hat{J_z},\hat{J_\pm}] = \underbrace{[J_z,J_x]}_{i\hbar J_y}\pm i\underbrace{[J_z,J_y]}_{
+	-i\hbar J_x} = i\hbar J_y\pm\hbar J_x = \pm \hbar(J_x\pm iJ_y) = \pm \hbar J_\pm$
+	\end{enumerate}
+
+Nous pouvons appliquer les éléments de notre ECOC sur leurs états propres communs, $\ket{jm}$. On 
+ne sait rien de ces deux nombres complexes, on sait juste qu'ils sont reléis aux valeurs propres 
+des éléments de notre ECOC :
+\begin{equation}
+\left\{\begin{array}{llll}
+\hat{J} &\ket{j,m}&=j(j+1)\hbar^2\ket{j,m}&\qquad j\in\mathbb{R}\\
+\hat{J_z} & \ket{j,m}&=m\hbar\ket{j,m}&\qquad m \in \mathbb{R}
+\end{array}\right.
+\end{equation}
+On peut montrer que $j\geq 0$, sachant qu'une norme est forcément positive
+\begin{equation}
+\begin{array}{ll}
+\bra{\psi}J^2\ket{\psi} &\geq 0\qquad\forall \psi\\
+\bra{\psi}J^\dagger J\ket{\psi} &\geq 0\\
+\bra{\phi}\ \ \ket{\phi} &\geq 0\qquad \longrightarrow j\geq 0
+\end{array}
+\end{equation}
+Il faut maintenant montrer que ce nombre des discret. Sachant que $J^2$ et $J_\pm$ 
+commute, nous pouvons écrire la première ligne ci-dessous. Cependant, pour la seconde 
+ligne, le commutateur est non nul :
+\begin{equation}
+\begin{array}{ll}
+\hat{J^2}\underline{\hat{J_\pm}\ket{jm}}&\DS = \hat{J_\pm}\hat{J^2}\ket{jm} =
+ j(j+1)\hbar^2\underline{\hat{J_\pm}\ket{jm}}\\
+\hat{J_z}\hat{J_\pm}\ket{jm}&\DS= (\hat{J_\pm}\hat{J_z}\pm\hbar\hat{J_\pm})\ket{jm}\\
+&\DS= m\hbar\hat{J_\pm}\ket{jm}\pm \hbar\hat{J_\pm}\ket{jm}\\
+&\DS= (m\pm 1)\hbar\underline{\hat{J_\pm}\ket{jm}}
+\end{array}
+\end{equation}
+Les relations ci-dessous nous montre deux liens de proportionnalité
+\begin{equation}
+\begin{array}{ll}
+\hat{J_+}\ket{jm} &\propto \ket{j,m+1}\quad \text{ ou } 0\\
+\hat{J_-}\ket{jm} &\propto \ket{j,m-1}\quad \text{ ou } 0
+\end{array}
+\end{equation}
+On va maintenant montrer qu'on peut jamais monter de plus que un. D'un point de vue 
+classique (et ici peu rigoureux), on peut montrer que $m$ ne peut pas descendre 
+trop bas. Sachant qu'une composante est toujours inférieure ou égale à la norme du 
+même vecteur
+\begin{equation}
+\sqrt{J^2} \geq |J_z|\quad\Leftrightarrow\quad \sqrt{j(j+1)}\hbar \geq |m|\hbar
+\end{equation}
+Voyons ce que vaut la norme du ket
+\begin{equation}
+\|J_\pm\ket{jm}\|^2 = \bra{jm}J_\mp J_\pm\ket{jm}
+\label{eq:7.6}
+\end{equation}
+où nous avons utilisé le fait que $J_\pm$ est l'adjoint l'un de l'autre. Faisons 
+une petite parenthèse pour calculer cet élément de matrice
+\begin{equation}
+\begin{array}{ll}
+J_\mp J_\pm &= (J_x\mp J_y)(J_x\pm J_y) = J_x^2\pm iJ_xJ_y+iJ_yJ_x+J_y^2\\
+&=J^2-J_z^2 \pm i\underbrace{[J_x,J_y]}_{i\hbar J_z} = J^2-J_z^2 \mp \hbar J_z
+\end{array}
+\end{equation}
+Nous pouvons maintenant calculer \eqref{eq:7.6}
+\begin{equation}
+\begin{array}{ll}
+\|J_\pm\ket{jm}\|^2 &=  \overbrace{\bra{jm}J^2\ket{jm}}^{j(j+1)\hbar^2} - \overbrace{\bra{jm}J_z^2\ket{jm}}^{
+m^2\hbar^2}\mp\overbrace{\hbar \bra{jm}J_z\ket{jm}}^{m\hbar}\\
+&= \hbar^2\{j(j+1)-m(m\pm 1)\} \geq 0
+\end{array}
+\end{equation}
+Il s'agit de l'expression du module carré (d'où le $\geq 0$) ou l'on a appliqué un opérateur élévateur 
+ou abaisseur. C'est cette relation qui va empêcher $m$ de monter trop haut ou descendre trop bas.\\
+
+Regardons successivement ce qui se passe pour un élévateur et abaisseur.\\
+	\textsc{Opérateur élévateur}
+	\begin{equation}
+	\|J_+\ket{jm}\| = \hbar^2(j^2+j-m^2-m) = \hbar^2(j-m)(j+m+1)\geq 0
+	\end{equation}
+	Pour satisfaire cette relation deux cas sont possibles : les deux parenthèses positives, ou négatives.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\leq j\\
+	m &\geq -j-m
+	\end{array}\right.\qquad\qquad\qquad	\left\{\begin{array}{ll}
+	m &\geq j\\
+	m &\leq -j-m
+	\end{array}\right.\quad\rightarrow \text{Impossible}
+	\end{equation}
+	
+	
+	\textsc{Opérateur abaisseur}
+	\begin{equation}
+	\|J_+\ket{jm}\| = \hbar^2(j^2+j-m^2+m) = \hbar^2(j+m)(j-m+1)\geq 0
+	\end{equation}
+	Pour satisfaire cette relation deux cas sont possibles : les deux parenthèses positives, ou négatives.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\geq -j\\
+	m &\leq j+1
+	\end{array}\right.\qquad\qquad\qquad		\left\{\begin{array}{ll}
+	m &\leq -j\\
+	m &\geq j+1
+	\end{array}\right.\quad\rightarrow \text{Impossible}
+	\end{equation}\ \\
+	
+	Nous avons donc quatre inégalités, mais certains sont plus fortes que d'autres. Il reste
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\leq j\\
+	m &\geq j
+	\end{array}\right.\qquad\Longrightarrow\qquad \underline{-j\leq m\leq j}
+	\end{equation}
+	Les valeurs de $m$ sont délimitées les droites $m=\pm j$ formant un cône de valeurs possibles. 
+	La valeur maximale se situe forcément sur une de ces deux droits après avoir ajouté $p$ à $m$ 
+	ou soustrait $q$ à $m$):
+	\begin{equation}
+	\left\{\begin{array}{llll}
+	J_+\ket{j,j} = 0 & \quad \exists p\in\mathbb{N} : m+p=j &\quad \rightarrow j-m=p\in\mathbb{N}\\
+	J_-\ket{j,-j} = 0 & \quad \exists q\in\mathbb{N} : m-p=-j &\quad \rightarrow j+m=q\in\mathbb{N}	
+	\end{array}\right.
+	\end{equation}
+	En sommant ces deux relations
+	\begin{equation}
+	j = \frac{p+q}{2} = \left\{0,\frac{1}{2},1,\frac{3}{2},2\dots\right\},\qquad
+	m = \frac{q-p}{2} = \{j,-j+1,\dots, j-1,j\}
+	\end{equation}
+	Nous avons bien deux nombres quantiques : ils ne peuvent prendre que des valeurs discrètes. Pour
+	$j$ fixé, nous avons $2j+1$ valeurs de $m$ possibles. \\
+	
+	En réalité, on ne peut jamais être totalement alligné sur un axe $J_x$, $J_y$ ou $J_z$ car cela 
+	voudrait dire que les deux autres composantes sont totalement connues : impossible en vertu du 
+	principe d'incertitude.
+
+
+
+	\subsection{Mesure de $J_x$ et $J_y$ dans l'état $\ket{j,m}$}
+	Intéressons-nous aux mesures des différentes projection. Les valeurs propres associées sont 
+	les suivantes : $\hat{J_x}\rightarrow m'\hbar, \hat{J_y}\rightarrow m''\hbar$ et 
+	$\ket{j,m}\rightarrow m\hbar$. Regardons les valeurs moyennes et les variances
+	\begin{enumerate}
+	\item \textit{Valeurs moyennes}.
+	\begin{equation}
+	\bra{jm}J_x\ket{jm} = \bra{jm}\frac{1}{2}(J_++J_-)\ket{jm} = \frac{1}{2}\bra{jm}J_+\ket{jm}+
+	\frac{1}{2}\bra{jm}J_-\ket{jm} =0
+	\end{equation}
+	Or $J_+\ket{jm}\propto J_\pm\ket{j,m\pm 1}$. Comme $\ket{j,m}\perp\ket{j,m\pm1}$, les valeurs 
+	moyennes de $J_x$ et $J_y$ sont nulles.
+	\item \textit{Variances}.\\
+	Il est plus simple de faire apparaître $J^2$ pour faire apparaître les états propres communs
+	\begin{equation}
+	\bra{jm} J_x^2+J_y^2 \ket{jm}= \bra{jm}J^2-J_z^2 \ket{jm} = j(j+1)\hbar^2-m^2\hbar^2 = \hbar^2(j(j+1)
+	-m^2)
+	\end{equation}
+	On a alors
+	\begin{equation}
+	\overbrace{\bra{jm}J_x^2\ket{jm}}^{\Delta J_x^2} = \overbrace{\bra{jm}J_y^2\ket{jm}}^{\Delta J_x^2} 
+	= \frac{\hbar}{2}\{j(j+)-m^2\}\quad \longrightarrow \Delta J_{\min} = \frac{\hbar^2}{2}
+	\end{equation}	
+	\end{enumerate}
+	En effectuant le produit des variances\footnote{TT : peu de notes ici, à compléter plz.}
+	\begin{equation}
+	\Delta J_x\Delta J_y \geq \frac{1}{2}|[J_x,J_y]| \geq \frac{\hbar}{2}\underbrace{|\langle J_z\rangle|}_{m
+	\hbar} \geq \frac{\hbar^2}{2}|m|
+	\end{equation}
+	NOTES A RAJOUTER, j'sais pas quoi dire :
+	\begin{equation}
+	\begin{array}{ll}
+	\Delta J_x\Delta J_y &= \frac{\hbar^2}{2}(j(j+1)-m^2)\\
+	&\geq \frac{\hbar^2}{2}(|m|(|m|+1)-m^2) = \frac{\hbar^2}{2}|m|
+	\end{array}
+	\end{equation}
+
+
+
+
+
+
+
+
+
+	
+
+\section{Quantification du moment cinétique orbital en base position ($l$ entier)}
