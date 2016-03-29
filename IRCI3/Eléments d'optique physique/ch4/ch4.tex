@@ -623,6 +623,107 @@ sélectionnait les longueurs d'onde extrêmement rapprochée : celles qui reste 
 du spectre visible et il n'y a pas de phénomène d'irisation détectable à l’œil nu.
 
 
+\newpage
+\section{Le spectroscope de Fabry-Perot}
+	\begin{wrapfigure}[13]{r}{5.5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch4/image26.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'interféromètre de Fabry-Perot a été développé pour sa capacité à faire de l'analyse spectrale. 
+Nous allons ici nous y intéresser, mais sous sa version moderne à travers de la transmission d'Airy. 
+Le spectroscope va fonctionner à incidence normale, on va annuler l'angle $\theta$ apparaissant dans 
+$\beta$
+\begin{equation}
+\beta = k\cos\theta \quad\rightarrow\quad \beta = k
+\end{equation}
+La fonction d'Airy devient
+\begin{equation}
+\mathcal{F} = \dfrac{1}{1+F\sin^2(kL)}
+\end{equation}
+Il ne faut donc plus se préoccuper de l'angle $\theta$, grande simplification. Autre précaution, 
+nous considérons des miroirs de grande qualité et surtout de très grande réflectivité : $
+R\rightarrow 1$, ce qui est faisable avec les techniques modernes. Ceci implique que la 
+transmission tend vers zéro, $T\rightarrow0$.\\
+
+La transmission de l'onde incidente est réduite à un très faible fraction, mais grâce aux aller-retour
+nombreux dans la cavité, une onde d'intensité importante tel que l'intensité à la sortie vaudra 
+celle à l'incidence ($\mathcal{T}=1$) et ce malgré une transmission ridiculement faible\footnote{On 
+se rappelle que l'on a bien une transmission unitaire à la résonance et ce de façon indépendante de la 
+réflexibilité (le sinus étant nul, le $R$ caché dans la finesse ne joue aucun rôle).}. \\
+
+Après avoir lu la note en bas de page (héhé), intéressons-nous à la finesse
+\begin{equation}
+F = \frac{4R}{(1-R)^2}=\dfrac{4(1-T)}{T^2} \approx \frac{4}{T^2}
+\end{equation}
+Plus la transmission est petite, plus la finesse sera grande. Ceci sont les conditions d'utilisation 
+pour faire du FB un spectroscope.\\
+
+	\begin{wrapfigure}[8]{l}{5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch4/image27.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Par exemple, considérons $R=99\%\rightarrow T=0.01\rightarrow F\approx 4*10^4$. Ceci peut paraître 
+énorme, mais il est possible aujourd'hui de faire encore mieux que ça. Un tel facteur va sensiblement 
+modifier l'allure de la fonction d'Airy. Étudions l'allure des pics de résonance dans le cas d'une 
+telle finesse. Définissions $\Delta\phi$ comme la largeur des résonances (celles-ci étant toutes 
+identiques) à mi-hauteur. Il est possible de trouver simplement l'abscisse $\frac{\Delta \phi}{2}$ 
+par simple lecture graphique. Comme celle-ci correspond à une hauteur 1/2, il va être possible de 
+calculer $\Delta\phi$. Exprimé mathématique, nous obtenons
+\begin{equation}
+\mathcal{T} = \dfrac{1}{1+F\sin^2\left(\frac{\Delta\phi}{2}\right)}= \frac{1}{2}
+\end{equation}
+Pour obtenir le même dénominateur, il faut nécessairement que 
+\begin{equation}
+F\sin^2\left(\frac{\Delta\phi}{2}\right)=1\quad\Leftrightarrow\quad \sin^2\left(\frac{\Delta\phi}{2}\right)
+=\dfrac{1}{F}
+\end{equation}
+Le sinus carré est forcément très petit dans la limite des finesses élevées : l'argument doit forcément 
+être très petit également. En utilisant l'approximation du premier ordre (\danger\ attention au carré) :
+\begin{equation}
+\left(\frac{\Delta\phi}{2}\right) = \frac{1}{F}\quad\Leftrightarrow\quad \Delta\phi^2 = \frac{4}{F}
+\end{equation}
+
+	\begin{wrapfigure}[8]{r}{5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch4/image28.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+En utilisant l'approximation de la finesse faite ci-dessus
+\begin{equation}
+\Delta\phi^2 = T^2\quad\Leftrightarrow\quad \Delta\phi = T
+\end{equation}
+Ceci montre que les résonances exploitées en spectroscopies seront extrêmement larges. Les pics de 
+la fonction d'Airy sont très fin, étroits, car la finesse est grande.\\
+
+L'idée du spectroscope est de faire varier la longueur de la cavité du FP, $L$ (en plaçant le miroir 
+sur une monture piezoélectrique). Nous allons donc maintenant nous intéressé à la variable $L$. Exprimons 
+le graphe de la fonction d'Airy en fonction de la longueur $L$. Avec la condition de résonance 
+\begin{equation}
+kL = m\pi\quad\Rightarrow\quad L=\frac{m\pi}{k} = \frac{m\pi}{2\pi}\lambda=\frac{m\lambda}{2}
+\end{equation}
+
+	\begin{wrapfigure}[9]{l}{7cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch4/image29.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+$L$ est un nombre demi-entier de longueur d'onde pour avoir une résonance, soit les pics de l'illustration 
+ci-dessus. Pour faire la représentation, il suffit de changer la variable $kL$ en $L$ pour voir 
+apparaître un pic tous les multiples de demi longueur d'onde. On pourrait s'intéresser à la largeur de la 
+résonance en fonction de $L$. Il suffit pour ça de voir que
+\begin{equation}
+\Delta\phi = k\Delta L = \frac{2\pi}{\lambda}\Delta L = T\quad\Leftrightarrow\quad \Delta L = \frac{T\lambda}{
+2\pi}
+\end{equation}
+Ceci étant dit, nous allons pouvoir nous intéresser à la physique lorsque $L$ se voit modifié. Le point 
+de fonctionnement (au jaune ci-dessus) va effectuer des allers-retours sur un pics de résonance lorsque 
+$L$ est modifié : l'intensité transmise s’éteint et s'allume de l'autre côté du miroir.\\
+
+Nous pouvons maintenant aborder la spectroscopie du FP. Considérons une situation simple : deux longueurs 
+d'onde présentes dans un faisceau lumineux. (20')
+
 
 
 
