@@ -526,6 +526,7 @@ In \eqref{eq:1.55} $a$ is a constant that represents the stress present when the
 	  		The mass conservation equation tells us that we can write the divergence as 
 	  		\begin{equation}
 	  			\dot{\rho} + \rho \nabla \vec{u} = 0 \qquad \Leftrightarrow \qquad \nabla \vec{u} = -\frac{\dot{\rho}}{\rho} = -\rho \left( \frac{\dot{\rho}}{\rho ^2}\right) = \rho \dot{\left( \frac{1}{\rho}\right)} = \rho \dot{v}
+	  			\label{eq:1.70}
 	  		\end{equation}
 	  		If we replace the divergence in the previous equation, we have
 	  		\begin{equation}
@@ -630,7 +631,7 @@ In \eqref{eq:1.55} $a$ is a constant that represents the stress present when the
 	\subsection{Inviscid flows}
 		They are defined as flows in which vicous stresses and conduction heat flux can be neglected.  We are talking about flows and not fluids because there is no fluid with $\mu = 0$ or $\kappa = 0$. This happens for superfluids but we don't care. When we look at the fluid properties tables, in SI units, water and air have very small $\mu$ but we can't say that there are negligible because it depends on the system of refference used. If something is negligible  it is with respect to something else. Let's start with the viscous stresses. Momentum equation can be written as 
 		\begin{equation}
-			\rho \dot{\vec{u}} = \frac{\D \rho}{\D t} + \nabla \rho \vec{u} \otimes \vec{u} = -\nabla p + \nabla \bar{\bar{\tau}} + \rho \bar{F}
+			\rho \dot{\vec{u}} = \frac{\D \rho \vec{u}}{\D t} + \nabla \rho \vec{u} \otimes \vec{u} = -\nabla p + \nabla \bar{\bar{\tau}} + \rho \vec{F}
 		\end{equation}
 		where the viscous stress tensor is a tensor as the momentum flux tensor. They correspond to the same physical phenomenon but at different scales, the viscous stress tensor is due to the molecular agitation whereas the momentum flux tensor is for the macroscopic scale, the average scale. So it makes sense to compare the order of magnitude of the two ones. \\
 		
@@ -665,10 +666,124 @@ In \eqref{eq:1.55} $a$ is a constant that represents the stress present when the
 		\end{wrapfigure}
 		Now we have to verify the assumption that velocity is a smooth function of the coordinates. Examples of not smooth functions are represented on \autoref{fig:1.9} where the green curve is smooth close to the limits but not smooth in a small interval and the yellow one is a periodic function with the characteristic wave length. In these cases, $\Delta x$ is not the appropriate length scale to determine the order of magnitude of the derivative. \\\\\\
 
-		\begin{wrapfigure}[6]{l}{4cm}
-		\vspace{-15mm}
+		\begin{wrapfigure}[8]{l}{4cm}
+		\vspace{-5mm}
 		\includegraphics[scale=0.35]{ch1/10}
 		\captionof{figure}{}
 		\label{fig:1.10}
 		\end{wrapfigure}
-		Now what about the velocity field? Let's assume that velocity is smooth and the fluid inviscid, the boundary conditions to respect are the slip conditions. But we know that $\mu$ is not strictly 0, so the velocity must be 0 at the wall and therefore, there exists an area of rapidly changing velocity close to the wall. 
+		Now what about the velocity field? Let's assume that velocity is smooth and the fluid inviscid, the boundary conditions to respect are the slip conditions. But we know that $\mu$ is not strictly 0, so the velocity must be 0 at the wall and therefore, there must exist a region of another caracteristic scale $\delta$ of rapidly changing velocity close to the wall. In this case the study of order of magnitude made is incorrect, $U/L$ must be replaced by $U/\delta$. Due to the smaller scale of $\delta$ compared to L, the viscous stress is more important than outside this region and can be of comparable size to the momentum flux tensor.
+		 We conclude that the flow can be decomposed into two regions : a region outside of this viscous layer, a distal region where the viscous stresses and heat conduction term can be neglected and a proximal or inner region where viscous stresses may not be neglected. We complete the definition with high Reynolds number by adding "\textbf{except close to solid bodies and in their wake}\footnote{Sillage : refermement de la couche visqueuse à droite de la \autoref{fig:1.10}.}".
+		 
+	\subsection{Inviscid flows equations}
+		They are the same as the general case, except that the viscous and heat flux terms are neglected. 
+		\begin{itemize}
+			\item[•] Mass conservation equation 
+			\begin{equation}
+				\dot{\rho} + \rho \nabla \vec{u} = 0 
+			\end{equation}
+			
+			\item[•] Momentum equation
+			\begin{equation}
+				\rho \dot{\vec{u}} = - \nabla p + \cancel{\nabla \bar{\bar{\tau}}} + \rho \vec{F}
+			\end{equation}
+			
+			\item[•] Energy equation
+			\begin{equation}
+				\rho \dot{e} = - p \nabla \vec{u} + \cancel{\bar{\bar{u}} .. \nabla \otimes \vec{u}} - \cancel{\nabla \vec{q}} \qquad \Leftrightarrow \qquad \rho \dot{e} + p\nabla \vec{u} = 0
+			\end{equation}
+			We already analyzed this expression before, with \eqref{eq:1.70} we can conclude that 
+			\begin{equation}
+				\rho (\dot{e}+ p\dot{v}) = 0 = \rho T\dot{s} \qquad \Rightarrow \dot{s} = 0
+			\end{equation}
+			Entropy per unit mass is constant along trajectories. Only viscous term and heat flux are responsible of irreversible entropy variations. So all the particles keeps constant entropy and if the incoming fluid particles are uniform it means that the entropy will be constant across the whole flow.  \\
+			\end{itemize}
+			
+			Let's specify the terminology, when we speek about uniform quantity it means that $\nabla q = 0$ and steady q means that it doesn't vary with time $\frac{\D q}{\D t}= 0$. Let's now see what happens with the momentum equation
+			\begin{equation}
+			\begin{aligned}
+				\rho \dot{\vec{u}} &= - \nabla p + \rho \vec{F} = \rho \left[\frac{\D u}{\D t} + (\vec{u} \nabla)\vec{u} \right]\\
+				\rho \dot{u}_i &= - \frac{\D p}{\D x_i} + \rho F_i = \rho \left[ \frac{\D u_i}{\D t} + u_j \frac{\D u_i}{\D u_j} \right]
+			\end{aligned}
+			\label{eq:1.93}
+			\end{equation}
+			But if we say that, by adding and removing the needed term
+			\begin{equation}
+				u_j \frac{\D u_i}{\D x_j} = u_j \left( \frac{\D u_i}{\D x_j} - \frac{\D u_j}{\D x_i}  \right) + u_j \frac{\D u_j}{\D x_i}
+			\end{equation}
+			But what's the last term? We know that the gradient of kinetic energy corresponds to that because
+			\begin{equation}
+				 u_j \frac{\D u_j}{\D x_i} = \frac{\D \frac{u_j u_j}{2}}{\D x_i} = \frac{\D k}{\D x_i} \qquad \mbox{additionally} \qquad \frac{\D u_i}{\D x_j} - \frac{\D u_j}{\D x_i} = \delta _{kji} \omega _k
+			\end{equation}
+			Now if we replace this in \eqref{eq:1.93}, we find the
+			
+			\begin{center}
+			\theor{\textbf{Lamb's form of the momentum equation}
+			\begin{equation}
+			\begin{aligned}
+				&- \frac{\D p}{\D x_i} + \rho F_i = \rho \left[ \frac{\D u_i}{\D t} + \delta _{kji}\omega _k u_j +\frac{\D k}{\D x_i} \right]\\
+				\Leftrightarrow & - \frac{\D p}{\D x_i} + \rho F_i = \rho \left[ \frac{\D u_i}{\D t} + (\vec{\omega}\times \vec{u})_i +\frac{\D k}{\D x_i} \right]\\
+			\Leftrightarrow	&- \nabla p + \rho \vec{F} = \rho \left[ \frac{\D \vec{u}}{\D t} + \vec{\omega} \times \vec{u} +\nabla k \right]
+			\end{aligned}
+			\end{equation}}
+			\end{center}
+			
+	\subsection{Barotropic flows - Force deriving from a potential}
+		Like the previous one, there are barotropic flows but no barotropic fluids. Let's rewrite the Lamb's equation 
+		\begin{equation}
+			\frac{\D \vec{u}}{\D t} + \vec{\omega} \times \vec{u} +\nabla k = - \frac{\nabla p}{\rho} + \vec{F} \qquad with \vec{F} = \vec{a}
+			\label{eq:1.97}
+		\end{equation}
+		In general we know that the thermodynamic state of a pure fluid in single phase is determined by 2 thermodynamic variables. This means that in general, $p$ and $\rho$ are independant variables. But when another thermodynamic variable is constant, uniform, then it exists a relation between $p$ and $\rho$ and hence it exists a certain function $P(p)$ such that $\frac{dP}{dp} = \frac{1}{\rho (p)}$. This implies that the gradient
+		\begin{equation}
+			\nabla P = \frac{dP}{dp} \nabla p = \frac{\nabla p}{\rho}
+		\end{equation}
+		allowing us to replace this quantity in \eqref{eq:1.97}. Two examples of constant variables : \\
+		\begin{itemize}
+			\item[•] \textbf{Constant density flows} : $\rho(p) = \rho = cst$ and so $\frac{dP}{dp}=\frac{1}{\rho}\Rightarrow P = \frac{p}{\rho}$.
+			\item[•] \textbf{Isentropic flows} : we have the Gibbs relation $dh = Tds + vdp$ simplifying in $dh = \frac{dp}{\rho}$ and so $P = h$. \\
+		\end{itemize}
+		
+		If now in addition to the barotropic flow assumption we assume that $\vec{F}$ derives from a potential, we will make  other assumptions. This means that the curl $\nabla \times \vec{F} =0$, allowing to write $\vec{F}$ as the gradient of a certain potential energy per unit mass $\vec{F} = - \nabla \Phi$. Then we can write \eqref{eq:1.97} as
+		\begin{equation}
+			\frac{\D \vec{u}}{\D t} + \vec{\omega} \times \vec{u} = -\nabla (P+k +\Phi)
+		\end{equation}
+		Making the additional assumption that we have a steady flow and multiplying by $\vec{u}$ the two members leads to 
+		\begin{center}
+		\theor{\textbf{Bernouilli's equation (1)}
+		\begin{equation}
+		\vec{u} (\vec{\omega \times \vec{u}}) = -\vec{u} \nabla (P+k+\Phi) \qquad \Leftrightarrow \qquad P+k+\Phi = e_m
+		\end{equation}
+		telling that mecanical energy is constant along streamlines (but can vary between streamlines).}
+		\end{center}
+		
+	\subsection{Irrotational flows}
+		This points to flows such that $\vec{\omega} = 0$. In that case we see that 
+		\begin{equation}
+			-\nabla (P+k+\Phi) = 0 \qquad \Rightarrow P+k+\Phi = cst 
+		\end{equation}
+		Everywhere in the domain! When the flow is irrotational $\vec{\omega} = \nabla \times \vec{u} = 0$, $\vec{u}$ can be experssed as a velocity potential $\nabla \phi$. Now if we consider an unsteady, barotropic, irrotational inviscid flows with irrotational body forces 
+		\begin{equation}
+			\frac{\D \vec{u}}{\D t} = \frac{\D \nabla \phi}{\D t} = \nabla \frac{\D \phi }{\D t} = -\nabla (P+k+\Phi) \qquad \Leftrightarrow \qquad \frac{\D \phi}{\D t} + P + k +\phi = cst 
+		\end{equation}
+		Everywhere in the domain. 
+		
+	\subsection{Incompressible/quasi incompressible flows}
+		Let's consider an inviscid steady flow in absece of body forces (and uniform $s$). Then the momentum equation \eqref{eq:1.93} tells that
+		\begin{equation}
+			\rho (\vec{u}\nabla )\vec{u} = -\nabla p  = - \frac{dp}{d\rho}|_{s} \nabla \rho 
+		\end{equation}
+		where $\frac{dp}{d\rho}|_s = a^2$, with $a$ the speed of sound. 
+		
+		\begin{wrapfigure}[5]{l}{2cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.4]{ch1/11}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		If $\vec{e}_s$ is the unit vector along the streamline. We have that 
+		\begin{equation}
+		\begin{aligned}
+			\vec{u}= u \vec{e}_s \qquad &\Rightarrow u \frac{d}{ds}(u\vec{e}_s) = -\frac{a^2}{\rho} \nabla \rho = -\frac{a^2}{\rho}\left[ \frac{d\rho}{ds}\vec{e}_s + \frac{d\rho}{dn} \vec{e}_n \right]\\
+			&\Leftrightarrow u\frac{du}{ds}\vec{e}_s + u^2\frac{d\vec{e}_s}{ds} =  -\frac{a^2}{\rho}\left[ \frac{d\rho}{ds}\vec{e}_s + \frac{d\rho}{dn} \vec{e}_n \right]
+			\end{aligned}
+		\end{equation}
