@@ -85,7 +85,7 @@ condition est exprimée
 En effet, le champ en $L$ peut être exprimé avec celui en 0 (cf. système d'équation ci-dessus).
 Les $e^{i\rho x}$ se simplifient : il ne faut pas en tenir compte (invariance sur l'axe $x$), 
 nous ne tiendrons compte que des phases. 
-\item $$E_+(0) = t_Ei+rE_-(0)$$
+\item $$E_+(0) = tE_i+rE_-(0)$$
 Il ne faut pas oublier la réflexion de $E_-$ en 0 qui vient "nourir" $E_+$.
 \item $$E_-(0) = rE_+(L)e^{i\beta L} = rE_+(0)e^{2i\beta L}$$
 Il s'agit de la réflexion de $E_+$ en $L$ mais en rajoutant toute la phase de propagation. 
@@ -195,10 +195,432 @@ Ceci montre que lorsque $\beta L = n\pi$, nous aurons un zéro. Ce résultat est
 indépendant de $R$ et $F$. Dès lors, en prenant un miroir où $R=99.99\%$ de réflexion, 
 toute la lumière qui arrive passe au travers. C'est une belle surprise. 
 
+\newpage
+\section{L'interféromètre de Fabry-Perot : interprétation physique}
+Le but est d'interpréter ce qui se passe physiquement lorsque $\beta L$ est un multiple de 
+$\pi$, ou tout est transmis malgré un coefficient de réflexion proche de l'unité. Pour se 
+faire, partons de la formule de $T_{FP}$ écrite dans le cas où $\beta L = m\pi$.
+\begin{equation}
+T_{FP} = \frac{t^2(-1)^m}{1-r^2} = (-1)^m
+\end{equation}
+
+	\begin{wrapfigure}[10]{l}{6.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch4/image8.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+où l'on a utilisé $t^2 = 1-r^2$ (miroirs idéaux). Ceci nous montre quelque chose d'un peu 
+plus subtil au niveau du champ transmis (alternance de phase). Si $m$ est pair, le champ 
+transmi vaut le champ incident et pour les valeurs impaires l'opposé (déphasage de 180 degré 
+entre la champ incident et transmis). Il y a des effets de phases en passant d'un pic à l'autre 
+de la fonction de Airy. \\
+
+Intéressons-nous maintenant au champ réfléchi : comment pouvons nous avoir aucune réflexion 
+sur un miroir possédant un coefficient de réflexion proche de l'unité ?
+\begin{equation}
+E_r = rE_i+tE_-(0)
+\end{equation}
+Ce champ est composé de la partie directement réfléchie du champ incident ainsi que de la 
+transmission du champ $E_-$ en zéro (\danger). Rappelons-nous la troisième condition aux 
+limites de "cavité : $E_-(0) = rE_+(L)e^{i\beta L} = rE_+(0)e^{2i\beta L}$. Celle-ci donne 
+l'expression de $E_-$ en fonction de $E_+(0)$. Or, la première condition ($E_t = tE_+(L) = 
+tE_+(0)e^{i\beta L}$) peut exprimer $E_+$ en fonction de $E_t$ qui, lui, est connu.\\
+
+Allons-y
+\begin{equation}
+\begin{array}{lll}
+E_r &= rE_i+tE_-(0) &= rE_i +rtE_+(0)e^{2i\beta L}\\
+&= rE_i + rE_te^{i\beta L} &= rE_i+rT_{FP}e^{i\beta L}E_i
+\end{array}
+\end{equation}
+où, pour la dernière égalité, on a utilisé $E_t = T_{FP}E_i$. Nous avons bien exprimé le 
+champ réfléchi en fonction du champ incident. En remplaçant $T_{FP}$ par son expression
+\begin{equation}
+E_r = rE_i + r\frac{t^2e^{2i\beta L}}{1-r^2e^{2i\beta L}}E_i
+\end{equation}
+Considérons cette expression à la résonance (cf. plus bas), soit en $\beta L = m\pi$. 
+Les exponentielles valent 1 et les miroirs étant parfait, on obtient
+\begin{equation}
+??\quad E_r = 2rE_i\quad ??
+\label{eq:ptint}
+\end{equation}
+Or,ce n'est pas ce que l'on obtient en regardant $\mathcal{R}$, nous devrions avoir zéro. 
+Mathématiquement tout est correct, l'usage de celles-ci l'est moins (l'erreur se situe au 
+niveau des simplification donnant lieu à \eqref{eq:ptint}). Nous avons fait une 
+erreur sur l'interprétation physique des coefficients de réflexion et transmission. Un 
+miroir est plus subtil que ça. Voyons le.
+
+\newpage
+	\begin{wrapfigure}[6]{l}{4cm}
+%	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch4/image9.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Reconsidérons le miroir vu précédemment : $E_r = rE_i$ et $E_t=tE_i$. Ces champs sont 
+électromagnétiques, on peut écrire les équations de Maxwell. En faisant ça, on voit directement 
+que l'équation d'onde est invariante par rapport à un renversement du temps : $t^2$ est 
+"insensible" au changement $t'=-t$.
+\begin{equation}
+\Delta E = \mu_0\epsilon_0\dfrac{\partial^2E}{\partial t^2} = \mu_0\epsilon_0\dfrac{\partial^2 E}{
+\partial (-t)^2}
+\end{equation}
+
+	\begin{wrapfigure}[7]{r}{3.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch4/image10.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Les raisonnements fait pour les faisceaux allant dans un sens sont valable dans l'autre. Le 
+raisonnement tenu plus haut doit être valable si on "inverse" le temps (ce qui revient ici à 
+inverser le sens de propagation des faisceaux). La situation ci-contre doit être identique à 
+celle obtenue ci dessus, à gauche. Le faisceau transmis joue le roule du faisceau incident. Or, 
+le champ réfléchi joue le roule d'un second faisceau incident, c'est la recombinaison des 
+deux qui doit donner $E_i$. Or, si on réalise cette expérience, $E_t$ va donner un champ transmis
+qui vaudra $t^2 E_i$, pour le champ réfléchi on obtiendra $r^2 E_i$. Si les équations de 
+Maxwell sont vraiment invariante pour un inversement du temps, on devrait avoir
+\begin{equation}
+t^2E_i+r^2E_i = E_i
+\end{equation}
+
+	\begin{wrapfigure}[6]{l}{3cm}
+	\vspace{-15mm}
+	\includegraphics[scale=0.65]{ch4/image11.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Comme $t^2+r^2=1$, l'égalité est vérifiée. Mais en faisant cette expérience, il y aura une 
+partie transmise et réfléchie : celles-ci sont-elles nulles (en pointillé, ci-contre) ? Ce 
+champ en pointillé est donné par
+\begin{equation}
+rtE_i + trE_i = 2tr E_i \neq 0
+\end{equation}
+Il y a à priori un souci et ce parce que nous avons négligé quelque d'important : lorsque l'on 
+considère la réflexion d'un côté d'un miroir on a un certain coefficient de réflexion $r$, 
+automatiquement, lorsqu'on a la réflexion de l'autre coté du miroir on a un coefficient qui 
+vaut $-r$. On observe alors bien zéro. Si on nomme un coefficient $r$ d'un côté, il faut le 
+nommer $-r$ de l'autre : il y a toujours un déphasage de 180$^\circ$ du champ d'un côté par 
+rapport à l'autre du miroir. \\
+
+Il faut en tenir compte. Or pour le moment, on a toujours considéré des coefficients de 
+réflexion positif et ce même à l'intérieur de la cavité. La réflexin à l'intérieur doit 
+être décrite par $"-r"$ de sorte à obtenir
+\begin{equation}
+\begin{array}{lll}
+E_r &= -rE_i+tE_-(0) &= -rE_i +rtE_+(0)e^{2i\beta L}\\
+&= rE_te^{i\beta L} &= -rE_i+rT_{FP}e^{i\beta L}E_i
+\end{array}
+\end{equation}
+En refaisant les mêmes simplifications, on obtient cette fois-ci 
+\begin{equation}
+E_r = 0
+\end{equation}
+Ceci est le résultat d'interférences destructives entre ce qui est directement réfléchi
+du faisceau incident et ce qui est transmis du champ $E_-$. C'est ça qui crée cette 
+possibilité d'avoir un champ nul même avec $r=0.99$. Nous avons bien une interférence 
+destructives entre ces deux champ et si rien n'est réfléchi, c'est que tout est transmis.\\
+
+Continuons l'analyse de la fonction de transmission en analysant ce qui se passe autour de 
+$\beta L = m\pi$. Par définition $\beta = k\cos\theta$
+\begin{equation}
+\beta = k\cos\theta\quad\Rightarrow\quad kL\cos\theta = m\pi\quad\Leftrightarrow\quad 
+\dfrac{2\pi}{\lambda}L\cos\theta = m\pi
+\end{equation}
+Ceci nous donne une condition entre $L$ et $\lambda$. Après simplifications
+\begin{equation}
+L = \frac{m}{2}\frac{\lambda}{\cos\theta}
+\end{equation}
+
+	\begin{wrapfigure}[7]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.55]{ch4/image12.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+La longueur est dans un certain rapport avec la longueur d'onde faisant intervenir un 
+angle $\theta$. Le rapport $\lambda/\cos\theta$ est intéressant physiquement. Nous avons 
+des ondes planes qui se propage avec un certain angle $\theta$ par rapport à l'axe $z$. Ce 
+rapport est tout simplement la longueur d'onde de la lumière le long de l'axe $z$. L’écart 
+entre deux front d'onde ($\lambda$ dans la direction de l'onde) vaudra quelque chose de plus 
+grand que $\lambda$, soit $\lambda_z = \lambda/\cos\theta$ lorsqu'il est projeté sur l'axe $z$.\\
+
+On a une périodicité en $z$ qui est imposée par $\beta$ et non pas par $k$. Reprenons :
+\begin{equation}
+\beta L = kL\cos\theta = m\pi
+\end{equation}
+La condition porte sur $\beta L$, cela porte bien sur les \textbf{déphasages} de l'onde au 
+travers de la cavité de longueur $L$. On aurait tendance à dire que le déphasage accumulé 
+sur la longueur $L$ est d'autant plus grand que $\theta$ est important, la distance devenant 
+de plus en plus grande. On aurait alors tendance, à tort, de se dire que la phase accumulée est 
+d'autant plus grande que que la phase est grande. C'est le contraire : plus $\theta$ est grand, 
+plus $\lambda_z$ devient grand et la phase accumulée devient petite. Nous avons bien $\cos\theta$ 
+et non pas $1/\cos\theta$.\\
+
+Une autre façon de voir les chose est de se dire que $\lambda_z$ est la périodicité de l'onde 
+évoluant en $e^{i\beta z}$
+\begin{equation}
+\frac{2\pi}{\beta} = \lambda_z = \lambda\cos\theta
+\end{equation}
+L'erreur est donc de considérer l'accumulation sur le chemin optique et non pas sur la longueur 
+de la cavité.\\
+
+Fermons la parenthèse et écrivons plutôt
+\begin{equation}
+L = m\frac{\lambda_z}{2}
+\end{equation}
+C'est une façon de traduire la condition de résonance$\beta L = m\pi$ : la longueur de la cavité 
+doit être un multiple de la demi-longueur d'onde. Il s'agit de la condition de formation d'une onde 
+stationnaire. Une corde fixée aux extrémités peut vibrer selon différents modes, défini en fonction 
+du point ou on excite mécaniquement la corde. Quand $\beta L = m\pi$, on forme des ondes stationnaires.\\
+
+	\begin{wrapfigure}[9]{l}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image15.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Représentons l'onde incidence (branche du cosinus, $e^{i\beta z}$ au temps $t=z=0$ soit 1, la C.I.). En 
+passant à travers du miroir, cette onde se voit atténuée mais le front d'onde continue de se propager. 
+On atteint ensuite le second miroir où l'onde réfléchie va également être atténuée. Une fois arrivé au 
+second miroir, on commence à voir les interférences constructives : on forme une onde stationnaire avec 
+un nœud au centre et deux demi-ventres. Une fois revenue au premier miroir, elle va être réfléchie et 
+atténuée. Mais cette nouvelle onde réfléchie sera en phase avec l'onde réfléchie au second miroir. 
+En continuant, on aura par interférences constructives, la formation d'un champ important.\\
+
+Étudions maintenant ce qui se passe au niveau du champ de cavité. Pour obtenir l'amplitude de l'onde 
+intracavité $E_+$ (la somme de toutes les ondes qui vont dans le même sens, ici vers la droite), partons de 
+\begin{equation}
+E_t = t E_+(L)\quad\Rightarrow\quad|E_t|^2 = T|E_+|^2
+\end{equation}
+Travaillons en intensité. C'est facile car $E_t=E_i$ à la résonance car $\mathcal{T}=1$.
+\begin{equation}
+|E_i|^2 = T|E_+|^2
+\end{equation}
+L'intensité de cavité est donnée par 
+\begin{equation}
+|E_+|^2 = \frac{|E_i|^2}{T}
+\end{equation}
+
+	\begin{wrapfigure}[11]{l}{6.5cm}
+	\vspace{-15mm}
+	\includegraphics[scale=0.60]{ch4/image13.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Or, $T$ peut être très petit. Si $T=0.001$, l'intensité dans la cavité peut être 1000 fois plus 
+importante que celle du champ incident. On aura toujours un champ renforcé dans la cavité
+\begin{equation}
+|E_+|^2> |E_i|^2
+\end{equation}
+Dans un FB, on observe un phénomène résonance comparable à celui obtenu pour la vibration d'une 
+corde : un petite amplitude d'excitation mécanique peut donner lieu à une grande oscillation de 
+la corde. A la sortie du FB on a bien une petite amplitude, la transmission atténue fortement le 
+champ.\\
+
+
+	\begin{wrapfigure}[11]{r}{6cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image14.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Pour se convaincre de l'interprétation physique, regardons le cas ou $\beta L = (2m+1)\frac{\pi}{
+2}$, c'est-à-dire la ou nous avions les maxima de la fonction de réflexion. En suivant un raisonement 
+similaire
+\begin{equation}
+L = \frac{(2m+1)\lambda_z}{4}
+\end{equation}
+Dans ce cas la, l'onde réfléchie par le premier miroir est en opposition de phase par rapport à l'onde 
+transmise de l'onde incidente. Il s'agit d'une \textit{anti-résonance} : très peu sera transmis et le 
+maximum sera réfléchi\footnote{Pq ?}.
 
 
 
+\newpage
+\section{Optique des films minces}
+On va se contenter d'expliquer l'origine de la décomposition en couleur de la lumière blanche, 
+par exemple sur une bulle de savon. Un film mince représente un FP d'épaisseur $L$ (on regarde 
+la bulle de très près de façon à l'avoir rectiligne).
 
+\begin{center}
+\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image18.png}
+	\captionof{figure}{ }
+\end{center}
+
+Le coefficient de réflexion est donnée par celui de Fresnel (l'indice de réfraction dans et 
+en dehors de la bulle étant différent)
+\begin{equation}
+r = \frac{n_1-n_2}{n_1+n_2}
+\end{equation}
+	\begin{wrapfigure}[11]{l}{6cm}
+	\vspace{-13mm}
+	\includegraphics[scale=0.5]{ch4/image17.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Cette réflexion est double, on a bien affaire à un FP. On peut le décrire avec sa fonction de 
+Airy
+\begin{equation}
+\mathcal{F} = \dfrac{1}{F+\sin^2(\beta L)}
+\end{equation}
+Ceci est une forme un peu simplifiée, dans le cas ou les indices de réfractions valaient tous 
+les deux l'unité. Que l'on considère cet indice ou pas, la physique sera la même (onde stationnaire, 
+résonance,\dots). On va considérer que l'indice entre les deux surface est l'indice de l'air afin 
+de garder les mêmes notations que celles utilisées pour le FP.\\
+
+Nous allons surtout ici nous intéresser à la fonction de réflexion $\mathcal{R}$, le phénomène d'irisation 
+ayant lieu à la réflexion. Analysons ce qui se produit à une résonance ($\mathcal{T}=1,\mathcal{R}=0$) 
+\begin{equation}
+\beta L = kL\cos\theta = \frac{2\pi}{\lambda} L\cos\theta = m\pi
+\end{equation}
+où $\theta$ est l'angle par rapport à la verticale (le futur angle d'incidence).\\
+
+	\begin{wrapfigure}[11]{r}{6cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image16.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+La longueur d'onde  
+effective est bien donnée par $\lambda/\cos\theta$, la résonance correspond à une longueur valant 
+un nombre entier de demi-longueur d'onde effective. Ce qui est intéressant est que $\lambda$ et 
+$\theta$ apparaissent. La lumière venant de toutes les directions, tous les $\theta$ sont représentés.
+On a également un certain nombre de longueur d'onde, toutes les longueurs d'ondes visibles sont à 
+priori présentes. On est face à une situation un peu chaotique. Pourquoi irisation? Pourquoi certaines 
+sont réfléchies plus que d'autres ? \\
+
+	\begin{wrapfigure}[5]{l}{6cm}
+	\vspace{-10mm}
+	\includegraphics[scale=0.60]{ch4/image19.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'expérience est ici une observation, on forme une image. On observe la surface et en l'observant, on 
+regarde un endroit de la surface : cela sélectionne un angle : la rayon qui arrive à l'oeil est un 
+rayon qui a le même angle d'incidence mais de l'autre côté de la verticale. On observe un point 
+parce qu'un rayon émane de ce point pour former une image sur notre rétine : on sélectionne une 
+composante angulaire précise, $\theta$ est fixé.\\
+
+Si $\theta$ et $L$ sont donnés, certains longueurs d'ondes vont être transmises par le FP. Cette 
+transmission va être donnée pour une longueur d'onde particulière (même plusieurs, paramètre $m$)
+\begin{equation}
+\lambda_t = \dfrac{2L\cos\theta}{m}
+\end{equation}
+Analysons ce résultat en considérant $L=1\ \mu\text{m}, \theta = 60^\circ \rightarrow \cos\theta = 
+0.5$. Ceci donne 
+\begin{equation}
+\lambda_t = \dfrac{2\times1\times 0.5}{m}\quad\Longrightarrow\quad \lambda_t = \frac{1}{m}\quad [\mu 
+m]
+\end{equation}
+	\begin{wrapfigure}[7]{r}{6cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image20.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+En considérant $m=1, \lambda_t=1\ \mu\text{m}$. Ceci se situe dans le domaine de l'infrarouge : 
+celle-ci est totalement transmise et n'est pas visible (et de toute façon, elle ne l'était pas). 
+Si $m=2, \lambda_t=0.5\ \mu$m, cela se situe dans le bleu. Pour $m=3$ on rentre dans l'ultraviolet. 
+La longueur d'onde bleue est parfaitement transmise. L'observateur va donc observer de la lumière 
+blanche sans le bleu, soit de la lumière jaune.\\
+
+Le film mince à fait office de filtre, à la réflexion le bleu n'est plus présent. L'irisation n'est 
+pas la vision de longueur d'onde pure comme c'est le cas pour l'arc-en-ciel. Nous allons percevoir 
+une couleur jaune mais qui en réalité contient un grand nombre de longueur d'onde.\\
+
+	\begin{wrapfigure}[8]{l}{6cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image21.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+La rétine possède une certaine ouverture, les points d'à côtés seront également visibles. Considérons 
+alors un angle $\theta = 55^\circ$. Pour $m=2$ on est dans le visible : $\lambda_t=0.57\mu$m (vert), 
+soit une longueur d'onde plus grande. Le blanc moins le vert donne du rouge. En considérant un point 
+encore un peu plus proche ($\theta =50^\circ$), on obtient $\lambda_t = 0.64\mu$m, soit du rouge qui 
+donnera une couleur verte en réflexion. Allons plus loin, $\theta = 75^\circ\rightarrow \lambda_t = 0.5
+\mu$m pour $m=1$, après ce n'est plus visible. \\
+
+	\begin{wrapfigure}[15]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.40]{ch4/image22.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'angle "déplace" la couleurs supprimée dans le spectre. Pour un angle lointain, il faut se limiter 
+à l'ordre 1. Pour une distance moins loin, l'ordre 2 donne un longueur d'onde visible, \dots En 
+pratique, c'est bien ce qui est observé. Chaque couleur représente des ordres différents (plus on 
+ouvre en angle, plus l'ordre sera petit, si on recroise une couleur c'est son "ordre qui a été 
+diminué".)\\
+
+Mais que se passe-t-il pour un fil de l'ordre du centimètre, par exemple une plaque de verre. Nous 
+avons donc $L=10^4\mu$m : le phénomène de sélection se produit toujours, mais il se fera sur des 
+ordres de résonance très élevé ($m=10'000$). Pour le fun, étudions $m=2*10^4$. Pour un angle 
+$\theta=60^\circ$ on obtient
+\begin{equation}
+\lambda_t = \frac{10^4}{m}
+\end{equation}
+Pour l'ordre $m$, on trouve $\lambda_t = 0.5\mu$m. L'ordre $m-1$ diffère très peu de cet ordre $m$ 
+(différence au niveau de la cinquième décimale). Ceci signifie que les longueurs d'ondes passent 
+à travers mais sont toutes très proches, ici dans le bleu. En répétant l'opération, il y a quelques 
+20'000 réflexions qui ne sont plus réfléchie : le spectre est filtré avec une périodicité extrêmement 
+serrée. Le résultat de ceci est qu'il y a un filtrage, mais l’œil n'est pas assez sensible : on 
+verra toutes les couleurs du spectre visible et on ne verra pas le phénomène d'irisation ce qui est 
+beaucoup moins drôle. Le phénomène de filtrage ne permet plus de couper des "grosses parties" du 
+spectre visible. C'est pourquoi on ne voit pas d’irisation à sur les verres des lunettes.\\
+
+	\begin{wrapfigure}[9]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image23.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+On peut expliquer ce phénomène d'une façon alternative en confrontant le spectre visible à la 
+fonction de Airy. Ceci est assez naturel car la variable d'Airy, $\beta L$ renferme la longueur 
+d'onde. Si le spectre visible à une certaine largueur ($\Delta \lambda \approx 0.1\mu$m) à 
+$\theta, L$ fixé, une variation de longueur d'onde va donner une variation de la variable d'Airy 
+$\beta L$. Prenons la différentielle
+\begin{equation}
+\beta L = \frac{2\pi}{\lambda} \cos\theta L\quad\Rightarrow\quad \frac{d}{d\lambda}(\beta L) =
+-\frac{2\pi}{\lambda^2}\cos\theta L
+\end{equation}
+Ou encore, en exprimant la différentielle de la variable de Airy
+\begin{equation}
+d(\beta L) = -\frac{2\pi}{\lambda^2}d\lambda\cos\theta L
+\end{equation}
+Ceci donne une idée de l'extension du spectre visible $\Delta \lambda$ en terme de la variable 
+de Airy $\beta L$. Exprimons maintenant cette relation pour des accroissements fini et non plus 
+des différentielles.
+\begin{equation}
+\Delta(\beta L) = -\frac{2\pi}{\lambda^2}\Delta\lambda\cos\theta L
+\end{equation}
+Pour un angle et épaisseur donnée et pour la longueur d'onde visible (prenons $\lambda =0.5\mu$m, 
+ce que l'on fait en général pour désigner la longueur d'onde "central" du visible). On trouve alors
+\begin{equation}
+\Delta (\beta L) =\frac{2\pi}{0.25}0.1\cos\theta L = 0.8\pi\cos\theta L
+\end{equation}
+Il s'agit de l’extension du spectre visible dans la variable d'Airy, nous allons pouvoir voir 
+la place qu'occupe le spectre visible dans le graphique de la réflexion en fonction de $\beta L$.\\
+
+	\begin{wrapfigure}[11]{l}{6.3cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.60]{ch4/image24.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Considérons $L=1\mu$m $\rightarrow \Delta(\beta L) = 0.8\pi\cos\theta$. On obtient une grandeur 
+qui vaut une fraction de fois $\pi$ : cette valeur est comparable à celle entre les résonance du FB, 
+cet écart étant de $\pi$. Superposons les deux. Quelle est la position du spectre ? $\lambda$ et 
+$L$ étant fixé, la position va uniquement dépendre de $\theta$.  On voit que la largeur doit dépendre 
+de $\theta$, mais on ne rentre pas dans les détails. Lorsque l'angle $\theta$ (initialement important) 
+diminue, on va "déplacer" son regard : le spectre visible se déplace vers la droite. En fonction de 
+sa position, on peut voir ce qui est coupé et ce qui ne l'est pas.\\
+
+\newpage
+\textbf{Remarque} : pourquoi ce phénomène ne se fait-il que en réflexion? Si on n'en a pas, c'est 
+parce que la profondeur de régulation (profondeur des creux pour la transmission) sur les films 
+minces est très limitée (contrastes d'indices très faibles). Par contre en réflexion, ça sera 
+bien visible car on a toujours 0 à la résonance et quelque chose de non-nul : le contraste entre 
+les deux est toujours de 100\%.\\
+
+	\begin{wrapfigure}[9]{r}{6.3cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.7]{ch4/image25.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Pour un film centimétrique : $\Delta(\beta L) = 8\pi*10^3\cos\theta$. Cette extension est largement 
+plus grande que $\pi$, il faut représenter un nombre d'ordre très élevé pour que la superposition 
+donne quelque chose de visible. Le spectre visible englobe un très grand nombre de période de la 
+fonction d'Airy en réflexion. C'était ce que l'on avait précédemment obtenu : le filme mince 
+sélectionnait les longueurs d'onde extrêmement rapprochée : celles qui reste sont représentatives 
+du spectre visible et il n'y a pas de phénomène d'irisation détectable à l’œil nu.
 
 
 
