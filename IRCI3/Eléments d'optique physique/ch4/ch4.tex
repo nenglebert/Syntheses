@@ -717,15 +717,118 @@ résonance en fonction de $L$. Il suffit pour ça de voir que
 \Delta\phi = k\Delta L = \frac{2\pi}{\lambda}\Delta L = T\quad\Leftrightarrow\quad \Delta L = \frac{T\lambda}{
 2\pi}
 \end{equation}
+
+
 Ceci étant dit, nous allons pouvoir nous intéresser à la physique lorsque $L$ se voit modifié. Le point 
 de fonctionnement (au jaune ci-dessus) va effectuer des allers-retours sur un pics de résonance lorsque 
 $L$ est modifié : l'intensité transmise s’éteint et s'allume de l'autre côté du miroir.\\
 
+	\begin{wrapfigure}[9]{r}{3.5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.5]{ch4/image30.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
 Nous pouvons maintenant aborder la spectroscopie du FP. Considérons une situation simple : deux longueurs 
-d'onde présentes dans un faisceau lumineux. (20')
+d'onde présentes dans un faisceau lumineux, où $\lambda_2>\lambda_1$. Dans le graphique de la fonction 
+d'Airy, il fait alors considérer deux pics de résonance. La largeur de la résonance s'exprime toujours 
+comme $\Delta L = \frac{T\overline{\lambda}}{2\pi}$ où $\overline{\lambda}$ est la longueur d'onde moyenne.
 
+On peut à nouveau considérer une modification de $L$ : le balayage (le petit point jaune) va maintenant 
+passer par les deux pics, qui n'apparaissent pas ensemble mais en alternance. Comment réussir à exploiter 
+quelque chose de ceci ? Ci-dessous, le dispositif mis en œuvre
+\newpage
+\begin{center}
+	\includegraphics[scale=0.5]{ch4/image31.png}
+	\captionof{figure}{ }
+\end{center}
+On y voit le FP où le miroir de droite est sur sa monture piezométrique qui est elle-même reliée à 
+un générateur de tension (permettant de modifier $L$ à l'échelle du micron) fournissant un signal 
+triangulaire. Avec un capteur d'intensité, on récupère une tension du aux flash successifs émis en 
+alternance par le FP. Cette tension est mise en mode $y$ d'un oscilloscope alors que celle servant 
+à la monture piezométrique est mise en mode $x$ (donne une droite horizontale) de façon à exploiter 
+le mode $xy$ pour se débarrasser de l'axe temporel.\\
 
+	\begin{wrapfigure}[9]{r}{7.5cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.6]{ch4/image32.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+On relève ainsi le contenu spectral de la lumière incidente sur le FP. On a réussi à reconstituer 
+l'allure de $\mathcal{T}$. Ceci est fait pour deux longueurs d'onde, c'est bien entendu généralisable 
+à un grand nombre de longueurs d'onde. Étudions maintenant la résolution de ce spectre. Les 
+spectroscopiste ont défini une limite : les deux résonances se rapprochent au plus tel qu'elles se 
+croisent à mi-hauteur, il s'agit de la limite de résolution. A cet endroit la on arrive encore à 
+distinguer les deux longueurs d'onde mais après l'incertitude devient trop importante. Cette limite 
+de résolution s'exprime
+\begin{equation}
+\left|m\dfrac{\lambda_1}{2}-m\dfrac{\lambda_2}{2}\right|_{\min} \equiv \dfrac{T\overline{\lambda}}{2\pi}
+\end{equation}
+Soit la largeur à mi-hauteur en première approximation. En peut en trier
+\begin{equation}
+\dfrac{m}{2}\Delta\lambda_{\min} \equiv\dfrac{T\overline{\lambda}}{2\pi}
+\end{equation}
+où $\Delta\lambda_{\min}$ est l'écart de longueur d'onde minimale que l'on peut résoudre avec le 
+spectroscope. La résolution d'une spectromètre s'exprime alors
+\begin{equation}
+\mathcal{R} \equiv\dfrac{\Delta\lambda_{\min}}{\overline{\lambda}} = \dfrac{T}{m\pi}
+\end{equation}
+Ceci est un peu abstrait à cause de la présence du $m$ : comment connaître l'ordre de la résonance ? 
+Si on étudie les précédents pics, nous savons que $\DS\frac{m\overline{\lambda}}{2}\approx L$. Dès 
+lors $\DS m\approx \frac{2L}{\overline{\lambda}}$ et la résolution devient
+\begin{equation}
+\mathcal{R} \equiv\dfrac{\Delta\lambda_{\min}}{\overline{\lambda}} =\dfrac{T}{2\pi}\dfrac{\overline{\lambda}}{L}
+\end{equation}\ \\
 
+\newpage
+	\begin{wrapfigure}[6]{r}{2.5cm}
+	\vspace{-3mm}
+	\includegraphics[scale=0.6]{ch4/image33.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Illustrions avec le même exemple que précédemment ($L=\ 10cm, \overline{\lambda}=0.5\ \mu m, T=0.01, 
+F=4*10^4$). On obtient pour ces valeurs $\mathcal{R} = 0.75*10^{-8}$. Cette résolution est classique 
+pour un FP. Comparons cette résolution avec celle des réseaux de diffraction (une plaque gravée avec 
+des traits séparées d'un certains pas). Un tel réseau possède une résolution $\mathcal{R}=\frac{1}{N}$ 
+où $N$ est le nombre de traits du réseaux. Si l'on considère $p\approx 1\ \mu m.$ Pour avoir la même 
+résolution que notre FB, il faut que $N\approx 10^8$. Ceci donne un réseau qui à une longueur de 
+100m ($Np=10^2$ m) ce qui ne se fait pas en pratique. Le FP est nettement supérieur en terme de 
+résolution que le réseau de diffraction.\\
+
+	\begin{wrapfigure}[11]{l}{7.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.6]{ch4/image34.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Pourquoi continuer d'utiliser ce dernier? Le FP est excellent 
+pour étudier la finesse des pics de résonance mais il n'est adapté qu'aux détails spectraux extrêmement 
+fins. Le spectre est en réalité périodique (d'une demi longueur d'onde) et le FB n'en observe qu'un seul. 
+Essayons d'observer deux longueurs d'ondes qui ne sont ni trop rapprochées, ni trop éloignées. Volontairement, 
+le pic de la résonance correspondant à la longueur d'onde $\lambda_2$ est représenté par l'ordre $(m-1)$.
+Si $\lambda_1$ et $\lambda_2$ s'éloignent trop l'un de l'autre, le pic de l'ordre $(m-1)$ va se rapprocher 
+du pic de l'ordre $m$. Or l'ordre n'est pas connu, quand on relèvera l'ensemble de pics à l'oscilloscope 
+on pourrait mal l'interpréter physiquement n'ayant pas accès à l'ordre de la résonance.\\
+
+Un FB doit toujours être utilisé tel que les ordres soit bien distincts l'un de l'autre. Il faut donc
+\begin{equation}
+(m-1)\frac{\lambda_2}{2}<m\frac{\lambda_1}{2}\quad\Leftrightarrow\quad m(\lambda_2-\lambda_1)<\lambda_2
+\end{equation}
+Traduisons cette relation pour voir ce qu'elle devient en terme de longueur accessibles par le FP. 
+Comme d'habitude, nous n'avons pas accès à $m$. Il faut alors  utiliser $m\approx \frac{2L}{\overline{
+\lambda}}$. En remplaçant $\lambda_2$ par $\overline{\lambda}$ (on étudie la largeur de spectre qui, 
+étant extrêmement fine, autorise ce changement)
+\begin{equation}
+\Delta \lambda <\dfrac{\overline{\lambda}^2}{2L}
+\end{equation}
+où $\Delta \lambda$ est la largeur spectrale accessible au FP. Ceci est très limitant. Un exemple 
+valant mieux qu'un long discours
+\begin{equation}
+\left\{\begin{array}{ll}
+\overline{\lambda} &= 0.5\ \mu m\\
+L &= 10\ cm
+\end{array}\right.\quad\Rightarrow\quad \Delta \lambda < 10^{-6}\ \mu m 
+\end{equation}
+Le FB est bien pour étudier des détails extrêmement fin mais le réseau de diffraction reste 
+intéressant pour l'étude de spectres larges. 
 
 
 
