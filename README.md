@@ -21,6 +21,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
    - [x] [Chimie-physique](IRCI2/Chimie - Physique/build/Chimie Physique - Nicolas Englebert.pdf)
    - [x] [Économie politique et sociale](IRCI2/Economie/build/Economie politique et sociale - Enes Ulusoy.pdf)
    - [x] [Électricité](IRCI2/Electricité/build/Electricité - Nicolas Englebert.pdf)
+     - [x] [Rapport de laboratoire](IRCI2/Electricité/Laboratoire/build/Rapport de laboratoire - Terence Blésin, Nicolas Englebert, Benoît Vernier.pdf)
    - [x] Informatique
      - [x] [Micro-informatique](IRCI2/Informatique/syntheseOO.pdf)
      - [x] [Orientée objet](IRCI2/Informatique/MicroInformatique/build/syllab_microinfo.pdf)
@@ -31,7 +32,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 - [ ] Tronc Commun
   - [ ] [Électricité appliquée](IRCI3/Électricité appliquée/build/Électricité appliquée - Nicolas Englebert.pdf)
   - [ ] [Électronique appliquée](IRCI3/Electronique appliquée/build/Electronique appliquée- Nicolas Englebert.pdf)
-  - [ ] [Fluid mecanics and transport processes](IRCI3/Fluid mecanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
+  - [ ] [Fluid mecanics and transport processes](IRCI3/Fluid mechanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
   - [x] [Résistance des matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
   - [ ] [Sciences des matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
   - [ ] [Thermodynamique appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
