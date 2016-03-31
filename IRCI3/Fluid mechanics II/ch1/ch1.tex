@@ -769,21 +769,141 @@ In \eqref{eq:1.55} $a$ is a constant that represents the stress present when the
 		Everywhere in the domain. 
 		
 	\subsection{Incompressible/quasi incompressible flows}
-		Let's consider an inviscid steady flow in absece of body forces (and uniform $s$). Then the momentum equation \eqref{eq:1.93} tells that
+		Let's consider an inviscid steady flow in absence of body forces (and uniform $S$ due to inlet conditions). Then the momentum equation \eqref{eq:1.93} tells that
 		\begin{equation}
-			\rho (\vec{u}\nabla )\vec{u} = -\nabla p  = - \frac{dp}{d\rho}|_{s} \nabla \rho 
+			\rho (\vec{u}\nabla )\vec{u} = -\nabla p  = - \left.\frac{dp}{d\rho}\right|_{S} \nabla \rho 
 		\end{equation}
-		where $\frac{dp}{d\rho}|_s = a^2$, with $a$ the speed of sound. 
+		where $\frac{dp}{d\rho}|_S = a^2$, with $a$ the speed of sound. 
 		
-		\begin{wrapfigure}[5]{l}{2cm}
+		\begin{wrapfigure}[4]{l}{2cm}
 		\vspace{-5mm}
 		\includegraphics[scale=0.4]{ch1/11}
 		\captionof{figure}{}
 		\end{wrapfigure}
-		If $\vec{e}_s$ is the unit vector along the streamline. We have that 
+		If $\vec{e}_s$ is the unit vector along the following streamline. We have that 
 		\begin{equation}
 		\begin{aligned}
-			\vec{u}= u \vec{e}_s \qquad &\Rightarrow u \frac{d}{ds}(u\vec{e}_s) = -\frac{a^2}{\rho} \nabla \rho = -\frac{a^2}{\rho}\left[ \frac{d\rho}{ds}\vec{e}_s + \frac{d\rho}{dn} \vec{e}_n \right]\\
+			\vec{u}= u \vec{e}_s 
+			\qquad &\Rightarrow (\vec{u}\nabla)\vec{u} = u \frac{d}{ds}(u\vec{e}_s) = -\frac{a^2}{\rho} \nabla \rho = -\frac{a^2}{\rho}\left[ \frac{d\rho}{ds}\vec{e}_s + \frac{d\rho}{dn} \vec{e}_n \right]\\
 			&\Leftrightarrow u\frac{du}{ds}\vec{e}_s + u^2\frac{d\vec{e}_s}{ds} =  -\frac{a^2}{\rho}\left[ \frac{d\rho}{ds}\vec{e}_s + \frac{d\rho}{dn} \vec{e}_n \right]
 			\end{aligned}
 		\end{equation}
+		We will not discuss the derivative of the unit vector, so if we look to the streamline's direction component, we have
+		\begin{equation}
+			u\frac{du}{ds} = -\frac{a^2}{\rho} \frac{d\rho}{ds} \quad \Leftrightarrow \quad \frac{u^2}{a^2}\frac{du}{u} = - \frac{d\rho}{\rho} \qquad \Rightarrow \frac{d\rho}{\rho} = -M^2 \frac{du}{u}
+		\end{equation}
+		where $M = \frac{u}{a}$ is the \textbf{Mach number} and compares the local velocity to the speed of sound. The conclusion is that when M is small, density variations are small. We can so make the approximation of constant density. Even for compressible fluids (like gases), in the conditions provided by the assumptions, density almost does not vary as long as the Mach number is much smaller than 1 (smaller than 0.3 in practice). \\
+		A first counter example is the sound waves because they create unsteady flows and natural convection where the density variation is due to temperature variation (we only considered pressure variation here). In these cases density variation is not negligible even for small Mach number. 
+		
+	\subsection{Two-dimensional (planar) flows}
+	
+		\begin{wrapfigure}[7]{r}{2.8cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.4]{ch1/12}
+		\captionof{figure}{}
+		\label{fig:1.12}
+		\end{wrapfigure}
+		They are essentially flows over cylindrical geometries. A general cylilnder is a body made of straightlines parallel to each other and wich lie upon a two dimensional curve. When we take a surface and draw infinite straightlines, there is no reason for the solution to vary in the infinite direction, all the derivative are 0. This means, according to \autoref{fig:1.12}, that $\frac{\D}{\D x_3}=0$. Moreover, in general there is no velocity component in this direction but it isn't necessary $u_3 = 0$.\\
+		
+		In that case, for \textbf{steady} flows, the continuity equation becomes 
+		\begin{equation}
+			\dot{\rho} + \rho \nabla \vec{u} = \cancel{\frac{\D \rho}{\D t}} + \nabla \rho \vec{u} = 0 \qquad \Leftrightarrow \frac{\D (\rho u_1)}{\D x_1} + \frac{\D (\rho u_2)}{\D x_2} = 0
+		\end{equation}
+		This equation can be made satisfied by introducing an auxiliary funciton $\psi$ (called streamfunction), such that  
+		\begin{equation}
+		\left\{
+		\begin{aligned}
+			\rho u_1 &= &\rho _0 \frac{\D\psi}{\D x_2}\\
+			\rho u_2 &= &-\rho _0 \frac{\D\psi}{\D x_1}
+		\end{aligned}
+		\right.
+		\qquad \Rightarrow \qquad \underbrace{\frac{\D \rho u_1}{\D x_1}}_{\rho _0 \frac{\D ^2 \psi}{\D x_1 \D x_2}} + \underbrace{\frac{\partial ^2 \rho u_2}{\D x_2}}_{-\rho _0 \frac{\D ^2 \psi}{\D x_2 \D x_1}} = 0
+		\label{eq:1.107}
+		\end{equation}
+		We see that continuity equation is satisfied for this function.  We can replace the two velocity variables by this function and reduce the unknowns from 2 to 1. 
+		
+		\newpage
+		\subsubsection{Physical meaning of the streamfunction}
+			\begin{wrapfigure}[8]{l}{2.8cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.4]{ch1/13}
+			\captionof{figure}{}
+			\label{fig:1.13}
+			\end{wrapfigure}
+			If we are in 3D with $x_3$ the direction of homogeneity and a surface composed of straightlines (height h=1) lying upon a curve $C$ in $x_1 x_2$ plan. The mass flow over the surface is ($\vec{b} = 0$)
+			\begin{equation}
+				\dot{m} = \int _S \rho \vec{u}\vec{n}\, dS = \int _0 ^1 dx_3 \int _C \dot{m}\vec{u}\vec{n}\, ds
+				\label{eq:108}
+			\end{equation}
+		Let's look to the curve from top. We will make a little bit geometry on the magnifier of the curve C. \\
+		
+			\begin{wrapfigure}[7]{r}{4.5cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.4]{ch1/14}
+			\captionof{figure}{}
+			\label{fig:1.14}
+			\end{wrapfigure}
+			In order to determine the normal to the circuit, we have to close it following an anticlockwise fashion (A to B). If we write the normal following $x_1$ and $x_2$ direction, according to \autoref{fig:1.14} we have ($dx_1<0$)
+			\begin{equation}
+			\left.
+			\begin{aligned}
+				n_1 &= \cos \theta = \frac{dx_2}{ds} \\
+				n_2 &= \sin \theta = -\frac{dx_1}{ds}
+			\end{aligned}
+			\right\}
+			 \Rightarrow 
+			\begin{aligned}
+				&\rho \vec{u}\vec{n}\,  ds = \rho (u_1 n_1 + u_2 n_2)\, ds\\
+				&= \rho \left[ u_1 \frac{dx_2}{ds} - u_2 \frac{dx_1}{ds} \right]\, ds\\
+				&= \rho (u_1 dx_2 - u_2 dx_1)
+			\end{aligned}
+			\end{equation}
+			And now if we remplace in \eqref{eq:108} and use the definition of the streamline function, we have 
+			\begin{equation}
+				\dot{m} = \int _C \rho (u_1 dx_2 - u_2 dx_1) = \int _C \rho _0 \underbrace{\left[\frac{\D \psi }{\D x_2}dx_2 - \left( -\frac{\D \psi}{\D x_1} \right) dx_1 \right]}_{d\psi} = \rho _0 (\psi _B - \psi _A)
+			\end{equation}
+			So, the physical meaning is that $\psi$ on a certain point is the mass flow between this point and a reference point where $\psi = 0$. And because of a steady flow, it's the same mass flow over the surface from A to B whatever the curve used for. If 2 points A and B are on the same streamline then $\psi_A = \psi _B$, so lines with $\psi = cst$ are streamlines. 
+			
+		\subsubsection{Streamfunction equation (constant-density flow)} 
+			We are interested in finding an equation the streamfunction has to satisfied. The assumption of constant density allow us to consider $\rho = \rho _0$ as it's not a function of space in \eqref{eq:1.107} 
+			\begin{equation}
+				\left\{
+		\begin{aligned}
+			u_1 &= &\frac{\D\psi}{\D x_2}\\
+			u_2 &= &- \frac{\D\psi}{\D x_1}
+		\end{aligned}
+		\right.
+		\qquad \Rightarrow \nabla \vec{u} = 0 \mbox{ (continuity equation) }
+		\label{eq:1.111}
+			\end{equation}
+			If we compute the vorticity vector 
+			\begin{equation}
+				\vec{\omega} = \nabla \times \vec{u} = 
+				\left| 
+				\begin{array}{ccc}
+				\vec{e}_1 & \vec{e}_2 & \vec{e}_3 \\ 
+				\frac{\D}{\D x_1} & \frac{\D}{\D x_2} & \cancel{\frac{\D}{\D x_3}} \\ 
+				u_1 & u_2 & \cancel{u_3}
+				\end{array} 
+				\right|
+				= \vec{e}_3 \underbrace{\left(\frac{\D u_2}{\D x_1} - \frac{\D u_1}{\D x_2}\right)}_{\omega _3}
+			\end{equation}
+			Now if we replace the velocity components by the streamfunction equivalence, we found the
+			
+			\begin{center}
+			\theor{
+			\textbf{Streamfunction equation}
+			\begin{equation}
+				\omega _3 = -\frac{\D ^2 \psi}{\D x_1^2} - \frac{\D ^2 \psi}{\D x_2^2} \qquad \Leftrightarrow \qquad -\omega _3 (x_1,x_2) = \nabla ^2 \psi
+			\end{equation}
+			}
+			\end{center}
+			
+		 	An equation for vorticity can be obtained by taking the curl of the momentum equation. This last equation compatible with our assumptions is 
+		 	\begin{equation}
+		 		\rho\dot{\vec{u}} = \rho \left[\frac{\D \vec{u}}{\D t} + (\vec{u}\nabla)\vec{u}\right] = -\nabla p + p\vec{F} + \nabla \bar{\bar{\tau}}
+		 	\end{equation}
+		 	Combined with \eqref{eq:1.111}, we have a set of 4 equations and 4 unknowns in 3D ($\vec{u}$ and $p$). So the continuity and momentum equations can be solved independently of the energy equation, the thermal problem is dissociated from the hydrodynamic problem. Let's finally point that for irrotational flows we have 
+		 	\begin{equation}
+		 		\nabla ^2 \psi = 0 \qquad \mbox{(Laplace's equation)} 
+		 	\end{equation}
