@@ -1,0 +1,357 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+% CH2 : similarity and dimensional analysis %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Similarity and dimensional analysis}
+
+This was hystorically first developped by engineers. We derived the governing equations for fluids flows but in practice we can not everytime find an analytical solution. The main weapon of engineers is testing. But it's not easy to do tests on full scale prototypes. We will do tests on a scaled model. But there rises the question of the representativity of the tests. 
+
+\section{Experimental testing - Similarity}
+	Under wich conditions are experiments carried out over a scaled model (m) representative of the flow over the actual prototype (p) ? The response is that the flow has to verify 3 different similarity conditions. 
+	
+			\subsubsection{Geometrical similarity} 
+				The first and easy one. There exists a unique constant $C_x$ such that space coordinates at analogous points in the model and the prototype are related by a proportionality relation 
+				\begin{equation}
+					x_{i,m} = C_x x_{i,p}
+					\label{eq:2.1}
+				\end{equation}
+				This implies that the model and the prototype are \textbf{homothetic} $L_m = C_x L_p$. It seems easy but in reality when we have to manufacture something, there are irregularities in molecular level. All machined surfaces are characterized by a certain roughness $\epsilon$. So, the roughness should also be proportional. We have in terms of relative roughness 
+				\begin{equation}
+					\epsilon _m = C_x \epsilon _p \qquad \Leftrightarrow \qquad \left( \frac{\epsilon}{L}\right) _m = \left( \frac{\epsilon}{L}\right) _p
+				\end{equation}
+				We see here that for a model x time smaller than the prototype, the roughness must be x time smaller in order to have the same relative roughness, which is very difficult. 
+				
+			\subsubsection{Kinematic similarity}
+				The relation that relates the analogous points of the model and the prototype is $\eqref{eq:2.1}$. Similarly, for analogous points in time or analogous time, we have 
+				\begin{equation}
+					t_{m} = C_t t_{p}
+				\end{equation}
+				Time is not necesseraly the same. For example, for the humming bird testing, we need to slow down the movement to do measurements leading to more time to accomplish the same movement as the prototype. The kinematic similarity says that velocities at analogous points and times are related by a unique proportionality constant 
+				\begin{equation}
+					u_{j,m} (x_{i,m}t_m) = C_u u_{j,p} (x_{i,p},t_{i,p}) = C_u u_{j,p} \left(\frac{x_{i,m}}{C_x},\frac{t_m}{C_t}\right)
+				\end{equation}
+				
+			\subsubsection{Dynamic similarity}
+				Forces per unit volue of area at analogous points and times should also be related by a unique proportionality constant. For example if we consider the pressure, we must have 
+				\begin{equation}
+					p_{m} = C_p p_{p}\left(\frac{x_{i,m}}{C_x},\frac{t_m}{C_t}\right)
+				\end{equation}
+				If the dimensional similarity is easy to check, it's not the case for the txo others for which we must study the equaitions of motion. 
+				
+\section{Non-dimensional form of the governing equations - Similarity conditions}
+	We deduces from the previous similarities that at analogous points
+	\begin{equation}
+	\left.
+	\begin{aligned}
+	x_{i,m} &= C_x x_{i,p}\\
+	L_m &= C_x L_p
+	\end{aligned}
+	\right\}
+	\qquad \Rightarrow \frac{x_{i,m}}{L_m} = \frac{x_{i,p}}{L_p}
+	\end{equation}
+	At this stage we can define non-dimensional coordinates and times like 
+	\begin{equation}
+		\tilde{x}_i = \frac{x_i}{L} \quad \Rightarrow \tilde{x}_{i,m} = \tilde{x}_{i,p} \qquad and \qquad \tilde{t} = \frac{t}{T} \quad \Rightarrow \tilde{t}_m = \tilde{t}_p
+	\end{equation}
+	Analogous points are caracterized by the fact that they have the same non-dimensional coordinates and time value. We have to define a non-dimensional velocity like 
+	\begin{equation}
+		\tilde{u}_j = \frac{u_j}{U} \qquad \Rightarrow \tilde{u}_{j,m} = \tilde{u}_{j,p}
+	\end{equation}
+	For a kinematically similar flows, the non-dimensional velocity fields should be the same for the model and the prototype. How can we verify these idenity? This can only be achieved if the non-dimensional equations are the same for the model and the prototype. 
+	
+	\subsection{Continuity equation}
+		The dimensional and index form of the continuity equation were 
+		\begin{equation}
+			\frac{\D \rho}{\D t} + \nabla \rho u = 0 = \frac{\D \rho}{\D t} + \frac{\D\rho u_j}{\D x_j} 
+		\end{equation}
+		We have to introduce the following independent non-dimensional variables 
+		\begin{equation}
+			\tilde{t} = \frac{t}{T} \qquad \tilde{x}_j = \frac{x_j}{L} \qquad \tilde{u}_j = \frac{u_j}{U} \qquad \tilde{\rho} = \frac{\rho}{\rho _0}
+		\end{equation}
+		And by replacing the variables in general equation and dividing by convective term coefficient, we have
+		\begin{equation}
+			\frac{\rho _0}{T} \frac{\D \tilde{\rho}}{\D\tilde{t}} + \frac{\rho _0 U}{L} \frac{\D \tilde{\rho}\tilde{u}_j}{\tilde{x}_j} = 0\qquad 
+			\Leftrightarrow \qquad \frac{L}{UT} \frac{\D \tilde{\rho}}{\D\tilde{t}} + \frac{\D \tilde{\rho}\tilde{u}_j}{\D \tilde{x}_j} = 0
+		\end{equation}
+		There appears a non-dimensional number that we define as \textbf{Strouhal number} $St = \frac{L}{UT}$. $L$ is the caracteristic lenght of the body and $UT$ the lenght travelled in a caracteristic time scale. So St is the ratio of the two length.  
+		
+		\begin{center}
+		\theor{
+		\textbf{Non-dimensional continuity equation}
+		\begin{equation}
+			St \frac{\D \tilde{\rho}}{\D \tilde{t}} + \frac{\D \tilde{\rho}\tilde{u}_j}{\D \tilde{x}_j} = 0
+		\end{equation}				
+		}
+		\end{center}
+		This equation is the same for the model and the prototype. For the solution to be the same, Strouhal numbers must be the same $St_m = St_p$. It is not a very strict  condition to verify because the caracteristic time can be chosen the way to verify the identity. 
+		
+	\subsection{Momentum equation}
+		The procedure is exactly the same. The divergence form was (considering first the gravitation force)
+		\begin{equation}
+			\frac{\D \rho u_i}{\D t} + \frac{\D \rho u_i u_j}{\D x_j} = \rho g \alpha _i - \frac{\D p}{\D x_i} + \frac{\D \tau _{ji}}{\D x_j}
+			\label{eq:2.13}
+		\end{equation}
+		where $\alpha _i$ is the orientation of the gravity vector. Here we have to express the viscous stress tensor using \textbf{Stokes hypothesis} ($\mu _V = 0$)
+		\begin{equation}
+			\tau _{ji}= 2\mu S_{ij}^S = \mu \left( \frac{\D u_i}{\D x_j}+ \frac{\D u_j}{\D x_i} - \frac{2}{3} \delta _{ij} \frac{\D u_k}{\D x_k} \right)
+		\end{equation}
+		There we only have to introduce a non-dimensional viscosity $\tilde{\mu} = \frac{\mu}{\mu _0}$. We have so 
+		\begin{equation}
+			\tau _{ji}= \frac{\mu _0 U}{L}\tilde{\mu} \left( \frac{\D \tilde{u}_i}{\D \tilde{x}_j}+ \frac{\D \tilde{u}_j}{\D \tilde{x}_i} - \frac{2}{3} \delta _{ij} \frac{\D \tilde{u}_k}{\D \tilde{x}_k} \right)
+			= \frac{\mu _0 U}{L} \tilde{\tau} _{ji}
+		\end{equation}
+		We have also to introduce a non-dimensional pressure but if we rewrite left side of \eqref{eq:2.13} like 
+		\begin{equation}
+			\rho \left[ \frac{\D u_i}{\D t} + u_j \frac{\D u_i}{\D x_j} \right] = \rho g \alpha _i - \frac{\D p}{\D x_i} + \frac{\D \tau _{ji}}{\D x_j}
+		\end{equation}
+		where p only appears in differentiated form while $\rho$ and $u$ appear also in non-differentiated form. This implies that we define a relative non-dimensional pressure 
+		\begin{equation}
+			\tilde{p} = \frac{p-p_0}{\Delta p}
+		\end{equation}
+		where $p_0$ is a reference pressure and $\Delta p$ a caracteristic pressure variation scale. So we're done, we can replace the variables 
+		\begin{equation}
+			\frac{\rho _0 U}{T} \frac{\D \tilde{\rho}\tilde{ u}_i}{\D \tilde{t}} + \frac{\rho _0 U^2}{L} \frac{\D \tilde{\rho} \tilde{u}_i \tilde{u}_j}{\D \tilde{x}_j} = \rho _0 \tilde{\rho} g \alpha _i - \frac{\Delta p}{L} \frac{\D \tilde{p}}{\D \tilde{x}_i} + \frac{\mu _ 0 U}{L^2}\frac{\D \tilde{\tau} _{ji}}{\D \tilde{x}_j}
+		\end{equation}
+		Dividing by the convective term coefficient $\frac{\rho _0 U^2}{L}$, we have 
+		\begin{equation}
+			\underbrace{\frac{L}{UT}}_{St} \frac{\D \tilde{\rho}\tilde{ u}_i}{\D \tilde{t}} + \frac{\D \tilde{\rho} \tilde{u}_i \tilde{u}_j}{\D \tilde{x}_j} =  \underbrace{\frac{gL}{U^2}}_{\frac{1}{Fr^2}} \tilde{\rho} \alpha _i - \underbrace{\frac{\Delta p}{\rho_0 U^2 }}_{Eu} \frac{\D \tilde{p}}{\D \tilde{x}_i} + \underbrace{\frac{\mu _ 0}{\rho _0 LU}}_{\frac{1}{Re_L}}\frac{\D \tilde{\tau} _{ji}}{\D \tilde{x}_j}
+		\end{equation}
+		where $Fr = \frac{U}{\sqrt{gL}}$ is the \textbf{Froude number}, the ratio of the caracteristic velocity with another wich is the velocity of propagation of waves on shallow water (in a pond for example). There is also the \textbf{Euler number} $Eu = \frac{\Delta p}{\rho _0 U^2}$.
+		\begin{center}
+		\theor{
+		\textbf{Non-dimensional momentum equation}
+		\begin{equation}
+			St \frac{\D \tilde{\rho}\tilde{ u}_i}{\D \tilde{t}} + \frac{\D \tilde{\rho} \tilde{u}_i \tilde{u}_j}{\D \tilde{x}_j} =  \frac{1}{Fr ^2} \tilde{\rho} \alpha _i - Eu \frac{\D \tilde{p}}{\D \tilde{x}_i} + \frac{1}{Re_L} \frac{\D \tilde{\tau} _{ji}}{\D \tilde{x}_j}
+		\end{equation}
+		}
+		\end{center}
+		Therefor, for the similarity we need to have additionally
+		\begin{equation}
+			Fr_m = Fr_m \qquad Eu _m = Eu _p \qquad Re_m = Re_p
+		\end{equation}
+		
+	\subsection{Energy equation}
+		We will go from the total energy equation wich was 
+		\begin{equation}
+		\begin{aligned}
+			&\frac{\D \rho E}{\D t} + \frac{\D \rho E u_j}{\D x_j} = \rho g \alpha _i u_i - \frac{\D p u_j}{\D x_j} + \frac{\D \tau _{ji} u_i}{\D x_j} - \frac{\D q_i}{\D x_i}\\
+			\Leftrightarrow \qquad &\frac{\D \rho E}{\D t} + \frac{\D (\rho E+p) u_j}{\D x_j} = \rho g \alpha _i u_i + \frac{\D \tau _{ji} u_i}{\D x_j} - \frac{\D q_i}{\D x_i}
+		\end{aligned}
+		\end{equation}
+		We remember that 
+		\begin{equation}
+			\rho E + p = \rho (e+k) + p = \rho (e+ pv) + \rho k = \rho (h + k) = \rho H
+		\end{equation}
+		where H is defined as the total enthalpy per unit mass. If we replace $E = H -p$ and the others
+		\begin{equation}
+			\frac{\D \rho H}{\D t} + \frac{\D \rho H u_j}{\D x_j} - \frac{\D  p}{\D t} = \rho g \alpha _i u_i + \frac{\D \tau _{ji} u_i}{\D x_j} - \frac{\D q_i}{\D x_i}
+			\label{eq:2.24}
+		\end{equation}
+		We have to introduce 2 non-dimensional variables, one for h and the other for q. Again, the enthalpy appears only in derivated form, so we introduce
+		\begin{equation}
+			\tilde{h} = \frac{h-h_0}{\Delta h} \quad and \quad k = \frac{u_i u_j}{2} = U^2 \underbrace{\frac{\tilde{u}_i \tilde{u}_j}{2}}_{\tilde{k}}
+			\qquad \Rightarrow \left\{
+			\begin{aligned}
+			\D H &= \Delta h \D \tilde{h} + U^2 \D \tilde{k}\\
+					&= \Delta h \left( \D\tilde{h} + \frac{U^2}{\Delta h}\D \tilde{k} \right)
+			\end{aligned}
+			\right.
+		\end{equation}
+		Where the coefficient $Ec = \frac{U^2}{\Delta h}$ is the \textbf{Eckert number}. Let's attack the heat flux and remind that $Pr = \frac{\mu c_p}{\kappa}$
+		\begin{equation}
+			q_i = - \kappa \frac{\D T}{\D x_i} = - \frac{\kappa}{c_p} \frac{c_p \D T}{\D x_i} = - \frac{\mu }{Pr} \frac{\D h}{\D x_i} = \frac{\mu _0 \Delta h}{Pr L} \underbrace{- \left(\tilde{\mu} \frac{\D \tilde{h}}{\D \tilde{x}_i}\right)}_{\tilde{q}_i}
+		\end{equation}
+		We are ready to write the non dimensional form of \eqref{eq:2.24}
+		\begin{equation}
+			\frac{\rho _0 \Delta h}{T} \tilde{\rho} \left[\frac{\D \tilde{h}+ Ec \D \tilde{k}}{\D \tilde{t}} + \frac{UT}{L} \tilde{u}_j \frac{\D \tilde{h} + Ec \D \tilde{k}}{\D \tilde{x}_j} \right] - \frac{\Delta p}{T} \frac{\D \tilde{p}}{\D \tilde{t}} = \rho _0 g U \alpha _i \tilde{\rho} \tilde{u}_i + \frac{\mu _0 U^2}{L^2} \frac{\D \tilde{\tau} _{ji} \tilde{u}_i}{\D \tilde{x}_j} - \frac{\mu _0 \Delta h}{Pr L^2} \frac{\D \tilde{q}_i}{\D \tilde{x}_i}
+ 		\end{equation}
+ 		Again, if we divide by the coefficient of the convective term $\frac{\rho _0 \Delta h}{T}\frac{UT}{L}$
+ 		\begin{equation}
+ 		\begin{aligned}
+ 			&\underbrace{\frac{L}{UT}}_{St} \tilde{\rho} \frac{\D \tilde{h}+ Ec \D \tilde{k}}{\D \tilde{t}} + \tilde{\rho} \tilde{u}_j \frac{\D \tilde{h} + Ec \D \tilde{k}}{\D \tilde{x}_j} - \underbrace{\frac{L}{UT}\frac{\Delta p}{\rho _0 U^2}\frac{U^2}{\Delta h}}_{StEuEc} \frac{\D \tilde{p}}{\D \tilde{t}} \\
+ 			&= \underbrace{\frac{glU^2}{U^2\Delta h}}_{\frac{Ec}{Fr^2}} \alpha _i \tilde{\rho} \tilde{u}_i + \underbrace{\frac{\mu _0 U^2}{L\rho _0 \Delta h U}}_{\frac{Ec}{Re_L} }\frac{\D \tilde{\tau} _{ji} \tilde{u}_i}{\D \tilde{x}_j} - \underbrace{\frac{\mu _0 }{Pr L \rho _0 U}}_{\frac{1}{Pr Re_L}} \frac{\D \tilde{q}_i}{\D \tilde{x}_i}
+ 		\end{aligned}
+ 		\end{equation}
+ 		\begin{center}
+ 		\theor{
+ 		\textbf{Non-dimensional form of the energy equation}
+ 		\begin{equation}
+ 			St \tilde{\rho} \frac{\D \tilde{h}+ Ec \D \tilde{k}}{\D \tilde{t}} +  \tilde{\rho}\tilde{u}_j \frac{\D \tilde{h} + Ec \D \tilde{k}}{\D \tilde{x}_j} - StEuEc \frac{\D \tilde{p}}{\D \tilde{t}} = \frac{Ec}{Fr^2} \alpha _i \tilde{\rho} \tilde{u}_i + \frac{Ec}{Re_L} \frac{\D \tilde{\tau} _{ji} \tilde{u}_i}{\D \tilde{x}_j} - \frac{1}{PrRe_L} \frac{\D \tilde{q}_i}{\D \tilde{x}_i}
+ 		\end{equation}
+ 		}
+ 		\end{center}
+ 		
+ 		At this stage what we have a last condition which is $Ec_m = Ec_p$. For the tests over the scaled model to be representative of the actual flow over the prototype, all these dimensionless parameters should be the same for the experiment and for the true configuration. This is called complete similarity. This is very difficult, impossible to achieve. It is why we have to study the relax we can give to the parameters. What is the interpretation we can give to the dimensionless numbers? For those who appear in the momentum equation, $\rho g$ is a force per unit volume, so all terms in the dimentional momentum equation are force density. And these dimensionless numbers represents the ratio of the divers force densities. For example, St number represents the relative magnitude of the inertial force density to the convective force density. We can also give other interpretations like previously with the definition of the numbers. 
+ 		
+ 	\subsection{Partial similarity}
+ 		We will not consider Prandtl number because is relatively constant for most fluids. 
+ 			
+ 		\subsubsection{Strouhal number}
+ 			For flows where there are intrinsic time scales, for example the flapping bird has a certain period of flapping. This is imposed by the problem. For flows there is no imposed period, for example steady flows. For those we can choose 
+ 			\begin{equation}
+ 				T = \frac{L}{U} \qquad \Rightarrow St = 1
+ 			\end{equation}
+ 			for both model and prototype. The fact that there is no caracteristic time scale doesn't mean that the flow is steady. The example of that is the flow at low speed around a cylinder of diameter $D$. When $Re > 40$, the flow becomes unsteady naturally. Even though the cylinder is fiwed, even the velocity of the fluid constant in time, the flow develops natural unsteadiness by its own. In fact, we have a shedding of vortices alternatively on the upper and lower side (Karman vortex street - Aelion times). The oscillation takes place at a very specific frequency and the non-dimensional period is 
+ 			\begin{equation}
+ 				\tilde{T}_{osc} = \frac{T_{osc}}{T} = \frac{T_{osc}U}{L}
+			\end{equation} 			  
+			and is the same for both model and prototype. We have also $St_{osc} = \frac{f_{osc}L}{U} \Rightarrow St_{osc} = f(Re_L)$ that is function of the other parameters of the oscillation like the Re number. 
+			
+		\subsubsection{Euler number}
+			We know that the governing equations must be supplemented by some additional equations. We never spoke about the thermodynamic equations of states that must be the same for the model and prototype. We will assume a flow of thermically and calorically perfect gas 
+			\begin{equation}
+				\left.
+				\begin{aligned}
+				p &= \rho RT\\
+				h &= c_p T = \frac{\gamma}{\gamma - 1} RT
+				\end{aligned}
+				\right\} \quad
+				\Leftrightarrow \quad
+				h = \frac{\gamma}{\gamma - 1} \frac{p}{\rho} \quad \Leftrightarrow \quad
+				\rho = \frac{\gamma}{\gamma -1} \frac{p}{h}
+				\label{eq:2.32}
+			\end{equation}
+			By introducing non-dimentional variables 
+			\begin{equation}
+				\rho _0 \tilde{\rho} = \frac{\gamma}{\gamma -1} \frac{p_0 + \Delta p \tilde{p}}{h_0 + \Delta h \tilde{h}} \quad \Leftrightarrow \quad \rho _0 \tilde{\rho} = \frac{\gamma}{\gamma - 1} \frac{p_0\left( 1 + \frac{\Delta p \tilde{p}}{p_0} \right)}{h_0 \left( 1 + \frac{\Delta h \tilde{h}}{h_0} \right)} \quad \Leftrightarrow \quad \tilde{\rho} = \frac{1+\frac{\Delta p \tilde{p}}{p_0}}{1+\frac{\Delta h\tilde{h}}{h_0}}
+			\end{equation}
+			In the other hand, if we remind that $a^2 = \gamma RT = \gamma \frac{p}{\rho}$, we have
+			\begin{equation}
+				\frac{\Delta p }{p_0} = \frac{\Delta p}{\rho _0 U^2}\frac{\rho _0 U^2}{p_0} = \underbrace{\frac{\Delta p}{\rho _0 U^2}}_{Eu}\gamma \underbrace{\frac{U^2}{a^2}}_{Ma^2}
+			\end{equation}
+			And if we replace in previous relation 
+			\begin{equation}
+				\tilde{\rho} = \frac{1+\gamma Eu Ma^2\tilde{p}}{1+\frac{\Delta h\tilde{h}}{h_0}}
+			\end{equation}
+			There is no imposed scale for pressure, so if we choose $\Delta p = \rho _0 U^2\Rightarrow Eu = 1$, we don't care about. In that case
+			\begin{equation}
+				\tilde{\rho} = \frac{1+\gamma Ma^2\tilde{p}}{1+\frac{\Delta h\tilde{h}}{h_0}}
+			\end{equation}
+			So here we have to satisfy the Mach number similarity, we didn't gain anything, we can replace Euler number similarity by Mach number similarity. We see that if $Ma$ is negligible, the term is small compared to 1 and so the Ma number disappears. So we will not have to take into account that similarity in the last case
+			\begin{equation}
+				\tilde{\rho} = \frac{1}{1+\frac{\Delta h\tilde{h}}{h_0}}
+				\label{eq:2.37}
+\end{equation}			 
+			
+		\subsubsection{Froude number}
+			We're going to speak about the governing equation. In fact, for flows in which there is no free surface (for example a pipe where the fluid is contained), we can integrate the gravity term with the pressure term (hydrostatic pressure) in momentum equation. The reason this is not possible in free surface cases is because the pressure does not vary on the surface. Consider a flow of a liquid of a gas without free surface. The corresponding terms for pressure gradient and gravity are respectively
+			\begin{equation}
+				-\frac{\D p}{\D x_i} + \rho g \alpha _i \qquad \Rightarrow \qquad - \frac{\D}{\D x_i} (p + \rho g \alpha _i x_i )
+				\label{eq:2.38}
+			\end{equation}
+			We will define $\delta p = p - (p_0 + \rho _0 g \alpha _i x_i)$ where appears the hydrostatic pressure field, due to the fact that hydrostatic pressure force in \eqref{eq:2.38} can be expressed by $-\rho\frac{\D}{\D x_i} ( g \alpha _i x_i)$, derivative of the potential energy. It comes that
+			\begin{equation}
+				\frac{\D \delta p}{\D x_i} = \frac{\D p}{\D x_i} - \frac{\D}{\D x_i} (\rho _0 g\alpha _i x_i)
+			\end{equation}
+			Making $\delta p$ appear in \eqref{eq:2.38}, we have
+			\begin{equation}
+				-\frac{\D}{\D x_i} \underbrace{(p - p_0 - \rho _0 g \alpha _i x_i)}_{\delta p} + (\rho - \rho _0) \frac{\D}{\D x_i} g\alpha _i x_i = -\frac{\D \delta p }{\D x_i} + \underbrace{(\rho - \rho _0)}_{\delta \rho} g \alpha _i
+			\end{equation}
+			The corresponding terms in non-dimensional equation are 
+			\begin{equation}
+				-Eu \frac{\D\delta \tilde{p}}{\D \tilde{x}_i} +\frac{1}{Fr^2}\underbrace{(\tilde{\rho} - 1)}_{\delta \tilde{\rho}}\alpha _i
+				\label{eq:2.41}
+			\end{equation}
+			Let's consider a low Mach number in order not to worry about the Mach number similarity ($p = \rho _0 U^2 \leftarrow Eu = 1$). Let's look to the contribution of gravity with Froude number. Using \eqref{eq:2.37}, we know that 
+			\begin{equation}
+				\tilde{\rho} - 1 = \delta \tilde{\rho} = \frac{1}{1+\frac{\Delta h\tilde{h}}{h_0}}-1 \approx -\frac{\Delta h \tilde{h}}{h_0} 
+			\end{equation}
+			and we see that for small temperature variations in the flow, it means that the density variations are small and the term with Fr number in \eqref{eq:2.41} can be neglected. The gravity has no influence on the flow. And so we don't have to worry about Froude number when temperature variations are small. Liquids have a thermal expansion coefficient making them sensible to the temperature variation (natural convection can take place). \\
+			
+			As there is no intrinsic velocity scale for natural convection flows, we will see if we can make the same trick considering a velocity in order to have $Fr = 1$ and not wonder about the similarity. If we take the Fr term in \eqref{eq:2.41}, what $\delta \tilde{\rho}$ relative density variation? When there are small density variations we can write this and make a first order expansion
+			\begin{equation}
+				\frac{\delta \rho}{\rho_0} = -\beta \Delta T \qquad \Leftrightarrow \qquad \rho = \rho _0 (1-\beta \Delta T) \qquad \Leftrightarrow \qquad - \beta \rho _0 = \left.\frac{\D \rho}{\D T}\right|_0
+			\end{equation}
+			where $\beta$ is the thermal expansion parameter $\beta = \left.- \frac{1}{\rho_0} \frac{\D \rho}{\D T}\right|_0$. The minus sign describes the decrease of density with temperature. Fr term in \eqref{eq:2.41} becomes
+			\begin{equation}
+				\frac{1}{Fr ^2} \delta \tilde{\rho} \alpha _i = -\frac{gl}{U^2}\beta \Delta T \tilde{\Delta t} \alpha _i
+			\end{equation}
+			where $\tilde{\Delta t}$ is the non-dimensional local temperature variation. For natural convection, we choose $U^2 = gL\beta \Delta T$ in order to not worry about Froude number similarity. If we do that, there is an interresant corollary for Reynolds number
+			\begin{equation}
+				Re_L = \frac{UL}{\nu _0} = \sqrt{\frac{U^2L^2}{\nu _0^2}} = \sqrt{\frac{g\beta \Delta T L^3}{\nu _0^2}} \equiv \sqrt{Gr}				
+			\end{equation}
+			The Grashoff number is nothing else but the square root of Reynolds number in the case where $U$ is chosen like Fr = 1. The conclusion is that the only case where we have to consider the Froude number is the \textbf{flows with free surfaces}.  
+			
+		\subsubsection{Eckert number}
+			If we look to energy equation for inviscid flows, we are not worrying about Froude number and are not considering free surfaces, making all the right side of the energy equation disappear. It reduces to 
+			\begin{equation}
+				\frac{\D H}{\ t} + \vec{u} \nabla H - \frac{\D p}{\D t} = 0
+			\end{equation}
+			We see that for steady flows flows $H = cst = h +\frac{u^2}{2}$ so the inviscide enthalpy variation scale $\Delta h ^{inv} \approx \frac{u^2}{2} = H_0 - h_0$. If solid bodies are heated, then there is another thermal enthalpy variation scale $\Delta h^{th} = H_0 - h(T_w)$. What is the appropriate scale? The actual $\Delta h$ will be the maximum of the 2 and so the Eckert number
+			\begin{equation}
+				Ec = \frac{U^2}{\Delta h} = \min \left( \underbrace{\frac{U^2}{\Delta h ^{inv}}}_{2}, \frac{U^2}{\Delta h ^{th}} \right)
+			\end{equation}			 
+			So Ec is always smaller than 2. There are instances in which $Ec \ll 1$ and in which case the energy equation can be significantly simplified. We can look at the thermal part, reminding that $(\gamma -1)h = a^2$ \eqref{eq:2.32}
+			\begin{equation}
+				\frac{U^2}{\Delta h ^{th}} = \frac{U^2}{h_0}\frac{h_0}{\Delta h^{th}} = \frac{(\gamma - 1){Ma}^2}{\frac{\Delta h^{th}}{h_0}}
+			\end{equation}
+			We see that if Ma is smaal, Eckert number is small, unless the denominator is small too. So this is when $Ma^2 \ll \frac{\Delta h^{th}}{h_0}$, energy equation can be simplified. The final condition for similarity, in the equation of state we have the ratio $\Delta h /h_0$ that has to be the same for the model and the prototype. This reduces the condition to 
+			\begin{equation}
+				\frac{\Delta h^{th}}{h_0} = \frac{H_0}{h_0} - \frac{h_w}{h_0} = 1 + \frac{\gamma -1 }{2} Ma^2 - \frac{h_w}{h_0} 
+			\end{equation}
+			So the last term must be the same, implying that $\frac{T_w}{T_0}$ must be the same. 
+			
+		\subsubsection{Reynolds number}
+			Experimentally, it has been observed that, for many configurations,  flow quantities became insensitive to Reynolds number beyond a certain critical value. In this range, we don't have to worry about Reynolds number similarity as long as we are in the insensitivity range. 
+			
+\section{Dimensional analysis - Vashy Buckingam $\pi$ theorem}
+	\textit{Assuming that there exists a relationship between n physical variables} $f(q_1,q_2,\dots ,q_3) =0$ \textit{involving j physical dimensions, then their exists a relationship between} $n-j$ \textit{non-dimensional groups} $\Pi _k$ : $g(\Pi _1,\Pi _2,\dots ,\Pi _{n-j}) = 0$. 
+	
+	\subsubsection{Construction of dimensionless groups : methods of repeating variables}
+		\begin{enumerate}
+			\item Among the n physical variables, pick j that involve all the physical dimensions \\$[q_n,q_{n-1},\dots ,q_{n-j+1}]$. These are the repeating variables. 
+
+			\item Construct 
+			\begin{equation}
+				\Pi _k = \frac{q_k}{q_{n-j+1}^{\alpha _1}q_{n-j+2}^{\alpha _2}\dots q_{n}^{\alpha _j}}
+			\end{equation}
+			
+			\item Adjust the exponents $\alpha _1, \alpha _2, \dots , \alpha _j$ so that $\Pi _j$ is dimensionless. 
+		\end{enumerate}
+		
+		Let's take the example of the drag of a sphere (called $D$). We must first assume what are the involving variables in the drag. It depends on $D = f(d,U,\mu , \rho)$. We have 5 physical quantities here and 3 physical dimensions, so there is 2 dimensionless groups. The repeating variables will be $d,U, \rho$. The first group is 
+		\begin{equation}
+			\Pi _1 = \frac{D}{d^{\alpha _1} U^{\alpha _2}\rho ^{\alpha _1}} = \left[\frac{MLT^{-2}}{L^{\alpha _1}(LT^{-1})^{\alpha _2}(ML^{-3})^{\alpha _3}}\right] \qquad
+			\Rightarrow 
+			\left\{
+			\begin{aligned}
+			&M : 1-\alpha _3 = 0 \Rightarrow \alpha _3 = 1\\
+			&L : 1- \alpha _1 - \alpha _2 +3 \alpha _3 = 0 \Rightarrow \alpha _1 = 2\\
+			&T : -2 + \alpha _2 = 0 \Rightarrow \alpha _2 = 2 
+			\end{aligned}
+			\right.
+		\end{equation}
+		Finally, $\Pi _1 = \frac{D}{\rho U^2 d^2}$. When the same is applied for $\mu$ $[ML^{-1}T^{-1}]$, we obtain $\Pi _2 =\frac{\mu}{\rho U d} = \frac{1}{Re_d}$. We have so that $\Pi _1 = f(Re_D)$ but rather than using $\Pi _1$, we have a similar non-dimensional number (we only make appear other non-dimensional numbers) which is the drag coefficient $C_D = \frac{D}{\frac{1}{2}\rho U^2 S^2}$. We conclude that $C_D = f(Re_D)$ and make vary this two variables only.
+		
+	\subsubsection{Conclusive example : ship hull resistance (Froude)}
+		In order to have similarity between 2 flows, we must have the same non-dimentional numbers. The example is clearly a free surface flow so the numbers are :
+		\begin{itemize}
+			\item[•] $\cancel{\mathbf{Strouhal\ number}}$ : for a steady flow we take $T = L/U$, which make the similarity satisfied. 
+			\item[•] $\cancel{\mathbf{Euler\ number}}$ : we are working with liquids so there is no density variation and we don't care about this number. Low speed flow $\Delta p = \rho U^2$.
+			\item[•] \textbf{Froude number}
+			\item[•] $\cancel{\mathbf{Reynolds \ number}}$ : Re number is hugh because dimensions of the ship are hugh, so in general we are in the range of insensitivity of Re number. 
+			\item[•] $\cancel{\mathbf{Eckert \ number}}$ : we are not concerned about thermal effects so it doesn't matter. \\
+		\end{itemize}		 
+		
+		\underline{1. Symilarity analysis}\\
+		
+		We see that the only similarity of the problem to be respected is Froude number similarity 
+		\begin{equation}
+			Fr _m = Fr_p \qquad \Leftrightarrow \qquad \frac{U_m}{\sqrt{gL_m}} = \frac{U_p}{\sqrt{gL_p}} \qquad \Leftrightarrow \qquad U_m = \sqrt{\frac{L_m}{L_p}}U_p
+			\label{eq:2.52}
+		\end{equation}
+		What about the resistance? We know that since the fluids are the same, the pressure fields relation is 
+		\begin{equation}
+			p_m = C_p p_p \qquad \Leftrightarrow \qquad\rho  U^2_m = C_p \rho  U^2_p \qquad\Leftrightarrow \qquad C_p = \left(\frac{U_m}{U_p}\right)^2
+		\end{equation}
+		As the drag force is proportional to the pressure $D_m \propto S_mp_m$, using \eqref{eq:2.52} we conclude that
+		\begin{equation}
+			D_p = \left(\frac{L_m}{L_p} \right)^2\left(\frac{U_m}{U_p} \right)^2D_p = \left(\frac{L_m}{L_p} \right)^3 D_p
+		\end{equation}
+	
+		\underline{2. Dimensional analysis}\\
+		
+		If we don't make a reference to the equations of motion. We say that $D = f(\rho, U, L, g)$ which gives 5 quantities and 3 dimensions. And we found the same conclusions 
+		\begin{equation}
+			\frac{D}{\rho U^2 L^2} = \varphi \left( \frac{U}{\sqrt{gL}} \right) \qquad \Rightarrow  \frac{U_m}{U_p} = \sqrt{\frac{L_m}{L_p}} \qquad \Rightarrow  \frac{D_m}{D_p} = \left( \frac{U_m L_m}{U_pL_p} \right)^2 = \left(\frac{L_m}{L_p}\right)^3
+		\end{equation}

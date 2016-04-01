@@ -298,15 +298,15 @@ Regardons ce que donne cette transformée pour un signal périodique ("\textit{q
 le moins" }). Soit $x_1(n)$ un signal \textbf{a}périodique, de transformée de Fourier $X_1(e^{j\omega})$.
 Construisons un signal périodique $x(n)$ de période $N$ 
 \begin{equation}
-x(n) = \sum_{r=-\infty}^{N-1} x_1(n+rN)
+x(n) = \sum_{r=-\infty}^{\infty} x_1(n+rN)
 \end{equation}
 Il existe d'autres façon de construire un tel signal. Calculons les coefficients $X_d(k)$ de la 
 série (car périodique) de Fourier (discrète) de $x(n)$ (en substituant l'expression de $x(n)$) :
 \begin{equation}
 \begin{array}{ll}
-X_d(k) &=\DS \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} = \sum_{n=0}^{N-1}\sum_{r=-\infty}^{N-1} x_1(n+rN)
+X_d(k) &=\DS \sum_{n=0}^{N-1} x(n) e^{-j\frac{2\pi}{N}nk} = \sum_{n=0}^{N-1}\sum_{r=-\infty}^{\infty} x_1(n+rN)
  e^{-j\frac{2\pi}{N}nk}\\
- &=\DS \sum_{n=0}^{N-1}\sum_{r=-\infty}^{N-1} x_1(n+rN) e^{-j\frac{2\pi}{N}(n+rN)k}
+ &=\DS \sum_{n=0}^{N-1}\sum_{r=-\infty}^{\infty} x_1(n+rN) e^{-j\frac{2\pi}{N}(n+rN)k}
  \end{array}
 \end{equation}
 En décomposant l'expression ci-dessous, on retrouve l'exponentielle de départ avec en plus un
@@ -321,7 +321,7 @@ spectre est quelque chose de connu : $X_d(k)$ échantillons à intervalles régu
 relié à la transformée de Fourier du signal qui n'était \textbf{pas} périodique.\\
 
 Prenons la transformée de Fourier du signal périodique $x(n)$ en appliquant la propriété du 
-glissement ($\DS x(n) = \sum_{r=-\infty}^\infty x_1(n+rNn)$)
+glissement ($\DS x(n) = \sum_{r=-\infty}^\infty x_1(n+rN)$)
 \begin{equation}
 X(e^{j\omega}) = \sum_{r=-\infty}^\infty X_1(e^{j\omega})e^{j\omega rN} = X_1(e^{j\omega})\sum_{
 r=-\infty}^\infty e^{j\omega rN}
@@ -361,7 +361,7 @@ seule impulsion (en zéro), les autre sont en dehors d'où le $\delta(t)$. On a 
 \end{equation}
 En effectuant le changement de variable $t\rightarrow\omega$ et $T\rightarrow 2\pi/N$,  on retrouve
 \begin{equation}
-\sum_{r=-\infty}^\infty = \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(\omega-k\frac{2\pi}{N}
+\sum_{r=-\infty}^\infty e^{j\omega rN} = \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(\omega-k\frac{2\pi}{N}
 \right)
 \end{equation}
 

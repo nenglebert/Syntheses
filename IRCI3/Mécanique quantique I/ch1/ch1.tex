@@ -16,9 +16,9 @@ L'espace de Hilbert est un espace complet (si on définit une suite d'état, cel
 convergera vers un état) muni d'un produit scalaire (défini à la section suivante).\\
 
 Pourquoi définir un vecteur d'état ? En physique classique l'état d'un système 
-ne pose pas de problèmes particuliers. A l'inverse, en physique quantique, la notion 
-même pose déjà un problème, contraignant l'utilisation de vecteurs d'état. La raison 
-physique de leur utilisation vient au principe d'incertitude d'Heisenberg. En effet, 
+ne pose pas de problème particulier. A l'inverse, en physique quantique, la notion 
+même d'état pose déjà un problème, contraignant l'utilisation de vecteurs d'état. La raison 
+physique de leur utilisation vient du principe d'incertitude d'Heisenberg. En effet, 
 il nous est impossible de décrire la particule par le couple position/impulsion d'où 
 la motivation à l'utilisation de ces vecteurs.\\
 
@@ -43,7 +43,7 @@ Le produit scalaire entre deux kets se note
 Les propriétés de bases de ce produit scalaires sont bien connues :
 \begin{equation}
 \begin{array}{llll}
-\bullet & \bra{\psi}\ket{\psi} &= 0\\
+\bullet & \bra{\psi}\ket{\psi} &> 0\\
 \bullet & \bra{\psi_1}\ket{\psi_2} &= \bra{\psi_2}\ket{\psi_1}^*\\
 \bullet & \bra{\psi}\ket{\lambda_1\psi_1+\lambda_2\psi_2} &= \lambda_1\bra{\psi_1}\ket{\psi_2}
 +\lambda_2\bra{\psi_1}\ket{\psi_2}\quad \forall \lambda_i\in\mathbb{C}.\quad
@@ -73,7 +73,7 @@ v_1\\
 v_2\\
 \vdots\\
 v_n
-\end{array}\right),\qquad u_1,v_i\in\mathbb{C}
+\end{array}\right),\qquad u_i,v_i\in\mathbb{C}
 \end{equation}
 Le produit scalaire entre ces deux ket est donné par
 \begin{equation}
@@ -85,14 +85,14 @@ u_2\\
 u_n
 \end{array}\right)
 \end{equation}
-On va définir $(*)$ comme étant un \textit{"complémentaire au ket"}, $\bra{v}$ que l'on 
+On va définir $(*)$ comme étant l'objet dual \textit{"complémentaire au ket"}, $\bra{v}$ que l'on 
 nomme \textit{bra}. Ce bra appartient à un espace dual, ce qui est le sujet de la 
 section suivante.
 
 
 \section{Espace dual $\mathcal{E}^*$, vecteur "bra"}
-Le bra est une forme linéaire : c'est une application qui va depuis l'espace des état 
-(ou de Hilbert, pas de différence dans ce cours) vers $\varphi(\psi)$, un nombre complexe.
+Le bra est une forme linéaire : c'est une application qui va de l'espace des état 
+(ou de Hilbert, pas de différence dans ce cours) vers l'ensemble des nombres complexes.
 \begin{equation}
 \varphi : \ket{\psi}\in\mathcal{E} \leadsto \varphi(\ket{\psi})\ \in \mathbb{C}
 \end{equation}
@@ -112,13 +112,20 @@ Il semble dès lors intéressant d'introduire un nouvel "objet" :
 \end{array}\right.
 \end{equation}
 Il s'agit de l'ensemble de toutes les formes linéaires, ensemble qui forme un espace dual. 
-L'intérêt réside dans un isomorphisme : on peut associer à chaque état de l'espace des états 
-un bra de l'espace dual.\\
+L'intérêt de ces nouveaux objets réside dans un isomorphisme : on associe à ket de l'espace des états 
+un et un seul bra de l'espace dual.\\
 
 Ceci étant dit, il faut caractériser et montrer comment cette application agit sur les espaces. 
 \begin{equation}
 \forall \ket{\psi} \in \mathcal{E},\qquad \underline{\varphi(\ket{\psi}) =\bra{\varphi}\ket{\psi}}
 \end{equation}
+
+L'avantage de cette notation est qu'elle permet deux visions complémentaires des choses :
+soit on voit cela comme un produit scalaire entre deux kets, soit on voit cela comme une
+forme linéaire, le bra, s'appliquant à un ket.\\
+
+ON PEUT ENLEVER LE PARAGRAPHE SUIVANT ?
+
 Cette application peut ainsi être écrite comme un produit scalaire. Il s'agit de la forme 
 linéaire $\varphi$ qui s'applique à $\psi$ et qui donne un nombre complexe. Il existe une 
 autre façon de voir ceci. On peut le voir comme le produit scalaire entre deux ket ou encore 
@@ -142,6 +149,7 @@ $\mathcal{E}^*$.
 \forall \lambda_i\in\mathbb{C}
 \end{equation}
 On peut ainsi démontrer que $\mathcal{E}^*$ est un espace vectoriel.
+Un bra se définit par son action sur tout ket :
 \begin{equation}
 \begin{array}{ll}
 \forall \ket{\psi} : (\lambda_1\bra{\varphi_1} + \lambda_2\bra{\varphi_2})\ket{\psi} 
@@ -161,7 +169,7 @@ n'importe que $\psi$. En terme de bra, on peut alors écrire
 \end{equation}
 
 
-On vient de voir qu'à n'importe quel bras je peux associer un ket. Il serait 
+On vient de voir qu'à n'importe quel bra je peux associer un ket. Il serait 
 dès lors intéressant de trouver le ket correspondant à ce bra. Mais avant, on va définir 
 la notion d'opérateur s'appliquant dans l'espace de Hilbert. \\
 
@@ -171,7 +179,7 @@ un tel espace, un bra n'est qu'un vecteur ligne complexe conjugué.
 
 \subsection{Opérateurs linéaires (agissant dans $\mathcal{E}$)}
 Un opérateur linéaire est une application qui fait correspondre un ket à un ket, à 
-la différence de la forme qui fait correspondre un ket à un complexe.
+la différence de la forme qui fait correspondre un complexe à un ket.
 
 \begin{equation}
 \ket{\psi} \in \mathcal{E} \leadsto \hat{A}\ket{\psi} \in \mathcal{E}
@@ -194,7 +202,7 @@ Nous pouvons voir cet opérateur produit comme une notation efficace. Il ne faut
 cependant pas perdre à l'idée que, en toute généralité, $\hat{A}$ et $\hat{B}$ 
 ne commutent pas. On définit alors le commutateur :
 \begin{equation}
-[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A} \neq 0
+[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
 \end{equation}
 Comme $\hat{A}$ et $\hat{B}$ sont des opérateurs, la différence des opérateurs 
 est toujours un opérateur, le commutateur est bien un opérateur. Il jouit des 
@@ -234,6 +242,12 @@ u_2\\
 u_n
 \end{array}\right)
 \end{equation}
+
+Le fait que le commutateur entre deux opérateurs soit non-nul indique que le
+produit entre les matrcies correspondantes est non-commutatif.
+
+VERIFIER LA VALIDITE DE CE PARAGRAPHE !
+
 De par cette représentation, on peut aisément comprendre que la non-commutation 
 vient du fait que les différentes lignes et colonnes de $\hat{A}$ ne peuvent 
 être commutées. Intéressons-nous aux éléments de la matrice de cet opérateur.

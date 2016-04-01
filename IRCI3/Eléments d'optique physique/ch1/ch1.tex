@@ -19,7 +19,7 @@ a &\text{ si } |x| \leq \frac{1}{2a}\\
 0 &\text{ si } |x| > \frac{1}{2a}
 \end{array}\right.
 \end{equation}
-donnant un carré de hauteur $a$ et de largeur $1/a$, sa surface vaut dès lors 
+donnant un rectangle de hauteur $a$ et de largeur $1/a$, sa surface vaut dès lors 
 l'unité. 
 \begin{equation}
 \int_{-\infty}^\infty f_a(x)\ dx = 1
@@ -46,8 +46,8 @@ du paramètre $a$, d'où la surface unitaire :
 \captionof{figure}{ }
 \end{wrapfigure}
 L'intérêt de cette distribution ne se remarque que par combinaison avec d'autres 
-fonction. Considérons le produit d'une fonction quelconque avec la fonction de 
-Dirac. La seule fonction qui sera considérée est celle qui se trouve en zéro :
+fonctions. Considérons le produit d'une fonction quelconque avec la fonction de 
+Dirac. La seule valeur qui sera prise en compte est celle qui se trouve en zéro :
 \begin{equation}
 f(x)\delta(x) = f(0)\delta(x)
 \end{equation}
@@ -57,7 +57,7 @@ intégrant ce produit
 \int_{-\infty}^{\infty} f(x)\delta(x)\ dx = \int_{-\infty}^\infty f(0)\delta(x)\ dx
 = f(0)\int_{-\infty}^{\infty}\delta(x)\ dx = f(0)
 \end{equation}
-On voit que cette intégrale comme le "produit-scalaire" de $f$ avec $\delta$ qui 
+On voit cette intégrale comme le "produit-scalaire" de $f$ avec $\delta$ qui 
 sélectionne la valeur de la fonction à l'origine. En résumé
 \begin{equation}
 \delta(x) = \left\{\begin{array}{ll}
@@ -79,7 +79,12 @@ changeant l'argument $x$ en $x-x_0$ :
 0 & \text{ si } x\neq x_0 
 \end{array} \right.
 \end{equation}
-Cette distribution translatée multipliée par $f$ sélectionnera dès lors $f(x_0)$. 
+Cette distribution translatée multipliée par $f$ sélectionnera dès lors la valeur $f(x_0)$. \\
+
+\begin{equation}
+\int_{-\infty}^{\infty} f(x)\delta(x-x_0)\ dx = f(x_0)
+\end{equation}
+
 La distribution de Dirac peut être définie par une infinité de fonction, tendant 
 vers cette fameuse distribution lorsque le paramètre $a$ tend vers zéro. On peut 
 par exemple prendre la distribution gaussienne 
@@ -94,9 +99,9 @@ intéressante est la suivante
 \delta_a(x) = \frac{1}{\pi x}\sin\left(\frac{x}{a}\right) = \frac{1}{2\pi}\int_{-1/a}^{1/a}
 \cos(kx)\ dk
 \end{equation}
-Il s'agit d'une définition particulière, la suite du cours justifiera pleinement 
-l'utilisation de celle-ci (les transformées de Fourier impliquent les fonction 
-harmoniques). On va pouvoir trouver la distribution de Dirac à partir de
+Il s'agit d'une définition particulière. La suite du cours justifiera pleinement 
+l'utilisation de celle-ci car les transformées de Fourier impliquent les fonction 
+harmoniques. On va pouvoir trouver la distribution de Dirac à partir de
 \begin{equation}
 f(\alpha) = \int_{-\infty}^{\infty} \cos(\alpha x)\ dx
 \end{equation}
@@ -125,7 +130,7 @@ L)]\\
 \captionof{figure}{ }
 \end{wrapfigure}
 Considérons l'artifice mathématique suivant, permettant de faire apparaître le 
-sinus cardinal ($\equiv \sin x/x$) :
+sinus cardinal ($sinc(x) \equiv \sin x/x$) :
 \begin{equation}
 \begin{array}{ll}
 f(\alpha) &= 2L \frac{\sin(\alpha L)}{\alpha L}\\
@@ -134,14 +139,14 @@ f(\alpha) &= 2L \frac{\sin(\alpha L)}{\alpha L}\\
 \end{equation}
 La fonction sinus cardinal tend vers zéro à l'infini, il s'agit d'une fonction paire dont 
 la valeur à l'origine vaut l'unité (valeur donnée par la levée de l'indétermination). Cette 
-fonction à des zéros multiples que l'on retrouve à chaque multiple de $\pi$.\newpage
+fonction possède des zéros multiples que l'on retrouve à chaque multiple de $\pi$.\newpage
 
 \begin{wrapfigure}[8]{l}{4.5cm}
 %\vspace{-5mm}
 \includegraphics[scale=0.45]{ch1/image5.png}
 \captionof{figure}{ }
 \end{wrapfigure}
-Revenons à nos moutons. Notre fonction sinus cardinal à pour argument $\alpha L$ : les zéros 
+Revenons à nos moutons. Notre fonction sinus cardinal a pour argument $\alpha L$ : les zéros 
 de la fonction d'origines se voient tous divisés par $L$ et l'ordonnée à l'origine vaut $2L$. 
 Une fois que $\alpha$ n'est plus nul, on redescend brusquement vers un premier zéro (les 
 oscillations se comprennent très facilement en interprétant l'aire sous la courbe en faisant 
@@ -163,23 +168,23 @@ f(a) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\li
 \rightarrow \infty}[2L\text{sinc}(\alpha L)]
 \end{equation}
 Cette limite n'est pas facile à appréhender, l'étude du graphe n'est pas fort utile. A 
-défaut, on peut s'itnéresser à la surface du graphe de cette fonction en étudiant l'aire 
+défaut, on peut s'intéresser à la surface du graphe de cette fonction en étudiant l'aire 
 sous la courbe du sinus cardinal :
 \begin{equation}
 \int_{-\infty}^\infty \text{sinc }(\alpha x)\ dx = \int_{-\infty}^\infty \dfrac{\sin(\alpha
-x)}{\alpha x}\ dx = \dfrac{\pi}{a}
+x)}{\alpha x}\ dx = \dfrac{\pi}{\alpha}
 \label{eq:AireD}
 \end{equation}
 \danger Il ne faut pas confondre la variable $\alpha$ avec celle d'intégration, $x$. Nous 
 montrons ici que $f(\alpha)$ peut être associée à la distribution. Dans \autoref{eq:AireD} 
-remplaçons $x$ par $\alpha$ par "l'ancien $\alpha$ jouera le rôle du paramètre $L$ :
+remplaçons $x$ par $\alpha$ par "l'ancien $\alpha$" jouera le rôle du paramètre $L$ :
 \begin{equation}
 \int_{-\infty}^\infty \text{sinc }(L\alpha)\ d\alpha = \int_{-\infty}^\infty \dfrac{\sin(L\alpha)
 }{L\alpha}\ d\alpha = \dfrac{\pi}{L}
 \end{equation}
 En multipliant par $2L$ (pouvant directement rentrer dans l'intégrale):
 \begin{equation}
-\int_{-\infty}^\infty2L \text{sinc }(L\alpha)\ d\alpha = \int_{-\infty}^\infty \dfrac{\sin(L\alpha)
+\int_{-\infty}^\infty2L \text{sinc }(L\alpha)\ d\alpha = 2L \int_{-\infty}^\infty \dfrac{\sin(L\alpha)
 }{L \alpha}\ d\alpha = 2\pi
 \end{equation}
 Cette surface vaut $2\pi$, mais ce qui est important est que celui-ci est indépendant 
@@ -196,7 +201,7 @@ On peut ainsi assimiler ce résultat à la distribution de Dirac :
 \dfrac{L}{\pi}\text{sinc}(\alpha L)\right]
 \end{equation}
 Cette fonction est \textit{piquée} à l’origine et une largeur tendant vers zéro dont l'aire
-sous la courbe faut bien 1. On peut dès lors écrire
+sous la courbe vaut bien 1. On peut dès lors écrire
 \begin{equation}
 f(a) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\limits_{L 
 \rightarrow \infty}[2L\text{sinc}(\alpha L)] = 2\pi \delta(\alpha)
@@ -211,7 +216,8 @@ Notons qu'il n'est pas nécessaire de déterminer précisément ce que vaut $\al
 \begin{equation}
 \int_{-\infty}^\infty f(\alpha)\delta(\alpha)\ d\alpha = f(0)
 \end{equation}
-Généralisons quelque peu ce que nous venons de faire en vue de passer à la transformée de 
+Généralisons \footnote{Il manque l'interprétation en terme d'aire sous le cosinus} quelque
+ peu ce que nous venons de faire en vue de passer à la transformée de 
 Fourier. La notion de phaseur, exponentielle imaginaire est fondamentale :
 \begin{equation}
 \int_{-\infty}^\infty e^{i\alpha x}\ dx = \int_{-\infty}^\infty \cos(\alpha x)\ dx + i
