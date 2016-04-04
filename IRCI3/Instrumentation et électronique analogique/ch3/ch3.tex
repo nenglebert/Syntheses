@@ -173,7 +173,7 @@ Les bruits en 1/f sont plus fort à basses qu'à hautes fréquences (bruit rose)
 	\item Bruit de scintillation:
 	\begin{itemize}
 		\item présent dans les semi-conducteurs
-		\item d'origine incertaine, \textbf{REMPLIR}
+		\item d'origine incertaine, recombinaisons dans les défauts de surface du semi-conducteur ($e^-$ et trous)
 	\end{itemize}
 	\item Bruit en excès (ou bruit de constitution, "contact noise", "excess noise"):
 	\begin{itemize}
@@ -183,7 +183,101 @@ Les bruits en 1/f sont plus fort à basses qu'à hautes fréquences (bruit rose)
 	\end{itemize}
 \end{itemize}
 \subsubsection{Autres types de bruit}
-
+Le reste:
+\begin{itemize}
+	\item Bruit de grenaille (ou de Schottky):
+	\begin{itemize}
+		\item présent dans les semi-conducteurs
+		\item dû à la nature quantifié du courant électrique, provoqué par passage des porteurs de charge au travers d'une barrière de potentiel
+	\end{itemize}
+	\item Bruit quantique:
+	\begin{itemize}
+		\item dû à la nature quantifiée de l'énergie rayonnée (photons)
+	\end{itemize}
+	\item Bruit de diffusion:
+	\begin{itemize}
+		\item présent dans les semi-conducteurs
+		\item dû aux collisions des porteurs de charges avec le réseau cristallin
+	\end{itemize}
+	\item Bruit de génération/recombinaison:
+	\begin{itemize}
+		\item présent dans les semi-conducteurs
+		\item  dû à la fluctuation aléatoire des taux de génération, des recombinaisons et des piégeages des porteurs
+	\end{itemize}
+	\item Bruit d'avalanche:
+	\begin{itemize}
+		\item présent dans les diodes Zener à tension d'avalanche élevée
+		\item  dû au délogement de certains $e^-$ à cause d'$e^-$ accélérés par le champ électrique, venant créer des porteurs de charge supplémentaires (bruit important au voisinage de l'effet d'avalanche)
+	\end{itemize}
+	\item Bruit d'éclatement (ou bruit impulsif, "burst noise", "popcorn noise"):
+	\begin{itemize}
+		\item présent dans certains dispositifs électronique particulier (ex. diode tunnel)
+		\item d'origine incertaine, liée aux défauts de fabrication
+		\item Bruit non gaussien
+	\end{itemize}
+\end{itemize}
 \subsection{Modélisation de bruit}
-
+\paragraph{Dans un résistance:} la \autoref{fig:bruitresist} représente l'équivalent de Thévenin et de Norton pour le bruit thermique.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image1} 
+	\caption{Bruit thermique dans une résistance}
+	\label{fig:bruitresist}
+\end{figure}
+\paragraph{Dans un transistor:} rappelons qu'un amplificateur différentiel est constitué de transistors. Les sources de bruits sont:
+\begin{itemize}
+	\item bruit thermique des résistances vraies ($R_{BB}'$)
+	\item bruit de grenaille des courants (base et collecteur)
+	\item bruit en 1/f du transistor
+\end{itemize}
+La modélisation du bruit est présenté à la \autoref{fig:bruittrans}.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image2} 
+	\caption{Bruit dans un transistor}
+	\label{fig:bruittrans}
+\end{figure}
+\paragraph{Dans un AOP:} rappelons qu'on AOP est constitué de résistances et de transistors. Le bruit est modélisé par la \autoref{fig:bruitaop}.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image3} 
+	\caption{Bruit dans un amplificateur opérationnel} 
+	\label{fig:bruitaop}
+\end{figure}
+\paragraph{Remarques:} Les courants $i_{b^\pm} \neq$ courant de bias (= courant constant de polarisation). $i_{b^\pm}$ sont des courants à moyenne nulle, allant vers le circuit et dont l'impact dépend de l'impédance (+ l'impédance est grande, + le bruit est grand).
 \subsection{Limitation de bruit}
+\subsubsection{Introduction et principales techniques}
+Le but de cette sous-section est de développer des méthodes afin de rendre l'amplitude du bruit négligeable face à celle du signal, c-à-d $\nearrow$ SNR. Pour ce faire, il est possible d'agir sur 2 choses:
+\begin{enumerate}
+	\item Augmenter le signal, c-à-d amplifier des que possible et autant que possible le signa $\Rightarrow$ pré-ampli à grand gain et faible bruit.
+	\item Réduire le bruit de tous les composants.
+\end{enumerate}
+Afin de parvenir à un résultat, il est important de suivre ces quelques règles de bases:
+\begin{enumerate}
+	\item Cibler le type de bruit (afin de choisir des contre-mesures efficaces).
+	\item S'attaquer au bruit prépondérant (on va peut-être s'occuper du gros d'abord, non ?).
+	\item S'attaquer au bruit dès que possible (chaque module apportant son propre bruit (irréversible), il devient impossible de séparer les bruits entre eux au fur et à mesure que l'on avance sur la chaîne)
+\end{enumerate}
+Nous pouvons agir:
+\begin{description}
+\item \emph{au niveau des composants:}
+\begin{itemize}
+	\item Choisir des composants à faible bruit.
+	\item Jouer sur les paramètres influençant directement le bruit (ex. réduire la température pour un bruit thermique).
+\end{itemize}
+\item \emph{au niveau du système:}
+\begin{itemize}
+	\item \hyperref[subsubsec:entreenobruit]{Pré-ampli à faible bruit} (parfois étage a transistor discrets afin de minimiser le bruit de l'aop, lui-même constitué d'un nombre conséquent de transistors discrets).
+	\item \nameref{subsubsec:bandepass} (réduire le bruit dans un bande passante plus restreinte).
+	\item \nameref{subsubsec:résistsource}.
+	\item \nameref{subsubsec:detectsync} pour le bruit rose.
+\end{itemize}
+\end{description}
+\subsubsection{Réduire la bande passante} \label{subsubsec:bandepass}
+
+\subsubsection{Résistance de source} \label{subsubsec:résistsource}
+
+\subsubsection{Étage d'entrée à faible bruit} \label{subsubsec:entreenobruit}
+
+\subsubsection{Détection synchrone} \label{subsubsec:detectsync}
+
