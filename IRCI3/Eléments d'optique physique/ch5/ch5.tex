@@ -8,7 +8,7 @@ On se rappelle que la notion d'onde est dérivée des équations de Maxwell
 où l'on a considéré une équation scalaire et non vectorielle par facilité : $\mathcal{E} = \mathcal{E}_x
 ,\mathcal{E}_y, \mathcal{E}_z$. Cette équation possède une solution d'onde plane 
 \begin{equation}
-\mathcal{E} = E^{ikz}e^{-i\omega t} + c.c.
+\mathcal{E} = Ee^{ikz}e^{-i\omega t} + c.c.
 \end{equation}
 où on a considéré l'axe $z$ et où l'on n'a pas utilisé pour une fois les phaseurs mais une autre approche disant 
 que le champ \textbf{réel}\footnote{Car on rajoute le complexe conjugué.} $\mathcal{E}$ n'est que le champ écrit 
@@ -405,10 +405,212 @@ l'utilisation de $\chi$.
 	d'autres moyen de caractériser la polarisation, ce que nous aurons l'occasion de voir plus tard.
 	
 	
+\newpage
+\section{Formalisme de Jones}
+Ce formalisme se base sur la représentation complexe du champ électrique
+\begin{equation}
+\vec{\mathcal{E}} = (E_x\vec{1_x}+E_y\vec{1_y})e^{ikz}e^{-i\omega t} + c.c.\qquad\text{où }\ E_x = 
+\frac{1}{2}A_xe^{i\phi_x},\quad E_y = \frac{1}{2}A_ye^{i\phi_y}
+\end{equation}
+Le premier terme n'est en réalité par vraiment un phaseur. De plus, on remarque que l'amplitude 
+$E_i$ n'est que la moitié de l'amplitude réelle. Ce choix de notation a été fait pour se rapprocher 
+de la littérature scientifique, mais rien n'empêche d'utiliser les fameux phaseurs
+\begin{equation}
+\underline{\vec{\mathcal{E}}} = (\underline{E_x}\vec{1_x}+\underline{E_y}\vec{1_y})e^{ikz}e^{-i\omega t}\qquad\text{où }\ \underline{E_x} = A_xe^{i\phi_x},\quad \underline{E_y} = A_ye^{i\phi_y}
+\end{equation}
+Si ici nous passons en phaseurs, c'est parce que le formalisme de Jones a été développé avec un 
+tel outil. Lorsque l'on parle de $\underline{\vec{\mathcal{E}}}$, cela désigne bien un phaseur. Le 
+champ sera alors obtenu en considérant la partie réelle de ce phaseur\footnote{C'est semblable avec 
+ce que l'on faisait en ajoutant +c.c. où l'on prenait deux fois la partie réelle, d'où le facteur 
+1/2 dans l'amplitude.}.\\
+
+L'état de polarisation générale est elliptique d'inclinaison $\psi$ et d'ellipticité $\chi$. Le 
+formalisme de Jones est utile d'un point de vue théorique, contrairement à la précédente section. 
+Il permet de décrire d'un point de vue théorique l'évolution de la polarisation dans les systèmes 
+optiques. Jones propose d'écrire le vecteur amplitude sous la forme vectorielle 
+\begin{equation}
+\left(\begin{array}{c}
+\underline{E_x}\\
+\underline{E_y}
+\end{array}\right) = \left(\begin{array}{c}
+A_xe^{i\phi_x}\\
+A_ye^{i\phi_y}
+\end{array}\right)
+\end{equation}
+
+		\begin{wrapfigure}[4]{l}{5.5cm}
+	\vspace{-4mm}
+	\includegraphics[scale=0.25]{ch5/image14.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Il s'agit du \textit{vecteur de Jones}. Ce n'est rien d'autre qu'une notation plus compacte de 
+notre vecteur en vue de bénéficier d'un formalisme matriciel : l'action d'un dispositif optique 
+va pouvoir être exprimé sous forme d'une matrice
+\begin{equation}
+\left(\begin{array}{c}
+\underline{E_x'}\\
+\underline{E_y'}
+\end{array}\right) = \left(\begin{array}{cc}
+a & b\\
+c & d
+\end{array}\right)\left(\begin{array}{c}
+\underline{E_x}\\
+\underline{E_y}
+\end{array}\right)
+\end{equation}
+
+\subsection{Matrice de Jones}
+	\subsubsection{Propagation libre}
+Afin d'introduire ce formalisme, commençons par un cas quelque peu trivial : la propagation libre. 
+Le système optique est l'espace entre $0$ et $L$. 
+\begin{center}
+	\includegraphics[scale=0.35]{ch5/image15.png}
+	\captionof{figure}{ }
+\end{center}
+La matrice de Jones sera simple : il faut utiliser 
+un propagateur pour une distance $L$ sur chaque composante de notre vecteur de Jones
+\begin{equation}
+\left(\begin{array}{c}
+\underline{E_x'}\\
+\underline{E_y'}
+\end{array}\right) = \left(\begin{array}{cc}
+e^{ikL} & 0\\
+0 & e^{ikL}
+\end{array}\right)\left(\begin{array}{c}
+\underline{E_x}\\
+\underline{E_y}
+\end{array}\right) = e^{ikL}\left(\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right)\left(\begin{array}{c}
+\underline{E_x}\\
+\underline{E_y}
+\end{array}\right)
+\end{equation}
+La matrice identité $\mathcal{I}$ montre que l'on n'a pas modifié l'état de polarisation. On retrouve 
+l'état de polarisation à la sortie.
+
+\subsubsection{Polariseur}
+Considérons maintenant un polariseur horizontal. La matrice d'un tel polariseur sera la suivante
+\begin{equation}
+\left(\begin{array}{c}
+\underline{E_x'}\\
+\underline{E_y'}
+\end{array}\right) = \left(\begin{array}{cc}
+1 & 0\\
+0 & 0
+\end{array}\right)\left(\begin{array}{c}
+\underline{E_x}\\
+\underline{E_y}
+\end{array}\right) = \left(\begin{array}{c}
+\underline{E_x}\\
+0
+\end{array}\right)
+\end{equation}
+Ce résultat est évident dans le sens ou nous savons que seul la composante selon $x$ sera transmise.
 	
+		\subsubsection{Lame de phase}
+		Une lame de phase pourrait être une lame demi ou quart d'onde. Ici, on se doute que la matrice 
+		sera (vraiment juste) un peu plus compliquée.
+		\begin{equation}
+		\left(\begin{array}{c}
+		\underline{E_x'}\\
+		\underline{E_y'}
+		\end{array}\right) = \left(\begin{array}{cc}
+		1 & 0\\
+		0 & e^{i\delta}
+		\end{array}\right)\left(\begin{array}{c}
+		\underline{E_x}\\
+		\underline{E_y}
+		\end{array}\right)= \left(\begin{array}{c}
+		\underline{E_x}\\
+		\underline{E_y}e^{i\delta}
+		\end{array}\right)
+		\end{equation}
+		Rappelons que ce qui est intéressant c'est bien le déphasage entre les deux composantes 
+		et non la phase à un point $z$ précis.
+		
+		\subsubsection{Rotation}
+		La rotation de la polarisation est quelque chose d'important. Pour se faire, introduisons 
+		les axes $x$ et $y$. Considérons une polarisation en $x$ et on considère un système causant 
+		une rotation $\alpha$ à notre faisceau en $x$ (par exemple, un verre d'eau sucrée (du à la 
+		chiralité de la molécule de sucre).
+	\begin{center}
+	\includegraphics[scale=0.35]{ch5/image17.png}
+	\captionof{figure}{ }
+\end{center}			
+	 Trouvons cette matrice en étudiant des cas particuliers. 
+		Nous avons une polarisation en $x$ comme entrée et comme sortie une rotation de $\alpha$
+		\begin{equation}
+		\left(\begin{array}{c}
+		1\\
+		0
+		\end{array}\right),\qquad\qquad		\left(\begin{array}{c}
+		\cos\alpha\\
+		\sin\alpha
+		\end{array}\right)
+		\end{equation}
+		Forcément, notre matrice doit vérifier
+		\begin{equation}
+			\left(\begin{array}{c}
+		1\\
+		0
+		\end{array}\right) = \left(\begin{array}{cc}
+		\cos\alpha & b\\
+		\sin\alpha & d
+		\end{array}\right)\left(\begin{array}{c}
+		\underline{E_x}\\
+		\underline{E_y}
+		\end{array}\right)= \left(\begin{array}{c}
+		\cos\alpha\\
+		\sin\alpha
+		\end{array}\right)
+		\end{equation}
+		où $b,d$ sont à déterminer. En considérant cette fois une polarisation verticale et la sortie
+		\begin{equation}
+				\left(\begin{array}{c}
+		1\\
+		0
+		\end{array}\right),\qquad\qquad		\left(\begin{array}{c}
+		-\sin\alpha\\
+		\cos\alpha
+		\end{array}\right)
+	\end{equation}				
+	Nous avons ainsi trouvé notre matrice de rotation. Dans le formalisme de Jones :
+	\begin{equation}
+			\left(\begin{array}{c}
+		\underline{E_x'}\\
+		\underline{E_y'}
+		\end{array}\right) = \left(\begin{array}{cc}
+	\cos\alpha & -\sin\alpha\\
+	\sin\alpha & \cos\alpha
+	\end{array}\right)\left(\begin{array}{c}
+		\underline{E_x}\\
+		\underline{E_y}
+		\end{array}\right)
+	\end{equation}
 	
-	
-	
+		\subsubsection{Rotation d'un élément}
+		Illustrons le cas de la rotation d'une lame d'onde\footnote{Le polariseur est laissé comme 
+		exercice.} Comme nous ne savons pas comment décrire une lame d'onde inclinée de $\alpha$ nous 
+		allons ruser : on va redresser la lame mais tourner la polarisation dans l'autre sens. En effet, 
+		entre l'axe de la lame et la polarisation se trouve un angle $-\alpha$. 
+\begin{center}
+	\includegraphics[scale=0.35]{ch5/image16.png}
+	\captionof{figure}{ }
+\end{center}		
+		En redressant tout, 
+		la lame va redevenir horizontale et la polarisation va tourner d'un angle $-\alpha$. Faisant 
+		ceci, on pourra appliquer la matrice pour la lame de phase et obtenir une sortie. Il faut alors 
+		redresser cette sortie d'un angle $\alpha$.
+		\begin{center}
+	\includegraphics[scale=0.35]{ch5/image18.png}
+	\captionof{figure}{ }
+\end{center}	
+		Matriciellement, cela donne
+		\begin{equation}
+		Demain\ ! 17'50"
+		\end{equation}
 	
 	
 	
