@@ -1,8 +1,13 @@
 \chapter{Principes fondamentaux de la mécanique quantique}
 
- Nous allons ici reformaliser les bases en nous basant sur le formalisme de Dirac. 
- On souhaite décrire l'\textit{état} du système, la \textit{mesure} et
- l'\textit{évolution} temporelle. Nous avions vu au début du premier chapitre 
+ Nous allons ici redéfinir les principes de la mécanique quantique en nous basant 
+ sur le formalisme de Dirac plutôt que celui de fonction d'onde.
+ Pour décrire les systèmes quantiques, nous nous attarderons sur trois points :
+ l'\textit{état} du système, les \textit{mesures} que nous pouvons faire dessus et
+ l'\textit{évolution} temporelle du système.
+% On souhaite décrire l'\textit{état} du système, la \textit{mesure} et
+ %l'\textit{évolution} temporelle.
+  Nous avions vu au début du premier chapitre 
  que la façon de définir une mesure était quelque peu particulière. Nous 
  allons ici nous baser sur l'interprétation de \textsc{Copenhagen} (Niels Bohr) mais 
  il faut savoir qu'il y en existe d'autre (\textsc{Bohm} (interprétation de l'onde 
@@ -11,25 +16,25 @@
   Cette interprétation 
  pose des  problèmes d'interprétation mais est bonne d'un point de vue pragmatique (
  les résultats expérimentaux correspondent très bien avec la théorie). Dès lors, si 
- l'on n'essaye pas d'interpréter la chose, tout fonctionne très bien\\
+ l'on n'essaye pas d'interpréter la chose, tout fonctionne très bien.\\
  
  Dans ce cours nous allons nous limiter aux \textit{états purs} : idéalisation 
  de la description s'il n'y a aucun bruit. Il existe évidemment des 
- \textit{états mixtes} (voir cours MA1) qui tient compte du bruit. 
+ \textit{états mixtes} (voir cours MA1) qui tiennent compte du bruit. 
  
  \section{1er principe : État d'un système}
  \subsection{Premier principe}
  Un état sera défini par un ket $\ket{\psi(t)} \in \mathcal{E}_H$. Cet 
- état doit être normé ($\|\psi(t)\|^2 = 1 \forall t$). Ceci a pour 
+ état doit être normé ($\|\psi(t)\|^2 = 1, \quad \forall t$). Ceci a pour 
  conséquence immédiate le principe de superposition, toute combili d'état 
  étant un état possible
  \begin{equation}
- \ket{\psi} = \sum_i\ket{\psi_i},\qquad \sum_i |c_i|^2 = 1
+ \ket{\psi} = \sum_i c_i \ket{\psi_i},\qquad \sum_i |c_i|^2 = 1
  \end{equation}
  En effet, ceci est nécessaire pour la normalisation de la fonction d'onde
  \begin{equation}
  \begin{array}{ll}
- \|\psi\| &= \sum_{ij} c_j^*c_i\overbrace{\bra{\psi_j}\ket{\psi_i}}^{\delta_{ij}}\\
+ \|\psi\|^2 &= \sum_{ij} c_j^*c_i\overbrace{\bra{\psi_j}\ket{\psi_i}}^{\delta_{ij}}\\
  &= \sum_i |c_i|^2 \\
  &= 1
  \end{array}
@@ -43,7 +48,7 @@
  globale disparaît d'ailleurs dans le traitement plus général des états mixtes. 
  Cette phase globale n'a pas d'interprétation physique. Par contre un phase 
  locale pondérant les différents états d'une superposition est pourvue de 
- sens physique (interférences)
+ sens physique (cf interférences)
  \begin{equation}
  \sum_j c_je^{i\delta_j}\ket{\psi_j}\quad\neq\quad \sum_j c_j\ket{\psi_j}
  \end{equation}
@@ -58,7 +63,7 @@
  de Hilbert.
  
  \subsection{Structure de l'espace de Hilbert}
- Prenons l'exemple d'une particule à une dimension. En terme de fonction d'onde
+ Prenons l'exemple d'une particule dans un potentiel à une dimension. En terme de fonction d'onde
  (qui se traduit aisément en notation de Dirac)
  \begin{equation}
  \psi(x) = \sum c_n\phi_n(x)\quad \rightarrow\quad \ket{\psi} = \sum_n c_n
@@ -73,30 +78,31 @@
  \ket{\psi} = \sum_{n,m} c_{n,m} \underbrace{\ket{\phi_n}\otimes\ket{\phi_m}}_{(*)}
  \end{equation}
  où $(*)$ est un produit tensoriel entre deux ket. Il en résultera un autre ket, 
- mais appartenant à un espace de Hilbert plus grand (ceci est équivalent à 
- $|\phi_n\ket{\phi_m}$. Plus généralement, on peut également exprimer une base :
-  cela pourrait être n'importe quel fonction de la base multipliée par une autre. Ce p
+ mais appartenant à un espace de Hilbert plus grand créé par le produit tensoriel
+ des deux autres espaces de Hilbert (ceci est équivalent à 
+ $|\phi_n\otimes\ket{\phi_m}$. Plus généralement, on peut également exprimer une base :
+  cela pourrait être n'importe quel fonction de la base multipliée par une autre. Ce
  produit forme une base des fonctions d'ondes à deux dimension. \\
  
- Arrêtons avec les exemples et considérons deux ket de deux espaces de Hilbert
+ Arrêtons avec ces exemples et considérons deux ket de deux espaces de Hilbert
  \begin{equation}
  \left.\begin{array}{ll}
  \ket{u} \in \mathcal{E}_H\\
  \ket{v} \in \mathcal{F}_H 
  \end{array}\right\}\quad\rightarrow\quad \ket{u}\otimes\ket{v} \in\mathcal{G}_H 
- \equiv \mathcal{E}H_\otimes\mathcal{F}_H
+ \equiv \mathcal{E}_H\otimes\mathcal{F}_H
  \end{equation}
  où $\otimes$ désigne le produit tensoriel. De façon encore plus générale :
  \begin{equation}
  \left.\begin{array}{l}
  \text{Si } \ket{e_n} \text{forme une base de } \mathcal{E}_H\\
- \text{Si } \ket{f_n} \text{forme une base de } \mathcal{E}_F 
+ \text{Si } \ket{f_n} \text{forme une base de } \mathcal{F}_H
  \end{array}\right\}\Rightarrow \left\{\ket{e_n}\otimes\ket{f_n}\right\} \begin{array}{l}
  \text{ forme  une base de l'espace de Hilbert }\\
  \text{  de produit $\mathcal{E}_H\otimes\mathcal{E}_F$}
  \end{array}
  \end{equation}
- On peut ainsi écrire tout $\psi$
+ On peut ainsi écrire tout $\ket{\psi}$
  \begin{equation}
  \ket{\psi} = \sum_{n,m} \ket{e_n}\otimes\ket{f_m}
  \end{equation}
@@ -107,9 +113,10 @@
  \dim(\mathcal{F}_H)
  \end{equation}
  Le produit sera simplement le produit scalaire espace par espace
- \begin{equation}
- 11
- \end{equation}
+ \footnote{J'ai l'impression qu'il manque quelque chose ici...}
+% \begin{equation}
+% 11
+%\end{equation}
  Même si cet état est parfaitement possible, certains états ne peuvent 
  \textbf{jamais} s'écrire sous cette forme la. C'est le principe d'\textit{intrication 
  quantique }: l'état quantique ne peut pas se voir comme un produit 
@@ -128,7 +135,8 @@
  &\\
   \ket{v} &= \left(\begin{array}{c}
  v_1\\
- v_2
+ v_2\\
+ v_3
  \end{array}\right) 
  \end{array}\qquad \ket{u}\otimes\ket{v} = \left(\begin{array}{c}
  u_1v_1\\
@@ -145,12 +153,12 @@
  \section{2e principe : Mesure}
  \subsection{Observable}
  A toute grandeur physique mesurable $A$ on peut associer $\hat{A}$ un 
- opérateur linéaire hermitien qui agit dans $\mathcal{E}_H$. Ceci étant dit 
- nous savons que pour toute grandeur mesurable il doit exister un certain opérateur
- hermitien. Ceci ne dit rien sur cet opérateur, mais les règles de 
- correspondances permettent de passer d'un opérateur classique à quantique. 
+ opérateur linéaire hermitien qui agit dans $\mathcal{E}_H$. 
+% Ceci étant dit nous savons que pour toute grandeur mesurable il doit exister un certain opérateur hermitien.
+ Ceci ne dit rien sur cet opérateur, mais les règles de 
+ correspondances permettent de passer d'un opérateur classique à un opérateur quantique. 
  Tout ce qui existe en classique existe en quantique, l'inverse n'est pas
- vrai (spin).
+ vrai (ex : spin).
  
  \subsection{Principe de quantification}
  Les seuls résultats de la mesure de l’observable $\hat{A}$ sont les 
@@ -190,9 +198,15 @@
  \sqrt{\mathbb{P}(a_n)}}
  \end{array}
  \end{equation}
- Petite remarque sur (*) : il s'agit de la projection sur l'espace propre associé à 
- l'état mesuré. Cette projection donne lieu à un nouveau ket donnant une probabilité. Si 
- celui-ci est normalisé, il s'agit de la \textit{réduction du paquet d'onde}.\\
+ car $\hat{P}_n$ est hermitien et idempotent.\\
+ Petite remarque sur (*) : il s'agit de la projection du vecteur d'état sur l'espace propre
+ associé à la valeur propre mesurée. A cause de la projection, l'état initial a évolué vers un état
+ propre correpondant à la mesure effectuée et on voit qu'il n'est plus possible d'obtenir un état
+ correspondant à une autre valeur propre (alors que c'était possible au départ). Cette modification
+ de l'état par une simple mesure porte le nom de \textit{réduction du paquet d'onde}.
+ 
+ % Cette projection donne lieu à un nouveau ket donnant une probabilité. Si 
+ %celui-ci est normalisé, il s'agit de la \textit{réduction du paquet d'onde}.\\
  
  Compte-tenu de ceci, on peut ré-écrire la probabilité\footnote{Par identification avec 
  la première égalité, $\|\psi_n\| = \sqrt{\mathbb{P}(a_n)}$.}
@@ -202,19 +216,22 @@
  
  Au niveau de l'interprétation : comment interpréter ces probabilités 
  qui apparaissent ? Il s'agit d'un problème toujours non résolu : les probabilités 
- observées sont liées à la connaissance du système (la fonction d'onde est objet de type 
- théorie des probabilités) ou faut il comprendre la fonction d'onde comme un objet 
+ observées sont liées à la connaissance du système, mais s'agit-il d'un simple artifice
+ de calcul (la fonction d'onde est objet de type  théorie des probabilités)
+  ou faut il comprendre la fonction d'onde comme un objet 
  physique existant, comme une onde EM ? \\
+ 
+ \subsection{Reproductibilité de la mesure}
   
- La limite de la fréquence d'apparition de $a_n$ n'est rien d'autre que 
- $\mathbb{P}(a_n)$. Pour une mesure particulière la mécanique quantique ne 
+ La limite de la fréquence d'apparition de $a_n$ pour un grand nombre d'expériences
+ n'est rien d'autre que $\mathbb{P}(a_n)$. Pour une mesure particulière la mécanique quantique ne 
  donne pas précisément  la valeur observée mais juste la "chance" de pouvoir 
  l'observer. C'est la raison pour laquelle notamment Einstein disait que la 
  mécanique quantique était incomplète : les probabilités ne feraient que 
- cacher un mécanisme sous-jacent. Aujourd'hui, nous savons que ceci n'est pas 
+ cacher un mécanisme sous-jacent selon lui. Aujourd'hui, nous savons que ceci n'est pas 
  correct : il n'existe pas de variable cachée dont on ne connaît pas la 
  mécanique (démontrable expérimentalement) : ces propriétés sont intrinsèques 
- à cette théorie.\\
+ à cette théorie.\footnote{Ces considérations sortent du cadre de ce cours.}\\
  
  Remarquons que la probabilité correspond bien aux trois axiomes des probabilités
  \begin{enumerate}
@@ -231,8 +248,11 @@
  \mathbb{P}(a_n) \leq 1 \text{ par propriété de l'opérateur projecteur (valeurs propres : 0,1.)}
  \end{equation}
  \end{enumerate}
+ \footnote{A-t-on vu cette propriété des projecteurs ???}
  Que se passe-t-il si l'on mesure immédiatement après la première mesure, la 
  même observable ($\longrightarrow$ signifie l'application de $\hat{A}$) ?
+ Pour que cette théorie ait un sens, il faut que si on mesure une quantité sur le
+ système, on mesure nécessairement la même valeur immédiatement après.
  \begin{equation}
  \begin{array}{ll}
  \ket{\psi} \longrightarrow \ket{\psi'} = \dfrac{\ket{\psi_n}}{\|\psi_n\|} \longrightarrow
@@ -242,15 +262,16 @@
 \end{array}
  \end{equation}
  car l'opérateur projecteur est idempotent. Si l'on effectue deux fois la même mesure, on 
- est ainsi certain de retrouver la même mesure si 'on effectue la seconde mesure immédiatement 
- après la première.
+ est ainsi certain de retrouver la même valeur si on effectue la seconde mesure immédiatement 
+ après la première.\footnote{Le "immédiatement" signifie qu'on ne laisse pas le temps au système
+ d'évoluer ?}
  
- \subsection{Reproductibilité de la mesure}
- Imaginons que pour un système dans un état quelconque, le résultat d'une mesure soit $a_n$. 
- Pour que ceci ai un sens, comme nous venons de le voir, il faut que si on effectue une 
- mesure directement après la première, celle-ci soit identique.\\
+ \subsection{Valeur moyenne de l'observable $\hat{A}$}
+% Imaginons que pour un système dans un état quelconque, le résultat d'une mesure soit $a_n$. 
+% Pour que ceci ai un sens, comme nous venons de le voir, il faut que si on effectue une 
+% mesure directement après la première, celle-ci soit identique.\\
  
- On définit la valeur moyenne de l'observable $\hat{A}$
+ On définit la valeur moyenne de l'observable $\hat{A}$ par
  \begin{equation}
 \begin{array}{lll}
  \langle a\rangle = \sum_n a_n\mathbb{P}(a_n) &= \sum_n a_n\bra{\psi}\hat{P_n}\ket{\psi} &=  
@@ -258,10 +279,13 @@
  &= \bra{\psi}\hat{A}\ket{\psi} &= \langle \hat{A}\rangle_\psi \equiv \langle\hat{A}\rangle
 \end{array}
  \end{equation}
- Ceci désigne un valeur moyenne, c'est l'élément de matrice diagonal de 
- l'observable $\hat{A}$. On peut montrer en partant de cette 
- expression de la valeur moyenne que seules les valeurs propres peuvent apparaissent 
- comme mesure.\\
+ où on a utilisé la décomposition spectrale $\sum_n a_n\hat{P_n} = \sum_n a_n\ket{\psi_n}\bra{\psi_n}
+ = \hat{A} $.\footnote{Il y a moyen de faire une référence à l'endroit où on l'a définie ?}\\
+ Ceci désigne un valeur moyenne, c'est la somme des éléments de matrice diagonaux de 
+ l'observable $\hat{A}$. \\
+ %On peut montrer en partant de cette 
+ %expression de la valeur moyenne que seules les valeurs propres peuvent apparaissent 
+ %comme mesure.\\
  Définissons la variance :
  \begin{equation}
  \begin{array}{ll}
@@ -272,9 +296,9 @@
  \end{equation}
  Comme nous avons 
  \begin{equation}
- \ket{\psi} = \sum_n c_n \ket{\psi_n}\quad\text{ où }\quad \hat{A}\ket{\psi_n}=a_n\ket{\psi_n}
+ \ket{\psi} = \sum_n c_n \ket{\psi_n}\quad\text{ et }\quad \hat{A}\ket{\psi_n}=a_n\ket{\psi_n}
  \end{equation}
- On peut alors écrire
+ On peut écrire
  \begin{equation}
  \begin{array}{ll}
  \langle a \rangle &= \left(\sum_{n'} c_{n'}^*\bra{\psi_{n'}}\right)\hat{A}\left(
@@ -283,21 +307,25 @@
  \sum_n c_n\ket{\psi_n}\right)= \sum_{n,n'} c_{n'}^*c_n a_n^2\delta_{n,n'} = \sum_n |c_n|^2 a_n^2 
  \end{array}
  \end{equation}
- où $|c_n|^2 = p_n$. En utilisant ces expression, on peut ré-écrire la variance
+ où $|c_n|^2 = p_n$ par la règle de Born.\footnote{Il y a moyen de mettre un lien de nouveau ?}
+ En utilisant ces expression, on peut ré-écrire la variance
  \begin{equation}
  \Delta a^2 = \langle a^2\rangle - \langle a\rangle^2 = \sum_n |c_n|^2 a_n^2 - 
  \left(\sum_n |c_n|^2 a_n\right)^2
  \end{equation}
- Annulons cette expression%Pq le 2e ssi ??
+ %Annulons cette expression%Pq le 2e ssi ??
+ Inspectons le cas où la variance est nulle :
  \begin{equation}
  \Delta a^2 = 0\quad \Leftrightarrow\quad |c_n|^2 = \delta_{n,m} \Leftrightarrow
  \ket{\psi} = \ket{\psi_m}
  \end{equation}
  Ceci signifie que $|c_n|^2$ vaudra 1 en un point $m$ et 0 sinon.
- Les seuls état à donner une variance nuls sont les états propre.  Lors d'une 
- seconde mesure, la variance doit forcément être nulle : ceci montre que seules 
+ La seule manière d'être sûrs de notre mesure (variance nulle) est donc 
+ d'avoir un état propre.
+% Les seuls état à donner une variance nuls sont les états propre. 
+ Lors d'une seconde mesure immédiate, la variance doit forcément être nulle : ceci montre que seules 
  les valeurs propres peuvent être observée et qu'il faut que juste après la 
- mesure, on ai l'état propre de la grandeur mesurée\\
+ mesure, on ait l'état propre de la grandeur mesurée.\\
  
  De façon générale, si on prend toujours pour acquis que la valeur moyenne 
  d'une quantité physique est donné par l'élément de matrice diagonal 
@@ -307,7 +335,9 @@
   \forall m
  \end{equation}
  On reconnaît l'expression du moment d'ordre $m$ d'une distribution de probabilité 
- classique. Comme ceci est vrai pour tout $m$, alors forcément
+ classique. 
+ %Comme ceci est vrai pour tout $m$, alors forcément
+ Puisque c'est faisable pour tous les moments d'ordre entier, on a caractérisé la distribution
  \begin{equation}
  \mathbb{P}(a_n) = p_n = |c_n|^2
  \end{equation}
@@ -315,6 +345,7 @@
  en faisant une seule hypothèse.
   
  \subsection{Relation d'incertitude de Heisenberg}
+ Que se passe-t-il dans le cas de plusieurs observables ?
  Initialement, considérons un ket $\ket{\psi}$ ainsi que deux observables qui 
  à priori ne commutent pas
  \begin{equation}
@@ -328,13 +359,13 @@
  \begin{equation}
  \begin{array}{ll}
  \left(\Delta a'\right)^2 &= \bra{\psi}\left(\hat{A}-\langle a\rangle\right)
- \left(\hat{A}-\langle a\rangle\right)\ket{\psi} -\langle a'\rangle\\
+ \left(\hat{A}-\langle a\rangle\right)\ket{\psi}\\
  &= \bra{\psi}\hat{A}^2\ket{\psi} - \langle a\rangle\bra{\psi}\hat{A}\ket{\psi}-\langle a
  \rangle\underbrace{\bra{\psi}\hat{A}\ket{\psi}}_{\langle a\rangle} + \langle a\rangle^2\bra{\psi}\ket{\psi}\\
  &= \bra{\psi}\hat{A}^2\ket{\psi} - \langle a\rangle^2 = \Delta a^2
  \end{array}
  \end{equation}
- Ceci montre que la variance de $a'$ correspond à celle de $a$ (la variance reste 
+ Ceci montre que la variance de $\hat{A}'$ correspond à celle de $\hat{A}$ (la variance reste 
  inchangée pour une translation). Le même résultat peut être obtenu pour $\hat{B}'$.\\
  
  
@@ -355,7 +386,7 @@
  &= \bra{\psi}\left(A'-i\lambda B'\right)\left(A'+i\lambda B'\right)\ket{\psi}\\
  &= \underbrace{\bra{\psi}A^{'2}\ket{\psi}}_{\Delta a^2}\underbrace{+i\lambda\bra{\psi}
  A'B'\ket{\psi}-i\lambda\bra{\psi}B'A'\ket{\psi}}_{\lambda\bra{\psi}i[A',B']\ket{\psi}} 
- + \underbrace{\lambda^2\bra{\psi}B^{'2}\ket{\psi}}_{ \Delta b^2}
+ + \lambda^2\underbrace{\bra{\psi}B^{'2}\ket{\psi}}_{ \Delta b^2}
  \end{array}
  \end{equation}
  Nous pouvons montrer que le commutateur de deux opérateurs hermitien est lui-même 
@@ -366,18 +397,19 @@
  &= -i(B^{i\dagger}A^{'\dagger}-A^{i\dagger}B^{'\dagger}) = i[A',B']
  \end{array}
  \end{equation}
- Nous savons que
+ Comme la norme est définie positive
  \begin{equation}
  \Delta b^2\lambda^2 + \bra{\psi}D\ket{\psi}\lambda + \Delta a^2 \geq 0
  \end{equation}
- Ou encore
+ En voyant une fonction en $\lambda$ dans l'expression précédente
+ et en exprimant le fait que le discrimant ne peut pas être strictement positif
  \begin{equation}
- \bra{\psi}D\ket{\psi}^2 - 4\Delta a^2\Delta b^2 \leq 0
+ |\bra{\psi}D\ket{\psi}|^2 - 4\Delta a^2\Delta b^2 \leq 0
  \end{equation}
  Dès lors
  \begin{equation}
  \begin{array}{ll}
- \Delta a^2 \Delta b^2 &\geq \dfrac{1}{4}\left(\bra{\psi}i[A',B']\ket{\psi}\right)^2\\
+ \Delta a^2 \Delta b^2 &\geq \dfrac{1}{4}|(\bra{\psi}i[A',B']\ket{\psi}|^2\\
  &\geq \dfrac{1}{4}\left|\bra{\psi}[A',B']\ket{\psi}\right|^2
  \end{array}
  \end{equation}
@@ -397,7 +429,7 @@
  \end{equation}
  
 \section{Évolution temporelle}
-Considérons l'équation de Schrödinger où cette fois-ci $\psi$ est fonction du 
+Considérons l'équation de Schrödinger où cette fois-ci $\ket{\psi}$ est fonction du 
 temps
 \begin{equation}
 i\hbar \frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
@@ -406,9 +438,10 @@ i\hbar \frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
 où $\hat{H}$ est l'observateur énergie totale. Cette équation est une ED 
 du premier ordre, contrairement au cas classique où l'équation 
 serait d'ordre 2 ($f=m\ddot{x}$). Dès lors, le \textit{chaos classique} n'a 
-pas d'analogue directe en mécanique quantique, on ne retrouve pas la sensitiblité
+pas d'analogue directe en mécanique quantique \footnote{Cela vient du fait qu'une ED du
+second ordre nécessite une condition initiale de plus qu'une ED du premier ordre.}, on ne retrouve pas la sensitiblité
 aux conditions initiales celles-ci n'apparaissant plus dans l'équation de 
-Schrödinger\footnote{Il existe des théories qui s'intéressent au "chaos quantique", 
+Schrödinger.\footnote{Il existe des théories qui s'intéressent au "chaos quantique", 
 mais cela dépasse le cadre du cours.}\\
 
 Dans une telle équation, l'observable énergie totale peut parfaitement 
@@ -425,15 +458,15 @@ n'est clairement pas le cas d'un système isolé.\\
 
 On peut remarquer que la norme est conservée : en un certain temps celle-ci doit 
 être normé (il faut que, pour les mesures, ça soit normalisé). La conservation de 
-la norme est une conséquence immédiate de l'équation \autoref{eq:Cours4.1} et du fait 
+la norme est une conséquence immédiate de l'équation de Schrödinger \autoref{eq:Cours4.1} et du fait 
 que $\hat{H}$ est hermitien (étant observable). Considérons \autoref{eq:Cours4.1} ainsi 
 que son conjugué\footnote{Rappel : pour conjuguer, on permute l'ordre, change les kets en 
 bras et on conjugue.} :
 \begin{equation}
 \begin{array}{llll}
-i\hbar \frac{d}{dt}\ket{\psi(t)} &= \hat{H}\ket{\psi(t)} &= i\hbar \bra{\psi}\left(
+i\hbar \frac{d}{dt}\ket{\psi(t)} &= \hat{H}\ket{\psi(t)} &=> i\hbar \bra{\psi}\left(
 \dfrac{d}{dt}\ket{\psi}\right) &= \bra{\psi}\hat{H}\ket{\psi}\\
--i\hbar \frac{d}{dt}\ket{\psi(t)} &= \bra{\psi}\hat{H}^\dagger = \bra{\psi}\hat{H} &=
+-i\hbar \frac{d}{dt}\bra{\psi(t)} &= \bra{\psi}\hat{H}^\dagger = \bra{\psi}\hat{H} &=>
 -i\hbar \left(\dfrac{d}{dt}\bra{\psi}\right)\ket{\psi} &= \bra{\psi}\hat{H}\ket{\psi}
 \end{array}
 \end{equation}
@@ -445,9 +478,11 @@ Il s'agit la de l'expression de la dérivée d'une fonction composée. Dès lors
 \begin{equation}
 \dfrac{d}{dt}\bra{\psi}\ket{\psi} = 0
 \end{equation}
-On prendra alors comme condition initiale $\frac{d}{dt}\bra{\psi(0)}\ket{\psi(0)} = 1$.\\
+On voit donc que la norme de $\ket{\psi}$ n'évolue pas dans le temps.
+On prendra alors comme condition initiale $\bra{\psi(0)}\ket{\psi(0)} = 1$.\\
 
-Prenons le cas particulier d'un système isolé ($\hat{H}$ indépendant de $t$) :
+Prenons le cas particulier d'un système isolé ($\hat{H}$ indépendant de $t$).
+Nous obtenons une équation aux valeurs propres :
 \begin{equation}
 \hat{H}\ket{\psi_n} = E_n\ket{\psi_n}
 \end{equation}
@@ -456,12 +491,14 @@ instant comme une combili des vecteurs de base
 \begin{equation}
 \ket{\psi(t)} = \sum_n c_n(t)\ket{\psi_n}
 \end{equation}
-où $c_n(t)$ représente les amplitudes de probabilité, mais que valent-elles ? Il est 
+où $c_n(t)$ représente les amplitudes de probabilité \footnote{Notons que bien que l'hamiltonien
+soit indépendant du temps car il s'agit d'un système isolé, il n'y a aucune raison pour que ces
+amplitudes de probabilité ne dépendent pas du temps !}, mais que valent-elles ? Il est 
 possible de les déterminer avec des conditions initiales
 \begin{equation}
 \ket{\psi(0)} = \sum_n c_n\ket{\psi_n}\qquad\qquad \text{où }\ c_n = \bra{\psi_n}\ket{\psi(0)}
 \end{equation}
-Les $c_n$ ne sont que la projection de l'état sur la base $\psi_n$. En injectant ce 
+Les $c_n$ ne sont que la projection de l'état initial sur la base $\psi_n$. En injectant ce 
 résultat dans l'équation de Schrödinger, on peut déduire la valeur de ces coefficents
 \begin{equation}
 i\hbar\dfrac{d}{dt}\left(\sum_n c_n(t)\ket{\psi_n}\right) = \hat{H}\sum_n c_n(t)\ket{\psi_n}
@@ -470,31 +507,40 @@ Ici l'expression va bien se simplifier, la base ne dépendant pas du temps
 \begin{equation}
 i\hbar \sum_n \dfrac{d}{dt}c_n(t)\ket{\psi_n} = \sum_n c_n(t)E_n\ket{\psi_n}
 \end{equation}
-Selon le nombre de valeur propre, on pourra en extraire de cette relation le même nombre 
-d'équation. On peut donc dire
+Puisque les vecteurs de base sont orthogonaux, il faut que les coefficients
+des deux membres correspondant aux mêmes vecteurs soient égaux.
+Selon le nombre de valeurs propres, on pourra extraire de cette relation le même nombre 
+d'équations pour déterminer les amplitudes de probabilité.
+On obtient donc une équation différentielle sur les coefficients :
 \begin{equation}
 \begin{array}{lll}
 \forall n: &i\hbar \dfrac{d}{dt}c_n(t) &= c_n(t)E_n\\
  \Leftrightarrow & \dfrac{d}{c_n}c_n &= \frac{E_n}{i\hbar}dt\\
  \Leftrightarrow & \log c_n = \frac{E_nt}{i\hbar} + \log c_n(0)\\
- \Leftrightarrow & c_n(t) = c_n(0)e^{\frac{E_nt}{i\hbar}}
+ \Leftrightarrow & c_n(t) = c_n e^{\frac{E_nt}{i\hbar}}
 \end{array}
 \end{equation}
 En remplaçant dans l'équation initiale, on trouve
 \begin{equation}
 \underline{\ket{\psi(t)} = \sum_n c_n(0)e^{-\frac{i}{\hbar}E_nt}\ket{\psi_n}}
 \end{equation}
-Il suffit de résoudre l'équation de Schrödinger indépendante du temps qui consiste 
+On remarque que toute la dépendance temporelle se trouve dans l'exponentielle
+complexe et que les vecteurs de base sont fixes.
+Il suffit donc de résoudre l'équation de Schrödinger indépendante du temps qui consiste 
 à diagonaliser l'opérateur hamiltonien. En intégrant on peut le trouver pour tout 
-temps : chaque phase va tourner dans le temps selon une vitesse (fréquence angulaire) 
+temps : chaque phase va tourner dans le temps selon une vitesse (fréquence angulaire $\frac{E_n}{i\bar{h}})$ 
 proportionnelle à son énergie. Le zéro d'énergie n'a pas d'importance, seuls les termes 
-d'interférences liés aux différences d'énergies peuvent jouer. Les états propres $\ket{\psi}$ 
-sont les \textbf{états stationnaires}. La raison est que si on se troue dans un état stationnaire il 
+d'interférences liés aux différences d'énergies peuvent jouer. Les états propres $\ket{\psi_n}$ 
+sont les \textbf{états stationnaires}. La raison est que si on se trouve dans un état stationnaire il 
 ne reste que un terme : il restera une phase mais celle-ci est non-relevante 
 (la phase globale devant n'a pas se sens (pas observable en pratique), seule la différence est 
 importante pour les interférences).\\
 
-Ce qui est agréable c'est que les équations différentielles sont découplées.  L'évolution 
+Pour résumer, tant que l'hamiltonien ne dépend pas du temps, on se ramène à une équation aux
+valeurs propres qui permet de trouver les états propres de l'équation de Schrödinger indépendante
+du temps, qui sont les états stationnaires.
+
+Dans ce cas, ce qui est agréable c'est que les équations différentielles sont découplées.  L'évolution 
 temporelle du coefficient $c_n$ ne dépend que de lui et non, par exemple, de $c_{n-1}$.\\
 
 Mais que dit cette équation sur l'évolution de la valeur moyenne ?
@@ -503,16 +549,17 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	Ce théorème gouverne l'évolution temporelle liée à l'équation de Schrödinger de la 
 	valeur moyenne. Pour rappel
 	\begin{equation}
-	\langle a \rangle = \sum_n \mathbb{P}(a_n).a_n = \sum_n \bra{\psi}\hat{P_n}\ket{\psi} 
+	\langle a \rangle = \sum_n \mathbb{P}(a_n).a_n = \sum_n \bra{\psi}\hat{P_n}\ket{\psi} .a_n
 	= \bra{\psi}\sum_n a_n \hat P_n \ket{\psi} = \bra{\psi}\hat{A}\ket{\psi} = \langle\hat{A}
 	\rangle
 	\end{equation}
 	où nous avons utiliser la décomposition spectrale de $\hat{A}$. Effectuons la dérivée
 	\begin{equation}
-	\dfrac{d}{dt}\langle a\rangle = \underbrace{\left(\dfrac{d}{dt}\bra{\psi}\right)}_{-i\hbar 
+	\dfrac{d}{dt}\langle a\rangle = \underbrace{\left(\dfrac{d}{dt}\bra{\psi}\right)}_{\frac{1}{-i\hbar}
 	\bra{\psi}\hat{H}}\hat{A}\ket{\psi} + \bra{\psi}\dfrac{\partial \hat{A}}{\partial t}\ket{\psi} +
-	\bra{\psi}\hat{A}\underbrace{\left(\dfrac{d}{dt}\ket{\psi}\right)}_{i\hbar \hat{H}\ket{\psi}}
+	\bra{\psi}\hat{A}\underbrace{\left(\dfrac{d}{dt}\ket{\psi}\right)}_{\frac{1}{i\hbar}\hat{H}\ket{\psi}}
 	\end{equation}
+	en utilisant l'équation de Schrödinger.
 	On y voit apparaître la notion de commutateur
 	\begin{equation}
 	\underline{\dfrac{d}{dt}\langle a\rangle = \dfrac{1}{i\hbar}\bra{\psi}[\hat{A},\hat{H}]\ket{\psi} + 
@@ -525,15 +572,15 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	
 	Pour un observable qui ne dépend pas \textbf{explicitement}\footnote{Encore une fois : on ne 
 	dit pas que ça ne dépend pas du temps, mais que l'observable ne dépend pas du temps de façon 
-	explicite} du temps.
+	explicite} du temps nous obtenons une version réduite
 	\begin{equation}
 	\underline{i\hbar \dfrac{d}{dt}\langle a\rangle = \bra{\psi}[\hat{A},\hat{H}]\ket{\psi}}
 	\end{equation}
 	La différence avec le cas classique est la présence d'un commutateur (qui joue le même rôle 
 	que le crochet de poisson en mécanique hamiltonienne).\\
 	
-	Les observables intéresantes sont les "\textit{constantes du mouvement}" et ce sont celles 
-	qui commutent.
+	Notons finalement que les observables intéressantes sont appelées "\textit{constantes du mouvement}" et commutent
+	avec l'hamiltonien.
 
 	\subsection{Constante du mouvement (pour un système isolé)}
 	L'opérateur $\hat{A}$ est une constante du mouvement si et seulement si
@@ -568,8 +615,9 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	&= E_n \bra{\psi_n}\hat{A}\ket{\psi_n}-E_n\bra{\psi_n}\hat{A}\ket{\psi_n}=0\qquad \forall \hat{A}
 	\end{array}
 	\end{equation}
-	où $\hat{H}^\dagger = \hat H$. Lorsqu'un problème manifeste une invariance cela implique une 
-	certaine symétrie. Si invariant par translation, $\hat H$ va commuter avec l'impulsion. Avec 
+	car $\hat{H}^\dagger = \hat H$. On retrouve le fait qu'un état stationnaire ne varie pas.
+	Lorsqu'un problème manifeste une invariance cela implique une 	certaine symétrie, et une commutation
+	avec l'hamiltonien. Si invariant par translation, $\hat H$ va commuter avec l'impulsion. Avec 
 	ce théorème, comme ils commutent, on peut dire que l'impulsion est une constante du mouvement.  
 	De façon plus générale, si l'on a une symétrie, le générateur de cette symétrie va commuter 
 	avec $\hat{H}$ (comme dans le cas classique).\\
@@ -590,23 +638,28 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	i\hbar \dfrac{d}{dt}\left(\hat{U}(t,t_0)\ket{\psi(t_0)}\right) = \hat{H}(t)\hat{U}t,t_0)\ket{\psi(t_0)}
 	\qquad \forall \ket{\psi(t_0)}
 	\end{equation}
-	La dérivée ne portant que sur $\hat{H}$, on obtient alors l'ED
+	La dérivée ne portant que sur $\hat{U}$, on obtient alors l'ED
 	\begin{equation}
 	i\hbar \dfrac{\partial}{\partial t}\hat{U}(t,t_0) = \hat{H}(t)\hat{U}(t,t_0)\qquad \text{ C.I. } : 
 	\hat{U}(t_0,t_0) = \hat{\mathbb{1}}
+	\label{eq:2.62}
 	\end{equation}
 	La condition initiale est logique : l'opérateur ramené à l'instant zéro est l'opérateur identité.
 	L'intégration de ceci donne l'opérateur recherché. On utilise la lettre $U$ car il s'agit d'un 
 	opérateur unitaire. 
+	
+	\subsubsection{Interprétation de l'opérateur d'évolution inverse}	
+	
+	En utilisant la conservation de la norme aux cours du temps,
 	\begin{equation}
 	\bra{\psi(t)}\ket{\psi(t)}\left\{\begin{array}{ll}
 	&= \bra{\psi(t_0)}\hat{U}^\dagger(t,t_0)\hat{U}(t,t_0)\ket{\psi(t_0)}\\
 	&= \bra{\psi(t_0)}\ket{\psi(t_0)}
 	\end{array}\right. \qquad\forall t_0
 	\end{equation}
-	Nous avons utilisé ici la conservation de la norme au cours du temps. Comme ceci est valable 
+	Comme ceci est valable 
 	$\forall t_0$, il doit forcément y avoir une égalité au niveau de l'opérateur : celui-ci 
-	est bien unitaire :
+	est bien unitaire
 	\begin{equation}
 	\hat{U}^\dagger(t,t_0)\hat{U}(t,t_0) = \hat{U}(t,t_0)\hat{U}^\dagger(t,t_0) = \hat{\mathbb{1}}
 	\end{equation}
@@ -627,7 +680,7 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	\end{equation}
 	En prenant le cas particulier ou $t_2=t_0$ :
 	\begin{equation}
-	\hat{\mathbb{1}} = \hat{U}(t_0,t_0) = \underbrace{\hat{U}(t_0,t)}_{\hat{H}^{-1}(t,t_0)}U(t,t_0)
+	\hat{\mathbb{1}} = \hat{U}(t_0,t_0) = \underbrace{\hat{U}(t_0,t)}_{\hat{U}^{-1}(t,t_0)}U(t,t_0)
 	\end{equation}
 	En en tire que
 	\begin{equation}
@@ -636,14 +689,14 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 	= U(t_0,t)
 	\end{array}\right.
 	\end{equation}
-	Revenons à nous moutons et intégrons dans le temps
-	\begin{equation}
-	i\hbar \dfrac{\partial}{\partial t}\hat{U}(t,t_0) = \hat{H}\hat{U}(t,t_0) ;\qquad \hat{U}(t_0,t_0) = 
-	\hat{\mathbb{1}}
-	\end{equation}
+%	Revenons à nos moutons et intégrons dans le temps
+%	\begin{equation}
+%	i\hbar \dfrac{\partial}{\partial t}\hat{U}(t,t_0) = \hat{H}\hat{U}(t,t_0) ;\qquad \hat{U}(t_0,t_0) = 
+%	\hat{\mathbb{1}}
+%	\end{equation}
 	
 		\subsubsection{1. Système isolé}
-		La résolution de cette intégration donne
+		La résolution de l'équation \autoref{eq:2.62} pour un hamiltonien indépendant du temps donne
 		\begin{equation}
 		\begin{array}{ll}
 		\hat{U}(t,t_0) &= \exp\left(-\dfrac{i}{\hbar}(t-t_0)\hat{H}\right)\\
@@ -652,21 +705,25 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 		\end{array}
 		\label{eq:4.17}
 		\end{equation}				
-		où nous avons utilisé la définition de l'exponentielle d'une matrice
+		où nous avons utilisé la définition de l'exponentielle d'un opérateur
 		\begin{equation}
 		e^{\hat{A}} \equiv \hat{\mathbb{1}} + \frac{1}{2!}\hat{A}^2+\frac{1}{3!}\hat{A}^3+\dots
 		\end{equation}				
-		Montrons que l'exponentielle de $i\hat U$ donne l'unité. Définissons d'abord
+		
+		\subsubsection{Construction d'un opérateur unitaire}
+		%Montrons que l'exponentielle de $i\hat U$ donne l'unité.
+		Montrons que l'on peut construire un opérateur unitaire à partir d'un opérateur hermitien.
+		Définissons d'abord
 		\begin{equation}
 		\hat{U} \equiv e^{i\hat{H}}
 		\end{equation}
-		où $\hat{H}$ est hermitien. Calculons son conjugué
+		où $\hat{H}$ est un opérateur hermitien quelconque. Calculons le conjugué
 		\begin{equation}
 		\begin{array}{ll}
 		\hat{U}^\dagger =\left(e^{i\hat{H}}\right)^\dagger &= \left(1+\frac{i}{1!}	\hat{H}+
 		\frac{(i)^2}{2!}\hat{H}^2+\frac{(i)^3}{3!}\hat{H}^3 + \dots\right)^\dagger\\
-		&= 1 + frac{-i}{1!}	\hat{H}+\frac{(-i)^2}{2!}\hat{H}^2 +\frac{(-i)^3}{3!}\hat{H}^3 + \dots\\
-		&= e^{-i\hat{H}} = e^{-i\hat{H}}
+		&= 1 + \frac{-i}{1!}	\hat{H}^\dagger+\frac{(-i)^2}{2!}\hat{H}^{\dagger2} +\frac{(-i)^3}{3!}\hat{H}^{\dagger3} + \dots\\
+		&= e^{-i\hat{H}^\dagger} = e^{-i\hat{H}}
 		\end{array}
 		\end{equation}
 		On peut directement en conclure que
@@ -680,7 +737,7 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 		\begin{array}{ll}
 		i\hbar\frac{\partial \hat U}{\partial t} &= 0 + \hat{H} + \frac{1}{i\hbar}(t-t_0)
 		\hat{H}^2 + \frac{1}{2(i\hbar)^3}(t-t_0)\hat{H}^3+\dots\\
-		&= \hat{H}\left(1+\frac{1}{i\hbar}(t-t_0)\hat{H}+\dots\right) = \hat{H}\hat{U}(t-t_0)
+		&= \hat{H}\left(1+\frac{1}{i\hbar}(t-t_0)\hat{H}+\dots\right) = \hat{H}\hat{U}(t, t_0)
 		\end{array}
 		\end{equation}
 		Ce qui vérifie bien l'ED. Si on décompose dans la base propre, on peut retrouver ce résultat
@@ -693,21 +750,22 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 		On pourrait être tenté de vouloir écrire \autoref{eq:4.17} 
 		\begin{equation}
 		\autoref{eq:4.17} \neq \exp\left[\dfrac{-i}{\hbar}\int_{t_0}^t \hat{H}(t)\ dt\right]
+		\label{eq:2.77}
 		\end{equation}
 		pour décrire les systèmes non-isolés, mais c'est faux.
 		
 		\subsubsection{2. Systèmes non-isolés}
-		Ré-écrivons la sainte équation d'un système non-isolé
+		Ré-écrivons la sainte équation d'évolution, dans le cas d'un système non-isolé
 		\begin{equation}
 		i\hbar\dfrac{\partial}{\partial t}\hat{U}(t,0) = \hat{H}(t)\hat{U}(t,t_0)
 		\end{equation}
-		Mise sous la forme intégrale :
+		Mise sous forme intégrale, on l'intègre formellement de $t_0$ à $t$ :
 		\begin{equation}
 		i\hbar\left[\hat{U}(t,t_0) - \hat{U}(t_0,t_0)\right] = \int_{t_0}^t dt\ \hat{H}(t)\hat{U}(t,t_0)
 		\end{equation}
 		Ou encore, pour obtenir l'\textit{équation intégrale} suivante
 		\begin{equation}
-		\underline{	\hat{U}(t,t_0) = \hat{1} + \frac{\mathbb{1}}{i\hbar}\int_{t_0}^t dt\ \hat{H}(t)\hat{U}(t,t_0)}
+		\underline{	\hat{U}(t,t_0) = \hat{\mathbb{1}} + \frac{1}{i\hbar}\int_{t_0}^t dt\ \hat{H}(t)\hat{U}(t,t_0)}
 		\end{equation}
 		La solution de cette équation intégrale peut se faire de façon récursive :
 		\begin{equation}
@@ -722,33 +780,53 @@ Mais que dit cette équation sur l'évolution de la valeur moyenne ?
 		\end{equation}
 		L'étude de la convergence de cette série ne sera pas faite ici. Signalons que souvent, les 
 		termes correctifs tendent rapidement vers zéro : on pourra se limiter au premiers termes et 
-		avoir tout de même une très bonne approximation.
+		avoir tout de même une très bonne approximation. On remarque qu'on obtient une forme fort
+		différente de \autoref{eq:2.77}.
 
-	\subsection{Point de vue (ou image) de Schrödinger vs. Heisenberg}
-	Jusqu'ici nous avons considéré le poitn de vue de Schrödinger. Il existe le point de vue de 
-	Heisenberg, équivalent, mais qui se lie plus facilement à la mécanique classique.
+	\subsection{Point de vue (ou image ou représentation) de Schrödinger vs. Heisenberg}
+	Jusqu'ici nous avons considéré le point de vue de Schrödinger.
+	% Il existe le point de vue de 
+	%Heisenberg, équivalent, mais qui permet de faire plus facilement des liens avec la mécanique classique.
+	Un autre point de vue très usité est celui de Heisenberg. Celui-ci possède l'avantage de pouvoir
+	faire plus facilement des liens avec la mécanique classique.
+	Heureusement, ces deux représentations sont équivalentes dans le sens qu'elles
+	mènent aux mêmes prédictions.
 	\begin{equation}
 	\text{Schrödinger : }\left\{\begin{array}{ll}
-	\ket{\psi(t)} & \text{ évolue dans le temps}\\
-	\hat{A} & \text{ n'évolue pas dans letemps}	
+	\ket{\psi(t)} & \text{les états évoluent dans le temps}\\
+	\hat{A} & \text{les opérateurs n'évoluent pas dans le temps}	
 	\end{array}\right.
 	\end{equation}
 	
 	\begin{equation}
 	\text{Heisenberg : }\left\{\begin{array}{ll}
-	\ket{\psi(t)} & \text{ n'évolue pas dans le temps}\\
-	\hat{A} & \text{ évolue dans le temps}	
+	\ket{\psi_H} & \text{les états n'évoluent pas dans le temps}\\
+	\hat{A}_H(t) & \text{les opérateurs évoluent dans le temps}	
 	\end{array}\right.
 	\end{equation}	
-	Le $\psi_H$ "devient" la position initiale et $\hat{A}_H$ décrit "comment cela dépend du temps" 
-	(comme la dépendance en le temps de la particule classique). Les points de vues sont équivalents : 
-	les prédictions doivent être identiques, c'est-à-dire les éléments de matrice 
-	$\bra{\psi(t)}\hat{A}\ket{\psi(t)}$. Grâce à l'opérateur d'évolution, on sait que
+	La différence se trouve dans la manière de voir les ket, bra et opérateurs.
+	Le $\psi_H$ "devient" fixe et $\hat{A}_H$ décrit la dépendance temporelle du système
+	(comme la dépendance en le temps de la particule classique). Dans la représentation
+	de Heisenberg, c'est donc l'opérateur qui dépend du temps, tout comme en mécanique 
+	classique. Etant donné que les prédictions de la mécanique quantique se font
+	essentiellement par les éléments de matrice, on retrouve la correspondance entre les
+	deux points de vue
 	\begin{equation}
-	\text{Voir feuille TT : dernières notes cours 4}
+	\bra{\phi(t)}\hat{A}\ket{\psi(t)} = \bra{\phi(t_0)}\hat{U}^\dagger(t,t_0)\hat{A}\hat{U}(t,t_0)\ket{\psi(t_0)} 
+	= \bra{\phi_H}\hat{A}_H(t)\ket{\psi_H}
 	\end{equation}
+	à condition de poser $\ket{\psi(t_0)} = \ket{\psi_H}$, $\ket{\phi(t_0)} = \ket{\phi_H}$ et
+	 $\hat{U}^\dagger(t,t_0)\hat{A}\hat{U}(t,t_0) = \hat{A}_H(t)$.
+	
+%	 Les points de vues sont équivalents : 
+%	les prédictions doivent être identiques, c'est-à-dire les éléments de matrice 
+%	$\bra{\psi(t)}\hat{A}\ket{\psi(t)}$. Grâce à l'opérateur d'évolution, on sait que
+%	\begin{equation}
+%	\text{Voir feuille TT : dernières notes cours 4}
+%	\end{equation}
  
 
+\subsubsection{Evolution temporelle d'une observable}
  
 Regardons maintenant comment évolue dans le temps l'observable $\hat{A}$, dans l'image 
 d'Heisenberg
@@ -760,52 +838,57 @@ d'Heisenberg
 \frac{\partial \hat{A}}{\partial t}\hat{U}+\hat{U}^\dagger\hat{A}\left(\frac{1}{i\hbar}\hat{H}
 \hat{U}\right)\\
 &=\DS \frac{1}{i\hbar}\underbrace{\hat{U}^\dagger[\hat{A},\hat{H}]\hat{U}^\dagger}_{\text{Commut. 
-Heis.}} \hat{U}^\dagger \dfrac{\partial\hat{A}}{\partial t}\hat{U}
+Heis.}} + \hat{U}^\dagger \dfrac{\partial\hat{A}}{\partial t}\hat{U}
 \end{array}
 \end{equation}
 où $i\hbar\frac{\partial \hat{U}}{\partial t} = \hat{H}\hat{U}$ est l'ED régissant l'opérateur 
-évolution.\\
+évolution et où l'on voit apparaître un commutateur en représentation d'Heisenberg.\\
 On trouve alors
 \begin{equation}
 \underline{\dfrac{d}{dt}\hat{A}_H(t) = \dfrac{1}{i\hbar}[\hat{A},\hat{H}]_H + \left(\dfrac{\partial\hat{A}}{\partial 
-t}\hat{U}\right)_H}
+t}\right)_H}
 \end{equation}
-Ceci rappelle le théorème d'Ehrenfest, on peut alors parler de constante de mouvement. Si $\hat{A}$ 
-ne dépend pas explicitement du temps (image de Schrödinger), le terme dérivatif s'annule pour obtenir
+Ceci rappelle le théorème d'Ehrenfest qui concernait les valeurs moyennes d'opérateurs en image de Schrödinger.\\
+Si $\hat{A}$ ne dépend pas explicitement du temps (image de Schrödinger), le terme dérivatif s'annule pour obtenir
 \begin{equation}
 i\hbar \dfrac{\partial \hat{A}_H}{\partial t} = [\hat{A},\hat{H}]_H
 \end{equation}
-Si $\hat{A}$ commute avec $\hat{H}$, on retrouve bien une constante du mouvement : $\DS \frac{d\hat{A}_H}{
-dt}=0$. On peut montrer que si il y a commutation dans l'image de Schrödinger, il y aura également 
+Si en plus $\hat{A}$ commute avec $\hat{H}$, on obtient une constante du mouvement : $\DS \frac{d\hat{A}_H}{
+dt}=0$.\\
+On peut montrer que si il y a commutation dans l'image de Schrödinger, il y aura également 
 commutation dans l'image d'Heisenberg :
 \begin{equation}
 \begin{array}{ll}
-[\hat{A}_H,\hat{B}] = [\hat{U}^\dagger\hat{A}\hat{U},\hat{U}^\dagger B\hat{U}] &= \hat{U}^\dagger\hat{A}
+[\hat{A}_H,\hat{B}_H] = [\hat{U}^\dagger\hat{A}\hat{U},\hat{U}^\dagger B\hat{U}] &= \hat{U}^\dagger\hat{A}
 \underbrace{\hat{U}\hat{U}^\dagger}_{\mathbb{1}}\hat{B}\hat{U}-\hat{U}^\dagger\hat{B}\underbrace{\hat{U}
 \hat{U}^\dagger}_{\mathbb{1}}\hat{A}\hat{U}\\
 &= \hat{U}^\dagger[\hat{A},\hat{B}]\hat{U} = [\hat{A},\hat{B}]_H
 \end{array}
 \end{equation}
 En théorie  des collisions il existe même une troisième image (l'image d'interaction) 
-intéressante en pratique. En prenant le point de vue d'Heisenberg on peut facilement 
+intéressante en pratique.
+
+\subsubsection{Lien avec la mécanique classique}
+
+En prenant le point de vue d'Heisenberg on peut facilement 
 retrouver les équations de mouvements de la mécanique classique. C'est un des intérêts de 
-jongler avec les points de vue. Considérons $\hat{H}=\frac{p^2}{2m}+V(\vec{r})$ :
+jongler avec les points de vue. Considérons une particule coincée dans un puit de potentiel tel que $\hat{H}=\frac{p^2}{2m}+V(\vec{r})$ :
 \begin{equation}
 \begin{array}{ll}
 \dfrac{d\vec{r}_H}{dt} &=\DS \frac{1}{i\hbar}[\vec{r},\hat{H}]_H\\
 &= \dfrac{1}{2m i\hbar}[\hat{r},p^2]_H
 \end{array}
 \end{equation}
-Notre commutateur est ici un vecteur. Développons le pour un composante
+Notre commutateur comporte ici des vecteurs vecteurs d'opérateurs. Développons le pour un composante spatiale
 \begin{equation}
-[x,p^2] = þx, p_x^2+p_y^2+p_z^2] = p_x[x,p_x]+[x,p_x]p_x = 2i\hbar p_x
+[x,p^2] = [x, p_x^2+p_y^2+p_z^2] = p_x[x,p_x]+[x,p_x]p_x = 2i\hbar p_x
 \end{equation}
 où nous avons utilisé le fait que deux opérateurs agissant sur deux espaces de Hilbert différents 
-commutent ($[x,p_y]=0$). En 3D, on obtient alors
+commutent (par exemple $[x,p_y]=0$). En 3D, on obtient alors
 \begin{equation}
-\dfrac{d\vec{r}_H}{dt} = 2i\hbar \vec{p}_H = \dfrac{\vec{p}_H}{m}
+\dfrac{d\vec{r}_H}{dt} =  \dfrac{2i\hbar}{i \hbar 2 m} \vec{p}_H = \dfrac{\vec{p}_H}{m}
 \end{equation}
-On peut voir une analogie avec le cas classique
+On peut voir une analogie avec la quantité de mouvement classique
 \begin{equation}
 \vec{p}_H = m\dfrac{d}{dt}\vec{r}_H 
 \end{equation}
@@ -816,13 +899,14 @@ d'Heisenberg
 \dfrac{d}{dt}\vec{p}_H = \dfrac{1}{i\hbar}[\vec{p},\hat{H}]_H = \frac{1}{i\hbar}[\vec{p},V(\vec{r})]_H =
 -[\vec{\nabla}_r,V(\vec{r})]_H
 \end{equation}
-Cette fois-ci, c'est le terme énergie cinétique qui tombe dans l'expression du commutateur.  Considérons 
+Cette fois-ci, c'est le terme énergie cinétique qui tombe dans l'expression du commutateur
+car il commute avec l'opérateur impulsion. Considérons 
 la première composante
 \begin{equation}
 \begin{array}{ll}
-\left[\frac{\partial}{\partial x}, V(r)\right]f(r) &=\DS \dfrac{\partial}{\partial x}V(r)f(r) - V(r)\frac{
+\left[\frac{\partial}{\partial x}, V(r)\right]f(r) &=\DS \dfrac{\partial}{\partial x}(V(r)f(r)) - V(r)\frac{
 \partial}{\partial x}f(r)\\
-&=\DS \frac{\partial V(t)}{\partial x}f(r) + V(r)\frac{\partial f(r)}{\partial x}-V(r)\frac{\partial f(r)}{\partial x}\qquad \forall f
+&=\DS \frac{\partial V(r)}{\partial x}f(r) + V(r)\frac{\partial f(r)}{\partial x}-V(r)\frac{\partial f(r)}{\partial x}\qquad \forall f
 \end{array}
 \end{equation}
 Dès lors
@@ -839,7 +923,7 @@ Par analogie, comme précédemment : $\frac{d}{dt}\vec{p_H} =m\frac{d^2}{dt^2}\v
 
 \subsection{Relation d'incertitude temps-Énergie}
 Il s'agit d'une autre relation d'incertitude, un peu spéciale car le le temps n'est pas une observable. Or, 
-la relation d'incertitude reliait les variances des écarts types de deux observables ce qui n'est pas le cas ici : le principe de Robertson ne peut s'y appliquer. On peut néanmoins arriver à une forme proche. Nous avions prouvé que
+la relation d'incertitude reliait les variances des écarts types de deux observables ce qui n'est pas le cas ici : le principe de Robertson ne peut s'y appliquer. On peut néanmoins arriver à une forme proche. La relation d'incertitude de Robertson disait que
 \begin{equation}
 \Delta A_\psi \Delta B_\psi \geq \frac{1}{2}\left|\langle [A,B]\rangle_\psi\right|
 \end{equation}
@@ -855,17 +939,20 @@ temps, de même pour $\hat A$ qui ne commute pas avec $\hat{H}$.
 En mesurant $\Delta\hat{H}_\psi$, on n'obtiendra pas toujours la même énergie : nommons cette grandeur $\Delta E$, 
 la dispersion de l'énergie dans l'état $\psi$. En combinant ces deux relations
 \begin{equation}
-\Delta\hat{H}.\Delta E \geq \dfrac{\hbar}{2}\left|\dfrac{d}{dt}\langle A\rangle \right|
+\Delta\hat{A}.\Delta E \geq \dfrac{\hbar}{2}\left|\dfrac{d}{dt}\langle A\rangle \right|
 \end{equation}
 Pour le temps il est utile de définir un temps caractéristique en rapport avec l'observable 
 $\hat{A}$
 \begin{equation}
-\tau_A \equiv \dfrac{\Delta\hat{H}}{\left|\dfrac{d}{dt}\langle A\rangle \right|}
+\tau_A \equiv \dfrac{\Delta\hat{A}}{\left|\dfrac{d}{dt}\langle A\rangle \right|}
 \end{equation}
+%Ce temps caractéristique est défini comme le rapport de la dispersion de l'observable sur le
+%temps d'évolution de la moyenne de l'observable. Ce temps caractéristique représente donc le
+%temps nécessaire pour que la valeur moyenne de l'observable évolue de un écart-type.
 Le dénominateur donne la vitesse de l'évolution de la valeur moyenne. Le numérateur est l'écart
 type, soit la dispersion de l'observable $\hat A$. La division donne le temps nécessaire pour que la 
-valeur moyenne de $\hat A$ bouge d'un écart type.\textit{Temps pour que $<\hat A>$ évolue de un écart-type}. 
-On peut voir ceci comme une normalisation. En substituant
+valeur moyenne de $\hat A$ bouge d'un écart type.\textit{ Le temps caractéristique est le temps pour que $<\hat A>$ évolue de un écart-type}. 
+On peut voir ceci comme une normalisation\footnote{Qu'est-ce que ça veut dire ???}. En substituant
 \begin{equation}
 \tau.\Delta E \geq \dfrac{\hbar}{2}
 \end{equation}
@@ -876,7 +963,7 @@ la place de $\tau_A$, où même
 \end{equation}
 Le temps caractéristique du système regardé sur n'importe quel observable ne peut pas être 
 infiniment petit. Pour un système, plus l'énergie est connue (écart type $\Delta E$) plus le 
-système va évoluer de façon lente. Le cas limite st l'état stationnaire : par définition, il 
+système va évoluer de façon lente. Le cas limite est l'état stationnaire : par définition, il 
 s'agit d'un état propre de $\hat H$, d'où $\Delta E=0$. Dans ce cas la, le temps caractéristique 
 de l'évolution est infini, $\tau=\infty$. On peut directement faire un lien entre le temps de 
 désintégration et l'énergie libérée.
