@@ -3,14 +3,14 @@
 	\subsection{Règle de correspondance, relation de commutation}
 	Classiquement, un moment cinétique est défini par la relation
 	\begin{equation}
-	\vec{L_d} = \vec{r_d}\times\vec{p_d}
+	\vec{L_{cl}} = \vec{r_{cl}}\times\vec{p_{cl}}
 	\end{equation}
-	On pourrait être tenter d'appliquer le principe de correspondance mais c'est faux car 
+	On pourrait être tenté d'appliquer le principe de correspondance mais c'est faux car 
 	$\hat{x}\hat{p}$ n'est pas hermitien
 	\begin{equation}
 	(\hat{x}\hat{p})^\dagger = \hat{p}^\dagger\hat{x}^\dagger = \hat{p}\hat{x}\neq\hat{x}\hat{p}
 	\end{equation}		
-	Il est cependant possible de le rendre hermitien	en le symétrisant : $\frac{1}{2}(\hat{x}\hat{p}
+	Il est cependant possible de le rendre hermitien	en le symétrisant correctement : $\frac{1}{2}(\hat{x}\hat{p}
 	+\hat{p}\hat{x})$. L'opérateur "quantique" est donné par la forme symétrisée 
 	\begin{equation}
 	\vec{L} = \frac{1}{2}\left(\hat{\vec{r}}\times\hat{\vec{p}}-\underbrace{\hat{\vec{p}}\times
@@ -34,9 +34,9 @@
 	\begin{equation}
 	\hat{L_z'} = \hat{p_x}\hat{y}-\hat{p_y}\hat{x} = \hat{y}\hat{p_x}-\hat{x}\hat{p_y}=-\hat{L_z}
 	\end{equation}
-	L'inversion de $\hat{r}$ et $\hat{p}$ donne un signe négatif comme différence (pfpfp). On a bien 
-	défini un \textbf{observable} $\hat{\vec{r}}\times\hat{\vec{p}}$. Vérifions que celui-ci est bien
-	hermitien
+	L'inversion de $\hat{r}$ et $\hat{p}$ donne un signe négatif comme différence (pfpfp). On a 
+	défini un opérateur antisymétrique, vérifions qu'il s'agit d'une \textbf{observable}% $\hat{\vec{r}}\times\hat{\vec{p}}$
+	. Vérifions que celui-ci est bien hermitien
 	\begin{equation}
 	\hat{L_z}^\dagger = (\hat{x}\hat{p_y}-\hat{y}\hat{p_x})^\dagger = \hat{p_y}^\dagger\hat{x}^\dagger
 	-\hat{p_x}^\dagger\hat{y}^\dagger=\hat{p_y}\hat{x}-\hat{p_x}\hat{y} = \hat{x}\hat{p_y}-\hat{y}
@@ -48,7 +48,7 @@
 	[L_x,L_y] &= [yp_z-zp_y, zp_x-xp_z]\\
 	&= [yp_z,zp_x]-[yp_z,xp_z]-[zp_y-zp_x]+[zp_y,xp_z]\\
 	&=y[p_z,zp_x]+[y,zp_x]p_z+z[p_y,xp_z]+[z,xp_z]p_y\\
-	&= yz[p_z,p_x]+y[p_z,z]+x[z,p_z]+[z,x]p_zp_y\\
+	&= yz[p_z,p_x]+y[p_z,z]p_x+x[z,p_z]p_y+[z,x]p_zp_y\\
 	&= i\hbar(xp_y-yp_x) = i\hbar L_z
 	\end{array}
 	\end{equation}
@@ -103,12 +103,12 @@
 	\begin{equation}
 	\left\{\ket{l,m}\right\}
 	\end{equation}
-	où $l$ est le nombre quantique orbital, associé à la distribution des valeurs propres du 
-	spectre de $L_z$ et $m$ le nombre quantique magnétique associé à la valeur propre de $L_z$. 
+	où $l$ est le nombre quantique orbital, associé à la distribution des valeurs propres
+	 de $L^2$ et $m$ le nombre quantique magnétique associé au spectre de $L_z$. 
 
 
 \section{Moment cinétique total}
-L'idée est de regarder plus loin que l'orbital. Imaginons que l'on ai $N$ particules : 
+L'idée est de regarder plus loin que l'orbital. Imaginons que l'on ait $N$ particules : 
 chacune a une position $\hat{r_i}$ et impulsion $\hat{p_i}$. On peut créer un moment total
 \begin{equation}
 \vec{L}^{(tot)} = \sum_{i=1}^N \vec{L_i} = \sum_{i=1}^N r_i\times p_i
@@ -143,7 +143,7 @@ Il existe donc une \textbf{base propre commune}
 \begin{equation}
 \left\{\ket{j,m}\right\}	
 \end{equation}
-où $j$ est associé à la quantification des valeurs propres de $J_z$. Le but de la sous-section 
+où $j$ est associé à la quantification des valeurs propres de $J^2$. Le but de la sous-section 
 suivante sera de montrer que $j$ est discret et en nombre fini. Pour se faire, on utilisera les 
 opérateurs élévateurs et abaisseurs. Notons la relation d'orthogonalité
 suivante
@@ -157,12 +157,12 @@ suivante
 	\hat{J}_+ = J_x + iJ_y,\qquad\qquad
 	\hat{J}_- = J_x - iJ_y	
 	\end{equation}
-	Il ne s'agit pas d'observables, mais d'outils : $(\hat{J_+})^\dagger = \hat{J_-}$. Par additions 
-	et différences
+	Il ne s'agit pas d'observables, mais ils forment une paire d'opérateurs adjoints : $(\hat{J_+})^\dagger = \hat{J_-}$
+	et inversément. Par additions et différences
 	\begin{equation}
 	\left\{\begin{array}{ll}
 	\hat{J_x} &= \frac{1}{2}\left(J_++J_-\right)\\
-	\hat{J_x} &= \frac{1}{2i}\left(J_++J_-\right)	
+	\hat{J_x} &= \frac{1}{2i}\left(J_+-J_-\right)	
 	\end{array}\right.
 	\end{equation}
 	Deux relations de commutations sont directement visibles
@@ -173,15 +173,16 @@ suivante
 	\end{enumerate}
 
 Nous pouvons appliquer les éléments de notre ECOC sur leurs états propres communs, $\ket{jm}$. On 
-ne sait rien de ces deux nombres complexes, on sait juste qu'ils sont reléis aux valeurs propres 
+ne sait rien de ces deux nombres complexes, on sait juste qu'ils sont reliés aux valeurs propres 
 des éléments de notre ECOC :
 \begin{equation}
 \left\{\begin{array}{llll}
-\hat{J} &\ket{j,m}&=j(j+1)\hbar^2\ket{j,m}&\qquad j\in\mathbb{R}\\
+\hat{J^2} &\ket{j,m}&=j(j+1)\hbar^2\ket{j,m}&\qquad j\in\mathbb{R}\\
 \hat{J_z} & \ket{j,m}&=m\hbar\ket{j,m}&\qquad m \in \mathbb{R}
 \end{array}\right.
 \end{equation}
 On peut montrer que $j\geq 0$, sachant qu'une norme est forcément positive
+\footnote{Il manque une partie de la démo ici :(}
 \begin{equation}
 \begin{array}{ll}
 \bra{\psi}J^2\ket{\psi} &\geq 0\qquad\forall \psi\\
@@ -224,7 +225,7 @@ où nous avons utilisé le fait que $J_\pm$ est l'adjoint l'un de l'autre. Faiso
 une petite parenthèse pour calculer cet élément de matrice
 \begin{equation}
 \begin{array}{ll}
-J_\mp J_\pm &= (J_x\mp J_y)(J_x\pm J_y) = J_x^2\pm iJ_xJ_y+iJ_yJ_x+J_y^2\\
+J_\mp J_\pm &= (J_x\mp iJ_y)(J_x\pm iJ_y) = J_x^2\pm iJ_xJ_y+iJ_yJ_x+J_y^2\\
 &=J^2-J_z^2 \pm i\underbrace{[J_x,J_y]}_{i\hbar J_z} = J^2-J_z^2 \mp \hbar J_z
 \end{array}
 \end{equation}
@@ -248,10 +249,10 @@ Regardons successivement ce qui se passe pour un élévateur et abaisseur.\\
 	\begin{equation}
 	\left\{\begin{array}{ll}
 	m &\leq j\\
-	m &\geq -j-m
+	m &\geq -1-m
 	\end{array}\right.\qquad\qquad\qquad	\left\{\begin{array}{ll}
 	m &\geq j\\
-	m &\leq -j-m
+	m &\leq -1-m
 	\end{array}\right.\quad\rightarrow \text{Impossible}
 	\end{equation}
 	
@@ -311,7 +312,7 @@ Regardons successivement ce qui se passe pour un élévateur et abaisseur.\\
 	\bra{jm}J_x\ket{jm} = \bra{jm}\frac{1}{2}(J_++J_-)\ket{jm} = \frac{1}{2}\bra{jm}J_+\ket{jm}+
 	\frac{1}{2}\bra{jm}J_-\ket{jm} =0
 	\end{equation}
-	Or $J_+\ket{jm}\propto J_\pm\ket{j,m\pm 1}$. Comme $\ket{j,m}\perp\ket{j,m\pm1}$, les valeurs 
+	Or $J_\pm\ket{jm}\propto \ket{j,m\pm 1}$. Comme $\ket{j,m}\perp\ket{j,m\pm1}$, les valeurs 
 	moyennes de $J_x$ et $J_y$ sont nulles.
 	\item \textit{Variances}.\\
 	Il est plus simple de faire apparaître $J^2$ pour faire apparaître les états propres communs
@@ -322,21 +323,27 @@ Regardons successivement ce qui se passe pour un élévateur et abaisseur.\\
 	On a alors
 	\begin{equation}
 	\overbrace{\bra{jm}J_x^2\ket{jm}}^{\Delta J_x^2} = \overbrace{\bra{jm}J_y^2\ket{jm}}^{\Delta J_x^2} 
-	= \frac{\hbar}{2}\{j(j+)-m^2\}\quad \longrightarrow \Delta J_{\min} = \frac{\hbar^2}{2}
+	= \frac{\hbar^2}{2}\{j(j+1)-m^2\}\quad \longrightarrow \Delta J^2_{\min} = \frac{\hbar^2}{2}
 	\end{equation}	
 	\end{enumerate}
-	En effectuant le produit des variances\footnote{TT : peu de notes ici, à compléter plz.}
-	\begin{equation}
-	\Delta J_x\Delta J_y \geq \frac{1}{2}|[J_x,J_y]| \geq \frac{\hbar}{2}\underbrace{|\langle J_z\rangle|}_{m
-	\hbar} \geq \frac{\hbar^2}{2}|m|
-	\end{equation}
-	NOTES A RAJOUTER, j'sais pas quoi dire :
+	En effectuant le produit des variances, on obtient %\footnote{TT : peu de notes ici, à compléter plz.}
 	\begin{equation}
 	\begin{array}{ll}
 	\Delta J_x\Delta J_y &= \frac{\hbar^2}{2}(j(j+1)-m^2)\\
 	&\geq \frac{\hbar^2}{2}(|m|(|m|+1)-m^2) = \frac{\hbar^2}{2}|m|
 	\end{array}
 	\end{equation}
+	
+	qui est exactement ce que l'on trouve en appliquant le théorème de Robertson	
+	\begin{equation}
+	\Delta J_x\Delta J_y \geq \frac{1}{2}|[J_x,J_y]| \geq \frac{\hbar}{2}\underbrace{|\langle J_z\rangle|}_{m
+	\hbar} \geq \frac{\hbar^2}{2}|m|
+	\end{equation}
+	Les bornes obtenues sont en fait les états qui saturent le principe d'incertitude et ils
+	correspondent aux états permis les plus proches des pôles nord et sud sur la sphère des
+	moments cinétiques...
+%	NOTES A RAJOUTER, j'sais pas quoi dire :
+	
 
 
 

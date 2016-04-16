@@ -1,15 +1,15 @@
 \chapter{Représentations position - impulsion}
-Commençons par quelques rappels
+Commençons par rappeler quelques notions dans la base position
 \begin{equation}
 \ket{\psi} = \int d\vec r\ \psi(\vec{r})\ket{\vec{r}}
 \end{equation}
-où $\psi(\vec{r}) = \bra{\vec{r}}\ket{\psi}$.
+où les coefficients de Fourier sont donnés par $\psi(\vec{r}) = \bra{\vec{r}}\ket{\psi}$.
 \begin{equation}
 \bra{\psi}\ket{\psi} = \iint d\vec r\ d\vec r'\psi^*(\vec{r'})\psi(\vec{r})\underbrace{
-\bra{\vec{r'}}\ket{\vec{r}}}_{\delta(\vec{r},\vec{r'})}\qquad\qquad \int d\vec r |\psi(\vec{r}|^2=1
+\bra{\vec{r'}}\ket{\vec{r}}}_{\delta(\vec{r},\vec{r'})} = \int d\vec r |\psi(\vec{r}|^2=1
 \end{equation}
 Avec la décomposition spectrale $\hat{\vec{r}} = \int d\vec{r}\ \vec{r}\ket{\vec{r}}\bra{\vec{r}}$, 
-on peut écrire
+on peut écrire\footnote{Si tu veux je peux détailler le raisonnement pour la valeur moyenne...}
 \begin{equation}
 \mathbb{P}(\vec{r}) = \underbrace{\bra{\psi}\ket{\vec{r}}}_{\psi^*(\vec{r})}\underbrace{
 \bra{\vec{r}}\ket{\psi}}_{\psi(\vec{r})} = |\psi(\vec{r})|^2,\qquad\qquad\langle\hat{\vec{r}}\rangle = 
@@ -22,8 +22,10 @@ Pour motiver physiquement l'opérateur impulsion, repartons de la notion d'onde 
 l'on peut associer à une particule libre ayant une certaine vitesse. 
 \subsection{Onde de De Broglie, paquets d'onde}
 		\subsubsection{Onde de De Broglie}
-		On peut voir une particule comme une onde, de Broglie a réussi à donner les "paramètres" de 
-		cette onde. Voyons ça comme une onde, par analogie à l'électromagnétisme
+		Grâce à de Broglie, on associe une onde à toute particule en mouvement.
+		Par analogie avec les concepts de l'électromagnétisme, décrivons cette onde au moyen d'exponentielles complexes.
+		%On peut voir une particule comme une onde, de Broglie a réussi à donner les "paramètres" de cette onde.
+		% Voyons ça comme une onde, par analogie à l'électromagnétisme
 		\begin{equation}
 		\psi(\vec{r},t) = \psi_0e^{i(\vec{k}\vec{r}-\omega t)}
 		\end{equation}
@@ -32,14 +34,14 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 		\begin{equation}
 		\lambda = \dfrac{h}{p},\qquad k=\dfrac{2\pi}{\lambda},\qquad \vec k=\dfrac{\vec{p}}{\hbar}
 		\end{equation}
-		Pour la fréquence, par analogie à l'optique
+		Pour la fréquence, par analogie à l'optique\footnote{As-tu vérifié la chronologie ?}
 		\begin{equation}
 		\nu = \dfrac{E}{h},\qquad \omega = 2\pi\nu = \dfrac{E}{\hbar}
 		\end{equation}
 		En substituant ces expressions dans l'expression de l'onde plane
 		\begin{equation}
-		\psi(\vec{r},t) = \psi_0\ e^{\frac{i}{\hbar}\left(\vec{p}\vec{r}-Et\right)}\qquad \text{ où }\ \psi_0 =
-		\dfrac{1}{(2\pi\hbar)^{3/2}}
+		\psi(\vec{r},t) = \psi_0\ e^{\frac{i}{\hbar}\left(\vec{p}.\vec{r}-Et\right)}\qquad \text{ où }\ \psi_0 =
+		\dfrac{1}{(2\pi\hbar)^{3/2}} \text{ pour la normalisation}
 		\end{equation}
 		Cette solution étant écrite par analogie avec l'EM, il est possible d'écrire une équation 
 		d'onde que cette onde va vérifier. Regardons par exemple si l'on effectue
@@ -51,13 +53,13 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 		\dfrac{p^2}{\hbar^2}\psi(\vec{r},t)
 		\end{array}
 		\end{equation}
-		En en tire
+		On en tire pour une particule libre
 		\begin{equation}
 		-\dfrac{\hbar^2}{2m}\Delta \psi(\vec{r},t) = \dfrac{p^2}{2m}\psi(\vec{r},t) = E\psi(\vec{r},t)
 		\end{equation}
 		On retrouve le classique
 		\begin{equation}
-		\underline{i\hbar\dfrac{\partial}{\partial t}\psi(\vec{r},t)= -\dfrac{\hbar}{2m}\Delta\psi(\vec{r},t)}
+		\underline{i\hbar\dfrac{\partial}{\partial t}\psi(\vec{r},t)= -\dfrac{\hbar^2}{2m}\Delta\psi(\vec{r},t)}
 		\end{equation}
 		Il s'agit d'une ED de type d'onde qui est bien vérifiée par l'onde plane construite ci-dessus. 
 		Cette ED correspond à une particule libre. Elle est linéaire : toute combili de solution est 
@@ -70,9 +72,9 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 		\end{array}\right\}\longrightarrow \alpha\psi_1+\beta\psi_2
 		\end{equation}
 		Un paquet d'onde est une superposition continue de particules avec toute une gamme de vitesse 
-		possible. Il y correspondra une onde de de Broglie nommée \textit{paquet d'onde}.
+		possible. Il y correspondra une onde de de Broglie nommée \textit{paquet d'ondes}.
 
-		\subsubsection{Paquet d'onde}
+		\subsubsection{Paquet d'ondes}
 		En substituant le préfacteur $\psi_0$, on obtient
 		\begin{equation}
 		\psi(\vec{r},t) = \dfrac{1}{(2\pi\hbar)^{3/2}}\int d\vec{p}\ \phi(\vec{p})e^{\frac{i}{\hbar}(\vec{p}
@@ -84,13 +86,15 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\begin{equation}
 	\ket{\psi} = \int d\vec{p}\ \phi(\vec{p})\ket{\vec{p}}
 	\end{equation}
-	Il s'agit d'un mélange (avec un certain poids) de kets $\vec{p}$. En refermant
+	Il s'agit d'un mélange (avec un certain poids) de kets $\bra{\vec{p}}$. En refermant
 		\begin{equation}
 	\psi(\vec{r},t) = \bra{\vec{r}}\ket{\psi} = \int d\vec{p}\ \phi(\vec{p})\underbrace{
 	\bra{\vec{r}}\ket{\vec{p}}}_{(*)}
 	\end{equation}
-	où $\DS (*) = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}(\vec{p}\vec{r}-Et)}$. On voudrait 
-	faire la même chose mais en intégrant la phase dans le ket
+	où $\DS (*) = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}(\vec{p}\vec{r}-Et)}$.
+	Pour une raison d'élégance, intégrons le facteur de phase temporel dans un ket.	
+%	 On voudrait 
+%	faire la même chose mais en intégrant la phase dans le ket
 	\begin{equation}
 		\psi(\vec{r},t) = \frac{1}{(2\pi\hbar)^{3/2}}\int d\vec{p} \underbrace{\phi(\vec{p})e^{-\frac{i}
 	{\hbar}Et}}_{\phi(\vec{p},t)}e^{\frac{i}{\hbar}\vec{p}.\vec{r}}
@@ -105,7 +109,7 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\psi(\vec{r},t) = \bra{\vec{r}}\ket{\psi} = \int d\vec{p}\ \phi(\vec{p},t)
 	\underbrace{\bra{\vec{r}}\ket{\vec{p}}}_{(**)}
 		\end{equation}
-	où $\DS (**)= \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}\vec{r}}$ est le 
+	où $\DS (**)= \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}.\vec{r}}$ est le 
 	\textbf{noyau de la transformée de Fourier}.\\
 	
 	Résumons
@@ -117,7 +121,7 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\end{equation}
 	avec
 		\begin{equation}
-	\underline{\bra{\vec{r}}\ket{\vec{p}} = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}\vec{r}}}
+	\underline{\bra{\vec{r}}\ket{\vec{p}} = \frac{1}{(2\pi\hbar)^{3/2}}e^{\frac{i}{\hbar}\vec{p}.\vec{r}}}
 	\end{equation}
 	Il s'agit de la \textit{formule de changement de base}. Elle est particulièrement intéressante :
 	\begin{equation}
@@ -128,6 +132,7 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	&= \frac{1}{(2\pi\hbar)^{3/2}}\int d\vec{r}\ \psi(\vec{r},t)e^{-\frac{i}{\hbar}\vec{p}\vec{r}}		
 	\end{array}
 		\end{equation}
+	On remarque qu'il existe une transformée de Fourier qui lie les bases position et impulsion.
 	On peut écrire
 	\begin{equation}
 	\underline{\phi(\vec p) = TF[\psi(\vec{r})]},\qquad\qquad \underline{\psi(\vec r) = TF^{-1}
@@ -140,7 +145,7 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\item[i.] \textit{Théorème de Parseval }: le produit scalaire de deux fonctions vaut le produit 
 	scalaire des TF de ces deux fonctions. 
 		\begin{equation}
-	\int f_1(\vec{r})f_2^*(\vec{r}) d\vec{r} = \int F_1(\vec{p})F_2(\vec{p})d\vec{p}
+	\int f_1(\vec{r})f_2^*(\vec{r}) d\vec{r} = \int F_1(\vec{p})F_2^*(\vec{p})d\vec{p}
 	\end{equation}
 	Dans notre cas :
 	\begin{equation}
@@ -151,16 +156,16 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\underbrace{\bra{\vec{p}}\ket{\psi_2}}_{\phi_2(\vec{p})}		
 	\end{array}\right.
 	\end{equation}
-		La normalisation est toujours valable
+		La normalisation est conservée par le changement de base
 	\begin{equation}
 	1 = \bra{\psi}\ket{\psi} = \int d\vec{r}\ |\psi(\vec{r})|^2 = \int d\vec{p}\ |\phi(\vec{p})|^2
 	\end{equation}
 	
 	\item[ii.] \textit{Relation d'incertitude $\hat{x}-\hat{p}$}: on peut voir Robertson comme une 
-	conséquence de ces TF : la TF d'une fonction étroite sera large, il y a quelque chose qui peut
+	conséquence de ces TF : la TF d'une fonction étroite sera large et inversément. Il y a quelque chose qui peut
 	 s'apparenter à une relation d'incertitude $\hat x-\hat p$. Nous avons
 	 \begin{equation}
-	 \langle p^2\rangle \int |\phi(p)|^2\ p^2\ dp
+	 \langle p^2\rangle = \int |\phi(p)|^2\ p^2\ dp
 	 \end{equation}
 	Alors
 	\begin{equation}
@@ -169,30 +174,32 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\Delta x^2 &= \langle x^2 \rangle-\langle x\rangle^2 \longleftarrow |\psi(x)|^2
 	\end{array}\Longrightarrow \Delta \hat x\Delta\hat{p} \geq\frac{\hbar}{2}
 	\end{equation}
-	Si on a une paire de fonctions (ici $\psi$ et $\phi$) qui sont "connectée" par une TF, dans la 
-	théorie des TF le produit des variances peut être majoré par une constante, ici on démontre 
-	rien mais c'est fort similaire.
+	Si on a une paire de fonctions (ici $\psi$ et $\phi$) qui sont "connectées" par une TF, dans la 
+	théorie des TF le produit des variances peut être minoré par une constante. Cette démonstration
+	ne sera pas faite ici mais cela fournit un autre point de vue sur les relations d'incertitude.
 		
 	\item[iii.] \textit{Dérivée }: la dérivée d'une fonction, au niveau de sa TF, est une multiplication 
 	par $i*$(variable conjugée). Ceci permet de définir proprement l'opérateur impulsion en base 
 	position.
 	\begin{equation}
-	\psi(\vec{r}) = \frac{1}{(3\pi\hbar)^{3/2}}\int\phi(p)e^{i\frac{\vec{p}.\vec{r}}{\hbar}}\ d\vec{p}\qquad
+	\psi(\vec{r}) = \frac{1}{(2\pi\hbar)^{3/2}}\int\phi(p)e^{i\frac{\vec{p}.\vec{r}}{\hbar}}\ d\vec{p}\qquad
 	\text{ où }\ \vec{r} = (x_1,x_2,x_3)
 	\end{equation}
 	En dérivant
 	\begin{equation}
-	\frac{\partial}{\partial x_j} \psi(\vec{r}) = \frac{1}{(3\pi\hbar)^{3/2}}\int\underline{\phi(p)\frac{i}
+	\frac{\partial}{\partial x_j} \psi(\vec{r}) = \frac{1}{(2\pi\hbar)^{3/2}}\int\underline{\phi(p)\frac{i}
 	{\hbar} p_j}	e^{i\frac{\vec{p}.\vec{r}}{\hbar}}\ d\vec{p}
 	\end{equation}
 	Ou encore (avec un peu de fainéantise)
 	\begin{equation}
 	-i\hbar\dfrac{\partial}{\partial x_j} \psi(\vec{r}) = \frac{1}{\dots}\int \underline{\phi(p)p_j}\dots
 	\end{equation}
+	ce qui permet de définir l'opérateur impulsion.
+	
 	\end{itemize}
 
 	\subsection{Opérateur impulsion comme un opérateur différentiel en base position}
-	La dernière propriété montre que si on dérive dans le domaine position dans le domaine impulsion, 
+	La dernière propriété montre que si on dérive dans le domaine position, 
 	cela revient à multiplier par $\frac{ip_j}{\hbar}$.  Une façon simple est d'écrire la valeur moyenne de 	
 	l'impulsion
 	\begin{equation}
@@ -201,8 +208,9 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	&= \int d\vec{r}\ \psi^*(\vec{r})(-i\hbar)\frac{\partial}{\partial x_j}\psi(\vec{r})
 	\end{array}
 	\end{equation}	
-	La première ligne n'est que la ré-écriture dans la base position. Pour passer à la seconde ligne, 
-	on utilise Parseval sur le terme souligné. Or, nous avons également
+	La première ligne n'est que la ré-écriture dans la base impulsion. Pour passer à la seconde ligne, 
+	on utilise Parseval sur le terme souligné.\footnote{Ce passage n'est pas très clair :(}
+	 Or, nous avons également
 	\begin{equation}
 	\langle p_j\rangle = \int d\vec{r}	 \bra{\psi}\ket{\vec{r}}\bra{\vec{r}}\hat{P_j}\ket{\psi}
 	\end{equation}
@@ -210,7 +218,8 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\begin{equation}
 	\underline{\bra{\vec{r}}\hat{P_j}\ket{\psi} = -i\hbar\dfrac{\partial}{\partial x_j}\bra{\vec{r}}\ket{\psi}}
 	\end{equation}
-	En généralisant avec $\hat{\vec{p}}$, un opérateur vectoriel
+	En généralisant avec $\hat{\vec{p}}$, un opérateur vectoriel, on obtient la définition en
+	base position de l'opérateur impulsion
 	\begin{equation}
 	\underline{\bra{\vec{r}}\hat{\vec{p}}\ket{\psi} = -i\hbar\vec{\nabla_r}\bra{\vec{r}}\ket{\psi}}
 	\end{equation}
@@ -220,7 +229,8 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\bra{\vec{r}}[\hat{r_j},\hat{p_k}]\ket{\psi} &= \bra{\vec{r}}\hat{r_j}\hat{p_k}-\hat{p_k}\hat{r_j}\ket{\psi}\\
 	&= r_j\bra{\vec{r}}\hat{p_k}\ket{\psi}-\bra{\vec{r}}\hat{p_k}\left(\hat{r_j}\ket{\psi}\right)\\
 	&= \hat{r_j}(-i\hbar)\frac{\partial}{\partial x_k}\bra{\vec{r}}\ket{\psi}-(-i\hbar)\frac{\partial}{\partial
-	 x_k}\underbrace{\left(\bra{\vec{r}}\hat{r_j}\ket{\psi}\right)}_{\hat{x_j\bra{\vec{r}}\ket{\psi}}}\\
+	 x_k}\underbrace{\left(\bra{\vec{r}}\hat{r_j}\ket{\psi}\right)}_{x_j\bra{\hat{\vec{r}}}\ket{\psi}}\\
+
 	&= i\hbar\frac{\partial x_j}{\partial x_k}\bra{\vec{r}}\ket{\psi}\\
 	&= i\hbar\delta_{jk}\bra{\vec{r}}\ket{\psi}\qquad\qquad\forall \psi,\vec{r}
 	\end{array}
@@ -231,7 +241,7 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 	\end{equation}
 	Le commutateur vaut alors
 	\begin{equation}
-	[\hat{r_j},\hat{p_k}] = i\hbar\delta{jk}
+	[\hat{r_j},\hat{p_k}] = i\hbar\delta_{jk}
 	\end{equation}
 	
 	
@@ -239,11 +249,11 @@ l'on peut associer à une particule libre ayant une certaine vitesse.
 \section{Équation de Schrödinger en base position (mécanique ondulatoire)}
 Commençons par quelques rappels (sans les $\hat{\ }$)
 \begin{equation}
-\bra{x}p\ket{psi} = -i\hbar \frac{\partial}{\partial x}\bra{x}\ket{\psi}
+\bra{x}p\ket{\psi} = -i\hbar \frac{\partial}{\partial x}\bra{x}\ket{\psi}
 \end{equation}
-où 
+où\footnote{facteur $1/2$ à la place de $3/2$ car l'exemple est à une dimension}
 \begin{equation}
-\bra{x}\ket{\psi} = \int dp\ \bra{x}\ket{p}\bra{p}\ket{\psi} = \frac{1}{(2\pi\hbar)^{3/2}}
+\bra{x}\ket{\psi} = \int dp\ \bra{x}\ket{p}\bra{p}\ket{\psi} = \frac{1}{(2\pi\hbar)^{1/2}}
 \int dp\ e^{\frac{i}{\hbar}x.p}\bra{p}\ket{\psi}
 \end{equation}
 En considérant la dérivée
@@ -265,7 +275,7 @@ l'est déjà dans la base impulsion), on voudrait montrer qu'il est égal à son
 adjoint. Pour se faire, on prend n'importe quel élément de matrice et on regarde s'il est égal avec
 l'élément de matrice de son adjoint
 \begin{equation}
-\forall\psi,\ \forall \phi : \bra{\psi}\hat{p}\ket{\phi} ?= \bra{\phi}\hat{p}\ket{\psi}
+\forall\psi,\ \forall \phi : \bra{\psi}\hat{p}\ket{\phi} ?= \bra{\phi}\hat{p}\ket{\psi}^*
 \end{equation}
 Effectuons de part et d'autre cette égalité à vérifier
 \begin{equation}
@@ -285,32 +295,29 @@ Il s'agit de l'expression de la dérivée d'un produit
 \int dx\ \dfrac{\partial}{\partial x}\left[\phi(x)\psi^*(x)\right] = \left[\phi(x)\psi^*(x)\right]_{-\infty}^{
 +\infty} = 0
 \end{equation}
-On a bien redémontrer que l'opérateur impulsion est bien hermitien en base position. \\
+Les fonctions d'onde étant de carrés sommables, la dernière égalité est vérifiée.
+On a bien redémontré que l'opérateur impulsion est hermitien en base position. \\
 
-En base impulsion :
-\begin{equation}
-\left\{\ket{p}\right\}
-\end{equation}
-On a 
+En base impulsion $\left\{\ket{p}\right\}$, on a 
 \begin{equation}
 \bra{p}\hat{x}\ket{\psi} = i\hbar \frac{\partial}{\partial p}\bra{p}\ket{\psi}
 \end{equation}
 Ou en 3D
 \begin{equation}
-\bra{p}\hat{\vec{r}}\ket{\psi} = i\hbar\vec{\nabla_p}\bra{\vec{p},\psi}
+\bra{p}\hat{\vec{r}}\ket{\psi} = i\hbar\vec{\nabla_p}\bra{\vec{p}}\ket{\psi}
 \end{equation}
-On peut refaire exactement le même genre de calcul pour arriver au mêmes conclusions\footnote{A savoir, 
+On peut refaire exactement le même genre de calcul pour arriver au mêmes conclusions\footnote{Savoir 
 montrer que $\hat{x}$ est hermitien dans la base impulsion.} et obtenir une analogique parfaite.\\
 
 Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l'autre ?
 
-	\subsection{Équation de Schrödinger dépendante du temps}
+	\subsection{Équation de Schrödinger en base position}
 	En notation de Dirac
 	\begin{equation}
 	i\hbar\frac{\partial}{\partial t}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
 	\label{eq:6.5}
 	\end{equation}
-	Dans un espace à trois dimensions plongé dans un potentiel $V(\vec r)$, l'hamiltonien 
+	Dans un espace à trois dimensions, pour une particule plongée dans un potentiel $V(\vec r)$, l'hamiltonien 
 	s'écrit
 	\begin{equation}
 	\hat{H} = \underbrace{\frac{p^2}{2m}}_{\hat{K}} + \underbrace{V(\vec{r})}_{\hat{V}}
@@ -320,12 +327,13 @@ Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l
 \underline{i\hbar \frac{\partial}{\partial t}\psi(\vec{r},t) = \overbrace{-\frac{\hbar}
 	{2m}\Delta_r\psi(\vec{r},t)}^{\text{En. cin.}} + \overbrace{V(\vec{r})\psi(\vec{r},t)}^{\text{En. pot.}}}
 	\end{equation}
-	Il s'agit bien de l'ED d'une particule libre donnant comme solution les ondes de de Broglie. 
+	Dans le cas où le potentiel est nul, on retombe sur la propagation d'ondes libres.
+	%il s'agit bien de l'ED d'une particule libre donnant comme solution les ondes de de Broglie. 
 	On peut réécrire la même chose de façon un peu plus rigoureuse. En partant de l'ED de Schrödinger 
 	générale dépendante du temps \eqref{eq:6.5}, on peut écrire
 	\begin{equation}
-	\forall\vec{r}\ :\ i\hbar\frac{\partial}{\partial t}\underbrace{\bra{\vec{r}}\psi(\vec{r},t)}_{\psi(\vec{r},
-	t)} = \bra{\vec{r},\hat{H},\psi(\vec{r},t)}
+	\forall\vec{r}\ :\ i\hbar\frac{\partial}{\partial t}\underbrace{\bra{\vec{r}}\ket{\psi}}_{\psi(\vec{r},
+	t)} = \bra{\vec{r}}\hat{H}\ket{\psi(\vec{r},t)}
 	\end{equation}
 	Un élément de matrice entre braket donne la fonction d'onde. Regardons terme à terme
 	\begin{enumerate}
@@ -335,7 +343,7 @@ Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l
 	\begin{array}{ll}
 	\bra{\vec{r}}\hat{\hat{p_x}}\ket{\psi} &= -i\hbar\frac{\partial}{\partial x}\bra{\vec{r}}\ket{\psi}\\
 	\bra{\vec{r}}\hat{p_x^2}\ket{\psi} &= -\hbar^2\frac{\partial^2}{\partial x^2}\bra{\vec{r}}\ket{\psi}	\\
-	\bra{\vec{r}}\hat{K}\ket{\psi} &= \frac{\hbar^2}
+	\bra{\vec{r}}\hat{K}\ket{\psi} &= \frac{-\hbar^2}
 	{2m}\Delta_r\underbrace{\bra{\vec{r}}\ket{\psi}}_{\psi(\vec{r},t)}
 	\end{array}
 	\end{equation}
@@ -345,7 +353,8 @@ Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l
 	\bra{\vec{r}}\hat{V}\ket{\psi} = V(\vec{r})\bra{\vec{r}}\ket{\psi}
 	\end{equation}
 	
-	\item \textit{Potentiel non local}. Parfois le potentiel est non local (pas diagonalisable) : on vient 
+	\item \textit{Potentiel non local}. Parfois le potentiel est non local \footnote{Ce genre de potentiels se retrouve
+	dans l'étude de systèmes à particules identiques} (pas diagonalisable en base position) : on vient 
 	alors placer la relation de fermeture en $\vec r$ et on intègre sur $\vec{r'}$.
 	\begin{equation}
 	\int d\vec{r'}\ \underbrace{\bra{\vec{r}}\hat{V}\ket{\vec{r'}}}_{V(\vec{r},\vec{r'})}\underbrace{
@@ -357,10 +366,13 @@ Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l
 	\underline{i\hbar\frac{\partial}{\partial t}\psi(\vec{r},t) = -\frac{\hbar^2}{2m}\Delta_r\psi(\vec{r},t)+\int 
 	d\vec{r'}\ V(\vec{r},\vec{r'})\psi(\vec{r'},t)}
 	\end{equation}
+	Dès lors, la fonction d'onde en un point ne dépend plus uniquement du potentiel en ce point mais
+	également de la valeur de la fonction d'onde et du potentiel en tous les autres points.
 
 	\subsection{Équation de Schrödinger indépendante du temps (états stationnaires)}
 	Si le système est isolé ($\hat H$ indépendant de $t$, pas de couplage avec l'environnement) on peut commencer 
-	par la résolution de l'ED de Schrödinger indépendante du temps que l'on peut écrire en base position
+	par la résolution de l'ED de Schrödinger indépendante du temps (qui est une équation aux valeurs propres)
+	 que l'on peut écrire en base position
 	\begin{equation}
 	-\frac{\hbar^2}{2m}\Delta_r\psi(\vec{r}) + V(\vec{r})\psi(\vec{r}) = E\psi(\vec{r})\qquad\longrightarrow
 	\qquad \left\{E_n,\psi_n(\vec{r})\right\}
@@ -387,15 +399,15 @@ Que se passe-t-il quand on plonge l'équation de Schrödinger dans une base ou l
 Parlons de quelques exemples dans le cas particulier de l'ED de Schrödinger en base impulsion. Il y a 
 deux grand type de problèmes
 \begin{enumerate}
-\item Particule piégée, classiquement piégée
-\item Particule suffis de ecin peut s'extraire et partir librement
+\item Particule piégée dans un potentiel %, classiquement piégée
+\item Particule avec une énergie cinétique suffisante pour s'extraire et partir librement
 \end{enumerate}
-Ces deux problèmes ont des analogies classiques : état lié et état de diffusion.\\
+Ces deux problèmes ont des analogies classiques. Il s'agit des état lié et état de diffusion.\\
 
 Illustrons. Considérons un potentiel confiné mais de hauteur finie $V_1$. Deux cas sont possibles
 \begin{enumerate}
 \item[(a)] $E<V_1$ : trajectoire confinée. On observera des états lié donnant lieu à un spectre discret. 
-Les niveaux d'énergies seront compris $V_{min}E<V_1$.
+Les niveaux d'énergies seront compris entre $V_{min}<E<V_1$.
 \item[(b)] $E>V_1$ : trajectoire libre. On observera des états de diffusion à travers un spectre continu :
 continuum d'énergie.
 \end{enumerate}
@@ -427,7 +439,7 @@ Si on résout l'ED de Schrödinger
 \begin{equation}
 -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x) = E\psi(x)
 \end{equation}
-En posant $k=\frac{\sqrt{2mE}}{\hbar}$
+En posant le nombre d'onde $k=\frac{\sqrt{2mE}}{\hbar}$
 \begin{equation}
 -\frac{\partial^2}{\partial x^2}\psi(x) = k^2\psi(x)
 \end{equation}
@@ -474,9 +486,10 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\left[-\frac{\hbar^2}{2m}\left(\dfrac{\partial^2}{\partial x^2}+\dfrac{\partial^2}{\partial y^2}+
 		\dfrac{\partial^2}{\partial z^2}\right)+V^3(x,y,z)\right]\psi(x,y,z) = E\psi(x,y,z)
 		\end{equation}
-		où $\psi(x,y,z) = \psi_1(x)\psi_2(y)\psi_3(z)$ et $E=E_1+E_2+E_3$. De façon compacte, on peut écrire
+		où on utilise la méthode de séparation des variables pour avoir $\psi(x,y,z) = \psi_1(x)\psi_2(y)\psi_3(z)$
+		 et $E=E_1+E_2+E_3$. De façon compacte, on peut écrire
 		\begin{equation}
-		\left[-\frac{\hbar^2}{2m}\dfrac{\partial^2}{\partial x_i^2}+V(x_i)\right]\psi_1(x_i) = E_i\psi_i(x_i)
+		\left[-\frac{\hbar^2}{2m}\dfrac{\partial^2}{\partial x_i^2}+V_i(x_i)\right]\psi_i(x_i) = E_i\psi_i(x_i)
 		\end{equation}
 		La résolution de ce problème nous donne trois nombres quantiques (positifs) $n_1,n_2$ et $n_3$.
 		\begin{equation}
@@ -495,7 +508,7 @@ successifs correspondent à un nombre de nœuds croissants.}
 		Nous allons ici tenter de compter les états (caractériser le spectre en imposant des	valeurs de 
 		$n$ est trop tendu).\\
 		
-		Soit $N(E_0)$, le nombre d'états d'énergie $E_{n_1,n_2,n_3} < E_0$. Imposer cela revient à dire 
+		Soit $N(E_0)$, le nombre d'états d'énergie $E_{n_1,n_2,n_3} \leq E_0$. Imposer cela revient à dire 
 		que
 		\begin{equation}
 		\dfrac{n_1^2}{L_1^2}+\dfrac{n_2^2}{L_2^2}+	\dfrac{n_3^2}{L_3^2} \leq \dfrac{2mE_0}{\pi^2\hbar^2}
@@ -531,7 +544,7 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\end{equation}
 		Une "parcelle" du quadrillage de l'espace des phase est une cellule des phases : peut permettre 
 		de compter des fermion (il y a au maximum un fermion par cellule). C'est une limite, le principe
-		d'incertitude permet pas de faire mieux que cette cellule. Si on travaille avec des fermions, 
+		d'incertitude ne permet pas de faire mieux que cette cellule. Si on travaille avec des fermions, 
 		ceux qui n'occupent qu'une cellule et donc que un état.
 		
 		
@@ -564,7 +577,7 @@ successifs correspondent à un nombre de nœuds croissants.}
 		
 		\subsubsection{Énergie du point zéro}		
 		L'énergie à l'origine de notre parabole n'est pas connue car cela impliquerait une connaissance 
-		parfaite de la position et de l'impulsion : le pricipe d'incertitude exclu ce point. Cependant 
+		parfaite de la position et de l'impulsion : le principe d'incertitude exclut ce point. Cependant 
 		à l'aide de ce principe on peut retrouver l'\textit{énergie du point zéro}, l'énergie la plus 
 		basse que possible (ici $\frac{\hbar\omega}{2}$).\\
 		
@@ -574,7 +587,9 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\hbar\omega\left(\langle p^2\rangle+\langle x^2\rangle\right) = \frac{\hbar\omega}{2}\left(\frac{a^2}{
 		\hbar^2}\langle p^2\rangle+\frac{1}{a^2}\langle x^2\rangle\right)
 		\end{equation}
-		On peut faire apparaître la variance, la valeur moyenne étant nulle cela ne change rien
+		La symétrie axiale du potentiel permet d'affirmer que les moyennes des opérateurs
+		position et impulsion sont nulles.
+		On peut faire apparaître la variance%, la valeur moyenne étant nulle cela ne change rien
 		\begin{equation}
 		\langle H\rangle \dfrac{\hbar\omega}{2}\left(\frac{a^2}{\hbar^2}\langle\Delta p^2\rangle +\frac{1}
 		{a^2}\langle\Delta 		x^2\rangle\right)
@@ -595,7 +610,7 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\langle H\rangle \geq\dfrac{\hbar\omega}{2}
 		\end{equation}		
 		On prouve que l'énergie moyenne doit au moins valoir ça. Si l'énergie moyenne ne peut pas 
-		être en dessous de ça, aucune des valeurs ne le peut. C'est cette valeur qui va "saturer" le 
+		être en dessous de ça, aucune des valeurs ne le peut. Le niveau fondamental va "saturer" le 
 		principe d'incertitude (l’inégalité devient une égalité) :
 		\begin{equation}
 		\left\{\begin{array}{ll}
@@ -603,7 +618,10 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\Delta \overline{p}^2 &= 1/2		
 		\end{array}\right.
 		\end{equation}
-		Ceci correspond à des états gaussiens. Ce sont ces états qui saturent le principe. On peut vérifier
+		Ceci correspond à des états gaussiens. %Ce sont ces états qui saturent le principe.
+		C'est une des propriétés des états gaussiens : ils saturent toujours les principes
+		d'incertitude, y compris en ce qui concerne les transformées de Fourier.
+		 On peut vérifier
 		que l'état fondamental est bien gaussien, tout est donc cohérent.
 	
 
@@ -630,7 +648,7 @@ successifs correspondent à un nombre de nœuds croissants.}
 		\dfrac{d}{dt}\langle A\rangle_\psi = \frac{1}{i\hbar}\langle[A,H]\rangle_\psi = 0\qquad \forall A
 		\end{equation}
 		Ceci étant valable $\forall \hat{A}$, on peut l'appliquer à $\hat{x}\hat{p}$ même si cet opérateur 
-		n'est pas un observable. Dan un étant stationnaire, la valeur moyenne doit être nulle et donc
+		n'est pas un observable. Dans un état stationnaire, la valeur moyenne doit être nulle et donc
 		\begin{equation}
 		\langle[\hat{x}\hat{p},\hat{H}]\rangle_\psi\qquad\Longrightarrow\qquad \langle \hat{K}\rangle_\psi =
 		\langle \hat{V}\rangle_\psi 
