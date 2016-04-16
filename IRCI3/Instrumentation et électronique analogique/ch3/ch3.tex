@@ -12,7 +12,7 @@ Ces 2 phénomènes se présentent sous forme de signal analogique venant s'addit
 		& \textbf{bruit} & \textbf{parasite} \\ \hline
 		origine & interne & externe \\
 		distribution & aléatoire & variable \\
-		bande passante & "$\infty$" & limitée \\
+		bande passante & "\(\infty\)" & limitée \\
 		amplitude & faible & variable \\
 		& "plancher" & arbitrairement bas \\
 		modélisation & "facile" & difficile \\
@@ -26,7 +26,7 @@ On remarque que:
 	\item La modélisation des effets du bruit dans un système est ,dans le principe, simple. Au contraire, la modélisation des parasites est nettement plus difficile car ceux-ci sont constitués de plusieurs signaux plus déterministes dont il faut connaître les couplages avec le système étudié.
 \end{itemize}
 L'introduction des ces phénomènes relève tout l'intérêt des signaux numérique (au lieu d'analogique). En effet, alors qu'un signal analogique dégradé ne peut être restauré, il est possible généralement de restauré un signal numérique dégradé.\\
-Un signal numérique n'est rien d'autre qu'un signal analogique dont certains niveaux représentent des valeurs discrètes portant une information (paliers, ex. 0=vrai, 1=faux) et dont chaque niveau peut varier dans certaines limite $\rightarrow$ marges de bruit.\\
+Un signal numérique n'est rien d'autre qu'un signal analogique dont certains niveaux représentent des valeurs discrètes portant une information (paliers, ex. 0=vrai, 1=faux) et dont chaque niveau peut varier dans certaines limite \(\rightarrow\) marges de bruit.\\
 
 Ainsi, si l'impact des bruits et parasites est inférieur à cette marge de bruit définie par la conception, il est possible de restaurer le signal numérique utile. Les signaux numériques présentent donc une meilleure robustesse face aux perturbations. Il sera néanmoins toujours nécessaire de limiter les perturbations (car marges de bruit limitées).
 \section{Le bruit de fond}
@@ -36,10 +36,10 @@ Le bruit de fond possède plusieurs caractéristiques:
 	\item fluctuation aléatoire fondamentale due à la nature elle-même du dispositif
 	\item limite ultime de la résolution du dispositif (contrairement aux parasites)
 	\item fondamentalement inévitable (jamais nul) mais sont influence sur la chaîne peut être minimisé
-	\item origine générale en électronique: fluctuations de la densité des porteurs de charges (porteurs de charges = $e^-$ et trous, fonction de la température)
+	\item origine générale en électronique: fluctuations de la densité des porteurs de charges (porteurs de charges = \(e^-\) et trous, fonction de la température)
 	\item observable sur une tension et/ou un courant
 \end{itemize}
-Il existe plusieurs type de bruit, comme le bruit de type gaussien (c-à-d qui suit une loi normale de moyenne et variance données $N(\mu,\sigma)$, \autoref{fig:densiteprobagauss})
+Il existe plusieurs type de bruit, comme le bruit de type gaussien (c-à-d qui suit une loi normale de moyenne et variance données \(N(\mu,\sigma)\), \autoref{fig:densiteprobagauss})
 
 \begin{figure}[H] 
 	\centering 
@@ -59,13 +59,13 @@ Il existe plusieurs type de bruit, comme le bruit de type gaussien (c-à-d qui s
 	]
 	\addplot {gauss(0,0.5)};
 	\addplot {gauss(0,1)};
-	\draw[dashed]  (axis description cs:0.5,0) node[below] {$\mu$} -- (axis description cs:0.5,0.92) ;
+	\draw[dashed]  (axis description cs:0.5,0) node[below] {\(\mu\)} -- (axis description cs:0.5,0.92) ;
 	\end{axis}
 	\end{tikzpicture}
 \caption{Bruit de type gaussien: densité de probabilité}
 \label{fig:densiteprobagauss}
 \end{figure}
-On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par exemple un bruit de valeur efficace $\SI{1}{\volt}$ (\autoref{fig:tensionbruitmax}). Il est tout à fait possible qu'au bout de $\SI{100}{\second}$ on ait un bruit 10 fois plus grand. C'est aléatoire, mais sa puissance rms est constante.
+On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par exemple un bruit de valeur efficace \(\SI{1}{\volt}\) (\autoref{fig:tensionbruitmax}). Il est tout à fait possible qu'au bout de \(\SI{100}{\second}\) on ait un bruit 10 fois plus grand. C'est aléatoire, mais sa puissance rms est constante.
 \begin{figure}[H] 
 	\centering 
 	\begin{tikzpicture}[samples=100, domain=0:5*360]
@@ -76,8 +76,8 @@ On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par 
 	ytick=\empty,
 	axis line style={->},
 	axis lines*=middle,
-	xlabel=$t$,
-	ylabel=$U(\si{\volt})$,
+	xlabel=\(t\),
+	ylabel=\(U(\si{\volt})\),
 	every axis x label/.style={
 		at={(ticklabel* cs:1)},
 		anchor=west,
@@ -97,16 +97,16 @@ On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par 
 \paragraph{Remarque:} la "valeur efficace" est une puissance mesurée, ce n'est pas le max
 \subsection{Caractérisation mathématique}
 \subsubsection{Définition de base}
-Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.e.m) $E_b(t)$ avec les propriétés suivantes:
+Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.e.m) \(E_b(t)\) avec les propriétés suivantes:
 \begin{itemize}
-	\item {\makebox[8cm]{fluctuation aléatoire $\Rightarrow$ moyenne nulle\hfill} $\overline{E_b(t)}=0$}
-	\item {\makebox[8cm]{valeur quadratique moyenne non nulle\hfill} $\overline{E_b^2(t)} \neq 0$}
-	\item {\makebox[8cm]{valeur efficace ("rms" = root mean square)\hfill} $E_b=\sqrt{\overline{E_b^2(t)}}$}
-	\item {\makebox[8cm]{rapport signal/bruit SNR [dB]\hfill} $SNR=10\log\frac{\overline{E^2_s(t)}}{E_b^2(t)}$}
+	\item {\makebox[8cm]{fluctuation aléatoire \(\Rightarrow\) moyenne nulle\hfill} \(\overline{E_b(t)}=0\)}
+	\item {\makebox[8cm]{valeur quadratique moyenne non nulle\hfill} \(\overline{E_b^2(t)} \neq 0\)}
+	\item {\makebox[8cm]{valeur efficace ("rms" = root mean square)\hfill} \(E_b=\sqrt{\overline{E_b^2(t)}}\)}
+	\item {\makebox[8cm]{rapport signal/bruit SNR [dB]\hfill} \(SNR=10\log\frac{\overline{E^2_s(t)}}{E_b^2(t)}\)}
 \end{itemize}
 \subsubsection{Variation en fréquence}
 À ces propriétés s'ajoutent:\begin{itemize}
-	\item La valeur efficace dépend de la fréquence $\Rightarrow$ \emph{densité spectrale} de bruit $e_b^2(f)=\left.\frac{d\overline{E_b^2}}{df}\right|_f\quad [\si[per-mode=symbol]{\volt\squared\per\hertz}]$
+	\item La valeur efficace dépend de la fréquence \(\Rightarrow\) \emph{densité spectrale} de bruit \(e_b^2(f)=\left.\frac{d\overline{E_b^2}}{df}\right|_f\quad [\si[per-mode=symbol]{\volt\squared\per\hertz}]\)
 	\item La couleur du bruit:
 	\begin{itemize}
 		\item bruit blanc: densité spectrale constante en fréquence (uniformément réparti en fréquence, \autoref{fig:bruitblanc})
@@ -121,8 +121,8 @@ Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.
 		-- plot ({\x}, {1.5})
 		-- (2.9, 0)
 		-- cycle;
-		\draw[->] (0,0) -- (0,2) node[above]{$\log e_b$};
-		\draw[->] (0,0) -- (3,0) node[right]{$\log f$};
+		\draw[->] (0,0) -- (0,2) node[above]{\(\log e_b\)};
+		\draw[->] (0,0) -- (3,0) node[right]{\(\log f\)};
 		\draw[very thick] (0,1.5) -- (2.9,1.5);
 		\end{tikzpicture}}
 	\subfigure[Bruit rose]{\label{fig:bruitrose}\begin{tikzpicture}
@@ -131,8 +131,8 @@ Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.
 		-- plot ({\x}, {1.5-\x*0.51})
 		-- (2.9, 0)
 		-- cycle;
-		\draw[->] (0,0) -- (0,2) node[above]{$\log e_b$};
-		\draw[->] (0,0) -- (3,0) node[right]{$\log f$};
+		\draw[->] (0,0) -- (0,2) node[above]{\(\log e_b\)};
+		\draw[->] (0,0) -- (3,0) node[right]{\(\log f\)};
 		\draw[very thick] (0,1.5) -- (2.9,0);
 		\end{tikzpicture}}
 	\caption{Répartition en fréquence de la densité spectrale de bruit}
@@ -143,8 +143,8 @@ Dans l'hypothèse où il n'y a pas corrélation entre:
 	\item les sources de bruits d'origine différente
 	\item la même source à différentes fréquences
 \end{itemize}
-\centerline{$\Rightarrow$ Puissance totale de bruit = $\sum$ des puissance de bruit individuelles.}
-Or la puissance de bruit $\propto$ valeur quadratique moyenne de la tension ou du courant de bruit $\rightarrow P_b=R \overline{I^2_b} = \frac{\overline{V_b^2}}{R}$. Il faut donc sommer \emph{quadratiquement} tensions et courants de bruit 
+\centerline{\(\Rightarrow\) Puissance totale de bruit = \(\sum\) des puissance de bruit individuelles.}
+Or la puissance de bruit \(\propto\) valeur quadratique moyenne de la tension ou du courant de bruit \(\rightarrow P_b=R \overline{I^2_b} = \frac{\overline{V_b^2}}{R}\). Il faut donc sommer \emph{quadratiquement} tensions et courants de bruit 
 \[
 V_b^2 = V_{b_1}^2 + V_{b_2}^2 + \dots + V_{b_n}^2 \qquad I_b^2 = I_{b_1}^2 + I_{b_2}^2 + \dots + I_{b_n}^2
 \]
@@ -154,18 +154,18 @@ v_b^2(f) = v_{b_1}^2(f) + v_{b_2}^2(f) + \dots + v_{b_n}^2(f)
 \]
 \subsection{Types de bruit}
 \subsubsection{Bruit thermique ou de Johnson}
-Le bruit thermique est un bruit dû à l'agitation thermique des porteurs de charges ($e^-$ dans conducteur, $e^-+$ trous dans semi-conducteur). À $T>\SI{0}{\kelvin}$, il y a collision des porteurs de charges entre eux $\rightarrow$ répartition non uniforme des charges électriques $\rightarrow$ champ électrique variable aléatoirement.\\
+Le bruit thermique est un bruit dû à l'agitation thermique des porteurs de charges (\(e^-\) dans conducteur, \(e^-+\) trous dans semi-conducteur). À \(T>\SI{0}{\kelvin}\), il y a collision des porteurs de charges entre eux \(\rightarrow\) répartition non uniforme des charges électriques \(\rightarrow\) champ électrique variable aléatoirement.\\
 
 Ses propriétés sont les suivantes:
 \begin{itemize}
-	\item {\makebox[6cm]{valeur moyenne nulle\hfill} $\overline{E_{bR}(t)}=0$} 
-	\item {\makebox[6cm]{valeur quadratique moyenne\hfill} $\overline{E^2_{bR}(t)}=4kRT\Delta f$} avec $\left\{\substack{k\text{ : cst de Boltzmann }=\SI[per-mode=symbol]{1.374e-23}{\joule\per\kelvin}\\
+	\item {\makebox[6cm]{valeur moyenne nulle\hfill} \(\overline{E_{bR}(t)}=0\)} 
+	\item {\makebox[6cm]{valeur quadratique moyenne\hfill} \(\overline{E^2_{bR}(t)}=4kRT\Delta f\)} avec \(\left\{\substack{k\text{ : cst de Boltzmann }=\SI[per-mode=symbol]{1.374e-23}{\joule\per\kelvin}\\
 	R \text{ : résistance en }\si{\ohm}\hfill \\
 	T\text{ : température absolue en }\si{\kelvin}\hfill\\
-	\Delta f\text{ : bande de fréquence observée}\hfill}\right.$
+	\Delta f\text{ : bande de fréquence observée}\hfill}\right.\)
 	\item bruit blanc
 	\item existe dans toute résistance vraie
-	\item mesurable malgré son faible ordre de grandeur\footnote{Potentiel du cerveau $\approx \SI{1}{\micro\volt}$}
+	\item mesurable malgré son faible ordre de grandeur\footnote{Potentiel du cerveau \(\approx \SI{1}{\micro\volt}\)}
 \end{itemize}
 \subsubsection{Bruits en 1/f}
 Les bruits en 1/f sont plus fort à basses qu'à hautes fréquences (bruit rose), il en existe 2 types:
@@ -173,7 +173,7 @@ Les bruits en 1/f sont plus fort à basses qu'à hautes fréquences (bruit rose)
 	\item Bruit de scintillation:
 	\begin{itemize}
 		\item présent dans les semi-conducteurs
-		\item d'origine incertaine, recombinaisons dans les défauts de surface du semi-conducteur ($e^-$ et trous)
+		\item d'origine incertaine, recombinaisons dans les défauts de surface du semi-conducteur (\(e^-\) et trous)
 	\end{itemize}
 	\item Bruit en excès (ou bruit de constitution, "contact noise", "excess noise"):
 	\begin{itemize}
@@ -207,7 +207,7 @@ Le reste:
 	\item Bruit d'avalanche:
 	\begin{itemize}
 		\item présent dans les diodes Zener à tension d'avalanche élevée
-		\item  dû au délogement de certains $e^-$ à cause d'$e^-$ accélérés par le champ électrique, venant créer des porteurs de charge supplémentaires (bruit important au voisinage de l'effet d'avalanche)
+		\item  dû au délogement de certains \(e^-\) à cause d'\(e^-\) accélérés par le champ électrique, venant créer des porteurs de charge supplémentaires (bruit important au voisinage de l'effet d'avalanche)
 	\end{itemize}
 	\item Bruit d'éclatement (ou bruit impulsif, "burst noise", "popcorn noise"):
 	\begin{itemize}
@@ -226,7 +226,7 @@ Le reste:
 \end{figure}
 \paragraph{Dans un transistor:} rappelons qu'un amplificateur différentiel est constitué de transistors. Les sources de bruits sont:
 \begin{itemize}
-	\item bruit thermique des résistances vraies ($R_{BB}'$)
+	\item bruit thermique des résistances vraies (\(R_{BB}'\))
 	\item bruit de grenaille des courants (base et collecteur)
 	\item bruit en 1/f du transistor
 \end{itemize}
@@ -244,12 +244,12 @@ La modélisation du bruit est présenté à la \autoref{fig:bruittrans}.
 	\caption{Bruit dans un amplificateur opérationnel} 
 	\label{fig:bruitaop}
 \end{figure}
-\paragraph{Remarques:} Les courants $i_{b^\pm} \neq$ courant de bias (= courant constant de polarisation). $i_{b^\pm}$ sont des courants à moyenne nulle, allant vers le circuit et dont l'impact dépend de l'impédance (+ l'impédance est grande, + le bruit est grand).
+\paragraph{Remarques:} Les courants \(i_{b^\pm} \neq\) courant de bias (= courant constant de polarisation). \(i_{b^\pm}\) sont des courants à moyenne nulle, allant vers le circuit et dont l'impact dépend de l'impédance (+ l'impédance est grande, + le bruit est grand).
 \subsection{Limitation de bruit}
 \subsubsection{Introduction et principales techniques}
-Le but de cette sous-section est de développer des méthodes afin de rendre l'amplitude du bruit négligeable face à celle du signal, c-à-d $\nearrow$ SNR. Pour ce faire, il est possible d'agir sur 2 choses:
+Le but de cette sous-section est de développer des méthodes afin de rendre l'amplitude du bruit négligeable face à celle du signal, c-à-d \(\nearrow\) SNR. Pour ce faire, il est possible d'agir sur 2 choses:
 \begin{enumerate}
-	\item Augmenter le signal, c-à-d amplifier des que possible et autant que possible le signa $\Rightarrow$ pré-ampli à grand gain et faible bruit.
+	\item Augmenter le signal, c-à-d amplifier des que possible et autant que possible le signa \(\Rightarrow\) pré-ampli à grand gain et faible bruit.
 	\item Réduire le bruit de tous les composants.
 \end{enumerate}
 Afin de parvenir à un résultat, il est important de suivre ces quelques règles de bases:
@@ -274,7 +274,50 @@ Nous pouvons agir:
 \end{itemize}
 \end{description}
 \subsubsection{Réduire la bande passante} \label{subsubsec:bandepass}
+Le bruit à virtuellement une bande passante infinie alors que celle du dispositif de mesure est limitée \(\Rightarrow\) bruit perçu limité à la bande passante du dispositif.\\
 
+Pour un bruit blanc de densité \(e_{bb}\) perçu au travers d'une bande passante \(B=f_{\text{max}}-f_{\text{min}}\):
+\begin{equation}
+E_b^2 = \int_{f_{\text{min}}}^{f_{\text{max}}} dE_b^2 = \int_{f_{\text{min}}}^{f_{\text{max}}} e_{bb}^2\,df = e_{bb}^2(f_{\text{max}}-f_{\text{min}}) 
+\end{equation}
+Ainsi, la valeur efficace du bruit dans une bande de fréquence, permettant d'avoir une idée sur l'amplitude du bruit, est:
+\begin{equation}\label{eq:valeffbruitDB}
+E_b = e_{bb}\sqrt{B}
+\end{equation}
+On déduit de \eqref{eq:valeffbruitDB} que plus la bande passante du dispositif de mesure \(\nearrow\), plus le bruit présent à la sortie de la chaîne de mesure \(\nearrow\) et donc plus le signal est perturbé. \(\Rightarrow\) Il faut \textbf{limiter la bande passante} (filtrage).\\
+
+Dans un dispositif réel, le bruit est un "bruit composite" (blanc (aux hautes fréquences) + rose (aux basses fréquences)). Le point où les 2 densités spectrales sont égales (rose \(\cup\) blanc) est appelé la \emph{fréquence coin}.
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\draw[dashed] (0,1.65) -- (2.05,0);
+		\draw[dashed] (0,0.78) -- (2.6,0.78);
+		\draw[densely dotted] (1.1,0.78) -- (1.1,0) node[below]{\(f_{ce}\)};
+		\draw[thick] (0.2,1.5) to[out=-45, in=180] (2.5,0.8);
+		\draw[->] (0,0) -- (0,2) node[above]{\(\log e_b\)};
+		\draw[->] (0,0) -- (3,0) node[right]{\(\log f\)};
+		\draw (2,1.5) node{\textbf{\small bruit composite}};
+		\draw[dashed] (5,1.65) -- (7.05,0);
+		\draw[dashed] (5,0.78) -- (7.6,0.78);
+		\draw[densely dotted] (6.1,0.78) -- (6.1,0) node[below]{\(f_{ci}\)};
+		\draw[thick] (5.2,1.5) to[out=-45, in=180] (7.5,0.8);
+		\draw[->] (5,0) -- (5,2) node[above]{\(\log i_b\)};
+		\draw[->] (5,0) -- (8,0) node[right]{\(\log f\)};
+		\end{tikzpicture}
+\end{figure}
+La valeur efficace de bruit composite dans la bande passante est :
+\begin{equation}
+E_b^2 = e_{bb}^2\left[(f_{max}-f_{min})+f_{ce}\ln\left(\frac{f_{max}}{f_{min}}\right)\right]
+\end{equation}
+Ainsi, pour réduire le bruit il faut:
+\begin{itemize}
+	\item limiter la bande passante (\(f_{max}-f_{min}\))
+	\item choisir des composants pour minimiser:
+	\begin{itemize}
+		\item la densité spectrale de bruit blanc \(e_{bb}\text{ (et }i_{bb}\))
+		\item la fréquence de coupure \(f_{ce}\text{ (et }f_{ci}\))
+	\end{itemize}
+\end{itemize}
 \subsubsection{Résistance de source} \label{subsubsec:résistsource}
 
 \subsubsection{Étage d'entrée à faible bruit} \label{subsubsec:entreenobruit}
