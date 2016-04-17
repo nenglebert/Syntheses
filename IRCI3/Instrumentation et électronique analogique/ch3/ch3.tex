@@ -319,8 +319,72 @@ Ainsi, pour réduire le bruit il faut:
 	\end{itemize}
 \end{itemize}
 \subsubsection{Résistance de source} \label{subsubsec:résistsource}
-
+\begin{description}
+	\item[\(R_s\)] résistance de sortie du capteur (ou de l'étage précédent)
+\end{description}
+Un AOP comprend et des sources de tension de bruit et de courant de bruit, il faut donc choisir un ampli à:
+\begin{itemize}
+	\item faible tension de bruit lorsque \(R_s\) est faible
+	\item faible courant de bruit lorsque \(R_s\) est élevée
+\end{itemize}
 \subsubsection{Étage d'entrée à faible bruit} \label{subsubsec:entreenobruit}
-
+Comparons 2 cas possible d'étage d'entrée de gain total \(G\):\\\\
+\underline{Amplificateur unique:}  soit sa densité spectrale de bruit ramené à l'entrée \(v_b^{in}\), le bruit total à la sortie vaut
+\begin{equation}\label{eq:etasortieunique}
+v_b^{out}=G . v_b^{in}
+\end{equation}
+\underline{Ajout d'un étage d'entrée à faible bruit:} soit un 1\up{er} étage d'entrée de gain \(G_1\) et de densité spectrale de bruit (entrée) \(v_{b_1}^{in}\) et un 2\up{ème} étage de gain \(G_2\) et de densité spectrale de bruit (entrée) \(v_{b_2}^{in}\) tel que \(G_1 . G_2 = G\). Nous aurons donc à la sortie du premier étage:
+\begin{itemize}
+	\item le bruit dû au 1\up{er} étage: \(v_{b_1}^{out}=G_1 . v_{b_1}^{in}\)
+	\item le bruit dû au 2\up{ème} étage: \(v_{b_2}^{in}\)
+\end{itemize}
+Et donc, le bruit total à la sortie vaut:
+\begin{equation}\label{eq:etasortie}
+v_b^{out} = G_2\sqrt{\left(v_{b_1}^{out}\right)^2 + \left(v_{b_2}^{in}\right)^2} = G\sqrt{\left(v_{b_1}^{in}\right)^2 + \left(v_{b_2}^{in}/G_1\right)^2}
+\end{equation}
+On remarque que le bruit total de \eqref{eq:etasortie} sera plus faible que celui de \eqref{eq:etasortieunique} si \(G_1\gg 1\text{ et } v_{b_1}^{in}<v_b^{in}\)
+\begin{center}
+	\textbf{le bruit d'un ampli est minimisé en plaçant en tête un préamplificateur à faible bruit et de gain suffisant}
+\end{center}
 \subsubsection{Détection synchrone} \label{subsubsec:detectsync}
-
+Dans le cas où le signal utile se situe à basse fréquence (\(f_{max}=\) qques \si{\Hz}), le bruit en 1/f (rose) est très gênant. Pour contrer cela, nous pouvons transposer momentanément le signal utile à une fréquence plus élevée, à l'aide d'une modulation d'amplitude (signal sera au alentour de la fréquence porteuse), afin de réaliser la transmission ou l'amplification en dehors de la bande bruitée. 
+\begin{figure}[H] 
+	\centering 
+	\begin{tikzpicture}
+	 	\draw plot[domain=0:3*pi] (\x,{0.6*sin(\x r)}) node[right]{signal};
+	 	\draw plot[samples=300,domain=0:3*pi] (\x,{0.6*sin(20*\x r)*(1+0.6*sin(\x r)) -2}) node[right]{AM};
+	 	\node[draw,ellipse] (C) at (-0.5,-4){capteur};
+	 	\node[draw] (M) at (2.5,-4){modulation};
+	 	\node[draw] (A) at (5,-4){ampli};
+	 	\node[draw] (D) at (7.5,-4){démodulation};
+	 	\node[draw] (P) at (10.5,-4){Passe-bas};
+	 	\draw[->, >=latex] (C) -- (M);
+	 	\draw[->, >=latex] (M) -- (A);
+	 	\draw[->, >=latex] (A) -- (D);
+	 	\draw[->, >=latex] (D) -- (P);
+	\end{tikzpicture} 
+	\caption{Détection synchrone} 
+\end{figure}
+Pour résumer:
+\begin{itemize}
+		\item {\makebox[4cm]{signal utile:\hfill} \(s(t)\)}
+		\item {\makebox[4cm]{signal modulation:\hfill} \(u_{mod}(t)=\cos(2\pi f_ut)\)}
+		\item {\makebox[4cm]{signal démodulation:\hfill} \(u_{démod}(t) = \cos(2\pi f_ut+\varphi)\)}
+\end{itemize}\ \\
+Et donc, le signal modulé vaut:
+\begin{equation}
+s_{mod}(t) = s(t) . u_{mod}(t)
+\end{equation}
+qui est bien transposé autour de la fréquence \(f_u\) (\(f_u\gg f_{max}\)). Pour démodulé, nous utilisons une démodulation synchrone, c-à-d en multipliant par la même sinusoïde que lors de la modulation (+déphasage inévitable \(\varphi\))
+\begin{equation}
+\begin{split}
+s_{démod}(t) &= s_{mod}(t) . u_{démod}(t)\\
+&= u(t)\cos(2\pi f_m t)\cos(2\pi f_u t+\varphi)\\
+&= u(t)\frac{1}{2}\{\underbrace{\cos\varphi}_{\cst}+\cos(4\pi f_u t+\varphi)\}
+\end{split}
+\end{equation}
+qui, après un filtre passe-bas (\(f_c \approx f_{max}\)) devient:
+\begin{equation}
+u'(t) = u(t)\frac{\cos\varphi}{2}
+\end{equation}
+\section{Les parasites}
