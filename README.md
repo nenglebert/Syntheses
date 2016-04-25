@@ -35,6 +35,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Fluid mecanics and transport processes](IRCI3/Fluid mechanics and transport processes/build/Fluid mechanics and transport processes - Enes Ulusoy.pdf)
   - [x] [Résistance des matériaux](IRCI3/Résistance des matériaux/build/Résistance des matériaux - Nicolas Englebert.pdf)
   - [ ] [Sciences des matériaux](IRCI3/Science des matériaux/build/Science des matériaux - Enes Ulusoy.pdf)
+  - [ ] [Théorie des signaux](IRCI3/Théorie des signaux/build/Théorie des signaux - Nicolas Englebert.pdf)
   - [ ] [Thermodynamique appliquée](IRCI3/Thermodynamique appliquée/build/Thermodynamique appliquée - Nicolas Englebert.pdf)
 - [ ] Option Physique
   - [ ] [Compléments de mathématiques](IRCI3/Compléments de mathématiques/build/Compléments de mathématiques.pdf)
@@ -45,8 +46,12 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Physique des télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 - [ ] Option Électromécanique
   - [ ] [Cinématique et dynamique des machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
+  - [ ] [Fluid mechanics II](IRCI3/Fluid mechanics II/build/Fluid mechanics II.pdf)
+  - [ ] [Instrumentation](IRCI3/Instrumentation/build/Instrumentation - Cédric Hannotier.pdf)
+  - [ ] [Power electronics](IRCI3/Power electronics/build/Power electronics - Enes Ulusoy.pdf)
 - [ ] Option Électronique et Télécommunication
   - [ ] [Circuits logiques et numériques](IRCI3/Circuits logiques et numériques/build/Circuits logiques et numériques - Cédric Hannotier.pdf)
+  - [ ] [Instrumentation](IRCI3/Instrumentation/build/Instrumentation - Cédric Hannotier.pdf)
   - [ ] [Physique des télécommunications](IRCI3/Physique des télécommunications/build/Physique des télécommunications - Nicolas Englebert.pdf)
 
 ## Comment contribuer
