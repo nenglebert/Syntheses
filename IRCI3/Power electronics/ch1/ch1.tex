@@ -61,11 +61,11 @@
 	\vspace{-5mm}
 	\includegraphics[scale=0.25]{ch1/6}
 	\captionof{figure}{}
-	\end{wrapfigure}		
-	On travaillera en régime établi et dans ce cas les courants et tensions sont des fontions périodiques du temps, avec période fondamentale $T$. Sur la figure ci-contre, le premier signal peut être désigné de continu car ne change pas de signe et la composante continue est prépondérante alors que le deuxième pas.
-	L'ondulation crête à crête est la différence entre la valeur maximum et la valeur minimum du signal. La fréquence fondamentale $f=1/T$ est directement lié à la fréquence d'alimentation du convertisseur ou à la fréquence de découpage commandée. La présence de composants non-linéaires fait que ces grandeurs sont déformées, donc soit non parfaitement constantes, soit non parfaitement sinusoïdales. 
+	\end{wrapfigure}
+	On travaillera en régime établi et dans ce cas les courants et tensions possède une période fondamentale $T$. Sur la figure ci-contre, le premier signal peut être désigné de continu car ne change pas de signe et la composante continue est prépondérante alors que le deuxième pas mais en possède une.
+	L'ondulation crête à crête est la différence entre la valeur maximum et la valeur minimum du signal. La fréquence fondamentale $f=1/T$ est directement lié à la fréquence d'alimentation du convertisseur ou à la fréquence de découpage commandée. La présence de composants non-linéaires et découpage par interrupteurs déforment les grandeurs : soit non parfaitement constantes, soit non parfaitement sinusoïdales. 
 		
-\section{Décomposition en série de Fourier}
+	\subsection{Décomposition en série de Fourier}
 	Soit un courant périodique $i(t)$ de pulsation fondamentale $\omega = 2\pi f$. Sa décomposition fréquentielle s'écrit : 
 	\begin{equation}
 	\begin{aligned}
@@ -121,7 +121,7 @@
 		Dans les autres cas, les $P_k$ sont souvent négligeable devant $P_0$ ou $P_1$. 
 		
 	\subsection{Grandeurs continues}
-		En l'absence de toute déformation, les grandeurs dites continues sont parfaitement constantes. L'éventuelle déformation du courant $i(t)$ peut comprendre toutes les harmoniques de rang $k\geq 1$ : 
+		En l'absence de toute déformation, les grandeurs dites continues sont parfaitement constantes. La déformation du courant $\Delta i(t)$ peut comprendre toutes les harmoniques de rang $k\geq 1$ : 
 		\begin{equation}
 			i(t) = I_0 + \underbrace{\sum _{k\geq 1} Î_k \cos (k\omega t +\gamma _k)}_{\Delta i(t)}
 		\end{equation}
@@ -209,12 +209,31 @@
 			\end{itemize}
 			
 		\subsubsection{Onde carrée triphasée}
-			\begin{wrapfigure}[8]{l}{5cm}
+			\begin{wrapfigure}[10]{l}{4cm}
 			\vspace{-5mm}
-			\includegraphics[scale=0.25]{ch1/8}
+			\includegraphics[scale=0.20]{ch1/8}
 			\captionof{figure}{}
 			\end{wrapfigure}		
 			Sur le schéma on voit bien la symétrie d'ordre direct des courants de période fondamentale $T$. Les impulsions positives et négatives de période $T/3$ sont séparées par des intervalles de valeur nulle et de largeur T/6. L'amplitude et la valeur efficace du courant sont donné par 
 			\begin{equation}
 				Î_{1} = \frac{2\sqrt{3}}{\pi} Î \qquad et \qquad I_1 = \frac{\sqrt{6}}{\pi} Î.
 			\end{equation}
+			Les harmoniques présentes sont de rang impaire (symétrie demi-onde) et non multiple de 3 (somme des courants nulle). Comme pour le monophasé, on a $Î _k = Î_1/k$ et donc :
+			\begin{equation}
+				THD = \sqrt{1/5^2 + 1/7^2 + 1/11^2 / \dots} = 31.1\%
+			\end{equation}
+			
+	\subsection{Tension moyenne à travers une inductance et courant moyen à dans un condensateur}
+		\subsubsection{Inductance}
+			En cas de régime établi de période T, la tension moyenne $v_{L,0}$ est nulle (L cst) :
+			\begin{equation}
+				v_{L,0} = \frac{1}{T}\int _{t_0}^{t_0+T} v_L (t)\, dt = \frac{L}{T}\int _{t_0}^{t_0+T} \frac{di_L}{dt}\, dt = \frac{L}{T}\left(i_L(t_0 + T) - i_L(t_0)\right) = 0
+			\end{equation}
+			Aussi dans le cas d'une inductance non linéaire, car le flux périodique $\phi _L(T+t_0) = \phi _L (t_0)$ et $v_L = \frac{d\phi _L}{dt}$. En régime établi, l'inductance absorbe et débite de l'énergie magnétique alternativement selon $e_L(t) = \frac{1}{2} Li_L^2$. Le courant oscille autour de sa valeur moyenne $I_{L,0}$ et l'énergie autour de $E_{L,0}=\frac{1}{2} L I_{L,rms}^2$ à 2 fois la fréquence fondamentale. 
+			
+		\subsubsection{Condensateur}
+			En cas de régime établi de période T, le courant moyen est nul (C cst) : 
+			\begin{equation}
+				I_{C,0} = \frac{C}{T}\int _{t_0}^{t_0+T} \frac{dv_C}{dt} \, dt = \frac{C}{T} (v_{C}(t_0+T)-v_C(t_0)) = 0
+			\end{equation}
+			L'énergie électrique accumulé entre les électrodes du condensateur est $e_C(t) = \frac{1}{2}Cv^2_C$. Il débite et absorbe alternativement de la puissance où la tension oscille autour de $v_{C,0}$ et l'énergie autour de $E_C = \frac{1}{2} C V_{C,rms}^2$. 
