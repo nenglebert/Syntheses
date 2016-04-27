@@ -20,187 +20,411 @@ la méthode des perturbations on verra comment l'utiliser pour l'équation stati
 propres) ou alors la dépendante du temps (comment peut-on approximer la dynamique d'un 
 système toujours avec la méthode des perturbations). On en déduira la règle d'or de Fermi. 
 
-	\subsection{Méthodes des perturbations - Eq stationnaire}
-		\subsubsection{Principe base - notation}
-		On veut résoudre le probleme aux valeurs propre 
-		\begin{equation}
-		1
-		\end{equation}
-		Il existe un autre hamiltonien qui est le \textit{non-perturbé}
-		\begin{equation}
-		2
-		\end{equation}
-		On peut réécrire l'équation qu'on veut résoudre en fonction de 
-		l'hamiltionien non perturbé
-		\begin{equation}
-		3
-		\end{equation}
-		Toute l'idée est de dire que la perturbation est petite : $\lambda\ll 
-		1$.  Toute l'idée va être dé développer en série de puissance 
-		$\lambda$. Sans trop s'écarter de H0 on va pouvoir s'intéresser à 
-		ce qui nous intéresse dans le voisinage H0. L'équation que l'on veut 
-		résoudre est donc
-		\begin{equation}
-		4
-		\end{equation}
-		On va maintenant écrire ces fonction comme un dev en série de lambda
-		\begin{equation}
-		5
-		\end{equation}
-		Le terme d'ordre 0 est connu mais les différentes corrections
-		(soulignés sont inconnues). 
-		
-		Comme ces deux expressions doivent être valable pour tout lambda, on 
-		va pouvoir identifier terme à terme
-		\begin{equation}
-		6
-		\end{equation}
-		Plus on descend en ordre plus on aura une précision dans les séries
-		de puissances. Il ne faut pas oublier la condition de normalisation 
-		\begin{equation}
-		7
-		\end{equation}
-		On peut exprimer cette condtion de normalisation en terme de 
-		puissances de lambda.
-		\begin{equation}
-		8
-		\end{equation}
-		On peut à nouveau faire les identifications
-		\begin{equation}
-		9
-		\end{equation}
-		On va résoudre ce système de proche en proche amenant au final une 
-		meilleure précision. On peut voir psi n comme un dev de série en 
-		lambda, mais chaque terme peut etre vu comme un certain ket. On peut 
-		les réexprimer dans une base : une base naturelle est celle du 
-		problème non-perturbé. 
-		\begin{equation}
-		10
-		\end{equation}
-		
-	\subsection{b. Perturbation d'un niveau non-dégénéré}
-	On verra dans le développement que la dégénéresence change quelque 
-	chose
-	
-		\subsubsection{1. Énergie au premier ordre}
-		On a notre problème non pertrubé
-		\begin{equation}
-		11
-		\end{equation}
-		Nous allons partir de la premiere équation non triviale de (6) (soit 
-		elle de lambda1). On va multiplier à gauche par le bra de psi n 0.
-		\begin{equation}
-		12
-		\end{equation}
-		C'est lélément de matrice diagonal (valeur moyenne) de la perturbation
-		W dans l'état propre non perturbé.  Il s'agit de la \textit{formule 
-		des perturbations}.\\
-		
-		On va maintenant regarder la perturbation au premier ordre de l'état 
-		propres. Nous avons fait pour l'énergie, il faut aussi faire pour 
-		l'état propre correspondant
-		
-		\subsubsection{2. État propre au premier ordre}
-		On va cette fois refermer avec un bra psi k (0) ou k neq n. On refait 
-		exactement la même chose
-		\begin{equation}
-		13
-		\end{equation}
-		On peut développer le terme suivant dans la base des états propre 
-		de l'état non perturbé
-		\begin{equation}
-		14
-		\end{equation}
-		On a une relation "semblable" à l'énergie avec l'élément de matrice 
-		diagonal de la perturbation (soit la valeur moyenne). Ici ce qui 
-		change c'est qu'on regarde tous les autres états propres non 
-		perturbés.  On peut remarquer que pour calculer la perturbation du 
-		n eme état on somme sur tous les auters états. C'est bien dégénéré 
-		on aurait un zéro au dénominateur. Si pas dégénéré l'expression est 
-		bien correcte.
-		
-		
-		Avant d'aller plus loin, un exemple. Prenons un oscillateur 
-		harmonique d'une autre raideur.
-		\begin{equation}
-		15
-		\end{equation}
-		Voir feuiille
-		
-		
-		Fin exemple. Nous avions
-		\begin{equation}
-		15
-		\end{equation}
-		Il faut que ça soit "petit" (lambda). On a un coeff 1 devant 
-		l'état non perturbé. On part d'un vect col (1 0 0 ..) puis quand 
-		on allume la perturbation on a (1 ... ). La condition de validité 
-		de la méthode dit que tous ces "nouveaux" coeff doivent etre petit 
-		en norme. SI on regarde un élément de matrice non diagonale
-		\begin{equation}
-		16
-		\end{equation}
-		
-		On va maintenant voir l'ordre 2. On avait un système d'équation 
-		ou il faut identifier : le terme suivant sera le terme quadratique.
-		
-		\subsubsection{3. État propre au second ordre}
-		On referme à gauche par psi n 0
-		\begin{equation}
-		17
-		\end{equation}
-		Pour détermine rl'énergie à l'ordre 2 il faut l'énergie à l'ordre 0 
-		et à l'ordre 1. Il faut donc travailler de proche en proche. En 
-		substituant l'ordre 1
-		\begin{equation}
-		18
-		\end{equation}
-		Ceci ne fait plus qu'apparaître les énergie et états propres de 
-		l'état non perturbé. On peut voir que si l'état qui nous intéresse 
-		est l'état fondamental et que l'on s'intérsse à la correction du à 
-		l'allumage de la perturbation. Le numérateur sera toujours positif. 
-		Comme En0 est fond, les Ek0 seront plus grand : la correction de 
-		l'énergie au second ordre est leq 0. 
-		\begin{equation}
-		19
-		\end{equation}
-		
-	\subsection{c. Perturbation état dégénéré}
-	i est la degen
+\section{Méthode des perturbations - équation stationnaire}
+	\subsection{Principe base - notation}
+	On veut résoudre le problème aux valeurs propres 
 	\begin{equation}
-	20
+	\hat{H}\ket{\psi_n} = E_n\ket{\psi_n}
+	\end{equation}
+	où $\hat{H}$ est indépendant du temps, il s'agit de l'hamiltonien \textit{perturbé}.
+	Il existe un autre hamiltonien qui est le \textit{non-perturbé}
+	\begin{equation}
+	\hat{H_0} : \text{hamiltonien non perturbé}
+	\end{equation}
+	Ce qui est intéressant, c'est que $\hat{H_0}$ est diagonalisable, ce qui n'est pas 
+	nécessairement le cas de $\hat{H}$. Cet hamiltonien non perturbé donne l'équation 
+	aux valeurs propres suivante
+	\begin{equation}
+	\hat{H_0}\ket{\psi_n^{(0)}} = E_n^{(0)}\ket{\psi_n^{(0)}}
+	\end{equation}				
+	Les solutions de cette équation donnent les solutions (désignées par $\ ^{(0)}$) du 
+	problème non-perturbés. 	On peut réécrire l'équation que l'on veut résoudre en fonction 
+	de l’hamiltonien non perturbé
+	\begin{equation}
+	\hat{H} = \hat{H_0} + \hat{W}\qquad \text{où }\ \hat{W} = \lambda\hat{H_1},\quad \lambda\in 
+	\mathbb{R}
+	\end{equation}
+	où $\hat{W}$, un opérateur hermitien, représente la perturbation entre $\hat{H_0}$ et $\hat{H}$ 
+	et $\lambda$ est un paramètre sans dimension. Toute l'idée est de dire que la perturbation 
+	est petite : $\lambda\ll 1$ de sorte que l'on va pouvoir développer en série de puissances de 
+	$\lambda$. Ainsi, sans trop s'écarter de $\hat{H_0}$, on va pouvoir s'intéresser à ce qui nous 
+	intéresse dans le voisinage $\hat{H_0}$. L'équation que l'on veut résoudre devient alors
+	\begin{equation}
+	(\hat{H_0}+\lambda\hat{H_1})\ket{\psi_n} = E_n\ket{\psi_n}
+	\end{equation}
+	Insistons sur le fait que $E_n\ket{\psi_n}$ dépend du paramètre $\lambda$ : on peut voir ce terme
+	comme une fonction analytique de $\lambda$ dans un certain domaine de convergence. L'hamiltonien 
+	$\hat{H}_1$ est introduit pour caractériser l'écart entre $\hat{H}$ et $\hat{H_0}$. Il ne s'agit 
+	que d'une ré-écriture de $\hat{W}$ que l'on cherche également à paramétrer. Les limites suivantes 
+	sont vérifiées
+	\begin{equation}
+	\begin{array}{ll}
+	\lim\limits_{\lambda\rightarrow0} E_n &= E_n^{(0)}\\
+	\lim\limits_{\lambda\rightarrow0} \ket{\psi_n} &= \ket{\psi_n^{(0)}}
+	\end{array}
+	\end{equation}
+	Écrivons maintenant ces fonction comme un développement en série de $\lambda$.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\ket{\psi_n} &= \ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{
+	\psi_n^{(2)}}+\dots\\
+	E_n &= E_n^{(0)}+\lambda E_n^{(1)}+\lambda^2E_n^{(2)}+\dots
+	\end{array}\right.
+	\end{equation}
+	Par substitution, nous obtenons
+	\begin{equation}
+	\begin{array}{ll}
+	(\hat{H_0}+\lambda\hat{H_1})\left(\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}
+	+\lambda^2\ket{\psi_n^{(2)}}+\dots\right) &= \left(E_n^{(0)}+\lambda E_n^{(1)}
+	+\lambda^2E_n^{(2)}+\dots \right)
+	\left(\ket{\psi_n^{(0)}}+\dots\right.\\
+	&\left.\dots+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{\psi_n^{(2)}}+\dots\right),
+	\qquad 	\underline{\forall\lambda}
+	\end{array}
+	\end{equation}		
+	Le terme d'ordre 0 est connu mais les différentes corrections	$\left(\ket{\psi_n^{(1)}}, 
+	E_n^{(1)}, 	\ket{\psi_n^{(2)}}, E_n^{(2)},\dots\right)$ sont inconnues. Comme ces deux 
+	expressions doivent être valables pour tout lambda, on va pouvoir procéder à une 
+	identification terme à terme
+	\begin{equation}
+	\begin{array}{lll}
+	\lambda^0 &: \hat{H_0}\ket{\psi_n^{(0)}} &= E_n^{(0)}\ket{\psi_n^{(0)}}\\
+	\lambda^1 &: \hat{H_0}\ket{\psi_n^{(1)}}+\hat{H_1}\ket{\psi_n^{(0)}} &= E_n^{(0
+	)}\ket{\psi_n^{(1)}}+E_n^{(1)}\ket{\psi_n^{(0)}}\\
+	\lambda^2 &: \hat{H_0}\ket{\psi_n^{(2)}}+\hat{H_1}\ket{\psi_n^{(1)}} &= E_n^{(0
+	)}\ket{\psi_n^{(1)}}+E_n^{(1)}\ket{\psi_n^{(1)}}+E_n^{(2)}\ket{\psi_n^{(0)}}\\		
+	&&\dots
+	\end{array}
+	\label{eq:9.6}
+	\end{equation}
+	La première ligne ($\lambda^0$) est trivialement vraie. Plus on descend en ordre, 
+	plus on aura une précision dans les séries	de puissances. Il ne faut cependant pas 
+	oublier la condition de normalisation 
+	\begin{equation}
+	\bra{\psi_n}\ket{\psi_n} = 1,\qquad \underline{\forall\lambda}
+	\end{equation}
+	On peut exprimer cette condition de normalisation en terme de 	puissances de $\lambda$.
+	\begin{equation}
+	\left(\bra{\psi_n^{(0)}}+\lambda\bra{\psi_n^{(1)}}+\lambda^2\bra{\psi_n^{(2)}}+\dots\right)
+	\left(\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{\psi_n^{(2)}}+\dots\right) = 1
+	\label{eq:9.8}
+	\end{equation}
+	Nous pouvons à nouveau procéder par identification
+	\begin{equation}
+	\begin{array}{llll}
+	\lambda^0 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}} &=1\\
+	\lambda^1 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}} +\bra{\psi_n^{(1)}}\ket{\psi_n^{(0)}} &= 
+	0 = 2\Re\left(\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}\right)\\
+	\lambda^2 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(2)}} +\bra{\psi_n^{(1)}}\ket{\psi_n^{(1)}}
+	+\bra{\psi_n^{(2)}}\ket{\psi_n^{(0)}} &= 0 =2\Re\left(\bra{\psi_n^{(0)}}\ket{\psi_n^{(2)}}\right)		
+	+\bra{\psi_n^{(2)}}\ket{\psi_n^{(0)}}\\
+	&&\dots
+	\end{array}
+	\end{equation}
+	La première ligne valant l'unité tout comme \eqref{eq:9.8}, les autres lignes doivent 
+	forcément être nulles. On peut remarquer que certains termes sont apparaissent sous la 
+	forme de conjugués, permettant de faire apparaître la partie réelle de ces termes.\\
+	
+	Pour trouver les $\lambda^\alpha$, il faut résoudre ce système de proche en proche (la 
+	connaissance de la 	seconde ligne est nécessaire à la résolution de la $3^e, \dots$). Plus 
+	on le résout "loin", plus la précision sera meilleure. Il est possible de voir $\ket{\psi_n}$
+	comme un développement en série de $\lambda$ dont chaque terme peut être vu comme un 
+	certain ket que l'on peut ré-exprimer dans une base. Une base naturelle est celle du 
+	problème non-perturbé :
+	\begin{equation}
+	\ket{\psi_n^{(i)}} = \sum_k C_k\ket{\psi_k^{(0)}}
+	\end{equation}
+	où les $\ket{\psi_k^{(0)}}$ forment la base non-perturbée.
+		
+	\subsection{Perturbation d'un niveau non-dégénéré (1$^{er}$ et $2^e$ ordre)}
+	Nous allons ici chercher à obtenir une expression de nos énergies et états perturbés. Nous 
+	verrons plus tard que la dégénérescence joue un rôle important, mais commençons par nous 
+	attardé sur le cas non-dégénéré.
+		
+		\subsubsection{Énergie au premier ordre}
+		Soit notre problème non-perturbé
+		\begin{equation}
+		\hat{H_0}\ket{\psi_n^{0}} = E_n^{(0)}\ket{\psi_n^{0}}
+		\end{equation}
+		Nous allons partir de la première équation non triviale de \eqref{eq:9.6} (soit 
+		celle de $\lambda^1$)) et la multiplier à gauche par $\bra{\psi_n^{(0)}}$
+		\begin{equation}
+		\underbrace{\bra{\psi_n^{(0)}}\hat{H_0}\ket{\psi_n^{(1)}}}_{E_n^{(0)}\underbrace{
+		\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{=0}}+\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} 
+		= E_n^{(0)}\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{=0}+E_n^{(1)}\underbrace{
+		\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}}}_{=1}
+		\end{equation}
+		On déduit directement que 
+		\begin{equation}
+		E_n^{(1)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}
+		\end{equation}
+		Ce résultat peut être écrit de façon plus générale
+		\begin{equation}
+		\begin{array}{ll}
+		E_n &= E_n^{(0)}+\lambda E_n^{(1)}+\mathcal{O}(\lambda^2)\\
+		&= E_n^{(0)}+\lambda \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}+\mathcal{O}(\lambda^2)\\
+		&= E_n^{(0)}+\ \bra{\psi_n^{(0)}}\underbrace{\lambda\hat{H_1}}_{\hat{W}}\ket{\psi_n
+		^{(0)}}+\mathcal{O}(\lambda^2)\\		
+		\end{array}
+		\end{equation}
+		On appelle
+		\begin{equation}
+		E_n^{(0)}+\ \bra{\psi_n^{(0)}}\hat{W}\ket{\psi_n	^{(0)}}+\mathcal{O}(\lambda^2)
+		\end{equation}
+		le \textit{déplacement de l'énergie} (au premier ordre)(en effet, rappelons que
+		$\hat{W}=\hat{H}-\hat{H_0}$). Il s'agit de l'élément de matrice diagonal (valeur 
+		moyenne) de la perturbation $\hat{W}$ dans l'état propre non-perturbé. Il s'agit 
+		de la \textit{formule 	des perturbations}.\\		
+		
+		Nous allons maintenant regarder la perturbation au premier ordre de l'état 
+		propre. Nous avons fait pour l'énergie, il faut faire de même pour l'état propre 
+		correspondant.
+		
+		\subsubsection{État propre au premier ordre}
+		La procédure est la même que pour l'énergie au premier ordre mais nous allons cette 
+		fois refermer la première équation non triviale de \eqref{eq:9.6} avec 
+		$\bra{\psi_k^{(0)}}$ où $k\neq n$. Le raisonnement est identique
+		\begin{equation}				
+		\underbrace{\bra{\psi_k^{(0)}}\hat{H_0}\ket{\psi_n^{(1)}}}_{E_k^{(0)}
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}}+\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} =
+		E_n^{(0)}\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}+E_n^{(1)}
+		\underbrace{\bra{\psi_k^{(0)}}\ket{\psi_n^{(0)}}}_{=0\ \text{car }\perp}
+		\end{equation}
+		Comme précédemment, nous obtenons
+		\begin{equation}
+		\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} = (E_n^{(0)}-E_k^{(0)})
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}
+		\end{equation}
+		On peut développer $\ket{\psi_n^{(1)}}$ dans la base des états propre de
+		l'état non perturbé
+		\begin{equation}
+		\ket{\psi_n^{(1)}} = \sum_k \ket{\psi_n^{(0)}}\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{
+		C_k}	
+		\end{equation}
+		où l'on reconnaît la relation de fermeture. Pour $k\neq n$, nous obtenons
+		\begin{equation}
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}} = \dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{
+		E_n^{(0)}-E_k^{(0)}} = C_k
+		\end{equation}
+		En substituant
+		\begin{equation}
+		\ket{\psi_n^{(1)}} = \sum_k \dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{
+		E_n^{(0)}-E_k^{(0)}} \ket{\psi_k^{(0)}}
+		\end{equation}
+		L'expression
+		\begin{equation}
+		\ket{\psi_n} = 	\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{
+		\psi_n^{(2)}}+\mathcal{O}(\lambda^2)
+		\end{equation}
+		devient alors
+		\begin{equation}
+		\ket{\psi_n} = \underline{\ket{\psi_n^{(0)}} + \sum_k	\dfrac{\bra{\psi_k^{(0)}}\overbrace{
+		\lambda\hat{H_1}}^{	\hat{W}}\ket{\psi_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}} \ket{\psi_k^{(0)}}} + 
+		\mathcal{O}(\lambda^2)
+		\end{equation}	
+		On obtient une relation "semblable" à celle trouvée pour l'énergie avec l'élément 
+		de matrice 	diagonal de la perturbation (soit la valeur moyenne). Ici, ce qui change, 
+		c'est que l'on regarde tous les autres états propres non-perturbés. On peut remarquer 
+		que pour calculer la perturbation du $n^e$ état on somme sur tous les \textbf{autres} états. 
+		Si l'énergie était dégénérée, nous aurions un zéro au dénominateur : cette expression n'est 
+		valable que pour des énergies non-dégénérées.
+		
+			\subsubsection{Exemple 1 : oscillateur harmonique}
+			Considérons un oscillateur harmonique d'une autre raideur. Il s'agit d'un cas académique 
+			(ce problème peut être résolu en posant $m(1+\lambda)\omega^2=\Omega^2$) mais il est 
+			intéressant pour illustrer les différences obtenues entre la résolution analytique 
+			exacte et la méthode des perturbations.
+			\begin{equation}
+			\hat{H} = \hat{H_0}+\lambda\hat{H_1}\quad\text{ où }\left\{\begin{array}{ll}
+			\hat{H_0} &= \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2\\
+			\hat{H_1} &= \frac{1}{2}m\omega^2x^2\lambda^2
+			\end{array}\right.
+			\end{equation}
+			L'hamiltonien qui nous intéresse est ainsi donné par
+			\begin{equation}
+			\hat{H} = \frac{p^2}{2m}+\frac{1}{2}m(1+\lambda)\omega^2x^2
+			\end{equation}
+			Nous connaissons l'énergie de l'état non-dégénéré
+			\begin{equation}
+			E_n^{(0)} = \left(\frac{1}{2}+n\right)\hbar\omega
+			\end{equation}
+			Calculons le déplacement de l'énergie au premier ordre
+			\begin{equation}
+			\Delta E_n^{(0)} = \bra{\psi_n^{(0)}}\lambda\hat{H_1}\ket{\psi_n^{(0)}} = \lambda \langle V
+			\rangle_{\psi_n^{(0)}} = \frac{\lambda}{2}E_n^{(0)}
+			\end{equation}
+			où nous avons appliqué le théorème du Viriel ($\langle K \rangle = \langle V \rangle =
+			\frac{E_n}{2})$. Nous obtenons comme énergie
+			\begin{equation}
+			E_n = \left(\frac{1}{2}+n\right)\hbar\omega+\frac{\lambda}{2}\left(\frac{1}{2}+n\right)\hbar
+			\omega + \mathcal{O}(\lambda^2) = \left(\frac{1}{2}+n\right)\hbar\omega\left\{1+\frac{\lambda}{2}
+			+\mathcal{O}(\lambda^2)\right\}
+			\end{equation}
+			La solution exacte est
+			\begin{equation}
+			E_n = \left(\frac{1}{2}+n\right)\hbar\Omega = \left(\frac{1}{2}+n\right)\hbar\sqrt{1+\lambda}
+			\end{equation}
+			Le résultat obtenu par la méthode des perturbation est bien le développement en série en 
+			puissance de $\lambda$ ($\sqrt{1+\lambda}\approx 1+\frac{\lambda}{2}$ pour $\lambda\to0$).
+
+			
+			\subsubsection{Exemple 2 : potentiel anharmonique}
+			Considérons un exemple moins trivial que le précédent en rajoutant un potentiel 
+			anharmonique, ici un terme en $x^4$.
+			\begin{equation}
+			\hat{H} = \hat{H_0}+\lambda\hat{H_1}\quad\text{ où }\left\{\begin{array}{ll}
+			\hat{H_0} &= \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2\\
+			\hat{H_1} &= \frac{m^2\omega^3}{\hbar^2}x^4
+			\end{array}\right.
+			\end{equation}
+			Le déplacement de l'énergie au premier ordre est donné par
+			\begin{equation}
+			\Delta E_n^{(0)} = \bra{\psi_n^{(0)}}\lambda\hat{H_1}\ket{\psi_n^{(0)}}  = \frac{\lambda m^3}{\hbar}
+			\bra{\psi_n^{(0)}}x^4\ket{\psi_n^{(0)}}
+			\end{equation}
+			Pour calculer ce déplacement, on peut utiliser les opérateurs de montée et de descente pour 
+			écrire $x$ en fonction de ceux-ci
+			\begin{equation}
+ 			\hat{x} = \sqrt{\dfrac{\hbar}{2m\omega}}(\hat{a}+\hat{a}^\dagger)
+			\end{equation}
+			Il faut dès lors calculer
+			\begin{equation}
+			\bra{n}(\hat{a}+\hat{a}^\dagger)^4\ket{n}
+			\end{equation}
+			Les seuls termes contribuant sont ceux qui provoque deux montées et deux descentes (par exemple
+			$\hat{a}\hat{a}\hat{a}^\dagger\hat{a}^\dagger$). Mais arrêtons-nous la pour cet exemple.\\
+			
+		
+		
+		Revenons donc à nos moutons. Nous avions
+		\begin{equation}
+		\ket{\psi_n} = \ket{\psi_n^{(0)}} + \sum_k	\ket{\psi_k^{(0)}}\dfrac{\bra{\psi_k^{(0)}}\lambda\hat{H_1}
+		\ket{\psi_k^{(0)}}}{E_n^{(0)}-E_k^{(0)}}  + 
+		\mathcal{O}(\lambda^2)
+		\end{equation}
+		Pour quel cela fonctionne correctement, il faut que le terme correctionnel soit 
+		relativement "petit" (et donc $\lambda$ petit). L'état non-perturbé est pondéré par un 
+		coefficient 1 que l'on peut voir comme un vecteur colonne dont seul le premier élément 
+		est non nul et vaut l'unité. Lorsque l'on allume la perturbation, ce vecteur colonne 
+		se voit modifier 
+		\begin{equation}
+		\left(\begin{array}{c}
+		1\\
+		0\\
+		0\\
+		\vdots
+		\end{array}\right)\qquad\rightarrow\qquad\left(\begin{array}{c}
+		1\\
+		\vdots\\
+		\vdots\\
+		\vdots
+		\end{array}\right)
+		\end{equation}
+		où les $\dots$ représentent des "nouveaux" coefficients de pondération. La 
+		condition de validité de la méthode dit que tous ces "nouveaux" coefficient 
+		doivent être petit en norme. Ceci signifie que si on regarde un élément 
+		non diagonale :
+		\begin{equation}
+		\left|\bra{\psi_n^{(0)}}\hat{W}\ket{\psi_n^{(0)}}\right| \ll |E_n^{(0)}-
+		E_k^{(0)}|,\qquad \forall k \neq n
+		\end{equation}
+		
+		Ceci étant dit, intéressons-nous quelque peu au second ordre.
+		
+		\subsubsection{État propre au second ordre}
+		Le point de départ est toujours le même :  nous repartons de notre 
+		système obtenu par identification et considérons cette fois le terme
+		quadratique. En multipliant à gauche par $\bra{\psi_n^{(0)}}$ :
+		\begin{equation}
+		\underbrace{\bra{\psi_n^{(0)}}\hat{H_0}\ket{\psi_n^{(2)}}}_{E_n^{(0
+		)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}+\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}} =
+		 E_n^{(0	)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}+E_n^{(1)}\underbrace{
+		 \bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{0}+E_n^{(2)}
+		\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}}}_{1}
+		\end{equation}
+		On trouve alors
+		\begin{equation}
+		E_n^{(2)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}}
+		\end{equation}
+		On remarque que pour déterminer l'énergie à l'ordre deux, il est nécessaire de 
+		connaître l'énergie à l'ordre zéro et à l'ordre un : il faut travailler de proche
+		en proche. En substituant l'expression pour l'ordre $\ket{\psi_n^{(1)}}$ : 
+		\begin{equation}
+		E_n^{(2)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}} = \sum_k
+		\bra{\psi_n^{(0)}}\ket{\psi_k^{(0)}}
+		\dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{	E_n^{(0)}-E_k^{(0)}} =
+		\sum_k \dfrac{\left|\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}\right|^2}
+		{E_n^{(0)}-E_k^{(0)}}
+		\end{equation}
+		L'expression
+		\begin{equation}
+		E_n = E_n^{(0)}+\lambda E_n^{(1)}+\lambda^2E_n^{(2)}+\dots
+		\end{equation}
+		devient alors
+		\begin{equation}
+		E_n = \underbrace{\bra{\psi_n^{(0)}}\overbrace{\lambda\hat{H_1}}^{\hat{W}}\ket{\psi_n^{(0)}}}_{\Delta 
+		E_n^{(1)}}
+		 + 
+		\underbrace{\sum_k \dfrac{\left|\bra{\psi_k^{(0)}}\overbrace{\lambda\hat{H_1}}^{\hat{W}}\ket{\psi_n^{(0)}}\right|^2}
+		{E_n^{(0)}-E_k^{(0)}}}_{\Delta 
+		E_n^{(2)}} +
+		\mathcal{O}(\lambda^3)
+		\end{equation}	
+		Cette expression ne fait plus qu'apparaître les énergie et états propres de 
+		l'état non perturbé. Remarquons que dans la correction au 	deuxième ordre pour 
+		l'état fondamental est négative : le numérateur est toujours positif mais vu 
+		que $E_n^{(0)}$ est l'état fondamental, les $E_k^{(0)}$ seront toujours plus grand 
+		de sorte que le dénominateur soit toujours négatif.
+		\begin{equation}
+		\Delta E_n^{(2)} \leq 0
+		\end{equation}
+		
+	\subsection{Perturbation d'un niveau dégénéré (1$^{er}$ ordre)}
+	Considérons maintenant le cas où les énergies sont dégénérées et notons $i$ la 
+	dégénérescence. En tenant compte de celle-ci, nous pouvons naturellement écrire
+	\begin{equation}
+	\hat{H_0}\ket{psi_{n,i}^{(0)}} = E_n^{(0)}\ket{psi_{n,i}^{(0)}},\qquad i=1,\dots, g_n
 	\end{equation}
 	On pourrait avoir une levée de la dégénérescence en allumant la 
-	perturbation. De même, si on a par exemple 4 niveau en faisant tendre
-	lambda vers 0 (on éteind progressivement la perturbation) on pourrait
-	 obtenir une quadruple dégénérescence. 
+	perturbation. Inversement, si nous avons quatre niveaux distincts, il peut être possible 
+	d'obtenir une quadruple dégénérescence en éteignant progressivement la perturbation, 
+	$\lambda\to 0$.
 	\begin{equation}
-	21
+	\lim\limits_{\lambda\to 0} \ket{\psi_{n,i}} \equiv \ket{\phi_{n,i}} = \sum_{k=1}^{g_n} C_k 
+	\ket{\psi_{n,k}^{(0)}}
 	\end{equation}
-	Il est faut de croire que psi n,i va tendre vers psi n i (0) étant 
-	donné qu'il y a une dégénérescence. Il n'y a pas une correspondance mais 
-	onsait qu'ls vont tous tendre vers des état qui appartiennent à un 
-	certain espace propre. 
-	
+	En effet, il serait faux de croire que $\ket{\psi_{n,i}}$ va forcément tendre vers 
+	$\ket{\psi_{n,i}^{(0)}}$ étant donné la dégénérescence. Il n'y a pas une correspondance 
+	mais on sait qu'ils vont tous tendre vers des état qui appartiennent à un certain espace propre
+	\footnote{Il serait bien d'un peu plus détailler.}. 
 	\begin{equation}
-	22
+	\left\{\begin{array}{ll}
+	\ket{\psi_{n,i}} &= \ket{\phi_{n,i}^{(0)}} + \lambda\ket{\psi_{n,i}^{(1)}} + \dots\\
+	E_{n,i} &= E_n^{(0)} + \lambda E_{n,i}^{(1)} + \dots
+	\end{array}\right.
 	\end{equation}
-	Ce qui change c'est qu'ici à cause de la degen, il faut calculer l'ordre
-	zéro de la correction (ce qui était avant trivial). 
+	Ce qui change c'est que ici, à cause de la dégénérescence, il faut calculer l'ordre
+	zéro de la correction $\ket{\phi_{n,i}^{(0)}}$ (ce qui était avant trivial) en plus 
+	des autres termes. En substituant ces expressions
 	\begin{equation}
-	23
+	\hat{H_0}\ket{\psi_{n,i}^{(0)}} + H_1\ket{\phi_{n,i}^{(0)}} = E_n^{(0)}\ket{\psi_{n,i}^{
+	(1)}} + E_{n,i}^{(1)}\ket{\phi_{n,i}^{(0)}}
 	\end{equation}		
-	Il faut maintenant exprimer les états phi dans la base. tout ce qu'on 
-	fera par rapport au cas précédent c'est qu'il faura diagonaliser une 
-	matrice. La solution finale serait
+	Il faut maintenant exprimer les états $\ket{\phi_{n,i}}$ dans la base. La différence par 
+	rapport au cas non-dégénéré est qu'il faut ici diagonaliser une matrice. La solution finale
+	est serait donnée par
 	\begin{equation}
-	24
+	\sum\left[\underbrace{\bra{\psi_{n,j}^{(0)}}\hat{H_1}\ket{\psi_{n,k}^{(0)}}}_{\mathcal{M}_{jk}}-
+	E_{n,i}\underbrace{\delta_{jk}}_{\mathbb{1}}\right]C_k=0
 	\end{equation}
-	On va devoir diagonalise : les vecteurs propres diront comment 
-	diagonaliser et les énergies. On obtiendra gn réponse, le déplacement en 
-	énergie des sous niveau qui correspond aux valeurs propres de cette 
-	matrice. Avant on avait un unique état et on regardait l'unique état. Ici 
+	On va devoir diagonaliser : les vecteurs propres diront comment diagonaliser et les énergies 
+	seront indiquées par les valeurs propres. On obtiendra en réponse, le déplacement en 
+	énergie des sous niveau qui correspond aux valeurs propres de cette 	matrice. 
+	\begin{equation}
+	(\mathcal{M}_{jk}-E\delta_{jk})C_k=0
+	\end{equation}
+	Avant nous avions un unique état et on regardait cet unique état. Ici 
 	on a un espace propre : matrice à diagonaliser. Le cas non dégénéré n'est 
 	que le cas particulier de la matrice 1x1. On aura dans le cas d'une 
-	degen un matr gn x gn. Les caleurs propres de cette matrice donneront le 
-	déplacement de l'énergie....
+	dégénérescence un matrice $g_n\times g_n$ dont les valeurs propres donneront le 
+	déplacement de l'énergie\footnote{Deux derniers paragraphes à revoir.}.
