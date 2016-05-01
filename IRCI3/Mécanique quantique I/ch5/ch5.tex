@@ -394,9 +394,10 @@ système toujours avec la méthode des perturbations). On en déduira la règle 
 	\ket{\psi_{n,k}^{(0)}}
 	\end{equation}
 	En effet, il serait faux de croire que $\ket{\psi_{n,i}}$ va forcément tendre vers 
-	$\ket{\psi_{n,i}^{(0)}}$ étant donné la dégénérescence. Il n'y a pas une correspondance 
-	mais on sait qu'ils vont tous tendre vers des état qui appartiennent à un certain espace propre
-	\footnote{Il serait bien d'un peu plus détailler.}. 
+	$\ket{\psi_{n,i}^{(0)}}$, il n'y a pas de raison de tendre vers les états de base 
+	choisis arbitrairement. Il n'y a pas une correspondance mais on sait qu'ils vont 
+	tous tendre vers des état qui appartiennent à un certain espace propre. En allumant 
+	la perturbation, on pourrait ainsi avoir une levée de la dégénérescence.	
 	\begin{equation}
 	\left\{\begin{array}{ll}
 	\ket{\psi_{n,i}} &= \ket{\phi_{n,i}^{(0)}} + \lambda\ket{\psi_{n,i}^{(1)}} + \dots\\
@@ -405,26 +406,277 @@ système toujours avec la méthode des perturbations). On en déduira la règle 
 	\end{equation}
 	Ce qui change c'est que ici, à cause de la dégénérescence, il faut calculer l'ordre
 	zéro de la correction $\ket{\phi_{n,i}^{(0)}}$ (ce qui était avant trivial) en plus 
-	des autres termes. En substituant ces expressions
+	des autres termes. Insérons ceci dans l'équation de Schrödinger
 	\begin{equation}
-	\hat{H_0}\ket{\psi_{n,i}^{(0)}} + H_1\ket{\phi_{n,i}^{(0)}} = E_n^{(0)}\ket{\psi_{n,i}^{
-	(1)}} + E_{n,i}^{(1)}\ket{\phi_{n,i}^{(0)}}
-	\end{equation}		
-	Il faut maintenant exprimer les états $\ket{\phi_{n,i}}$ dans la base. La différence par 
-	rapport au cas non-dégénéré est qu'il faut ici diagonaliser une matrice. La solution finale
-	est serait donnée par
+	\bra{\psi_{n,j}^{(0)}}H_1\ket{\phi_{n,i}^{(0)}} = E_{n,i}^{(0)}
+	\bra{\psi_{n,j}^{(0)}}\ket{\phi_{n,i}^{(0)}}
+	\end{equation}
+	Il faut maintenant exprimer les états $\ket{\phi_{n,i}}$ dans la base. Nous avions déjà 
+	écris	
+	\begin{equation}
+	\ket{\phi_{n,i}^{(0)}} = \sum_{k=1}^{g_n} C_k \ket{\psi_{n,k}^{(0)}}
+	\end{equation}
+	Le but est d'ici de déterminer les coefficients $C_k$ jusqu'ici inconnus afin d'obtenir 
+	les états propres de l'ordre 0, qui permettront le calcul	de l'ordre 1,\dots \\
+	Fixons $n$ et $i$ et remplaçons notre dernière expression dans l'avant dernière
+	\begin{equation}
+	\sum_{k=1}^{g_n} \bra{\psi_{n,j}^{(0)}}\hat{H_1}\ket{\psi_{n,k}^{(0)}}.C_k = E_{n,i}^{(0)}
+	\sum_{k=1}^{g_n} \underbrace{\bra{\psi_{n,j}^{(0)}}\ket{\psi_{n,k}^{(0)}}}_{\delta_{jk}}.C_k
+	\end{equation}
+	On retrouve bien l'élément de matrice de la perturbation. On peut ré-écrire cela de façon 
+	plus compacte
 	\begin{equation}
 	\sum\left[\underbrace{\bra{\psi_{n,j}^{(0)}}\hat{H_1}\ket{\psi_{n,k}^{(0)}}}_{\mathcal{M}_{jk}}-
-	E_{n,i}\underbrace{\delta_{jk}}_{\mathbb{1}}\right]C_k=0
-	\end{equation}
-	On va devoir diagonaliser : les vecteurs propres diront comment diagonaliser et les énergies 
-	seront indiquées par les valeurs propres. On obtiendra en réponse, le déplacement en 
-	énergie des sous niveau qui correspond aux valeurs propres de cette 	matrice. 
+	E_{n,i}\underbrace{\delta_{jk}}_{\mathbb{1}}\right]C_k=0	
+	\end{equation}	
+	Intéressons-nous à la différence avec le cas précédent. A l'ordre 1, il suffisait de prendre 
+	l'unique élément de matrice $\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}$. Ici, à cause 
+	de la dégénérescence, il faut exprimer ça sous la forme d'une matrice de perturbation dans 
+	l'espace propre du cas non-dégénéré. C'est cette matrice, d'ordre $g_n\times g_n$ qu'il 
+	faudra diagonaliser : les $n$ valeurs propres donneront les $n$ déplacements en énergie 
+	dus aux perturbations\footnote{Le cas non dégénéré n'est que le cas particulier de la 
+	matrice $1\times1$}.
 	\begin{equation}
 	(\mathcal{M}_{jk}-E\delta_{jk})C_k=0
 	\end{equation}
-	Avant nous avions un unique état et on regardait cet unique état. Ici 
-	on a un espace propre : matrice à diagonaliser. Le cas non dégénéré n'est 
-	que le cas particulier de la matrice 1x1. On aura dans le cas d'une 
-	dégénérescence un matrice $g_n\times g_n$ dont les valeurs propres donneront le 
-	déplacement de l'énergie\footnote{Deux derniers paragraphes à revoir.}.
+	
+	
+	
+
+\section{Méthode des variations}
+	\subsection{Fonctionnelle énergie, cas du niveau fondamental}	
+		\subsubsection{Principe}
+		Considérons un certain $\ket{\phi}\in\mathcal{E}_H$ que l'on nomme 
+		\textit{ket d'essai}. Celui-ci va dépendre d'un ou plusieurs paramètres $\alpha$. 
+		Cette méthode se base sur une fonctionnelle particulière : a chaque $\ket{\phi}$ on va 
+		faire correspondre une 	valeur réelle. Cette "fonctionnelle particulière" n'est autre 
+		que la fonctionnelle énergie $W$:
+		\begin{equation}
+		\text{Fonctionnelle énergie : }\ W\left(\ket{\phi}\right) \equiv \dfrac{\bra{\phi}\hat{H}\ket{\phi}}{
+		\bra{\phi}\ket{\phi}}
+		\end{equation}
+		On peut voir celle-ci comme une \textit{"énergie moyenne de $\phi$"}. En particulier, 
+		regardons l'application de la fonctionnelle sur un état propre
+		\begin{equation}
+		\underline{W(\ket{\psi_n}) = E_n}
+		\end{equation}
+		
+		\subsubsection{Niveau fondamental}
+		Quel que soit le ket sur lequel on applique notre fonctionnelle, on obtient toujours 
+		une borne supérieure à l'énergie du niveau fondamental
+		\begin{equation}
+		\begin{array}{lll}
+		W(\ket{\phi}) &\geq E_0&\qquad\ \  \forall\ket{\phi}\\
+		W(\ket{\phi}) &=0 &\qquad\Leftrightarrow \ket{\phi}=\ket{\psi_0}
+		\end{array}
+		\end{equation}
+		Montrons le. Pour cela, exprimons $\ket{\phi}$ sous la forme d'une combinaison linéaire des 
+		états $\ket{\psi_n}$
+		\begin{equation}
+		\ket{\phi} = \sum_n C_n\ket{\psi_n}
+		\end{equation}
+		On montre alors aisément le résultat annoncé
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		\bra{\phi}\hat{H}\ket{\phi} &=\DS \sum_{n,n'} C_{n'}^*C_n 
+		\underbrace{\bra{\psi_{n'}}\hat{H}\ket{\psi_n}}_{\delta_{n,n'}} = \sum_n |C_n|^2 E_n\\
+		\bra{\phi}\ket{\phi} &=\DS \sum_n |C_n|^2\\
+		\rightarrow &\phantom{0 }\DS\  \sum_n |C_n|^2 E_n \geq E_0\sum_n |C_n|^2 \Leftrightarrow \sum_n 
+		\underbrace{|C_n|^2}_{\geq 0,\forall n}\underbrace{(E_n-E_0)}_{\geq 0,\forall n} \geq 0
+		\end{array}\right.
+		\end{equation}
+		On peut ainsi avoir une assez bonne approximation du fondamental mais en l'approchant 
+		par le haut : il s'agit bien d'une borne supérieure. Pour trouver le niveau fondamental, 
+		il faut minimiser $W(\ket{\phi_\alpha}) = W(\alpha)$ : le problème sera de minimiser 
+		$\alpha$. Commençons par un exemple très simple et académique : l'oscillateur harmonique.
+		
+		\textsc{Exemple 1 : l'oscillateur harmonique}\ \\
+		L'hamiltonien de l'O.H. est donné par
+		\begin{equation}
+		\hat H = \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2
+		\end{equation}
+		Il faut choisir une fonction d'onde de $x$ qui dépend de $\alpha$ en guise de fonction 
+		d'essai. Considérons 
+		\begin{equation}
+		\phi(x) = \sqrt{\dfrac{2\alpha^3}{\pi}}\dfrac{1}{x^2+\alpha^2}
+		\end{equation}				
+		Nous devons calculer (pas la peine de prendre le conjugué, la fonction d'essai est 
+		entièrement réelle)
+		\begin{equation}
+		\begin{array}{ll}
+		\bra{\phi_\alpha}\hat{H} \ket{\phi_\alpha} &=\DS \int_{-\infty}^\infty \phi_\alpha(x)\left(
+		-\dfrac{\hbar^2}{2m}\dfrac{\partial^2}{\partial x^2} + \dfrac{1}{2}m\omega^2x^2\right)
+		\phi_\alpha(x)\ \text{dx}\\
+		&=\DS \dfrac{\hbar^2}{4m\alpha^2}+\dfrac{1}{2}m\omega^2\alpha^2
+		\end{array}
+		\end{equation}
+		Nous devons minimiser cette fonction en $\alpha$
+		\begin{equation}
+		E_{approx} = \min_\alpha W(\alpha)
+		\end{equation}
+		En posant $x=\alpha^2$, on trouve
+		\begin{equation}
+		\begin{array}{lll}
+		&f(x) &=\DS \frac{\hbar^2}{4mx}+\frac{1}{2}m\omega x\\
+		\rightarrow& 0 =\DS \frac{\partial f}{\partial x} = -\frac{\hbar^2}{4m x^2}+\frac{1}{2}m\omega
+		\end{array}
+		\end{equation}
+		Nous trouvons
+		\begin{equation}
+		x^2 = \dfrac{\hbar^2}{2m^2\omega^2} \quad\Leftrightarrow\quad \alpha^2 = \dfrac{\hbar}{\sqrt{2}m
+		\omega}
+		\end{equation}
+		En substituant ceci, on trouve l'énergie approximée
+		\begin{equation}
+		\begin{array}{ll}
+		E_{approx} &=\DS \min_\alpha W(\alpha)\\
+		&=\DS \dfrac{\hbar^2}{4m}\frac{m\omega\sqrt{2}}{\hbar}+\frac{1}{2}m\omega\frac{\hbar}{\sqrt{2}m
+		\omega}\\
+		&=\DS\dfrac{\hbar\omega}{\sqrt{2}}	
+		\end{array}
+		\end{equation}
+		On vérifie bien que 
+		\begin{equation}
+		E_0=\frac{\hbar\omega}{2} < E_{approx} = \frac{\hbar\omega}{\sqrt{2}}
+		\end{equation}\ \\
+		
+		Il est possible de retrouver le principe d'incertitude de Heisenberg en se basant sur la relation
+		\begin{equation}
+		\bra{\phi}\hat{H}\ket{\phi} \geq E_0
+		\end{equation}		
+		Partons du cas de l'oscillateur harmonique
+		\begin{equation}
+		\frac{1}{2m}\bra{\phi}p^2\ket{\phi} + \frac{1}{2}m\omega^2\bra{\phi}x^2\ket{\phi} \geq 
+		\frac{\hbar\omega}{2}
+		\end{equation}
+		Multiplions cette expression par $m\omega$ :
+		\begin{equation}
+		(m\omega)^2\bra{\phi}x^2\ket{\phi} - \hbar(m\omega) + \bra{\phi}p^2{\phi} \geq 0\qquad 
+		\forall (m\omega)
+		\end{equation}
+		Pour que ceci soit vrai, il faut que le discriminant de cette expression soit négatif ou 
+		nul 
+		\begin{equation}
+		\Delta = \hbar^2-4\bra{\phi}x^2\ket{\phi}\bra{\phi}p^2\ket{\phi}\geq 0\qquad\Leftrightarrow
+		\qquad \langle x^2\rangle\langle p^2\rangle \geq \frac{\hbar^2}{4}
+		\end{equation}
+		Où encore
+		\begin{equation}
+		\Delta x.\Delta p \geq \dfrac{\hbar}{2}
+		\end{equation}
+		Ce résultat est logique si l'on se souvient que le principe d'incertitude d'Heisenberg 
+		découle du fait que l'on ne peut descendre plus bas que le fondamental sans quoi on 
+		connaîtrait la position et l'impulsion avec trop de précision. Ce n'est donc pas une 
+		surprise de déduire une telle expression du principe des variations.
+		
+		
+		\textsc{Rmq2 : Relation entre perturbation 1er ordre et variations}\\
+		Pour les perturbations aux premier ordre
+		\begin{equation}
+		\begin{array}{lll}
+		\hat H = \hat{H_0} + \underbrace{\lambda\hat{H_1}}_{\hat{W}},\qquad E_0^{1er} &= E_0^{(0)}+
+		\lambda E_0^{(1)}\\
+		&= \bra{\psi_0^{(0)}}H_0\ket{\psi_0^{(0)}} + \lambda\bra{\psi_0^{(0)}}H_1\ket{\psi_0^{(0)}}\\
+		&= \bra{\psi_0^{(0)}}H_0+\lambda H_1\ket{\psi_0^{(0)}}\\
+		&= \bra{\psi_0^{(0)}}H\ket{\psi_0^{(0)}} \\
+		&\equiv W(\ket{\psi_0^{(0)}}) &\geq E_0
+		\end{array}
+		\end{equation}
+		En effet, il suffit de considérer que $\ket{\psi_0^{(0)}}$ joue le rôle de la fonction 
+		d'essai. On montre également, par la même occasion, que le premier ordre des perturbations 
+		surestime toujours l'énergie fondamentale (ce qui est cohérent avec le fait que, pour le 
+		fondamental, la correction au second ordre est négative).
+		
+		
+	\subsection{Théorème de Ritz}
+	\textit{La fonctionnelle $W(\ket{\phi})$ est stationnaire au voisinage des états propres de 
+	$\hat H$}. Dès lors, pour toute variation infinitésimale, la fonctionnelle sera nulle ssi le ket 
+	d'essai est un des états propres de $\hat H$ : 
+	\begin{equation}
+	\delta W = 0,\quad \forall\ket{\delta\phi}\qquad \Leftrightarrow\qquad \ket{\phi} = 
+	\text{état propre de }\ \hat{H}\ket{\psi_n}
+	\end{equation}
+	On part d'un ket d'essai et on lui applique une variation infinitésimale, de même pour $W$
+	\begin{equation}
+	\begin{array}{ll}
+	\ket{\phi} &\longrightarrow \ket{\phi}+\ket{\delta\phi}\\
+	W &\longrightarrow W +\delta W
+	\end{array}
+	\end{equation}
+	On va alors effectuer tous les calculs au premier ordre du calcul des variation. On peut 
+	réécrire la fonctionnelle en faisant passer le dénominateur de l'autre côté
+	\begin{equation}
+	\bra{\phi}\ket{\phi}W = \bra{\phi}\hat{H}\ket{\phi}
+	\end{equation}
+	Appliquons la variation infinitésimale
+	\begin{equation}
+	\bra{\delta \phi}\hat{H}-W\ket{\phi} + \bra{\phi}\hat{H}-W\ket{\delta\phi}=\bra{\phi}\ket{\phi}
+	\delta W
+	\end{equation}
+	\begin{enumerate}
+	\item Si la fonction d'essai est un état propre
+	\begin{equation}
+	\left.\begin{array}{ll}
+	\ket{\phi}&=\ket{\psi_n}\\
+	W &= E_n
+	\end{array}\right.\Rightarrow \bra{\delta \phi}\underbrace{\hat{H}-E_n\ket{\psi_n}}_{=0}+
+	\underbrace{\bra{\psi_n}\hat{H}-E_n}_{=0}\ket{\delta\phi}=\bra{\psi_n}\ket{\psi_n}\delta W
+	\end{equation}
+	Dès lors
+	\begin{equation}
+	\delta \omega = 0,\qquad \forall\ket{\delta\phi}
+	\end{equation}
+	\item Si la fonctionnelle est stationnaire
+	\begin{equation}
+	\begin{array}{lll}
+	\delta W =0,\quad \forall \ket{\delta\phi} &\Rightarrow \bra{\delta \phi}\hat{H}-W\ket{\phi}+
+	\bra{\phi}\hat{H}-W\ket{\delta \phi} =0&\qquad \forall\ket{\delta \phi}\\
+	&\Rightarrow -i\bra{\delta \phi}\hat{H}-W\ket{\phi}+
+	i\bra{\phi}\hat{H}-W\ket{\delta \phi} =0&\qquad \forall i\ket{\delta \phi}
+	\end{array}
+	\end{equation}
+	En effectuant la différence (les $i$ se simplifient, ils ne sont utiles que pour insérer un 
+	signe négatif)
+	\begin{equation}
+	\bra{\delta \phi}\hat{H}-W\ket{\phi} = 0, \qquad\forall \delta \phi
+	\end{equation}
+	On en déduit les implications suivantes
+	\begin{equation}
+	\hat{H}\ket{\psi} = W\ket{\phi}\qquad\Rightarrow\qquad \ket{\phi} = \ket{\psi_n}\quad;\quad 
+	W=E_n
+	\end{equation}
+	\end{enumerate}	
+	En 1., nous avons montré qu'un état propre implique un état stationnaire alors que en 2. 
+	nous avons montré que si la fonctionnelle est stationnaire, c'est qu'il s'agit d'un 
+	état propre. La méthode des variations nous fourni assez bonne estimation de l'énergie, 
+	le terme d'erreur étant quadratique.
+	\begin{equation}
+	W\left(\ket{\psi_n}+\epsilon\ket{\xi}\right) = E_n+\mathcal{O}(\epsilon^2),\qquad \epsilon\ll1
+	\end{equation}
+	où $\epsilon\ket{\xi}$ est un terme d'erreur. \\
+	
+	Supposons que l'on ai déjà obtenu l'état fondamental $\ket{\psi_0}, E_0$. Pour une fonction 
+	d'essai $\ket{\phi}$ \textbf{orthogonale} à $\ket{\psi_0}$, comme $W(\ket{\phi})\geq E_1$, on 
+	obtient le premier état excité en minimisant la fonctionnelle.\\
+	\begin{proof}\ \\
+	\begin{equation}
+	\dfrac{\bra{\phi}\hat{H}\ket{\phi}}{\sum |C_n|^2 E_n}\geq 
+	\dfrac{E_1\bra{\phi}\ket{\phi}}{E_1\sum |C_n|^2}
+	\end{equation}
+	Comme
+	\begin{equation}
+	\ket{\phi} = \sum_{n=1}^\infty C_n\ket{\psi_n},\qquad C_0=0
+	\end{equation}
+	On montre que
+	\begin{equation}
+	\sum |C_n|^2(E_n-E_1)\geq 0
+	\end{equation}
+	\end{proof}
+	Comment faire en sorte que $\ket{\phi}\perp\ket{\phi_0}$ ? En pratique, nous aurons a 
+	disposition d'autres observables telles que $[\hat{A},\hat{H}]=0$, il suffira de choisir 
+	une famille de fonction d'essai dans les fonctions propres d'une autres valeurs propre 
+	de $\hat{A}$. Par exemple, si $l=0$ donne le fondamental, on choisira une fonction d'essai 
+	avec $l=1$ pour garantir l'orthogonalité.
+	
+	
+	
