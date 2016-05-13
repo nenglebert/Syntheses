@@ -358,10 +358,10 @@ Dans le cas où le signal utile se situe à basse fréquence (\(f_{max}=\) qques
 	 	\node[draw] (A) at (5,-4){ampli};
 	 	\node[draw] (D) at (7.5,-4){démodulation};
 	 	\node[draw] (P) at (10.5,-4){Passe-bas};
-	 	\draw[->, >=latex] (C) -- (M);
-	 	\draw[->, >=latex] (M) -- (A);
-	 	\draw[->, >=latex] (A) -- (D);
-	 	\draw[->, >=latex] (D) -- (P);
+	 	\draw[->, >=latex'] (C) -- (M);
+	 	\draw[->, >=latex'] (M) -- (A);
+	 	\draw[->, >=latex'] (A) -- (D);
+	 	\draw[->, >=latex'] (D) -- (P);
 	\end{tikzpicture} 
 	\caption{Détection synchrone} 
 \end{figure}
@@ -388,3 +388,55 @@ qui, après un filtre passe-bas (\(f_c \approx f_{max}\)) devient:
 u'(t) = u(t)\frac{\cos\varphi}{2}
 \end{equation}
 \section{Les parasites}
+\subsection{Introduction}
+Les parasites sont des tensions ou courants indésirables, d'origine extérieure à l'appareil perturbé, se superposant au signal utile. Ceux-ci apparaissent par suite du couplage (support de transmission de l'énergie, le chemin entre la source et la victime en gros) d'un circuit source avec le circuit perturbé (victime).\\
+
+L'origine physique le plus courant de ces parasites sont les parasites électromagnétiques (expliqués par les équations de Maxwell).Toutes charges et courants génèrent des champs (\(E\) et \(H\) variables, formant une onde électromagnétique) qui se transforment en f.e.m. (\(\int E\) ou \(H\) loi de lenz).\\
+Il existe néanmoins d'autres phénomènes physiques comme la thermoélectricité, la piézoélectricité, etc.\\
+
+À cela se rajoute le concept de champ proche et champ lointain ainsi que le type de couplages (C.f \autoref{fig:champproloin} et \autoref{fig:typcouplage})
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image4} 
+	\caption{Champ proche et champ lointain} 
+	\label{fig:champproloin}
+\end{figure}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image5} 
+	\caption{Type de couplages}
+	\label{fig:typcouplage} 
+\end{figure}
+Quelques exemples de parasites sont cités slide 46.
+\subsection{Parasites rayonnés}
+\subsubsection{Couplage capacitif}
+Les charges portées par un conducteur induisent des charges opposées (\(\Rightarrow\) courant) dans un autre conducteur via le champ électrostatique \(E\). Ce phénomène existe en théorie entre toute paire de conducteurs et peut être modélisé par une capacité parasite entre ces conducteurs. Néanmoins, celui-ci n'est pris en compte que dans le domaine du champ proche (\(L<\lambda/2\pi\)).\\
+
+Il faut donc soit éviter les lignes parallèles soit éloigner le plus possible les fils les uns des autres afin de réduire les capacités parasites ou disposer d'un blindage électrostatique (décrit plus bas).
+
+Un cas particulier existe, les décharges électrostatiques:
+\begin{description}
+	\item[définition] claquage de l'isolant entre les armatures du condensateur parasite lorsque le champs électrique devient trop important
+	\item[exemple] tapis, vêtement en laine, éclair en cas d'orage, claquage de l'oxyde de grille dans les circuits MOS
+	\item[contre-mesure] mise à la terre des dispositifs/utilisateurs pour les décharger et éviter l'accumulation de charge, intégrer un dispositifs de dissipation de puissance (parasurtenseurs, décrit plus bas)
+\end{description}
+Un exemple de dispositif permettant d'empêcher l'accumulation de charge se trouve \autoref{fig:dispdechdio}. La diode protectrice protège le circuit en aval en permettant le passage du courant parasite en cas de surtension.
+\begin{figure}[H] 
+	\centering 
+	\begin{circuitikz}
+	\draw (0,0) node[left]{\SI{0}{\volt}} to[short] (4,0) to[open] (4,1) to[short] (0,1) node[left]{\SI{5}{\volt}};
+	\draw (2,0) to[sDo,l_=\SI{6}{\volt}] (2,1);
+	\end{circuitikz}
+	\caption{Dispositif de décharge} 
+	\label{fig:dispdechdio}
+\end{figure}
+\subsubsection{Couplage inductif}
+D'après a loi de Lenz, un champ magnétique variable induit dans un conducteur une f.e.m. qui tend à s'opposer à cette variation. Existe en théorie dans toute paire de conducteur et peut être modélisé par une inductance mutuelle parasite entre ces conducteurs. N'est pris en compte que dans le champ proche (\(L<\lambda/2\pi\)).
+
+Il faut donc éloigner les sources de champ magnétique, minimiser la surface offerte au champ magnétique extérieure (réduire l'inductance mutuelle en jouant sur l'orientation spatiale ou sur la surface de la boucle), implémenter un blindage magnétique (décris plus bas).\\
+C'est le mode de couplage le plus répandu, toute boucle formée de conducteur est une victime potentielle. Le phénomène est d'autant plus critique que la fréquence est élevée. Il existe (aussi) un cas particulier, les câbles de transmission:
+\subsubsection{Couplage électromagnétique}
+
+\subsubsection{Blindage}
+
+\subsection{Parasites conduits}
