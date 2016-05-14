@@ -410,9 +410,9 @@ Il existe néanmoins d'autres phénomènes physiques comme la thermoélectricit�
 Quelques exemples de parasites sont cités slide 46.
 \subsection{Parasites rayonnés}
 \subsubsection{Couplage capacitif}
-Les charges portées par un conducteur induisent des charges opposées (\(\Rightarrow\) courant) dans un autre conducteur via le champ électrostatique \(E\). Ce phénomène existe en théorie entre toute paire de conducteurs et peut être modélisé par une capacité parasite entre ces conducteurs. Néanmoins, celui-ci n'est pris en compte que dans le domaine du champ proche (\(L<\lambda/2\pi\)).\\
+Les charges portées par un conducteur induisent des charges opposées (\(\Rightarrow\) courant) dans un autre conducteur via le champ électrostatique \(E\). Ce phénomène existe en théorie entre toute paire de conducteurs et peut être modélisé par une capacité parasite entre ces conducteurs. Néanmoins, celui-ci n'est pris en compte que dans le domaine du champ proche (\(L<\lambda/2\pi\)). Ex.: pistes proches ou superposée dans les circuits imprimés, les bus, etc.\\
 
-Il faut donc soit éviter les lignes parallèles soit éloigner le plus possible les fils les uns des autres afin de réduire les capacités parasites ou disposer d'un blindage électrostatique (décrit plus bas).
+Il faut donc éviter les lignes parallèles, éloigner le plus possible les fils les uns des autres afin de réduire les capacités parasites ou disposer d'un blindage électrostatique (décrit plus bas).
 
 Un cas particulier existe, les décharges électrostatiques:
 \begin{description}
@@ -431,12 +431,158 @@ Un exemple de dispositif permettant d'empêcher l'accumulation de charge se trou
 	\label{fig:dispdechdio}
 \end{figure}
 \subsubsection{Couplage inductif}
-D'après a loi de Lenz, un champ magnétique variable induit dans un conducteur une f.e.m. qui tend à s'opposer à cette variation. Existe en théorie dans toute paire de conducteur et peut être modélisé par une inductance mutuelle parasite entre ces conducteurs. N'est pris en compte que dans le champ proche (\(L<\lambda/2\pi\)).
+D'après a loi de Lenz, un champ magnétique variable induit dans un conducteur une f.e.m. qui tend à s'opposer à cette variation. Existe en théorie dans toute paire de conducteur et peut être modélisé par une inductance mutuelle parasite entre ces conducteurs. N'est pris en compte que dans le champ proche (\(L<\lambda/2\pi\)). Ex.: lignes de signal (téléphone, instrumentation) entre elles ou placées à coté d'une ligne d'alimentation/moteur électrique etc.\\
 
-Il faut donc éloigner les sources de champ magnétique, minimiser la surface offerte au champ magnétique extérieure (réduire l'inductance mutuelle en jouant sur l'orientation spatiale ou sur la surface de la boucle), implémenter un blindage magnétique (décris plus bas).\\
-C'est le mode de couplage le plus répandu, toute boucle formée de conducteur est une victime potentielle. Le phénomène est d'autant plus critique que la fréquence est élevée. Il existe (aussi) un cas particulier, les câbles de transmission:
+Il faut donc éloigner les sources de champ magnétique, minimiser la surface offerte au champ magnétique extérieure (réduire l'inductance mutuelle en jouant sur l'orientation spatiale ou sur la surface de la boucle, en tressant les câbles par exemple), implémenter un blindage magnétique (décris plus bas).\\
+C'est le mode de couplage le plus répandu, toute boucle formée de conducteur est une victime potentielle. Le phénomène est d'autant plus critique que la fréquence est élevée. 
+
+Un cas particulier, les câbles de transmission. Ceux-ci forment une boucle et sont donc des victimes privilégiés. Il existe quelques contre-mesures:
+\begin{itemize}
+	\item réduire la surface de la boucle:
+	\begin{itemize}
+		\item réduire la longueur des câbles
+		\item rapprocher les conducteurs aller et retour
+		\item torsader les fils d'amenée et de retour. Si au-delà des quelques \si{\mega\hertz}, passer au câble coaxial (mutuelle nulle).
+	\end{itemize}
+	\item câbles blindés
+	\item passer à une transmission ayant une meilleur immunité:
+	\begin{itemize}
+		\item boucle de courant (si la transmission est en courant, il n'y a pas d'impact)
+		\item porter l'information sur la fréquence
+		\item passer au numérique
+		\item code détecteurs/correcteurs d'erreur
+	\end{itemize}
+\end{itemize}
+
 \subsubsection{Couplage électromagnétique}
+Dans le domaine du champ lointain (\(L>\lambda/2\pi\)), \(E\) et \(H\) coexistent sous forme d'une onde plane. Tout conducteur peut se comporter comme une antenne réceptrice parasite à l'onde plane. Ce phénomène est d'autant plus critique que la fréquence est élevée. Ex.: GSM dans les hôpitaux ou les avions etc.\\
 
+Il faut donc limiter la source d'émission, implémenter un blindage EM (plus bas), designer le circuit récepteur, ou  utiliser un dispositif optique (comme la fibre optique).
 \subsubsection{Blindage}
+\underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}. Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})\\
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image6} 
+	\caption{Forme de blindage électrostatique}
+	\label{fig:blindelectrostat}
+\end{figure}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image7} 
+	\caption{Blindage électrostatique}
+\end{figure}
+\underline{\textit{Blindage magnétique} (champ proche)}: ici nous avons 2 cas:
+\begin{itemize}
+	\item champ BF: matériau ferromagnétique (\(\mu\) élevé). Il dévie les lignes de champ magnétique, mais il faut faire attention à la saturation \(\Rightarrow\) grande épaisseur du ferromagnétique (mais cher et lourd) (\autoref{fig:blindmagn}).
+	\item champ HF: matériau conducteur (non ferromagnétique). les courants de Foucault induits dans le blindage s'opposent à la pénétration du champ extérieur.
+\end{itemize}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[height=4\baselineskip]{ch3/image8} 
+	\caption{Blindage ferromagnétique}
+	\label{fig:blindmagn}
+\end{figure}
 
+\underline{\textit{Blindage EM} (champ lointain)}: utiliser un matériau conducteur qui supprimera le champ perturbateur par un champ opposé induit (courant de Foucault). Typiquement, une cage de Faraday. Néanmoins, il nécessite de faire rentrer ligne de signal et d'alimentation (coucou couplage inductif) et la moindre ouverture réduit l'efficacité du blindage \(\Rightarrow\) construction très délicate.\\
+
+\underline{\textit{Remarques générales}}: Les blindages concerne tout autant les câbles de transmission que les boîtiers (capteur,instrumentation). De plus la connections des blindages de câbles n'est pas trivial.
 \subsection{Parasites conduits}
+\subsubsection{Introduction}
+Commençons pas définir ce qu'est un couplage galvanique:
+\begin{description}
+	\item[définition] transmission d'un signal perturbateur entre la source de ce signal et le dispositif victime \emph{via un conducteur commun}.
+\end{description}
+Ceci concerne autant les lignes de signal que les alims/masse/terre et le simple fait de brancher 2 appareils sur le réseau électrique établit un couplage galvanique. Comme par exemple 2 appareils à \SI{220}{\volt} dans 2 pièces différentes, connectés à la masse. Si l'un demande en puissance, cela fait baisser la tension dans tout le circuit. Il existe 2 origines distinctes:
+\begin{enumerate}
+	\item le conducteur commun (idéal) transmet un signal parasite issu d'un autre équipement (comme parasite transmis via les lignes d'alimentation à cause de la foudre).
+	\item le conducteur commun n'est pas équipotentiel \(\Rightarrow\) la circulation d'un courant sur ce conducteur génère des f.e.m. parasites (conducteur commun donc impédance non négligeable, f.e.m. donc chute de tension ohmique ou inductive, courant peut être celui du signal utile).
+\end{enumerate}
+Ces 2 origines sont bien évidement cumulables. Il existe 2 niveaux de conséquences:
+\begin{enumerate}
+	\item dégrade le signal (superposition du signal utile et parasite, si sur alim \(\rightarrow\) mauvais fonctionnement du circuit).
+	\item détruit l'équipement (surtension (claque électrostatique) ou surpuissance (destruction par échauffement)).
+\end{enumerate}
+Remarquons que tout parasite rayonné devient f.e.m. ou courant sur un conducteur et donc que les conséquences sont aussi valables pour les parasites rayonnés en amont.
+\subsubsection{Contre-mesures}
+Il existe 3 contre-mesures générales:
+\begin{enumerate}
+	\item Contre les parasites conduits issus d'autres équipement:
+	\begin{itemize}
+		\item filtre passe-bas pour le spectre étendu, filtre réjecteur de fréquence pour le spectre étroit
+		\item équilibrer (rendre le circuit plus symétrique, voir plus bas)
+	\end{itemize}
+ \hspace*{\dimexpr\linewidth-\textwidth\relax}%
+ \begin{minipage}[t]{\textwidth}%
+ 	Néanmoins, il n'est pas trivial de réaliser le filtre, nous pouvons utiliser un filtre passif (capa et inductance) ou actif (passif + AOP), en mode commun ou différentiel.
+ \end{minipage} 
+	\item Contre les parasites générés par l'impédance des connexions:
+	\begin{itemize}
+		\item designer des connexions (\(\searrow\) longueur + \(\nearrow\) section conductrice \(= \searrow\) impédance)
+		\item connecter judicieusement les alimentations et les masses:
+		\begin{enumerate}
+			\item éviter les chemins communs (câblages en étoile)
+			\item séparer alimentations de signaux à fréquence et/ou puissance \(\neq\)
+		\end{enumerate}	
+	\end{itemize}
+	\item Contre la destruction des équipement par surtension/surpuissance \(\Rightarrow\) parasurtenseurs, dont le principe est de limiter la tension  et ayant la capacité de dissiper l'énergie excédentaire:
+	\begin{itemize}
+		\item diodes Zener utilisée en avalanche (protection)
+		\item varistance (résistance non linéaire, \(\nearrow\) tension \(= \searrow\) résistance)
+		\item éclateurs (tube à gaz dissipant temporairement l'énergie via un arc électrique)
+	\end{itemize}
+\end{enumerate}
+\underline{\textit{Exemple} (flemme)}:
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image9} 
+	\caption{Circuit électronique initial} 
+\end{figure}
+A première vue, les fils ou pistes d'alimentation sont des équipotentielles. En réalité, il existe souvent une distance de plusieurs centimètres ou dizaines de centimètres entre les bornes d'alimentation d'une carte électronique et le circuit intégré le plus éloigné.\\
+L'impédance de ces connections joue un rôle non négligeable:
+\begin{itemize}
+\item la chute de tension ohmique due à la résistance des connections (l'épaisseur des piste est très faible: de l'ordre de \SI{30}{\micro\meter}) parcourue par le courant moyen.
+\item les fluctuations de tension liées aux variations de courant importantes (basculement de portes, charge de capacités parasites, "réveil" d'un circuit CMOS) sur l'inductance des connections \(\rightarrow\) peuvent faire sortir l'alimentation de sa plage normale.
+\end{itemize}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image10} 
+	\caption{Circuit électronique final} 
+\end{figure}
+Les améliorations les plus courantes de l'alimentation sont
+\begin{itemize}
+\item l'utilisation de fils de plus forte section ou de pistes plus larges (quelques \si{\milli\meter}) ou de circuits multi-couches (permettant d'inclure plan de masse et plan d'alimentation)
+\item les condensateurs de découplage sous forme
+\begin{itemize}
+	\item d'un condensateur électrolytique (généralement quelques \si{\micro\farad}) 
+	\item d'un ensemble de condensateurs de très bonne qualité disséminés sur toute la carte, le plus près possible des pattes d'alimentation de chaque gros circuit intégré et de chaque groupe de petits circuits
+
+\end{itemize}
+\item une diode Zener (protection contre les surtensions)
+\end{itemize}
+Les condensateurs constituent des sources de tension localisée (à très court terme) vis-à-vis des impulsions de courant consommées par les circuits intégrés.\\
+
+Le mot "découplage" qualifie le fait que les variations de consommation (composante alternative) propres du circuit ne sont pas vues par les fils d'alimentation, qui ne véhiculent que la composante continue (moyenne). Les inductances parasites du câblage ont donc beaucoup moins d'influence.\\
+
+La diode Zener permet d'écrêter les surtensions transitoires. Si celles-ci sont répétitives, l'absorption d'énergie par la Zener peut excéder ses capacités de refroidissement et la détruire. En cas de tension d'entrée trop importante, la Zener va également surchauffer et fondre, généralement en court-circuit, ce qui protégera les circuits coûteux en aval.
+\subsubsection{Isolation galvanique}
+\begin{description}
+	\item[définition] coupure de tout lien galvanique entre 2 parties du montage
+	\item[moyen] couplage magnétique (transformateur) et couplage optique (optocoupleur, fibre optique)
+\end{description}
+C'est souvent nécessaire pour des raisons de protection des utilisateurs et des équipements (sécurité). Le but est de faire passer de la puissance/info d'une autre manière que via de l'électricité.
+\subsection{Compatibilité électromagnétique}
+\begin{description}
+	\item[définition] discipline ayant pour but d'analyser et de résoudre l'ensemble des problèmes de parasitage EM d'un équipement par un autre
+\end{description}
+C'est une discipline de plus en plus importante en raison de la multiplications des équipement électroniques. Il existe des normes stricte depuis les années 90. On définit:
+\begin{description}
+	\item[CEM/EMC] compatibilité EM
+	\item[IEM/EMI] interférence EM
+\end{description}
+\subsection{Notions embrassées par la CEM}
+les normes CEM, les types de couplages, les imperfections des composants (passif et surtout actifs car sources de perturbations), les boîtiers et blindages, le câblage, le routage des pistes dans les circuits imprimés (surtout masse et alim) et « tous les effets du second ordre ».
+\subsection{Exemple: alimentation à découpage}
+Exemple slide 81--85.
+\section{Câblage et connexions}
+
+\section{Transmission des signaux}
