@@ -1,5 +1,4 @@
 \chapter{Bruits et parasites}
-\section{Introduction}
 Introduisons ce que sont bruits et parasites:
 \begin{description}
 	\item[Bruit] au sens strict (encore appelé "bruit de fond") est un signal à variation aléatoire d'origine \emph{interne} au dispositif étudié. Il est possible de le définir, de prévoir son niveau plancher à l'aide du dimensionnement
@@ -369,7 +368,7 @@ Pour résumer:
 \begin{itemize}
 		\item {\makebox[4cm]{signal utile:\hfill} \(s(t)\)}
 		\item {\makebox[4cm]{signal modulation:\hfill} \(u_{mod}(t)=\cos(2\pi f_ut)\)}
-		\item {\makebox[4cm]{signal démodulation:\hfill} \(u_{démod}(t) = \cos(2\pi f_ut+\varphi)\)}
+		\item {\makebox[4cm]{signal démodulation:\hfill} \(u_{demod}(t) = \cos(2\pi f_ut+\varphi)\)}
 \end{itemize}\ \\
 Et donc, le signal modulé vaut:
 \begin{equation}
@@ -378,7 +377,7 @@ s_{mod}(t) = s(t) . u_{mod}(t)
 qui est bien transposé autour de la fréquence \(f_u\) (\(f_u\gg f_{max}\)). Pour démodulé, nous utilisons une démodulation synchrone, c-à-d en multipliant par la même sinusoïde que lors de la modulation (+déphasage inévitable \(\varphi\))
 \begin{equation}
 \begin{split}
-s_{démod}(t) &= s_{mod}(t) . u_{démod}(t)\\
+s_{demod}(t) &= s_{mod}(t) . u_{demod}(t)\\
 &= u(t)\cos(2\pi f_m t)\cos(2\pi f_u t+\varphi)\\
 &= u(t)\frac{1}{2}\{\underbrace{\cos\varphi}_{\cst}+\cos(4\pi f_u t+\varphi)\}
 \end{split}
@@ -459,7 +458,7 @@ Dans le domaine du champ lointain (\(L>\lambda/2\pi\)), \(E\) et \(H\) coexisten
 
 Il faut donc limiter la source d'émission, implémenter un blindage EM (plus bas), designer le circuit récepteur, ou  utiliser un dispositif optique (comme la fibre optique).
 \subsubsection{Blindage}
-\underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}. Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})\\
+\underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}. Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image6} 
@@ -584,5 +583,171 @@ les normes CEM, les types de couplages, les imperfections des composants (passif
 \subsection{Exemple: alimentation à découpage}
 Exemple slide 81--85.
 \section{Câblage et connexions}
+\subsection{Référence d'un signal}
+Rappel sur tension et masse slide 88. Nous ajoutons quelques subtilités:
+\begin{enumerate}
+	\item impédance de masse: en pratique la "masse" d'un montage peut être un conducteur ayant une certaine extension physique \(\Rightarrow\) impédance \(\neq 0 \Rightarrow\) lorsque parcouru par un courant, pas équipotentiel \(\Rightarrow\) plus vraiment une masse (f.e.m. parasite)
+	\item plusieurs montages: les masses de différents montages sont à priori pas au même potentiel (pas connecté ou connecté via des impédance \(\neq 0\))
+\end{enumerate}
+Pour rappel, la mise à terre est une connexion d'un conducteur au potentiel de la terre (sol) afin d'assurer la protection des utilisateurs et des équipements (le réseau de terre doit avoir l'impédance la plus faible possible). La masse (référence) et la terre (protection) ne sont pas forcément connectées.\\
 
+On définit les appareils:
+\begin{description}
+	\item[flottants] aucune des 2 bornes du signal (entrée ou sortie) n'est connectée à la terre (appareils portatifs, appareils sur réseau à 3 bornes)
+	\item[non flottants] masse = terre
+\end{description}
+\subsection{Montage "single-ended"}
+\subsubsection{Cas idéal}
+Un montage "single-ended" possèdent les caractéristiques suivantes:
+\begin{itemize}
+\item un amplificateur "single-ended" (= asymétrique) comme un (non-)inverseur, suiveur à AOP. Au niveau multiplexage, il faut \(N+1\) fils pour \(N\) signaux. \item La référence du capteur = la référence de l'instrumentation
+\end{itemize} 
+Dans le cas théorique \(V_{in}=e_s\) (donc pas de parasites).
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image11} 
+	\caption{Single-ended (idéal)} 
+\end{figure}
+\subsubsection{Cas réel}
+Dans le cas réel, il y a des parasites car il existe une impédance de masse non négligeable et qu'il y a des parasites induits dans la boucle. Il en résulte \(V_{in} = e_s + e_p\) et donc un signal dégradé.
+\begin{figure}[H]
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image12} 
+	\caption{Single-ended (réel)} 
+\end{figure}
+On en conclu donc qu'il faut éviter les montages "single-ended". Sauf si la chute de tension sur l'impédance de masse ET les f.e.m induites sont négligeables. C'est le cas typiquement pour:
+\begin{itemize}
+	\item un capteur proche de l'ampli
+	\item un capteur éloigné mais isolé de son environnement et sa masse est ramenée à l'ampli par une connexion d'impédance négligeable
+\end{itemize}
+\subsection{Montage différentiel}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image13} 
+	\caption{Montage différentiel} 
+\end{figure}
+Dans ce montage, nous avons:
+\begin{itemize}
+		\item {\makebox[8cm]{tension d'entrée de l'ampli différentiel\hfill} \(V^-=e_p\qquad V^+=e_s+e_p\)} 
+		\item {\makebox[8cm]{tension différentielle\hfill} \(V_{md} = V^+-V^-=e_s\)} 
+		\item {\makebox[8cm]{tension de mode commun (parasites)\hfill} \(V_{mc}=\frac{V^++V^-}{2}=e_p+\frac{e_s}{2}\)} 
+		\item {\makebox[8cm]{tension de sortie\hfill} \(V_{out}=A_{md}V_{md}+A_{mc}V_{mc}\)} 
+		\item {\makebox[8cm]{taux de réjection en mode commum\hfill} \(CMRR = \frac{A_{md}}{A_{mc}}\)} 
+\end{itemize}
+Il faut donc maximiser le CMRR (common mode rejection ratio). On en déduit les avantages et inconvénients suivants:
+\begin{itemize}
+	\item avantages:
+	\begin{itemize}
+		\item les parasites de mode commun sont rejetés
+		\item les parasites par couplage galvanique et les autres parasites induits en mode commun sont rejetés
+		\item signal dont aucune des bornes ne peut être considérée comme une masse (même imparfaite). ex: tension de déséquilibre d'un pont de Wheatstone ou un montage porté à une tension élevée.
+	\end{itemize}
+	\item inconvénients:
+	\begin{itemize}
+		\item les parasites de mode différentiel sont toujours amplifiés
+		\item liaison \(2N\) (ou \(2N+1\)) fils pour \(N\) signaux
+	\end{itemize}
+\end{itemize}
+\underline{\textit{Remarques}}: en instrumentation, la tension de mode commun est souvent du même ordre de grandeur  voir plus élevée que la tension différentielle. On essayera de faire apparaître les parasites sous forme de tension en mode commun car elles seront rejetés (pas entièrement, dépend du \(CMRR\)). Hélas, un bon \(CMRR\) ne suffit pas.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image14} 
+\end{figure}
+Pour un multiplexeur, les deux montages s'implémentent comme illustré à la \autoref{fig:multmont}
+\begin{figure}[H]
+	\centering
+	\subfigure[Single-ended]{\label{fig:multsing}\includegraphics[width=0.5\textwidth]{ch3/image15}}
+	\subfigure[Différentiel]{\label{fig:mutldiff}\includegraphics[height=20\baselineskip]{ch3/image16}}
+	\caption{Implémentation avec un multiplexeur}
+	\label{fig:multmont}
+\end{figure}
+\subsection{Symétrie des voies d'amenée}
+\subsubsection{Déséquilibre série}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image17} 
+	\caption{Déséquilibre série} 
+\end{figure}
+Soit \(Z_1, Z_2\) les impédances série des voies d'amenée (souvent résistif) et soit un ampli différentiel ayant comme impédances d'entrée:
+\begin{itemize}
+	\item 1 impédance différentielle \(Z_d\) (hyp: \(\infty\))
+	\item 2 impédances mode commun \(Z_{mc}\) (hyp: identiques)
+\end{itemize}
+Souvent \(Z_{mc} = \SI{e10}{\ohm}\)  \(\parallelsum\) capa en \si{\pico\farad} \(\Rightarrow \text{ passe-bas }f_c\approx \SI{10}{\hertz}\). Nous avons donc:
+\[v_d = v_2-v_1\qquad v_d'=v^+-v^-\qquad v_{mc}=\frac{v_1+v_2}{2}\qquad v_{mc}'=\frac{v^++v^-}{2}\]
+Les tensions à l'entrée de l'ampli sont:
+\[v^-=\frac{Z_{mc}}{Z_1+Z_{mc}}v_1\qquad v^+=\frac{Z_{mc}}{Z_2+Z_{mc}}v_2\]
+en faisant l'hypothèse que \(Z_{mc}\gg Z_1, Z_2\):
+\[v_{mc}'\approx v_{mc}\qquad v_d'=v_d+\frac{Z_1-Z_2}{Z_{mc}}v_{mc}\]
+On se rend compte que la tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(Z_1\text{ et }Z_2\) sont différentes et que \(Z_{mc}\) est petit. Tout déséquilibre engendrera une dégradation du \(CMRR\). En particulier, il faut que \(R_1=R_2\) pour une bonne réjection des tensions de mode commun continues et basse fréquence.
+\subsubsection{Déséquilibre parallèle}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image18} 
+	\caption{Désiquilibre parallèle} 
+\end{figure}
+On ajoute maintenant \(C_1', C_2'\) des impédances \(\parallelsum\) (parasite) venant s'ajouter aux 2 capas \(C_{mc}\) de l'ampli. Nous avons donc:
+\[C_1=C_1'+C_{mc}\qquad C_2=C_2'+C_{mc}\] 
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image19}
+\end{figure}
+En supposant toujours que \(Z_d\gg\)
+\[v^-=\frac{(R_{mc} \parallelsum C_1)}{R_1+(R_{mc} \parallelsum C_1)}\qquad v^+=\frac{(R_{mc} \parallelsum C_2}{R_2+(R_{mc} \parallelsum C_2)}\] 
+Dans la gamme de fréquence \(\frac{1}{R_{mc}C_1},\frac{1}{R_{mc}C_2}\ll\omega_{mc}\ll\frac{1}{R_1C_1},\frac{1}{R_2C_2}\) on a:
+\[v_{mc}'\approx v_{mc}\qquad v_d'=v_d+j\omega(R_1C_1-R_2C_2)v_{mc}\]
+De nouveau, la tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(C_1\text{ et }C_2\) sont différentes, mais cette fois, c'est surtout pour les fréquences plus élevées.\\
+
+En pratique, \(C_1'\text{ et }C_2'\) sont des capas parasites existant par rapport au blindage électrostatique des voies d'amenée, alors que précédemment, on a fait l'hypothèse d'être à la masse. En portant le blindage à la tension de mode commun \(v_{mc}\), on annule la tension différentielle parasite due au déséquilibre de \(C_1', C_2'\), c'est la \emph{garde}.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image20} 
+	\caption{Désiquilibre parallèle: garde} 
+\end{figure}
+\subsection{Montage différentiel avec \(v_{mc}\) élevée}
+Avant, on avait \(2N+1\) conducteurs et un \(v_{mc}\) relativement faible (les 2 références restaient proches). Dans le cas d'un source flottante (pas connectée à la référence) on a:
+\begin{itemize}
+	\item \(2N\) conducteurs
+	\item tension de mode commun quelconque et variable dans le temps (AC + DC)
+\end{itemize}
+Une très mauvaise idée car nous aurons une source de perturbations importante qui risquerait de détruite le matériel par surtension.
+
+N.B.: vérifier la capa de l'ampli à tenir la tension de mode commun (?).
+\subsubsection{1\up{ère} solution: bias resistor pour source flottante}
+Il faut limiter la tension de mode commun, donc soit on utilise \(2N+1\) conducteurs (donc retour au cas précédent) soit on utilise des résistances offrant une liaison galvanique de haute impédance ("bias resistor):
+\begin{itemize}
+	\item meilleur symétrie que \(2N+1\) conducteurs
+	\item valeur suffisamment élevée pour ne pas imposer le potentiel des entrées
+	\item mais suffisamment faible pour éviter que la tension de mode commun soit trop éloignée de la référence de l’instrumentation
+	\item typiquement: \SI{10}{\kilo\hertz} à \SI{100}{\kilo\hertz}
+\end{itemize}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image21} 
+	\caption{bias resistor pour source flottante} 
+\end{figure}
+\subsubsection{2\up{ème} solution: ampli d'isolation}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image22} 
+	\caption{Ampli d'isolation} 
+\end{figure}
+Comme ceci l'instrumentation au potentiel du capteur possède sa propre alimentation et donc pas de mode commun.
+\subsection{Conclusion}
+Il y a 3 cas à distinguer:
+\begin{enumerate}
+	\item les références sont identiques:
+	\begin{itemize}
+		\item différence de potentiel nulle ou négligeable: c'est l'exception, les f.e.m. par impédance de masse et parasites sont négligeables, la référence est indifféremment la masse ou la terre. Un simple montage asymétrique convient.
+	\end{itemize}
+	\item les références sont proches:
+	\begin{itemize}
+		\item tension de mode commun "faible": typiquement un cas \(2N+1\) fils. Un montage différentiel "simple" convient (il faut vérifier la limite de l'ampli vis-à-vis du mode commun)
+	\end{itemize}
+	\item les références sont éloignées:
+	\begin{itemize}
+		\item tension de mode commun élevée (ou quelconque): capteur flottant et porté à un potentiel élevé. Il faut limiter le mode commun \(\Rightarrow 2N+1\) fil ou bias resistors ou reprendre le mode commun grâce à l'ampli d'isolation.
+	\end{itemize}
+\end{enumerate}
+De plus, au niveau de la boucle différentielle, les mesures classiques pour limiter les parasites sont le câble torsadé ou coaxial, le blindage des câbles (complexe), etc.
 \section{Transmission des signaux}

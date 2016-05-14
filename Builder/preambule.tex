@@ -2,10 +2,18 @@
 %%% Packages %%%
 %%%%%%%%%%%%%%%%
 
+%%% Compatibilité %%%
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname IncludeInRelease\endcsname\relax
+\usepackage{fixltx2e}
+\fi 					% Si version LaTeX < 2015, inclut un fix.
+
 %%% Général %%%
-\usepackage[utf8]{inputenc}   
+\usepackage[utf8]{inputenc}
 \usepackage[british,french]{babel}
 \usepackage[T1]{fontenc}
+%\addto\extrasfrench{\sisetup{locale = FR,detect-all}} % Switch siunitx en fonction de la langue babel :)
+%\addto\extrasbritish{\sisetup{locale = UK,detect-all}}
 \usepackage{mathpazo}
 \usepackage{lmodern}
 \usepackage{courier}
@@ -18,12 +26,12 @@
 
 
 %%% Bibliographie %%%
-\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+\usepackage[style=alphabetic,backend=biber]{biblatex}
 \usepackage[autostyle]{csquotes}
 \DeclareNameAlias{sortname}{last-first}
 \DeclareFieldFormat{url}{\space\url{#1}}
 \DeclareNameAlias{labelname}{last-first}
-\addbibresource{sample.bib}
+%\addbibresource{sample.bib}
 
 
 %%% Graphiques %%%
@@ -52,6 +60,7 @@
 \usepackage{delarray} % Belles matrices
 \usepackage{siunitx}
 \sisetup{locale = FR,detect-all}
+
 % Pour mettre siunitx en mode français (virgule plutôt que point etc.)
 
 %%% Codes %%%
@@ -115,7 +124,6 @@
 %\pagestyle{headings} % Titre du ch et numéro page dans l'entete
 \renewcommand{\proofname}{Démonstration}
 \selectlanguage{french}
-
 \addto\captionsfrench{\def\tablename{Tableau}}
 
 
