@@ -236,7 +236,7 @@
 		\label{fig:4.6}
 		\end{minipage}
 		\begin{minipage}{0.49\textwidth}
-		\includegraphics[scale=0.4]{ch4/7}
+		\includegraphics[scale=0.41]{ch4/7}
 		\captionof{figure}{}
 		\label{fig:4.7}
 		\end{minipage}
@@ -287,16 +287,18 @@
 			So if we make appear the wall notations, we have
 			\begin{equation}
 				\frac{u_\tau^2}{\nu}\frac{\D u^+ }{\D y^+} = \frac{1}{\kappa}  \frac{u_\tau}{y} \qquad\Rightarrow \frac{\D  u^+}{\D y^+} = \frac{1}{\kappa}\frac{\nu}{yu_\tau} = \frac{1}{\kappa y^+} \qquad \Rightarrow u^+ = \frac{1}{\kappa}\ln y^+ + B.
+				\label{eq:4.37}
 			\end{equation}
 						
 		\begin{wrapfigure}[8]{l}{5cm}
 		\vspace{-5mm}
 		\includegraphics[scale=0.2]{ch4/8}
 		\captionof{figure}{}
+		\label{fig:4.8}
 		\end{wrapfigure}
 		This is theory, let's check what theory says about. When we look at the diagram, our theory matches roughly with the linear (in $\log$) for $50\leq y^+ \leq 500$. For the viscous sublayer represented by the exponential, the curves matches till $y^+ \approx 5$ wall units. That's very small (1/10 - 1/100 of the overloop). There is a smooth transition between the two curves. 
 		
-		\subsubsection{Buffer layer (2)}
+	\	\\ \subsubsection{Buffer layer (2)}
 			The idea is to rewrite the expression of the two zones but with $y^+ = f(u^+)$ 
 			\begin{equation}
 			\begin{aligned}
@@ -309,3 +311,173 @@
 				y^+ = u^+ + \exp (-\kappa B)\left[ \exp(\kappa u^+) - \underbrace{\left( 1 + \kappa u^+ +  \frac{(\kappa u^+)^2}{2}  +  \frac{(\kappa u^+)^3}{6}\right)}_{taylor \ serie \ expansion \ of\ \exp(\kappa u^+)}\right]
 			\end{equation}
 			Indeed when $\kappa u^+$ is small, the second part will be negligible regarding $u^+$ and for high, we found the overlap layer. To have the smooth transition, only two terms are enough but taking more leads to a best fitting with the practice. 
+			
+	
+	\subsection{Inner zone (rough wall)}
+		The wall are never exactly smooth in rality. We already discussed that to have exact similarity between the model and the prototype we must have the same relative rougness ($\lambda /L$). Let's see the effect on velocity profile. In practice it is impossible to do an exhaustive study because of the number of parameters. There is also various forms of roughness: \\
+		
+		\begin{itemize}
+			\item[•] \textbf{uniform sand roughness:} when you blew sand particles on a paper for example 
+			\item[•] \textbf{non uniform sand roughness:} when particles have different scale and form
+			\item[•] \textbf{periodic roughness:} this can be obtained for example if we put wires or square ribs at regular interval. \\
+		\end{itemize}
+		
+		We will consider the first one. In the overlap layer, we expect that \eqref{eq:4.37} remains correct but B will be function of $k^+$ which is $k$, the hight of the grains, in wall units (divided by the inner zone length scale)
+		\begin{equation}
+			u^+ = \frac{1}{\kappa}\ln y^+ + B_1(k^+) \qquad with \qquad k^+ =k \frac{u_\tau}{\nu}
+		\end{equation}
+		We expect that roughness will slow down the fluid meaning that $B_1(k^+) < B$. We can rewrite our equation as 
+		\begin{equation}
+			u^+ = \frac{1}{\kappa}\ln y^+ + B - \Delta u^+ (k^+) \qquad where \qquad \Delta u^+ (k^+) = B - B_1(k^+)
+		\end{equation}
+		where $\Delta u^+$ is the velocity deficit, expected to be $>0$.\\
+		
+		\begin{wrapfigure}[8]{l}{6.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.27]{ch4/9}
+		\captionof{figure}{}
+		\label{fig:4.9}
+		\end{wrapfigure} 
+		In experiments we see indeed that $\Delta u^+$ is a function of $k^+$ and depends on the type of roughness. In which we concerns, we have to look to the triangles. The first observation is that $\Delta u^+ = 0$ for $k^+ \leq 5$, so if the roughness is such that the hight doesn't exceed 5 in wall units, the fluid behaves exactly as the wall was smooth : \textbf{hydraulically smooth regime}. Let's remind that 5 is the upper limit of the viscous sublayer. The conclusion is that, as long as the grains remains barried within the viscous sublayer, roughness does not influence the average velocity profile. For non uniform roughness, there are bigger grains that goes throw this limit. 
+		The second observation is that for higher $k^+$ ($\geq 80$) on the logarithmic axis $\Delta u^+$ respect a line of constant slope 
+		\begin{equation}
+			\Delta u^+ =  \frac{1}{\kappa} \ln k^+ + B_3 \qquad k^+ \geq 80 
+		\end{equation}
+		This means that the velocity profile in this zone is 
+		\begin{equation}
+			u^+   = \frac{1}{\kappa} \ln y^+ + B - \left(  \frac{1}{\kappa} \ln k^+ + B_3 \right) 
+ 		= \frac{1}{\kappa} \ln \frac{y^+}{k^+} + B - B_3  = \frac{1}{\kappa} \ln \frac{y}{k} + B - B_3 
+		\end{equation}
+		We see that the appropriate length scale changes from $\nu / u_\tau$ to beeing $k$ itself and this is called the \textbf{fully rough regime} where we can make another manipulation for $u^+$ 
+		\begin{equation}
+		\begin{array}{c}
+			u^+ = \frac{1}{\kappa}\ln y^+ + B - \Delta u^+ (k^+)  = \frac{1}{\kappa}\ln \frac{y^+}{k^+} + \underbrace{B + \frac{1}{\kappa} \ln k^+ - \Delta u^+ (k^+)}_{B_2(k^+)} \\
+			where \\\\
+			k^+ \leq 5 \quad B_2(k^+) \approx B+\frac{1}{\kappa}\ln k^+ \qquad k \geq 80 \quad B_2(k^+) \approx B-B_3
+		\end{array}
+		\end{equation}
+		
+		\begin{wrapfigure}[10]{l}{5.8cm}
+		\vspace{-2mm}
+		\includegraphics[scale=0.35]{ch4/10}
+		\captionof{figure}{}
+		\end{wrapfigure} 
+		This is shown on this diagram where we have a linear curve for $k\leq 5$ giving $B = 5.5$ (y axis) and then the constant area ($k\leq 80$). Notice that we have an overshoot in the transitional zone between the two, this is important to see. Let's see what happens in the irregular roughness case. If we come back to \autoref{fig:4.9}, we can see that in the fully rough regime, the irregular curve corresopnds to a simple shift of the regular one. In order to approach this second case, let's compute $B_3$ for uniform sand roughness by extrapolating $B - B_2 = 5.5 - 8.5 = -3$. The equivalent sand roughness will be defined in such a way that we have the same $\Delta u^+$ in the fully rough regime where $B_S$ is the universal value of -3 
+		\begin{equation}
+			\Delta u^+ = \frac{1}{\kappa} \ln k^+ + B_3 = \frac{1}{\kappa} \ln k_S^+ + B_{3S} \qquad \Leftrightarrow \frac{1}{\kappa} \ln \frac{k_S^+}{k^+} = \frac{1}{\kappa} \ln \frac{k_S}{k} = B_3-B_{3S}.
+		\end{equation}
+		
+	
+	\subsection{Outer zone}
+		Let's remind that we assumed 
+		\begin{equation}
+			\langle u \rangle = f(y,u_\tau , u_c , h) \qquad \mbox{or for a boundary layer: } u_c \mbox{ outer flow velocity and } h\rightarrow \delta 
+			\label{eq:4.46}
+		\end{equation}
+
+		\begin{wrapfigure}[10]{r}{4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.20]{ch4/11}
+		\captionof{figure}{}
+		\end{wrapfigure} 
+		To determine what this function should be, let's go to the velocity profile in the pipe where we started from to be guided from the curves. These are more or less flat depending on the Reynolds number whith $u/u_c \rightarrow 1$ ($u_c$ velocity at the center of the pipe). Let's imagine that we plot now $1-\frac{\langle u \rangle}{u_c} = \Delta u /u_c$ in function of $y/R$, 1 will become 0 and  $0 \rightarrow 1$, the graph will be reversed (\autoref{fig:4.12} left). The curves seems to be similar, so maybe I take the velocity deficit of the half hight $\Delta u(0.5)/u_c$ which depends on Reynolds number and plot that for $\frac{u_c - \langle u \rangle}{u_c}\frac{u_c}{\Delta u}$ (\autoref{fig:4.12} center). When this = 1, $y/r = 0.5$ and we see that it fall on the same curve as \autoref{fig:4.12} left but we get a single curve. This means that 
+		\begin{equation}
+			\frac{u - \langle u \rangle}{\Delta u} = f\left(\frac{y}{R}\right)
+		\end{equation}
+		where the only scale that doesn't appear based on \eqref{eq:4.46} is $u_\tau$. So if we plot $\frac{u_e  - \langle u \rangle}{u_\tau} = f\left(\frac{y}{R}\right)$ ($u_e$ max velocity at the center) we will obtain a single curve shown on \autoref{fig:4.12} right. 
+\begin{figure}[h]
+\begin{center}
+      \includegraphics[scale=0.19]{ch4/12} \quad  \includegraphics[scale=0.185]{ch4/13} \quad \includegraphics[scale=0.24]{ch4/14}
+\captionof{figure}{}
+\label{fig:4.12}
+\end{center}
+\end{figure}
+
+		Interestingly enough, the logarithmic low is compatible with the outer scaling 
+		\begin{equation}
+			\frac{\langle u \rangle }{u_\tau} = u^+ = \frac{1}{k}\ln y^+ + B
+		\end{equation}
+		But what's $u_e /u_\tau$? We know that 
+		\begin{equation}
+			u_\tau = \sqrt{\frac{\tau _{wall}}{\rho}} \qquad \Rightarrow \frac{u_\tau}{u_e} = \sqrt{\frac{\tau _{wall}}{\rho u_e^2}} = \sqrt{\frac{C_f}{2}} \qquad \Rightarrow \frac{u_e}{u_\tau} = \sqrt{\frac{2}{C_f}} 
+		\end{equation}
+		where we define the \textbf{friction coefficient} $C_f = \frac{\tau _{wall}}{\rho u_e^2 /2}$ as we defined the pressure coefficient $\frac{p-p_\infty}{\rho \uinf ^2 /2}$. By combining the two last equation, we have
+		\begin{equation}
+		\begin{aligned}
+			\frac{u_e - \langle u \rangle}{u_\tau} &= \sqrt{\frac{2}{C_f}} - \frac{1}{\kappa} \ln \left(\frac{yu_\tau}{\nu}\frac{\delta}{\delta}\right) - B = \sqrt{\frac{2}{C_f}} - \frac{1}{\kappa} \ln \frac{\delta u_\tau}{\nu} - B -\frac{1}{\kappa} \ln \frac{y}{\delta}\\
+			&= cst -\frac{1}{\kappa} \ln \frac{y}{\delta}
+		\end{aligned}		
+		\end{equation}
+
+		\begin{wrapfigure}[10]{l}{5.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.25]{ch4/15}
+		\captionof{figure}{}
+		\label{fig:4.13}
+		\end{wrapfigure} 
+		that confirms the previously founded relation. Wa can plot this in logarithmic scale that gives \autoref{fig:4.13}. We see that it obbeys the logarithmic law as in the overlap layer which is compatible with the inner and outer zone scaling. In fact we can rewrite our last equation as 
+		\begin{equation}
+			 \frac{u_e - \langle u \rangle}{u_\tau} = f\left( \frac{y}{\delta}\right) = cst -\frac{1}{\kappa} - g\left(\frac{y}{\delta} \right)
+		\end{equation}
+		where $g\left(\frac{y}{\delta} \right)$ is the deviation compared to the logarithmic law. Because of velocity deficit = 0 when $y/\delta =1$, it turns out that the cst = g(1). As conclusion, we found that the velocity profile is given by 
+		\begin{equation}
+			u^+ = \frac{1}{\kappa} \ln y^+ + B + g\left(\frac{y}{\delta} \right)
+		\end{equation}
+ 		and this is observed on \autoref{fog:4.8} where we observe the deviation at the very right side of the figure. 
+ 		
+ 		\begin{wrapfigure}[9]{r}{5.4cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.4]{ch4/16}
+		\captionof{figure}{}
+		\label{fig:4.16}
+		\end{wrapfigure} 
+		For the case of zero pressure gradient, Coles observed that the deviation from the logarithmic velocity profile $g\left(\frac{y}{\delta} \right)$ is similar to the velocity profile in a half-jet
+or wake
+\begin{equation}
+	g\left(\frac{y}{\delta} \right) = \Pi(x)w \left(\frac{y}{\delta} \right) \approx \Pi(x)2\sin ^2 \left(\frac{\pi}{2}\frac{y}{\delta} \right) 
+\end{equation}
+      which was subsequently called the \textbf{law of the wake}. The coefficient $\Pi (x)$ is the amplitude of the wake, which varies slightly with Reynolds number as shown on Fig. 29, ultimately reaching a constant value equal to about 0.55 for $Re\theta > 5000.$
+      
+     \newpage
+\section{Introduction to turbulent modelling}
+	Let's remind the average Navier-Stokes equation 
+	\begin{equation}
+		\rho \left[ \frac{\partial \bar{u}_i}{\partial t} + \frac{\partial \overline{u_i u_j}}{\partial x_j} \right] = - \frac{\partial \bar{p}}{\partial x_i} + \frac{\partial }{\partial x_j} \Big[ \underbrace{\mu \ \left( \frac{\partial \bar{u}_i}{\partial x_j} + \frac{\partial \bar{u}_j}{\partial x_i} \right)}_{\tau^v_{ij}} - \underbrace{\rho \bar{u_i}' \bar{u_j}'}_{\tau_{ij}^t} \Big]
+	\end{equation}
+	There is still some unknowns, we will try to find equations describing these unknowns. It is possible, but the problem is that we introduce more unknowns than we had before, it doesn't solve the problem. This means that to close the system of equation, one of them has to stop at one stage and model the unkonown terms. One approach is to model directly the Reynold stresses as a function of the average flow quantities, this is called \textbf{first order closure approach}.  The other strategy is to retain the transport equations  for Reynolds stresses and to model the unknows in these equations, \textbf{second order closure model}. We will make an introduction with the first approach. The most corresponding method to this is Bousinesq approach or Eddy viscosity approach. The idea is to use a model analogous to viscous stresses. For these we have the \textbf{Newton's model} that says 
+	\begin{equation}
+		\tau _{ji} = \mu\big( \frac{\D u_i}{\D x_j} + \frac{\D u_j}{\D x_i}  \underbrace{- \frac{2}{3}\delta _{ij}\frac{\D u_k}{\D x_k}}_{=0 \mbox{ constant density}} \big) 
+		\Rightarrow  - \rho \bar{u}_i' \bar{u}_j' = \mu_t \left( \frac{\partial \bar{u}_i}{\partial x_j} + \frac{\partial \bar{u}_j}{\partial x_i} \right) - \rho \underbrace{\overline{u'_k u'_k}}_{2k} \frac{\delta _{ij}}{3}  
+		\label{eq:4.55}
+	\end{equation}
+	where $\mu _t$ is the \textbf{Eddy viscosity coefficient} and where we needed to add the last term in the second expression because if we consider the trace of $- \rho \bar{u_i}' \bar{u}_j'$, so if we contract $i$ and $j$ which gives $\overline{(u'_1)^2 + (u'_2)^2 + (u'_3)^2} \neq 0$ that can be seen as twice the \textbf{fluctuation kinetic energy} $\mathbf{2k}$ while $2\frac{\D u_i}{\D x_i} = 0$. This is one more unknown but we know that 
+	\begin{equation}
+		\frac{\D }{\D w_j} \left(-\rho \frac{2k}{3}\delta _{ij} \right) = \frac{\D}{\D x_i}\left(- \frac{2}{3} \rho k\right) \qquad \Rightarrow - \frac{\D}{\D x_i}\left( p  +\frac{2}{3} \rho k \right)
+	\end{equation}
+	This is add to the pressure gradient because it has the same form and is an effective pressure. The only unknown is now the viscosity to model the 6 unknowns of the Reynolds stresses. Contrary to $\mu$ which is only function of the the fluid thermodynamic state, $\mu_t = f$(fluid properties, average flow field quantities, space coordinates) and varies within the flow. The simpliest model to find it is an algebric model 
+	
+	\subsubsection{Algebric model}
+		It uses some physical intuition and dimentional analysis. We know that $\mu _t = \rho \nu _t$ and $[\nu _t] = L^2T^{-1}$. So we need a caracteristic fluctuation length scale and time scale. We will describe the \textbf{Prandtl’s Mixing Length Model} which says, for
+		\begin{equation}
+			T^{-1} : \qquad \frac{\D \bar{u}}{\D y}
+		\end{equation}
+		and for the length scale, we take the average distance travelled by the fluctuating particle, this is clear that this distance is limited by the wall. This leads Prandtl to consider 
+		\begin{equation}
+			L = \kappa y \qquad \Rightarrow \mu _t = \rho (\kappa y)^2 \frac{\D \bar{u}}{\D y}.
+		\end{equation}
+		We will now see an application of this for the average velocity profile in the overlap layer \autoref{fig:4.7}. We remind that 
+		\begin{equation}
+			\tau _{xy}^{tot} (y) = \tau _{xy}^{V} (y)  + \tau _{xy}^{R} (y) \approx \tau _{wall}
+		\end{equation}
+		we will assume that the total stress is essentialy the stress at the wall. We know that Reynolds stress is dominant in this region which is given by Eddy model \eqref{eq:4.55}
+		\begin{equation}
+		\begin{aligned}
+			&\tau _{wall} = \tau _{xy}^R (y) = \mu_t \frac{\D \bar{u}}{\D y} = \rho (\kappa y)^2 \left(\frac{\D \bar{u}}{\D y}\right)^2 \qquad \Rightarrow \frac{\tau _{wall}}{\rho} = (\kappa y)^2 \left(\frac{\D \bar{u}}{\D y}\right)^2\\
+			&\Rightarrow \frac{\D \bar{u}}{\D y} = \frac{u _\tau}{\kappa y} \qquad \Rightarrow \frac{\D u^+}{\D y^+} = \frac{1}{\kappa y} \qquad \Rightarrow u^+ = \frac{1}{\kappa}\ln y^+ + B
+		\end{aligned}
+		\end{equation}
+		and this is consistant with the universal logarithmic profile in the overlap layer. For the buffer layer, $\mu _t$ is too large, so it's not accurate. So the mixing length has to be reduced near the wall. A popular model for this is the Van Dreast dampings 
+		\begin{equation}
+			l(y) = \left( 1 - \log \left( -\frac{y^+}{A^+} \right) \right) \kappa y = \left( 1 - \exp \left( -\frac{yu_\tau}{26 \nu} \right) \right) \kappa y 
+		\end{equation}
+		where $A^+ = 26$. This is a good approximation for mixing length in the buffer layer. 
