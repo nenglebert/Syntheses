@@ -46,6 +46,7 @@ Il existe plusieurs type de bruit, comme le bruit de type gaussien (c-à-d qui s
 	\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
 	\begin{tikzpicture}[
+	scale=0.6,
 	every pin edge/.style={<-},
 	every pin/.style={fill=yellow!50,rectangle,rounded corners=3pt,font=\small}]
 	\begin{axis}[every axis plot post/.append style={
@@ -105,7 +106,7 @@ Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.
 \end{itemize}
 \subsubsection{Variation en fréquence}
 À ces propriétés s'ajoutent:\begin{itemize}
-	\item La valeur efficace dépend de la fréquence \(\Rightarrow\) \emph{densité spectrale} de bruit \(e_b^2(f)=\left.\frac{d\overline{E_b^2}}{df}\right|_f\quad [\si[per-mode=symbol]{\volt\squared\per\hertz}]\)
+	\item La valeur efficace dépend de la fréquence \(\Rightarrow\) \emph{densité spectrale} de bruit \[e_b^2(f)=\left.\frac{d\overline{E_b^2}}{df}\right|_f\quad [\si[per-mode=symbol]{\volt\squared\per\hertz}]\]
 	\item La couleur du bruit:
 	\begin{itemize}
 		\item bruit blanc: densité spectrale constante en fréquence (uniformément réparti en fréquence, \autoref{fig:bruitblanc})
@@ -232,7 +233,7 @@ Le reste:
 La modélisation du bruit est présenté à la \autoref{fig:bruittrans}.
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image2} 
+	\includegraphics[width=0.4\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image2} 
 	\caption{Bruit dans un transistor}
 	\label{fig:bruittrans}
 \end{figure}
@@ -461,7 +462,7 @@ Il faut donc limiter la source d'émission, implémenter un blindage EM (plus ba
 \underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}. Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image6} 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image6} 
 	\caption{Forme de blindage électrostatique}
 	\label{fig:blindelectrostat}
 \end{figure}
@@ -609,7 +610,7 @@ Dans le cas théorique \(V_{in}=e_s\) (donc pas de parasites).
 	\caption{Single-ended (idéal)} 
 \end{figure}
 \subsubsection{Cas réel}
-Dans le cas réel, il y a des parasites car il existe une impédance de masse non négligeable et qu'il y a des parasites induits dans la boucle. Il en résulte \(V_{in} = e_s + e_p\) et donc un signal dégradé.
+Dans le cas réel, une source parasite \(e_p\) vient s'ajouter car il existe une impédance de masse non négligeable et des parasites induits dans la boucle. Il en résulte \(V_{in} = e_s + e_p\) et donc un signal dégradé.
 \begin{figure}[H]
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image12} 
@@ -656,8 +657,8 @@ Il faut donc maximiser le CMRR (common mode rejection ratio). On en déduit les 
 Pour un multiplexeur, les deux montages s'implémentent comme illustré à la \autoref{fig:multmont}
 \begin{figure}[H]
 	\centering
-	\subfigure[Single-ended]{\label{fig:multsing}\includegraphics[width=0.5\textwidth]{ch3/image15}}
-	\subfigure[Différentiel]{\label{fig:mutldiff}\includegraphics[height=20\baselineskip]{ch3/image16}}
+	\subfigure[Single-ended]{\label{fig:multsing}\includegraphics[width=0.4\textwidth]{ch3/image15}}
+	\subfigure[Différentiel]{\label{fig:mutldiff}\includegraphics[height=15\baselineskip]{ch3/image16}}
 	\caption{Implémentation avec un multiplexeur}
 	\label{fig:multmont}
 \end{figure}
@@ -701,10 +702,10 @@ De nouveau, la tension différentielle est polluée par une fraction de la tensi
 En pratique, \(C_1'\text{ et }C_2'\) sont des capas parasites existant par rapport au blindage électrostatique des voies d'amenée, alors que précédemment, on a fait l'hypothèse d'être à la masse. En portant le blindage à la tension de mode commun \(v_{mc}\), on annule la tension différentielle parasite due au déséquilibre de \(C_1', C_2'\), c'est la \emph{garde}.
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image20} 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image20} 
 	\caption{Désiquilibre parallèle: garde} 
 \end{figure}
-\subsection{Montage différentiel avec \(v_{mc}\) élevée}
+\subsection{Montage différentiel avec \texorpdfstring{\(v_{mc}\)}{tension de mode commun} élevée}\label{subsec:montdiffvmcgrand}
 Avant, on avait \(2N+1\) conducteurs et un \(v_{mc}\) relativement faible (les 2 références restaient proches). Dans le cas d'un source flottante (pas connectée à la référence) on a:
 \begin{itemize}
 	\item \(2N\) conducteurs
@@ -712,7 +713,7 @@ Avant, on avait \(2N+1\) conducteurs et un \(v_{mc}\) relativement faible (les 2
 \end{itemize}
 Une très mauvaise idée car nous aurons une source de perturbations importante qui risquerait de détruite le matériel par surtension.
 
-N.B.: vérifier la capa de l'ampli à tenir la tension de mode commun (?).
+N.B.: vérifier la capa de l'ampli à tenir la tension de mode commun (\!?).
 \subsubsection{1\up{ère} solution: bias resistor pour source flottante}
 Il faut limiter la tension de mode commun, donc soit on utilise \(2N+1\) conducteurs (donc retour au cas précédent) soit on utilise des résistances offrant une liaison galvanique de haute impédance ("bias resistor):
 \begin{itemize}
@@ -723,13 +724,13 @@ Il faut limiter la tension de mode commun, donc soit on utilise \(2N+1\) conduct
 \end{itemize}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image21} 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image21} 
 	\caption{bias resistor pour source flottante} 
 \end{figure}
 \subsubsection{2\up{ème} solution: ampli d'isolation}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image22} 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image22} 
 	\caption{Ampli d'isolation} 
 \end{figure}
 Comme ceci l'instrumentation au potentiel du capteur possède sa propre alimentation et donc pas de mode commun.
@@ -751,3 +752,121 @@ Il y a 3 cas à distinguer:
 \end{enumerate}
 De plus, au niveau de la boucle différentielle, les mesures classiques pour limiter les parasites sont le câble torsadé ou coaxial, le blindage des câbles (complexe), etc.
 \section{Transmission des signaux}
+\subsection{Introduction}
+La majorité des transmissions des signaux se font par tension analogique, le montage différentiel ne résout pas tout (il résout surtout le couplage galvanique). Pour les environnements très parasités et/ou longues distances, nous aurons recours à des transmissions par boucle de courant, par fréquence, par signal optique ou des transmission numérique.
+\subsubsection{Inconvénients d'une transmission en tension}
+Illustrons une transmission en tension (\autoref{fig:transmtension}). Nous aurons donc \(R_{in}\) élevé et \(R_{out}\) faible (adaptation d'impédance en tension) mais la liaison à distance possède une \(R_{\text{fils}}\) non négligeable. La sortie obtenue est donc 
+\[v = e\frac{R_{in}}{R_{out}+R_{in}+R_{\text{fils}}}<e\]
+On a donc un affaiblissement du signal, 1\up{er} inconvénient.\\
+Prenons le cas maintenant d'une tension parasite par couplage magnétique (\autoref{fig:transmtensionpara})
+\[v = (e_s+e_p)\frac{R_{in}}{R_{out}+R_{in}}\]
+Le parasite induit se superpose au signal, 2\up{ème} inconvénient
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image23} 
+	\caption{Transmission en tension: résistance de ligne} 
+	\label{fig:transmtension}
+\end{figure}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image24} 
+	\caption{Transmission en tension: parasite de ligne par couplage magnétique} 
+	\label{fig:transmtensionpara}
+\end{figure}
+\subsection{Boucle de courant}
+Le but est de passer l'information non plus par une tension, mais par un courant. Il est en pratique plus facile d'obtenir \(R_{out}\) (commande en courant) élevée que \(R_{in}\) élevée (commande en tension). Dans le cas de la \autoref{fig:transcourant}, nous obtenons \((R_in+R_{fils})i = R_{out}(i_s-i)\) et donc
+\[i=\frac{R_{out}}{R_{out}+R_{in}+R_{fils}}i_s\]
+L'affaiblissement du signal est beaucoup plus faible qu'en tension (car plus facile d'obtenir un \(R_{out}\) élevée qu'un \(R_{in}\) élevée).\\
+Avec le couplage magnétique (\autoref{fig:transcourantpara}):
+\[i_p=\frac{e_p}{R_{out}+R_{in}}\]
+Comme \(R_{out}\) élevée, \(i_p\ll i_s \Rightarrow\) bonne immunité aux parasites magnétiques.\\
+On décèle donc de la transmission en courant plusieurs avantages:
+\begin{itemize}
+	\item bien pour transmission longue distance (\SI{1}{\kilo\meter} ou plus) car l'impédance des fils influence peu le courant
+	\item bonne immunité aux f.e.m. induites car les valeurs idéales de \(R_{out}\text{ et }R_{in}\) sont plus facile à approcher en commande en courant qu'en commande en tension
+	\item On peut utiliser un courant \(\neq0\) pour représenter la valeur 0 afin de détecter la rupture de la liaison
+\end{itemize}
+Il existe 2 standards encore très répandus: la boucle 4-20 \si{\milli\ampere} ou 10-50 \si{\milli\ampere}. Néanmoins, la solution plus moderne est la transmission numérique.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image35} 
+	\caption{Transmission en courant: résistance de ligne} 
+	\label{fig:transcourant}
+\end{figure}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image36} 
+	\caption{Transmission en courant: parasite de ligne par couplage magnétique} 
+	\label{fig:transcourantpara}
+\end{figure}
+\section{Câblage de la masse}
+On a plusieurs circuits qui partagent la même alimentation et qui doivent s'échanger de l'information, chacun devant être connecté à une référence unique (masse). Comment câbler?
+\subsection{Interconnexion des circuits}
+Il faut éviter les impédances communes \(\rightarrow\) mettre en étoile \(\rightarrow\) si le PCM à une impédance nulle \(\Rightarrow\) pas de couplage d'impédance
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image25} 
+	\caption{Interconnexion des circuits en étoile} 
+\end{figure} 
+\subsection{Câblage de la masse analogique}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image26}
+\end{figure}
+Dans le cas analogique, que faire ? Étoile ou cascade ?
+\subsubsection{Masse en étoile}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image27} 
+	\caption{Masse analogique en étoile} 
+\end{figure}
+\begin{description}
+	\item[Avantages] pas d'impédance commune
+	\item[Désavantages] longueur des pistes et formation de boucle
+\end{description}
+\subsubsection{Masse en cascade}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image28} 
+	\caption{Masse analogique en cascade (amont)} 
+\end{figure}
+Dans ce cas-ci, tous les courants passent pas \(R_1 \Rightarrow V_{in}=V_{out}/\num{e4}\) car on amplifie \(V_{in}+ i_iR_1\)!
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image29} 
+	\caption{Masse analogique en cascade (aval)} 
+\end{figure}
+Dans ce cas-là, nous avons minimiser les courants dans \(R_1\).
+\subsection{Câblage de la masse numérique}
+À haute fréquence, l'effet selfique des câbles devient dominant \(\Rightarrow\) pistes à grande impédance et courants passent par capas parasites. Pour contrer cela, on ne fait plus une masse en étoile mais un plan de masse, ceci minimise les inductances et les boucles. Le courant suivra le chemin de moindre impédance.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image30} 
+	\caption{Plan de masse} 
+\end{figure}
+\subsection{CAN et CNA}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.6\textwidth]{ch3/image31} 
+\end{figure}
+Dans un CAN/CNA, il y a un faible courant qui circule à travers sa capa parasite.\\
+Il faut 2 masses distinctes pour conserver une topologie en étoile et il faut placer le CAN sur le point central de masse
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image32} 
+\end{figure}
+\subsubsection{Câblage des alimentation}
+2 problèmes se posent:
+\begin{itemize}
+	\item Ripple des alimentation à découpage (fluctuation autour de la valeur consigne)
+	\item Consommation des différents circuits
+\end{itemize}
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image33}  
+\end{figure}
+Il faut mettre une capa a côté du composant, elle jouera le rôle de réservoir de charge. Sachant que la résistance parasite est d'autant plus grande que la capa est grande, on placera une plus petite capa en parallèle dans le cas HF car c'est la résistance qui est gênante.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image34}  
+\end{figure}
