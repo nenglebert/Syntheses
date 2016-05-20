@@ -49,7 +49,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Cinématique et dynamique des machines](IRCI3/Cinématique et dynamique des machines/build/Cinématique et dynamique des machines - Enes Ulusoy.pdf)
   - [ ] [Fluid mechanics II](IRCI3/Fluid mechanics II/build/Fluid mechanics II.pdf)
   - [ ] [Instrumentation](IRCI3/Instrumentation/build/Instrumentation - Cédric Hannotier.pdf)
-  - [ ] [Power electronics](IRCI3/Power electronics/build/Power electronics - Enes Ulusoy.pdf)
+  - [ ] Power electronics [(français)](IRCI3/Power electronics/build/Power electronics - Enes Ulusoy.pdf) [(english)](IRCI3/Power electronics/build/Power electronics_EN - Enes Miguel.pdf)
 - [ ] Option Électronique et Télécommunication
   - [ ] [Circuits logiques et numériques](IRCI3/Circuits logiques et numériques/build/Circuits logiques et numériques - Cédric Hannotier.pdf)
   - [ ] [Instrumentation](IRCI3/Instrumentation/build/Instrumentation - Cédric Hannotier.pdf)
