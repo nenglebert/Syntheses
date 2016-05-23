@@ -1,0 +1,682 @@
+\chapter{Méthodes d'approximations (Schrödinger indépendant du temps)}
+Deux méthodes seront vue dans ce chapitre : la méthode des perturbations 
+et la méthode des variations. \\
+
+Pour les perturbations, on considère un hamiltonien proche du problème non perturbé. 
+On part d'un problème proche ou l'on a un hamiltonien diagonalisable et, à partir de 
+ce système, on va "allumer" la perturbation et se rapprocher de la situation réelle. 
+Ceci sera possible en utilisant divers développement en série afin de se rapprocher 
+du cas réel.\\
+
+Pour la méthode des variations, on va définir une fonctionnelle énergie sur laquelle 
+o va appliquer la méthode des variations de sortte à minimiser l'énergie par rapport 
+à une famille de "fonction d'essai". On va ainsi définir une classe de fonction d'onde, 
+les fonctions d'essai, et on va essayer de trouver quelle est celle qui s'approche le 
+plus de la vrai fonction d'onde exacte. \\
+
+On peut s'intéresser soit au problème stationnaire ou son évolution dans le temps. Pour 
+la méthode des perturbations on verra comment l'utiliser pour l'équation stationnaire 
+(ou indépendante du temps) =:soit comment utiliser cette méthode pour approximer les états 
+propres) ou alors la dépendante du temps (comment peut-on approximer la dynamique d'un 
+système toujours avec la méthode des perturbations). On en déduira la règle d'or de Fermi. 
+
+\section{Méthode des perturbations - équation stationnaire}
+	\subsection{Principe base - notation}
+	On veut résoudre le problème aux valeurs propres 
+	\begin{equation}
+	\hat{H}\ket{\psi_n} = E_n\ket{\psi_n}
+	\end{equation}
+	où $\hat{H}$ est indépendant du temps, il s'agit de l'hamiltonien \textit{perturbé}.
+	Il existe un autre hamiltonien qui est le \textit{non-perturbé}
+	\begin{equation}
+	\hat{H_0} : \text{hamiltonien non perturbé}
+	\end{equation}
+	Ce qui est intéressant, c'est que $\hat{H_0}$ est diagonalisable, ce qui n'est pas 
+	nécessairement le cas de $\hat{H}$. Cet hamiltonien non perturbé donne l'équation 
+	aux valeurs propres suivante
+	\begin{equation}
+	\hat{H_0}\ket{\psi_n^{(0)}} = E_n^{(0)}\ket{\psi_n^{(0)}}
+	\end{equation}				
+	Les solutions de cette équation donnent les solutions (désignées par $\ ^{(0)}$) du 
+	problème non-perturbés. 	On peut réécrire l'équation que l'on veut résoudre en fonction 
+	de l’hamiltonien non perturbé
+	\begin{equation}
+	\hat{H} = \hat{H_0} + \hat{W}\qquad \text{où }\ \hat{W} = \lambda\hat{H_1},\quad \lambda\in 
+	\mathbb{R}
+	\end{equation}
+	où $\hat{W}$, un opérateur hermitien, représente la perturbation entre $\hat{H_0}$ et $\hat{H}$ 
+	et $\lambda$ est un paramètre sans dimension. Toute l'idée est de dire que la perturbation 
+	est petite : $\lambda\ll 1$ de sorte que l'on va pouvoir développer en série de puissances de 
+	$\lambda$. Ainsi, sans trop s'écarter de $\hat{H_0}$, on va pouvoir s'intéresser à ce qui nous 
+	intéresse dans le voisinage $\hat{H_0}$. L'équation que l'on veut résoudre devient alors
+	\begin{equation}
+	(\hat{H_0}+\lambda\hat{H_1})\ket{\psi_n} = E_n\ket{\psi_n}
+	\end{equation}
+	Insistons sur le fait que $E_n\ket{\psi_n}$ dépend du paramètre $\lambda$ : on peut voir ce terme
+	comme une fonction analytique de $\lambda$ dans un certain domaine de convergence. L'hamiltonien 
+	$\hat{H}_1$ est introduit pour caractériser l'écart entre $\hat{H}$ et $\hat{H_0}$. Il ne s'agit 
+	que d'une ré-écriture de $\hat{W}$ que l'on cherche également à paramétrer. Les limites suivantes 
+	sont vérifiées
+	\begin{equation}
+	\begin{array}{ll}
+	\lim\limits_{\lambda\rightarrow0} E_n &= E_n^{(0)}\\
+	\lim\limits_{\lambda\rightarrow0} \ket{\psi_n} &= \ket{\psi_n^{(0)}}
+	\end{array}
+	\end{equation}
+	Écrivons maintenant ces fonction comme un développement en série de $\lambda$.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\ket{\psi_n} &= \ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{
+	\psi_n^{(2)}}+\dots\\
+	E_n &= E_n^{(0)}+\lambda E_n^{(1)}+\lambda^2E_n^{(2)}+\dots
+	\end{array}\right.
+	\end{equation}
+	Par substitution, nous obtenons
+	\begin{equation}
+	\begin{array}{ll}
+	(\hat{H_0}+\lambda\hat{H_1})\left(\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}
+	+\lambda^2\ket{\psi_n^{(2)}}+\dots\right) &= \left(E_n^{(0)}+\lambda E_n^{(1)}
+	+\lambda^2E_n^{(2)}+\dots \right)
+	\left(\ket{\psi_n^{(0)}}+\dots\right.\\
+	&\left.\dots+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{\psi_n^{(2)}}+\dots\right),
+	\qquad 	\underline{\forall\lambda}
+	\end{array}
+	\end{equation}		
+	Le terme d'ordre 0 est connu mais les différentes corrections	$\left(\ket{\psi_n^{(1)}}, 
+	E_n^{(1)}, 	\ket{\psi_n^{(2)}}, E_n^{(2)},\dots\right)$ sont inconnues. Comme ces deux 
+	expressions doivent être valables pour tout lambda, on va pouvoir procéder à une 
+	identification terme à terme
+	\begin{equation}
+	\begin{array}{lll}
+	\lambda^0 &: \hat{H_0}\ket{\psi_n^{(0)}} &= E_n^{(0)}\ket{\psi_n^{(0)}}\\
+	\lambda^1 &: \hat{H_0}\ket{\psi_n^{(1)}}+\hat{H_1}\ket{\psi_n^{(0)}} &= E_n^{(0
+	)}\ket{\psi_n^{(1)}}+E_n^{(1)}\ket{\psi_n^{(0)}}\\
+	\lambda^2 &: \hat{H_0}\ket{\psi_n^{(2)}}+\hat{H_1}\ket{\psi_n^{(1)}} &= E_n^{(0
+	)}\ket{\psi_n^{(1)}}+E_n^{(1)}\ket{\psi_n^{(1)}}+E_n^{(2)}\ket{\psi_n^{(0)}}\\		
+	&&\dots
+	\end{array}
+	\label{eq:9.6}
+	\end{equation}
+	La première ligne ($\lambda^0$) est trivialement vraie. Plus on descend en ordre, 
+	plus on aura une précision dans les séries	de puissances. Il ne faut cependant pas 
+	oublier la condition de normalisation 
+	\begin{equation}
+	\bra{\psi_n}\ket{\psi_n} = 1,\qquad \underline{\forall\lambda}
+	\end{equation}
+	On peut exprimer cette condition de normalisation en terme de 	puissances de $\lambda$.
+	\begin{equation}
+	\left(\bra{\psi_n^{(0)}}+\lambda\bra{\psi_n^{(1)}}+\lambda^2\bra{\psi_n^{(2)}}+\dots\right)
+	\left(\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{\psi_n^{(2)}}+\dots\right) = 1
+	\label{eq:9.8}
+	\end{equation}
+	Nous pouvons à nouveau procéder par identification
+	\begin{equation}
+	\begin{array}{llll}
+	\lambda^0 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}} &=1\\
+	\lambda^1 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}} +\bra{\psi_n^{(1)}}\ket{\psi_n^{(0)}} &= 
+	0 = 2\Re\left(\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}\right)\\
+	\lambda^2 &: \bra{\psi_n^{(0)}}\ket{\psi_n^{(2)}} +\bra{\psi_n^{(1)}}\ket{\psi_n^{(1)}}
+	+\bra{\psi_n^{(2)}}\ket{\psi_n^{(0)}} &= 0 =2\Re\left(\bra{\psi_n^{(0)}}\ket{\psi_n^{(2)}}\right)		
+	+\bra{\psi_n^{(2)}}\ket{\psi_n^{(0)}}\\
+	&&\dots
+	\end{array}
+	\end{equation}
+	La première ligne valant l'unité tout comme \eqref{eq:9.8}, les autres lignes doivent 
+	forcément être nulles. On peut remarquer que certains termes sont apparaissent sous la 
+	forme de conjugués, permettant de faire apparaître la partie réelle de ces termes.\\
+	
+	Pour trouver les $\lambda^\alpha$, il faut résoudre ce système de proche en proche (la 
+	connaissance de la 	seconde ligne est nécessaire à la résolution de la $3^e, \dots$). Plus 
+	on le résout "loin", plus la précision sera meilleure. Il est possible de voir $\ket{\psi_n}$
+	comme un développement en série de $\lambda$ dont chaque terme peut être vu comme un 
+	certain ket que l'on peut ré-exprimer dans une base. Une base naturelle est celle du 
+	problème non-perturbé :
+	\begin{equation}
+	\ket{\psi_n^{(i)}} = \sum_k C_k\ket{\psi_k^{(0)}}
+	\end{equation}
+	où les $\ket{\psi_k^{(0)}}$ forment la base non-perturbée.
+		
+	\subsection{Perturbation d'un niveau non-dégénéré (1$^{er}$ et $2^e$ ordre)}
+	Nous allons ici chercher à obtenir une expression de nos énergies et états perturbés. Nous 
+	verrons plus tard que la dégénérescence joue un rôle important, mais commençons par nous 
+	attardé sur le cas non-dégénéré.
+		
+		\subsubsection{Énergie au premier ordre}
+		Soit notre problème non-perturbé
+		\begin{equation}
+		\hat{H_0}\ket{\psi_n^{0}} = E_n^{(0)}\ket{\psi_n^{0}}
+		\end{equation}
+		Nous allons partir de la première équation non triviale de \eqref{eq:9.6} (soit 
+		celle de $\lambda^1$)) et la multiplier à gauche par $\bra{\psi_n^{(0)}}$
+		\begin{equation}
+		\underbrace{\bra{\psi_n^{(0)}}\hat{H_0}\ket{\psi_n^{(1)}}}_{E_n^{(0)}\underbrace{
+		\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{=0}}+\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} 
+		= E_n^{(0)}\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{=0}+E_n^{(1)}\underbrace{
+		\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}}}_{=1}
+		\end{equation}
+		On déduit directement que 
+		\begin{equation}
+		E_n^{(1)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}
+		\end{equation}
+		Ce résultat peut être écrit de façon plus générale
+		\begin{equation}
+		\begin{array}{ll}
+		E_n &= E_n^{(0)}+\lambda E_n^{(1)}+\mathcal{O}(\lambda^2)\\
+		&= E_n^{(0)}+\lambda \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}+\mathcal{O}(\lambda^2)\\
+		&= E_n^{(0)}+\ \bra{\psi_n^{(0)}}\underbrace{\lambda\hat{H_1}}_{\hat{W}}\ket{\psi_n
+		^{(0)}}+\mathcal{O}(\lambda^2)\\		
+		\end{array}
+		\end{equation}
+		On appelle
+		\begin{equation}
+		E_n^{(0)}+\ \bra{\psi_n^{(0)}}\hat{W}\ket{\psi_n	^{(0)}}+\mathcal{O}(\lambda^2)
+		\end{equation}
+		le \textit{déplacement de l'énergie} (au premier ordre)(en effet, rappelons que
+		$\hat{W}=\hat{H}-\hat{H_0}$). Il s'agit de l'élément de matrice diagonal (valeur 
+		moyenne) de la perturbation $\hat{W}$ dans l'état propre non-perturbé. Il s'agit 
+		de la \textit{formule 	des perturbations}.\\		
+		
+		Nous allons maintenant regarder la perturbation au premier ordre de l'état 
+		propre. Nous avons fait pour l'énergie, il faut faire de même pour l'état propre 
+		correspondant.
+		
+		\subsubsection{État propre au premier ordre}
+		La procédure est la même que pour l'énergie au premier ordre mais nous allons cette 
+		fois refermer la première équation non triviale de \eqref{eq:9.6} avec 
+		$\bra{\psi_k^{(0)}}$ où $k\neq n$. Le raisonnement est identique
+		\begin{equation}				
+		\underbrace{\bra{\psi_k^{(0)}}\hat{H_0}\ket{\psi_n^{(1)}}}_{E_k^{(0)}
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}}+\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} =
+		E_n^{(0)}\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}+E_n^{(1)}
+		\underbrace{\bra{\psi_k^{(0)}}\ket{\psi_n^{(0)}}}_{=0\ \text{car }\perp}
+		\end{equation}
+		Comme précédemment, nous obtenons
+		\begin{equation}
+		\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}} = (E_n^{(0)}-E_k^{(0)})
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}}
+		\end{equation}
+		On peut développer $\ket{\psi_n^{(1)}}$ dans la base des états propre de
+		l'état non perturbé
+		\begin{equation}
+		\ket{\psi_n^{(1)}} = \sum_k \ket{\psi_n^{(0)}}\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{
+		C_k}	
+		\end{equation}
+		où l'on reconnaît la relation de fermeture. Pour $k\neq n$, nous obtenons
+		\begin{equation}
+		\bra{\psi_k^{(0)}}\ket{\psi_n^{(1)}} = \dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{
+		E_n^{(0)}-E_k^{(0)}} = C_k
+		\end{equation}
+		En substituant
+		\begin{equation}
+		\ket{\psi_n^{(1)}} = \sum_k \dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{
+		E_n^{(0)}-E_k^{(0)}} \ket{\psi_k^{(0)}}
+		\end{equation}
+		L'expression
+		\begin{equation}
+		\ket{\psi_n} = 	\ket{\psi_n^{(0)}}+\lambda\ket{\psi_n^{(1)}}+\lambda^2\ket{
+		\psi_n^{(2)}}+\mathcal{O}(\lambda^2)
+		\end{equation}
+		devient alors
+		\begin{equation}
+		\ket{\psi_n} = \underline{\ket{\psi_n^{(0)}} + \sum_k	\dfrac{\bra{\psi_k^{(0)}}\overbrace{
+		\lambda\hat{H_1}}^{	\hat{W}}\ket{\psi_n^{(0)}}}{E_n^{(0)}-E_k^{(0)}} \ket{\psi_k^{(0)}}} + 
+		\mathcal{O}(\lambda^2)
+		\end{equation}	
+		On obtient une relation "semblable" à celle trouvée pour l'énergie avec l'élément 
+		de matrice 	diagonal de la perturbation (soit la valeur moyenne). Ici, ce qui change, 
+		c'est que l'on regarde tous les autres états propres non-perturbés. On peut remarquer 
+		que pour calculer la perturbation du $n^e$ état on somme sur tous les \textbf{autres} états. 
+		Si l'énergie était dégénérée, nous aurions un zéro au dénominateur : cette expression n'est 
+		valable que pour des énergies non-dégénérées.
+		
+			\subsubsection{Exemple 1 : oscillateur harmonique}
+			Considérons un oscillateur harmonique d'une autre raideur. Il s'agit d'un cas académique 
+			(ce problème peut être résolu en posant $m(1+\lambda)\omega^2=\Omega^2$) mais il est 
+			intéressant pour illustrer les différences obtenues entre la résolution analytique 
+			exacte et la méthode des perturbations.
+			\begin{equation}
+			\hat{H} = \hat{H_0}+\lambda\hat{H_1}\quad\text{ où }\left\{\begin{array}{ll}
+			\hat{H_0} &= \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2\\
+			\hat{H_1} &= \frac{1}{2}m\omega^2x^2\lambda^2
+			\end{array}\right.
+			\end{equation}
+			L'hamiltonien qui nous intéresse est ainsi donné par
+			\begin{equation}
+			\hat{H} = \frac{p^2}{2m}+\frac{1}{2}m(1+\lambda)\omega^2x^2
+			\end{equation}
+			Nous connaissons l'énergie de l'état non-dégénéré
+			\begin{equation}
+			E_n^{(0)} = \left(\frac{1}{2}+n\right)\hbar\omega
+			\end{equation}
+			Calculons le déplacement de l'énergie au premier ordre
+			\begin{equation}
+			\Delta E_n^{(0)} = \bra{\psi_n^{(0)}}\lambda\hat{H_1}\ket{\psi_n^{(0)}} = \lambda \langle V
+			\rangle_{\psi_n^{(0)}} = \frac{\lambda}{2}E_n^{(0)}
+			\end{equation}
+			où nous avons appliqué le théorème du Viriel ($\langle K \rangle = \langle V \rangle =
+			\frac{E_n}{2})$. Nous obtenons comme énergie
+			\begin{equation}
+			E_n = \left(\frac{1}{2}+n\right)\hbar\omega+\frac{\lambda}{2}\left(\frac{1}{2}+n\right)\hbar
+			\omega + \mathcal{O}(\lambda^2) = \left(\frac{1}{2}+n\right)\hbar\omega\left\{1+\frac{\lambda}{2}
+			+\mathcal{O}(\lambda^2)\right\}
+			\end{equation}
+			La solution exacte est
+			\begin{equation}
+			E_n = \left(\frac{1}{2}+n\right)\hbar\Omega = \left(\frac{1}{2}+n\right)\hbar\sqrt{1+\lambda}
+			\end{equation}
+			Le résultat obtenu par la méthode des perturbation est bien le développement en série en 
+			puissance de $\lambda$ ($\sqrt{1+\lambda}\approx 1+\frac{\lambda}{2}$ pour $\lambda\to0$).
+
+			
+			\subsubsection{Exemple 2 : potentiel anharmonique}
+			Considérons un exemple moins trivial que le précédent en rajoutant un potentiel 
+			anharmonique, ici un terme en $x^4$.
+			\begin{equation}
+			\hat{H} = \hat{H_0}+\lambda\hat{H_1}\quad\text{ où }\left\{\begin{array}{ll}
+			\hat{H_0} &= \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2\\
+			\hat{H_1} &= \frac{m^2\omega^3}{\hbar^2}x^4
+			\end{array}\right.
+			\end{equation}
+			Le déplacement de l'énergie au premier ordre est donné par
+			\begin{equation}
+			\Delta E_n^{(0)} = \bra{\psi_n^{(0)}}\lambda\hat{H_1}\ket{\psi_n^{(0)}}  = \frac{\lambda m^3}{\hbar}
+			\bra{\psi_n^{(0)}}x^4\ket{\psi_n^{(0)}}
+			\end{equation}
+			Pour calculer ce déplacement, on peut utiliser les opérateurs de montée et de descente pour 
+			écrire $x$ en fonction de ceux-ci
+			\begin{equation}
+ 			\hat{x} = \sqrt{\dfrac{\hbar}{2m\omega}}(\hat{a}+\hat{a}^\dagger)
+			\end{equation}
+			Il faut dès lors calculer
+			\begin{equation}
+			\bra{n}(\hat{a}+\hat{a}^\dagger)^4\ket{n}
+			\end{equation}
+			Les seuls termes contribuant sont ceux qui provoque deux montées et deux descentes (par exemple
+			$\hat{a}\hat{a}\hat{a}^\dagger\hat{a}^\dagger$). Mais arrêtons-nous la pour cet exemple.\\
+			
+		
+		
+		Revenons donc à nos moutons. Nous avions
+		\begin{equation}
+		\ket{\psi_n} = \ket{\psi_n^{(0)}} + \sum_k	\ket{\psi_k^{(0)}}\dfrac{\bra{\psi_k^{(0)}}\lambda\hat{H_1}
+		\ket{\psi_k^{(0)}}}{E_n^{(0)}-E_k^{(0)}}  + 
+		\mathcal{O}(\lambda^2)
+		\end{equation}
+		Pour quel cela fonctionne correctement, il faut que le terme correctionnel soit 
+		relativement "petit" (et donc $\lambda$ petit). L'état non-perturbé est pondéré par un 
+		coefficient 1 que l'on peut voir comme un vecteur colonne dont seul le premier élément 
+		est non nul et vaut l'unité. Lorsque l'on allume la perturbation, ce vecteur colonne 
+		se voit modifier 
+		\begin{equation}
+		\left(\begin{array}{c}
+		1\\
+		0\\
+		0\\
+		\vdots
+		\end{array}\right)\qquad\rightarrow\qquad\left(\begin{array}{c}
+		1\\
+		\vdots\\
+		\vdots\\
+		\vdots
+		\end{array}\right)
+		\end{equation}
+		où les $\dots$ représentent des "nouveaux" coefficients de pondération. La 
+		condition de validité de la méthode dit que tous ces "nouveaux" coefficient 
+		doivent être petit en norme. Ceci signifie que si on regarde un élément 
+		non diagonale :
+		\begin{equation}
+		\left|\bra{\psi_n^{(0)}}\hat{W}\ket{\psi_n^{(0)}}\right| \ll |E_n^{(0)}-
+		E_k^{(0)}|,\qquad \forall k \neq n
+		\end{equation}
+		
+		Ceci étant dit, intéressons-nous quelque peu au second ordre.
+		
+		\subsubsection{État propre au second ordre}
+		Le point de départ est toujours le même :  nous repartons de notre 
+		système obtenu par identification et considérons cette fois le terme
+		quadratique. En multipliant à gauche par $\bra{\psi_n^{(0)}}$ :
+		\begin{equation}
+		\underbrace{\bra{\psi_n^{(0)}}\hat{H_0}\ket{\psi_n^{(2)}}}_{E_n^{(0
+		)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}+\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}} =
+		 E_n^{(0	)}\bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}+E_n^{(1)}\underbrace{
+		 \bra{\psi_n^{(0)}}\ket{\psi_n^{(1)}}}_{0}+E_n^{(2)}
+		\underbrace{\bra{\psi_n^{(0)}}\ket{\psi_n^{(0)}}}_{1}
+		\end{equation}
+		On trouve alors
+		\begin{equation}
+		E_n^{(2)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}}
+		\end{equation}
+		On remarque que pour déterminer l'énergie à l'ordre deux, il est nécessaire de 
+		connaître l'énergie à l'ordre zéro et à l'ordre un : il faut travailler de proche
+		en proche. En substituant l'expression pour l'ordre $\ket{\psi_n^{(1)}}$ : 
+		\begin{equation}
+		E_n^{(2)} = \bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(1)}} = \sum_k
+		\bra{\psi_n^{(0)}}\ket{\psi_k^{(0)}}
+		\dfrac{\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}}{	E_n^{(0)}-E_k^{(0)}} =
+		\sum_k \dfrac{\left|\bra{\psi_k^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}\right|^2}
+		{E_n^{(0)}-E_k^{(0)}}
+		\end{equation}
+		L'expression
+		\begin{equation}
+		E_n = E_n^{(0)}+\lambda E_n^{(1)}+\lambda^2E_n^{(2)}+\dots
+		\end{equation}
+		devient alors
+		\begin{equation}
+		E_n = \underbrace{\bra{\psi_n^{(0)}}\overbrace{\lambda\hat{H_1}}^{\hat{W}}\ket{\psi_n^{(0)}}}_{\Delta 
+		E_n^{(1)}}
+		 + 
+		\underbrace{\sum_k \dfrac{\left|\bra{\psi_k^{(0)}}\overbrace{\lambda\hat{H_1}}^{\hat{W}}\ket{\psi_n^{(0)}}\right|^2}
+		{E_n^{(0)}-E_k^{(0)}}}_{\Delta 
+		E_n^{(2)}} +
+		\mathcal{O}(\lambda^3)
+		\end{equation}	
+		Cette expression ne fait plus qu'apparaître les énergie et états propres de 
+		l'état non perturbé. Remarquons que dans la correction au 	deuxième ordre pour 
+		l'état fondamental est négative : le numérateur est toujours positif mais vu 
+		que $E_n^{(0)}$ est l'état fondamental, les $E_k^{(0)}$ seront toujours plus grand 
+		de sorte que le dénominateur soit toujours négatif.
+		\begin{equation}
+		\Delta E_n^{(2)} \leq 0
+		\end{equation}
+		
+	\subsection{Perturbation d'un niveau dégénéré (1$^{er}$ ordre)}
+	Considérons maintenant le cas où les énergies sont dégénérées et notons $i$ la 
+	dégénérescence. En tenant compte de celle-ci, nous pouvons naturellement écrire
+	\begin{equation}
+	\hat{H_0}\ket{psi_{n,i}^{(0)}} = E_n^{(0)}\ket{psi_{n,i}^{(0)}},\qquad i=1,\dots, g_n
+	\end{equation}
+	On pourrait avoir une levée de la dégénérescence en allumant la 
+	perturbation. Inversement, si nous avons quatre niveaux distincts, il peut être possible 
+	d'obtenir une quadruple dégénérescence en éteignant progressivement la perturbation, 
+	$\lambda\to 0$.
+	\begin{equation}
+	\lim\limits_{\lambda\to 0} \ket{\psi_{n,i}} \equiv \ket{\phi_{n,i}} = \sum_{k=1}^{g_n} C_k 
+	\ket{\psi_{n,k}^{(0)}}
+	\end{equation}
+	En effet, il serait faux de croire que $\ket{\psi_{n,i}}$ va forcément tendre vers 
+	$\ket{\psi_{n,i}^{(0)}}$, il n'y a pas de raison de tendre vers les états de base 
+	choisis arbitrairement. Il n'y a pas une correspondance mais on sait qu'ils vont 
+	tous tendre vers des état qui appartiennent à un certain espace propre. En allumant 
+	la perturbation, on pourrait ainsi avoir une levée de la dégénérescence.	
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\ket{\psi_{n,i}} &= \ket{\phi_{n,i}^{(0)}} + \lambda\ket{\psi_{n,i}^{(1)}} + \dots\\
+	E_{n,i} &= E_n^{(0)} + \lambda E_{n,i}^{(1)} + \dots
+	\end{array}\right.
+	\end{equation}
+	Ce qui change c'est que ici, à cause de la dégénérescence, il faut calculer l'ordre
+	zéro de la correction $\ket{\phi_{n,i}^{(0)}}$ (ce qui était avant trivial) en plus 
+	des autres termes. Insérons ceci dans l'équation de Schrödinger
+	\begin{equation}
+	\bra{\psi_{n,j}^{(0)}}H_1\ket{\phi_{n,i}^{(0)}} = E_{n,i}^{(0)}
+	\bra{\psi_{n,j}^{(0)}}\ket{\phi_{n,i}^{(0)}}
+	\end{equation}
+	Il faut maintenant exprimer les états $\ket{\phi_{n,i}}$ dans la base. Nous avions déjà 
+	écris	
+	\begin{equation}
+	\ket{\phi_{n,i}^{(0)}} = \sum_{k=1}^{g_n} C_k \ket{\psi_{n,k}^{(0)}}
+	\end{equation}
+	Le but est d'ici de déterminer les coefficients $C_k$ jusqu'ici inconnus afin d'obtenir 
+	les états propres de l'ordre 0, qui permettront le calcul	de l'ordre 1,\dots \\
+	Fixons $n$ et $i$ et remplaçons notre dernière expression dans l'avant dernière
+	\begin{equation}
+	\sum_{k=1}^{g_n} \bra{\psi_{n,j}^{(0)}}\hat{H_1}\ket{\psi_{n,k}^{(0)}}.C_k = E_{n,i}^{(0)}
+	\sum_{k=1}^{g_n} \underbrace{\bra{\psi_{n,j}^{(0)}}\ket{\psi_{n,k}^{(0)}}}_{\delta_{jk}}.C_k
+	\end{equation}
+	On retrouve bien l'élément de matrice de la perturbation. On peut ré-écrire cela de façon 
+	plus compacte
+	\begin{equation}
+	\sum\left[\underbrace{\bra{\psi_{n,j}^{(0)}}\hat{H_1}\ket{\psi_{n,k}^{(0)}}}_{\mathcal{M}_{jk}}-
+	E_{n,i}\underbrace{\delta_{jk}}_{\mathbb{1}}\right]C_k=0	
+	\end{equation}	
+	Intéressons-nous à la différence avec le cas précédent. A l'ordre 1, il suffisait de prendre 
+	l'unique élément de matrice $\bra{\psi_n^{(0)}}\hat{H_1}\ket{\psi_n^{(0)}}$. Ici, à cause 
+	de la dégénérescence, il faut exprimer ça sous la forme d'une matrice de perturbation dans 
+	l'espace propre du cas non-dégénéré. C'est cette matrice, d'ordre $g_n\times g_n$ qu'il 
+	faudra diagonaliser : les $n$ valeurs propres donneront les $n$ déplacements en énergie 
+	dus aux perturbations\footnote{Le cas non dégénéré n'est que le cas particulier de la 
+	matrice $1\times1$}.
+	\begin{equation}
+	(\mathcal{M}_{jk}-E\delta_{jk})C_k=0
+	\end{equation}
+	
+	
+	
+
+\section{Méthode des variations}
+	\subsection{Fonctionnelle énergie, cas du niveau fondamental}	
+		\subsubsection{Principe}
+		Considérons un certain $\ket{\phi}\in\mathcal{E}_H$ que l'on nomme 
+		\textit{ket d'essai}. Celui-ci va dépendre d'un ou plusieurs paramètres $\alpha$. 
+		Cette méthode se base sur une fonctionnelle particulière : a chaque $\ket{\phi}$ on va 
+		faire correspondre une 	valeur réelle. Cette "fonctionnelle particulière" n'est autre 
+		que la fonctionnelle énergie $W$:
+		\begin{equation}
+		\text{Fonctionnelle énergie : }\ W\left(\ket{\phi}\right) \equiv \dfrac{\bra{\phi}\hat{H}\ket{\phi}}{
+		\bra{\phi}\ket{\phi}}
+		\end{equation}
+		On peut voir celle-ci comme une \textit{"énergie moyenne de $\phi$"}. En particulier, 
+		regardons l'application de la fonctionnelle sur un état propre
+		\begin{equation}
+		\underline{W(\ket{\psi_n}) = E_n}
+		\end{equation}
+		
+		\subsubsection{Niveau fondamental}
+		Quel que soit le ket sur lequel on applique notre fonctionnelle, on obtient toujours 
+		une borne supérieure à l'énergie du niveau fondamental
+		\begin{equation}
+		\begin{array}{lll}
+		W(\ket{\phi}) &\geq E_0&\qquad\ \  \forall\ket{\phi}\\
+		W(\ket{\phi}) &=0 &\qquad\Leftrightarrow \ket{\phi}=\ket{\psi_0}
+		\end{array}
+		\end{equation}
+		Montrons le. Pour cela, exprimons $\ket{\phi}$ sous la forme d'une combinaison linéaire des 
+		états $\ket{\psi_n}$
+		\begin{equation}
+		\ket{\phi} = \sum_n C_n\ket{\psi_n}
+		\end{equation}
+		On montre alors aisément le résultat annoncé
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		\bra{\phi}\hat{H}\ket{\phi} &=\DS \sum_{n,n'} C_{n'}^*C_n 
+		\underbrace{\bra{\psi_{n'}}\hat{H}\ket{\psi_n}}_{\delta_{n,n'}} = \sum_n |C_n|^2 E_n\\
+		\bra{\phi}\ket{\phi} &=\DS \sum_n |C_n|^2\\
+		\rightarrow &\phantom{0 }\DS\  \sum_n |C_n|^2 E_n \geq E_0\sum_n |C_n|^2 \Leftrightarrow \sum_n 
+		\underbrace{|C_n|^2}_{\geq 0,\forall n}\underbrace{(E_n-E_0)}_{\geq 0,\forall n} \geq 0
+		\end{array}\right.
+		\end{equation}
+		On peut ainsi avoir une assez bonne approximation du fondamental mais en l'approchant 
+		par le haut : il s'agit bien d'une borne supérieure. Pour trouver le niveau fondamental, 
+		il faut minimiser $W(\ket{\phi_\alpha}) = W(\alpha)$ : le problème sera de minimiser 
+		$\alpha$. Commençons par un exemple très simple et académique : l'oscillateur harmonique.
+		
+		\textsc{Exemple 1 : l'oscillateur harmonique}\ \\
+		L'hamiltonien de l'O.H. est donné par
+		\begin{equation}
+		\hat H = \frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2
+		\end{equation}
+		Il faut choisir une fonction d'onde de $x$ qui dépend de $\alpha$ en guise de fonction 
+		d'essai. Considérons 
+		\begin{equation}
+		\phi(x) = \sqrt{\dfrac{2\alpha^3}{\pi}}\dfrac{1}{x^2+\alpha^2}
+		\end{equation}				
+		Nous devons calculer (pas la peine de prendre le conjugué, la fonction d'essai est 
+		entièrement réelle)
+		\begin{equation}
+		\begin{array}{ll}
+		\bra{\phi_\alpha}\hat{H} \ket{\phi_\alpha} &=\DS \int_{-\infty}^\infty \phi_\alpha(x)\left(
+		-\dfrac{\hbar^2}{2m}\dfrac{\partial^2}{\partial x^2} + \dfrac{1}{2}m\omega^2x^2\right)
+		\phi_\alpha(x)\ \text{dx}\\
+		&=\DS \dfrac{\hbar^2}{4m\alpha^2}+\dfrac{1}{2}m\omega^2\alpha^2
+		\end{array}
+		\end{equation}
+		Nous devons minimiser cette fonction en $\alpha$
+		\begin{equation}
+		E_{approx} = \min_\alpha W(\alpha)
+		\end{equation}
+		En posant $x=\alpha^2$, on trouve
+		\begin{equation}
+		\begin{array}{lll}
+		&f(x) &=\DS \frac{\hbar^2}{4mx}+\frac{1}{2}m\omega x\\
+		\rightarrow& 0 =\DS \frac{\partial f}{\partial x} = -\frac{\hbar^2}{4m x^2}+\frac{1}{2}m\omega
+		\end{array}
+		\end{equation}
+		Nous trouvons
+		\begin{equation}
+		x^2 = \dfrac{\hbar^2}{2m^2\omega^2} \quad\Leftrightarrow\quad \alpha^2 = \dfrac{\hbar}{\sqrt{2}m
+		\omega}
+		\end{equation}
+		En substituant ceci, on trouve l'énergie approximée
+		\begin{equation}
+		\begin{array}{ll}
+		E_{approx} &=\DS \min_\alpha W(\alpha)\\
+		&=\DS \dfrac{\hbar^2}{4m}\frac{m\omega\sqrt{2}}{\hbar}+\frac{1}{2}m\omega\frac{\hbar}{\sqrt{2}m
+		\omega}\\
+		&=\DS\dfrac{\hbar\omega}{\sqrt{2}}	
+		\end{array}
+		\end{equation}
+		On vérifie bien que 
+		\begin{equation}
+		E_0=\frac{\hbar\omega}{2} < E_{approx} = \frac{\hbar\omega}{\sqrt{2}}
+		\end{equation}\ \\
+		
+		Il est possible de retrouver le principe d'incertitude de Heisenberg en se basant sur la relation
+		\begin{equation}
+		\bra{\phi}\hat{H}\ket{\phi} \geq E_0
+		\end{equation}		
+		Partons du cas de l'oscillateur harmonique
+		\begin{equation}
+		\frac{1}{2m}\bra{\phi}p^2\ket{\phi} + \frac{1}{2}m\omega^2\bra{\phi}x^2\ket{\phi} \geq 
+		\frac{\hbar\omega}{2}
+		\end{equation}
+		Multiplions cette expression par $m\omega$ :
+		\begin{equation}
+		(m\omega)^2\bra{\phi}x^2\ket{\phi} - \hbar(m\omega) + \bra{\phi}p^2{\phi} \geq 0\qquad 
+		\forall (m\omega)
+		\end{equation}
+		Pour que ceci soit vrai, il faut que le discriminant de cette expression soit négatif ou 
+		nul 
+		\begin{equation}
+		\Delta = \hbar^2-4\bra{\phi}x^2\ket{\phi}\bra{\phi}p^2\ket{\phi}\geq 0\qquad\Leftrightarrow
+		\qquad \langle x^2\rangle\langle p^2\rangle \geq \frac{\hbar^2}{4}
+		\end{equation}
+		Où encore
+		\begin{equation}
+		\Delta x.\Delta p \geq \dfrac{\hbar}{2}
+		\end{equation}
+		Ce résultat est logique si l'on se souvient que le principe d'incertitude d'Heisenberg 
+		découle du fait que l'on ne peut descendre plus bas que le fondamental sans quoi on 
+		connaîtrait la position et l'impulsion avec trop de précision. Ce n'est donc pas une 
+		surprise de déduire une telle expression du principe des variations.
+		
+		
+		\textsc{Rmq2 : Relation entre perturbation 1er ordre et variations}\\
+		Pour les perturbations aux premier ordre
+		\begin{equation}
+		\begin{array}{lll}
+		\hat H = \hat{H_0} + \underbrace{\lambda\hat{H_1}}_{\hat{W}},\qquad E_0^{1er} &= E_0^{(0)}+
+		\lambda E_0^{(1)}\\
+		&= \bra{\psi_0^{(0)}}H_0\ket{\psi_0^{(0)}} + \lambda\bra{\psi_0^{(0)}}H_1\ket{\psi_0^{(0)}}\\
+		&= \bra{\psi_0^{(0)}}H_0+\lambda H_1\ket{\psi_0^{(0)}}\\
+		&= \bra{\psi_0^{(0)}}H\ket{\psi_0^{(0)}} \\
+		&\equiv W(\ket{\psi_0^{(0)}}) &\geq E_0
+		\end{array}
+		\end{equation}
+		En effet, il suffit de considérer que $\ket{\psi_0^{(0)}}$ joue le rôle de la fonction 
+		d'essai. On montre également, par la même occasion, que le premier ordre des perturbations 
+		surestime toujours l'énergie fondamentale (ce qui est cohérent avec le fait que, pour le 
+		fondamental, la correction au second ordre est négative).
+		
+		
+	\subsection{Théorème de Ritz}
+	\textit{La fonctionnelle $W(\ket{\phi})$ est stationnaire au voisinage des états propres de 
+	$\hat H$}. Dès lors, pour toute variation infinitésimale, la fonctionnelle sera nulle ssi le ket 
+	d'essai est un des états propres de $\hat H$ : 
+	\begin{equation}
+	\delta W = 0,\quad \forall\ket{\delta\phi}\qquad \Leftrightarrow\qquad \ket{\phi} = 
+	\text{état propre de }\ \hat{H}\ket{\psi_n}
+	\end{equation}
+	On part d'un ket d'essai et on lui applique une variation infinitésimale, de même pour $W$
+	\begin{equation}
+	\begin{array}{ll}
+	\ket{\phi} &\longrightarrow \ket{\phi}+\ket{\delta\phi}\\
+	W &\longrightarrow W +\delta W
+	\end{array}
+	\end{equation}
+	On va alors effectuer tous les calculs au premier ordre du calcul des variation. On peut 
+	réécrire la fonctionnelle en faisant passer le dénominateur de l'autre côté
+	\begin{equation}
+	\bra{\phi}\ket{\phi}W = \bra{\phi}\hat{H}\ket{\phi}
+	\end{equation}
+	Appliquons la variation infinitésimale
+	\begin{equation}
+	\bra{\delta \phi}\hat{H}-W\ket{\phi} + \bra{\phi}\hat{H}-W\ket{\delta\phi}=\bra{\phi}\ket{\phi}
+	\delta W
+	\end{equation}
+	\begin{enumerate}
+	\item Si la fonction d'essai est un état propre
+	\begin{equation}
+	\left.\begin{array}{ll}
+	\ket{\phi}&=\ket{\psi_n}\\
+	W &= E_n
+	\end{array}\right.\Rightarrow \bra{\delta \phi}\underbrace{\hat{H}-E_n\ket{\psi_n}}_{=0}+
+	\underbrace{\bra{\psi_n}\hat{H}-E_n}_{=0}\ket{\delta\phi}=\bra{\psi_n}\ket{\psi_n}\delta W
+	\end{equation}
+	Dès lors
+	\begin{equation}
+	\delta \omega = 0,\qquad \forall\ket{\delta\phi}
+	\end{equation}
+	\item Si la fonctionnelle est stationnaire
+	\begin{equation}
+	\begin{array}{lll}
+	\delta W =0,\quad \forall \ket{\delta\phi} &\Rightarrow \bra{\delta \phi}\hat{H}-W\ket{\phi}+
+	\bra{\phi}\hat{H}-W\ket{\delta \phi} =0&\qquad \forall\ket{\delta \phi}\\
+	&\Rightarrow -i\bra{\delta \phi}\hat{H}-W\ket{\phi}+
+	i\bra{\phi}\hat{H}-W\ket{\delta \phi} =0&\qquad \forall i\ket{\delta \phi}
+	\end{array}
+	\end{equation}
+	En effectuant la différence (les $i$ se simplifient, ils ne sont utiles que pour insérer un 
+	signe négatif)
+	\begin{equation}
+	\bra{\delta \phi}\hat{H}-W\ket{\phi} = 0, \qquad\forall \delta \phi
+	\end{equation}
+	On en déduit les implications suivantes
+	\begin{equation}
+	\hat{H}\ket{\psi} = W\ket{\phi}\qquad\Rightarrow\qquad \ket{\phi} = \ket{\psi_n}\quad;\quad 
+	W=E_n
+	\end{equation}
+	\end{enumerate}	
+	En 1., nous avons montré qu'un état propre implique un état stationnaire alors que en 2. 
+	nous avons montré que si la fonctionnelle est stationnaire, c'est qu'il s'agit d'un 
+	état propre. La méthode des variations nous fourni assez bonne estimation de l'énergie, 
+	le terme d'erreur étant quadratique.
+	\begin{equation}
+	W\left(\ket{\psi_n}+\epsilon\ket{\xi}\right) = E_n+\mathcal{O}(\epsilon^2),\qquad \epsilon\ll1
+	\end{equation}
+	où $\epsilon\ket{\xi}$ est un terme d'erreur. \\
+	
+	Supposons que l'on ai déjà obtenu l'état fondamental $\ket{\psi_0}, E_0$. Pour une fonction 
+	d'essai $\ket{\phi}$ \textbf{orthogonale} à $\ket{\psi_0}$, comme $W(\ket{\phi})\geq E_1$, on 
+	obtient le premier état excité en minimisant la fonctionnelle.\\
+	\begin{proof}\ \\
+	\begin{equation}
+	\dfrac{\bra{\phi}\hat{H}\ket{\phi}}{\sum |C_n|^2 E_n}\geq 
+	\dfrac{E_1\bra{\phi}\ket{\phi}}{E_1\sum |C_n|^2}
+	\end{equation}
+	Comme
+	\begin{equation}
+	\ket{\phi} = \sum_{n=1}^\infty C_n\ket{\psi_n},\qquad C_0=0
+	\end{equation}
+	On montre que
+	\begin{equation}
+	\sum |C_n|^2(E_n-E_1)\geq 0
+	\end{equation}
+	\end{proof}
+	Comment faire en sorte que $\ket{\phi}\perp\ket{\phi_0}$ ? En pratique, nous aurons a 
+	disposition d'autres observables telles que $[\hat{A},\hat{H}]=0$, il suffira de choisir 
+	une famille de fonction d'essai dans les fonctions propres d'une autres valeurs propre 
+	de $\hat{A}$. Par exemple, si $l=0$ donne le fondamental, on choisira une fonction d'essai 
+	avec $l=1$ pour garantir l'orthogonalité.
+	
+	
+	

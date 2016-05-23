@@ -1,0 +1,778 @@
+\chapter{Algèbre des moments cinétiques}
+\section{Moment cinétique orbital}
+	\subsection{Règle de correspondance, relation de commutation}
+	Classiquement, un moment cinétique est défini par la relation
+	\begin{equation}
+	\vec{L_{cl}} = \vec{r_{cl}}\times\vec{p_{cl}}
+	\end{equation}
+	On pourrait être tenté d'appliquer le principe de correspondance mais c'est faux car 
+	$\hat{x}\hat{p}$ n'est pas hermitien
+	\begin{equation}
+	(\hat{x}\hat{p})^\dagger = \hat{p}^\dagger\hat{x}^\dagger = \hat{p}\hat{x}\neq\hat{x}\hat{p}
+	\end{equation}		
+	Il est cependant possible de le rendre hermitien	en le symétrisant correctement : $\frac{1}{2}(\hat{x}\hat{p}
+	+\hat{p}\hat{x})$. L'opérateur "quantique" est donné par la forme symétrisée 
+	\begin{equation}
+	\vec{L} = \frac{1}{2}\left(\hat{\vec{r}}\times\hat{\vec{p}}-\underbrace{\hat{\vec{p}}\times
+	\hat{\vec{r}}}_{-\hat{\vec{r}}\times\hat{\vec{p}}}\right) = \hat{\vec{r}}\times\hat{\vec{p}}
+	\end{equation}
+	où le signe négatif compense le changement de signe du produit vectoriel. Calculons ce moment 
+	cinétique\footnote{\danger\ Les opérateurs ne commutent pas forcément, ne pas être "trop rapide" !}
+	\begin{equation}
+	\vec{L}=\vec{r}\times\vec{p} = \left|\begin{array}{ccc}
+	\vec{1_x} & \vec{1_y} & \vec{1_z}\\
+	\hat{x} & \hat{y} & \hat{z}\\
+	\hat{p_x} & \hat{p_y} & \hat{p_z}
+	\end{array}\right|\qquad\Longrightarrow\qquad\left\{\begin{array}{ll}
+	L_x &= \hat{y}\hat{p_z} - \hat{z}\hat{p_y}\\
+	L_y &= \hat{z}\hat{p_x}-\hat{x}\hat{p_z}\\
+	L_z &= \hat{x}\hat{p_y}-\hat{y}\hat{p_x}
+	\end{array}\right.
+	\end{equation}
+	Imaginons que l'on ai défini l'opérateur $\hat{L'}=\hat{p}\times\hat{r}$. Calculons une de 
+	ses composante :
+	\begin{equation}
+	\hat{L_z'} = \hat{p_x}\hat{y}-\hat{p_y}\hat{x} = \hat{y}\hat{p_x}-\hat{x}\hat{p_y}=-\hat{L_z}
+	\end{equation}
+	L'inversion de $\hat{r}$ et $\hat{p}$ donne un signe négatif comme différence (pfpfp). On a 
+	défini un opérateur antisymétrique, vérifions qu'il s'agit d'une \textbf{observable}% $\hat{\vec{r}}\times\hat{\vec{p}}$
+	. Vérifions que celui-ci est bien hermitien
+	\begin{equation}
+	\hat{L_z}^\dagger = (\hat{x}\hat{p_y}-\hat{y}\hat{p_x})^\dagger = \hat{p_y}^\dagger\hat{x}^\dagger
+	-\hat{p_x}^\dagger\hat{y}^\dagger=\hat{p_y}\hat{x}-\hat{p_x}\hat{y} = \hat{x}\hat{p_y}-\hat{y}
+	\hat{p_x} = L_z
+	\end{equation}
+	Il est intéressant de réaliser au moins une fois le commutateur entre deux composantes
+	\begin{equation}
+	\begin{array}{ll}
+	[L_x,L_y] &= [yp_z-zp_y, zp_x-xp_z]\\
+	&= [yp_z,zp_x]-[yp_z,xp_z]-[zp_y-zp_x]+[zp_y,xp_z]\\
+	&=y[p_z,zp_x]+[y,zp_x]p_z+z[p_y,xp_z]+[z,xp_z]p_y\\
+	&= yz[p_z,p_x]+y[p_z,z]p_x+x[z,p_z]p_y+[z,x]p_zp_y\\
+	&= i\hbar(xp_y-yp_x) = i\hbar L_z
+	\end{array}
+	\end{equation}
+	Les commutateurs 2 et 3 de la seconde ligne sont nuls ($p_z$ commute avec lui même et $y$ 
+	commute avec $x$). De même pour la troisième ligne. Quatrième ligne, le premier et le dernier 
+	commutateur sont nuls (deux éléments de deux espaces distincts commutent). Pour la dernière 
+	ligne, on a utilisé $[p_z,z] = -i\hbar$ et $[z,p_z]=i\hbar$.\\
+	
+	En résumé
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\left[L_x,L_y\right] &= i\hbar L_z\\
+	\left[L_y,L_z\right] &= i\hbar L_x\\
+	\left[L_z,L_x\right] &= i\hbar L_y		
+	\end{array}\right.\qquad\Longrightarrow\qquad \hat{\vec{L}}\times\hat{\vec{L}} = i\hbar
+	\hat{\vec{L}}
+	\end{equation}
+	A droite, une notation condensée qui donnerait zéro dans un cas classique (mais nous sommes 
+	en quantique héhé). On peut vérifier que cela donne bien le résultat attendu
+	\begin{equation}
+	\left|\begin{array}{ccc}
+	\vec{1_x} & \vec{1_y} & \vec{1_z}\\
+	L_x & L_y & L_z\\
+	L_x & L_y & L_z	
+	\end{array}\right|\qquad \longrightarrow \qquad(\hat{\vec{L}}\times\hat{\vec{L}})_z = L_xL_y-L_yL_x
+	 = i\hbar L_z
+	\end{equation}
+	Pour la composition, on s'intéresse à l'opérateur suivant
+	\begin{equation}
+	\hat{L}^2 \equiv \hat{L_x^2}+\hat{L_y^2}+\hat{L_z^2}
+	\end{equation}
+	Calculons son commutateur avec ses différentes composantes\footnote{Je l'admets, c'est un peu 
+	moche mais passons.}
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\begin{array}{ll}
+	\left[L_x,L_x^2+L_y^2+L_z^2\right] &= \left[L_xL_y^2, L_xL_z^2\right]\\
+	&= L_y\overbrace{\left[L_x,L_y\right]}^{i\hbar L_z}+\left[L_x,L_y\right]L_y + L_z\overbrace{\left[L_x,L_z\right]}^{-i\hbar L_y}
+	+\left[L_x,L_z\right]L_z\\
+	&= 0
+	\end{array}\\
+	\left[L_y,L^2\right] &= 0\\
+	\left[L_z,L^2\right] &= 0
+	\end{array}\right.
+	\end{equation}
+	Ceci implique que
+	\begin{equation}
+	[\hat{\vec{L}},L^2] = 0
+	\end{equation}
+	On peut voir que $\left\{\hat{L_z},\hat{L^2}\right\}$ va commuter et former un \textit{ECOC} 
+	: il existe une \textbf{base propre commune} formée de l'ensemble des états
+	\begin{equation}
+	\left\{\ket{l,m}\right\}
+	\end{equation}
+	où $l$ est le nombre quantique orbital, associé à la distribution des valeurs propres
+	 de $L^2$ et $m$ le nombre quantique magnétique associé au spectre de $L_z$. 
+
+
+\section{Moment cinétique total}
+L'idée est de regarder plus loin que l'orbital. Imaginons que l'on ait $N$ particules : 
+chacune a une position $\hat{r_i}$ et impulsion $\hat{p_i}$. On peut créer un moment total
+\begin{equation}
+\vec{L}^{(tot)} = \sum_{i=1}^N \vec{L_i} = \sum_{i=1}^N r_i\times p_i
+\end{equation}
+Dans ce cas la déjà, cet opérateur va toujours vérifier les mêmes relations de 
+commutation
+\begin{equation}
+[L^{(tot)}_x,L^{(tot)}_y] = \left[ \sum_{i=1}^N L_x^{(i)}, \sum_{j=1}^N L_y^{(j)}\right] 
+= \sum_{i=1}^N[L_x^{(i)},L_y^{(i)}] = i\hbar L_z^{(tot)}
+\end{equation}
+En effet, pour donner un commutateur non-nul, il faut nécessairement que $i=j$ : les seules 
+composantes restantes sont alors celles désignant la même particule.\\
+
+
+On s’intéresse à tout triplet de trois opérateurs qui satisfont ces relation 
+de commutation : c'est ce qu'on appellera moment cinétique. On va pour ça 
+s'intéresser aux valeurs propres et tout ce qu'on peut dire. Pour les distinguer, 
+on va les appeler $\vec J$, le \textit{moment cinétique} : ça pourrait être un orbital, une 
+combili d'orbital, un spin, \dots
+\begin{equation}
+\text{Moments cinétiques : }\ \hat{\vec{J}} \equiv (\hat{J_x},\hat{J_y},\hat{J_z})\ \text{ satisfont }\ 
+\left\{\begin{array}{ll}
+\vec{J}\times\vec{J} &= i\hbar\vec{J}\\
+\left[\vec{J},\vec{J^2}\right] &= 0\quad \text{ avec } \vec{J^2}=J_x^2+J_y^2+J_z^2
+\end{array}\right.
+\end{equation}
+De 	façon similaire
+\begin{equation}
+\left\{\hat{J_z}, J^2\right\}\quad\rightarrow\quad \text{ECOC}
+\end{equation}
+Il existe donc une \textbf{base propre commune}
+\begin{equation}
+\left\{\ket{j,m}\right\}	
+\end{equation}
+où $j$ est associé à la quantification des valeurs propres de $J^2$. Le but de la sous-section 
+suivante sera de montrer que $j$ est discret et en nombre fini. Pour se faire, on utilisera les 
+opérateurs élévateurs et abaisseurs. Notons la relation d'orthogonalité
+suivante
+\begin{equation}
+\bra{j',m'}\ket{j,m} = \delta_{jj'}\delta_{mm'}
+\end{equation}
+
+	\subsection{Quantification, opérateurs élévateurs $J_+$ et abaisseurs $J_-$}
+	Par définition
+	\begin{equation}
+	\hat{J}_+ = J_x + iJ_y,\qquad\qquad
+	\hat{J}_- = J_x - iJ_y	
+	\end{equation}
+	Il ne s'agit pas d'observables, mais ils forment une paire d'opérateurs adjoints : $(\hat{J_+})^\dagger = \hat{J_-}$
+	et inversément. Par additions et différences
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	\hat{J_x} &= \frac{1}{2}\left(J_++J_-\right)\\
+	\hat{J_x} &= \frac{1}{2i}\left(J_+-J_-\right)	
+	\end{array}\right.
+	\end{equation}
+	Deux relations de commutations sont directement visibles
+	\begin{enumerate}
+	\item $[\hat{J^2},J_\pm] = 0$
+	\item $[\hat{J_z},\hat{J_\pm}] = \underbrace{[J_z,J_x]}_{i\hbar J_y}\pm i\underbrace{[J_z,J_y]}_{
+	-i\hbar J_x} = i\hbar J_y\pm\hbar J_x = \pm \hbar(J_x\pm iJ_y) = \pm \hbar J_\pm$
+	\end{enumerate}
+
+Nous pouvons appliquer les éléments de notre ECOC sur leurs états propres communs, $\ket{jm}$. On 
+ne sait rien de ces deux nombres complexes, on sait juste qu'ils sont reliés aux valeurs propres 
+des éléments de notre ECOC :
+\begin{equation}
+\left\{\begin{array}{llll}
+\hat{J^2} &\ket{j,m}&=j(j+1)\hbar^2\ket{j,m}&\qquad j\in\mathbb{R}\\
+\hat{J_z} & \ket{j,m}&=m\hbar\ket{j,m}&\qquad m \in \mathbb{R}
+\end{array}\right.
+\end{equation}
+On peut montrer que $j\geq 0$, sachant qu'une norme est forcément positive
+\footnote{Il manque une partie de la démo ici :(}
+\begin{equation}
+\begin{array}{ll}
+\bra{\psi}J^2\ket{\psi} &\geq 0\qquad\forall \psi\\
+\bra{\psi}J^\dagger J\ket{\psi} &\geq 0\\
+\bra{\phi}\ \ \ket{\phi} &\geq 0\qquad \longrightarrow j\geq 0
+\end{array}
+\end{equation}
+Il faut maintenant montrer que ce nombre des discret. Sachant que $J^2$ et $J_\pm$ 
+commute, nous pouvons écrire la première ligne ci-dessous. Cependant, pour la seconde 
+ligne, le commutateur est non nul :
+\begin{equation}
+\begin{array}{ll}
+\hat{J^2}\underline{\hat{J_\pm}\ket{jm}}&\DS = \hat{J_\pm}\hat{J^2}\ket{jm} =
+ j(j+1)\hbar^2\underline{\hat{J_\pm}\ket{jm}}\\
+\hat{J_z}\hat{J_\pm}\ket{jm}&\DS= (\hat{J_\pm}\hat{J_z}\pm\hbar\hat{J_\pm})\ket{jm}\\
+&\DS= m\hbar\hat{J_\pm}\ket{jm}\pm \hbar\hat{J_\pm}\ket{jm}\\
+&\DS= (m\pm 1)\hbar\underline{\hat{J_\pm}\ket{jm}}
+\end{array}
+\end{equation}
+Les relations ci-dessous nous montre deux liens de proportionnalité
+\begin{equation}
+\begin{array}{ll}
+\hat{J_+}\ket{jm} &\propto \ket{j,m+1}\quad \text{ ou } 0\\
+\hat{J_-}\ket{jm} &\propto \ket{j,m-1}\quad \text{ ou } 0
+\end{array}
+\end{equation}
+On va maintenant montrer qu'on peut jamais monter de plus que un. D'un point de vue 
+classique (et ici peu rigoureux), on peut montrer que $m$ ne peut pas descendre 
+trop bas. Sachant qu'une composante est toujours inférieure ou égale à la norme du 
+même vecteur
+\begin{equation}
+\sqrt{J^2} \geq |J_z|\quad\Leftrightarrow\quad \sqrt{j(j+1)}\hbar \geq |m|\hbar
+\end{equation}
+Voyons ce que vaut la norme du ket
+\begin{equation}
+\|J_\pm\ket{jm}\|^2 = \bra{jm}J_\mp J_\pm\ket{jm}
+\label{eq:7.6}
+\end{equation}
+où nous avons utilisé le fait que $J_\pm$ est l'adjoint l'un de l'autre. Faisons 
+une petite parenthèse pour calculer cet élément de matrice
+\begin{equation}
+\begin{array}{ll}
+J_\mp J_\pm &= (J_x\mp iJ_y)(J_x\pm iJ_y) = J_x^2\pm iJ_xJ_y+iJ_yJ_x+J_y^2\\
+&=J^2-J_z^2 \pm i\underbrace{[J_x,J_y]}_{i\hbar J_z} = J^2-J_z^2 \mp \hbar J_z
+\end{array}
+\end{equation}
+Nous pouvons maintenant calculer \eqref{eq:7.6}
+\begin{equation}
+\begin{array}{ll}
+\|J_\pm\ket{jm}\|^2 &=  \overbrace{\bra{jm}J^2\ket{jm}}^{j(j+1)\hbar^2} - \overbrace{\bra{jm}J_z^2\ket{jm}}^{
+m^2\hbar^2}\mp\overbrace{\hbar \bra{jm}J_z\ket{jm}}^{m\hbar}\\
+&= \hbar^2\{j(j+1)-m(m\pm 1)\} \geq 0
+\end{array}
+\end{equation}
+Il s'agit de l'expression du module carré (d'où le $\geq 0$) ou l'on a appliqué un opérateur élévateur 
+ou abaisseur. C'est cette relation qui va empêcher $m$ de monter trop haut ou descendre trop bas.\\
+
+Regardons successivement ce qui se passe pour un élévateur et abaisseur.\\
+	\textsc{Opérateur élévateur}
+	\begin{equation}
+	\|J_+\ket{jm}\| = \hbar^2(j^2+j-m^2-m) = \hbar^2(j-m)(j+m+1)\geq 0
+	\end{equation}
+	Pour satisfaire cette relation deux cas sont possibles : les deux parenthèses positives, ou négatives.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\leq j\\
+	m &\geq -1-m
+	\end{array}\right.\qquad\qquad\qquad	\left\{\begin{array}{ll}
+	m &\geq j\\
+	m &\leq -1-m
+	\end{array}\right.\quad\rightarrow \text{Impossible}
+	\end{equation}
+	
+	
+	\textsc{Opérateur abaisseur}
+	\begin{equation}
+	\|J_+\ket{jm}\| = \hbar^2(j^2+j-m^2+m) = \hbar^2(j+m)(j-m+1)\geq 0
+	\end{equation}
+	Pour satisfaire cette relation deux cas sont possibles : les deux parenthèses positives, ou négatives.
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\geq -j\\
+	m &\leq j+1
+	\end{array}\right.\qquad\qquad\qquad		\left\{\begin{array}{ll}
+	m &\leq -j\\
+	m &\geq j+1
+	\end{array}\right.\quad\rightarrow \text{Impossible}
+	\end{equation}\ \\
+	
+	Nous avons donc quatre inégalités, mais certains sont plus fortes que d'autres. Il reste
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	m &\leq j\\
+	m &\geq j
+	\end{array}\right.\qquad\Longrightarrow\qquad \underline{-j\leq m\leq j}
+	\end{equation}
+	Les valeurs de $m$ sont délimitées les droites $m=\pm j$ formant un cône de valeurs possibles. 
+	La valeur maximale se situe forcément sur une de ces deux droits après avoir ajouté $p$ à $m$ 
+	ou soustrait $q$ à $m$):
+	\begin{equation}
+	\left\{\begin{array}{llll}
+	J_+\ket{j,j} = 0 & \quad \exists p\in\mathbb{N} : m+p=j &\quad \rightarrow j-m=p\in\mathbb{N}\\
+	J_-\ket{j,-j} = 0 & \quad \exists q\in\mathbb{N} : m-p=-j &\quad \rightarrow j+m=q\in\mathbb{N}	
+	\end{array}\right.
+	\end{equation}
+	En sommant ces deux relations
+	\begin{equation}
+	j = \frac{p+q}{2} = \left\{0,\frac{1}{2},1,\frac{3}{2},2\dots\right\},\qquad
+	m = \frac{q-p}{2} = \{j,-j+1,\dots, j-1,j\}
+	\end{equation}
+	Nous avons bien deux nombres quantiques : ils ne peuvent prendre que des valeurs discrètes. Pour
+	$j$ fixé, nous avons $2j+1$ valeurs de $m$ possibles. \\
+	
+	En réalité, on ne peut jamais être totalement alligné sur un axe $J_x$, $J_y$ ou $J_z$ car cela 
+	voudrait dire que les deux autres composantes sont totalement connues : impossible en vertu du 
+	principe d'incertitude.
+
+
+
+	\subsection{Mesure de $J_x$ et $J_y$ dans l'état $\ket{j,m}$}
+	Intéressons-nous aux mesures des différentes projection. Les valeurs propres associées sont 
+	les suivantes : $\hat{J_x}\rightarrow m'\hbar, \hat{J_y}\rightarrow m''\hbar$ et 
+	$\ket{j,m}\rightarrow m\hbar$. Regardons les valeurs moyennes et les variances
+	\begin{enumerate}
+	\item \textit{Valeurs moyennes}.
+	\begin{equation}
+	\bra{jm}J_x\ket{jm} = \bra{jm}\frac{1}{2}(J_++J_-)\ket{jm} = \frac{1}{2}\bra{jm}J_+\ket{jm}+
+	\frac{1}{2}\bra{jm}J_-\ket{jm} =0
+	\end{equation}
+	Or $J_\pm\ket{jm}\propto \ket{j,m\pm 1}$. Comme $\ket{j,m}\perp\ket{j,m\pm1}$, les valeurs 
+	moyennes de $J_x$ et $J_y$ sont nulles.
+	\item \textit{Variances}.\\
+	Il est plus simple de faire apparaître $J^2$ pour faire apparaître les états propres communs
+	\begin{equation}
+	\bra{jm} J_x^2+J_y^2 \ket{jm}= \bra{jm}J^2-J_z^2 \ket{jm} = j(j+1)\hbar^2-m^2\hbar^2 = \hbar^2(j(j+1)
+	-m^2)
+	\end{equation}
+	On a alors
+	\begin{equation}
+	\overbrace{\bra{jm}J_x^2\ket{jm}}^{\Delta J_x^2} = \overbrace{\bra{jm}J_y^2\ket{jm}}^{\Delta J_x^2} 
+	= \frac{\hbar^2}{2}\{j(j+1)-m^2\}\quad \longrightarrow \Delta J^2_{\min} = \frac{\hbar^2}{2}
+	\end{equation}	
+	\end{enumerate}
+	En effectuant le produit des variances, on obtient %\footnote{TT : peu de notes ici, à compléter plz.}
+	\begin{equation}
+	\begin{array}{ll}
+	\Delta J_x\Delta J_y &= \frac{\hbar^2}{2}(j(j+1)-m^2)\\
+	&\geq \frac{\hbar^2}{2}(|m|(|m|+1)-m^2) = \frac{\hbar^2}{2}|m|
+	\end{array}
+	\end{equation}
+	
+	qui est exactement ce que l'on trouve en appliquant le théorème de Robertson	
+	\begin{equation}
+	\Delta J_x\Delta J_y \geq \frac{1}{2}|[J_x,J_y]| \geq \frac{\hbar}{2}\underbrace{|\langle J_z\rangle|}_{m
+	\hbar} \geq \frac{\hbar^2}{2}|m|
+	\end{equation}
+	Les bornes obtenues sont en fait les états qui saturent le principe d'incertitude et ils
+	correspondent aux états permis les plus proches des pôles nord et sud sur la sphère des
+	moments cinétiques\dots
+	
+	\subsection{Convention de Codon Sortley}
+	Rappelons ce qui a été précédemment vu. 
+	\begin{equation}
+	\left.\begin{array}{l}
+	J^2\\
+	J_z
+	\end{array}\right\}\ket{j,m},\qquad J_\pm\ket{j,m} \propto \ket{j,m+1}
+	\end{equation}
+	Nous avions également
+	\begin{equation}
+	\|J_\pm\ket{j,m}\|^2 = [j(j+1)-m(+1)]\hbar^2 >0,\qquad j\in\mathbb{Z}\ \text{ou }\ \mathbb{Z}/2, 
+	\quad -j\leq m \leq j
+	\end{equation}
+	La relation de proportionnalité ci-dessus est vrai à une constante près. Par convention, 
+	on suppose que la phase de cette proportionnalité est nulle
+	\begin{equation}
+	J_\pm \ket{j,m} = \sqrt{j(j+1)-m(\pm 1)}\ket{j,m+1}
+	\end{equation}
+	où cette constante de proportionnalité est la constante de Codon Sortley et la phase vaut bien 
+	1.
+	
+
+
+\section{Quantification du moment cinétique orbital en base position ($l$ entier)}
+Les harmoniques sphériques peuvent s'écrire
+\begin{equation}
+\bra{\Omega}\ket{l,m} = Y_l^m
+\end{equation}
+Intéressons-nous maintenant au cas particulier du moment cinétique lorsque l'origine est orbitale. 
+On notera ce moment cinétique $\vec{L}$.\\
+
+	Nous pouvons décrire $\vec{L}$ en terme d'opérateur
+	\begin{equation}
+	\begin{array}{ll}
+	\hat{L_z} &= \hat{x}\hat{p_y}-\hat{y}\hat{p_x}\qquad (\vec{p} = -i\hbar\vec{\nabla})\\
+	&= -i\hbar(x\partial_y - y\partial_x)
+	\end{array}
+	\end{equation}
+	Pour démontrer que $j$ (ici particularisé à $j=l$) doit être entier, on gagne à passer aux 
+	coordonnées sphériques $r,\theta,\phi$. Par changement de variables
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	x &= r\sin\theta\cos\phi\\
+	y &= r\sin\theta\sin\phi\\
+	z &= r\cos\theta
+	\end{array}\right. 
+	\end{equation}
+	Réécrit dans ces coordonnées, nous obtenons
+	\begin{equation}
+	\hat{L_z} = -i\hbar\dfrac{\partial}{\partial\phi}
+	\end{equation}
+	Que devient alors un état propre de $\hat{L_z}$? Par définition 
+	\begin{equation}
+	\begin{array}{lll}
+	& \hat{L_z}\psi_m(\vec{r}) &= m\hbar\psi_m(\vec{r})\\
+	\Leftrightarrow& -i\hbar \partial_\phi \psi_m(\vec{r}) &= m\hbar\psi_m(\vec{r})
+	\end{array}
+	\end{equation}
+	On va utiliser le méthode de Fourier en supposant une séparation des 
+	variables
+	\begin{equation}
+	\psi_m(\vec{r}) = \Psi_m(r,\theta)\Phi_m(\phi)
+	\end{equation}
+	En substituant cette solution
+	\begin{equation}
+	\begin{array}{lll}
+	& -i\hbar\partial_\phi \Psi_m(\phi) &= m\hbar\Phi_m(\phi)\\
+	\Leftrightarrow& \partial_\phi \Phi_m(\phi) &= im\Phi_m(\phi)\\
+	\Leftrightarrow& \Phi_m(\phi) &= e^{im\phi}
+	\end{array}
+	\end{equation}
+	La solution devient alors
+	\begin{equation}
+	\psi_m(r,\theta,\phi) = \Psi_m(r,\theta)e^{im\phi}
+	\end{equation}
+	Par périodicité, $\phi\rightarrow \phi+2\pi$. Dès lors
+	\begin{equation}
+	\begin{array}{ll}
+	e^{im(\phi+2\pi)} &= e^{im\phi}\\
+	e^{im2\pi} &= 1
+	\end{array}\qquad \Longrightarrow m \in\mathbb{Z}
+	\end{equation}
+	Or, nous avons vu précédemment que
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	l-m \in \mathbb{Z}\\
+	l+m \in \mathbb{Z}	
+	\end{array}\right.
+	\end{equation}
+	Ceci démontre que 
+	\begin{equation}
+	l \in\mathbb{Z}
+	\end{equation}
+	
+	Si l'on considère une valeur demi-entière de $l$, en tournant de $2\pi$, la 
+	fonction d'onde se voit multiplier d'un facteur -1 : le module n'est donc pas 
+	modifier. Dès lors, un spin $1/2$ est quelque chose de bizarre car il faudrait 
+	"tourner deux fois" pour retrouver ce que nous avions initialement. Ceci montre 
+	que le spin n'a pas d'équivalent classique. La vision de la "rotation sur soi-même" 
+	n'est donc pas correcte (à cause du nombre demi-entier, $s=1/2$). Néanmoins, cette 
+	vision "intuitive" reste utilisée.
+	
+	\section{Moment magnétique orbital (spin), rapport gyromagnétique}
+	Il s'agit de la mise en évidence de l'existence du spin. Lorsqu'on a un 
+	moment cinétique d'origine orbitale on peut y associer à un moment dipolaire. 
+	L'orientation du champ magnétique va jouer avec le moment magnétique : cela 
+	déplace les niveaux d'énergie, permettant une mise en évidence du spin. Trois 
+	grande expériences ont montré l'existence du spin
+	\begin{enumerate}
+	\item Expérience de Sten-Gerlach : celle-ci met en évidence le caractère discret 
+	du moment cinétique, son caractère quantique. Elle met également en évidence l'effet 
+	de spin $1/2$.
+	\item Effet Zeeman 
+	\item Précession de Larmor : un dipôle va tourner lorsqu'il est placé dans un 
+	champ magnétique, causant des effets quantiques.
+	\end{enumerate}
+	
+	Introduisons l'observable moment cinétique
+	\begin{equation}
+	\hat{\vec{\mu}} = \gamma_0\hat{\vec{L}}
+	\end{equation}
+	où $\gamma_0$ est le rapport gyromagnétique : il s'agit du rapport entre 
+	l'aspect magnétique $\mu$ et l'aspect cinétique $\vec{L}$. L'hamiltonien décrivant 
+	cette situation est donné par 
+	\begin{equation}
+	\hat{H}_M = -\hat{\vec{\mu}}.\vec{B}
+	\end{equation}
+	Si on prend le cas particulier d'un atome, la particule tourne dans un potentiel central. 
+	
+		\subsubsection{Pas de champ magnétique}	
+		Imaginons qu'il n'y ai 	pas de champ magnétique. Nous avons comme ECOC
+		\begin{equation}
+		\{H, L^2, L_z\}\quad \rightsquigarrow \ket{n_r,l,m} \rightarrow \left\{\begin{array}{ll}
+		E &= E(n_r,l)\\
+		L^2 &= l(l+1)\hbar^2\\
+		L_z &= \hbar m
+		\end{array}\right.
+		\end{equation}
+		Ces observables ont donc un état propre commun renseigné ci-dessus. Il est important de remarquer 
+		que $E$ n'est \textbf{pas} fonction de $m$ (car $B=0$). Comme $-l\geq m\geq l$ et que 
+		l'énergie n'est pas fonction de $m$, cette énergie est $2l+1$ fois dégénérée.\\
+		
+		Dans ce cas sans champ magnétique, nous avons
+		\begin{equation}
+		\gamma_0 = -\frac{e}{2m_e},\qquad \mu_z = -\frac{e}{2m_e}L_z = -m\frac{e\hbar}{2m_e} = 
+		-m\mu_B
+		\end{equation}
+		où $\mu_z$ est la projection su moment magnétique suivante l'axe $z$, $m$ est entier 
+		et $\mu_B \approx 9*10^{-24} J.T^{-1}$ est le \textit{magnéton de Bohr}. Sa valeur est 
+		toute petite car il est associé à l'interaction d'un unique électron dans un champ
+		magnétique. Nous avons ici montré que la projection du moment magnétique ne peut pas 
+		prendre n'importe quelle valeur, mais seulement une nombre entier multiplié par une 
+		certaine constante.
+		
+		\subsubsection{Avec un champ magnétique}
+		Allumons maintenant un champ magnétique suivant l'axe $z$ 
+		\begin{equation}
+		\vec{B}=B\vec{1_z}
+		\end{equation}
+		Dans notre hamiltonien $\hat H$ se rajoute un terme lié à l'interaction magnétique
+		\begin{equation}
+		\hat{H}_M = -\hat{\mu_z}B = m\mu_BB
+		\end{equation}
+		Il s'agit donc d'un nombre entier multiplier par le magnéton de Bohr que multiplie 
+		encore le champ magnétique. Ici, l'énergie sera fonction de $m$, il y aura donc une 
+		levée de la dégénérescence avec l'apparition de $(2l+1)$ sous-niveaux. L'écart entre 
+		deux sous-niveau est donné par $\mu_BB$.
+		
+	
+\section{Moment magnétique intrinsèque, notion de spin}
+	\subsection{Généralisation : moment cinétique $\vec{J}$}
+	Nous allons faire l'hypothèse que les formules précédemment vue vont s'étendre au cas 
+	étudié à l'instant et généraliser. \\
+	On va toujours pouvoir avoir un observateur moment cinétique
+	\begin{equation}
+	\hat{\vec{\mu}} = \gamma\hat{\vec{J}},\qquad \hat{H}_M = -\hat{\vec{\mu}}\vec{B}
+	\end{equation}
+	On peut étendre ces formules à n'importe quel observable moment cinétique. On 
+	retrouvera la même levée de dégénérescence lors 'un champ. En effet,
+	la différence est que ici, contrairement à $l$, $j$ peut être demi-entier. Si 
+	$j$ est entier, nous observerons un nombre impair de raies. Inversement, si $j$ 
+	est demi-entier, le nombre de raies observées serait paires.\\
+	
+	Si le spin vaut $1/2\rightarrow j = 1/2$ et on observe deux raies. C'est cette 
+	observation qui a mis en évidence l'existence du spin $1/2$.	
+	C'est ce qui a été découvert en regardant les atomes alcalins.  Si on regarde 
+	les raies on voit apparaître un nombre pair de raie (exp. de spectroscopie). 
+	On a donc une double division du moment cinétique : un orbital $\vec{L}$ et un 
+	intrinsèque $\vec{S}$. On trouve les relation semblables
+	\begin{equation}
+	\hat{\vec{\mu_S}} = \gamma\hat{\vec{S}},\qquad \hat{H}_M = -\hat{\vec{\mu_S}}.\vec{B}
+	\end{equation}
+	Considérons le cas particulier d'un atome. Le facteur gyromagnétique va être 
+	traditionnellement 	écrit comme
+	\begin{equation}
+	\gamma = g\gamma_0\qquad \text{où }\ \gamma_0 = -\frac{e}{2m_e}
+	\end{equation}
+	où $g\approx 2$, le \textit{facteur gyromagnétique}.
+	
+	Le rapport donne le lien entre moment cinétique et magnétique, dans le 
+	cas d'un spin il faut tenir compte de ce facteur. Ce qui et intéressant (sans 
+	démonstration) c'est que ce facteur gyromagnétique peut être calculé. Si on 
+	prend la MQ relativiste  (généralisation de l'équation de Schrödinger dans un 
+	cadre relativiste) on peut prouver que ce facteur\footnote{Il n'y a en effet 
+	que la relativité qui peut rigoureusement justifier la nécessite d'utiliser le spin.}, 
+	après de rigoureux calculs, vaut exagement 2. Si on utilise une version encore 
+	plus complète (la théorie quantique des champs) où les champs sont également quantifiés, 
+	il est possible de recalculer encore ce facteur. Cei qui est intéressant comme 
+	anecdote est que le calcul de $g$ a été fait à plus de dix décimales, toutes vérifiées 
+	expérimentalement.
+	\begin{center}
+	$g = 2.00231930438$
+	\end{center}
+	Un traitement 100\% quantique est vérifié expérimentalement, via les spectres. Il 
+	s'agit d'une des prédictions de la MQ les plus spectaculaires.
+	
+
+	\subsection{Spin 1/2}
+	Comme nous l'avons fait pour tout moment cinétique, nous avons toujours
+	\begin{equation}	
+	\vec{S},\qquad \vec{S}\times\vec{S} = i\hbar\vec{S},\qquad [\vec{S},S^2]=0
+	\end{equation}
+	Nous avons également un ECOC : il existe alors une base de fonction propres communes 
+	aux observables de cet ECOC.
+	\begin{equation}
+	\{S^2,S_z\}\qquad \rightsquigarrow\qquad \left\{\begin{array}{ll}
+	S^2\ket{s,m_s} &= s(s+1)\hbar^2 \ket{s,m_s}\\
+	S_z\ket{s,m_s} &= m_s\hbar \ket{s,m_s}	
+	\end{array}\right.\quad -s\leq m_s\leq s
+	\end{equation}
+	Pour $s=1/2, m_s = \pm 1/2 \rightarrow \dim\mathbb{E}_H = 2$. Il est possible de construire 
+	une base des états propre
+	\begin{equation}
+	\text{\textsc{Base} : }\ \left\{\begin{array}{ll}
+	\ket{+} &=\DS \ket{\frac{1}{2},\frac{1}{2}}\\
+	\ket{-} &=\DS \ket{\frac{1}{2},-\frac{1}{2}}	
+	\end{array}\right.
+	\end{equation}
+	Appliquons les observables de notre ECOC à ces vecteurs de base
+	\begin{equation}
+	\begin{array}{ll}
+	S^2\ket{\pm} &= \frac{1}{2}\left(\frac{1}{2}+1\right)\hbar^2\ket{\pm} = \frac{3\hbar^2}{4}\ket{\pm}\\
+	S_z\ket{\pm} &= \pm\frac{\hbar}{2}\ket{\pm}
+	\end{array} 
+	\end{equation}
+	Les états propres commun on donc une projection selon $z$ valant $\pm 1/2$.
+	On peut aussi définir des opérateurs de montée et descente
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	S_+\ket{+} &= 0\\
+	S_-\ket{+} &= \hbar\ket{-}
+	\end{array}\right.\qquad\qquad\left\{\begin{array}{ll}
+	S_+\ket{-} &= \hbar\ket{+}\\
+	S_-\ket{+} &= 0
+	\end{array}\right.
+	\end{equation}
+	Nous avions obtenu les relations suivantes	
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	S_x &= \frac{1}{2}(S_++S_-)\\
+	S_y &= \frac{1}{2j}(S_+-S_-)	
+	\end{array}\right.
+	\end{equation}
+	Regardons ce que donne l'application de $S_{x,y}$ sur les vecteurs de base
+	\begin{equation}
+	\left\{\begin{array}{ll}
+	S_x\ket{+} &= \frac{\hbar}{2}\ket{-}\\
+	S_x\ket{-} &= \frac{\hbar}{2}\ket{+}	
+	\end{array}\right.\qquad\qquad\left\{\begin{array}{ll}
+	S_y\ket{+} &= -\frac{i\hbar}{2}\ket{-}\\
+	S_y\ket{-} &= -\frac{i\hbar}{2}\ket{+}	
+	\end{array}\right.
+	\end{equation}
+	On nomme parfois les vecteurs de la base \textit{up} et \textit{down} et on leur associe 
+	une représentation matricielle
+	\begin{equation}
+	\ket{+} \equiv \ket{\uparrow} = \left(\begin{array}{c}
+	1\\
+	0
+	\end{array}\right)\qquad\qquad\ket{-} \equiv \ket{\downarrow} = \left(\begin{array}{c}
+	0\\
+	1
+	\end{array}\right)
+	\end{equation}
+	On peut exprimer les trois opérateurs dans cette base. 
+	\begin{equation}
+	S_z = \dfrac{\hbar}{2}\underbrace{\left(\begin{array}{cc}
+	1 & 0\\
+	0 & -1
+	\end{array}\right)}_{\sigma_z},\qquad S_x = \dfrac{\hbar}{2}\underbrace{\left(\begin{array}{cc}
+	0 & 1\\
+	-1 & 0
+	\end{array}\right)}_{\sigma_x},\qquad S_y = \dfrac{\hbar}{2}\underbrace{\left(\begin{array}{cc}
+	0 & -i\\
+	i & 0
+	\end{array}\right)}_{\sigma_z},\qquad S^2  = \dfrac{3\hbar^2}{4}\underbrace{\left(\begin{array}{cc}
+	1 & 0\\
+	0 & 1
+	\end{array}\right)}_{\mathcal{I}}
+	\end{equation}
+	On retrouve les matrices de Pauli. On peut facilement remarquer que
+	\begin{equation}
+	\hat{S}_{x,y,z} = \frac{\hbar}{2}\hat{\sigma}_{x,y,z},\qquad\qquad \sigma_x^2 = \sigma_y^2 
+	=\sigma_z^2 = \mathbb{1}
+	\end{equation}
+	Et donc
+	\begin{equation}
+	S^2 = \frac{\hbar^2}{4}(\mathbb{1}+\mathbb{1}+\mathbb{1}) = \frac{3\hbar^2}{4}\mathbb{1}
+	\end{equation}
+
+	Nous pouvons maintenant passer au dernier aspect important : addition ou composition des 
+	moments cinétiques. La subtilité se cache dans les nombres quantiques.
+	
+\section{Règles de couplage (addition) de moments cinétiques}
+Ces règles ont une importance capitale lorsque l'on analyse finement les spectres 
+(un niveau est en fait constitué de très fins sous-niveau) afin d'arriver à la 
+structure fine et hyperfine. Ceci résulte du couplage spin orbite $\vec L\vec S$. 
+Ces deux moments vont interagir et lever une dégénérescence très légère. Hyperfine, 
+c'est encore plus précis : il s'agit du couplage entre plusieurs spins (le spin de 
+l'électron et du proton pour un atome d'hydrogène, on va pouvoir associer un moment 
+magnétique à ces deux spin ce qui va donner lieu à une levée de la dégénérescence). 
+Ceci mène à la raie à 21cm de l'hydrogène neutre : le fondamental est constitué de 
+deux énergie très peu différente correspondant à une raie de 21 cm. C'est utilisé pour 
+détecter la présence d’hydrogène atomique dans les nuages interstellaires. \\
+
+Trêve de bavardage, additionnons deux moments cinétiques
+\begin{equation}
+\left.\begin{array}{ll}
+\vec{J_1}\in\mathcal{E}_1\\
+\vec{J_2}\in\mathcal{E}_2
+\end{array}\right\}\qquad \begin{array}{ll}
+\hat{\vec{J}} &= \hat{\vec{J_1}}\times\hat{\vec{J_2}}\\
+&= \hat{\vec{J_1}}\times\mathbb{1}_2+\mathbb{1}_1\hat{\vec{J_2}}
+\end{array}\qquad\quad \hat{\vec{J}} \in \mathcal{E}_1\times\mathcal{E}_2
+\end{equation}
+Les deux relations suivantes sont également vérifiées
+\begin{equation}
+\left\{\begin{array}{ll}
+\vec{J}\times\vec{J} &= i\hbar\vec{J}\\
+\left[J^2,\vec{J}\right] &=0
+\end{array} \right.
+\end{equation}
+Montrons le 
+\begin{enumerate}
+\item Sachant que les commutateurs entre deux opérateurs appartenant à deux espaces distincts 
+sont nuls, nous pouvons directement écrire 
+ \begin{equation}
+\begin{array}{ll}
+[J_x,J_y] &= [J_{1x}+J_{2x}, J_{1y}+J_{2y}]\\
+&= \underbrace{[J_{1x},J_{1y}]}_{i\hbar J_{1z}} +\underbrace{[J_{2x}J_{2y}]}_{i\hbar J_{1z}} 
+= i\hbar J_z
+\end{array}
+\end{equation}
+\item Commençons par développer le carré
+\begin{equation}
+[J_1^2 + 2J_1J_2 + J_2^2, J_{1z}+J_{2z}]
+\end{equation}
+$J_1^2$ et $J_2^2$ commutent respectivement avec $J_1$ et $J_2$ et leur commutent entre eux 
+(deux opérateurs appartenant à deux espaces distincts\dots). Nous avons alors
+\begin{equation}
+[2J_1J_2] = 2[J_{1x}J_{2x}+J_{1y}J_{2y}+J_{1z}J_{2z}, J_{1z}+J_{2z}]
+\end{equation}
+où $J_{1z}J_{2z}$ ne joue pas de rôle, pour les même raison que précédemment. Par linéarité
+\begin{equation}
+2[J_{1x}J_{2x},J_{1z}J_{2z}] + 2[J_{1y}J_{2y}, J_{1z}J_{1z}]
+\end{equation}
+Par les règles sur le commutateur, nous avons 
+\begin{equation}
+2J_{1x}(-i\hbar)J_{2y} + 2(-i\hbar)J_{2y}J_{2x} + 2J_{1y}(i\hbar)J_{2x}+2(i\hbar)J_{1x}J_{2y} = 0
+\end{equation}
+\end{enumerate}
+
+On peut montrer (exercice, en vérifiant la commutation) que nous avons bien l'ECOC suivant
+\begin{equation}
+\{J^2, J_z, J_1^2, J_2^2\}\qquad\rightsquigarrow\qquad \ket{j,m,j_1,j_2}
+\end{equation}
+Il s'agit de la \textit{base couplée}.\\
+Nous aurions également pu former une autre base, en partant de l'ECOC trivial suivant
+\begin{equation}
+\{J_1^2, J_{1z}, J_2^2, J_{2z}\qquad\rightsquigarrow\qquad \ket{j_1,m_1;j_2,m_2}
+\end{equation}
+Il s'agit de la \textit{base découplée}.
+
+\subsection{Coefficients de Clebsch-Gordan}
+Ce sont les coefficients qui interviennent quand on écrit la base couplée en fonction 
+de la base découplée
+\begin{equation}
+\ket{j,m,j_1,j_2} = \sum_{m_1, m_2} C^{j,m}_{j_1,m_1,j_2,m_2} \ket{j_1,m_1;j_2,m_2}
+\end{equation}
+Parfois, ce coefficient est nul. Il nous reste à voir comment traiter les différents 
+nombres quantiques. Commençons par voir que
+\begin{equation}
+\vec{J} = \vec{J_1}+\vec{J_2},\qquad J_z = J_{1z}+J_{2z}\qquad \rightarrow m=m_1+m_2
+\end{equation}
+
+Une explication "schématique" a été vue en cours (cours 8) mais il n'est malheureusement 
+pas possible de l'inclure ici. On retiendra qu'il "suffit" d'appliquer les relations 
+triangulaires
+\begin{equation}
+|j_1-j_2| \leq j \leq j_1+j_2
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

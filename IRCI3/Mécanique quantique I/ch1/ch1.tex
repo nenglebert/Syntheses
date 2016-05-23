@@ -1,5 +1,4 @@
 \chapter{Notation de Dirac}
-Inclure les notes de Terence
 \section{Vecteurs d'état et espace de Hilbert}
 Le \textit{vecteur d'état} se dénomme \textit{ket} et est noté :
 \begin{equation}
@@ -16,9 +15,9 @@ L'espace de Hilbert est un espace complet (si on définit une suite d'état, cel
 convergera vers un état) muni d'un produit scalaire (défini à la section suivante).\\
 
 Pourquoi définir un vecteur d'état ? En physique classique l'état d'un système 
-ne pose pas de problèmes particuliers. A l'inverse, en physique quantique, la notion 
-même pose déjà un problème, contraignant l'utilisation de vecteurs d'état. La raison 
-physique de leur utilisation vient au principe d'incertitude d'Heisenberg. En effet, 
+ne pose pas de problème particulier. A l'inverse, en physique quantique, la notion 
+même d'état pose déjà un problème, contraignant l'utilisation de vecteurs d'état. La raison 
+physique de leur utilisation vient du principe d'incertitude d'Heisenberg. En effet, 
 il nous est impossible de décrire la particule par le couple position/impulsion d'où 
 la motivation à l'utilisation de ces vecteurs.\\
 
@@ -43,7 +42,7 @@ Le produit scalaire entre deux kets se note
 Les propriétés de bases de ce produit scalaires sont bien connues :
 \begin{equation}
 \begin{array}{llll}
-\bullet & \bra{\psi}\ket{\psi} &= 0\\
+\bullet & \bra{\psi}\ket{\psi} &> 0\\
 \bullet & \bra{\psi_1}\ket{\psi_2} &= \bra{\psi_2}\ket{\psi_1}^*\\
 \bullet & \bra{\psi}\ket{\lambda_1\psi_1+\lambda_2\psi_2} &= \lambda_1\bra{\psi_1}\ket{\psi_2}
 +\lambda_2\bra{\psi_1}\ket{\psi_2}\quad \forall \lambda_i\in\mathbb{C}.\quad
@@ -73,7 +72,7 @@ v_1\\
 v_2\\
 \vdots\\
 v_n
-\end{array}\right),\qquad u_1,v_i\in\mathbb{C}
+\end{array}\right),\qquad u_i,v_i\in\mathbb{C}
 \end{equation}
 Le produit scalaire entre ces deux ket est donné par
 \begin{equation}
@@ -85,14 +84,14 @@ u_2\\
 u_n
 \end{array}\right)
 \end{equation}
-On va définir $(*)$ comme étant un \textit{"complémentaire au ket"}, $\bra{v}$ que l'on 
+On va définir $(*)$ comme étant l'objet dual \textit{"complémentaire au ket"}, $\bra{v}$ que l'on 
 nomme \textit{bra}. Ce bra appartient à un espace dual, ce qui est le sujet de la 
 section suivante.
 
 
 \section{Espace dual $\mathcal{E}^*$, vecteur "bra"}
-Le bra est une forme linéaire : c'est une application qui va depuis l'espace des état 
-(ou de Hilbert, pas de différence dans ce cours) vers $\varphi(\psi)$, un nombre complexe.
+Le bra est une forme linéaire : c'est une application qui va de l'espace des état 
+(ou de Hilbert, pas de différence dans ce cours) vers l'ensemble des nombres complexes.
 \begin{equation}
 \varphi : \ket{\psi}\in\mathcal{E} \leadsto \varphi(\ket{\psi})\ \in \mathbb{C}
 \end{equation}
@@ -112,13 +111,20 @@ Il semble dès lors intéressant d'introduire un nouvel "objet" :
 \end{array}\right.
 \end{equation}
 Il s'agit de l'ensemble de toutes les formes linéaires, ensemble qui forme un espace dual. 
-L'intérêt réside dans un isomorphisme : on peut associer à chaque état de l'espace des états 
-un bra de l'espace dual.\\
+L'intérêt de ces nouveaux objets réside dans un isomorphisme : on associe à ket de l'espace des états 
+un et un seul bra de l'espace dual.\\
 
 Ceci étant dit, il faut caractériser et montrer comment cette application agit sur les espaces. 
 \begin{equation}
 \forall \ket{\psi} \in \mathcal{E},\qquad \underline{\varphi(\ket{\psi}) =\bra{\varphi}\ket{\psi}}
 \end{equation}
+
+L'avantage de cette notation est qu'elle permet deux visions complémentaires des choses :
+soit on voit cela comme un produit scalaire entre deux kets, soit on voit cela comme une
+forme linéaire, le bra, s'appliquant à un ket.\\
+
+ON PEUT ENLEVER LE PARAGRAPHE SUIVANT ?
+
 Cette application peut ainsi être écrite comme un produit scalaire. Il s'agit de la forme 
 linéaire $\varphi$ qui s'applique à $\psi$ et qui donne un nombre complexe. Il existe une 
 autre façon de voir ceci. On peut le voir comme le produit scalaire entre deux ket ou encore 
@@ -142,6 +148,7 @@ $\mathcal{E}^*$.
 \forall \lambda_i\in\mathbb{C}
 \end{equation}
 On peut ainsi démontrer que $\mathcal{E}^*$ est un espace vectoriel.
+Un bra se définit par son action sur tout ket :
 \begin{equation}
 \begin{array}{ll}
 \forall \ket{\psi} : (\lambda_1\bra{\varphi_1} + \lambda_2\bra{\varphi_2})\ket{\psi} 
@@ -161,7 +168,7 @@ n'importe que $\psi$. En terme de bra, on peut alors écrire
 \end{equation}
 
 
-On vient de voir qu'à n'importe quel bras je peux associer un ket. Il serait 
+On vient de voir qu'à n'importe quel bra je peux associer un ket. Il serait 
 dès lors intéressant de trouver le ket correspondant à ce bra. Mais avant, on va définir 
 la notion d'opérateur s'appliquant dans l'espace de Hilbert. \\
 
@@ -171,7 +178,7 @@ un tel espace, un bra n'est qu'un vecteur ligne complexe conjugué.
 
 \subsection{Opérateurs linéaires (agissant dans $\mathcal{E}$)}
 Un opérateur linéaire est une application qui fait correspondre un ket à un ket, à 
-la différence de la forme qui fait correspondre un ket à un complexe.
+la différence de la forme qui fait correspondre un complexe à un ket.
 
 \begin{equation}
 \ket{\psi} \in \mathcal{E} \leadsto \hat{A}\ket{\psi} \in \mathcal{E}
@@ -194,7 +201,7 @@ Nous pouvons voir cet opérateur produit comme une notation efficace. Il ne faut
 cependant pas perdre à l'idée que, en toute généralité, $\hat{A}$ et $\hat{B}$ 
 ne commutent pas. On définit alors le commutateur :
 \begin{equation}
-[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A} \neq 0
+[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
 \end{equation}
 Comme $\hat{A}$ et $\hat{B}$ sont des opérateurs, la différence des opérateurs 
 est toujours un opérateur, le commutateur est bien un opérateur. Il jouit des 
@@ -211,7 +218,7 @@ On peut montrer qu'un opérateur linéaire peut se représenter comme une
 matrice. Pour l'illustrer, reconsidérons notre précédent exemple.\\
 
 \textsc{Exemple}\\
-Soit un espace de Hilbert de dimension $n$. Soit
+Soit un espace de Hilbert de dimension finie $n$. Soit
 \begin{equation}
 \ket{u} = \left(\begin{array}{c}
 u_1\\
@@ -234,6 +241,10 @@ u_2\\
 u_n
 \end{array}\right)
 \end{equation}
+
+Le fait que le commutateur entre deux opérateurs soit non-nul indique que le
+produit entre les matrcies correspondantes est non-commutatif.\\
+
 De par cette représentation, on peut aisément comprendre que la non-commutation 
 vient du fait que les différentes lignes et colonnes de $\hat{A}$ ne peuvent 
 être commutées. Intéressons-nous aux éléments de la matrice de cet opérateur.
@@ -241,22 +252,41 @@ vient du fait que les différentes lignes et colonnes de $\hat{A}$ ne peuvent
 
 
 \section{"Élément de matrice" d'un opérateur $\hat{A}$}
-Comme précédemment, définissons un nouvel "objet" :
+
+Soient
 \begin{equation}
 \ket{\psi} \text{ et } \left\{\begin{array}{ll}
 \ket{\varphi} &\in \mathcal{E}\\
 \bra{\varphi} &\in \mathcal{E}^*
-\end{array}\right., \quad \bra{\varphi}\hat{A}\ket{\psi} = \bra{\varphi}(
-\hat{A}\ket{\psi})
+\end{array}\right.,
 \end{equation}
-Les parenthèses permettent de voir ça "tel un produit scalaire". Revenons 
-à notre précédent problème : quel est finalement ce ket ? Lors de l'écriture 
-d'un élément de matrice, il serait intéressant de pouvoir le voir comme un 
-opérateur appliqué à un ket. Une autre vision est celle d'un opérateur 
-qui agit sur un bra, définissant un nouveau bra qui cette fois, agit sur 
-$\psi$. Revenons à notre exemple.
+comme précédemment, définissons un nouvel "objet" :
+\begin{equation}
+ \quad \bra{\varphi}\hat{A}\ket{\psi} = \bra{\varphi}(
+\hat{A}\ket{\psi}) = (\bra{\varphi}\hat{A})\ket{\psi}
+\end{equation}
 
-\newpage
+%Les parenthèses permettent de voir ça "tel un produit scalaire". Revenons 
+%à notre précédent problème : quel est finalement ce ket ? Lors de l'écriture 
+%d'un élément de matrice, il est intéressant de pouvoir le voir comme un 
+%opérateur appliqué à un ket. Une autre vision est celle d'un opérateur 
+%qui agit sur un bra, définissant un nouveau bra qui cette fois, agit sur 
+%$\psi$. Revenons à notre exemple.\\
+
+FORMULATION BIZARRE, JE ME SUIS PERMIS DE CHANGER\\
+
+Ce nouvel objet peut se comprendre de deux manières : on peut le voir comme
+un opérateur s'appliquant à un ket pour former un nouveau ket que l'on
+multiplie scalairement avec un bra, ou on peut le voir comme un opérateur
+agissant sur un bra pour former une nouvelle forme qui s'appliquera au ket $\psi$.
+Notons qu'en réalité il ne s'agit pas du même opérateur car les espaces vectoriels
+de départ et d'arrivée ne ont pas les mêmes dans les deux cas. Cependant ils possèdent
+la même forme en représentation matricielle et l'abus de notation est très pratique.
+Notons également qu'un opérateur est entièrement caractérisé par ses éléments de matrice.\\
+
+Revenons à notre exemple.
+
+%\newpage
 \textsc{Exemple}\\
 Soit
 \begin{equation}
@@ -291,10 +321,23 @@ u_n
 \end{array}\right)
 \end{equation}
 
+\begin{equation}
+\bra{v}\left(\hat{A}\ket{u}\right) = (v_1^*\ v_2^*\ \dots\ v_n^*)\underbrace{\left(\begin{array}{ccc}
+a_{11} & \dots & a_{1n}\\
+\vdots &\ddots &\vdots\\
+a_{n1} & \dots & a_{nn}
+\end{array}\right)\left(\begin{array}{c}
+u_1\\
+u_2\\
+\vdots\\
+u_n
+\end{array}\right)}_{\left(\hat{A}\ket{u}\right)}\\
+\end{equation}
+
 
 
 \section{Opérateur adjoint}
-A tout opérateur $\hat{A}$, on peut associer un nouvel opérateur noté $\hat{A}^\dagger$. 
+A tout opérateur $\hat{A}$, on peut associer un nouvel opérateur noté $\hat{A}^\dagger$ (prononcé "dagger"). 
 Soit $\ket{\psi}$ :
 \begin{equation}
 \hat{A} \text{ agit dans }\mathcal{E} ; \ket{\psi'} = \hat{A}\ket{\psi}
@@ -303,10 +346,10 @@ Soit $\ket{\psi}$ :
 Chaque ket est associé à un bra ; dans ce cas ci il s'agit de $\bra{\psi'}$ et
 $\bra{\psi}$. Existe-t-il une relation entre ces bra ? Mais à quoi cet objet 
 correspond-t-il ? Un bra est une forme linéaire, il faut déterminer comment 
-agit $\psi'$ sur n'importe quel ket de l'espace.
+agit $\bra{\psi'}$ sur n'importe quel ket de l'espace.
 \begin{equation}
 \begin{array}{lll}
-\forall \ket{\psi} \in \mathcal{E} : \psi'\left(\ket{\varphi}\right) &\equiv 
+\forall \ket{\phi} \in \mathcal{E} : \bra{\psi'}\left(\ket{\varphi}\right) &\equiv 
 \bra{\psi'}\ket{\varphi} & \qquad \text{Prop. p.scal.}\\
 &= \bra{\varphi}\ket{\psi'}^*\\
 &= \bra{\varphi}\hat{A}\ket{\psi}^* & \qquad \text{Def. de }\psi', \text{ def. op. adj.}\\
@@ -332,7 +375,7 @@ utilisé la définition d'un opérateur adjoint :
 \end{equation}
 
 \textsc{Exemple}\\
-Comme toujours, prenons notre espace de Hilbert de dimension $n$.
+Comme toujours, prenons notre espace de Hilbert de dimension finie $n$.
 \begin{equation}
 \bra{v}\hat{A}\ket{u} = \underbrace{(v_1^*\ v_2^*\ \dots\ v_n^*)\left(\begin{array}{ccc}
 a_{11} & \dots & a_{1n}\\
@@ -363,11 +406,20 @@ v_2\\
 v_n
 \end{array}\right)
 \end{equation}
-Pour obtenir le bra, nous avons réalisé une opération semblable à celles 
-réalisées en algèbre linéaire, à savoir pris le complexe conjugé de la matrice 
-conjugué après inversion et transposée du vecteur.\footnote{Mieux expliciter plz}.
-L'opérateur adjoint n'est rien d'autre que de la matrice adjointe. Le fait 
-de permuter les lignes et les colonnes ne faisait qu'inverser les bra et ket.
+%Pour obtenir le bra, nous avons réalisé une opération semblable à celles 
+%réalisées en algèbre linéaire, à savoir pris le complexe conjugé de la matrice 
+%conjugué après inversion et transposée du vecteur.\footnote{Mieux expliciter plz}.
+
+JE ME SUIS PERMIS DE REFORMULER.\\
+
+Pour obtenir le bra, nous avons utilisé une méthode semblable à celle
+réalisée en algèbre linéaire : nous avons obtenu la matrice de l'opérateur
+adjoint en prenant la transposée de la matrice conjuguée.
+L'opérateur adjoint n'est rien d'autre que la matrice adjointe.
+Notons que la conjugaison et la transposition ne dépendent que de la base
+choisie et que l'existence de l'opérateur adjoint est garantie si on peut l'obtenir
+dans au moins une base. Le fait de permuter les lignes et les colonnes ne faisait 
+qu'inverser les bra et ket.\\
 Il en découle des propriétés intéressantes :
 \begin{multicols}{2}
 \begin{itemize}
@@ -389,7 +441,7 @@ A titre d'exercice, démontrons la dernière propriété
 \end{equation}
 
 \section{Opérateurs hermitiens/auto-adjoints}
-Par définition
+Par définition, $\hat{A}$ est auto-adjoint si
 \begin{equation}
 \hat{A} = \hat{A}^\dagger
 \end{equation}
@@ -397,10 +449,11 @@ Dès lors
 \begin{equation}
 \begin{array}{ll}
 \bra{\psi}\hat{A}\ket{\varphi} &= \bra{\varphi}\hat{A}\ket{\psi}^*\\
-\bra{\psi}\hat{A}\ket{\psi} &= \bra{\psi}\hat{A}\ket{\psi}^* \underline{\in \mathbb{R}}
+\bra{\psi}\hat{A}\ket{\psi} &= \bra{\psi}\hat{A}\ket{\psi}^* \rightarrow \underline{\in \mathbb{R}}
 \end{array}
 \end{equation}
-Énonçons quelques propriétés intéressantes
+Énonçons quelques propriétés intéressantes\footnote{Les opérateurs de quantités observables sont
+auto-adjoints.}
 \begin{equation}
 \begin{array}{lll}
 \forall \hat{A},\hat{B} \text{ hermitiens },\qquad & \hat{A}+\hat{B} & \text{hermitien}\\
@@ -430,7 +483,7 @@ l'envers pour obtenir ce que l'on souhaite :
 \begin{array}{ll}
 \hat{A}\ket{\psi} &\rightarrow \bra{\psi}\hat{A}^\dagger\\
 \bra{\varphi}\hat{B}&\rightarrow \hat{B}^\dagger \ket{\varphi}\\
-\bra{\psi}\hat{A}\ket{\varphi} &\rightarrow  \bra{\varphi}\hat{A}^\dagger\ket{\varphi} =
+\bra{\psi}\hat{A}\ket{\varphi} &\rightarrow  \bra{\varphi}\hat{A}^\dagger\ket{\psi} =
 \bra{\psi}\hat{A}\ket{\varphi}^*
 \end{array}
 \end{equation}
@@ -452,22 +505,22 @@ s'en rendre compte, développons ceci à titre d'application
 \end{array}
 \end{equation}
 Il est possible de voir $(*)$ de deux façons différentes. On peut le comprendre comme 
-un objet (opérateur) dont on fait l'élément de matrice entre $\psi$ et $\varphi$ (comme 
+un objet (opérateur) dont on prend l'élément de matrice entre $\psi$ et $\varphi$ (comme 
 le suggère les parenthèses). On peut également le voir comme deux produits scalaire dont 
 on fait le produit simple (en omettant cette fois-ci les parenthèses).
 
 
 \subsection{Base Hilbertienne}
-Une base hilbertienne est une base de l'espace de Hilbert. Il en existe deux particulières:
+Une base hilbertienne est une base de l'espace de Hilbert. Il en existe deux types particuliers:
 la base discrète de dimension finie et la base continue.
 
 \subsubsection{Base discrète}
 Nous parlons de l'espace de Hilbert et donc d'un espace des états, soit encore un ensemble 
-de ket :
+de ket qui sous-tendent l'espace :
 \begin{equation}
 \left\{\ket{u_i}\right\}
 \end{equation}
-Ces bases sont orthonormées
+Ces vecteurs de base sont orthonormés
 \begin{equation}
 \bra{u_i}\ket{u_j} = \delta_{ij}
 \end{equation}
@@ -492,7 +545,7 @@ On peut réécrire \autoref{eq:2.5} :
 \end{array}
 \end{equation}
 
-Il s'agit de la relation de fermeture. Dès que j'ai une base complète, la somme des
+On voit apparaître la relation de fermeture. Dès que l'on a une base complète, la somme des projecteurs
 $\ket{u_i}\bra{u_i}$ donnera l'opérateur identité. On appelle alors la \textbf{relation 
 de fermeture} :
 \begin{equation}
@@ -505,24 +558,23 @@ On peut alors définir l'opérateur \textit{projecteur} $\hat{P_i}$ :
 Cet opérateur possède deux propriétés remarquables. La première est qu'il est hermitien, 
 c'est-à-dire $\hat{P_i} = \hat{P_i}^\dagger$.
 \begin{equation}
-\hat{P_i}^\dagger = (\ket{u_i}\bra{u_i})^\dagger = \ket{u_i}\bra{u_i} = P_i
+\hat{P_i}^\dagger = (\ket{u_i}\bra{u_i})^\dagger = \ket{u_i}\bra{u_i} = \hat{P_i}
 \end{equation}
 La seconde est qu'il est idempotent. Autrement dit, plus d'une application successive ne 
 change rien au résultat obtenu : $\hat{P_i}^2 = \hat{P_i}$.
 \begin{equation}
 \begin{array}{ll}
 \hat{P_i}^2 &= (\ket{u_i}\bra{u_i})(\ket{u_i}\bra{u_i})\\
-&= \ket{u_i}\underbrace{\bra{u_i}\ket{u_I}}_{=1}\bra{u_i}\\
+&= \ket{u_i}\underbrace{\bra{u_i}\ket{u_i}}_{=1}\bra{u_i}\\
 &= \hat{P_i}
 \end{array}
 \end{equation}
-On interprète le projecteur comme on le ferrait dans l'espace euclidien\footnote{Inclure 
+On interprète le projecteur comme on le ferait dans l'espace euclidien\footnote{Inclure 
 graphe}. La relation de fermeture peut ainsi être réécrite :
 \begin{equation}
 \sum_i \hat{P_i} = \hat{\mathbb{1}}
 \end{equation}
-Le développement suivi ici est valable pour toute base. Prenons
-Ceci est valable pour toute base. Prenons l'exemple d'un ket
+Le développement suivi ici est valable pour toute base. Prenons l'exemple d'un ket
 \begin{equation}
 \text{ket }\ \ket{\psi} = \sum_i c_i\ket{u_i},\qquad c_i = \bra{u_i}\ket{\psi}
 \end{equation}
@@ -539,18 +591,18 @@ l'opérateur identité et jouer avec les notations de Dirac
 \begin{equation}
 \begin{array}{lll}
 \bra{\varphi}\ket{\psi} &= \bra{\varphi}\mathbb{1}\ket{\psi}\\
-&= \sum_i \underbrace{\bra{\varphi}\ket{u_i}}_{b_i^*}\underbrace{\bra{c_i}\ket{\psi}}_{c_i} &
+&= \sum_i \underbrace{\bra{\varphi}\ket{u_i}}_{b_i^*}\underbrace{\bra{u_i}\ket{\psi}}_{c_i} &
 \text{Relation de fermeture}\\
 &= \sum_i b_i^*c_i & (*)
 \end{array}
 \end{equation}
 Dans $(*)$, $b_i^*$ est un vecteur ligne et $c_i$ un vecteur colonne. Si l'espace de Hilbert 
-est complet, il s'agit la d'un produit scalaire.\\
+est complet, il s'agit là d'un produit scalaire.\\
 Cela fonctionne également pour un opérateur, en effectuant la même astuce mathématique:
 \begin{equation}
 \begin{array}{ll}
 \hat{A} &= \hat{\mathbb{1}}\hat{A}\hat{\mathbb{1}}\\
-&=\sum_{i,j} \ket{u_i}\underbrace{\bra{u_i}\hat{A}\ket{u_i}}_{A_{i,j}}\bra{u_j}
+&=\sum_{i,j} \ket{u_i}\underbrace{\bra{u_i}\hat{A}\ket{u_j}}_{A_{i,j}}\bra{u_j}
 \end{array}
 \end{equation}
 Appliquons $\hat{A}$ sur un ket
@@ -560,7 +612,7 @@ Appliquons $\hat{A}$ sur un ket
 &\equiv \sum_i a_i\ket{u_i}
 \end{array},\qquad \begin{array}{ll}
 a_i &= \bra{u_i}\ket{\psi'}\\
-&=\bra{u_i}\hat{A}_\mathbb{1}\ket{\psi} = \sum_j \underbrace{\bra{u_i}\hat{A}\ket{u_j}}_{A_{i,j}}
+&=\bra{u_i}\hat{A}\mathbb{1}\ket{\psi} = \sum_j \underbrace{\bra{u_i}\hat{A}\ket{u_j}}_{A_{i,j}}
 \underbrace{\bra{u_j}\ket{\psi}}_{c_j}
 \end{array}
 \end{equation}
@@ -585,13 +637,15 @@ On va ici partir d'une famille ou cette fois ci l'indice sera "continu".
 \begin{equation}
 \{\ket{u_\alpha}\}\quad \alpha\in\mathbb{R}
 \end{equation}
-On peut comme précédemment fabriquer des états orthogonaux, ce qui va jouer 
+On peut comme précédemment fabriquer des états orthogonaux. Ce qui va jouer 
 le rôle orthonormalisation standard est le relation
 \begin{equation}
 \underline{\bra{u_\alpha}\ket{u_{\alpha'}} = \delta(\alpha-\alpha')}
 \end{equation}
 où $\delta$ est la fonction de Dirac. La subtilité est que $u_\alpha$ n'est 
-pas toujours un état physique. Cependant, il peut toujours être utilisé pour 
+pas toujours un état physique\footnote{La fonction de Dirac étant un pic de hauteur infinie
+mais d'aire unitaire, il est difficile de la retrouver dans la nature...}.
+ Cependant, il peut toujours être utilisé pour 
 décrire un état qui lui, est bien physique. Comme pour le cas continu, il 
 est possible d'exprimer le ket dans la base. Les sommes seront ainsi 
 remplacées par es intégrales et les coefficients de Fourier par une fonction 
@@ -615,8 +669,8 @@ On peut alors ré-écrire \autoref{eq:2.12}
 \qquad \forall\psi
 \end{array}
 \end{equation}
-Le terme entre parenthèse n'est, pas identification, rien d'autre que l'opérateur 
-identité $\mathbb{1}$ que l'on peut également voir comme un opérateur projecteur
+Le terme entre parenthèse n'est, par identification, rien d'autre que l'opérateur 
+identité $\hat{\mathbb{1}}$ que l'on peut également voir comme un opérateur projecteur
 $\hat{P_\alpha}$. La relation de fermeture s'écrit alors
 \begin{equation}
 \int d\alpha\ \underbrace{\ket{u_\alpha}\bra{u_\alpha}}_{\hat{P_\alpha}} = \hat{
@@ -642,50 +696,63 @@ Voyons maintenant pour le produit scalaire
 &= \int d\alpha\ b^*(\alpha)c(\alpha)
 \end{array}
 \end{equation}
-Comme précédemment, par une analyse semblable pour les opérateurs. 
+Par une analyse semblable pour les opérateurs. 
 Définissons $\hat{A}$ :
 \begin{equation}
 \hat{A} = \mathbb{1}\hat{A}\mathbb{1} = \iint d\alpha\ d\alpha'\ \ket{u_\alpha}
 \underbrace{\bra{u_\alpha}\hat{A}\ket{u_{\alpha'}}}_{A(\alpha,\alpha')}\bra{u_{\alpha'}}
 \end{equation}
 où $A(\alpha,\alpha')$ correspond aux éléments de matrice. \\
-Pour finir, intéressons nous au cas de l'opérateur adjoint\footnote{TT : détaille plus 
-ce qu'on essaye de montrer, c'est un peu pas clair :/}
+%Pour finir, intéressons nous au cas de l'opérateur adjoint\footnote{TT : détaille plus 
+%ce qu'on essaye de montrer, c'est un peu pas clair :/}
+Pour finir, examinons ce qui se passe quand on décompose en vecteurs de base un ket
+auquel on a appliqué un opérateur :
 \begin{equation}
 \begin{array}{ll}
-\ket{\psi'} = \hat{A}\ket{\psi} = \int d\alpha\ \overbrace{a(\alpha)}^{?}\ket{u_\alpha},
+\ket{\psi'} = \hat{A}\ket{\psi} = \int d\alpha\ \overbrace{a(\alpha)}^{coef de Fourier}\ket{u_\alpha},
 \qquad a(\alpha) &= \bra{u_\alpha}\ket{\psi'} = \bra{u_\alpha}\hat{A}\ket{\psi}\\
 &= \int d\alpha'\ \underbrace{\bra{u_\alpha}\hat{A}\ket{u_{\alpha'}}}_{A(\alpha,
-\alpha')}\underbrace{\bra{u_{\alpha'}}\ket{\psi}}_{c(\alpha)}
+\alpha')}\underbrace{\bra{u_{\alpha'}}\ket{\psi}}_{c(\alpha')}
 \end{array}
 \end{equation}
-Nous nous intéressions à savoir ce qu'était $a(\alpha)$, c'est maintenant chose faite
+%Nous nous intéressions à savoir ce qu'était $a(\alpha)$, c'est maintenant chose faite
+On voit que le coefficient de Fourier du ket $\psi'$ est l'intégrale des produits des éléments de matrice
+de l'opérateur avec les coefficient de Fourier du ket $\psi$ :
 \begin{equation}
-\underline{a(\alpha) = \int d\alpha\ A(\alpha,\alpha')c(\alpha)}
+\underline{a(\alpha) = \int d\alpha'\ A(\alpha,\alpha')c(\alpha')}
 \end{equation}
 Dans le cas discret, nous avions $a_i = \sum_j A_{ij}c_j$. Ici le résultat est identique, 
 mais sous forme intégrale. Cette expression illustre bien à quel point la notation de 
 Dirac est compacte.
 
 
-\subsection{Exemple de base (représentation) continue}
-Il existe bien évidemment plusieurs bases. L'une d'entre elle se nomme 
+\subsection{Exemple de base de représentation continue : la base position}
+Il existe bien évidemment plusieurs bases. L'une d'entre elles se nomme 
 \textbf{base position}
 \begin{equation}
-\left\{\ket{\vec{R}}\right\}\qquad \vec{R}\in\mathbb{R}^3
+\left\{\ket{\vec{r}}\right\}\qquad \vec{r}\in\mathbb{R}^3
 \end{equation}
 N'importe quel ket pourra s'exprimer dans cette base position. Le relation 
 fermeture pour la base position nous dis que l'intégration sur tout l'espace
-du projecteur pour une position donnée donnée l'identité.
+du projecteur pour une position donnée donnée l'identité.\footnote{Projeter
+un ket sur un vecteur de la base position $\ket{r}$ revient quasiment à évaluer la 
+probabilité que la particule se trouve au point r. On comprend intuitivement
+que la particule doit se trouver quelque part dans l'espace et donc que
+la somme des probabilités pour qu'elle se trouve en chacun des points doit
+être égale à un.}
 \begin{equation}
 \int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}} = \vec{\mathbb{1}}
 \end{equation}
-Compte-tenu de cette relation, on peut exprimer les ket tel que
+Compte-tenu de cette relation, on peut exprimer les ket au moyen des $\ket{r}$
 \begin{equation}
 \ket{\psi} = \int d\vec{r}\ \ket{\vec{r}}\underbrace{\bra{\vec{r}}\ket{
 \psi}}_{\psi(\vec{r})}
 \end{equation}
-où $\psi(\vec{r})$ est la \textit{fonction d'onde}. En plaçant la relation 
+où $\psi(\vec{r})$ est la \textit{fonction d'onde}\footnote{La fonction d'onde
+utilisée en mécanique ondulatoire n'est donc rien d'autre que le "poids" qu'on associe
+à chaque $\ket{r}$ quand on décrit l'état $\ket{\psi}$ de la particule. On retrouve
+bien le fait que la fonction d'onde est liée à la probabilité qu'une particule se trouve
+en un point de l'espace.}. En plaçant la relation 
 d'identité à droite du bra, on obtient
 \begin{equation}
 \bra{\varphi} = \int d\vec{r}\ \underbrace{\bra{\varphi}\ket{\vec{r}}}_{
@@ -693,7 +760,9 @@ d'identité à droite du bra, on obtient
 \bra{\vec{r}}
 \end{equation}
 où $\varphi^*(\vec{r})$ est le complexe conjugué de la fonction d'onde du 
-ket associé. En effet, nous avons\footnote{Dans quel but ? TT?}
+ket associé.
+% En effet, nous avons\footnote{Dans quel but ? TT?}
+Le produit scalaire entre deux vecteurs d'état devient donc :
 \begin{equation}
 \begin{array}{ll}
 \bra{\varphi}\ket{\psi} = \bra{\varphi}\mathbb{1}\ket{\psi} &= \int d\vec{r}\ 
@@ -701,41 +770,47 @@ ket associé. En effet, nous avons\footnote{Dans quel but ? TT?}
 &= \int d\vec{r}\ \varphi^*(\vec{r})\psi(\vec{r})
 \end{array}
 \end{equation}
-Considérons le cas où $\ket{\psi}=\ket{\vec{r}'}$ \footnote{TT : complète plz, 
-j'sais plus pq on fait ça}
+qui n'est rien d'autre que le produit scalaire usuel pour des fonctions complexes (cf cours
+d'analyse).
+Considérons le cas où $\ket{\psi}=\ket{\vec{r'}}$
+% \footnote{TT : complète plz, j'sais plus pq on fait ça}
+pour trouver la fonction d'onde correspondant à un vecteur de la base position.
 \begin{equation}
 \begin{array}{ll}
-\ket{\vec{r}'} &= \displaystyle \int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}}\ket{
-\vec{r}'}\\
-&=\ket{\vec{r}'} =\displaystyle \delta(\vec{r}-\vec{r}')
+\ket{\vec{r'}} &= \displaystyle \int d\vec{r}\ \ket{\vec{r}}\underbrace{\bra{\vec{r}}\ket{\vec{r'}}}
+_{\psi_{\vec{r'}}(\vec{r)}}\\
+&\rightarrow\psi_{\vec{r'}}(\vec{r}) =\displaystyle \delta(\vec{r}-\vec{r'})
 \end{array}
 \end{equation}
 Le delta de Dirac est dépourvu de sens physique, celui-ci représentant un étant 
-infiniment localisé. Or, nous savons que de telle solutions diverges. Malgré tout, 
+infiniment localisé. Or, nous savons que de telle solutions divergent. Malgré tout, 
 même sans être un état physique, 
 il est pratique pour former une base.
 
 
 
 \section{Observable}
-Un \textit{observable} est un opérateur linéaire hermitien $\hat{A}$ associé à 
+Une \textit{observable} est un opérateur linéaire hermitien $\hat{A}$ associé à 
 une grandeur physique observable $A$. A toute grandeur physique observable, il 
-est possible de lui associer un opérateur linéaire  hermitien. 
+est possible de lui associer un opérateur linéaire  hermitien. Si $\ket{\psi}$
+est un vecteur propre de $\hat{A}$,
 \begin{equation}
 \hat{A}\ket{\psi} = \lambda\ket{\psi}
 \end{equation}
-où $\lambda$ est en réalité une valeur propre pouvant être dégénérée (la dimension 
-du sous-espace propre associé à $\lambda$ donne alors la \textit{dégénérescence}) 
+où $\lambda$ est une valeur propre pouvant être dégénérée (la dimension 
+du sous-espace propre associé à $\lambda$ est appelée la \textit{dégénérescence}) 
 ou non dégénérée.\\
 Une classification importante se base sur le \textit{spectre}. Le spectre est
-l'ensemble de toutes les valeurs propres possibles $\{\lambda\}$. Si celui-ci 
-est discret, on retrouvera un système lié (particule dans une boîte). On 
-peut également avoir des spectres continu (système libre), utile dans la 
+l'ensemble de toutes les valeurs propres possibles $\{\lambda\}$ de l'opérateur. Si celui-ci 
+est discret, on retrouvera un système lié (particule dans une boîte par exemple). On 
+peut également avoir des spectres continus (systèmes libres), utiles dans la 
 \textit{théorie des collisions/diffusion}.\\
 
-Intéressons-nous aux propriétés de notre base.
+\subsubsection{Propriétés d'une observable}
+
+%Intéressons-nous aux propriétés de notre base.
 \begin{enumerate}
-\item La valeur propre $\lambda$ est réelle.
+\item Toute valeur propre $\lambda$ est réelle.
 \begin{equation}
 \begin{array}{ll}
 A\ket{\psi} &= \lambda \ket{\psi}\qquad\qquad\qquad \left(\hat{A}^\dagger = 
@@ -748,6 +823,7 @@ En prenant le complexe conjugué, on trouve
 \lambda^* = \bra{\psi}A^\dagger\ket{\psi} = \bra{\psi}A\ket{\psi}=\lambda\in
 \mathbb{R}
 \end{equation}
+
 \item Les vecteurs propres associés à deux valeurs propres distinctes sont 
 orthogonaux.\\
 Soit $\lambda_1\neq\lambda_2$
@@ -757,11 +833,11 @@ A\ket{\psi_1} &=\lambda_1\ket{\psi_1}\\
 A\ket{\psi_2} &=\lambda_2\ket{\psi_2}
 \end{array}\right.
 \end{equation}
-En multipliant la première ligne par $\psi_1$ et la seconde par $\psi_2$
+En multipliant la première ligne par $\bra{\psi_2}$ et la seconde par $\bra{\psi_1}$
 \begin{equation}
 \left\{\begin{array}{ll}
-\bra{\psi_1}A\ket{\psi_1} &=\lambda_1\bra{\psi_2}\ket{\psi_1}\\
-\bra{\psi_2}A\ket{\psi_2} &=\lambda_2\bra{\psi_1}\ket{\psi_2}
+\bra{\psi_2}A\ket{\psi_1} &=\lambda_1\bra{\psi_2}\ket{\psi_1}\\
+\bra{\psi_1}A\ket{\psi_2} &=\lambda_2\bra{\psi_1}\ket{\psi_2}
 \end{array}\right.
 \label{eq:Syst}
 \end{equation}
@@ -778,7 +854,7 @@ la première équation de \autoref{eq:Syst}. En effectuant la différence :
 \quad\Rightarrow\quad \bra{\psi_2}\ket{\psi_1} = 0
 \end{equation}
 \end{enumerate}
-Dans le cas ou $\lambda_n$ est $g_n$ fois dégénérée, on utiliser a la notation
+Dans le cas ou $\lambda_n$ est $g_n$ fois dégénérée, on utilisera la notation
 \begin{equation}
 \hat{A}\ket{\psi_n^i} = \lambda_n\ket{\psi_n^i}\qquad \lambda_n \rightarrow i=
 1,2,\dots, g_n
@@ -790,7 +866,7 @@ intéresse.
 
 \subsubsection{Décomposition spectrale de A}
 Comme introduit en fin de section précédente, deux indices sont utilisés : 
-un pour désigner le vecteur propre et l'autre pour la dégénérescence.
+un pour désigner la valeur propre et l'autre pour la dégénérescence.
 \begin{equation}
 \hat{A}\ket{\psi_n^i} = \lambda_n\ket{\psi_n^i}\qquad \lambda_n \rightarrow i=
 1,2,\dots, g_n
@@ -799,15 +875,17 @@ La relation d'orthonormalité est toujours d'application
 \begin{equation}
 \bra{\psi_n^i}\ket{\psi_{n'}^{i'}} = \delta_{n,n'}\delta_{i,i'}
 \end{equation}
+Notons que l'algorithme de Gram-Schmidt permet de toujours pouvoir trouver une
+base orthonormée au sein d'un sous-espace dégénéré.\\
 Rappelons-nous que la relation de fermeture nous indique que si on somme les 
 projecteurs sur tous les vecteurs de la base, on retrouvera l'identité. Dans 
-notre cas, la relation de fermeture s'énonce (notons que pour chaque base, il 
-est toujours possible d'écrire une relation équivalente) 
+notre cas, la relation de fermeture s'énonce (pour toute base, il 
+est possible d'écrire une relation équivalente)
 \begin{equation}
-\sum_n\sum_{i=1}^{g_n} \ket{\psi_n^i}\bra{\psi_n^i} = \vec{\mathbb{1}}
+\sum_n\sum_{i=1}^{g_n} \ket{\psi_n^i}\bra{\psi_n^i} = \hat{\mathbb{1}}
 \end{equation}
 
-\textsc{Théorème spectral}\\
+\textsc{Théorème de décomposition spectrale}\\
 \begin{equation}
 \begin{array}{ll}
 \hat{A} &= \hat{A}\mathbb{1} = \sum_n\sum_{i=1}^{g_n} \hat{A}\ket{\psi_n^i
@@ -817,20 +895,30 @@ est toujours possible d'écrire une relation équivalente)
 \hat{A} &= \sum_n \lambda_n \hat{P}_n
 \end{array}
 \end{equation}
-où $\hat{P}_n$ est le projecteur sur l'espace propre associé à $n$. Ce 
-projecteur est de rang $g_n$. Montrons $\hat{P}_n$ sont des projecteurs 
-orthogonaux
+%mise en page un peu moche :(
+où $\hat{P}_n$ est le projecteur sur le sous-espace propre de rang $g_n$ associé à $n$.
+ Montrons que les $\hat{P}_n$ sont des projecteurs orthogonaux
+
 \begin{equation}
-\text{Voir feuille Terence}
+\begin{array}{ll}
+\hat{P_n}\ket{\psi^{i'}_{n'}} = \sum_n \sum_i \ket{\psi^i_{n}}
+ \underbrace{\bra{\psi^i_{n}}\ket{\psi^{i'}_{n'}}}_{\delta_{n n'} \delta_{i i'}} 
+= \delta_{n n'} \ket{\psi^{i'}_{n'}}\\
+\hat{P_n}\hat{P_{n'}} = \sum_{i'} \hat{P_n} \ket{\psi^{i'}_{n'}}\bra{\psi^{i'}_{n'}}
+ = \delta_{n n'} \sum_{i'}\ket{\psi^{i'}_{n'}}\bra{\psi^{i'}_{n'}}
+ = \delta_{n n'}\hat{P_{n'}}\\
+\rightarrow \hat{P_n}\hat{P_{n'}} = \delta_{n n'}\hat{P_{n'}}
+\end{array}
 \end{equation}
 
 
 
 
-\textsc{Observable spectre continu}\\
+\textsc{Observable à spectre continu}\\
 Considérons un triplet d'opérateur\footnote{Deuxième relation montre la valeur 
-propre. On n'adopterait pas une autre notation pour désigner la valeur propre 
-(genre $\overline{r}$) ? Un peu ambigu.}
+propre. L'intérieur du ket fait référence à la valeur propre associée.}
+%On n'adopterait pas une autre notation pour désigner la valeur propre 
+%(genre $\overline{r}$) ? Un peu ambigu.}
 \begin{equation}
 \hat{\vec{r}} = (\hat{x},\hat{y},\hat{z}),\qquad \hat{\vec{r}}\ket{\vec{r}} = 
 \vec{r}\ket{\vec{r}}
@@ -842,8 +930,8 @@ Effectuons la décomposition spectrale de $\hat{\vec{r}}$
 Ceci est l'intégrale d'un opérateur, donnant lieu à un opérateur (en réalité 
 trois, car il s'agit d'un triplet d'opérateur).La décomposition spectrale peut 
 s'écrire comme ceci. \\
-A la place de l'opérateur $\hat{\vec r}$, considérons l'opérateur $\vec\hat{\mathbb{
-1}}$ : comme il n'a que une seule valeur propre, nous retrouvons
+A la place de l'opérateur $\hat{\vec r}$, considérons l'opérateur $\hat{\vec{\mathbb{1}}}$
+ : comme il n'a que une seule valeur propre, nous retrouvons
 \begin{equation}
 \hat{\vec{\mathbb{1}}} = \int d\vec{r}\ \ket{\vec{r}}\bra{\vec{r}}
 \end{equation}
@@ -853,12 +941,14 @@ décomposition spectrale d'un opérateur particulier.\\
 La base impulsion est liée à la décomposition en valeur propre de l'opérateur 
 impulsion (triplet d'opérateur) :
 \begin{equation}
-\hat{\vec{p}} = \left(\hat{p_x};\hat{p_y},\hat{p_z}\right),\qquad \hat{
+\hat{\vec{p}} = \left(\hat{p_x},\hat{p_y},\hat{p_z}\right),\qquad \hat{
 \vec{p}}\ket{\vec{p}} = \vec{p}\ket{\vec{p}}
 \end{equation}
 Connaître exactement l'impulsion implique une position étalée sur l'infini 
-d'énergie infinie, ce n'est pas physique. Je peux considérer la décomposition 
-spectrale
+d'énergie infinie, ce n'est pas physique.
+\footnote{Phrase bizarre... En plus, on n'a pas encore parlé de l'incertitude
+à ce stade-ci du cours...} 
+Il est possible d'effectuer la décomposition spectrale
 \begin{equation}
 \hat{\vec{p}} = \int d\vec{p}\ \vec{p} \ket{\vec{p}}\bra{\vec{p}}
 \end{equation}
@@ -866,27 +956,32 @@ La fonction d'onde peut elle aussi s'exprimer dans la base impulsion
 \begin{equation}
 \bra{\vec{p}}\ket{\psi}
 \end{equation}
-Il sera possible d'utiliser le changement de base de Fourier ($\bra{\vec{r}}\ket{
-\vec{p}})$ pour exprimer cette fonction d'onde dans la base position 
-$\bra{\vec{r}}\ket{\psi}$.\\
+
+En réalité, les bases position et impulsion sont liées par une transformée de Fourier
+et il est possible d'effecter le changement de base grâce à $\bra{\vec{r}}\ket{
+\vec{p}})$ mais ceci fera l'objet d'un autre chapitre du cours.
+%Il sera possible d'utiliser le changement de base de Fourier ($\bra{\vec{r}}\ket{
+%\vec{p}})$ pour exprimer cette fonction d'onde dans la base position 
+%$\bra{\vec{r}}\ket{\psi}$.\\
 
 Afin d'introduire la notion d'\textit{ECOC}, rappelons la décomposition spectrale
 \begin{equation}
 \hat{A}\ket{\psi_n'} = a_n\ket{\psi_n'}\quad i=1,\dots,g_n\qquad\rightarrow\qquad
-\hat{A} = \sum_na_n\hat{P_n}\quad\text{ où }\ \hat{P_n}=\sum_i\ket{\psi_n'}\bra{
-\psi_n'}
+\hat{A} = \sum_na_n\hat{P_n}\quad\text{ où }\ \hat{P_n}=\sum_i\ket{\psi_n^i}\bra{
+\psi_n^i}
 \end{equation}
-On peut montrer que \textit{lorsque l'ensemble des observables commutent
-deux à deux alors il existe une base de vecteurs propres communs.} 
+On peut montrer que \textit{lorsque les observables d'un ensemble commutent
+deux à deux, il existe au moins une base de vecteurs propres communs à ces observables.} 
 \begin{equation}
 \left\{\hat{A},\hat{B},\hat{C},\dots\right\}\quad\rightarrow\quad \left\{n_a,
 n_b,n_c,\dots\right\}
 \end{equation}
-où $n_a$ est le nombre quantique associé à $\hat{A}$.Il s'agira  d'une base 
-privilégiée pour l'étude du problème. A priori, dans ces conditions,
+où $n_a$ est le nombre quantique associé à $\hat{A}$, etc. Cette base de vecteurs
+propres communs constituera une base privilégiée pour l'étude de problèmes
+faisant intervenir cet ensemble d'observables. A priori, dans ces conditions,
 la base obtenue ne sera pas forcément unique. On parle ainsi d'\textit{ECOC} 
 (ensemble \textbf{complet} d'observables qui commutent deux à deux) : si la 
-valeur propre de chacune des observable est fixée il existe un unique état de 
+valeur propre de chacune des observable est fixée, il existe un unique état de 
 la base. \\
 
 Par exemple, si on étudie la dépendance angulaire

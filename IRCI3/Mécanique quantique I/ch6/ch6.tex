@@ -1,0 +1,520 @@
+\chapter{Méthodes d'approximation (Schrödinger dépendant du temps)}
+\section{Méthode des perturbations dépendant du temps}
+	\subsection{Principe de base, résolution itérative, fréquence/pulsation de Bohr}	
+		\subsubsection{Principe de base}
+	Cette fois-ci, l'équation que nous voulons répondre dépend du temps
+	\begin{equation}
+	i\hbar\dfrac{\partial}{\partial t}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}
+	\end{equation}
+	Afin de se rafraîchir la mémoire, ouvrons une petite parenthèse dans le cas où 
+	$\hat{H}$ ne dépend pas du temps. Nous avions alors utilisé les opérateurs 
+	d'évolution
+	\begin{equation}
+	\ket{\psi(t)} = e^{-\frac{i}{\hbar}\hat{H}t}\ket{\psi(t=0)}
+	\end{equation}
+	Sachant que
+	\begin{equation}
+	\hat{H}\ket{\psi_n} = E_n\ket{\psi_n}
+	\end{equation}
+	Il était possible d'écrire
+	\begin{equation}
+	\begin{array}{ll}
+	\ket{\psi_n(0)} = \sum a_n(0)\ket{\psi_n}\qquad\rightarrow\quad\ket{\psi(t)} &=\DS 
+	e^{-\frac{i}{\hbar}\hat{H}.t}\left(\sum a_n(0)\ket{\psi_n}\right)\\
+	&=\DS \sum_n a_n(0)e^{-\frac{i}{\hbar}E_n.t}\ket{\psi_n}
+	\end{array}
+	\end{equation}
+	On voit apparaître une phase tournante, l'évolution du système est ici fixée (la dynamique 
+	du système est entièrement déterminée par les états propre de l'équation stationnaire). Fermons 
+	cette parenthèse et considérons un hamiltonien qui dépend du temps de la forme suivante
+	\begin{equation}
+	H(t) = H_0 + W(t)
+	\end{equation}
+	La différence est que la perturbation 	dépend du temps alors que l'hamiltonien non perturbé est 
+	\textbf{indépendant} du temps. Le terme de perturbation est "petit" et lui dépend du temps. 
+	On suppose que l'on connaît la solution du problème non perturbé. On peut donc écrire
+	\begin{equation}
+	\hat{H_0}\ket{\psi_n} = E_n\ket{\psi_t}.\qquad \text{On suppose }\ \hat{W}(t)=0\ \text{ pour }\ t<0
+	\end{equation}
+
+		
+		On suppose également que le système est initialement (jusqu'à l'instant $t=0$) dans un 
+		des états propres $\ket{\psi_i}$ initial. Nous avons un état stationnaire jusqu'à 
+		l'instant 0 ou on allume une perturbation petite par rapport à $\hat H$ (par exemple un 
+		champ magnétique faible). On va supposer dans la suite que
+		\begin{equation}
+		\hat{W}(t) = \lambda \hat{V}(t),\qquad \lambda \ll 1
+		\end{equation}
+
+		\subsubsection{Système d'équations différentielles}
+		Le point de départ c'est d'essayer de résoudre l'équation 	de Schrödinger dépendante du temps. 
+		On va écrire un SD à partir d'une ED mais avant ça, substituons l'expression de $\hat{H}$
+		\begin{equation}
+		i\hbar\frac{d}{dt}\ket{\psi(t)} = (\hat{H_0}+\hat{W}(t))\ket{\psi(t)}
+		\end{equation}
+		Soit $\DS \ket{\psi(t)} = \sum_k C_k(t)\ket{\psi_k}$ où les $\ket{\psi_k}$ sont indépendant
+		du temps. On obtient alors
+		\begin{equation}
+		i\hbar \sum_k \dfrac{d}{dt}C_k\ket{\psi_k} = \sum_k C_k\underbrace{\hat{H_0}\ket{\psi_k}}_{
+		E_n\ket{\psi_k}} + \sum_k C_k\hat{W}(t)\ket{\psi_k}
+		\end{equation}
+		Si on projette par $\ket{psi_n}$, seul le terme $n$ va rester dans la somme (états orthonormés 
+		formant une	base). On aura alors
+		\begin{equation}
+		\forall n : i\hbar \dfrac{d}{dt}C_n = C_n E_n + \sum_k C_k \underbrace{
+		\bra{\psi_n}\hat{W}(t)\ket{\psi_k}}_{W_{n,k}(t)}
+		\end{equation}
+		où $W_{n,k}(t)$ est une matrice dépendant du temps. A cause du terme contenant cette matrice, 
+		nous obtiendrons des termes couplés (éléments hors diagonaux). Il s'agit de la matrice des 
+		éléments de matrice. Quand il n'y avait pas de perturbations, les $C_k$ seraient juste les 
+		coefficients de base avec une phase tournante. Posons alors 
+		\begin{equation}
+		\DS C_n(t) = b_n(t).e^{-i/\hbar.E_nt}= b_n(t).e^{1/i\hbar.E_nt}
+		\end{equation}
+		Le fait qu'il y ai une 	perturbation fait que l'on va s'écarter de la solution analytique 
+		toute simple connue. En dérivant par rapport au temps
+		\begin{equation}
+		i\hbar\left(\dfrac{d}{dt}b_ne^{-\frac{i}{\hbar}E_n.t} + \dfrac{E_n}{i\hbar}b_ne^{-\frac{i}
+		{\hbar}E_nt}\right) = b_ne^{-\frac{i}{\hbar}E_nt}+ \sum_k b_k e^{-\frac{i}{\hbar}E_kt}W_{n,k}(t)
+		\end{equation}
+		où encore
+		\begin{equation}
+		i\hbar \dfrac{d}{dt}b_n = \sum_k e^{i\omega_{nk}t} W_{n,k}(t)b_k,\qquad \forall n
+		\label{eq:11.24}
+		\end{equation}
+		où $\DS \omega_{nk} = \dfrac{E_n-E_k}{\hbar}$ est la \textit{pulsation de Bohr} associée à 
+		la transition $t\rightarrow n$. La force de couplage de la transition $k\rightarrow n$ est 
+		donné par 
+		\begin{equation}
+		W_{n,k}(t) = \ket{\psi_n}\hat{W}(t)\ket{\psi_k}
+		\end{equation}
+		Celle-ci sera d'autant plus grande que la transition est forte.\\
+		L'équation \eqref{eq:11.24} est exacte. Nous allons écrire la perturbation
+		\begin{equation}
+		\hat{W}(t) = \lambda\hat{V}(t)
+		\end{equation}
+		avec $\lambda \ll 1$. Comme la résolution de l'équation exacte n'est pas toujours possible, 
+		nous allons la ré-écrire en puissance de $\lambda$ 
+		\begin{equation}
+		b_n(t) = b_n^{(0)}(t) + \lambda b_n^{(1)}(t) + \lambda^2 b_n^{(2)}(t)+\dots
+		\end{equation}
+		En substituant dans \eqref{eq:11.24} ($\forall n, \forall\lambda$)
+		\begin{equation}
+		i\hbar \dfrac{d}{dt}(b_n^{(0)}(t) + \lambda b_n^{(1)}(t) + \lambda^2 b_n^{(2)}(t)+\dots) = 
+		\sum_k e^{i\omega_{nk}t} \lambda V_{n,k}(t)b_k[b_n^{(0)}(t) + \lambda b_n^{(1)}(t) + 
+		\lambda^2 b_n^{(2)}(t)+\dots]
+		\end{equation}
+		Appelons $s$ la puissance de $\lambda$ ($s=0$ désigne alors le terme indépendant de 
+		$\lambda$) et, ceci étant vrai pour tout $n$, identifions les termes
+		\begin{equation}
+		\begin{array}{lll}
+		s=0; &\qquad i\hbar\frac{d}{dt}b_n^{(0)}(t) &= 0\quad \rightarrow b_n^{(0)} = \text{cste}\\
+		s=1; &\qquad i\hbar\frac{d}{dt}b_n^{(1)}(t) &= \sum_k e^{i\omega_{nk}t}V_{nk}(t)b_k^{(0)}(t)\\
+		&&\dots\\
+		s\phantom{=1}\ ; &\qquad i\hbar\frac{d}{dt}b_n^{(s)}(t) &= \sum_k e^{i\omega_{nk}t}V_{nk}(t)b_k^{(s-1)}(t)
+		\end{array}
+		\end{equation}
+		Nous avons ici établi un système différentiel. Pour le résoudre, il est nécessaire de préciser 
+		les conditions initiales. Supposons qu'à l'état initial, nous sommes dans un état propre de 
+		l'état non-perturbé
+		\begin{equation}
+		CI : \ket{\psi(t=0)} = \ket{\psi_i}
+		\end{equation}
+		En se basant sur
+		\begin{equation}
+		\ket{\psi(t)} = \sum_k C_k(t)\ket{\psi_k} = \sum_k b_k(t)e^{-\frac{i}{\hbar}E_kt}\ket{\psi_k}
+		\end{equation}
+		Il en vient que
+		\begin{equation}
+		b_n(t=0) = \delta_{n,i}
+		\end{equation}
+		Le développement en série de $\lambda$ devient
+		\begin{equation}
+		b_n(0) = b_n^{(0)}(0)+\lambda b_n^{(1)}(0)+\lambda^2b_n^{(2)}(0)+dots
+		\end{equation}
+		On peut ainsi écrire notre CI en terme de perturbation. Connaissant la valeur à l'ordre zéro, par 
+		identification, tous les autres termes doivent forcément être nuls
+		\begin{equation}
+		\left\{\begin{array}{ll}
+		b_n^{(0)} &= \delta_{n,i}\\
+		b_n^{(s)} &= 0\qquad\qquad\forall s \geq 1
+		\end{array}\right.
+		\end{equation}
+		Ré-écrivons notre SD
+		\begin{equation}
+		\begin{array}{lll}
+		s=0; &\qquad \rightarrow b_n^{(0)}(t) &= \delta_{n,i}\\
+		s=1; &\DS\qquad\rightarrow b_n^{(1)}(t) &=\DS \frac{1}{i\hbar}\int_0^t \sum_k e^{i\omega_{nk}t'}V_{nk}(t')\delta_{k,i}dt' =\DS 
+		\frac{1}{i\hbar}\int_0^t e^{i\omega_{ni}t'}V_{ni}(t')dt'\\
+		s=2; &\DS\qquad i\hbar\dfrac{d}{dt}b_n^{(2)}(t) &=\DS \sum e^{i\omega_{nk}t}V_{nk}(t).
+		\int_0^t e^{i\omega_{ni}t''}V_{ni}(t'')dt''\\
+		
+		\phantom{s=2; }&\DS\qquad\rightarrow b_n^{(2)}(t) &=\DS \frac{1}{(i\hbar)^2}\int_0^t dt' \sum_k
+		 e^{i\omega_{nk}t'} V_{nk}(t')\int_0^{t'} dt'' e^{i\omega_{ki}t''}V_{ki}\ dt''\\
+		 &&\dots
+		\end{array}
+		\end{equation}
+		On peut continuer à résoudre ce système de proche en proche.
+
+	\subsection{Probabilité de transition, perturbation constante}
+		\subsubsection{Probabilité de transition}
+		On s'intéresse aux coefficients donnant les amplitudes de proba d'occuper chacun des états $n$
+		\footnote{Rappel : $\lambda \hat{V} =\hat{W}$} :
+		\begin{equation}
+		\begin{array}{ll}
+		b_n(t) &= b_n^{(0)}(t) + \lambda b_n^{(1)}(t) + \mathcal{O}(\lambda^2)		\\
+		&=\DS \delta_{n,i} + \frac{1}{i\hbar}\int_0^t e^{i\omega_{ni}t'}W_{ni}(t')dt'
+		\end{array}
+		\label{eq:11.9}
+		\end{equation}
+		On s'intéresse à la probabilité de transition suivante : Quel est la probabilité d'être 
+		initialement dans l'état initial $i$ et, après allumage de la perturbation, de se 
+		trouver dans un état $f$ à l'instant $t$ 
+		\begin{equation}
+		\mathbb{P}_{if}(t) = |\ket{\psi_f}\bra{\psi(t)}|^2 = |C_f(t)|^2 = |b_f(t)|^2
+		\end{equation}
+		On peut directement lire cette probabilité en remplaçant $n$ par $f$ dans \eqref{eq:11.9} 
+		et en prenant le module carré de cette expression : 
+		\begin{equation}
+		\mathbb{P}_{if}(t) = \left| \delta_{f,i} + \frac{1}{i\hbar}\int_0^t e^{i\omega_{fi}t'}
+		W_{if}(t')dt' \right|^2
+		\end{equation}
+		
+		Deux cas peuvent se manifester 
+		\begin{enumerate}
+		\item Si $f\neq i$, il s'agit d'une "vraie" transition\footnote{Le terme en $\mathcal{O}(\lambda^3)$ 
+		vient du produit $(\lambda+\mathcal{O}(\lambda^2))(\lambda+\mathcal{O}(\lambda^2))$.}
+		\begin{equation}
+		\mathbb{P}_{if}(t) = \frac{1}{\hbar^2}\left| \int_0^t dt' e^{i\omega_{fi}t'}W_{fi}(t')\right|^2
+		+\mathcal{O}(\lambda^3)
+		\end{equation}
+		On peut interpréter ceci de la façon suivante : une perturbation a lieu dans une fenêtre 
+		temporelle $0-t$ et est nulle en dehors. Ceci n'est autre que le module carré d'une 
+		transformée de Fourier de la perturbation évaluée à la pulsation de Bohr $\omega_{fi}$.
+		
+		\item Si $f=i$, on "reste" sur place
+		\begin{equation}
+		\begin{array}{ll}
+		\mathbb{P}_{ii}(t) &= \left|\overbrace{1}^{\Re}+\overbrace{\frac{1}{i\hbar}\dots}^{\Im}
+		 + \mathcal{O}(\lambda^2)\right|^2\\
+		 &= 1+\underbrace{\frac{1}{\hbar}\left|\int\dots\right|^2}_{\lambda^2} + \mathcal{O}(\lambda^2)\\
+		 &= 1+\mathcal{O}(\lambda^2)
+		\end{array}
+		\end{equation}
+		Ce n'est pas la bonne manière de calculer la probabilité de rester sur place. Si on veut malgré tout 
+		calculer la probabilité de 	rester sur l'instant initial : 
+		\begin{equation}
+		\mathbb{P}_{ii}(t) = 1-\sum_{f\neq i} \mathbb{P}_{if}(t)\quad\longrightarrow\quad \mathcal{O}(\lambda^3)
+		\end{equation}
+		\end{enumerate}						
+		On ne peut pas aller plus loin tant que l'on ne pose pas une forme spécifique de la perturbation 
+		$W_{fi}$. Nous allons considérer un cas horriblement particulier, celui d'une perturbation 
+		constante.
+
+		\subsubsection{Perturbation constante}
+		On suppose une perturbation "échelon" constante de 0 à $t$ et nul pour $t'>t$
+		\begin{equation}
+		W_{fi}(t') = W_{fi}(t), 0\leq t'\leq t		
+		\end{equation}
+		La probabilité de transition $i\rightarrow f$ devient
+		\begin{equation}
+		\begin{array}{ll}
+		\mathbb{P}_{if}(t) &=\DS \frac{1}{\hbar^2}\left|W_{fi}\int_0^t dt e^{i\omega_{fi}t}\right|^2		\\
+		&=\DS \dfrac{|W_{fi}|^2}{\hbar^2}\left|\dfrac{e^{i\omega_{fi}t}-1}{i\omega_{fi}}\right|^2 = 
+		\dfrac{|W_{fi}|^2}{\hbar^2}\underbrace{\left(\dfrac{\sin\frac{1}{2}\omega_{fi}t}{\frac{1}{2}\omega_{fi}}
+		\right)}_{F(\omega_{fi},t)}
+		\end{array}
+		\end{equation}
+		On a fait apparaître une certaine fonction de la pulsation et du temps
+		\begin{equation}
+		F(\omega,t) = \left(\frac{\sin\frac{1}{2}\omega t}{\frac{1}{2}\omega}\right)
+		\end{equation}
+		Etudions cette fonction en fixant la pulsation dans un premier temps, puis fixons le temps.
+		\begin{itemize}
+		\item[$\bullet$] $\omega$ fixé : la transition $i\rightarrow f$ est fixée ; comment évolue 
+		dans le temps la probabilité de transition ? On peut écrire, en utilisant la formule de l'arc-double
+		\begin{equation}
+		F(\omega,k) = \frac{1}{2}\dfrac{(1-\cos\omega t)}{\frac{\omega^2}{4}} = \dfrac{2}{\omega^2}
+		(1-\cos\omega t)
+		\end{equation}
+		La probabilité de transition devient alors
+		\begin{equation}
+		\mathbb{P}_{if}(t) = \dfrac{2|W_{fi}|^2}{\hbar^2\omega^2}(1-\cos\omega t)
+		\end{equation}
+		Cette probabilité de présence est nulle pour tous les temps multiples entier pairs de $\pi/\omega$.
+		Généralement, l'amplitude $ \dfrac{|W_{fi}|^2}{\hbar^2\omega^2}$ est plutôt petite. C'est le cas si
+		\begin{equation}
+		 \dfrac{4|W_{fi}|^2}{\hbar^2\omega^2} \ll 1\qquad\Leftrightarrow\qquad |W_{fi}|\ll |E_f-E_i|
+		\end{equation}
+		Ceci exprime que le coupage entre l'état final et l'état initial doit être beaucoup plus petit 
+		que la différence d'énergie entre ces états. Cette différence ne doit cependant pas être 
+		trop petite afin d'avoir le temps de l'observer. Il faut que
+		\begin{equation}
+		t \geq \dfrac{\hbar}{|E_f-E_i|}
+		\end{equation}
+		Il s'agit du \textit{temps de Bohr}?
+		
+		
+		
+		\item[$\bullet$] $t$ fixé : on obtient une fonction paire en $\omega$
+		\begin{equation}
+		F(\omega,t) = t^2 \text{sinc}^2\left(\frac{\omega t}{\hbar}\right)
+		\end{equation}
+		Cette fonction gouverne la probabilité de transition. Étant paire, certains états finaux seront 
+		supérieurs à l'état initial, d'autres inférieurs.  Il s'agit d'un sinus cardinal dont le lobe 
+		central est plus important que les autres : l'essentiel de la probabilité de transition va 
+		se situer dans des états finaux qui ont des énergies proches de l'état initial. Il s'agit 
+		d'une fênetre de largeur $\frac{4\pi}{k}$, soit la largeur entre les deux premiers zéros (l'un 
+		positif, l'autre négatif)
+		\begin{equation}
+		\dfrac{|E_f-E_i|}{\hbar}\leq \frac{2\pi}{k}\qquad\Leftrightarrow\qquad |E_f-E_i|\leq \dfrac{\hbar}{
+		k}
+		\end{equation}
+		\end{itemize}
+		
+		Notons qu'il n'y a ici pas de raison d'avoir conservation de l'énergie, $H(t)$ n'est qu'un 
+		hamiltonien dépendant du temps qui peut puiser ou donner de l'énergie. On aura cependant un 
+		semblant de conservation de l'énergie pour des temps suffisamment grand.
+		\begin{equation}
+		\int_{-\infty}^\infty F(\omega,t)\ d\omega = 2\pi t
+		\end{equation}
+		Lorsque $t\rightarrow\infty, F(\omega,t)\approx 2\pi\delta(\omega)$ ce qui revient à une conservation 
+		de l'énergie.
+
+
+	\subsection{Règle d'or de Fermi, notion de densité d'états}
+	Imaginons que nous avions initialement un niveau d'énergie $i$ et que cet unique niveau évolue 
+	vers un continuum. Soit un domaine $D_\alpha$ de ce continuum. On s'intéresse maintenant à la 
+	probabilité de passer de l'état $i$ à un domaine $D_\alpha$
+	\begin{equation}
+	\mathbb{P}(i\rightarrow D_\alpha,t) = \int_{D_\alpha} |\bra{\alpha}\ket{\psi(t)}|^2\ d\alpha
+	\end{equation}
+	Intéressons-nous au produit scalaire apparaissant ci-dessus
+	\begin{equation}
+	|\bra{\alpha}\ket{\psi(t)}|^2 = \frac{1}{\hbar^2}|W_{\alpha i}|^2F(\omega,t)
+	\end{equation}
+	où $\omega = \frac{E-E_i}{\hbar}$. Pour exprimer notre probabilité, il faut regarder tous les 
+	états finaux qui ont une énergie $E$. On utilise pour cela
+	\begin{equation}
+	d\alpha = \rho(E).dE\qquad\Leftrightarrow\qquad \rho(E) = \dfrac{d\alpha}{dE}
+	\end{equation}
+	où $\rho(E)$ est la \textit{densité de niveau}, soit le nombre de niveaux par intervalle de valeurs 
+	de l'énergie. En substituant cette expression dans $\mathbb{P}(i\rightarrow D_\alpha,t)$
+	\begin{equation}
+	\mathbb{P}(i\rightarrow D_\alpha,t) = \frac{1}{\hbar^2}\int |\bra{\alpha(E)}\hat{W}\ket{i}|^2\ F
+	\left(\frac{E-E_i}{\hbar},t\right)\dfrac{d\alpha}{dE}.dE
+	\end{equation}
+	où l'on a multiplié le membre de droite par $dE/dE$ dans le but de faire apparaître $\rho$. Pour 
+	un temps suffisamment grand (ceci permet de ne devoir tenir compte que des états finaux qui ont 
+	la même énergie que l'état initial :
+	\begin{equation}
+	\mathbb{P}(i\rightarrow D_\alpha,t) \approx  \frac{1}{\hbar^2}\int |\bra{\alpha(E)}\hat{W}\ket{i}|^2\
+	 2\pi	\delta\left(\frac{E-E_i}{\hbar}\right)\rho(E)\ dE
+	\end{equation}
+	Sachant que $\delta(f(x)) = \sum_k \frac{\delta(x-x_k)}{f'(x_k)}$, $\delta\left(\frac{E-E_i}{\hbar}\right)$ 
+	devient $\frac{\delta(E-E_i)}{1/\hbar}$ : 
+	\begin{equation}
+\begin{array}{ll}
+	\mathbb{P}(i\rightarrow D_\alpha,t) &\DS\approx \frac{1}{\hbar^2}	|\bra{\alpha(E_i)}\hat{W}\ket{i}|^2 
+	2\pi t\hbar\rho(E_i)\\
+	&\DS\approx \frac{2\pi t}{\hbar}|\bra{\alpha(E_i)}\hat{W}\ket{i}|^2\ \rho(E_i)
+\end{array}
+	\end{equation}
+	La \textit{probabilité de transition par unité de temps} s'exprime alors 
+	\begin{equation}
+	\mathbb{P}_{if} \equiv \dfrac{\mathbb{P}(i\rightarrow D_\alpha,t)}{t} = 
+	\underbrace{\frac{2\pi}{\hbar}|\bra{\alpha(E_i)}\hat{W}\ket{i}|^2\ \rho(E_i)}_{\text{Règle d'or de Fermi}}
+	\end{equation}
+	Il s'agit d'une règle géométrique dans l'espace des phases nous informant sur le nombre d'états 
+	suffisamment proches que pour pouvoir subir une transition. On y voit le produit entre un 
+	facteur géométrique $\rho(E)$ (si beaucoup d'états sont concernés, la probabilité se verra augmentée) 
+	et un facteur de couplage entre l'état initial et l'état final.\\
+	
+	
+	
+	
+\newpage	
+	
+	
+\section{Approximation soudaine}
+L'approximation soudaine s'applique dans le cas où $\hat{H}$ dépend du temps, mais varie très rapidement 
+par rapport au temps caractéristique du système. Il s'agit par exemple du cas de la désintégration 
+$\beta$ d'un atome : la dynamique du noyau électronique peut être vue comme une modification 
+instantanée de l'hamiltonien au moment où la désintégration se produit.\\
+Mathématiquement, cela s'exprime simplement (on suppose que les deux hamiltoniens sont diagonalisables).
+\begin{equation}
+H = \left\{\begin{array}{lll}
+H_0 &\quad t<0,&\qquad\qquad H_0\ket{\psi_k}=E_k^{(0)}\ket{\psi_k}\\
+H_1 &\quad t\geq0,&\qquad\qquad H_0\ket{\phi_n}=E_k^{(1)}\ket{\phi_n}
+\end{array}\right.
+\end{equation}
+Une discontinuité sera présente au niveau de la dérivée temporelle mais le vecteur d'état, lui, est 
+continu. La seule évolution temporelle se produisant à l'instant zéro, les deux sous-hamiltoniens ne 
+dépendent pas du temps : on peut écrire les états comme une combinaison de phases tournantes
+\begin{equation}
+\ket{\psi(t)} = \left\{\begin{array}{lll}
+\sum_k a_ke^{-\frac{i}{\hbar}E_k^{(0)}t}&\qquad t<0\\
+\sum_n b_ne^{-\frac{i}{\hbar}E_n^{(1)}t}&\qquad t\geq0
+\end{array}\right.
+\end{equation}
+Par continuité en $t=0$
+\begin{equation}
+\sum_k a_k\ket{\psi_k} = \sum_n b_n\ket{\phi_n}
+\end{equation}
+Pour trouver $b_n$, il suffit de multiplier cette expression par le bra $\bra{\phi_n}$
+\begin{equation}
+\underline{b_n = \sum_k a_k\bra{\phi_n}\ket{\psi_k}}
+\end{equation}
+La connaissance de la condition initiale permet de déterminer les coefficients $a_k$. Supposons 
+que pour un temps inférieur à $t_0$, on soit dans un état connu
+\begin{equation}
+\underline{\text{C.I.}} : t_0 < 0\quad ; \quad \text{état }\ \ket{\psi(t_0)}
+\end{equation}
+En appliquant notre condition initiale
+\begin{equation}
+\ket{\psi(t_0)} = \sum a_k e^{-\frac{i}{\hbar}E_k^{(0)}t_0}\ket{\psi_k} \quad\Rightarrow\quad a_k=
+e^{-\frac{i}{\hbar}E_k^{(0)}t_0}\bra{\psi_k}\ket{\psi(t_0)}
+\end{equation}
+En substituant l'expression de $a_k$, on détermine celle de $b_n$
+\begin{equation}
+b_n = \sum_k a_k e^{-\frac{i}{\hbar}E_k^{(0)}t_0}\bra{\psi_k}\ket{\psi(t_0)}\bra{\phi_n}\ket{\psi_k}
+\end{equation}
+Considérons le cas particulier ou l'on se trouve dans un état propre à l'instant initial $t_0$
+\begin{equation}
+\ket{\psi(t_0)} = \ket{\psi_i}\
+\end{equation}
+Dans ce cas, les $a_k$ deviennent 
+\begin{equation}
+a_k = e^{i\dots }\delta_{ki} = \delta_{ki}
+\end{equation}
+Les $b_n$ deviennent alors
+\begin{equation}
+b_n = \sum_k \delta_{ki}\bra{\phi_n}\ket{\psi_k} = \ket{\phi_n}\ket{\phi_i}
+\end{equation}
+En remplaçant $n$ par $f$ (état final), on peut trouver la probabilité de transition de l'état 
+initial $i$ à l'état final $f$ (la probabilité est donnée par le module carré de l'amplitude 
+de probabilité, soit $b_n$ pour $t\geq 0$)
+\begin{equation}
+\mathbb{P}_{i\rightarrow f} = \left|\bra{\phi_f}\ket{\psi_i} \right|^2
+\end{equation}
+
+
+\section{Approximation adiabatique}
+Cette seconde approximation est très utilisée en mécanique quantique pour une situation inverse 
+à la précédente. Ici $\hat{H}$ dépend toujours du temps mais on imagine qu'il évolue très lentement 
+par rapport au temps caractéristique du système (temps lié à l'inverse des énergies de transitions 
+entre niveaux). Le point de départ est toujours le même : l'équation de Schrödinger dépendante du 
+temps
+\begin{equation}
+i\hbar \frac{d}{dt}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}
+\label{eq:12.9}
+\end{equation}
+Dans cette équation, $t$  n'est qu'un paramètre réel : à chaque instant $t$, l'hamiltonien est fixé
+\begin{equation}
+t\ \text{ fixé }\ : \hat{H}(t)\ket{\psi_k(t)} = E_k(t)\ket{psi_k(t)}
+\label{eq:12.10}
+\end{equation}
+où $\ket{psi_k(t)}$ et $E_k(t)$ sont respectivement les \textit{vecteurs propres instantanés} et 
+les \textit{énergies propres instantanées}. Une fois $t$ fixé, on peut diagonaliser $\hat{H}(t)$ 
+et trouver une base. Dans cette base, on peut développer les vecteurs d'états (cette base 
+dépend du temps (elle tourne dans le temps) : c'est une base tournante)
+\begin{equation}
+\ket{\psi(t)} =\DS \sum_k C_k(t)\ket{\psi_k(t)}
+\end{equation}
+Si a un moment $\hat{H}$ s'arrête d'évoluer, les coefficients $C_k(t)$ seraient donnés par
+\begin{equation}
+C_k(t) = b_ke^{-\frac{i}{\hbar}E_kt}
+\end{equation}
+Ici, nous sommes dans un cas ou $\hat{H}$ n'évolue que très peu. On va s'inspirer de cette 
+expressions en imposant la forme de $C_k(t)$
+\begin{equation}
+\ket{\psi(t)} \equiv \sum_k b_k(t)e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')}\ket{psi_k(t)}
+\end{equation}
+Pour rappel, ce n'est pas la bonne forme pour l’opérateur d'évolution (c'est tenant, mais non. 
+Voir chapitres précédents). Compte-tenu de ceci, ré-écrivons \eqref{eq:12.9}
+\begin{equation}
+i\hbar\sum\left[\dfrac{db_k}{dt}\ket{\psi_k(t)} + b_k\frac{1}{i\hbar}E_k(t)\ket{\psi_k(t)} + b_k
+\dfrac{d}{dt}\ket{\psi_k(t)}\right]e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')} = \sum_k b_k 
+e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')}\underbrace{\hat{H}(t)\ket{\psi_k(t)}}_{E_k(t)\ket{\psi_k(t)}}
+\end{equation}
+Après simplification
+\begin{equation}
+i\hbar\sum\left[\dfrac{db_k}{dt}\ket{\psi_k(t)} + b_k\dfrac{d}{dt}\ket{\psi_k(t)}\right]
+e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')} = 0
+\end{equation}
+Ou encore
+\begin{equation}
+\forall n, \forall t :\quad \frac{d}{dt}b_n e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')} = -\sum_k 
+b_k\bra{\psi_n(t)}\frac{d}{dt}\ket{\psi_n(t)}e^{-\frac{i}{\hbar}\int_0^t dt'\ E_k(t')}
+\end{equation}
+En posant $\omega_{nk} = \frac{E_n(t)-E_k(t)}{\hbar}$
+\begin{equation}
+\dfrac{db_n}{dt} =-\sum_kb_k \ket{\psi_n(t)}\underbrace{\bra{\psi_n(t)}\frac{d}{dt}\ket{\psi_k(t)}}_{?}
+e^{i\int_0^t \omega_{nk}(t')\ dt'}
+\end{equation}
+Il nous faut connaître cet élément de matrice. Pour se faire, repartons de l'équation de Schrödinger à 
+temps fixé \eqref{eq:12.10} et dérivons la par rapport au temps (tous les termes dépendent du temps)
+\begin{equation}
+\dfrac{dH}{dt}\ket{\psi_k} + H\dfrac{d}{dt}\ket{\psi_k(t)} = \dfrac{dE_k}{dt}\ket{\psi_k(t)} + E_k
+\dfrac{d}{dt}\ket{\psi_k}
+\end{equation}
+Refermons cette expression par $\bra{\psi_n}$
+\begin{equation}
+\forall n :\quad \bra{\psi_n}\dfrac{dH}{dt}\ket{\psi_k} + \underbrace{\bra{\psi_n}H}_{E_n\ket{\psi_n}}\dfrac{d}{dt}\ket{\psi_k(t)} = \dfrac{dE_k}{dt}\bra{\psi_n}\ket{\psi_k(t)} + E_k\bra{\psi_n}\dfrac{d}{dt}\ket{\psi_k}
+\end{equation}
+Dans le cas ou $n\neq k$, on trouve
+\begin{equation}
+\bra{\psi_n}\frac{dH}{dt}\ket{\psi_k} = (E_k-E_n)\underline{\bra{\psi_n}\frac{d}{dt}\ket{\psi_n}}
+\end{equation}
+où l'on retrouve le terme que l'on cherche (souligné)(pour $n\neq k$). Dans le cas $n=k$, on trouve 
+l'équation de \textit{Hellem-Feynman}
+\begin{equation}
+\bra{\psi_k}\dfrac{dH}{dt}\ket{\psi_k} = \dfrac{dE_k}{dt}
+\end{equation}
+La dérivée des énergies s'obtient en regardant l'élément de matrice diagonal de l'hamiltonien. Même si nous n'allons pas nous en servir ici, il est intéressant de le mentionner. Il est possible de montrer (et de 
+comprendre intuitivement même si non-démontré ici) que le terme diagonal peut être choisi arbitrairement. On 
+pose alors
+\begin{equation}
+\bra{\psi_k}\dfrac{dH}{dt}\ket{\psi_k}
+\end{equation}
+Il ne s'agit que d'un choix particulier de base, le terme inconnu est maintenant trouvé. En le 
+substituant :
+\begin{equation}
+\frac{db_n}{dt} = \sum_{k\neq n} b_k \underline{\dfrac{\bra{\psi_n}\dfrac{dH}{dt}\ket{\psi_k}}{E_n(t)-E_k(t)}}
+e^{i\int_0^t \omega_{nk}(t')\ dt'}
+\end{equation}
+Nous n'avons jusqu'ici fait aucune approximation, seulement une ré-écriture. Le couplage 
+vient du terme souligné ci-dessus. L'approximation commence ici : nous allons approximer ce 
+terme qui couple les $b_n$ en considérant qu'il est "petit". On sera proche d'une situation 
+ou l'on peut écrire
+\begin{equation}
+\dfrac{db_n}{dt}\approx\qquad\Leftrightarrow\qquad b_n = \text{cste}
+\end{equation}
+Si a un moment, le système est dans un état propre instantané, comme $\hat{H}$ évolue lentement, 
+le système va être bloqué dans cet état propre instantané.
+
+
+	\subsection{Condition adiabatique}
+	Il reste à déterminer ce que "petit" voulant dire. Étant objet complexe, on s'intéresse à son module
+	\begin{equation}
+	\frac{1}{T}\approx\left|\dfrac{\bra{\psi_n}\frac{dH}{dt}\ket{\psi_k}}{E_n-E_k}\right| \ll \dfrac{1}{
+	T_{caract}} = \dfrac{|E_n-E_k|}{\hbar}
+	\end{equation}
+	A gauche nous avons l'inverse d'un temps caractéristique d'évolution de l'hamiltonien et à droite 
+	l'inverse du temps caractéristique de la transition de l'état $n$ vers l'état $k$. On veut que ce 
+	temps caractéristique soit très long par rapport au temps caractéristique	du système. Finalement 
+	on peut se ramener à la \textit{condition adiabatique}
+	\begin{equation}
+	\left|\bra{\psi_n}\frac{dH}{dt}\ket{\psi_k}\right| \ll \dfrac{|E_n-E_k|^2}{\hbar}
+	\end{equation}
+	Cette condition compare le couplage entre deux états au gap entre ces deux états\footnote{Note cours 12
+	pour graphique.}. 
+	
+	
+	
+	
+	\vspace{1cm}
+	\begin{center}
+	\includegraphics[scale=0.15]{ch6/fin}
+	%\captionof{figure}{ }
+	\end{center}				
