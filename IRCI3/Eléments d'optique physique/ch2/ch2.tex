@@ -37,14 +37,14 @@ qu'une seule des composantes du champ. L'équation d'onde scalaire s'écrit
 Cette équation est \textit{linéaire}, $E$ n'apparaissant qu'à la première puissance. Si $E_1$ et 
 $E_2$ sont solution, une combili de ces deux solutions est également solution. On va profiter 
 de cette linéarité pour exprimer la solution de cette équation comme une somme d'onde harmonique, 
-d'où l'utilité des transformée de Fourier. Le champ électrique se verra décomposé en une somme 
+d'où l'utilité des transformée de Fourier. Le champ électrique se verra décomposer en une somme 
 de \textit{fonctions harmonique}\footnote{Écrit ci-dessous dans le domaine des phaseurs.} :
 \begin{equation}
 E(x,y,z,t) = \iiiint_{-\infty}^\infty \tilde{E}(k_x,k_y,k_z,\omega)e^{ik_xx}e^{ik_yy}e^{ik_zz}
 e^{-i\omega t}\ dk_xdk_ydk_zd\omega
 \end{equation}
 Si le facteur harmonique $e^{ik_xx}e^{ik_yy}e^{ik_zz}e^{-i\omega t}$  est solution des équations 
-de Maxwell $\forall k_i,\omega$, alors $E$ sera solution. La résolution de ces équations ne sont 
+de Maxwell $\forall k_i,\omega$, alors $E$ sera également solution. La résolution de ces équations ne sont 
 pas aisées. Pour le faire de façon analytique, on travaillera avec la décomposition. Vérifions 
 que ces fonctions harmoniques sont bien solution
 \begin{equation}
@@ -64,7 +64,7 @@ Il s'agit d'une \textbf{contrainte} sur les modes de Fourier. On peut voir l'exp
 comme une transformée de Fourier où $\tilde{E}$ est le spectre de Fourier généralisé à 4 
 dimensions. En terme de transformée de Fourier, on peut dire qu'il s'agit d'une contrainte 
 sur les \textit{modes de Fourier} (les quatre facteurs exponentiels), soit une \textbf{relation 
-de dispersion généralisée}. Si les modes satisfont cette contrainte, $E$ sera solution.\\
+de dispersion généralisée}. Si les modes satisfont cette contrainte, alors $E$ sera solution.\\
 
 \begin{wrapfigure}[9]{r}{3cm}
 %\vspace{-6mm}
@@ -97,8 +97,8 @@ Ci-contre, la représentation des fronts d'ondes. Analysons cela de façon analy
 \begin{equation}
 \varphi = \vec{k}.\vec{r} = \text{cste}\quad \Rightarrow k_xx+k_yy+k_zz = \text{ cste}
 \end{equation}
-Il s'agit de l’équation d'un plan perpendiculaire au vecteur d'onde. Les modes de Fourier 
-réprésentent bien une onde plane dont la direction $\vec{k}/k$. On peut toujours considérer 
+Il s'agit de l’équation d'un plan perpendiculaire au vecteur d'onde\footnote{C'est l'équation cartésienne d'un plan de vecteur normal $\vec{n}=\vec{k}/k$}. Les modes de Fourier 
+représentent bien une onde plane dont la direction $\vec{k}/k$. On peut toujours considérer 
 $\vec{k}/k = \vec{1_z} \rightarrow \vec{k}= k\vec{1_z}$ de sorte à écrire
 \begin{equation}
 E = \tilde{E}e^{ikz}e^{-i\omega t}
@@ -121,6 +121,7 @@ les équations de Maxwell. Par substitution
 \begin{equation}
 v_\varphi = \dfrac{1}{\sqrt{\mu_0\epsilon_0}} \equiv c
 \end{equation}
+\textbf{chaque onde plane électromagnétique dans le vide se déplace à la vitesse de la lumière ($c$)}
 On en tire que $k=\omega/c$.\\
 
 \underline{Remarque}. Considérons un champ scalaire solution des équations d'ondes 
@@ -163,7 +164,7 @@ fait le choix d'exprimer $k_z$ en fonction de la contrainte :
 \begin{equation}
 k_z = \sqrt{k^-k_x^2-k_y^2}
 \end{equation}
-Si $k_z$ satisfait cette relation, c'est gagné. Pour être solution, il faut que le spectre ai 
+Si $k_z$ satisfait cette relation, c'est gagné. Pour être solution, il faut que le spectre ait 
 la forme particulière définie ci-dessous, qui ne dépend plus de $k_z$ la variable ayant été 
 "sacrifiée" :
 \begin{equation}
@@ -178,7 +179,7 @@ E(x,y,z,t) = \iiint_{-\infty}^\infty \tilde{E}(k_x,k_y,\omega) e^{ik_xx}e^{ik_yy
 \sqrt{k^-k_x^2-k_y^2} z}e^{-i\omega t}\ dk_xdk_yd\omega
 \end{equation}
 Ce qui n'est rien d'autre que la solution générale des équations de Maxwell. Nous allons nous limiter 
-à des ondes monochromatiques, c'est à dire pour un seul $\omega_0$. On se limite ainsi à un spectre 
+à des ondes monochromatiques, c'est-à-dire pour un seul $\omega_0$. On se limite ainsi à un spectre 
 spatial pour une fréquence donnée
 \begin{equation}
 \tilde{E}(k_x,k_y,\omega) = A(k_x,k_y)\delta(\omega-\omega_0)
@@ -219,8 +220,8 @@ F(\rho) = \int_{-\infty}^\infty f(x)e^{-i\rho x}\ dx
 \end{equation}
 \danger Il y a un signe négatif. Ce signe ne change physiquement rien, il faudra simplement 
 inverser le signe de la transformée inverse. Il faut juste remarquer que le $i$ de l'exponentielle 
-n'a pas le même signe dans la partie temporelle et spatiale : pour le temporelle, on utilise un 
-moins et pour les variation spatiales un plus\footnote{Confusion, à éclaircir}. La transformée 
+n'a pas le même signe dans la partie temporelle et spatiale : pour les variations temporelles, on utilise un 
+moins et pour les variations spatiales un plus\footnote{Confusion, à éclaircir}. La transformée 
 inverse vaudra alors
 \begin{equation}
 f(x) = \dfrac{1}{2\pi}\int_{-\infty}^\infty F(\rho)e^{i\rho x}\ d\rho = TF^{-1}[F(\rho)]
@@ -242,14 +243,14 @@ a(x,y;z) = TF^{-1}\left[ A(\rho,\sigma)\underbrace{e^{i\sqrt{k^2-\rho^2-\sigma^2
 \end{equation}
 Commençons l'étude en $z=0$ (C.I., connue)
 \begin{equation}
-a(x,y;z) = TF^{-1}\left[ A(\rho,\sigma) \right]\quad \Rightarrow \quad A(\rho,\sigma) = TF[
+a(x,y;0) = TF^{-1}\left[ A(\rho,\sigma) \right]\quad \Rightarrow \quad A(\rho,\sigma) = TF[
 a(x,y;0)]
 \end{equation}
 On remarque que ceci n'est rien autre que le spectre de la transformée de Fourier de la distribution 
 initiale. Le problème de diffraction est que connaissant la distribution initiale, on veut connaître 
 la distribution $a(x,y;z)$ pour tout $z$. Si $z\neq0$, un facteur exponentiel supplémentaire apparaît 
 : ce n'est rien d'autre que le \textbf{propagateur} $(*)$ de spectre. Le spectre initial est multiplié 
-par un simple facteur de phase, une sorte de phaseur. Hélas, s'exprimer dans le spectre ne donne pas 
+par un simple facteur de phase, une sorte de phaseur. Hélas, l'exprimer dans le spectre ne donne pas 
 grand chose, le problème est la conversion spatiale.\\
 
 
@@ -265,15 +266,15 @@ a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i(\rho x + \sigma y + \beta z
 On peut alors dire que le phaseur a une phase $\varphi \rho x + \sigma y + \beta z$. Si on considère 
 cette phase constante, on considère le lieu des points vérifiant 
 \begin{equation}
-\varphi \rho x + \sigma y + \beta z = 2m\pi
+\varphi = \rho x + \sigma y + \beta z = 2m\pi
 \end{equation}
-Il s'agit d'une équation de plan dont $\rho,\sigma$ et $\beta$ sont les cosinus directeur, les 
+Il s'agit d'une équation de plan dont $\rho,\sigma$ et $\beta$ sont les cosinus directeurs, les 
 composantes du vecteur $k$. Ce phaseur n'est qu'une onde plane qui se propage avec un certain 
-angle par rapport à l'axe $z$. Analysons l'intégrale dans sa globalité en faisant passé le 
+angle par rapport à l'axe $z$. Analysons l'intégrale dans sa globalité en faisant passer le 
 faisceau laser par une fonction fenêtre (une fente infinie en $y$) :
 \begin{equation}
 \left\{\begin{array}{ll}
-a(x';0) = a_0 & \text{ si } |x'| < l\\
+a(x';0) = a_0 = 1 & \text{ si } |x'| < l\\
 a(x';0) = 0 & \text{ si } |x'| > l
 \end{array}\right.\quad \Rightarrow\quad A(\rho) = 2l\ \text{sinc}(l\rho)
 \end{equation}
@@ -313,9 +314,9 @@ a(x,y;z) = a_0e^{ikz}
 \end{equation}
 Ce qui est bien la réponse attendue. Il n'y a pas de diffraction, c'est un "mode de propagation" qui 
 est invariant.
-\item Onde plane inclinée selon $x = a(x,y;0) = a_0e^{i\rho_0x}$.\\
+\item Onde plane inclinée selon $x$ : $a(x,y;0) = a_0e^{i\rho_0x}$.\\
 Ceci représente bien une onde avec un certain angle car $\rho_0 = l\sin\theta_0$. Après 
-substitution (on choisit $\sigma=0$).
+substitution %(on choisit $\sigma=0$) tu n'utilise pas cette condition.
 \begin{equation}
 A(\rho,\sigma) = a_0\int e^{i\rho_0x}e^{-i\rho x}\ dx \int e^{-i\sigma y}\ dy
 \end{equation}
@@ -359,7 +360,7 @@ a(x;0) = 0 & \text{ si } |x| > l
 \end{array}\right.
 \end{equation}
 On considère une onde plane sur un écran qui va l'absorber sauf sur une largeur $2l$. 
-Réduisons le problème en $2D$ ($x$ et $z$- : rien ne change en y, la fente est infinie.  
+Réduisons le problème en $2D$ ($x$ et $z$ : rien ne change en y, la fente est infinie).  
 La transformée de Fourier est bien connue
 \begin{equation}
 A(\rho) = 2l\ sinc(\rho l)\qquad a_0=1
@@ -371,7 +372,7 @@ Ci-dessous, la densité spectrale du spectre $|A(\rho)|^2$.
 direction, ceci donne l'amplitude correspondante.}
 \end{center}
 Cette fois-ci, la fonction est 
-moins triviale : on ne calculera pas on se contentera de la physique. Si l'on place un 
+moins triviale : on ne la calculera pas, on se contentera de la physique. Si l'on place un 
 détecteur, un certain $\rho$ va sélectionné un certain $\theta$ et cette valeur donne une 
 certaine amplitude. On tombe sur une difficulté conceptuelle : on trouve la valeur de $k$ 
 puis $\rho$ dépasse $k$ ; on recherche l'arc dont le sinus est supérieur à 1\footnote{$\theta =
@@ -400,21 +401,20 @@ a(x;z) = \int_{-k}^k  2l\ \text{sinc}(l\rho)e^{i\sqrt{k^2-\rho_0^2}z}e^{i\rho x}
 \end{equation}
 Le deuxième terme somme des ondes évanescentes. En $z$, elles évoluent en exponentielles 
 négatives. Quelle est cette absorption ? Il s'agit d'un phénomène de réflexion (il représente 
-des photons qui passent l'écran et retournent de la ou ils viennent). 
+des photons qui passent l'écran et retournent de là où ils viennent). 
 
 \begin{center}
 \includegraphics[scale=0.25]{ch2/image10.png}
 \captionof{figure}{ }
 \end{center}
 Par simplification, 
-on ne va s'arranger pour qu'elles soient négligeables. Pour se faire, analysons le spectre. 
+on va s'arranger pour qu'elles soient négligeables. Pour ce faire, analysons le spectre. 
 La fonction sinus cardinal a un lobe principal : toute l'énergie est proche de l'origine. Nous 
 allons travailler de sorte que les objets diffractant vérifient
 \begin{equation}
 \dfrac{2\pi}{l} \ll k = \dfrac{2\pi}{k}
 \end{equation}
-A ce moment la, le spectre est fort ramené à l'origine de sorte à ce que les ondes évanescentes 
-soient négligées. Autrement dit
+A ce moment là, le spectre est fortement ramené à l'origine de sorte que les ondes évanescentes 
 \begin{equation}
 \int_{|\rho|>l} |A(\rho)|^2\ d\rho \ll \int_{-k}^{+k} |A(\rho)|^2\ d\rho
 \end{equation}
@@ -452,7 +452,7 @@ a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\sq
 Nous allons ici approcher l'expression du propagateur. Une onde plane arrivée sur un écran 
 percé. Chacune de ces ondes possédant un certain poids ($A$) se propage avec un certain 
 angle ($\rho$ par rapport à $x$ et $\sigma$ par rapport à $y$). Nous travaillons dans la 
-limite $\lambda \ll l$ pour négliger les ondes évanescentes de sorte à ce que les seules 
+limite $\lambda \ll l$ pour négliger les ondes évanescentes de sorte que les seules 
 valeurs significatives\footnote{La pondération, c'est-à-dire l'amplitude $A$, n'est 
 significative que pour les valeurs de $\rho$ proche de l'origine : $\rho,\sigma \ll k$} de 
 $\rho$ soient incluent dans $\left[\frac{-\pi}{l};\frac{\pi}{l}\right]$.\\
@@ -462,7 +462,7 @@ $\rho$ soient incluent dans $\left[\frac{-\pi}{l};\frac{\pi}{l}\right]$.\\
 fonction est large.\\
 
 Intéressons-nous à l'\textit{approximation paraxiale} : petits angles $\rho,\sigma\ll k$. 
-En effet, lorsque $\rho,\sigma\ll k$ on travaille avec un arcsinus très faible, d'où le 
+En effet, lorsque $\rho,\sigma\ll k$ on travaille avec un arcsinus très faible, d'où les 
 \textit{petits angles}. Ceci va permettre d'éliminer la racine, bien gênante dans notre 
 S.G.
 \begin{equation}
@@ -481,14 +481,15 @@ k-\dfrac{1}{2}\dfrac{\rho^2}{k}-\dfrac{1}{2}\dfrac{\sigma^2}{k}\qquad\qquad\beta
 \captionof{figure}{ }
 \end{wrapfigure}
 Le $\beta$ (la composante en $z$ du vecteur d'onde) obtenu est toujours réelle : la possibilité 
-d'avoir des ondes évanescentes à été éliminée. Nous avons donc remplacé la contrainte sur 
-les modes de Fourier (le vecteur d'onde devant se déplacer sur une sphère) a été changée en 
+d'avoir des ondes évanescentes a été éliminée. Nous avons donc remplacé la contrainte sur 
+les modes de Fourier (le vecteur d'onde devant se déplacer sur une sphère) par  
 une contrainte de type parabolique. Ceci n'est valable que si la distribution angulaire est 
 limitée ce qui n'est vrai que si la taille de l'objet est significativement grande devant la 
 longueur d'onde.\\
+
 Effectuons cette approximation par substitution :
 \begin{equation}
-a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{i\rho x}e^{i\sigma y} e^{i\frac{\rho^2}{2k}z
+a(x,y;z) = \iint_{-\infty}^\infty A(\rho,\sigma)e^{-i\rho x}e^{i\sigma y} e^{i\frac{\rho^2}{2k}z
 -i\frac{\sigma^2}{2k}z}\ d\rho d\sigma\ e^{ikz}
 \end{equation}
 Ceci est une simplification considérable, il va être possible de traiter ce terme de phase. Il 
@@ -500,7 +501,7 @@ a(x,y;z) = TF^{-1}\left[A(\rho,\sigma)e^{-i\frac{z}{2k}(\rho^2+\sigma^2)}\right]
 Le facteur de phase étant quadratique, il est traitable analytiquement. Simplifions le problème 
 en considérant que rien ne se passe en $y$ (le spectre est une delta de Dirac en $\sigma$) :
 \begin{equation}
-a(x;z) = TF^{-1}\left[A(\rho)\underbrace{e^{-\frac{z}{2k}\rho^2}}_{H_z(\rho)}\right]e^{ikz}
+a(x;z) = TF^{-1}\left[A(\rho)\underbrace{e^{-i\frac{z}{2k}\rho^2}}_{H_z(\rho)}\right]e^{ikz}
 \end{equation}
 On peut considérer que notre plaque percée obéit à la fonction fenêtre, suffisamment large devant 
 la longueur d'onde\footnote{$z$ est un paramètre dans cette analyse.}. Plus proprement :
@@ -520,7 +521,7 @@ Fourier inverse (pour le peu que l'on intègre sur $\rho$) :
 \begin{equation}
 h_z(x) = \int e^{-i\frac{z}{2k}\rho^2}\ e^{i\rho x}\ d\rho
 \end{equation}
-Les tables mathématiques peuvent directement nous donner la solution de cette intégrale
+Les tables mathématiques peuvent directement nous donner la solution de cette intégrale\footnote{$\int e^{-\alpha \rho^2} e^{i\rho x}\ d x = \sqrt{\frac{\pi}{\alpha}} e^{-x^2/(4\alpha)}$ le terme $\sqrt{\pi}$ n'est pas significatif dans notre développement qualitatif}
 \begin{equation}
 h_z(x) = \sqrt{\frac{2k}{z}}\ e^{-i\dfrac{\pi}{4}}\ e^{i\dfrac{k}{2z}x^2}
 \end{equation}
@@ -573,10 +574,10 @@ cette onde : exprimons les lieux de phases constantes ou, autrement dit, les fro
 \end{wrapfigure}
 où $r = \sqrt{x^2+y^2+z^2}$. En se plaçant dans des conditions paraxiales (très proche de 
 l'axe $z$) : $x,y \ll z$. On se propose donc d'analyser la phase d'une onde sphérique dans 
-la zone ou les conditions paraxiales sont réunies. On peut approximer la racine
+la zone où les conditions paraxiales sont réunies. On peut approximer la racine
 \begin{equation}
-r\sqrt{1+\dfrac{x^2}{z^2}+\dfrac{y^2}{z^2}} \quad \Rightarrow \quad\left[1+\dfrac{x^2}{2z^2}+
-\dfrac{y^2}{2z^2}\right]
+r=z\sqrt{1+\dfrac{x^2}{z^2}+\dfrac{y^2}{z^2}} \approx z\left[1+\dfrac{x^2}{2z^2}+
+\dfrac{y^2}{2z^2}\right] = z+ \dfrac{x^2}{2z} + \dfrac{y^2}{2z}
 \end{equation}
 Dès lors
 \begin{equation}
@@ -619,14 +620,14 @@ a(x,y;z) = \frac{k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
 
 Nous ne travaillons finalement que avec la "\textit{réponse impulsionnelle}" du système où 
 l'impulsion est cette source ponctuelle située en $(x',y')$. Nous avons en effet la réponse 
-à une source ponctuelle (un delta, cette fois ci non temporel mais spatial) générant l'onde 
+à une source ponctuelle (un delta, cette fois-ci non temporel mais spatial) générant l'onde 
 $h_z$ (l'onde sphérique approchée de façon parabolique) $\rightarrow$ réponse impulsionnelle.\\
 
 
 Un point source donne lieu à une certaine répartition de champ. La réponse globale s'obtient en 
 prenant la convolution avec cette réponse, c'est-à-dire en considérant que chaque point a une 
-certaine amplitude $a(x',y';0)$ : l'objet à une certaine amplitude et chaque de ces amplitude 
-rayonne une onde sphérique partant de $(x',y')$ ou l'on a une certaine amplitude. \\
+certaine amplitude $a(x',y';0)$ : l'objet à une certaine amplitude et chacune de ces amplitudes 
+rayonne une onde sphérique partant de $(x',y')$ où l'on a une certaine amplitude. \\
 
 \begin{wrapfigure}[9]{l}{6.5cm}
 \vspace{-5mm}
@@ -634,7 +635,7 @@ rayonne une onde sphérique partant de $(x',y')$ ou l'on a une certaine amplitud
 \captionof{figure}{ }
 \end{wrapfigure}
 On retrouve le 
-principe de Huygens : un écran laisse passé un trou laissant passé la lumière avec une certaine 
+principe de Huygens : un écran doté d'un trou laissant passer la lumière avec une certaine 
 amplitude dépendant de $x'$ et $y'$. Chaque point de cet objet peut être considéré comme un point 
 source générant une onde sphérique pouvant être approchée paraboliquement. En $z$, nous sommons 
 (à travers l'intégrale) les champs de chacune de ces ondes sphériques. Nous avons une 
@@ -645,7 +646,7 @@ est représentée ci-contre).\\
 Ceci est ainsi de la formule de diffraction de Fresnel, cette intégrale de Fresnel ne représente 
 rien d'autre qu'une superposition d'ondelettes de Huygens.
 \begin{equation}
-a(x,y;z) = \frac{2k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x)^2}\
+a(x,y;z) = \frac{2k}{z}\int a(x',y';0)\ e^{i\dfrac{k}{2z}(x-x')^2}\
  e^{i\dfrac{k}{2z}(y-y')^2}\ dx'dy'\ e^{-i\dfrac{\pi}{2}}\ e^{ikz}
 \end{equation}
 
@@ -664,7 +665,7 @@ Nous avons une onde sphérique approchée par une onde parabolique dont le profi
 \begin{equation}
 I(x,y;z) = |a(x,y;z)|^2 \propto \dfrac{1}{z^2}
 \end{equation}
-Ceci peut paraître curieux car la décroissance réelle d'une onde est en $\frac{1}{r^2}$.
+Ceci peut paraître curieux car la décroissance réelle d'une onde sphérique est en $\frac{1}{r^2}$.
 \begin{equation}
 I(x,y;z) \propto \frac{1}{r^2}
 \end{equation}
@@ -692,7 +693,7 @@ r = z+\frac{1}{2z}(x^2+y^2) + \mathcal{O}(2)
 
 
 En réalité, pour décrire cette onde, le front d'onde en $e^{ikz}$ a été approché : la 
-sphère a été approché par une parabole, l'ordre un du développement a été gardé. Or, nous 
+sphère a été approchée par une parabole, l'ordre un du développement a été gardé. Or, nous 
 sommes passé de $1/r$ à $1/z$ car nous n'avons pas fait la même 
 approximation. Pour la phase on considère que $r = z +\frac{1}{2z}(x^2+y^2)$ et pour l'amplitude 
 on dit que $r=z$ (l'ordre un pour l'amplitude a été supprimé). Ceci peut paraître paradoxal, 
@@ -704,7 +705,7 @@ On peut se permettre de faire ça car une petite erreur sur la phase peut résul
 grandes erreurs du profil diffracté. Mais si on se trompe sur la valeur de $r$ (petite 
 erreur : $\delta r \approx 10^{-6}m\approx \lambda$) peut créer une erreur sur la phase 
 de l'ordre de 100\% alors que sur l'amplitude, cela ne change quasiment rien. Il est donc 
-tout à fait légitime de garder l'approximation d'ordre 1 pour évaluer la distance dans le 
+tout-à-fait légitime de garder l'approximation d'ordre 1 pour évaluer la distance dans le 
 terme de phase et de se contenter de l'approximation d'ordre 0 pour l'amplitude.
 
 
@@ -727,7 +728,7 @@ nous à la phase de ces ondelettes où les carrés ont été développés
 \end{equation}
 La diffraction de Fraunhofer fait un pas supplémentaire dans l'approximation de ces 
 ondelettes : on va négliger les termes\footnote{Les axes en prim' sont ceux du repère 
-attaché à l'objet diffractant.} $x^{'2}$ et $y^{'2}$ (mais on les garde au premier 
+attaché à l'objet diffractant.} $x^{'2}$ et $y^{'2}$ devant les autres termes (mais on les garde au premier 
 ordre). Pour se faire, nous allons limiter la taille de l'objet
 \begin{equation}
 x',y' \ll x,y
@@ -775,7 +776,7 @@ En séparant le terme de phase en deux
 a(x,y:z) = \dfrac{k}{z} e^{ikz} e^{i\dfrac{k}{2}(x^2+y^2)} \underbrace{\int a(x',y';0) e^{-i\dfrac{k
 }{z}xx'}e^{-i\dfrac{k}{z}yy'}\ dx'dy'}_{A\left(\frac{kx}{z},\frac{ky}{z}\right)}
 \end{equation}
-En posant $\rho = k/zx$ et $\sigma = k/zy$ on retrouve la définition de la transformée de Fourier 
+En posant $\rho = (k/z)x$ et $\sigma = (k/z)y$ on retrouve la définition de la transformée de Fourier 
 $A(\rho,\sigma)$ : il s'agit de la transformée de Fourier du champ objet. Dès lors\\
 
 \retenir{\textbf{Formule de diffraction de Fraunhofer}
@@ -931,7 +932,7 @@ Le théorème des phases stationnaires nous dit que si l'on observe $A\left(\dfr
 y avoir interférences constructives entre les ondes. Représentons une onde plane qui a une 
 valeur de $\rho$ légèrement supérieure. Ces ondes ont des interférences constructives au 
 point considéré et quelconques ailleurs : toutes les zones au $\rho$ proche vont 
-construire un champ important au point $x$. Aux autre points, on sommes des champs aléatoires 
+construire un champ important au point $x$. Aux autres points, on sommes des champs aléatoires 
 pour obtenir finalement zéro. C'est ce que dit notre théorème, nous n'avons interférences 
 constructives que proche de $\rho \approx \rho^*$, le reste ne contribue pas.
 	
