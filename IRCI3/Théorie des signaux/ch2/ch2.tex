@@ -18,7 +18,7 @@
 	\end{array}		
 	\end{equation}
 	\end{description}
-	Ceux deux signons sont liés par les deux relations suivantes
+	Ces deux signaux sont liés par les deux relations suivantes
 	\begin{equation}
 	\begin{array}{ll}
 	u(n) &= \sum_{k=-\infty}^n \delta(k)\\
@@ -30,7 +30,7 @@
 	\begin{equation}
 	\begin{array}{ll}
 	x(n) &= a^n\\
-	x(n) &= e^{\sigma+j\omega_0)n} = e^{\sigma n}(\cos\omega_0n+j\sin\omega_0n)
+	x(n) &= e^{(\sigma+j\omega_0)n} = e^{\sigma n}(\cos\omega_0n+j\sin\omega_0n)
 	\end{array}
 	\end{equation}
 	\item[Sinusoïdal]
@@ -39,7 +39,7 @@
 	\end{equation}
 	\item[Périodique]
 	\begin{equation}
-	x(n) = x(x+N)\qquad \forall n
+	x(n) = x(n+N)\qquad \forall n
 	\end{equation}
 	\end{description}
 	
@@ -52,7 +52,7 @@
 	\begin{equation}
 	e^{j(\omega_0+2k\pi)n} = e^{j\omega_0n}e^{j2k\pi n} = e^{j\omega_0n}
 	\end{equation}
-	Il est alors possible de restreindre la pulsation $\omega_0\in[0;2\pi[$. Cependant, 
+	Il est alors possible de restreindre la pulsation $\omega_0$ à $[0;2\pi[$. Cependant, 
 	contrairement aux signaux continus, l'exponentielle complexe n'est pas toujours 
 	périodique dans le cas discret.
 	\begin{equation}
@@ -67,7 +67,7 @@
 	limité le domaine de $\omega_0$ : il n'existe que $N$ exponentielles distinctes de 
 	période $N$ :
 	\begin{equation}
-	\Phi_k(n) = e^{jk\frac{2\pi}{N}n}\qquad k=0,1,\dots N-1
+	\Phi_k(n) = e^{jk\frac{2\pi}{N}n}\qquad k=0,1,\dots, N-1
 	\end{equation}
 	
 	
@@ -78,7 +78,7 @@
 		\includegraphics[scale=0.25]{ch2/image1.png}
 		\captionof{figure}{ }
 		\end{wrapfigure}
-		Il est toujours possible un signal $x(n)$ sous la forme
+		Il est toujours possible d'écrire un signal $x(n)$ sous la forme
 		\begin{equation}
 		x(n) = \sum_{-\infty}^\infty x(k)\delta(n-k)
 		\end{equation}\ \\
@@ -95,7 +95,7 @@ h(n) = T[\delta(n)]
 Comme vu à la sous-section ci-dessus, écrivons un signal d'entrée sous la forme 
 d'impulsion
 \begin{equation}
-x(n) = \sum_{-\infty}^\infty x(k)\delta{n-k}
+x(n) = \sum_{-\infty}^\infty x(k)\delta(n-k)
 \end{equation}
 Les "bornes" de la somme sont telles que l'on sélectionne tout. La sortie devient 
 \begin{equation}
@@ -207,7 +207,7 @@ y(n) = h(n)*x(n) = \sum_{k=-\infty}^\infty h(k)x(n-k)
 	\end{equation}
 	Calculons l'échantillon de sortie $y(0)$ :
 	\begin{equation}
-	y(0) = \sum_{k=-\infty}^\infty h(k)x(-k) = \sum_{k=-\infty}^\infty |h(k)
+	y(0) = \sum_{k=-\infty}^\infty h(k)x(-k) = \sum_{k=-\infty}^\infty |h(k)|
 	\end{equation}
 	La sortie $y(0)$ ne sera borné que si la réponse impulsionnelle est absolument sommable, 
 	la condition est bien nécessaire.	
@@ -244,7 +244,7 @@ On a alors
 y(-1) &= x(-1) &=0\\
 y(0) &= x(0) + ay(-1) &= x(0) = b\\
 y(1) &= x(1)+ay(0)&=ab\\
-y(2) &= x(2)+ay(1) &= a^b\\
+y(2) &= x(2)+ay(1) &= a^2b\\
 y(n) &= x(n)+ay(n-1) &= a^nb
 \end{array}
 \end{equation}
@@ -302,9 +302,9 @@ pour un échelon unitaire
 \begin{equation}
 \begin{array}{ll}
 y(n) &= \sum_{k=-\infty}^\infty x(k)h(n-k)\\
-&= \sum_{k=-\infty}^\infty u(k)a^nu(n-k)\\
-&= \sum_{k=-\infty}^\infty a^nu(n-k)\\
-&= \sum_{k=-\infty}^\infty a^n
+&= \sum_{k=-\infty}^\infty u(k)a^{n-k}u(n-k)\\
+&= \sum_{k=0}^\infty a^{n-k}u(n-k)\\
+&= \sum_{k=0}^n a^k
 \end{array}
 \end{equation}
 Il est possible de retrouver cette réponse en partant directement de la relation de 
