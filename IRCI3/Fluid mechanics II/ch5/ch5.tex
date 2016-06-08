@@ -695,4 +695,406 @@
 
 \section{Approximate solution method for boundary layers (integral method)}
 	Podcast 27
-			
+	\\
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Ch5 : Boundary layer (Suite par Michael Benizri) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\includegraphics[scale=0.45]{ch5/16}
+\end{center}
+\captionof{figure}{}
+\end{wrapfigure}
+
+
+\footnote{Chapter last part by Michael Benizri.} The idea of integral methods is to give up the objective of determining the detailed velocity field but rather to restrict our objective to finding the quantities of interest directly. The quantities of interest are: the skin friction, the momentum thickness and the displacement thickness.
+
+How could we do that ? By making semi-global balances. We are going to make balances on an infinitesimal slice of lenght dx. So it remains local in the tangential direction (dx is infinitesimal) but it is global in the normal direction (so the balance is over the whole BL).
+\\
+
+It's a steady flow problem so the mass balance consist in saying that the total mass flow out is equal to the zero. There is no net mass flow out of this controlled volume.
+\\
+
+\textbf{Mass balance:} Let's then compute the mass flow on each side of the de dx element:
+\\
+
+N: The north boundary is a streamline and by definition a streamline is tangent to the velocity field, therefore there is no mass flow through it:  $ \dot{m}_N=0 $.
+\\
+
+The south boundary is a solid body, therefore there is no mass flow through it: 
+$ S:  \dot{m}_S=0 $
+% West boundary equation
+\begin{equation}
+W: \newcommand{\deriv}{\mathrm{d}}
+		\dot{m}_W= \int_{W} \rho (\vec{u}.\vec{n}) \deriv s  
+		\quad where\ \vec{n}_W=-\vec{e}_x\ and\ ds=dy  \rightarrow\ -\dot{m}_W= \int_{0}^{y(x)} \rho u \deriv y  
+\end{equation}
+% East boundary equation
+\begin{equation}
+E: \newcommand{\deriv}{\mathrm{d}}
+		\dot{m}_E= \int_{E} \rho (\vec{u}.\vec{n}) \deriv s  
+		\quad where\ \vec{n}_E=\vec{e}_x\ and\ ds=dy  \rightarrow\ \dot{m}_E= \int_{0}^{y(x+dx)} \rho u \deriv y  
+\end{equation}
+
+By putting everything together we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\int_{0}^{y(x+dx)} \rho u \deriv y - \int_{0}^{y(x)} \rho u \deriv y =0 \Leftrightarrow dx \frac{d}{dx} \int_{0}^{y(x)} \rho u \deriv y =0 
+\end{equation}
+
+Where the left term has been transformed using the definition of a derivative.
+By diving by dx, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{d}{dx} \int_{0}^{y(x)} \rho u \deriv y =0 
+\end{equation}
+
+We can rewrite the left hand side of the equation, considering a constant density flow, the fact that $ u_{e}$ is only a function of x, the definition of the displacmeent thickness $\delta^*$ and by using of a small trick we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{d}{dx} \int_{0}^{y(x)} \rho u \deriv y = \rho \int_{0}^{y(x)}  (u-u_e+u_e) \deriv yc= \rho [u_e y]_0^y -\rho \int_{0}^{y(x)}  (u_e-u) \deriv y = \rho u_e(y-\delta^*)
+\end{equation}
+
+Finally, we end up with:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{d}{dx} \int_{0}^{y(x)} \rho u \deriv y = \frac{d}{dx}\rho u_e(y-\delta^*)
+\end{equation} \\
+
+Let's now do the same with the momentum balance. \\
+
+\textbf{Tangential momentum balance (x-wise):} Total tangential momentum flow out= sum of tangential forces
+\\
+
+N and S: The momentum flow is the mass flow times the velocity. Therefore, if there is no mass flow, there is no momentum flow. We just saw that there is no mass flow for the north and south boundary, therefore there are no momentum flow for those boundaries.
+\\
+
+% West boundary equation
+\begin{equation}
+W: \newcommand{\deriv}{\mathrm{d}}
+		\dot{p}_W= \int_{W} \rho u (\vec{u}.\vec{n}) \deriv s  
+		\quad where\ \vec{n}_W=- \vec{e}_x\ and\ ds=dy  \rightarrow\ -\dot{p}_W= \int_{0}^{y(x)} \rho u^2 \deriv y  
+\end{equation}
+% East boundary equation
+\begin{equation}
+E: \newcommand{\deriv}{\mathrm{d}}
+		\dot{p}_E= \int_{E} \rho u (\vec{u}.\vec{n}) \deriv s  
+		\quad where\ \vec{n}_E=\vec{e}_x\ and\ ds=dy  \rightarrow\ \dot{p}_W= \int_{0}^{y(x+dx)} \rho u^2 \deriv y  
+\end{equation}
+
+By putting those two terms together and by using the definition of the derivative, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\dot{p}_E+\dot{p}_W= \int_{0}^{y(x+dx)} \rho u^2 \deriv y - \int_{0}^{y(x)} \rho u^2 \deriv y   \Leftrightarrow \dot{p}_E+\dot{p}_W=dx \frac{d}{dx} \int_{0}^{y(x)} \rho u^2 \deriv y
+\end{equation}
+
+Let's now compute the forces:
+
+S: On the south boundary (which is the wall) we have the shear stress (friction) $\tau_w$ which applies over a length dx:  $F_s = -\tau_w dx$ (the friction slows down the fluid so there is a minus sign).\\
+
+W: On the west boundary we have a pressure force:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+F_w=- \int p \vec{n} \deriv s \rightarrow  F_w=- \int_W p n_x \deriv s=-\int_0^{y(x)} p (-1) \deriv y=[p_e y]_{y(x)}
+\end{equation}
+Note: Remember that we found that the pressure variation accros the BL (so the pressure normal to the wall) is nelgigeable. Meaning that p is a function of x only: $p=p_e(x)$.\\
+
+E: On the east wall we also have a pressure force:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+F_E=- \int p \vec{n} \deriv s \rightarrow  F_E=- \int_E p n_x \deriv s=-\int_0^{y(x+dx)} p (1) \deriv y=-[p_e y]_{y(x+dx)}
+\end{equation}
+	
+By putting the west and east contribution together and by using the definition of the derivative, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+F_w+F_E=- dx \frac{d}{dx} p_ey
+\end{equation}
+
+N: The north boundary correspond to the inviscid flow region so there is no shear stress. However, there is a pressure force due to the angle between the streamline and the wall.
+
+\begin{wrapfigure}{r}{0.2\textwidth}
+\begin{center}
+\includegraphics[scale=0.45]{ch5/17} 
+\end{center}
+\captionof{figure}{}
+\end{wrapfigure}
+
+Note: Since the north boundary is already just an infinitesimal bit, there is no need for an integral.
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+F_N=- \int_N p n_x \deriv s =-pn_x \deriv s=-p(-sin(\gamma))ds=p \deriv y=p \frac{\deriv y}{\deriv x} dx
+\end{equation}
+
+In this equation we have used the figure 5.5.2 to determine the value of $n_x$.
+\\
+
+Let's now put everything together:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+dx \frac{d}{dx} \int_{0}^{y(x)} \rho u^2 \deriv y=-\tau_w dx-dx \frac{d}{dx}(p_ey)+p \frac{\deriv y}{\deriv x} dx \Leftrightarrow  \frac{d}{dx} \int_{0}^{y(x)} \rho u^2 \deriv y=-\tau_w - y\frac{dp_e}{dx}
+\end{equation}
+
+By applying the same trick used for the mass conservation, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\int_{0}^{y(x)} \rho u^2 \deriv y=\rho \int_{0}^{y(x)}  (u^2-uu_e+uu_e-u_e^2+u_e^2) \deriv y=
+\end{equation}
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\rho [u_e^2y-u_e^2 \int (1-\frac{u}{u_e})dy-u_e^2 \int (\frac{u}{u_e})(1-\frac{u}{u_e})dy]
+\end{equation}
+
+And by using the definition of the displacement thickness and momentum defect thickness, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\int_{0}^{y(x)} \rho u^2 \deriv y=\rho u_e^2[y-\delta^*-\theta]
+\end{equation}
+
+Remember that mass conservation tells us that: $\rho u_e(y-\delta^*)$ is a constant. Then we have, by entering our last result in the momentum equation:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{\deriv}{\deriv x} \rho u_e^2(y-\delta^*)- \frac{\deriv}{\deriv x} \rho u_e^2(\theta)=-\tau_w-y \frac{\deriv p_e}{\deriv x} 
+\end{equation}
+
+Remember that (from the inviscid momentum equation) we have: $\newcommand{\deriv}{\mathrm{d}}
+- \frac{1}{\rho}\frac{\deriv p_e}{\deriv x} = u_e \frac{\deriv u_e}{\deriv x}  $. Therefore, by eliminating the terms in y, we have:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+ \rho u_e\delta^* \frac{\deriv u_e}{\deriv x}+ \frac{\deriv}{\deriv x} \rho u_e^2 \theta=-\tau_w
+\end{equation}
+
+Here it is important to notice that we obtain an equation that is independant of y. That means that we have found an equation that is independant of the choice of the streamline.\\
+
+By using the fact that: $\newcommand{\deriv}{\mathrm{d}} \frac{\deriv}{\deriv x} \rho u_e^2 \theta = \rho u_e^2 \theta (\frac{\deriv}{\deriv x} log(u_e^2 \theta))=\rho u_e^2 \theta(2\frac{\deriv u_e}{u_e \deriv x}+\frac{\deriv \theta}{\theta \deriv x})$ and dividing all the terms by $\rho u_e^2 $ to gt a non dimensionnal form, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{\deriv \theta}{\deriv x}+(\delta^*+2 \theta)\frac{\deriv u_e}{u_e \deriv x}=\frac{\tau_w}{\rho u_e^2}=\frac{C_f}{2}
+\end{equation}
+
+This last equation is called the Karman's integral equation. It is an ODE for precisely tha quantities of interest: $ \delta^*, \theta, C_f$. \\
+
+Note: $\delta ^* and \theta$ still depends on the velocity profile (we can say that the velocity profile is hidden). The idea is now to make some assumption on the shape of the velocity profile to solve this equation.
+
+Let's firts make a small dimensionnal analysis:
+\begin{equation}
+u=F(u_e,y,\nu,\theta) \rightarrow \frac{u}{u_e}=f(\frac{y}{\theta}=\tilde{y}, \frac{u_e \theta}{\nu}=R_{e \theta})
+\end{equation}
+
+Note: Remember that for a laminar flow, the Reynolds number does not play a role.
+
+Assumption about the velocity profile:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\delta^*=\int_0^\infty (1-\frac{u}{u_e}) \deriv y
+\end{equation}
+
+By multiplying by $\frac{\theta}{\theta}$ and by using the dimmensional analysis by which $\frac{u}{u_e}=f(\tilde{y})$, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\delta^*=\theta \int_0^\infty (1-\frac{u}{u_e}) \frac{\deriv y}{\theta}=\theta \int_0^\infty (1-f(\tilde{y})) \deriv \tilde{y} = \theta H
+\end{equation}
+
+Where H is a constante and is defined by: $\newcommand{\deriv}{\mathrm{d}} \int_0^\infty (1-f(\tilde{y})) \deriv \tilde{y}$. This final equation: $ \delta^*=H \theta$ eliminates one unknown.
+
+Similary:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{C_f}{2}=\frac{\tau_w}{\rho u_e^2}=\frac{\mu \frac{\partial u}{\partial y}|_0}{\rho u_e^2}=\frac{\nu u_e f'(0)}{u_e^2 \theta}=\frac{1}{R_{e \theta}} f'(0)=\frac{T}{R_{e \theta}}
+\end{equation}
+
+In this equation we used the dimensional analysis which gives us:
+$\frac{u}{u_e}=f(\tilde{y}) \rightarrow \frac{\partial u}{\partial y}=u_e f'(\tilde{y}) \frac{1}{\theta}$.
+
+The last member of this equation is obtained by defining the constant $T=f'(0)$.
+
+This closes the problem. But the assumption is not physically realistic because it boils down to assuming self similarity which is not necessary the case. The hypothesis has to be complexified to consider a family of velocity profiles that can be labelled by a number (the identification parameter K) in order to have a one to one matching with the velocity profiles. Therefore, $\delta^*=\theta H(K)$ where H is called the shape factor. So now we have one equation and two unknowns, one equation is then missing.
+\\
+
+To find a complementary equation, we can:
+\begin{enumerate}
+\item Make anither global balance, e.g. kinetic energy balance. This will give a set of ODE's easily solved by Matlab.
+\item For a laminar flow, we can compute the local momentum equation at one point in the BL (the wall). Instead of using u as a weighting function, we apply the local ME at one particular point in the BL. The most interesting point being the one where there is friction, we will compute the momentum equation in the viscous sublayer (at the wall).
+\end{enumerate}
+
+The momentum equation at the wall becomes (at the wall $y=0 \Rightarrow u=v=0$): $ \frac{\nu  \partial^2 u}{\partial y}|_0=-u_e\frac{du_e}{dx}$
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{u}{u_e}=f(\tilde{y}=\frac{y}{\theta},K) \rightarrow  \frac{ \partial u}{\partial y}=\frac{u_e f'}{\theta} \quad and \quad \frac{ \partial^2 u}{\partial y^2}=\frac{u_e f''}{\theta^2} 
+\end{equation}
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\nu \frac{u_e f''(0,K)}{\theta^2}=-u_e \frac{\deriv u_e}{\deriv x} \Leftrightarrow -f''(0,K)=\frac{\theta^2}{\nu} \frac{\deriv u_e}{\deriv x}
+\end{equation}
+
+The final result gives an algebraic relation linking K and $\theta$. We can choose to be the label $K=-f''(0,K) $. Then we have: $\newcommand{\deriv}{\mathrm{d}} K=\frac{\theta^2}{\nu} \frac{\deriv u_e}{\deriv x}$. Where we can see that K>0 corresponds to an accelerating flow and K<0 to a decelerating flow.
+
+Here are the two equations that we have:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{\deriv \theta}{\deriv x}+(2+H(K))\frac{\theta \deriv u_e}{u_e \deriv x}=\frac{\tau_w}{\rho u_e^2}=\frac{C_f}{2}=\frac{T(K)}{R_{e \theta}}
+\end{equation}
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}} 
+K=\frac{\theta^2}{\nu} \frac{\deriv u_e}{\deriv x}
+\end{equation}
+
+By mutliplying the first one of those two equations by: $R{e \theta}=\frac{u_e \theta}{\nu}$, after some manipulation, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{u_e \deriv (\frac{\theta^2}{\nu})}{2 \deriv x}=T(K)-K (2+H(K)) \equiv\frac{F(K)}{2}
+\end{equation}
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{u_e \deriv (\frac{\theta^2}{\nu})}{\deriv x}=\frac{F(K)}{2}=a-bK \quad (Thwaites)
+\end{equation}
+
+We know have to specify the velocity profile to continue.
+\\
+
+\textbf{Choice of the velocity profile:} Historically, the idea was to use a polynomial fit of order 4.
+
+Lets take back the Thwaites equation in which we define: $Z=\frac{\theta^2}{\nu}$, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+u_e\frac{\deriv Z}{\deriv x}+ bZ\frac{\deriv u_e}{\deriv x}=a \quad (dividing \quad by\quad u_eZ)\rightarrow \frac{\deriv Z}{Z \deriv x}+b \frac{\deriv u_e}{u_e \deriv x}=\frac{a}{u_eZ} 
+\end{equation}
+
+We see that:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+u_e\frac{\deriv Z}{\deriv x}+ bZ\frac{\deriv u_e}{\deriv x}=\frac{\deriv }{\deriv x} ln(Zu_e^b)=\frac{1}{Zu_e^b}\frac{\deriv }{\deriv x} (Zu_e^b)
+\end{equation}
+
+So, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{1}{Zu_e^b}\frac{\deriv }{\deriv x} (Zu_e^b)=\frac{a}{u_eZ} \Leftrightarrow \frac{\deriv }{\deriv x} (Zu_e^b)=au_e^{b-1} \rightarrow Z(x)=\frac{\theta^2(x)}{\nu}=\frac{a}{u_e^b(x)}[\int_0^x u_e^{b-1}(s) \deriv s +c]
+\end{equation}
+
+Where we take c=0. As a matter of fact, if the stagnation point is taken as the origin of the coordinate system, since x=0 at a stagnation point, we get c=0. So finally we have:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+ Z(x)=\frac{\theta^2(x)}{\nu}=\frac{a}{u_e^b(x)}\int_0^x u_e^{b-1}(s) \deriv s
+\end{equation}
+
+This equation has a singular point at the stagnation point, where the behaviour is:
+
+\begin{equation}
+\lim_{x \rightarrow 0} \frac{\theta^2}{\nu}=a \lim_{x \rightarrow 0} \frac{u_e^{b-1}(0)}{bu_e^{b-1}(0) u'_e(0)} \Leftrightarrow  \frac{\theta^2}{\nu}|_{stag.point}=\frac{a}{bu'_e(0)}
+\end{equation}
+
+This solution is similar to the solution obtained with the self similar solution.
+
+This method is simple but is only valid for laminar flows. Accuracies varies between  5\%  and 15\% which is not bad considering the simplicity of the method.
+
+\section{Viscous-Inviscid interactions}
+
+According to the Thwaites relation, K (and so the velocity profile) depends only on the outer velocity distribution, and is independent of the viscosity and of the Reynolds number.
+The separation point location is then independent of the viscosity and therefore on the Reynolds number. This is in contradiction with experiment.
+A possible explanation is that the displacement effect induces a pressure disturbance, that has to be taken into account by imposing normal velocity matching.
+
+Furthermore, the computed separation is oftentimes way of the experimental location. What could be the source of the problem?
+\begin{enumerate}
+\item Approximate character of integral methods ? NO
+\item Boundary layer theory incorrect ? NO
+\item Normal velocity mismatch (displacement effect) ? Let's check!
+\end{enumerate}
+
+The normal velocity mismatch is expected to modify the pressure distribution over the body: $ u_e(x)=u_e(x)+\delta u_e(x)$, where $\delta u_e(x)$ is the perturbation due to the displacement effect depending on Re.
+
+That this is indeed the reason for the discrepancy between theory and experiment is confirmed by the good agreement between theory and experiment if the BL calculations is performed using the experimental pressure distribution. CURE: Impose normal velocity matching!
+\\
+
+Normale velocity matching: $ v_e(x,y)=v^{inv}(x,y)$ at some $y \ge \delta$. 
+
+Reminder of integral method:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{\deriv}{\deriv x} \int_0^{y(x)} \rho u \deriv y =\rho \frac{\deriv}{\deriv x} u_e (y-\delta^*)=0
+\end{equation}
+
+By developping the right hand side we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\rho \frac{\deriv}{\deriv x} u_e (y-\delta^*)=u_e \frac{\deriv y}{\deriv x} +y  \frac{\deriv u_e}{\deriv x} - \frac{\deriv}{\deriv x} (u_e\delta^*)
+\end{equation}
+
+For a streamline: $ \newcommand{\deriv}{\mathrm{d}} \frac{v_e}{u_e}=\frac{\deriv y}{\deriv x}$
+
+By imposing velocity matching, we get:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+u_e\frac{\deriv y}{\deriv x}=v_e(x,y)=\frac{\deriv}{\deriv x} (u_e\delta^*)-y\frac{\deriv u_e}{\deriv x}=v^{inv}(x,y)
+\end{equation}
+
+Let's extrapolate the outer inviscid flow inside the BL:
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{\partial u^{inv}}{\partial x}+\frac{\partial v^{inv}}{\partial y}=0 \Leftrightarrow \frac{\partial v^{inv}}{\partial y}=-\frac{\partial u^{inv}}{\partial x} 
+\end{equation}
+
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\int_z^y \frac{\partial v^{inv}}{\partial \zeta} d\zeta=v^{inv}(x,y)-v^{inv}(x,z)=\int_z^y \frac{\partial u^{inv}}{\partial x} d\zeta \quad where \quad \frac{\partial u^{inv}}{\partial x}=\frac{\deriv u_e}{\deriv x}
+\end{equation}
+
+Therefore, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+v^{inv}(x,y)-v^{inv}(x,z)=-\frac{\deriv u_e}{\deriv x} (y-z) \quad where \quad v^{inv}(x,y)=\frac{\deriv}{\deriv x} (u_e\delta^*)-y\frac{\deriv u_e}{\deriv x}
+\end{equation}
+
+Finally, we get:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+v^{inv}(x,z)=\frac{\deriv}{\deriv x} (u_e\delta^*)-z\frac{\deriv u_e}{\deriv x}
+\end{equation}
+
+There are two interesting points:
+\begin{enumerate}
+\item $z=0:\newcommand{\deriv}{\mathrm{d}}
+v^{inv}(x,0)=\frac{\deriv}{\deriv x} (u_e\delta^*) \quad$ Transpirationv elocity model
+\item $z=\delta^*: \newcommand{\deriv}{\mathrm{d}}
+v^{inv}(x,\delta^*)=\frac{\deriv}{\deriv x} (u_e\delta^*)-\delta^*\frac{\deriv u_e}{\deriv x}= u_e \frac{\deriv \delta^*}{\deriv x} \quad$ Displacement surface model
+\end{enumerate}
+
+We can rewrite case of $z=\delta^*$ in another form:
+\begin{equation}
+\newcommand{\deriv}{\mathrm{d}}
+\frac{v^{inv}(x,\delta^*)}{u_e}=\frac{\deriv \delta^*}{\deriv x}
+\end{equation}
+
+This shows that the outer inviscid flow is tangent to the displacement surface at $y=\delta^*$
+
+ Simple strategy for imposing the normal velocity matching condition:
+ 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\includegraphics[scale=0.45]{ch5/18}
+\end{center}
+\captionof{figure}{}
+\end{wrapfigure}
