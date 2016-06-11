@@ -15,7 +15,7 @@ Les modules qui ont une position fixée dans la chaîne sont:
 	\caption{Structure de la chaîne} 
 	\label{fig:strucchain}
 \end{figure}
-Les modules qui dont la position peut varier sont:
+Les modules dont la position peut varier sont:
 \begin{itemize}
 	\item amplificateur, permettant l'ajustement du niveau à celui du CAN. Peut être avant ou après le multiplexeur
 	\item multiplexeur (à priori avant le S\&H)
@@ -24,13 +24,13 @@ Les modules qui dont la position peut varier sont:
 \subsubsection{Un ampli par voie}
 Il sera donc avant le multiplexeur, de gain fixe. Il possède une meilleure immunité aux parasites et aux décalages des modules suivants mais coûte plus cher s'il y a beaucoup de voie (N amplis)
 \subsubsection{Un ampli unique}
-Il sera donc après le multiplexeur, de gain programmable. Il coûte moins cher s'il y a beaucoup de voie, au détriment d'un délai de réglage du gain et une moins bonne immunité aux parasites et aux décalages des modules suivants.
+Il sera donc après le multiplexeur, de gain programmable. Ça coûte moins cher s'il y a beaucoup de voie, au détriment d'un délai de réglage du gain et une moins bonne immunité aux parasites et aux décalages des modules suivants.
 \subsection{Options pour le moment d'acquisition}
 \subsubsection{Acquisition séquentielle}
-On mesure N grandeurs à des instants différents. \(T_{ech}\ll\ (f_{ech}\gg)\) délai de variation (cste de temps) des processus. \(T_{ech}\approx\) délai des variation des processus. Ça demande 1 S\&H par voie\\
-N.B.: la quantification et/ou lecture du résultat restent séquentielles
+On mesure N grandeurs à des instants différents. \(T_{ech}\ll\ (f_{ech}\gg)\) délai de variation (cste de temps) des processus. 
 \subsubsection{Acquisition simultanée}
-On mesure N grandeurs simultanément. 
+On mesure N grandeurs simultanément. \(T_{ech}\approx\) délai des variation des processus. Ça demande 1 S\&H par voie\\
+N.B.: la quantification et/ou lecture du résultat restent séquentielles.
 \subsection{Parcours des différents cas}
 On a donc plusieurs cas que l'on va vite décrire ici
 \begin{enumerate}
@@ -80,7 +80,7 @@ On a donc plusieurs cas que l'on va vite décrire ici
 	\end{itemize}
 \end{itemize}
 \subsection{Dimensionnement du gain de l'ampli}
-Il faut que la tension d'entrée du CAN couvre tout l'étendue de mesure de celui-ci sinon on perd en SNR et en dynamique.\\
+Il faut que la tension d'entrée du CAN couvre tout l'étendue de mesure de celui-ci sinon on perd en SNR et en dynamique.\bigbreak
 
 Critère de dimensionnement de l'ampli: pleine échelle pour \(m_{max}\)
 \[\Rightarrow V_{FSR} = m_{max}.S.G_a.G_f\]
@@ -134,9 +134,9 @@ Ainsi, on a notre limite max de fréquence d'échantillonnage:
 \begin{itemize}
 	\item fréquence d'échantillonnage max. du système (= celle du CAN)
 	\[f_{s_{max,sys}}=1/t_{scr,min}\]
-	\item fréquence d'échantillonnage max. par voir (= un tour de MUX)
+	\item fréquence d'échantillonnage max. par voie (= un tour de MUX)
 	\[_{s_{max,voie}}=1/(N.t_{scr,min})\]
-	\item échantillonnage corerct d'une voie (Shannon/Nyquist)
+	\item échantillonnage correct d'une voie (Shannon/Nyquist)
 	\[f_{s_{min,voie}}=2f_{max,signal}\]
 \end{itemize}
 Donc le fréquence d'échantillonnage réelle du système est
