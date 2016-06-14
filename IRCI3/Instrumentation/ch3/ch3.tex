@@ -1,5 +1,5 @@
 \chapter{Bruits et parasites}
-Introduisons ce que sont bruits et parasites:
+Introduisons la notion de  bruit et parasite:
 \begin{description}
 	\item[Bruit] au sens strict (encore appelé "bruit de fond") est un signal à variation aléatoire d'origine \emph{interne} au dispositif étudié. Il est possible de le définir, de prévoir son niveau plancher à l'aide du dimensionnement
 	\item[Parasites] signaux perturbateurs d'origine \emph{externe} au dispositif
@@ -22,9 +22,9 @@ Ces 2 phénomènes se présentent sous forme de signal analogique venant s'addit
 On remarque que:
 \begin{itemize}
 	\item contrairement au bruit qui possède généralement une amplitude plancher, calculable théoriquement, il est théoriquement impossible de réduire les parasites à un niveau arbitrairement bas.
-	\item La modélisation des effets du bruit dans un système est ,dans le principe, simple. Au contraire, la modélisation des parasites est nettement plus difficile car ceux-ci sont constitués de plusieurs signaux plus déterministes dont il faut connaître les couplages avec le système étudié.
+	\item La modélisation des effets du bruit dans un système est, dans le principe, simple. Au contraire, la modélisation des parasites est nettement plus difficile car ceux-ci sont constitués de plusieurs signaux plus déterministes dont il faut connaître les couplages avec le système étudié.
 \end{itemize}
-L'introduction des ces phénomènes relève tout l'intérêt des signaux numérique (au lieu d'analogique). En effet, alors qu'un signal analogique dégradé ne peut être restauré, il est possible généralement de restauré un signal numérique dégradé.\\
+L'introduction des ces phénomènes relève tout l'intérêt des signaux numérique (au lieu d'analogique). En effet, alors qu'un signal analogique dégradé ne peut être restauré, il est possible généralement de restaurer un signal numérique dégradé.\\
 Un signal numérique n'est rien d'autre qu'un signal analogique dont certains niveaux représentent des valeurs discrètes portant une information (paliers, ex. 0=vrai, 1=faux) et dont chaque niveau peut varier dans certaines limite \(\rightarrow\) marges de bruit.\\
 
 Ainsi, si l'impact des bruits et parasites est inférieur à cette marge de bruit définie par la conception, il est possible de restaurer le signal numérique utile. Les signaux numériques présentent donc une meilleure robustesse face aux perturbations. Il sera néanmoins toujours nécessaire de limiter les perturbations (car marges de bruit limitées).
@@ -34,7 +34,7 @@ Le bruit de fond possède plusieurs caractéristiques:
 \begin{itemize}
 	\item fluctuation aléatoire fondamentale due à la nature elle-même du dispositif
 	\item limite ultime de la résolution du dispositif (contrairement aux parasites)
-	\item fondamentalement inévitable (jamais nul) mais sont influence sur la chaîne peut être minimisé
+	\item fondamentalement inévitable (jamais nul) mais son influence sur la chaîne peut être minimisée
 	\item origine générale en électronique: fluctuations de la densité des porteurs de charges (porteurs de charges = \(e^-\) et trous, fonction de la température)
 	\item observable sur une tension et/ou un courant
 \end{itemize}
@@ -65,7 +65,7 @@ Il existe plusieurs type de bruit, comme le bruit de type gaussien (c-à-d qui s
 \caption{Bruit de type gaussien: densité de probabilité}
 \label{fig:densiteprobagauss}
 \end{figure}
-On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par exemple un bruit de valeur efficace \(\SI{1}{\volt}\) (\autoref{fig:tensionbruitmax}). Il est tout à fait possible qu'au bout de \(\SI{100}{\second}\) on ait un bruit 10 fois plus grand. C'est aléatoire, mais sa puissance rms est constante.
+Valeur maximale du bruit ? Prenons un bruit de valeur efficace \(\SI{1}{\volt}\) (\autoref{fig:tensionbruitmax}). Il est tout à fait possible qu'au bout de \(\SI{100}{\second}\) on ait un bruit 10 fois plus grand. C'est aléatoire, mais sa puissance rms est constante.
 \begin{figure}[H] 
 	\centering 
 	\begin{tikzpicture}[samples=100, domain=0:5*360]
@@ -97,16 +97,16 @@ On peut alors se demander qu'elle est la valeur maximale du bruit ? Prenons par 
 \paragraph{Remarque:} la "valeur efficace" est une puissance mesurée, ce n'est pas le max
 \subsection{Caractérisation mathématique}
 \subsubsection{Définition de base}
-Mathématiquement, le bruit est caractérisée par un \emph{signal temporel} (f.e.m) \(E_b(t)\) avec les propriétés suivantes:
+Mathématiquement, le bruit est caractérisé par un \emph{signal temporel} (f.e.m) \(E_b(t)\) avec les propriétés suivantes:
 \begin{itemize}
 	\item {\makebox[8cm]{fluctuation aléatoire \(\Rightarrow\) moyenne nulle\hfill} \(\overline{E_b(t)}=0\)}
 	\item {\makebox[8cm]{valeur quadratique moyenne non nulle\hfill} \(\overline{E_b^2(t)} \neq 0\)}
 	\item {\makebox[8cm]{valeur efficace ("rms" = root mean square)\hfill} \(E_b=\sqrt{\overline{E_b^2(t)}}\)}
-	\item {\makebox[8cm]{rapport signal/bruit SNR [dB]\hfill} \(SNR=10\log\frac{\overline{E^2_s(t)}}{E_b^2(t)}\)}
+	\item {\makebox[8cm]{rapport signal/bruit SNR [dB]\hfill} \(SNR=10\log\left(\overline{E^2_s(t)}/\overline{E_b^2(t)}\right)\)}
 \end{itemize}
 \subsubsection{Variation en fréquence}
 À ces propriétés s'ajoutent:\begin{itemize}
-	\item La valeur efficace dépend de la fréquence \(\Rightarrow\) \emph{densité spectrale} de bruit \[e_b^2(f)=\left.\frac{d\overline{E_b^2}}{df}\right|_f\quad [\si[per-mode=symbol]{\volt\squared\per\hertz}]\]
+	\item La valeur efficace dépend de la fréquence \(\Rightarrow\) \emph{densité spectrale} de bruit \[e_b(f)=\sqrt{\left.\frac{d\overline{E_b^2}}{df}\right|_f}\quad [\si[per-mode=symbol]{\volt\per\sqrt{\hertz}}]\]
 	\item La couleur du bruit:
 	\begin{itemize}
 		\item bruit blanc: densité spectrale constante en fréquence (uniformément réparti en fréquence, \autoref{fig:bruitblanc})
@@ -154,7 +154,7 @@ v_b^2(f) = v_{b_1}^2(f) + v_{b_2}^2(f) + \dots + v_{b_n}^2(f)
 \]
 \subsection{Types de bruit}
 \subsubsection{Bruit thermique ou de Johnson}
-Le bruit thermique est un bruit dû à l'agitation thermique des porteurs de charges (\(e^-\) dans conducteur, \(e^-+\) trous dans semi-conducteur). À \(T>\SI{0}{\kelvin}\), il y a collision des porteurs de charges entre eux \(\rightarrow\) répartition non uniforme des charges électriques \(\rightarrow\) champ électrique variable aléatoirement.\\
+Le bruit thermique est un bruit dû à l'agitation thermique des porteurs de charges (\(e^-\) dans conducteur, \(e^-+\) trous dans semi-conducteur). À \(T>\SI{0}{\kelvin}\), il y a collision des porteurs de charges entre eux \(\rightarrow\) répartition non uniforme des charges électriques \(\rightarrow\) champ électrique variable aléatoirement.\bigbreak
 
 Ses propriétés sont les suivantes:
 \begin{itemize}
@@ -212,7 +212,7 @@ Le reste:
 	\item Bruit d'éclatement (ou bruit impulsif, "burst noise", "popcorn noise"):
 	\begin{itemize}
 		\item présent dans certains dispositifs électronique particulier (ex. diode tunnel)
-		\item d'origine incertaine, liée aux défauts de fabrication
+		\item d'origine incertaine, lié aux défauts de fabrication
 		\item Bruit non gaussien
 	\end{itemize}
 \end{itemize}
@@ -249,10 +249,10 @@ La modélisation du bruit est présenté à la \autoref{fig:bruittrans}.
 \subsubsection{Introduction et principales techniques}
 Le but de cette sous-section est de développer des méthodes afin de rendre l'amplitude du bruit négligeable face à celle du signal, c-à-d \(\nearrow\) SNR. Pour ce faire, il est possible d'agir sur 2 choses:
 \begin{enumerate}
-	\item Augmenter le signal, c-à-d amplifier des que possible et autant que possible le signa \(\Rightarrow\) pré-ampli à grand gain et faible bruit.
+	\item Augmenter le signal, c-à-d amplifier dès que possible et autant que possible le signal \(\Rightarrow\) pré-ampli à grand gain et faible bruit.
 	\item Réduire le bruit de tous les composants.
 \end{enumerate}
-Afin de parvenir à un résultat, il est important de suivre ces quelques règles de bases:
+Afin de parvenir à un résultat, il est important de suivre ces quelques règles de base:
 \begin{enumerate}
 	\item Cibler le type de bruit (afin de choisir des contre-mesures efficaces).
 	\item S'attaquer au bruit prépondérant (on va peut-être s'occuper du gros d'abord, non ?).
@@ -260,21 +260,21 @@ Afin de parvenir à un résultat, il est important de suivre ces quelques règle
 \end{enumerate}
 Nous pouvons agir:
 \begin{description}
-\item \emph{au niveau des composants:}
+\item \emph{Au niveau des composants:}
 \begin{itemize}
 	\item Choisir des composants à faible bruit.
 	\item Jouer sur les paramètres influençant directement le bruit (ex. réduire la température pour un bruit thermique).
 \end{itemize}
-\item \emph{au niveau du système:}
+\item \emph{Au niveau du système:}
 \begin{itemize}
-	\item \hyperref[subsubsec:entreenobruit]{Pré-ampli à faible bruit} (parfois étage a transistor discrets afin de minimiser le bruit de l'aop, lui-même constitué d'un nombre conséquent de transistors discrets).
+	\item \hyperref[subsubsec:entreenobruit]{Pré-ampli à faible bruit} (parfois étage à transistor discrets afin de minimiser le bruit de l'aop, lui-même constitué d'un nombre conséquent de transistors discrets).
 	\item \nameref{subsubsec:bandepass} (réduire le bruit dans un bande passante plus restreinte).
 	\item \nameref{subsubsec:résistsource}.
 	\item \nameref{subsubsec:detectsync} pour le bruit rose.
 \end{itemize}
 \end{description}
 \subsubsection{Réduire la bande passante} \label{subsubsec:bandepass}
-Le bruit à virtuellement une bande passante infinie alors que celle du dispositif de mesure est limitée \(\Rightarrow\) bruit perçu limité à la bande passante du dispositif.\\
+Le bruit à virtuellement une bande passante infinie alors que celle du dispositif de mesure est limitée \(\Rightarrow\) bruit perçu limité à la bande passante du dispositif.\bigbreak
 
 Pour un bruit blanc de densité \(e_{bb}\) perçu au travers d'une bande passante \(B=f_{\text{max}}-f_{\text{min}}\):
 \begin{equation}
@@ -284,9 +284,9 @@ Ainsi, la valeur efficace du bruit dans une bande de fréquence, permettant d'av
 \begin{equation}\label{eq:valeffbruitDB}
 E_b = e_{bb}\sqrt{B}
 \end{equation}
-On déduit de \eqref{eq:valeffbruitDB} que plus la bande passante du dispositif de mesure \(\nearrow\), plus le bruit présent à la sortie de la chaîne de mesure \(\nearrow\) et donc plus le signal est perturbé. \(\Rightarrow\) Il faut \textbf{limiter la bande passante} (filtrage).\\
+On déduit de \eqref{eq:valeffbruitDB} que plus la bande passante du dispositif de mesure \(\nearrow\), plus le bruit présent à la sortie de la chaîne de mesure \(\nearrow\) et donc plus le signal est perturbé. \(\Rightarrow\) Il faut \textbf{limiter la bande passante} (filtrage).\bigbreak
 
-Dans un dispositif réel, le bruit est un "bruit composite" (blanc (aux hautes fréquences) + rose (aux basses fréquences)). Le point où les 2 densités spectrales sont égales (rose \(\cup\) blanc) est appelé la \emph{fréquence coin}.
+Dans un dispositif réel, le bruit est un "bruit composite" (rose (aux basses fréquences) + blanc (aux hautes fréquences)). Le point où les 2 densités spectrales sont égales (rose \(\cup\) blanc) est appelé la \emph{fréquence coin}.
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
@@ -307,11 +307,11 @@ Dans un dispositif réel, le bruit est un "bruit composite" (blanc (aux hautes f
 \end{figure}
 La valeur efficace de bruit composite dans la bande passante est :
 \begin{equation}
-E_b^2 = e_{bb}^2\left[(f_{max}-f_{min})+f_{ce}\ln\left(\frac{f_{max}}{f_{min}}\right)\right]
+E_b^2 = e_{bb}^2\left[(f_{\text{max}}-f_{\text{min}})+f_{ce}\ln\left(\frac{f_{\text{max}}}{f_{\text{min}}}\right)\right]
 \end{equation}
 Ainsi, pour réduire le bruit il faut:
 \begin{itemize}
-	\item limiter la bande passante (\(f_{max}-f_{min}\))
+	\item limiter la bande passante (\(f_{\text{max}}-f_{\text{min}}\))
 	\item choisir des composants pour minimiser:
 	\begin{itemize}
 		\item la densité spectrale de bruit blanc \(e_{bb}\text{ (et }i_{bb}\))
@@ -322,13 +322,13 @@ Ainsi, pour réduire le bruit il faut:
 \begin{description}
 	\item[\(R_s\)] résistance de sortie du capteur (ou de l'étage précédent)
 \end{description}
-Un AOP comprend et des sources de tension de bruit et de courant de bruit, il faut donc choisir un ampli à:
+Un AOP comprend des sources de tension de bruit et de courant de bruit, il faut donc choisir un ampli à:
 \begin{itemize}
 	\item faible tension de bruit lorsque \(R_s\) est faible
 	\item faible courant de bruit lorsque \(R_s\) est élevée
 \end{itemize}
 \subsubsection{Étage d'entrée à faible bruit} \label{subsubsec:entreenobruit}
-Comparons 2 cas possible d'étage d'entrée de gain total \(G\):\\\\
+Comparons 2 cas possible d'étage d'entrée de gain total \(G\):\bigbreak
 \underline{Amplificateur unique:}  soit sa densité spectrale de bruit ramené à l'entrée \(v_b^{in}\), le bruit total à la sortie vaut
 \begin{equation}\label{eq:etasortieunique}
 v_b^{out}=G . v_b^{in}
@@ -347,7 +347,7 @@ On remarque que le bruit total de \eqref{eq:etasortie} sera plus faible que celu
 	\textbf{le bruit d'un ampli est minimisé en plaçant en tête un préamplificateur à faible bruit et de gain suffisant}
 \end{center}
 \subsubsection{Détection synchrone} \label{subsubsec:detectsync}
-Dans le cas où le signal utile se situe à basse fréquence (\(f_{max}=\) qques \si{\Hz}), le bruit en 1/f (rose) est très gênant. Pour contrer cela, nous pouvons transposer momentanément le signal utile à une fréquence plus élevée, à l'aide d'une modulation d'amplitude (signal sera au alentour de la fréquence porteuse), afin de réaliser la transmission ou l'amplification en dehors de la bande bruitée. 
+Si le signal utile se situe à basse fréquence, le bruit en 1/f (rose) domine \(\Rightarrow\) transposer momentanément le signal utile à une fréquence plus élevée, à l'aide d'une modulation d'amplitude (signal sera au alentour de la fréquence porteuse), afin de réaliser la transmission ou l'amplification en dehors de la bande bruitée. 
 \begin{figure}[H] 
 	\centering 
 	\begin{tikzpicture}
@@ -375,24 +375,23 @@ Et donc, le signal modulé vaut:
 \begin{equation}
 s_{mod}(t) = s(t) . u_{mod}(t)
 \end{equation}
-qui est bien transposé autour de la fréquence \(f_u\) (\(f_u\gg f_{max}\)). Pour démodulé, nous utilisons une démodulation synchrone, c-à-d en multipliant par la même sinusoïde que lors de la modulation (+déphasage inévitable \(\varphi\))
+qui est bien transposé autour de la fréquence \(f_u\) (\(f_u\gg f_{max}\)). Pour démoduler, nous utilisons une démodulation synchrone, c-à-d en multipliant par la même sinusoïde que lors de la modulation (+ déphasage inévitable \(\varphi\))
 \begin{equation}
 \begin{split}
 s_{demod}(t) &= s_{mod}(t) . u_{demod}(t)\\
-&= u(t)\cos(2\pi f_m t)\cos(2\pi f_u t+\varphi)\\
-&= u(t)\frac{1}{2}\{\underbrace{\cos\varphi}_{\cst}+\cos(4\pi f_u t+\varphi)\}
+&= s(t)\cos(2\pi f_u t)\cos(2\pi f_u t+\varphi)\\
+&= s(t)\frac{1}{2}\{\underbrace{\cos\varphi}_{\cst}+\cos(4\pi f_u t+\varphi)\}
 \end{split}
 \end{equation}
 qui, après un filtre passe-bas (\(f_c \approx f_{max}\)) devient:
 \begin{equation}
-u'(t) = u(t)\frac{\cos\varphi}{2}
+s_{demod}'(t) = s(t)\frac{\cos\varphi}{2}
 \end{equation}
 \section{Les parasites}
 \subsection{Introduction}
-Les parasites sont des tensions ou courants indésirables, d'origine extérieure à l'appareil perturbé, se superposant au signal utile. Ceux-ci apparaissent par suite du couplage (support de transmission de l'énergie, le chemin entre la source et la victime en gros) d'un circuit source avec le circuit perturbé (victime).\\
+Les parasites sont des tensions ou courants indésirables, d'origine extérieure à l'appareil perturbé, se superposant au signal utile. Ceux-ci apparaissent par suite du couplage d'un circuit source avec le circuit perturbé (victime).\bigbreak
 
-L'origine physique le plus courant de ces parasites sont les parasites électromagnétiques (expliqués par les équations de Maxwell).Toutes charges et courants génèrent des champs (\(E\) et \(H\) variables, formant une onde électromagnétique) qui se transforment en f.e.m. (\(\int E\) ou \(H\) loi de lenz).\\
-Il existe néanmoins d'autres phénomènes physiques comme la thermoélectricité, la piézoélectricité, etc.\\
+L'origine physique le plus courant de ces parasites sont les parasites électromagnétiques (expliqués par les équations de Maxwell). Toutes charges et courants génèrent des champs (\(E\) et \(H\) variables, formant une onde électromagnétique) qui se transforment en f.e.m. (\(\int E\) ou \(H\) loi de Lenz). Il existe néanmoins d'autres phénomènes physiques comme la thermoélectricité, la piézoélectricité, etc.\bigbreak
 
 À cela se rajoute le concept de champ proche et champ lointain ainsi que le type de couplages (C.f \autoref{fig:champproloin} et \autoref{fig:typcouplage})
 \begin{figure}[H] 
@@ -410,11 +409,11 @@ Il existe néanmoins d'autres phénomènes physiques comme la thermoélectricit�
 Quelques exemples de parasites sont cités slide 46.
 \subsection{Parasites rayonnés}
 \subsubsection{Couplage capacitif}
-Les charges portées par un conducteur induisent des charges opposées (\(\Rightarrow\) courant) dans un autre conducteur via le champ électrostatique \(E\). Ce phénomène existe en théorie entre toute paire de conducteurs et peut être modélisé par une capacité parasite entre ces conducteurs. Néanmoins, celui-ci n'est pris en compte que dans le domaine du champ proche (\(L<\lambda/2\pi\)). Ex.: pistes proches ou superposée dans les circuits imprimés, les bus, etc.\\
+Les charges portées par un conducteur induisent des charges opposées (\(\Rightarrow\) courant) dans un autre conducteur via le champ électrostatique \(E\). Existe entre toute paire de conducteurs et est modélisé par une capacité parasite entre ces conducteurs. À prendre en compte dans le domaine du \textbf{champ proche} (\(L<\lambda/2\pi\)). Ex.: pistes proches ou superposée dans les circuits imprimés, les bus, etc.\bigbreak
 
-Il faut donc éviter les lignes parallèles, éloigner le plus possible les fils les uns des autres afin de réduire les capacités parasites ou disposer d'un blindage électrostatique (décrit plus bas).
+\(\Rightarrow\) éviter les lignes parallèles, éloigner le plus possible les fils les uns des autres afin de réduire les capacités parasites ou disposer d'un blindage électrostatique (décrit plus bas).
 
-Un cas particulier existe, les décharges électrostatiques:
+Un cas particulier existe, les \textbf{décharges électrostatiques}:
 \begin{description}
 	\item[définition] claquage de l'isolant entre les armatures du condensateur parasite lorsque le champs électrique devient trop important
 	\item[exemple] tapis, vêtement en laine, éclair en cas d'orage, claquage de l'oxyde de grille dans les circuits MOS
@@ -431,12 +430,12 @@ Un exemple de dispositif permettant d'empêcher l'accumulation de charge se trou
 	\label{fig:dispdechdio}
 \end{figure}
 \subsubsection{Couplage inductif}
-D'après a loi de Lenz, un champ magnétique variable induit dans un conducteur une f.e.m. qui tend à s'opposer à cette variation. Existe en théorie dans toute paire de conducteur et peut être modélisé par une inductance mutuelle parasite entre ces conducteurs. N'est pris en compte que dans le champ proche (\(L<\lambda/2\pi\)). Ex.: lignes de signal (téléphone, instrumentation) entre elles ou placées à coté d'une ligne d'alimentation/moteur électrique etc.\\
+Un champ magnétique variable induit dans un conducteur une f.e.m. qui tend à s'opposer à cette variation (loi de Lenz). Existe en théorie dans toute paire de conducteur et est modélisé par une inductance mutuelle parasite entre ces conducteurs. À prendre en compte dans le domaine du \textbf{champ proche} (\(L<\lambda/2\pi\)). Ex.: lignes de signal (téléphone, instrumentation) entre elles ou placées à coté d'une ligne d'alimentation/moteur électrique etc.\bigbreak
 
 Il faut donc éloigner les sources de champ magnétique, minimiser la surface offerte au champ magnétique extérieure (réduire l'inductance mutuelle en jouant sur l'orientation spatiale ou sur la surface de la boucle, en tressant les câbles par exemple), implémenter un blindage magnétique (décris plus bas).\\
-C'est le mode de couplage le plus répandu, toute boucle formée de conducteur est une victime potentielle. Le phénomène est d'autant plus critique que la fréquence est élevée. 
+Mode de couplage le plus répandu, toute boucle formée de conducteur est une victime potentielle. Phénomène d'autant plus critique que la fréquence est élevée. 
 
-Un cas particulier, les câbles de transmission. Ceux-ci forment une boucle et sont donc des victimes privilégiés. Il existe quelques contre-mesures:
+Un cas particulier, les \textbf{câbles de transmission}. Ceux-ci forment une boucle et sont donc des victimes privilégiés. Il existe quelques contre-mesures:
 \begin{itemize}
 	\item réduire la surface de la boucle:
 	\begin{itemize}
@@ -455,11 +454,12 @@ Un cas particulier, les câbles de transmission. Ceux-ci forment une boucle et s
 \end{itemize}
 
 \subsubsection{Couplage électromagnétique}
-Dans le domaine du champ lointain (\(L>\lambda/2\pi\)), \(E\) et \(H\) coexistent sous forme d'une onde plane. Tout conducteur peut se comporter comme une antenne réceptrice parasite à l'onde plane. Ce phénomène est d'autant plus critique que la fréquence est élevée. Ex.: GSM dans les hôpitaux ou les avions etc.\\
+Dans le domaine du \textbf{champ lointain} (\(L>\lambda/2\pi\)), \(E\) et \(H\) coexistent sous forme d'une onde plane. Tout conducteur peut se comporter comme une antenne réceptrice parasite à l'onde plane. C'est d'autant plus critique que la fréquence est élevée. Ex.: GSM dans les hôpitaux ou les avions etc.\bigbreak
 
 Il faut donc limiter la source d'émission, implémenter un blindage EM (plus bas), designer le circuit récepteur, ou  utiliser un dispositif optique (comme la fibre optique).
 \subsubsection{Blindage}
-\underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}. Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})
+\underline{\textit{Blindage électrostatique} (champ proche)}: utiliser un matériau conducteur dont le potentiel est imposé. Ceci offre un chemin de retour pour le courant parasite et évite de modifier le potentiel du circuit victime. Le plus souvent, c'est une mise à la terre via une impédance faible. Ex.: blindage complet (boîtier) ou \autoref{fig:blindelectrostat}.\\
+Il faut bien comprendre ici qu'au lieu de réduire la capacité parasite, nous interposons des conducteurs supplémentaires dont le potentiel est fixé. De plus, rien ne nous interdit de fixer un potentiel différent de la masse/terre (\SI{0}{\volt})
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image6} 
@@ -483,24 +483,24 @@ Il faut donc limiter la source d'émission, implémenter un blindage EM (plus ba
 	\label{fig:blindmagn}
 \end{figure}
 
-\underline{\textit{Blindage EM} (champ lointain)}: utiliser un matériau conducteur qui supprimera le champ perturbateur par un champ opposé induit (courant de Foucault). Typiquement, une cage de Faraday. Néanmoins, il nécessite de faire rentrer ligne de signal et d'alimentation (coucou couplage inductif) et la moindre ouverture réduit l'efficacité du blindage \(\Rightarrow\) construction très délicate.\\
+\underline{\textit{Blindage EM} (champ lointain)}: utiliser un matériau conducteur qui supprimera le champ perturbateur par un champ opposé induit (courant de Foucault). Typiquement, une cage de Faraday. Néanmoins, il nécessite de faire rentrer les lignes de signal et d'alimentation (coucou couplage inductif) et la moindre ouverture réduit l'efficacité du blindage \(\Rightarrow\) construction très délicate.\bigbreak
 
-\underline{\textit{Remarques générales}}: Les blindages concerne tout autant les câbles de transmission que les boîtiers (capteur,instrumentation). De plus la connections des blindages de câbles n'est pas trivial.
+\underline{\textit{Remarques générales}}: Les blindages concerne tout autant les câbles de transmission que les boîtiers (capteur, instrumentation). De plus la connections des blindages de câbles n'est pas trivial.
 \subsection{Parasites conduits}
 \subsubsection{Introduction}
-Commençons pas définir ce qu'est un couplage galvanique:
+Commençons pas définir ce qu'est un \emph{couplage galvanique}:
 \begin{description}
 	\item[définition] transmission d'un signal perturbateur entre la source de ce signal et le dispositif victime \emph{via un conducteur commun}.
 \end{description}
 Ceci concerne autant les lignes de signal que les alims/masse/terre et le simple fait de brancher 2 appareils sur le réseau électrique établit un couplage galvanique. Comme par exemple 2 appareils à \SI{220}{\volt} dans 2 pièces différentes, connectés à la masse. Si l'un demande en puissance, cela fait baisser la tension dans tout le circuit. Il existe 2 origines distinctes:
 \begin{enumerate}
 	\item le conducteur commun (idéal) transmet un signal parasite issu d'un autre équipement (comme parasite transmis via les lignes d'alimentation à cause de la foudre).
-	\item le conducteur commun n'est pas équipotentiel \(\Rightarrow\) la circulation d'un courant sur ce conducteur génère des f.e.m. parasites (conducteur commun donc impédance non négligeable, f.e.m. donc chute de tension ohmique ou inductive, courant peut être celui du signal utile).
+	\item le conducteur commun n'est pas équipotentiel \(\Rightarrow\) la circulation d'un courant sur ce conducteur génère des f.e.m. parasites.
 \end{enumerate}
 Ces 2 origines sont bien évidement cumulables. Il existe 2 niveaux de conséquences:
 \begin{enumerate}
 	\item dégrade le signal (superposition du signal utile et parasite, si sur alim \(\rightarrow\) mauvais fonctionnement du circuit).
-	\item détruit l'équipement (surtension (claque électrostatique) ou surpuissance (destruction par échauffement)).
+	\item détruit l'équipement (surtension (claquage électrostatique) ou surpuissance (destruction par échauffement)).
 \end{enumerate}
 Remarquons que tout parasite rayonné devient f.e.m. ou courant sur un conducteur et donc que les conséquences sont aussi valables pour les parasites rayonnés en amont.
 \subsubsection{Contre-mesures}
@@ -517,10 +517,10 @@ Il existe 3 contre-mesures générales:
  \end{minipage} 
 	\item Contre les parasites générés par l'impédance des connexions:
 	\begin{itemize}
-		\item designer des connexions (\(\searrow\) longueur + \(\nearrow\) section conductrice \(= \searrow\) impédance)
+		\item design des connexions (\(\searrow\) longueur + \(\nearrow\) section conductrice \(= \searrow\) impédance)
 		\item connecter judicieusement les alimentations et les masses:
 		\begin{enumerate}
-			\item éviter les chemins communs (câblages en étoile)
+			\item éviter les chemins communs \(\Rightarrow\) câblages en étoile
 			\item séparer alimentations de signaux à fréquence et/ou puissance \(\neq\)
 		\end{enumerate}	
 	\end{itemize}
@@ -559,9 +559,9 @@ Les améliorations les plus courantes de l'alimentation sont
 \end{itemize}
 \item une diode Zener (protection contre les surtensions)
 \end{itemize}
-Les condensateurs constituent des sources de tension localisée (à très court terme) vis-à-vis des impulsions de courant consommées par les circuits intégrés.\\
+Les condensateurs constituent des sources de tension localisée (à très court terme) vis-à-vis des impulsions de courant consommées par les circuits intégrés.\bigbreak
 
-Le mot "découplage" qualifie le fait que les variations de consommation (composante alternative) propres du circuit ne sont pas vues par les fils d'alimentation, qui ne véhiculent que la composante continue (moyenne). Les inductances parasites du câblage ont donc beaucoup moins d'influence.\\
+Le mot "découplage" qualifie le fait que les variations de consommation (composante alternative) propres du circuit ne sont pas vues par les fils d'alimentation, qui ne véhiculent que la composante continue (moyenne). Les inductances parasites du câblage ont donc beaucoup moins d'influence.\bigbreak
 
 La diode Zener permet d'écrêter les surtensions transitoires. Si celles-ci sont répétitives, l'absorption d'énergie par la Zener peut excéder ses capacités de refroidissement et la détruire. En cas de tension d'entrée trop importante, la Zener va également surchauffer et fondre, généralement en court-circuit, ce qui protégera les circuits coûteux en aval.
 \subsubsection{Isolation galvanique}
@@ -570,7 +570,7 @@ La diode Zener permet d'écrêter les surtensions transitoires. Si celles-ci son
 	\item[moyen] couplage magnétique (transformateur) et couplage optique (optocoupleur, fibre optique)
 \end{description}
 C'est souvent nécessaire pour des raisons de protection des utilisateurs et des équipements (sécurité). Le but est de faire passer de la puissance/info d'une autre manière que via de l'électricité.
-\subsection{Compatibilité électromagnétique}
+\iffalse \subsection{Compatibilité électromagnétique}
 \begin{description}
 	\item[définition] discipline ayant pour but d'analyser et de résoudre l'ensemble des problèmes de parasitage EM d'un équipement par un autre
 \end{description}
@@ -582,7 +582,7 @@ C'est une discipline de plus en plus importante en raison de la multiplications 
 \subsection{Notions embrassées par la CEM}
 les normes CEM, les types de couplages, les imperfections des composants (passif et surtout actifs car sources de perturbations), les boîtiers et blindages, le câblage, le routage des pistes dans les circuits imprimés (surtout masse et alim) et « tous les effets du second ordre ».
 \subsection{Exemple: alimentation à découpage}
-Exemple slide 81--85.
+Exemple slide 81--85.\fi
 \section{Câblage et connexions}
 \subsection{Référence d'un signal}
 Rappel sur tension et masse slide 88. Nous ajoutons quelques subtilités:
@@ -590,7 +590,7 @@ Rappel sur tension et masse slide 88. Nous ajoutons quelques subtilités:
 	\item impédance de masse: en pratique la "masse" d'un montage peut être un conducteur ayant une certaine extension physique \(\Rightarrow\) impédance \(\neq 0 \Rightarrow\) lorsque parcouru par un courant, pas équipotentiel \(\Rightarrow\) plus vraiment une masse (f.e.m. parasite)
 	\item plusieurs montages: les masses de différents montages sont à priori pas au même potentiel (pas connecté ou connecté via des impédance \(\neq 0\))
 \end{enumerate}
-Pour rappel, la mise à terre est une connexion d'un conducteur au potentiel de la terre (sol) afin d'assurer la protection des utilisateurs et des équipements (le réseau de terre doit avoir l'impédance la plus faible possible). La masse (référence) et la terre (protection) ne sont pas forcément connectées.\\
+Pour rappel, la mise à terre est une connexion d'un conducteur au potentiel de la terre (sol) afin d'assurer la protection des utilisateurs et des équipements (le réseau de terre doit avoir l'impédance la plus faible possible). La masse (référence) et la terre (protection) ne sont pas forcément connectées.\bigbreak
 
 On définit les appareils:
 \begin{description}
@@ -616,7 +616,7 @@ Dans le cas réel, une source parasite \(e_p\) vient s'ajouter car il existe une
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image12} 
 	\caption{Single-ended (réel)} 
 \end{figure}
-On en conclu donc qu'il faut éviter les montages "single-ended". Sauf si la chute de tension sur l'impédance de masse ET les f.e.m induites sont négligeables. C'est le cas typiquement pour:
+\(\Rightarrow\) éviter les montages "single-ended". Sauf si la chute de tension sur l'impédance de masse ET les f.e.m induites sont négligeables, comme pour:
 \begin{itemize}
 	\item un capteur proche de l'ampli
 	\item un capteur éloigné mais isolé de son environnement et sa masse est ramenée à l'ampli par une connexion d'impédance négligeable
@@ -633,23 +633,22 @@ Dans ce montage, nous avons:
 		\item {\makebox[8cm]{tension différentielle\hfill} \(V_{md} = V^+-V^-=e_s\)} 
 		\item {\makebox[8cm]{tension de mode commun (parasites)\hfill} \(V_{mc}=\frac{V^++V^-}{2}=e_p+\frac{e_s}{2}\)} 
 		\item {\makebox[8cm]{tension de sortie\hfill} \(V_{out}=A_{md}V_{md}+A_{mc}V_{mc}\)} 
-		\item {\makebox[8cm]{taux de réjection en mode commum\hfill} \(CMRR = \frac{A_{md}}{A_{mc}}\)} 
+		\item {\makebox[8cm]{taux de réjection en mode commum\hfill} \(\text{CMRR} = \frac{A_{md}}{A_{mc}}\)} 
 \end{itemize}
 Il faut donc maximiser le CMRR (common mode rejection ratio). On en déduit les avantages et inconvénients suivants:
-\begin{itemize}
-	\item avantages:
+\begin{description}
+	\item[avantages]:
 	\begin{itemize}
-		\item les parasites de mode commun sont rejetés
-		\item les parasites par couplage galvanique et les autres parasites induits en mode commun sont rejetés
+		\item les parasites de mode commun, les parasites par couplage galvanique et les autres parasites induits en mode commun sont rejetés
 		\item signal dont aucune des bornes ne peut être considérée comme une masse (même imparfaite). ex: tension de déséquilibre d'un pont de Wheatstone ou un montage porté à une tension élevée.
 	\end{itemize}
-	\item inconvénients:
+	\item [inconvénients]:
 	\begin{itemize}
 		\item les parasites de mode différentiel sont toujours amplifiés
 		\item liaison \(2N\) (ou \(2N+1\)) fils pour \(N\) signaux
 	\end{itemize}
-\end{itemize}
-\underline{\textit{Remarques}}: en instrumentation, la tension de mode commun est souvent du même ordre de grandeur  voir plus élevée que la tension différentielle. On essayera de faire apparaître les parasites sous forme de tension en mode commun car elles seront rejetés (pas entièrement, dépend du \(CMRR\)). Hélas, un bon \(CMRR\) ne suffit pas.
+\end{description}
+\underline{\textit{Remarques}}: en instrumentation, la tension de mode commun est souvent du même ordre de grandeur  voir plus élevée que la tension différentielle. On essayera de faire apparaître les parasites sous forme de tension en mode commun car elles seront rejetés (pas entièrement, dépend du CMRR). Hélas, un bon CMRR ne suffit pas.
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image14} 
@@ -680,26 +679,26 @@ Les tensions à l'entrée de l'ampli sont:
 \[v^-=\frac{Z_{mc}}{Z_1+Z_{mc}}v_1\qquad v^+=\frac{Z_{mc}}{Z_2+Z_{mc}}v_2\]
 en faisant l'hypothèse que \(Z_{mc}\gg Z_1, Z_2\):
 \[v_{mc}'\approx v_{mc}\qquad v_d'=v_d+\frac{Z_1-Z_2}{Z_{mc}}v_{mc}\]
-On se rend compte que la tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(Z_1\text{ et }Z_2\) sont différentes et que \(Z_{mc}\) est petit. Tout déséquilibre engendrera une dégradation du \(CMRR\). En particulier, il faut que \(R_1=R_2\) pour une bonne réjection des tensions de mode commun continues et basse fréquence.
+La tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(Z_1\text{ et }Z_2\) sont \(\neq\) et que \(Z_{mc}\) est petit. Tout déséquilibre engendrera une dégradation du CMRR. En particulier, il faut que \(R_1=R_2\) pour une bonne réjection des tensions de mode commun continues et basse fréquence.
 \subsubsection{Déséquilibre parallèle}
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image18} 
 	\caption{Désiquilibre parallèle} 
 \end{figure}
-On ajoute maintenant \(C_1', C_2'\) des impédances \(\parallelsum\) (parasite) venant s'ajouter aux 2 capas \(C_{mc}\) de l'ampli. Nous avons donc:
+On ajoute maintenant \(C_1', C_2'\) des capa parasites \(\parallelsum\) venant s'ajouter aux 2 capas \(C_{mc}\) de l'ampli. Nous avons donc:
 \[C_1=C_1'+C_{mc}\qquad C_2=C_2'+C_{mc}\] 
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image19}
 \end{figure}
 En supposant toujours que \(Z_d\gg\)
-\[v^-=\frac{(R_{mc} \parallelsum C_1)}{R_1+(R_{mc} \parallelsum C_1)}\qquad v^+=\frac{(R_{mc} \parallelsum C_2}{R_2+(R_{mc} \parallelsum C_2)}\] 
+\[v^-=\frac{(R_{mc} \parallelsum C_1)}{R_1+(R_{mc} \parallelsum C_1)}\qquad v^+=\frac{(R_{mc} \parallelsum C_2)}{R_2+(R_{mc} \parallelsum C_2)}\] 
 Dans la gamme de fréquence \(\frac{1}{R_{mc}C_1},\frac{1}{R_{mc}C_2}\ll\omega_{mc}\ll\frac{1}{R_1C_1},\frac{1}{R_2C_2}\) on a:
 \[v_{mc}'\approx v_{mc}\qquad v_d'=v_d+j\omega(R_1C_1-R_2C_2)v_{mc}\]
-De nouveau, la tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(C_1\text{ et }C_2\) sont différentes, mais cette fois, c'est surtout pour les fréquences plus élevées.\\
+La tension différentielle est polluée par une fraction de la tension de mode commun, fraction d'autant plus importante que \(C_1\text{ et }C_2\) sont différentes, mais cette fois, c'est surtout pour les fréquences plus élevées.\bigbreak
 
-En pratique, \(C_1'\text{ et }C_2'\) sont des capas parasites existant par rapport au blindage électrostatique des voies d'amenée, alors que précédemment, on a fait l'hypothèse d'être à la masse. En portant le blindage à la tension de mode commun \(v_{mc}\), on annule la tension différentielle parasite due au déséquilibre de \(C_1', C_2'\), c'est la \emph{garde}.
+En pratique, \(C_1'\text{ et }C_2'\) sont des capas parasites qui existent vis-à-vis du blindage électrostatique des voies d'amenée, alors que précédemment, on a fait l'hypothèse d'être à la masse. En portant le blindage à la tension de mode commun \(v_{mc}\), on annule la tension différentielle parasite due au déséquilibre de \(C_1', C_2'\), c'est la \emph{garde}.
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image20} 
@@ -711,7 +710,7 @@ Avant, on avait \(2N+1\) conducteurs et un \(v_{mc}\) relativement faible (les 2
 	\item \(2N\) conducteurs
 	\item tension de mode commun quelconque et variable dans le temps (AC + DC)
 \end{itemize}
-Une très mauvaise idée car nous aurons une source de perturbations importante qui risquerait de détruite le matériel par surtension.
+Une très mauvaise idée car nous avons une source de perturbations importante qui risque de détruite le matériel par surtension.
 
 N.B.: vérifier la capa de l'ampli à tenir la tension de mode commun (\!?).
 \subsubsection{1\up{ère} solution: bias resistor pour source flottante}
@@ -720,7 +719,7 @@ Il faut limiter la tension de mode commun, donc soit on utilise \(2N+1\) conduct
 	\item meilleur symétrie que \(2N+1\) conducteurs
 	\item valeur suffisamment élevée pour ne pas imposer le potentiel des entrées
 	\item mais suffisamment faible pour éviter que la tension de mode commun soit trop éloignée de la référence de l’instrumentation
-	\item typiquement: \SI{10}{\kilo\hertz} à \SI{100}{\kilo\hertz}
+	\item typiquement: \SI{10}{\kilo\ohm} à \SI{100}{\kilo\ohm}
 \end{itemize}
 \begin{figure}[H] 
 	\centering 
@@ -763,39 +762,38 @@ Prenons le cas maintenant d'une tension parasite par couplage magnétique (\auto
 Le parasite induit se superpose au signal, 2\up{ème} inconvénient
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image23} 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image23} 
 	\caption{Transmission en tension: résistance de ligne} 
 	\label{fig:transmtension}
 \end{figure}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image24} 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image24} 
 	\caption{Transmission en tension: parasite de ligne par couplage magnétique} 
 	\label{fig:transmtensionpara}
 \end{figure}
 \subsection{Boucle de courant}
-Le but est de passer l'information non plus par une tension, mais par un courant. Il est en pratique plus facile d'obtenir \(R_{out}\) (commande en courant) élevée que \(R_{in}\) élevée (commande en tension). Dans le cas de la \autoref{fig:transcourant}, nous obtenons \((R_in+R_{fils})i = R_{out}(i_s-i)\) et donc
+Le but est de passer l'information non plus par une tension, mais par un courant. Il est en pratique plus facile d'obtenir \(R_{out}\) (commande en courant) élevée que \(R_{in}\) élevée (commande en tension). Dans le cas de la \autoref{fig:transcourant}, nous obtenons \((R_{in}+R_{fils})i = R_{out}(i_s-i)\) et donc
 \[i=\frac{R_{out}}{R_{out}+R_{in}+R_{fils}}i_s\]
 L'affaiblissement du signal est beaucoup plus faible qu'en tension (car plus facile d'obtenir un \(R_{out}\) élevée qu'un \(R_{in}\) élevée).\\
 Avec le couplage magnétique (\autoref{fig:transcourantpara}):
 \[i_p=\frac{e_p}{R_{out}+R_{in}}\]
 Comme \(R_{out}\) élevée, \(i_p\ll i_s \Rightarrow\) bonne immunité aux parasites magnétiques.\\
-On décèle donc de la transmission en courant plusieurs avantages:
+Plusieurs avantages:
 \begin{itemize}
 	\item bien pour transmission longue distance (\SI{1}{\kilo\meter} ou plus) car l'impédance des fils influence peu le courant
 	\item bonne immunité aux f.e.m. induites car les valeurs idéales de \(R_{out}\text{ et }R_{in}\) sont plus facile à approcher en commande en courant qu'en commande en tension
 	\item On peut utiliser un courant \(\neq0\) pour représenter la valeur 0 afin de détecter la rupture de la liaison
 \end{itemize}
-Il existe 2 standards encore très répandus: la boucle 4-20 \si{\milli\ampere} ou 10-50 \si{\milli\ampere}. Néanmoins, la solution plus moderne est la transmission numérique.
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image35} 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image35} 
 	\caption{Transmission en courant: résistance de ligne} 
 	\label{fig:transcourant}
 \end{figure}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image36} 
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image36} 
 	\caption{Transmission en courant: parasite de ligne par couplage magnétique} 
 	\label{fig:transcourantpara}
 \end{figure}
@@ -838,22 +836,22 @@ Dans ce cas-ci, tous les courants passent pas \(R_1 \Rightarrow V_{in}=V_{out}/\
 \end{figure}
 Dans ce cas-là, nous avons minimiser les courants dans \(R_1\).
 \subsection{Câblage de la masse numérique}
-À haute fréquence, l'effet selfique des câbles devient dominant \(\Rightarrow\) pistes à grande impédance et courants passent par capas parasites. Pour contrer cela, on ne fait plus une masse en étoile mais un plan de masse, ceci minimise les inductances et les boucles. Le courant suivra le chemin de moindre impédance.
+À haute fréquence, l'effet selfique des câbles devient dominant \(\Rightarrow\) pistes à grande impédance et courants passent par capas parasites\(\Rightarrow\) \cancel{masse en étoile} plan de masse (minimise les inductances et les boucles). Le courant suivra le chemin de moindre impédance.
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image30} 
+	\includegraphics[width=0.5\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image30} 
 	\caption{Plan de masse} 
 \end{figure}
 \subsection{CAN et CNA}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.6\textwidth]{ch3/image31} 
+	\includegraphics[width=0.5\textwidth]{ch3/image31} 
 \end{figure}
 Dans un CAN/CNA, il y a un faible courant qui circule à travers sa capa parasite.\\
 Il faut 2 masses distinctes pour conserver une topologie en étoile et il faut placer le CAN sur le point central de masse
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image32} 
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image32} 
 \end{figure}
 \subsubsection{Câblage des alimentation}
 2 problèmes se posent:
@@ -863,10 +861,10 @@ Il faut 2 masses distinctes pour conserver une topologie en étoile et il faut p
 \end{itemize}
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.8\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image33}  
+	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image33}  
 \end{figure}
 Il faut mettre une capa a côté du composant, elle jouera le rôle de réservoir de charge. Sachant que la résistance parasite est d'autant plus grande que la capa est grande, on placera une plus petite capa en parallèle dans le cas HF car c'est la résistance qui est gênante.
 \begin{figure}[H] 
 	\centering 
-	\includegraphics[width=0.7\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image34}  
+	\includegraphics[width=0.6\textwidth,height=10\baselineskip,keepaspectratio]{ch3/image34}  
 \end{figure}
