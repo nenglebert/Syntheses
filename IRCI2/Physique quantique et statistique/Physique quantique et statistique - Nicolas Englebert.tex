@@ -455,7 +455,7 @@
 	Supposons que $C(k)$ ne prenne des valeurs non négligeable que sur un intervalle $\Delta k$ autour d'une valeur $k_0\neq0$\\
 	La contribution principale de l'intégrale provient des valeurs $\in\Delta k$, en partant de la relation de dispersion \begin{align}
 		\omega(k) & =\frac{\hbar k^2}{2m}=\frac{\hbar}{2m}\underbrace{[k_0^2+2k_0(k-k_0)+(k-k_0)^2]}_{k^2}\\
-		& =\omega_0+v(k-k_0)+\frac{\hbar}{2m}(k-k_0)^2 &\text{avec } \omega_0=\omega(k_0),\qquad v_g=\dfrac{\hbar k_0}{m}
+		& =\omega_0+v_g(k-k_0)+\frac{\hbar}{2m}(k-k_0)^2 &\text{avec } \omega_0=\omega(k_0),\qquad v_g=\dfrac{\hbar k_0}{m}
 	\end{align}
 	
 	Si on néglige le dernier terme, on obtient \begin{equation}\psi(x,t) \approx e^{-i(\omega_0-vk_0)t}\int^{+\infty}_{-\infty}C(k)e^{ik(x-vt)}dk
@@ -630,7 +630,7 @@
 	\begin{equation}
 		\int \phi^*(\vec{r})A\psi(\vec{r})d\vec{r} = \left[ \int\psi^*(\vec{r})A\phi(\vec{r})d\vec{r} \right]^*, \ \ \ \forall \phi, \psi
 	\end{equation}
-	Ce qui peut s'écrire plus simplement grâce aux règles de Diract : $\langle \phi|A|\phi \rangle = \langle\psi|A|\phi\rangle^*$.\\
+	Ce qui peut s'écrire plus simplement grâce aux règles de Diract : $\langle \phi|A|\psi \rangle = \langle\psi|A|\phi\rangle^*$.\\
 	Dans le cas particulier ou $\psi =  \phi$ on trouve : $\langle\psi|A|\psi\rangle = \langle\psi|A|\psi\rangle^*$.
 	
 	\subsection*{Observables et commutateurs}
@@ -892,7 +892,7 @@
 	\end{equation}
 	En remarquant que les termes $j \leq 2$ sont nuls :
 	\begin{equation}
-		\sum_{j=0}^\infty\left[ (j+2)(j+1)a_{J+2} - 2ja_j + (2\epsilon - 1)a_j \right]u_j = 0 \forall u
+		\sum_{j=0}^\infty\left[ (j+2)(j+1)a_{J+2} - 2ja_j + (2\epsilon - 1)a_j \right]u^j = 0\ \forall u
 	\end{equation}
 	Pour que ceci fasse bien zéro, on obtient l'égalité suivante qui n'est rien d'autre que la \textit{relation de récurrence}:
 	\begin{equation}\label{eq:5.21}
@@ -944,7 +944,7 @@
 	\begin{equation}
 		\left\{\begin{array}{lll}
 			\dfrac{d^2\psi(x)}{dx^2} + \dfrac{2mE}{\hbar^2}\psi(x)  & \equiv \psi''(x) + k^2\psi(x) = 0 & x<0\ et\ a < x\\
-			\dfrac{d^2\psi(x)}{dx^2} + \dfrac{2m(V_0-E)}{\hbar^2}\psi(x)  & \equiv \psi''(x) -K^2\psi(x) = 0 & 0 \leq x \leq a
+			\dfrac{d^2\psi(x)}{dx^2} - \dfrac{2m(V_0-E)}{\hbar^2}\psi(x)  & \equiv \psi''(x) -K^2\psi(x) = 0 & 0 \leq x \leq a
 		\end{array}\right.
 	\end{equation}
 	Qui résolut dans les trois régions de l'espace donne : 
@@ -985,7 +985,7 @@
 	« épaisse ». Cette probabilité décroît exponentiellement et peut être si petite que le
 	phénomène ne soit jamais observé si $Ka$ est très grand, mais elle n'est pas nulle. Il y a donc une grande sensibilité à la largeur et à l'énergie.\\
 	
-	Notons que lorsque $E > V-0$ la particule ne se comporte pas exactement comme en classique. La probabilité de transmission est < 1, toutes les particules ne parviennent tout de même pas à la franchir (probabilité tout de même grande à  haute énergie).
+	Notons que lorsque $E > V_0$ la particule ne se comporte pas exactement comme en classique. La probabilité de transmission est < 1, toutes les particules ne parviennent tout de même pas à la franchir (probabilité tout de même grande à  haute énergie).
 	
 	
 	\section{L'effet tunnel}
@@ -1220,7 +1220,7 @@ Cette fonction d'onde reste bien déterminée par l'équation de Schrödinger
 \end{equation}
 où $H$ est l'opérateur hamiltonien. Quand celui-ci ne dépend pas du temps on retrouve la forme stationnaire
 \begin{equation}
-	H\Psi(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}, t) = E_T\Psi(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}, t)
+	H\Psi(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}) = E_T\Psi(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N})
 \end{equation}
 où $E_T$ est l'énergie totale du système. N'ayant plus une particule seule, il font considérer l'énergie cinétique et potentielle totale
 \begin{equation}
@@ -1234,7 +1234,7 @@ Pour le potentiel, la situation est idéalisée au cas ou le système est consid
 
 Considérons par exemple le cas $N=2$ :
 \begin{equation}
-	i\hbar\Psi(\vec{r_1}, \vec{r_2},t) = \left[-\frac{\hbar^2}{2m_1}\Delta_1 - \frac{\hbar^2}{2m_2}\Delta_2 + V_{21}(|\vec{r_2}-\vec{r_1}|) \right]\Psi(\vec{r_1}, \vec{r_2},t)
+	i\hbar\frac{\partial}{\partial t}\Psi(\vec{r_1}, \vec{r_2},t) = \left[-\frac{\hbar^2}{2m_1}\Delta_1 - \frac{\hbar^2}{2m_2}\Delta_2 + V_{21}(|\vec{r_2}-\vec{r_1}|) \right]\Psi(\vec{r_1}, \vec{r_2},t)
 \end{equation}
 Cette fonction d'onde est définie dans un espace à 6 dimensions. Pour le cas $N=3$, la dimension de l'espace serait de 9.
 
@@ -1248,7 +1248,7 @@ La normalisation se fait en intégrant sur les coordonnées de toutes les foncti
 \begin{equation}
 	\rho(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}, t)=|\Psi(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}, t)|^2
 \end{equation}
-est la densité de probabilité de présence \textit{simultanée} des particules $i$ aux points $\vec{r_1}$. Il s'agit de la probabilité de trouver la particule 1 en position $\vec{r_1}$, la particule 2 en $\vec{r_2}$, ...\\
+est la densité de probabilité de présence \textit{simultanée} des particules $i$ aux points $\vec{r_i}$. Il s'agit de la probabilité de trouver la particule 1 en position $\vec{r_1}$, la particule 2 en $\vec{r_2}$, ...\\
 Si l'on souhaite uniquement avoir des informations sur la particule, on fera une intégrale de façon à ne garder que la particule en question
 \begin{equation}
 	\rho_1(\vec{r},t) = \int d\vec{r_2}\dots\int d\vec{r_N}\ \rho(\vec{r_1}, \vec{r_2}, \dots, \vec{r_N}, t)
@@ -1262,7 +1262,7 @@ dont l'intégrale sur tout l'espace est aussi égale à 1.
 \section{Système de deux particules}
 Dans \textbf{ce cas la}, on peut réaliser un équivalent quantique de la séparation du mouvement du centre de masse. L'équation de Schrödinger est celle rencontrée plus haut, mais dans le cas stationnaire :
 \begin{equation}
-	\left[-\frac{\hbar^2}{2m_1}\Delta_1 - \frac{\hbar^2}{2m_2}\Delta_2 + V_{21}(|\vec{r_2}-\vec{r_1}|) \right]\Psi(\vec{r_1}, \vec{r_2},t) = E_T \Psi(\vec{r_1}, \vec{r_2},t)
+	\left[-\frac{\hbar^2}{2m_1}\Delta_1 - \frac{\hbar^2}{2m_2}\Delta_2 + V_{21}(|\vec{r_2}-\vec{r_1}|) \right]\Psi(\vec{r_1}, \vec{r_2}) = E_T \Psi(\vec{r_1}, \vec{r_2})
 \end{equation}
 où $E_T$ est l'énergie totale. Définissions la \textit{coordonnée du centre de masse} comme en \textit{Mécanique Rationnelle I}
 \begin{equation}
@@ -1368,7 +1368,7 @@ Comme $H$ est ici symétrique $H(1,2)\Psi(2,1) = E\Psi(2,1)$. On voit que $\Psi(
 \end{equation}
 En permutant les indice $\Psi(1,2) = C\Psi(2,1)$. En remplaçant l'une dans l'autre :
 \begin{equation}
-	\Psi(2,1) = C^2\Psi(1,2)
+	\Psi(2,1) = C^2\Psi(2,1)
 \end{equation}
 La fonction propre étant normée, on a donc obligatoirement $C = \pm 1$ ce qui signifie que $\Psi$ est soit symétrique, soit antisymétrique :
 $\left\{\begin{array}{ll}
@@ -1403,7 +1403,7 @@ Les fonctions propres de $\tilde{H}$ restent les même qu'aux chapitre 6, mais l
 \begin{equation}
 	E_n \rightarrow \tilde{E}_{nm} = -\frac{1}{n^2}\text{Ryd} + \mu_BBm
 \end{equation}
-où $l$ est le nombre quantique magnétique et $\mu_B = \frac{e\hbar}{2m_e} \approx
+où $m$ est le nombre quantique magnétique et $\mu_B = \frac{e\hbar}{2m_e} \approx
 9.29\times 10^{-24} J/T$ le magnéton de Bohr.\\
 On voit que l'énergie dépend maintenant du nombre quantique magnétique $m$ impliquant
 qu'un niveau d'énergie $E_n$ se subdivise en plusieurs niveaux d'énergies différentes
@@ -1582,7 +1582,7 @@ avoir deux possibilités :
 \end{enumerate}
 
 
-\section{Moment cinétique orbital}
+\section{Moment cinétique total}
 Le \textit{moment cinétique total d'un électron} est défini par : $\vec{J} = 
 \vec{L}+\vec{S}$. D'après les relations quantiques, le nombre quantique $j$ 
 correspondant à la valeur propre $\hbar^2j(j+1)$ ne prend que des valeurs demi-
@@ -2369,8 +2369,8 @@ Le nombre d'état accessible est le produit des états accessibles de chaque sys
 L'énergie $U_A$ la plus probable est celle qui correspond à la plus grande valeur de $
 \Omega$. Maximisons :
 \begin{equation}
-	\left(\dfrac{\partial \ln\Omega}{\partial U_A}\right)_V,N =	\left(\dfrac{\partial \ln\Omega_A}
-	{\partial U_A}\right)_V,N - 	\left(\dfrac{\partial \ln\Omega_B}{\partial U_B}\right)_V,N = 0
+	\left(\dfrac{\partial \ln\Omega}{\partial U_A}\right)_{V,N} =	\left(\dfrac{\partial \ln\Omega_A}
+	{\partial U_A}\right)_{V,N} - 	\left(\dfrac{\partial \ln\Omega_B}{\partial U_B}\right)_{V,N} = 0
 	\label{eq:MaxUA}
 \end{equation}
 Avec \autoref{eq:entropieStat}, \autoref{eq:MaxUA} s'écrit :
@@ -2444,7 +2444,7 @@ devient :
 \begin{equation}
 	\Omega(E_i) = Ce^{-E_i/k_BT}
 \end{equation}
-où $C = \Omega_R(U_R)$.\newpage
+où $C = \Omega_R(U_T)$.\newpage
 
 Appliquons le postulat fondamental. La probabilité $p_i$ que le système global comporte 
 un système $S$ dans un état d'énergie $E_i$ est donné par le produit des cas favorable
@@ -2845,7 +2845,7 @@ ce système peut s'écrire grâce à Slater :
 	\end{array}\right|
 \end{equation}
 La valeur propre vaut $E = E_\alpha + E_\beta$ (où $E_\alpha \neq E_\beta$ si elles ne sont pas dégénérés) 
-et $\Psi_A$ n'existe que si $\phi_\alpha\neq\phi_\beta$ à cause de Pauli (deux fermions identiques doivent 
+et $\Psi_A$ n'existe que si $\psi_\alpha\neq\psi_\beta$ à cause de Pauli (deux fermions identiques doivent 
 être dans des états différents).\\
 Considérons \textbf{deux bosons identiques} sans interactions. Une fonction d'onde symétrique :
 \begin{equation}
@@ -2969,9 +2969,7 @@ On obtient
 	u(\nu,T) = \nu^3\dfrac{8\pi k_B}{c^3}\dfrac{T}{\nu}
 \end{equation}
 Ceci est en accord avec la loi de Wien, mais ne fonctionne cette fois-ci que pour les basses fréquences. De 
-plus, si on intègre sur toutes les fréquences pour avoir l'énergie totale, on trouve une énergie infinie ! 
-
-C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergie.}\\
+plus, si on intègre sur toutes les fréquences pour avoir l'énergie totale, on trouve une énergie infinie ! C'est la \textit{catastrophe ultraviolette}\footnote{Car photon de haute énergie.}\\
 C'est Max Planck qui a trouvé une formule empirique, autant valable en haute pression qu'en basse :
 \begin{equation}
 	u(\nu,T) = \dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}
