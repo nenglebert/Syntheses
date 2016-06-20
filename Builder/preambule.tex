@@ -59,9 +59,7 @@
 %%% Math %%%
 \usepackage{delarray} % Belles matrices
 \usepackage{siunitx}
-%\sisetup{locale = FR,detect-all}
 
-% Pour mettre siunitx en mode français (virgule plutôt que point etc.)
 
 %%% Codes %%%
 \usepackage{listings}
@@ -147,9 +145,34 @@
 
 %%% Attributs %%%
 \newcommand*{\NomduCours}[2]{\def\cours{#1}\def\memo{#2}}
-\newcommand*{\auteur}[2]{\def\prenom{#1}\def\nom{#2}}
-\newcommand*{\noteur}[2]{\def\nprenom{#1}\def\nnom{#2}}
-\newcommand*{\rappeltheo}[2]{\def\rappeltheoprenom{#1}\def\rappeltheonom{#2}}
-\newcommand*{\professeur}[2]{\def\pprenom{#1}\def\pnom{#2}}
-\newcommand*{\sprofesseur}[2]{\def\spprenom{#1}\def\spnom{#2}}
 \newcommand*{\annee}[2]{\def\adebut{#1}\def\afin{#2}}
+
+\newcounter{auteurcnt}
+\newcommand\addauteur[2]{%
+	\stepcounter{auteurcnt}%
+	\csdef{auteur\theauteurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getauteur[1]{%
+	\csuse{auteur#1}}
+
+\newcounter{noteurcnt}
+\newcommand\addnoteur[2]{%
+	\stepcounter{noteurcnt}%
+	\csdef{noteur\thenoteurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getnoteur[1]{%
+	\csuse{noteur#1}}
+
+\newcounter{rappeltheocnt}
+\newcommand\addrappeltheo[2]{%
+	\stepcounter{rappeltheocnt}%
+	\csdef{rappeltheo\therappeltheocnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getrappeltheo[1]{%
+	\csuse{rappeltheo#1}}
+
+\newcounter{professeurcnt}
+\newcommand\addprofesseur[2]{%
+	\stepcounter{professeurcnt}%
+	\csdef{professeur\theprofesseurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getprofesseur[1]{%
+	\csuse{professeur#1}}
+
+\newcounter{iter}

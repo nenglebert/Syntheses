@@ -4,10 +4,10 @@
 	\includegraphics[scale=0.5]{../../Builder/git.png}
 \end{wrapfigure}
 Ce document est grandement inspiré de l’excellent cours donné 
-par \pprenom~\pnom\	
-\ifdefined\spprenom
-et\ \spprenom~\spnom\ 
-\fi
+par \ifnum\theprofesseurcnt=1 \getprofesseur{1} \else\whileboolexpr
+{ test {\ifnumcomp{\value{iter}}{<}{\theprofesseurcnt-2}} }%
+{\stepcounter{iter}\getprofesseur{\theiter}, }%
+\stepcounter{iter}\getprofesseur{\theiter} et \stepcounter{iter}\getprofesseur{\theiter} \fi%
  à l’EPB (École Polytechnique de Bruxelles), faculté de l’ULB (Université 
 Libre de Bruxelles). Il est écrit par les auteurs susnommés avec l’aide de tous les autres étudiants 
 et votre aide est la bienvenue ! En effet, il y a toujours moyen de l’améliorer surtout que si le 
