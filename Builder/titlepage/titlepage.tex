@@ -4,7 +4,7 @@
 	\begin{center}	
 			
 		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}   			            %Titre en gros
-		\includegraphics[scale=0.11]{../../Builder/titlepage/logo.jpg}~\\[1cm]				%Logo
+		\includegraphics[width=0.55\textwidth]{../../Builder/titlepage/logo.pdf}~\\[1cm]				%Logo
 			
 			\textsc{\LARGE Université Libre de Bruxelles}\\[1.5cm]
 			\textsc{\Large Synthèse}\\[0.5cm]
@@ -17,27 +17,36 @@
 			\begin{minipage}[t]{0.6\textwidth}
 				\begin{flushleft}%\large
 					\emph{Auteur:}\\
-					\mbox{\prenom~\textsc{\nom}}\\
-					\ifdefined\nnom
+					\whileboolexpr
+					{ test {\ifnumcomp{\value{iter}}{<}{\theauteurcnt}} }%
+					{\stepcounter{iter}\getauteur{\theiter}\\}
+					\setcounter{iter}{0}%
+					\ifnum\thenoteurcnt>0%
 					\ \\
 					\emph{Notes:}\\
-					\mbox{\nprenom~\textsc{\nnom}}\\
-					\fi
-					\ifdefined\rappeltheonom
+					\whileboolexpr
+					{ test {\ifnumcomp{\value{iter}}{<}{\thenoteurcnt}} }%
+					{\stepcounter{iter}\getnoteur{\theiter}\\}%
+					\setcounter{iter}{0}%
+					\fi%
+					\ifnum\therappeltheocnt>0%
 					\ \\
 					\emph{Rappels théoriques:}\\
-					\mbox{\rappeltheoprenom~\textsc{\rappeltheonom}}
-					\fi
+					\whileboolexpr
+					{ test {\ifnumcomp{\value{iter}}{<}{\therappeltheocnt}} }%
+					{\stepcounter{iter}\getrappeltheo{\theiter}\\}%
+					\setcounter{iter}{0}%
+					\fi%
 				\end{flushleft}
-			\end{minipage}
+			\end{minipage}%
 			\begin{minipage}[t]{0.25\textwidth}
 				%\begin{flushright}
 				%\large
-				\emph{Professeur:}\\
-				\mbox{\pprenom~\textsc{\pnom}}
-				\ifdefined\spprenom
-				\\ \mbox{\spprenom~\textsc{\spnom}} \\
-				\fi
+				\emph{Professeur:}
+				\whileboolexpr
+				{ test {\ifnumcomp{\value{iter}}{<}{\theprofesseurcnt}} }%
+				{\\ \stepcounter{iter}\getprofesseur{\theiter}}%
+				\setcounter{iter}{0}%
 				%\end{flushright}
 			\end{minipage}
 			
