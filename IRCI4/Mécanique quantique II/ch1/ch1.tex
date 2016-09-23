@@ -383,7 +383,7 @@ caractère équiprobable. \\
 
 Nous savons maintenant que la représentation suivante est fausse
 \begin{equation}
-\ket{\psi} \neq \dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},\frac{1}{2}}+\dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}
+\ket{\psi} \neq \dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},\frac{1}{2}}\ \ +\ \ \dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}
 \end{equation}
 Pour le montrer, considérons la matrice densité associé à ce $\ket{\psi}$
 \begin{equation}
@@ -394,7 +394,7 @@ Pour le montrer, considérons la matrice densité associé à ce $\ket{\psi}$
 \end{equation}
 La diagonalisation de la matrice dans la base des états propres donne alors
 \begin{equation}
-1\ket{+}\bra{+} + 0\ket{-}\bra{-}\qquad\rightarrow\qquad \left(\begin{array}{cc}
+1\ket{+}\bra{+} \ \ +\ \  0\ket{-}\bra{-}\qquad\rightarrow\qquad \left(\begin{array}{cc}
 1&0\\
 0&0
 \end{array}\right)
@@ -402,13 +402,193 @@ La diagonalisation de la matrice dans la base des états propres donne alors
 ce qui ne correspond clairement pas à la réalité physique observée : on se retrouve dans un autre état en diagonalisant 
 dans la base des états propres.
 
+\subsubsection{Exemples physiques}
+Ces exemples montrent des situations classiques traduit dans le cadre de la mécanique quantique.\\
 
-
-
-On ne connaît pas la direction de polarisation. Concluons pen montrant quel est le candidate stae
+\textsc{A. Ensemble micro-canonique}\\
+Sot un ensemble micro-canonique
 \begin{equation}
-24
+\mathcal{F}\subset\mathcal{H}
 \end{equation}
+L'énergie (connue) correspond à un sous-espace de l'espace de Hilbert. Dans le cas d'un ensemble micro-canonique, 
+l'opérateur densité s'écrit
+\begin{equation}
+\hat{\rho} = \frac{1}{d}\hat{\mathbb{P}_f} = \frac{1}{d}\sum_{i=1}^d \ket{e_i}\bra{e_i}
+\end{equation}
+Sa matrice n'est rien d'autre qu'une matrice diagonale composée uniquement de $1/d$ : tous les états sont bien 
+équiprobables.\\
+
+\textsc{B. Ensemble canonique}\\
+Un tel ensemble décrit un système en équilibre thermodynamique avec le réservoir (régit par la distribution de 
+Boltzmann). L'opérateur densité est donné par
+\begin{equation}
+\hat{\rho} = \dfrac{e^{-\beta\hat{H}}}{\Tr(e^{-\beta\hat{H}})}
+\end{equation}
+où $\hat{H}$ est l'Hamiltonien et $\beta = \dfrac{1}{k_BT}$. Si l'on cherche à diagonaliser :
+\begin{equation}
+\hat{H}\ket{\psi_n} = E_n\ket{\psi_n}\qquad \text{où }\ \hat{H} = \sum_n E_n\ket{\psi_n}\bra{\psi_n}
+\end{equation}
+A l'aide de la relation de fermeture, nous pouvons obtenir la relation suivante
+\begin{equation}
+e^{-\beta\hat{H}} = \sum_n e^{-\beta E_n}\ket{\psi_n}\bra{\psi_n}\qquad\Rightarrow\qquad \Tr(e^{-\beta \hat{H}}) = 
+\sum_n e^{-\beta E_n}
+\end{equation}
+L'opérateur densité peut alors se réécrire
+\begin{equation}
+\hat{\rho} = \sum_n \dfrac{e^{-\beta E_n}}{\sum_m e^{-beta E_m}} \ket{\psi_n}\bra{\psi_n}
+\end{equation}
+où l'on reconnaît la fonction de partition de Boltzmann. Il s'agit d'un état mixte (chaque état est pondéré par
+une probabilité). 
+
+ 
 
 \section{Distribution de Wigner}
 \subsection{Définition, propriétés de $W(x,p)$, négativité de $W(x,p)$}
+\subsubsection{Définition}
+Nous allons ici présenter une autre façon de représenter un système dans un état pure et mixte. Pour se faire, 
+considérons une particule dans une espace $3D$ et choisissons une base - ici la base position -de sorte à exprimer 
+son opérateur densité. En utilisant deux fois la relation de fermeture, nous pouvons écrire
+\begin{equation}
+\hat{\rho} = \iint d^3\vec{r} d^3\vec{r'}\ \ket{\vec{r}}\underbrace{\bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}}_{\hat\rho(\vec{r},\vec{r})}\bra{\vec{r'}}
+\end{equation}
+où $\hat\rho(\vec{r},\vec{r})$ est une fonction complexe qui pondère chaque $\ket{\vec{r}}\bra{\vec{r}}$. Regardons l'élément 
+diagonal de la matrice densité de cette fonction complexe
+\begin{equation}
+\hat{\rho} = \bra{\vec{r}}\hat{\rho}\ket{\vec{r}} = \mathbb{P}(\vec{r}) = \Tr(\hat{\rho}\ket{\vec{r}}\bra{\vec{r}})
+\end{equation}
+En intégrant sur  $\vec{r}$ et par linéarité de la trace
+\begin{equation}
+\int d\vec{r}\ \rho(\vec{r},\vec{r}) = \Tr(\hat{\rho}\hat{\mathbb{1}}) = 1
+\end{equation}
+Il devient possible interpréter $\hat \rho(\vec{r})$ comme la probabilité de se trouver à une certaine position. Il serait 
+intéressant de pouvoir traiter l'impulsion de façon similaire à la position. Le problème est similaire à celui introduit 
+en début de chapitre : la probabilité d'être dans un domaine infinitésimal $dx\ dp$ est donné par $f(x,y)\ dx\ dy$. 
+Intéressons-nous à ce que pourrait être une fonction jouant le rôle joué par $f(x,y)$. Une telle fonction, une telle 
+distribution, peut être la (quasi) distribution de Wigner.\\
+
+Par \textbf{définition}
+\begin{equation}
+\underline{W(\vec{r},\vec{p}) = \dfrac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat\rho\left(\vec{r}-\frac{\vec{a}}{2},\vec{r}
++\frac{\vec{a}}{2}\right)e^{\frac{i}{\hbar}\vec{a}.\vec{p}}}
+\end{equation}
+Cette fonction prend en compte deux positions choisies proche l'une de l'autre. Nous savons que la partie diagonale donne 
+la probabilité de mesurer $\vec{r}$ et nous avons introduit le vecteur $\vec{a}$ qui est la différence entre les deux 
+positions ; la transformée de Fourier est ensuite effectuée de sorte à avoir l'impulsion.
+On a deux position, on les prends proche l'une de l'autre et on sait que la partie diagonale donne la probabilité de mesurer r et on a introduit le vecteur a qui est la différence entre les deux et on prend la transformée de Fourier pour avoir l'impulsion.
+
+\subsubsection{Propriétés de $W(x,p)$}
+La (quasi) distribution de Wigner possède les propriétés suivantes
+\begin{itemize}
+\item[$\bullet$] $W(\vec \hat r,  \vec \hat p)$ est réel :
+\begin{equation}
+\begin{array}{ll}
+W^*(\vec{r},\vec{p}) &\DS= \frac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat{\rho}^\dagger\left(\vec{r}-\frac{\vec{a}}{2},\vec{r}
++\frac{\vec{a}}{2}\right)e^{-\frac{i}{\hbar}\vec{a}.\vec{p}}\\
+&\DS= \frac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat{\rho}^\dagger\left(\vec{r}+\frac{\vec{a}}{2},\vec{r}
+-\frac{\vec{a}}{2}\right)e^{-\frac{i}{\hbar}\vec{a}.\vec{p}}
+\end{array}
+\end{equation}
+où nous avons utilisé le fait que $\hat{\rho}^\dagger(\vec{r},\vec{r'}) = \hat{\rho}(\vec{r'},\vec{r})$ :
+\begin{equation}
+\hat{\rho}^\dagger(\vec{r},\vec{r'}) = \bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}^*= \bra{\vec{r'}}\hat{\rho}\ket{\vec{r}} 
+= \hat{\rho}(\vec{r'},\vec{r})
+\end{equation}
+car $\hat{\rho}$ est hermitien. Nous pouvons conclure\footnote{Pas de signe négatif avec $d^3\vec{a}$, le jacobien 
+étant pris en valeur absolue.} en effectuant le changement de variable $\vec{b}=-\vec{a}$
+\begin{equation}
+W^*(\vec{r},\vec{p}) = \dfrac{1}{(2\pi\hbar)^3}\int d^3\vec{b}\ \hat\rho\left(\vec{r}-\frac{\vec{b}}{2},\vec{r}
++\frac{\vec{b}}{2}\right)e^{\frac{i}{\hbar}\vec{b}.\vec{p}} = W(\vec{r},\vec{p})
+\end{equation}
+\item[$\bullet$] $W(\vec{r},\vec{p})$ étant une distribution, elle doit être normalisable : sa trace doit valoir 1.
+\begin{equation}
+\begin{array}{ll}
+\DS\iint d^3\vec{r}d^3\vec{p}\ W(\vec{r},\vec{p}) &=\DS \int d^3\vec{r}\int d^3\vec{a}\ r\left(\vec{r}+\frac{\vec{a}}{2},\vec{r}
+-\frac{\vec{a}}{2}\right) \overbrace{\frac{1}{(2\pi\hbar)^3}\int d^3\vec{p}\ e^{\frac{i}{\hbar}\vec{a}.\vec{p}}}^{\delta^{(3)}(\vec{a})}\vspace{2mm}\\
+&=\DS \int d^3\vec{r}\ \hat{\rho}(\vec{r},\vec{r}) = \Tr(\hat{\rho}) = 1
+\end{array}
+\end{equation}
+où nous avons utilisé $\int e^{iax}\ dx = 2\pi \delta(x)$.
+\item[$\bullet$] La valeur moyenne de la position se calcule
+\begin{equation}
+\langle\vec{r}\rangle = \Tr(\hat{\rho}\hat{\vec{r}}) = \int d^3\vec{r}\ \bra{\vec{r}}\hat{\rho}\hat{\vec{r}}\ket{\vec{r}} = 
+\int d\vec{r}\ \vec{r}\underbrace{\bra{\vec{r}}\hat{\rho}\ket{\vec{r}}}_{\mathbb{P(\vec{r})}}
+\end{equation}
+Ceci est équivalent à 
+\begin{equation}
+\iint d\vec{r}d\vec{p}\ \vec{r}\ W(\vec{r},\vec{p}) = \int d\vec{r}\ \vec{r}\ \hat{\rho}(\vec{r},\vec{r})
+\end{equation}
+où nous avons utilisé (montré lors de la propriété précédente)
+\begin{equation}
+\iint d^3\vec{r}d^3\vec{p}\ \ W(\vec{r},\vec{p}) = \int d^3\vec{r}\ \ \hat{\rho}(\vec{r},\vec{r})
+\end{equation}
+
+\item[$\bullet$] Nous pouvons obtenir une équation similaire pour calculer la valeur moyenne de l'impulsion. Nous avions obtenu
+\begin{equation}
+\langle\vec{p}\rangle = \Tr(\hat{p}\hat{\rho}) = \int d\vec{p}\ \bra{\vec{p}}\hat{p}\hat{\rho}\ket{\vec{p}} =
+\int d\vec{p}\ \ \vec{p}\underbrace{\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}}_{\mathbb{P}(\vec{p})}
+\end{equation}
+L'idée est de ré-obtenir une forme semblable en utilisant notre distribution de Wigner. Pour se faire, partons de la 
+définition de la valeur moyenne de $\hat{\rho}$ et utilisons la relation de fermeture
+\begin{equation}
+\bra{\vec{p}}\hat{\mathbb{1}}\hat{\rho}\hat{\mathbb{1}}\ket{\vec{p}}= \int d\vec{r}d\vec{r}'\ \ 
+\underbrace{\bra{\vec{p}}\ket{\vec{r}}}_{\frac{1}{(2\pi\hbar)^{3/2}}e^{-\frac{i}{\hbar}\vec{p}.\vec{r}}}\bra{\vec{r}}\hat{\rho}\ket{\vec{r}'}\underbrace{\bra{\vec{r}'}\ket{\vec{p}}}_{\frac{1}{(2\pi\hbar)^{3/2}}e^{
+\frac{i}{\hbar}\vec{p}.\vec{r}}}
+\label{eq:ReecritVMRho}
+\end{equation}
+Après ré-écriture, nous obtenons
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}=\frac{1}{(2\pi\hbar)^3}\iint d\vec{r}d\vec{r'}\ \
+\bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}e^{\frac{i}{\hbar}\vec{p}(\vec{r'}-\vec{r})}
+\end{equation}
+Effectuons le changement de variable suivant
+\begin{equation}
+\left\{\begin{array}{ll}
+\vec{r} &= \vec{u}-\frac{\vec{v}}{2}\\
+\vec{r'} &= \vec{u}+\frac{\vec{v}}{2}
+\end{array}\right.\qquad\Rightarrow\qquad \mathcal{J} = \left(\begin{array}{cc}
+1&1/2\\
+1&-1/2
+\end{array}\right)\quad \rightarrow\quad |\mathcal{J}| = 1
+\end{equation}
+Nous obtenons
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}= \iint d\vec{u}d\vec{v}\ \ \hat{\rho}\left(\vec{u}-\frac{\vec{v}}{2},
+\vec{u}+\frac{\vec{v}}{2}\right)e^{\frac{i}{\hbar}\vec{p}.\vec{v}}
+\end{equation}
+En remplaçant $\vec{v}\to\vec{a}$, on retrouve $W(\vec{r},\vec{p})$
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}=\int d\vec{u}\ \ W(\vec{u},\vec{p}) = \int d\vec{r}\ \ W(\vec{r},\vec{p})
+\end{equation}
+Nous pouvons alors ré-écrire \eqref{eq:ReecritVMRho}
+\begin{equation}
+\langle p \rangle = \iint d\vec{r}d\vec{p}\ \ \vec{p}\ W(\vec{r},\vec{p})
+\end{equation}
+La valeur moyenne de $\hat{p}$ est donc obtenue par simple intégration de $\vec{p}\ W(\vec{r},\vec{p})$. Ceci 
+peut se généraliser : si l'on souhaite la valeur moyenne de n'importe quelle fonction de la position où 
+l'impulsion, on retrouve
+\begin{equation}
+\begin{array}{ll}
+\langle f(\vec{r})\rangle &= \Tr(\hat{\rho}f(\vec{r})) = \iint d\vec{r}d\vec{p}\ \ f(\vec{r})\ W(\vec{r},\vec{p})\\
+\langle g(\vec{p})\rangle &= \Tr(\hat{\rho}g(\vec{p})) = \iint d\vec{r}d\vec{p}\ \ g(\vec{p})\ W(\vec{r},\vec{p})
+\end{array}
+\end{equation}
+\end{itemize}
+En plus d'être une fonction réelle, on peut montrer que
+\begin{equation}
+\left\{\begin{array}{ll}
+\DS\int d\vec{p}\ W(\vec{r},\vec{p}) &= \mathbb{P}(\vec{r})\\
+\DS\int d\vec{r}\ W(\vec{r},\vec{p}) &= \mathbb{P}(\vec{p})\\
+\DS\int d\vec{r}d\vec{p}\ W(\vec{r},\vec{p}) &= 1
+\end{array}\right.
+\end{equation}
+Peut-on dès lors voir $W(\vec{r},\vec{p})$ comme la probabilité d'occuper une cellule $d\vec{r}d\vec{p}$ ? 
+La réponse est \textbf{non} car $W(\vec{r},\vec{p})$ n'est pas toujours positive. C'est la raison pour 
+laquelle on parle de \textit{quasi} distribution. Néanmoins, pour les états purs, on peut utiliser le 
+théorème de Hudson-Piquet
+\begin{equation}
+W(\vec{r},\vec{p}) \geq 0\ \forall \vec{r},\vec{p}\qquad\Leftrightarrow\qquad \hat{\rho} \text{ est un 
+état gaussien pur}
+\end{equation}
+Pour considérer un exemple pratique : l'état fondamental $\ket{\psi_0}$ de l'oscillateur harmonique est 
+un état gaussien : il est possible d'écrire l'opérateur densité $\hat{\rho}$ correspondant pour ensuite 
+écrire $W_n(\vec{x},\vec{p})$ et l'utiliser comme bon nous semble.
