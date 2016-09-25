@@ -1,0 +1,523 @@
+\chapter{Systèmes de particules identiques}
+\section{Origine du problème}
+Imaginons que nous avons deux boules de billard en déplacement, que nous laissons évoler dans le temps. 
+Une modélisation mathématique pourrait être
+\begin{equation}
+\left\{\begin{array}{ll}
+\vec{r_1}(t) &= \vec{f}(t)\\
+\vec{r_2}(t) &= \vec{g}(t)
+\end{array}\right.
+\end{equation}
+Or, ceci n'est qu'une modélisation possible : la description reste identique si l'on permute les numéros. Ceci 
+est vrai en physique classique, mais pas forcément dans le cadre de la mécanique quantique : lorsque l'on 
+travaille avec des objets quantique, il faut traiter avec des paquets d'onde. Lorsque ceux-ci seront proche l'un 
+de l'autre ils vont se recouvrir : les deux situations ci-dessous sont indiscernables
+\begin{center}
+Inclure figure cours 2, sous eq (13).
+\end{center}
+
+
+\subsection{Deux particules identiques sans interactions dans un O.H.}
+Soit l'Hamiltonien de l'oscillateur harmonique à deux particules
+\begin{equation}
+\begin{array}{ll}
+\hat{H} &\DS= \frac{p_1^2}{2m}+\frac{1}{2}m\omega^2\vec{r_1^2}+\frac{p_2^2}{2m}+\frac{1}{2}m\omega^2\vec{r_2^2}\vspace{2mm}\\
+&= h^{(1)} + h^{(2)}
+\end{array}
+\end{equation}
+L'énergie vaut 
+\begin{equation}
+E = (1+n_1+n_2)\hbar\omega,\qquad\ n_1,n_2\geq 0
+\end{equation}
+
+\subsubsection{État fondamental $E_0$}
+L'énergie de l'état fondamental est donnée par $E_0=\hbar\omega$ et la fonction propre par 
+\begin{equation}
+\psi_0(x_1,x_2) = \phi_0(x_1)\phi_0(x_2)
+\end{equation}
+
+\subsubsection{Premier état excité $E_1$}
+L'énergie et la fonction d'onde est cette fois donnée par
+\begin{equation}
+E_1 = 2\hbar \omega,\qquad \psi_1(x_1,x_2) = \phi_1(x_1)\phi_0(x_1)
+\end{equation}
+où $\phi_0$ désigne l'état fondamental. Nous pouvons avoir exactement l'opposé en permutant le rôle des deux 
+particules ou encore en considérant une combinaison linéaire de ces deux situations
+\begin{equation}
+\begin{array}{ll}
+\psi_1' &= \phi_0(x_1)\phi_1(x_2)\\
+\psi_1'' &=\alpha \phi_1(x_1)\phi_0(x_2)+\beta \phi_0(x_1)\phi_1(x_2)
+\end{array}
+\end{equation}
+Regardons ce qui se produit lorsque l'on applique l'Hamiltonien à cet état
+\begin{equation}
+\begin{array}{ll}
+\DS(\hat{h}^{(1)}+\hat{h}^{(2)})(\alpha\phi_1\phi_0+\beta\phi_0\phi_1) &\DS= \alpha\frac{3\hbar \omega}{2}\phi_1\phi_0 + \beta
+\frac{\hbar\omega}{2}\phi_0\phi_1 + \alpha\frac{\hbar\omega}{2}\phi_1\phi_0+\beta\frac{3\hbar\omega}{2}\phi_0\phi_1\vspace{2mm}\\ 
+&\DS= 
+2\hbar\omega(\alpha\phi_1\phi_0+\beta\phi_0\phi_1)
+\end{array}
+\end{equation}
+Or
+Nous pouvons ainsi interpreter $(\alpha\phi_1\phi_0+\beta\phi_0\phi_1)$ comme une fonction propre et $2\hbar\omega$ comme 
+la fonction propre associée. Nous somme face à la \textbf{dégénérescence d'échange} qui est causée par l'échange de particules 
+identiques : les situations sont indiscernables.\\
+
+Intéressons nous à la valeur moyenne du produit des deux observables positions
+\begin{equation}
+\begin{array}{ll}
+\langle x_1x_2\rangle_\psi &=\DS (\alpha^*\bra{\phi_1}\bra{\phi_0}+\beta^*\bra{\phi_0}\bra{\phi_1})x_1x_2
+((\alpha\ket{\phi_1}\ket{\phi_0}+\beta\ket{\phi_0}\ket{\phi_1}))\\
+&=|\alpha|^2\bra{\phi_1}x\ket{\phi_1}\bra{\phi_0}x\ket{\phi_0} + \alpha^*\beta \bra{\phi_1}x\ket{\phi_0}\bra{\phi_0}x\ket{\phi_1} \\&\ \ \ + \alpha\beta^*\bra{\phi_0}x\ket{\phi_1}\bra{\phi_1}x\ket{\phi_0} + |\beta|^2\bra{\phi_0}x\ket{\phi_0}\bra{\phi_1}x\ket{\phi_1}
+\end{array}
+\end{equation}
+Or $bra{\phi_1}x\ket{\phi_1} = bra{\phi_0}x\ket{\phi_0} = 0$ : il n'y a pas de raison que la valeur moyenne soit "plus à gauche" 
+ou "plus à droite (cf. cours de J.M.Sparenberg)\footnote{La fonction d'onde est symétrique ou antisymétrique, mais en module il y a autant de chance que la particule soit à gauche ou à droite.}.\\
+
+Pour continuer le calcul, introduisons
+\begin{equation}
+x = \sqrt{\frac{\hbar}{m\omega}}X\quad\Leftrightarrow X = \frac{a+a^\dagger}{\sqrt{2}}\quad \Rightarrow \quad \bra{1}X\ket{0} =
+\frac{1}{\sqrt{2}}\bra{1}a\ket{0} + \frac{1}{\sqrt{2}}\bra{1}a^\dagger\ket{0} = \frac{1}{\sqrt{2}}
+\end{equation}
+Nous avons alors
+\begin{equation}
+\bra{\phi_1}x\ket{\phi_0} = \sqrt{\dfrac{\hbar}{2m\omega}}
+\end{equation}
+Dès lors
+\begin{equation}
+\langle x_1x_2\rangle_\psi = \alpha^*\beta \frac{\hbar}{2m\omega}+ \alpha\beta^*\frac{\hbar}{2m\omega} = \frac{\hbar}{
+2m\omega}\Re(\alpha^*\beta) \quad\Rightarrow\quad ?
+\end{equation}
+Le choix de $\alpha$ et $\beta$ est totalement arbitraire et la solution actuelle ne dépend en rien de l'observable 
+initiale : il manque quelque chose sans quoi il n'est possible de rien prédire. Ce "quelque chose manquant" n'est rien 
+d'autre que le principe d'exclusion de Pauli, nous reviendrons donc plus tard sur ce développement.
+
+\section{Opérateur d'échange}
+\subsection{Propriétés, valeurs propres, opérateur (anti)-symétriseur}
+\subsection{Cas du spin $1/2$}
+Soit $\ket{k}_1$ une base de $\mathcal{H}_1$, $\ket{n}_2$ une base de $\mathcal{H}_2$ et $\mathcal{H} = 
+\mathcal{H}_1\times\mathcal{H}_2$. Nous pouvons écrire $\ket{\psi}$ comme
+\begin{equation}
+\ket{\psi} = \sum_{k,n} C_{k,n} \ket{k}_1\ket{n}_1
+\end{equation}
+Il faut maintenant introduire notre \textbf{opérateur d'échange}. Par définition
+\begin{equation}
+\hat{P}_{12}\ket{k}_1\ket{n}_2 = \ket{n}_1\ket{k}_2
+\end{equation}
+Appliquons cet opérateur comme suggéré ci-dessous
+\begin{equation}
+\hat{P}_{12} \ket{\psi}_1\ket{\phi}_2=\ket{\phi}_1\ket{\psi}_2
+\end{equation}
+Où encore, par décomposition dans la base de $\mathcal{H}$
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{P}_{12}\left(\sum_k \alpha_k\ket{k}_1\right)\left(\sum_n \beta_n\ket{n}_2\right) &=\DS \sum_k\sum_n \alpha_k
+\beta_n \ket{n}_1\ket{k}_2\\
+&=\DS \sum_n\sum_k \beta_k\ \alpha_n \ket{k}_1\ket{n}_2 = \ket{\phi}_1\ket{\psi}_2
+\end{array}
+\end{equation}
+A partir de la définition, on peut montrer que
+\begin{equation}
+\hat{P}_{12}= \sum_{k,n} \ket{n}\bra{k}\ \ \otimes\ \ \ket{k}\bra{n}
+\end{equation}
+
+\subsubsection{Propriétés}
+Il existe plusieurs propriétés, nous allons ici en présenter quatre 
+\begin{enumerate}
+\item $\hat{P}_{12}=\hat{P}_{21}$
+\item $\hat{P}_{12}^2 = \hat{\mathbb{1}}$ (on fait apparaître quatre delta de Kronecker : résultat attendu car une double permutation d'indice revient à ne rien faire).
+\item $\hat{P}_{12}$ est unitaire : $\hat{P}_{12}\hat{P}_{12}^{-1} = \hat{\mathbb{1}}$
+\item $\hat{P}_{12}^\dagger = \hat{P}_{12} = \hat{P}_{12}^{-1}$ (voir séance d'exercices)
+\end{enumerate}
+
+\subsubsection{Valeurs propres et opérateur (anti)-symétriseur}
+L'opérateur d'échange possède deux valeurs propres : $+1$ (\textit{symétrique}) et $-1$ (\textit{antisymétrique}). On 
+définit alors deux opérateurs : l'opérateur symétriseur et l'opérateur anti-symétriseur
+\begin{equation}
+\left\{\begin{array}{ll}
+\hat{S} &= \frac{1}{2}\left(1+\hat{P}_{12}\right)\\
+\hat{A} &= \frac{1}{2}\left(1-\hat{P}_{12}\right)
+\end{array}\right.
+\end{equation}
+Ces deux opérateurs vérifie les propriétés suivantes
+\begin{equation}
+\hat{S}^2 =\hat{S},\qquad \hat{A}^2=\hat{A},\qquad \hat{S}\hat{A}=\hat{A}\hat{S} = 0, \qquad \hat{S}+\hat{A}=\hat{\mathbb{1}}
+\end{equation}
+Les noms de ces opérateurs se comprennent facilement avec la propriété énoncée ci-dessous
+\begin{equation}
+\left\{\begin{array}{ll}
+\hat{P}_{12}\hat{S} = \hat{S}\hat{P}_{12} = \hat{S}\\
+\hat{P}_{12}\hat{A} = \hat{A}\hat{P}_{12} = -\hat{A}
+\end{array}\right.
+\end{equation}
+Si on applique $\hat{P}_{12}$ sur un état, on obtient
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{P}_{12}\underbrace{\hat{S}\ket{\psi}}_{\ket{\zeta}}&\DS=\underbrace{\hat{S}\ket{\psi}}_{\ket{\zeta}}\\
+\DS\hat{P}_{12}\underbrace{\hat{A}\ket{\psi}}_{\ket{\xi}}&\DS=-\underbrace{\hat{A}\ket{\psi}}_{\ket{\xi}}
+\end{array}
+\end{equation}
+où $\ket{\zeta}\subset$ sous-espace symétrique et $\ket{\xi}\subset$ sous-espace anti-symétrique.
+
+
+\subsection{Cas du spin $1/2$}
+Avant d'introduire le spin de particules identiques, rappellons ce qui a été vu : l'opérateur d'échange
+\begin{equation}
+\hat{P}_{12} = \sum_{n,k} \ket{k}\bra{n}\otimes\ket{n}\bra{k}
+\end{equation}
+Pour deux particules sans spin, nous avions que $\hat{P}_{12}\psi(\vec{r_1},\vec{r_2})=\psi(\vec{r_2},\vec{r_1})$, 
+c'est-à-dire
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi} &=\DS \iint d\vec{r}_1d\vec{r}_2\ \psi(\vec{r_1},\vec{r_2})\ket{\vec{r_1}}\bra{\vec{r_2}}\vspace{2mm}\\
+\hat{P}_{12}\ket{\psi}&=\DS \iint d\vec{r}_1d\vec{r}_2\ \psi(\vec{r_1},\vec{r_2})\ket{\vec{r_2}}\bra{\vec{r_1}}\vspace{2mm}\\
+&=\DS \iint d\vec{r}_1d\vec{r}_2\ \psi(\vec{r_2},\vec{r_1})\ket{\vec{r_1}}\bra{\vec{r_2}}
+\end{array}
+\end{equation}
+Si nous traitons maintenant deux particules identiques possédant un spin et que l'on applique à ce système $\hat{P}_{12}$, 
+le spin doit aussi changer. On définit alors 
+\begin{equation}
+\hat{P}_{12} = \hat{P}_{12}^{\text{(spatial)}}\times\hat{P}_{12}^{\text{(spin)}}
+\end{equation}
+En toute généralité, nous pouvons écrire\footnote{Relation de fermeture et ? }
+\begin{equation}
+\ket{\psi} = \int d\vec{r}\underbrace{\sum_m\ket{m}\overbrace{\bra{\vec{r}}m\ket{\psi}}^{\psi_m(\vec{r})}}_{\ket{\psi(\vec{r})}}
+\end{equation}
+En appliquant l'opérateur d'échange
+\begin{equation}
+\begin{array}{ll}
+\hat{P}_{12} &=\DS \hat{P}_{12} \sum_{m_1}\sum_{m_2} \psi_{m_1,m_2}(\vec{r}_1,\vec{r_2})\ket{m_1}\ket{m_2}\vspace{2mm}\\
+&=\DS \hat{P}_{12} \sum_{m_1}\sum_{m_2} \psi_{m_1,m_2}(\vec{r}_1,\vec{r_2})\ket{m_2}\ket{m_1}\vspace{2mm}\\
+&=\DS \hat{P}_{12} \sum_{m_1}\sum_{m_2} \psi_{m_2,m_1}(\vec{r}_2,\vec{r_1})\ket{m_1}\ket{m_2}
+\end{array}
+\end{equation}
+Lorsque l'on applique un tel opérateur, il est important de noter que "tout" s'échange.
+
+\section{Symétrie des états quantiques}
+\subsection{Cas de $2\to N$ particules identiques, principe de Pauli (lien spin-statistique)}
+Venons-en au principe de Pauli qui va nous permettre de résoudre le problème de deux particules 
+identiques.  Soit
+\begin{equation}
+\hat{P}_{12}\ket{m_1=\pm1/2}\ket{m_2=\pm1/2} = \ket{m_2}\ket{m_1}\qquad\text{une base couplée}
+\end{equation}
+Nous avons donc comme base couplée
+\begin{equation}
+S^2,\qquad S_z,\qquad S = S_1+S_2
+\end{equation}
+de sorte que $s=0$ ou $s=1$. Compte-tenu de ceci, on peut définir l'état \textbf{triplet} ($s=1$)
+\begin{equation}
+\left\{\begin{array}{ll}
+\ket{s=1,m=+1} &= \ket{m_1=1/2}\ket{m_2=1/2}\\
+\ket{s=1,m=0} &= \frac{1}{\sqrt{2}}\ket{1/2}\ket{-1/2}+\ket{-1/2}\ket{1/2}\\
+\ket{s=1,m=-1} &= \ket{-1/2}\ket{-1/2}
+\end{array}\right.\quad \Rightarrow \hat{P}_{12}\ket{s=1,m} = \ket{s=1,m}
+\end{equation}
+où nous avons utilisé les coefficients de Clebsch-Gordan. Cet état correspond à la situation ou 
+les spins sont alignés de sorte que cet état soit symétrique à l'échange. Nous avons d'autre 
+part l'état \textbf{singlet} $(s=0)$, antisymétrique à l'échange
+\begin{equation}
+\left\{ \ket{s=0, m=0} \frac{1}{\sqrt{2}}\left(\ket{1/2}\ket{1/2} - \ket{-1/2}\ket{-1/2}\right)\right.
+\quad \Rightarrow \hat{P}_{12}\ket{s=0,m=0} = -\ket{s=0,m=0}
+\end{equation}
+
+
+Afin de montrer clairement que le nom des particules n'a pas de sens, définissions un opérateur 
+d'échange et appliquons-le
+\begin{equation}
+\hat{P}_{12} \ket{\psi} = e^{i\delta}\ket{\psi}\qquad\forall\psi
+\end{equation}
+où nous savons que la phase globale $e^{i\delta}$ est irrelevante. Or comme $\hat{P}_{12}^2=
+\hat{\mathbb{1}}$, nous devons avoir
+\begin{equation}
+\hat{P}_{12}^2 \ket{\psi} = e^{2i\delta}\ket{\psi}=\ket{\psi}\qquad\forall\psi
+\end{equation}
+Dès lors, il faut que
+\begin{equation}
+e^{2i\delta} = 1\qquad\Leftrightarrow\qquad e^{i\delta}=\pm1
+\end{equation}
+On peut alors écrire
+\begin{equation}
+\hat{P}_{12}\ket{\psi} = \pm\ket{\psi}
+\end{equation}
+Lorsque l'on applique un opérateur d'échange, le résultat doit être symétrique ou antisymétrique. 
+Considérons un état $\ket{\psi}$
+\begin{equation}
+\left.\begin{array}{ll}
+\ket{\psi} &=\DS \sum_{k,n}C_{k,n}\ket{k}\ket{n}\\
+\hat{P}_{12}\ket{\psi} &=\DS \sum_{k,n}C_{n,k}\ket{k}\ket{n}
+\end{array}\right\}\quad\Rightarrow C_{k,n} = \pm C_{n,k}\quad \forall k,n
+\end{equation}
+On peut alors écrire la relation de proportionnalité suivante\footnote{Un état pour la particule 1 et un
+second pour la particule 2.} (on ne s'occupe pas ici de la normalisation)
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi_S} &\propto\DS \sum_{k,n} d_{k,n}\left(\ket{k}\ket{n}+\ket{n}\ket{k}\right)\\
+\ket{\psi_A} &\propto\DS \sum_{n>k} d_{k,n}\left(\ket{k}\ket{n}-\ket{n}\ket{k}\right)
+\end{array}
+\end{equation}
+L’application d'un interchangement entre ces deux systèmes doit provoquer l'apparition d'un 
+signe positif ou négatif. En toute généralité
+\begin{equation}
+\psi(x_1,x_2) = \phi_1(x_1)\phi_0(x_2) + \beta \phi_0(x_1)\phi_1(x_2)
+\end{equation} 
+L'échange des deux particules fera donc apparaître un signe positif ou négatif en fonction de si 
+la fonction est symétrique ou antisymétrique.\\
+
+La connaissance de ceci nous permet de résoudre le problème précédemment posé, à savoir le calcul 
+de la valeur moyenne du produit de deux positions. Nous avions trouvé
+\begin{equation}
+\langle x_1x_2\rangle = \frac{\hbar}{m\omega}\Re(\alpha^*\beta)
+\end{equation}
+Nous avons donc
+\begin{equation}
+\begin{array}{lll}
+\DS\to \psi_S : \alpha = \beta &\DS= \frac{1}{\sqrt{2}} &\DS\Rightarrow \langle x_1x_2\rangle = \frac{\hbar}{2m\omega}\vspace{2mm}\\
+\DS\to \psi_A : \alpha = -\beta &\DS= \frac{1}{\sqrt{2}} &\DS\Rightarrow \langle x_1x_2\rangle = -\frac{\hbar}{2m\omega}
+\end{array}
+\end{equation}
+
+Ceci est une bonne opportunité d'énoncer le \textsc{Principe de Pauli}:\\
+
+\textit{Toute particule doit être un boson ou un fermion et si les particules identiques sont des }
+ \begin{equation}
+ \begin{array}{ll}
+ \text{Boson } &\to \ket{\psi} \text{ doit être symétrique sous } \hat{P}_{12}\\
+ \text{Fermion } &\to \ket{\psi} \text{ doit être anti-symétrique sous } \hat{P}_{12}
+ \end{array}
+ \end{equation}
+ 
+ Ce principe nous informe aussi qu'être boson ou fermion ne dépend que du spin : un boson possède un 
+ spin entier (par exemple, le photon) alors qu'un fermion est muni d'un spin demi-entier (par exemple, 
+ l'électron).\\
+ 
+ Il est bon de savoir que le spin peut être complètement décrit à l'aide du "Spin Statistics Theorem" qui 
+ sort du cadre de ce cours. Pour synthétiser :
+\begin{equation}
+\begin{array}{ll}
+\psi_S \to \text{Boson}\\
+\psi_A \to \text{Fermion}
+\end{array}
+\end{equation}
+Il est souvent "dit" que les bosons peuvent rester ensemble alors que les fermions doivent être "séparés. Ceci 
+peut se deviner, $\langle x_1 x_2\rangle$ n'est en réalité qu'un coefficient de corrélation entre les deux 
+particules. Si celui-ci est nul, il n'y a pas de corrélation entre les particules (cas classique). Ici, à cause 
+du principe de Pauli nous aurons une corrélation positive ou négative.\\
+
+Pour le cas des bosons, si l'un d'eux se trouve d'un côté, il y a de forte probabilité que le second se retrouve 
+du même côté (ils occupent le même espace). Par contre, pour les fermions, si l'un est "à droite" le second 
+sera plus probablement "à gauche". On parle de \textbf{bunching effects}  pour les bosons qui s'attirent et de 
+\textit{repulsion} pour les fermions qui se repoussent. Cette répulsion vient du fait que le vecteur d'onde est 
+ansitymétrique. Cette répulsion est due au principe de Pauli et \textbf{pas} un phénomène physique\footnote{Notons 
+que pour le calcul des impulsions, on retrouvera le même signe positif pour les bosons et le signe négatif pour 
+les fermions.}. Notons également que la symétrie de la fonction d'onde joue un rôle crucial en spectroscopie.
+
+
+
+\subsubsection{Deux particules identiques sans spin}
+Ayant un spin nul, ils 'agit forcément de bosons : la fonction d'onde sera symétrique et sa modélisation sera simple
+\begin{equation}
+\psi(\vec{r_1},\vec{r_2}) =\psi(\vec{r_2},\vec{r_1}) 
+\end{equation}
+
+ 
+\subsubsection{Deux particules de spin $1/2$}
+Considérons par exemple deux électrons. Nous savons que l'opérateur d'échange agi sur la partie spatiale et le spin. Dès 
+lors, plusieurs cas sont possible pour la partie spatiale en fonction de l'état singlet et triplet, la fonction d'onde devant 
+être anti-symétrique. Écrivons notre état comme une combinaison linéaire des vecteurs de base
+\begin{equation}
+\ket{\psi(\vec{r_1},\vec{r_2})} = \underbrace{\psi_{0,0}(\vec{r_1},\vec{r_2})}_{(S)}\underbrace{\ket{s=0,m=0}}_{\text{singlet } (A)} + \underbrace{\sum_{m=-1}^{+1} \psi_{1,m}(\vec{r_1},\vec{r_2})}_{(A)}\underbrace{\ket{s=1,m}}_{\text{triplet } (S)}
+\end{equation}
+Ceci "vit" dans un espace quadridimensionnel ($2D\times2D$) où nous utilisons une base couplée comme une somme entre l'état 
+singlet et triplet. Comme nous avons deux fermions, il faut bien que la fonction totale soit anti-symétrique : si la partie 
+"spin" est symétrique, la partie "spatiale" doit être anti-symétrique et inversement.
+\begin{equation}
+\left\{\begin{array}{lll}
+\psi_{0,0}(\vec{r_1},\vec{r_2}) &=\psi_{0,0}(\vec{r_1},\vec{r_2})&\quad \forall \vec{r_1},\vec{r_2}\\
+\psi_{1,m}(\vec{r_1},\vec{r_2}) &=-\psi_{1,m}(\vec{r_1},\vec{r_2})&\quad \forall \vec{r_1},\vec{r_2},\ m=0,\pm1
+\end{array}\right.
+\end{equation}
+Ceci a des conséquences importantes en spectroscopie.
+
+\subsubsection{Interaction d'échange}
+Considérons l'atome d'hélium $He$
+\begin{equation}
+\hat{H} = \frac{p_1^2}{2m}+\frac{p^2_2}{2m} - \frac{2e_1^2}{r_1}- \frac{2e_1^2}{r_2}+- \frac{e_1^2}{r_{12}}
+\end{equation}
+Si on regarde le spectre on montre que l'état fondamental est singlet (symétrie spatiale) alors que le premier état excité est triplet (antisymétrique spatialement).\\
+
+Si l'on regarde le gap entre l'état fondamental et le premier état excité, celui-ci vaut $20\ eV$. On pourrait penser 
+que cette grande différence soit du à une interaction d'origine magnétique : les spin ont intérêt d'être anti-aligné. 
+Il existe bien une interaction d'origine magnétique due au spin, mais celle ci est $\approx 0.2\ eV$. Cette levée de 
+dégénérescence trouve une interprétation avec le principe de Pauli : si la partie spatiale est symétrique, les deux 
+électrons vont se pouvoir occuper le même état et occuper le fond du puits. Par contre, si la partie spatiale est 
+antisymétrique les particules sont des fermions : les spins étant identiques, ils ne peuvent occuper la même orbitale 
+et un électron devra aller dans une orbitale "plus haute". Ce gap correspond donc à la différence d'énergie entre les 
+deux orbitales qui est d'origine coulombienne et non magnétique.
+
+\subsubsection{Principe d'exclusion de Pauli pour des fermions indépendants}
+Nous avons dans ce cas
+\begin{equation}
+\hat{H} = \hat{h_1}+\hat{h_2},\qquad \hat{h}\ket{n} = \mathcal{E}\ket{n}
+\end{equation}
+Un candidat de base non-couplée est par exemple $\ket{n}_1\ket{n'}_2$. Si $n=n'$ ça va pas, c'est exclu par le 
+principe de Pauli : occuper la même orbital est interdit. Par contre\footnote{C'est quoi?}
+\begin{equation}
+n\neq n' : \frac{1}{\sqrt{2}}(\ket{n}_1\ket{n'}_2-\ket{n'}_1\ket{n}_2)
+\end{equation}
+On sait pas nommer les particules et les distinguer, on peut pas les "colorer". Deux fermions ne peuvent pas occuper le 
+même état mais pour les fermions indépendant, chacun occupe "son" espace\footnote{A éclaircir, lien de l'indépendance non clair.} 
+
+
+\subsection{Groupe symétrique $S_N$, opérateur de permutation et (anti)-symétriseur}
+Lorsque nous sommes face à un système composé de $N$ particules identiques, au lieu de considérer $\hat{P}_{12}$ 
+on généralise avec $\hat{P}_{i,j}$. Le principe reste identique si ce n'est que l'on parle d'opérateur de 
+permutations, toutes les permutations possibles étant envisagées
+\begin{equation}
+\hat{P}_{i,j} \ket{\psi} = \underbrace{e^{i\delta}}_{\pm 1}\ket{\psi}
+\end{equation}
+
+\subsection{Écriture générale pour $N$ bosons ou fermions, déterminant de Slater}
+Le principe de Pauli comporte un postulat sur la symétrisation 
+\begin{itemize}
+\item[$\bullet$] Un vecteur d'état de $N$ bosons identiques est totalement symétrique à l'échange
+\item[$\bullet$] Un vecteur d'état de $N$ Fermions identiques est totalement antisymétrique à l'échange
+\end{itemize}
+Il faut donc considérer que toutes les paires peuvent s'échanger (permutations). Les relations triangulaires 
+nous disent que
+\begin{equation}
+|j_1-j_2|\leq j \leq j_1+j_2
+\end{equation}
+Celles-ci nous disent que la combinaison d'un nombre pair de boson (spin entier) donne un boson et inversement 
+pour obtenir un fermion. Dès lors, un système composé de $N$ fermions se comporte comme un boson si $N$ est 
+pair et comme un fermion sinon\footnote{Revoir}. C'est bien consistant avec les relations triangulaires : un nombre pair de spin 
+demi-entier donne bien quelque chose d'entier.\\
+
+
+\textsc{Exemple historique}\\
+Nous allons ici montrer comment l'existence du neutron peut être déduite de la symétrie de la fonction d'onde.
+Soit $^{14}N$, un boson. Dans le modèle du plum-pudding les neutrons n'intervenait pas. Nous avions $A=14, Z=7$. Le
+noyau était considéré de 14 protons et 7 électrons, ce qui donne 21 fermions : contradiction. Si l'on utilise le 
+fait qu'un noyau est constitué de neutrons et protons, nous avons $A=14,Z=7$ et $N=7$. Le noyau est constitué de 
+7 protons et 7 fermions, soit 14 fermions ce qui se comporte bien comme un boson, la contradiction est levée.\\
+
+
+\subsection{Groupe symétrique : système de $N!$ permutations}
+\subsubsection{1. $N$ bosons identiques}
+Considérons un système de $N$ particules, toutes bosoniques
+\begin{equation}
+\left\{\begin{array}{ll}
+1 &\to p(1)\\
+2 &\to p(2)\\
+\vdots\\
+N &\to p(N)
+\end{array}\right.,\qquad \mathcal{E}_p = (-1)^p = \pm1
+\end{equation}
+Il ne devrait pas être possible de les différencier. Adoptons la notation
+\begin{equation}
+\{\ket{i}\}
+\end{equation}
+qui désigne l'état d'une particule (d'une orbitale). L'état de référence est donné par
+\begin{equation}
+\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+Travaillant avec des bosons, il faut avoir quelque chose de complètement symétrique en considérant toutes les 
+permutations $(N!)$
+\begin{equation}
+\ket{\psi_{N,boson}} = C\frac{1}{\sqrt{N!}}\sum_p\ket{i_{p(1)}}_1\ket{i_{p(2)}}_2\dots\ket{i_{p(N)}}_N
+\end{equation}
+Toutes ces particules sont pondérées de la même sorte : si l'on change la numérotation des particules, cela va 
+juste changer l'ordre des termes de la somme mais la fonction reste symétrique :
+\begin{equation}
+\psi(\vec{r_1},\vec{r_2},\dots,\vec{r_N}) = C\frac{1}{\sqrt{N!}}\sum_p \phi_{p(1)}(\vec{r_1})\phi_{p(2)}(\vec{r_2})\dots 
+\phi_{p(N)}(\vec{r_n})
+\end{equation}
+Les bosons peuvent occuper la même orbitale (on pourrait dire $i_3=i_2$ pour deux particules qui occupent le même état, 
+ce n'est pas interdit pour les bosons). Dès lors, certains termes de la sommes sont identiques, les bosons pouvant 
+occuper la même orbitale. Ceci est "corrigé" par le coefficient $C$.
+
+\subsubsection{2. $N$ fermions identiques}
+Similairement, pour les fermions :
+\begin{equation}
+\ket{\psi_N,fermion} = \frac{1}{\sqrt{N!}}\sum (-1)^p\ket{i_{p(1)}}_1\ket{i_{p(2)}}_2\dots\ket{i_{p(N)}}_N
+\end{equation}
+ce qui est bien anti-symétrique. Il existe une autre forme d'écrire ceci, sous la forme d'un determinant de Slater
+\begin{equation}
+\ket{\psi_N,fermion} = \frac{1}{\sqrt{N!}}\left|\begin{array}{cccc}
+\ket{i_1}_1&\ket{i_2}_1&\dots&\ket{i_N}_1\\
+\ket{i_1}_2&\ket{i_2}_2&\dots&\ket{i_N}_2\\
+\vdots&\vdots&\ddots&\vdots\\
+\ket{i_1}_N&\ket{i_2}_N&\dots&\ket{i_N}_N
+\end{array}\right|
+\end{equation}
+Les termes de la diagonale correspondent à l'état de référence. Les lignes désignent les différentes particules et les 
+colonnes les différents états. Le principe de Pauli s'applique directement car si deux fermions occupent le même niveau, 
+deux colonnes sont identiques et le déterminent devient nul. Il est possible d'utiliser la même matrice pour décrire les 
+bosons mais il faut prendre le "permanent" à la place du "déterminent" (similaire au déterminant mais où tous les signes 
+négatifs deviennent positifs).
+
+\subsection{Opérateur de permutation $\hat P$}
+Si je l'applique sur cet état de référence
+\begin{equation}
+\hat{P}\left(\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N\right) = \ket{i_{p(1)}}_1\ket{i_{p(2)}}_2\dots\ket{i_{p(N)}}_N
+\end{equation}
+On en tire que
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi_{Boson}} &\DS\propto \frac{1}{\sqrt{N!}}\sum \hat{P}\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N\\
+\ket{\psi_{Fermion}} &\DS\propto \frac{1}{\sqrt{N!}}\sum(-1)^p \hat{P}\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{array}
+\end{equation}
+On définit alors l'opérateur symétriseur (encadré)
+\begin{equation}
+\hat{S}_\pm = \frac{1}{\sqrt{N!}}(-1)^p \hat{p}
+\end{equation}
+où $\hat{S}_+$ est l'opérateur de symétrisation et $\hat{S}_-$ est l'opérateur d'anti-symétrisation. La raison de leur 
+appellation vient de
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi_{Boson}} &= \hat{S_+} \ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N\\
+\ket{\psi_{Fermion}} &= \hat{S_-} \ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{array}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{$N$ fermions indépendants (gaz de Fermi)}
+\subsection{$N$ bosons indépendants (condensats de Bose Einstein)}
+\subsection{Émission stimulée, effet laser}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
