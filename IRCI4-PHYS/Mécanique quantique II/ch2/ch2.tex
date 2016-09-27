@@ -481,14 +481,86 @@ appellation vient de
 \end{equation}
 
 
+Revenons à notre opérateur (anti)-symétrisation
+\begin{equation}
+INCLURE DEF. 1e eq cours 4
+\end{equation}
+Passons en revue les différentes propriétés de cet opérateur
 
+\begin{itemize}
+\item[$\bullet$] Appliquer l'opérateur dans le \textit{bra} et le \textit{ket} du même côté ne change rien
+\begin{equation}
+\bra{\hat{P}\psi}\ket{\hat{P}\phi} = \bra{\psi}\ket{\phi}
+\end{equation}
+\item[$\bullet$] L'opérateur est hermitien. Considérons ces deux expressions équivalentes
+\begin{equation}
+\begin{array}{lll}
+\bra{\phi}\ket{\hat{P}\psi} &= \bra{\phi}\hat{P}\ket{\psi}  &= \bra{\psi}\hat{P}^\dagger\ket{\phi}^* = 
+\bra{\psi}\ket{\hat{P}^\dagger\phi}^* = \bra{\hat{P}^\dagger \phi}\ket{\psi}\\
+\bra{\phi}\ket{\hat{P}\psi} &= \bra{\hat{P}^{-1}\phi}\ket{\hat{P}^{-1}\hat{P}\psi} &= \bra{\hat{P}^{-1}\phi}\ket{\psi}
+\end{array}
+\end{equation}
+On en tire que
+\begin{equation}
+\hat{P}\hat{P}^{-1} = \hat{P}^{-1}\hat{P} = \hat{\mathbb{1}}
+\end{equation}
+\item[$\bullet$] Pour toute observable symétrique $\hat{S}$, $[\hat{P},\hat{S}]=0$. Dès lors
+\begin{equation}
+[\hat{P},\hat{S}] = 0\quad\Rightarrow\quad \bra{\hat{P}\psi}\hat{S}\ket{\hat{P}\phi} = 
+\bra{\psi}\hat{P}^\dagger\hat{S}\hat{P}\ket{\phi} = \bra{\psi}\hat{S}\ket{\phi}
+\end{equation}
+car $\hat{S}\hat{P}=\hat{P}\hat{S}$ et $\hat{P}^{-1}\hat{P} = \hat{\mathbb{1}}$. Ceci se montre facilement
+\begin{equation}
+\left.\begin{array}{lll}
+\bra{\hat{P}\psi}\hat{0}\ket{\hat{P}\phi} &= \bra{\psi}\hat{0}\ket{\phi}&\quad \forall\psi,\phi\\
+\bra{\hat{P}^\dagger\psi\hat{P}}\hat{0}\ket{\hat{P}\phi} &= \bra{\psi}\hat{0}\ket{\phi}&\quad \forall\psi,\phi
+\end{array}\right\}\quad\Rightarrow\quad \begin{array}{ll}
+\hat{P}^\dagger\hat{0}\hat{P} &= \hat{0}\\
+\hat{0}\hat{P} &= \hat{P}\hat{0}
+\end{array}\quad\rightarrow[\hat{0},\hat{P}] = 0
+\end{equation}
+Un exemple simple est celui de l'hamiltonien de $N$ particules indépendantes. 
+\begin{equation}
+\hat{H} = \sum_{n=1}^N \hat{h}^{(i)}
+\end{equation}
+où toutes les permutations seront les mêmes
+\end{itemize}
 
+Dans les deux prochaines sous-sections, nous allons nous intéresser à l'état fondamental de 
+$N$ particules indépendantes, c'est-à-dire que l'Hamiltonien peut (par exemple) s'écrire
+\begin{equation}
+\hat{H} = \sum_{n=1}^N \hat{h}^{(i)}
+\end{equation}
+ce qui ne comporte clairement pas de couplage (\textit{weak coupling}) entre les particules. 
+Commençons par nous intéresser au cas des des bosons.
 
+\subsection{$N$ bosons indépendants (condensats de Bose Einstein)}
+Soit notre Hamiltonien 
+\begin{equation}
+\hat{H} = \sum_{n=1}^N \hat{h}^{(i)}
+\end{equation}
+avec
+\begin{equation}
+\hat{h}\ket{\phi_n} = e_n\ket{\phi_n}
+\end{equation}
+Dans la limite du zéro de température, les particules vont toutes pouvoir occuper l'état d'énergie 
+le plus bas (autorisé de par leur caractère bosonique). L'énergie correspondant sera donc $N$ fois 
+celle de l'état fondamental
+\begin{equation}
+E_0 = Ne_0
+\end{equation}
+Comme $N$ est généralement très grand (de l'ordre du nombre d'Avogadro), ceci devient vite une quantité
+macroscopique et forme ce que l'on appelle un \textit{condensat de Bose-Einstein}.\\
 
-
-
-
-
+Dans un tel état, toutes les particules sont si proches les unes des autres que leurs fonctions d'onde 
+vont se recouvrir pour donner naissance à une fonction d'onde globale pour toutes les particules. La condition 
+à respecter est 
+\begin{equation}
+\rho\Lambda_+^3 \geq 1
+\end{equation}
+où $\Lambda_+$ est la longueur d'onde de de Broglie associée à l'énergie thermique.  En effet, à très basse (et 
+très  haute) température, on observe un recouvrement des longueurs de de Broglie. Ce système est assez exotique au 
+niveau de sa création. Il est en effet très difficile d'atteindre des température très proche du zéro absolu.
 
 
 
@@ -497,27 +569,97 @@ appellation vient de
 
 
 \subsection{$N$ fermions indépendants (gaz de Fermi)}
-\subsection{$N$ bosons indépendants (condensats de Bose Einstein)}
+Lorsque l'on travaille avec $N$ fermions, l'état total se doit d'être antisymétrique (principe d'exclusion 
+de Pauli). Ils vont alors occuper les $N$ fermiers niveaux, jusqu'à l'énergie de Fermi (correspondant au 
+dernier état occupé)
+\begin{equation}
+\sum_{i=0}^{N-1} e_i
+\end{equation}
+Lorsqu'on considère une température très basse, ces fermions vont former un \textit{gaz de fermi}. La question 
+est alors de savoir : quelle est cette température minimale à atteindre. Il s'agit d'une théorie entière dont 
+nous n'allons ici qu'aborder les aspects principaux.\\
+
+Considérons une boîte $3D$ de taille $L$ dans laquelle nous allons compter le nombre de niveaux d'énergie 
+présentes. Les "compter" étant difficile, on va approximer que la somme sur les particules jusqu'au niveau 
+de Fermi veut à peu près le nombre d'énergie. Dans un formulaire, on peut trouver que
+\begin{equation}
+\rho \approx \dfrac{(2s+1)}{6\pi^2}\left(\dfrac{\hat{p_F}}{\hbar}\right)^3
+\end{equation}
+où $s$ est le spin et $\hat{p_F}$ l'impulsion de Pauli. L'énergie est elle donnée par
+\begin{equation}
+\varepsilon_F = \dfrac{\hat{p_F}^2}{2m}=\dfrac{\hbar^2}{2m}\left(\dfrac{6\pi^2\rho}{2s+1}\right)^{2/3}
+\end{equation}
+Celle-ci grandit comme une fonction de puissance $2/3$ de la densité. Si on calcule l'énergie de Fermi pour
+un métal, on trouve
+\begin{equation}
+\varepsilon_F = \dfrac{\hbar^2}{2m_e}\left(\dfrac{6\pi^2\rho}{2}\right)^{2/3} \approx 2\ -\ 3\ eV
+\end{equation}
+où $s=\frac{1}{2}$, nous travaillons avec le gaz électronique des électrons.  L'énergie thermique à température 
+ambiante est donnée par $\varepsilon_{th}= k_BT_{room}$ est vaut $0.025\ eV$. Ainsi, un gaz d'électron dans 
+un métal est une bonne approximation d'un gaz de Fermi : on pourra utiliser cette théorie en physique du solide, 
+pour les semi-conducteurs,\dots Ceci trouve aussi des applications en astrophysique : on peut voir une naine 
+blanche comme un gros gaz de Fermi : l'énergie de Fermi correspond à une certaine pression qui empêche l'étoile
+de s'effondrer sur elle même (à cause d'une immense densité) et lui confère donc une certaine stabilité.
+
+
+
+
 \subsection{Émission stimulée, effet laser}
+Pour conclure le chapitre, nous allons montrer que le fait de travailler avec des bosons est responsable 
+de l'émission stimulée : la propriété symétrique de ceux-ci est donc fondamentale à cette application.\\
 
+Nous n'allons ici pas faire une vraie modélisation des lasers, mais établir un modèle qui, bien qu'assez 
+simple, montre la nécessite de travailler avec des bosons. Soit l'Hamiltonien et la fonction perturbation totale
+\begin{equation}
+\hat{H} = \sum_{i=1}^N \hat{h}^{(i)},\qquad\qquad\hat{V} = \sum_{i=1}^N v^{(i)}
+\end{equation}
+Nous allons lui appliquer une perturbation temporelle. Mais avant, rappelons-nous la règle d'or de Fermi
+\begin{equation}
+\mathbb{P}_{trans} \propto |\bra{initial}\hat{V}\ket{final}|^2
+\end{equation}
+La probabilité est donc liée à l'élément de matrice.  Deux  choses à considérer
+\begin{enumerate}
+\item On s'intéresse à la probabilité d'avoir une transition d'une particule vers un état excité
+\begin{equation}
+\mathbb{P}_{trans} \propto |\bra{\phi_k}\hat{v}\ket{\phi_l}|^2
+\end{equation}
+où l'on utilise ici $\hat{v}$, n'ayant qu'une particule.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\item On s'intéresse au cas où $N$ bosons occupent déjà l'état final : nous avons donc un total de 
+$N+1$ bosons ($1$ dans l'état initial et $N$ dans l'état final).
+\end{enumerate}
+On peut ainsi écrire l'état initial de notre système
+\begin{equation}
+\begin{array}{ll}
+\ket{\psi_{initial}} = \dfrac{1}{\sqrt{N+1}} &\phantom{+} \ket{\phi_k}_1\ket{\phi_l}_2\dots\ket{\phi_l}_{N+1}\\
+&+ \ket{\phi_l}_1\ket{\phi_k}_2\dots\ket{\phi_l}_{N+1}\\
+&\quad\qquad\qquad\dots\\
+&+ \ket{\phi_l}_1\ket{\phi_l}_2\dots\ket{\phi_k}_{N+1}
+\end{array}
+\end{equation}
+Tous les cas possibles sont ainsi pris en compte (on remarque que la diagonale n'est formé que de l'état initial).
+Pour l'état final de notre système, tout est dans le niveau excité
+\begin{equation}
+\ket{\psi_{final}} = \ket{\phi_l}_1\ket{\phi_l}_2\dots\ket{\phi_l}_{N+1}
+\end{equation}
+Calculons la probabilité de transition grâce à la règle de Fermi. Calculons pour ça l'élément de matrice $\bra{initial}\hat{V}\ket{final}$ mais seulement pour un élément
+\begin{equation}
+\bra{\phi_k}\underbrace{\bra{\phi_l}\dots\bra{\phi_l}}_{N}\hat{v}\underbrace{\ket{\psi_l}\ket{\psi_l}\dots \ket{\psi_l}}_{N+1} = 
+\dfrac{1}{\sqrt{N+1}}\bra{\phi_k}\hat{v}\ket{\psi_l}
+\end{equation}
+Il faut pondérer cette probabilité par le fait que nous avons un total de $N+1$ états au total. Nous avons donc 
+\begin{equation}
+\bra{initial}\hat{V}\ket{final} = (N+1)\dfrac{1}{\sqrt{N+1}}\bra{\phi_k}\hat{v}\ket{\psi_l} = \sqrt{N+1}\bra{\phi_k}\hat{v}\ket{\psi_l}
+\end{equation}
+Où encore
+\begin{equation}
+\bra{initial}\hat{V}\ket{final} = (N+1)|v_{kl}|^2
+\end{equation}
+La probabilité de transition est donc proportionnelle à
+\begin{equation}
+\mathbb{P}_{trans} \propto \underbrace{|v_{kl}|^2}_{(*)}+\underbrace{N|v_{kl}|^2}_{(**)}
+\end{equation}
+où $(*)$ correspond à de l'émission spontanée et $(**)$ à de l'émission stimulée : le fait de travailler avec 
+des bosons est responsable de cette émission stimulée, il est donc obligatoire de travailler avec ces-derniers.
 
 
