@@ -3,8 +3,6 @@
 %%%%%%%%%%%%%
 
 \chapter{Aerodynamic Force}
-\section{Fundamental laws reminder}
-	
 \section{Derivation of the conservation laws}
 	\subsection{Mass conservation}
 		
@@ -22,7 +20,7 @@
 		By applying Gauss theorem $\oint _S \vec{a}.\vec{n}\, dS = \int _V \nabla\vec{a}\, dV$, and regrouping the term in a unique integral, we obtain:
 		
 		\begin{equation}
-		\int _V \left[\frac{d \rho}{d t} + \nabla .(\rho \vec{u})\right]\, dV = 0. 
+		\int _V \left[\frac{d \rho}{d t} + \nabla .(\rho \vec{v})\right]\, dV = 0. 
 		\end{equation}
 		
 		Considering this to be true for all volumes, the integral disappear and gives the 
@@ -81,7 +79,7 @@
 		}
 		\end{center}
 		
-		so that \eqref{eq:1.7} becomes, after considering S* to be a contour in the \textbf{far field} so that viscous effects vanish:
+		so that \eqref{eq:1.7} becomes, after considering S* to be a contour in the \textbf{far field} so that viscous effects vanish (to avoid other parameters calculation):
 		
 		\begin{equation}
 		\oint _{S^*} \vec{v} (\rho \vec{v} \, d\vec{S}) = -\oint _{S^*} p \, d\vec{S} + \cancel{\oint _{S^*} \bar{\bar{\tau}} \, d\vec{S}} - \vec{R}.
@@ -93,16 +91,16 @@
 		\subsubsection{Uniform p along S*}
 				\begin{wrapfigure}[11]{l}{6.5cm}
 				\vspace{-5mm}
-				\includegraphics[scale=0.55]{ch1/2}
+				\includegraphics[scale=0.52]{ch1/2}
 				\captionof{figure}{}
 				\end{wrapfigure}
-				By considering this, we can compute the force only by knowing the far field parameters. Indeed, uniform pressure implies null surface integral, so that \eqref{eq:1.9} becomes:
+				By considering this (assumption of far field), we can compute the force only by knowing the far field parameters. Indeed, uniform pressure implies null surface integral, so that \eqref{eq:1.9} becomes:
 				
 				\begin{equation}
 				\vec{R} = -\oint _{S^*} \vec{v} (\rho \vec{v} \, d\vec{S}).
 				\end{equation}
 				
-				Let's now consider that the velocity is horizontal so that $\vec{R} = R.\vec{1}_x$, at the inlet we have $\vec{v}$ and $\vec{n}$ are opposed while at the outlet they are in the same direction: 
+				The velocity term remains, as by experience we know that there is a \textbf{wake} making the velocity profile non-uniform. Let's now consider that the velocity is horizontal so that $\vec{R} = R.\vec{1}_x$, at the inlet we have $\vec{v}$ and $\vec{n}$ are opposed while at the outlet they are in the same direction: 
 				
 				\begin{equation}
 				\vec{R} = \int _a^d \vec{v}\, d\dot{m} - \int _b^e \vec{v}\, d\dot{m} > 0
@@ -111,7 +109,7 @@
 				showing that there is only \textbf{drag} force.
 				
 		\section{The aerodynamic lift}
-			Non uniform p along S*. In order to apply Bernouilli equation $p + \frac{1}{2}\rho v^2 = cst$, let's add the constants $p_\infty$ and $v_\infty$ to \eqref{eq:1.9}, as $\oint p_\infty\, d\vec{S} = p_\infty \oint d\vec{s} = 0$: 
+			We know in practice that there is also a lift force. In fact, the assumption of uniform pressure is wrong because the pressure effects induced by the body remains at a long distance from the body. We have to analyse the \textbf{non uniform} p along S*. In order to apply Bernouilli equation $p + \frac{1}{2}\rho v^2 = cst$, let's add the constants $p_\infty$ and $v_\infty$ to \eqref{eq:1.9}, as $\oint p_\infty\, d\vec{S} = p_\infty \oint d\vec{s} = 0$: 
 			
 			\begin{equation}
 				\vec{R} = -\oint _{S^*} (p-p_\infty) \, d\vec{S} - \oint _{S^*} (\vec{v}-\vec{v}_\infty) \, d\dot{m}
@@ -136,7 +134,7 @@
 			\end{aligned}
 			\end{equation}
 			
-			by using a matrix property $\vec{a} \times (\vec{b} \times \vec{c}) = (\vec{a} \vec{b})\vec{c} - (\vec{a}\vec{c})\vec{b}$:
+			by using a vector property $\vec{a} \times (\vec{b} \times \vec{c}) = (\vec{a} \vec{b})\vec{c} - (\vec{a}\vec{c})\vec{b}$:
 			
 			\begin{equation}
 			= \rho \vec{v}_\infty \times \oint _{S^*} \vec{\delta _c} \times d\vec{S} = \rho \vec{v}_\infty \times \left[\oint _{S^*} \vec{v} \times d\vec{S} - \cancel{\oint _{S^*} \vec{v}_\infty \times d\vec{S}}\right]
@@ -148,7 +146,7 @@
 			= \rho \vec{v}_\infty \times \int  (\nabla \times \vec{v})\, dV = \rho \vec{v}_\infty \times \int  \vec{w}\, dV
 			\end{equation}
 			
-			where $\vec{w}$ is the \textbf{vorticity vector} of direction $\vec{1}_z$:
+			where $\vec{w}$ is the \textbf{vorticity vector} of direction $\vec{1}_z$ (pointing in the paper):
 			
 			\begin{equation}
 			\vec{w} = 
@@ -164,7 +162,7 @@
 			This shows that the lift force is always perpendicular to the flow!
 		
 	\section{The Kutta-Joukowski formula}
-		We will now introduce the circulation $\Gamma = - \oint \vec{v \, d\vec{l}} >0$   around a body. The convention is to take the anticlockwise direction for $d\vec{l}$ and so for $\Gamma$ to be $>0$ we must have $\vec{v}$ in the clockwise direction. There is a link between the lift force and the circulation. Let's introduce \textbf{Stokes theorem}:
+		We will now introduce the circulation $\Gamma = - \oint \vec{v} \, d\vec{l} >0$   around a body. The convention is to take the anticlockwise direction for $d\vec{l}$ and so for $\Gamma$ to be $>0$ we must have $\vec{v}$ in the clockwise direction. There is a link between the lift force and the circulation. Let's introduce \textbf{Stokes theorem}:
 		
 		\begin{equation}
 			\oint \vec{a} d\vec{l} = \int _S (\nabla \times \vec{a})\, d\vec{S} \qquad \Rightarrow -\Gamma = \int _S \vec{w} d\vec{S}.
