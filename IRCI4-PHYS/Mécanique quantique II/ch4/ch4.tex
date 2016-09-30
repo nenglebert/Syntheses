@@ -1,0 +1,195 @@
+\chapter{Méthodes de résolution approchée du problème à $N$ corps}
+Bien souvent, il n'est pas possible de calculer de façon exacte les problèmes à $N$ corps ; il va 
+falloir recourir à des méthodes d’approximations. L'une de ces méthodes est la "Density Fonctionnal 
+Theory" (DFT). Avec celle-ci, une fonctionnelle $\rho_e(\vec{r})$ est créée : celle-ci sera vue comme 
+une fonction de l'énergie qu'il faudra minimiser. Une autre approche, que nous allons maintenant 
+découvrir, est celle du champ moyen.
+
+\section{Modèle à champ moyen (self-consistant)}
+
+L'idée est que l'on considère chaque électron dans un champ qui correspond à l'attraction des nucléons mais 
+aussi la répulsion de tous les autres électrons. Ainsi, chaque électron est indépendant dans son "champ propre" 
+qui prend compte les interactions des autres. Deux grandes méthodes utilisent ce modèle : la méthode d'Hartree (non utilisé aujourd'hui mais pédagogiquement intéressant pour introduire la suivante) et la méthode d'Hartree-Fock. 
+Il s'agit de deux méthodes variationnelles pour laquelle nous allons maintenant faire un bref rappel.
+
+\subsection{Rappels : problèmes à $N$ corps, méthode variationnelle}
+\subsubsection{Problème à $N$ corps}
+L'Hamiltonien que nous avons à traiter est
+\begin{equation}
+\hat{H} = \sum_{i=1}^Z \hat{H_i} + \sum_{i>j}^N V_{ij}\qquad\text{ où }\quad \left\{\begin{array}{ll}
+\hat{H_i} &\DS= \frac{p_i^2}{2m}-\frac{Ze^2}{r_i}\\
+\hat{V}_{ij} &=\DS \dfrac{e^2}{|\vec{r_i}-\vec{r_j}|}
+\end{array}\right.
+\end{equation}où $Z$ est le nombre atomique (soit le nombre d'électrons), $\hat{H_i}$ contient le terme de 
+répulsion du noyau et $\hat{V_{ij}}$ contient la répulsion entre les électrons. Ceci donne lieu à une 
+fonction d'onde $\psi(1,2,\dots Z)$ totalement antisymétrique. \\
+
+Afin d'interpréter de champ moyen, nous pouvons ré-écrire l'Hamiltonien comme (ajout et suppression du 
+même terme)
+\begin{equation}
+\hat{H} =\sum_i\left( \frac{p_i^2}{2m}-\dfrac{Ze^2}{r_i}+V(\vec{r_i}\right)+\underbrace{\sum_i\left(\sum_{j>i} 
+\dfrac{e^2}{|\vec{r_i}-\vec{r_j}|}-V(\vec{r_i}\right)}_{\approx 0}
+\end{equation}
+Le but sera alors d'approcher $V(\vec{r_i})$.
+
+
+\subsubsection{Méthode variationnelle}
+Soit $W$, une fonctionnelle du \textit{ket} $\ket{\phi}$ 
+\begin{equation}
+W\left[\ket{\phi}\right] = \dfrac{\bra{\phi}\hat{H}\ket{\phi}}{\bra{\phi}\ket{\phi}},\qquad\qquad\Leftrightarrow
+\qquad\qquad \min_{\ket{\phi}} W\left[\ket{\phi}\right] = E_0
+\end{equation}
+Le théorème de Ritz nous informe que cette fonctionnelle est stationnaire pour tous les états propres:
+\begin{equation}
+\delta W\left[\ket{\phi}\right] = 0\qquad\qquad\Leftrightarrow\qquad\qquad \hat{H}\ket{\phi}=E\ket{\phi}
+\end{equation}
+Nous allons extrémiser sous la contrainte de normalisation à l'aide des multiplicateurs de Lagrange
+\begin{equation}
+\begin{array}{lll}
+&\DS\delta[\bra{\phi}\hat{H}\ket{\phi}-E\bra{\phi}\ket{\phi}] &=0\vspace{2mm}\\
+\Leftrightarrow&\bra{\delta\phi}\hat{H}\ket{\phi} + \bra{\phi}\hat{H}\ket{\delta \phi} - E\bra{\delta\phi}\ket{\phi}-E
+\bra{\phi}\ket{\delta\phi}&=0\vspace{2mm}\\
+\Leftrightarrow&\DS \bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\phi}\hat{H}-E\ket{\delta\phi}&=0
+\end{array}
+\end{equation}
+où nous avons utilisé le fait que $\hat{E}$ et $E$ permutent. Considérons le conjugué de cette expression : celui-ci
+doit être valable $\forall \ket{\delta\phi}$ :
+\begin{equation}
+\bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\label{eq:NConj}
+\end{equation}
+où $\hat{H}$ est hermitien. Ceci étant vrai $\forall\ket{\phi}$, procédons au changement de variable
+$\ket{\delta\phi} = i\ket{\delta\phi}$
+\begin{equation}
+-i\bra{\delta\phi}\hat{H}-E\ket{\phi}+i\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\end{equation}
+Après division par $-i$
+\begin{equation}
+-\bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\label{eq:OConj}
+\end{equation}
+Comme \eqref{eq:NConj} et \eqref{eq:OConj} sont valable $\forall\ket{\phi}$, nous pouvons les sommer. 
+On en tire que ($\forall\ket{\phi}$)
+\begin{equation}
+\bra{\delta\phi}\hat{H}-E\ket{\phi}=0\qquad\qquad\Rightarrow\qquad\qquad \hat{H}\ket{\phi}=E\ket{\phi}
+\end{equation}
+Ce résultat nous montre qu'il n'est pas nécessaire de tenir compte du complexe conjugué, celui-ci n'étant 
+plus présent dans cette dernière expression.
+
+
+\subsubsection{Hartree et Hartree-Fock}
+La seule différence entre ces deux méthodes se situe dans la façon d'écrire. Pour Hartree la 
+fonction d'essai est un produit d'état (non symétrique, car fermions)
+\begin{equation}
+\ket{\psi} = \ket\dots\ket\dots\dots \ket\dots
+\end{equation}
+Alors que pour Hartree-Fock $\ket\psi$ est écrit sous la forme d'un déterminant de Slater.
+
+
+
+
+
+
+\subsection{Méthode de Hartree}
+Pour cette méthode, on considère que
+\begin{equation}
+\psi(1,2,\dots)=\phi_1(1)\phi_2(2)\dots\phi_N(N)
+\end{equation}
+où
+\begin{equation}
+\phi_i(i) = \phi_i(\vec{r_i})\chi(n_i) \quad \dashrightarrow \quad\phi_i(\vec{r_i})
+\end{equation}
+Nous ne tenons pas compte du spin ici afin d'alléger le formalisme.\\
+
+Comme discuté dans la précédente sous-section, nous allons maximiser sous contrainte de 
+normalisation sauf que cette fois nous n'avons plus une, mais $N$ contraintes, chacune 
+des fonction du produit devant être normalisés :  nous avons $N$ fonctions d'onde
+\begin{equation}
+14
+\end{equation}
+Revenons à notre fct de Lagrange. On s'en fou du terme de drote, c'est que le complexe conjugué (ou on 
+aplique la delta sur le ket mais osef ici), on note juste +c.c.
+\begin{equation}
+15
+\end{equation}
+On obtient alors N équations de Schrod, une pour chaque delta phi i. Comme ceci doit etre vrai forall i. 
+Si on extrait dans la derniere ligne le terme correspondant à delta phi i :
+\begin{equation}
+16
+\end{equation}
+On a un terme additionnel. Le systeme 'Hartree va etre un systeme de N équations.
+
+HARTREE EQUATIONS
+\begin{equation}
+17
+\end{equation}
+On l'avait dit : tout se passe comme si les électrons ne sont pas couplé et chaque électron subit 
+dans son hamp moyen la répulsion e tous les autres électrons. Tout le point est que V i (vec r) 
+est auto consistant. Si on a pas phi j c'est mort pour V i donc on va procéder par ittération\\
+
+On commence par un état initial, un pour chaque électron
+\begin{equation}
+18
+\end{equation}
+On doit ittérer. C'est self consistant. Ona besoin de résoudre schro mais pour chaque électron CHque 
+electron est dans V i mais pour ça on a besoin de phi j qu'on a pas. On part 'un état initial arbitraire (enfin N, un pour chaque e-). On peut calculer les N potentiel, résoudre scrhod et avoir un phi i puis recommencer et ça va converger : auto consistant.
+
+
+\subsection{Méthode de Hartree-Fock}
+La fonction est ici completement antisymétrique
+\begin{equation}
+19
+\end{equation}
+On va aussi utiliser la méthode 'extrama de Lagrange. L'idée est la meme mais la valeur moyenne de H sera plus compliquée
+\begin{equation}
+20
+\end{equation}
+On va d'abord regarder le One body term number $i$. On peut voir qu'ona des permutations à gauche te à droite mais si on 
+considère que si les permutations sont pas identiques ça fera 0. Les seules permutations qui vont avoir une contrib c'est
+quand on aura la meme dans le bra et le ket
+\begin{equation}
+21
+\end{equation}
+Ceci peut etre compris comme une permutations de toutes.Pour toutes les permutation on regarde la valeu rmoyenne de l'énergie 
+de la particule numéro $i$. \\
+
+Ceci c'est our le  terme i, mais si on regarde le "full one body term", c'est juste le terme pour N terme de chaque particules. 
+On aura quelque chose de simple à la fin
+\begin{equation}
+22
+\end{equation}
+La façon dont on traite l'antisymétrie ne change pas pour le one body terme (c'est le meme pour les deux et c'est pas influence
+par la symétrie). Ce qui va changer c'est le two body term.\\
+
+On considère un terme doné : hashtag(carre)$i$, carre$j$. Vijn'agit que sur l'électron i et j.  
+\begin{equation}
+23
+\end{equation}
+On fait exactement le même raisonnement Le - vient de l'antisymétrie. Ceci est pour i et j, mais on peut le remplacer ce 
+n'est qu'un nom. 
+
+Two body Term
+\begin{equation}
+24
+\end{equation}
+
+
+SI la fonction d'état est un slater et pas un simple product, ona un terme en plus. On a tjs le terme e coulomb mais on a 
+un terme en plus qui peut pas etre une interaction car on a le meme H qu'avant.
+\begin{equation}
+25
+\end{equation}
+On a donc une équation par i
+\begin{equation}
+26
+\end{equation}
+On peut redre cette expression plus spécifique dans le cadre 'un atome
+\begin{equation}
+27
+\end{equation}
+Le terme en - c'est cet exchange.\\
+
+On a donc N schrodinger équation (non interacting electrons).  On a pas besoin de les résoudre tous à la fois, on la 
+résou pour chaque phi i mais cette équation est couplée à cause du terme d'interaction 'change : il faut la résoudre 
+ittérativement exactement comme précéemment. C'est donc également une équation auto consistante. C'est une approx 
+car on a ce champ d'interaction moyen.
