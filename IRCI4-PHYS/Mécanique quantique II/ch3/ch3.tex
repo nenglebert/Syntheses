@@ -517,8 +517,60 @@ Prouvons la première relation. Si $i=j$, nous avons trivialement $(\hat{a_i})^2
 \hat{a_j}\hat{a_i}\ket{\dots n_i\dots n_j\dots} &= n_jn_i(\pm 1)\ket{\dots n_j-1\dots n_j-1} 
 \end{array}\right.
 \end{equation}
-Le résultat est immédiat.
-
-
+Le résultat est immédiat. Le second anti-commutateur est un résultat immédiat ce ce-dernier. Prouvons alors la troisième relation
+\begin{equation}
+\begin{array}{ll}
+\hat{a_i}^\dagger\hat{a_i}\ket{\dots n_i\dots} &= n_i\ket{\dots n_i\dots}\\
+\hat{a_i}\hat{a_i}^\dagger &=(1-n_i)\ket{\dots n_i\dots}
+\end{array}
+\end{equation}
+Le "préfacteur" de la première relation vaut 1 si l'on a un fermion et 0 sinon alors que pour la 
+seconde, ce préfacteur vaut 0 en présence de fermion et inversement. En sommant ces deux relation, 
+on fait apparaître l'anti-commutateur
+\begin{equation}
+\{\hat{a_i},\hat{a_i}^\dagger\}\ket{\dots n_i\dots} = 1\ket{\dots n_i\dots}\qquad\forall \text{Fock state}
+\end{equation}
+On en tire que 
+\begin{equation}
+\{\hat{a_i},\hat{a_i}^\dagger\} = \hat{\mathbb{1}}
+\end{equation}
 
 \subsection{Écriture générale d'un état à $N$ fermions et des opérateurs à 1 et 2 corps}
+Reprenons notre opérateur nombre. Pour les bosons, nous l'avions défini 
+\begin{equation}
+\hat{n_i} = \hat{a_i}^\dagger\hat{a_i}
+\end{equation}
+Appliquons cet opérateur à un état de Fock (on ne s'intéresse ici qu'à l'orbitale $i$)
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{a_i}^\dagger\hat{a_i}\ket{\dots n_i\dots} &\DS= \hat{a_i}^\dagger n_i(-1)^{\sum_{j<i}n_j}\ket{\dots
+ n_i-1\dots}\\
+&\DS=(1(n_i-1))(-1)^{\sum_{j<i}n_j} n_i(-1)^{\sum_{j<i}n_j}\ket{\dots n_i\dots}\\
+&\DS=(2-n_i)n_i\ket{\dots n_i\dots}\\
+&\DS=2n_i-\underbrace{n_i^2}_{n_i}\ket{\dots n_i\dots}\\
+&=\DS n_i\ket{\dots n_i\dots}
+\end{array}
+\end{equation}
+car $n_i=0,1$. Ce résultat est donc également applicable aux fermions. On peut définir semblablement 
+l'opérateur nombre total
+\begin{equation}
+\hat{N}=\sum_i\hat{n_i}
+\end{equation}
+
+
+\subsubsection{Opérateur à un corps}
+De façon similaire au cas bosonique, nous pouvons écrire
+\begin{equation}
+\hat{T} =\sum_{ij}\bra{i}t\ket{j}\hat{a_j}^\dagger\hat{a_j}
+\end{equation}
+
+\subsubsection{Opérateur à deux corps}
+De même pour l'opérateur à deux corps
+\begin{equation}
+\hat{F} = \frac{1}{2}\sum_{ijkl} \bra{i,j}\hat{f}\ket{k,l}\hat{a_i}^\dagger\hat{a_j}^\dagger\hat{a_l}\hat{a_k}
+\end{equation}
+Si ici nous interchangeons exemple $\hat{a_l}\hat{a_k}$ un signe négatif apparaîtra du au fait que ces 
+deux opérateurs anticommutent. Ce formalisme est très élégant car $\hat{N}$ et $\hat{F}$ peuvent être 
+arbitraire les bosons/fermions se traitent de façon identique.
+
+
