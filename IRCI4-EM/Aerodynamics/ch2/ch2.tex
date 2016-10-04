@@ -262,3 +262,184 @@ The angle of attack is important because the flow has more difficulties to turn 
 		 	The graph is shown on figure. Let's finally say that commonly, $x_{ac} = cst \approx \frac{1}{4}C$.\\
 		 	
 		 	 A particular case is the one of \textbf{symmetrical profile}. Indeed, in that case, the $\alpha _0$ case correspond to $M_{ac} = 0$ and $L=0$. The pressure center corresponds with the aerodynamic center and is \textbf{fixed}.  
+		 	 
+	\section{2D characteristics}
+		\subsection{Lift, drag and moment curves}
+			Let’s look to the non-dimensional parameters that will influence the lift;, the drag and the momentum. We have to define some reference quantities: 
+
+			\begin{equation}
+			\begin{array}{cccc}
+			L_{ref} = C & v_{ref} = v_\infty & t_{ref} = L_{ref}/v_{ref} & \rho _{ref} = \rho _\infty \\
+			t’= t/t_{ref} & p_{ref} = \rho _{ref} \frac{v_{ref} ^2}{2} & \mbox{Mach} = V_{ref} / a_{ref} & a_{ref} = \gamma \pi T_{ref} \\
+			\gamma = c_p / c_v && Re_{ref} = \frac{\rho _{ref} v_{ref} L_{ref}}{\mu _{ref}} &
+			\end{array}
+			\end{equation}					
+			
+			where $a$ is the speed of sound. By replacing all these in the mass, momentum and energy equations, we obtain the non-dimensional ones (see Fluid Mechanics II):
+			
+			\begin{equation}
+			\begin{aligned}
+			&\bullet\frac{\D \rho '}{\D t'} + \nabla \left(\rho ' \vec{v}'\right) = 0\\
+			&\bullet\rho ' \frac{d\vec{v}'}{dt'} = - \frac{1}{\gamma M^2_{ref}}\nabla p' + \frac{1}{\mbox{Re}_{ref}}\nabla \bar{\bar{\tau}'}\\
+			&\bullet\frac{d}{dt'}(\rho ' e')+ \frac{\gamma (\gamma -1)}{2} M^2_{ref}\frac{d}{dt'}(\rho ' \vec{v'}^2 ) \\
+			&= \frac{\gamma}{Pr_{ref}Re_{ref}} \nabla (k'\nabla T') - (\gamma -1)\nabla (p'\vec{v}')+ \gamma (\gamma -1) \frac{M_{ref}^2}{Re_{ref}} \nabla (\bar{\bar{\tau}}'\vec{v}')			\end{aligned}
+			\end{equation}
+		
+			We can see that a solution can only be function of 4 parameters: $M, Re, Pr = \frac{c_p \mu}{k}, \gamma$, but we know that the geometry and the angle of attack $\alpha$ have a role by means of the boundary conditions. Then, we assume that the fluid is air ($\gamma =1.4$) and that we can neglect heat effects (no influence of Pr, incompressible and so low speed flows). The non-dimensional lift, drag and moment are thus function of M, Re, geometry and $\alpha$. We can define \textbf{lift}, \textbf{drag} and \textbf{moment coefficient} as (we forget about compressibility $\rightarrow$ M, and Re effects are low for $C_L and C_M$): 
+			
+			\begin{equation}
+			\begin{aligned}
+			&C_L(\cancel{M}, \cancel{Re}, geometry, \alpha) = \frac{L}{\frac{1}{2}\rho _{ref} v^2_{ref} S} \\
+			&C_D(\cancel{M},Re, geometry, \alpha) = \frac{D}{\frac{1}{2}\rho _{ref} v^2_{ref} S}		\\
+			&C_M(\cancel{M}, \cancel{Re}, geometry, \alpha) = \frac{M}{\frac{1}{2}\rho _{ref} v^2_{ref} Sc}
+			\end{aligned}	
+			\label{eq:2.18}		
+			\end{equation}
+			
+			where L, D, M are the \textbf{dimensional} forces, c the mean chord (S/b) and S a reference surface (3D wing $\rightarrow$ total wing surface, 2D wing $\rightarrow$ S = c). We can experimentally show that the lift increases mainly linearly with $\alpha$ and the drag force is caused by friction effects and pressure differences involving with $\alpha$. This gives the following equations (lower case for 2D):
+			
+			\begin{equation}
+			c_l = m(\alpha - \alpha _{L_0}) \qquad c_d = c_{d_0} + kc^2_l
+			\end{equation}
+			
+			where $m\approx 2\pi$ theoretically and 5.7 practically, k is a constant of order of magnitude 0.01. 
+			
+		\subsection{Stall and critical angle of attack}
+			\begin{wrapfigure}[11]{l}{6cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.26]{ch2/18}
+			\captionof{figure}{}
+			\end{wrapfigure}
+			At a certain angle of attack ($\approx 15\degres$), the lift suddenly drops. This is due to massive separation on the suction side (reverse pressure gradient too high) and happens at the \textbf{critical angle of attack}. This phenomenon is called \textbf{stall}. In the separated part, the pressure will no longer decrease and will form a pressure plateau. \\
+			
+			We have to make the difference between leading-edge stall and trailing-edge stall. For \textbf{leading-edge stall}, the massive separation occurs suddenly near the LE resulting \newpage
+			
+			\begin{wrapfigure}[13]{r}{5.7cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.5]{ch2/19}
+			\captionof{figure}{}
+			\end{wrapfigure}
+			in a strong and sudden drop of lift, when at maximum lift. This especially occurs to thin airfoils with cross-sections between 10 and 16\% of the chord. For the \textbf{trailing-edge stall}, the point of separation gradually goes upstream with increasing angle of attack resulting in a more gradual drop of lift (more thick airfoils). The comparison is done on the right figure. We can also see a third type of stall called \textbf{thin airfoil stall} with the example of a flat plat.  \\
+			
+			In conclusion, the LE must be sufficiently rounded to have a good maximum lift. In fact the profile may nor be too 
+			
+			\begin{wrapfigure}[8]{l}{7cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.5]{ch2/20}
+			\captionof{figure}{}
+			\end{wrapfigure}
+			thick  nor too thin. The figure on the left shows the influence of the thickness on the lift. We notice that the optimum thickness is situated around 12\% of the chord.The maximum lift increases with RE, indeed higher the Re, higher is the ratio of speed versus viscosity. So we can better oppose to separation. Unlike the Re number, the roughness has great effects on the maximum lift. Finally, let's notice that the camber have also an effect on maximum lift, the best is a camber of 8 up to 10\%. 
+			
+		\subsection{Maximum lift, stalling speed, polar curve and glide ratio}
+			From $C_L$ in \eqref{eq:2.18}, we can deduce the lift:
+			
+			\begin{equation}
+			L = C_L \frac{1}{2} \rho _{ref} v^2_{ref} S.
+			\label{eq:2.21}
+			\end{equation}
+			
+			The lift force must always at least be equal to the weight of the plane. This implies that for low speed (take-off and landing), the $C_L$ must be large. This is accomplished with large $\alpha$ and slats or flaps. The minimum speed where the lift can still balance the weight ($C_L$ maximum) is called \textbf{stall speed} and from \eqref{eq:2.21} we find:
+			
+			\begin{equation}
+			v_{stall} = \sqrt{\frac{W}{C_{L_{max}} \frac{1}{2} \rho_{ref} S}}
+			\end{equation}
+			
+			\begin{wrapfigure}[10]{r}{4cm}
+			\vspace{-5mm}
+			\includegraphics[scale=0.4]{ch2/21}
+			\captionof{figure}{}
+			\end{wrapfigure}
+			The curve that represents $C_L$ in function of $C_D$ is the \textbf{polar curve} of the wing. The ratio $\frac{C_L}{C_D}$ is the \textbf{glide ratio} or \textbf{finesse} and is like an efficiency parameter. The best parameter is obtained using the graph by calculating $\beta$ such that: 
+			
+			\begin{equation}
+			\tan \beta = \left(\frac{C_L}{C_D}\right)_{max}
+			\end{equation}						
+			 
+			This point is important for the quality of the wing because if we plot the thrust, the lift, the drag and the weight of a plane describing a horizontal flight (\autoref{fig:2.21}), the thrust is given by:
+			
+			\begin{equation}
+			T = \frac{L}{\tan \beta} = \frac{W}{\tan \beta}
+			\end{equation}
+			
+			where we see that when $\tan \beta$ (so the glide ratio) increases, T decreases. Another interpretation can be given when we have no thrust (\autoref{fig:2.22}). In this case the gliding ratio has to be adapted to travel the larger distance knowing that:
+			
+			\begin{equation}
+			\frac{C_L}{C_D} = \frac{\mbox{distance travelled}}{\mbox{height loss}}
+			\end{equation}
+			
+			\begin{center}
+			\begin{minipage}{0.3\textwidth}
+			\includegraphics[scale=0.6]{ch2/22}
+			\captionof{figure}{}			
+			\label{fig:2.21}
+			\end{minipage}
+			\begin{minipage}{0.5\textwidth}
+			\includegraphics[scale=0.3]{ch2/23}
+			\captionof{figure}{}			
+			\label{fig:2.22}
+			\end{minipage}
+			\end{center}
+			
+\section{Methods to calculate flows around 2D airfoils}
+	\subsection{Conformal mapping}
+		We will begin here with steady, inviscid irrotational flows. This gives for the mass conservation equation:
+		
+		\begin{equation}
+		\frac{\D \rho}{\D t} + \nabla (\rho \vec{v}) = 0 \qquad \Rightarrow \nabla \vec{v} = 0 = \D _x u + \D _y v
+		\end{equation}
+		
+		In the other hand, we have the assumption of irrotational flow:
+		
+		\begin{equation}
+		\vec{w} = 0 \qquad \Rightarrow \D _x v - \D _y u = 0.
+		\end{equation}
+		
+		Then we define the \textbf{complex potential functoin w}:
+		
+		\begin{equation}
+		w = \phi + I\psi
+		\end{equation}		 
+		
+		where $\phi$ is the \textbf{potential function} (satisfies $w=0$ by construction) such that:
+		
+		\begin{equation}
+		\left\{
+		\begin{aligned}
+		&u = \D _x \phi \\
+		&v = \D _y \phi
+		\end{aligned}
+		\right.
+		\qquad
+		\nabla \phi = \vec{v} = \D _x\phi \vec{1} _x + \D _y \phi \vec{1}_y
+		\end{equation}
+		
+		We must satisfy the mass conservation equation:
+		\begin{equation}
+		\nabla (\nabla \phi) = 0 \qquad \Rightarrow \Delta \phi = 0 
+ 		\end{equation}
+ 		
+ 		coupled with boundary conditions, we can find a solution $\phi (x,y)$. The \textbf{stream function} satisfies the mass conservation by construction:
+ 		
+ 		\begin{equation}
+ 		\left\{ 
+ 		\begin{aligned}
+ 		&u = \D _y \psi\\
+ 		&v = - \D _x \psi
+ 		\end{aligned}
+ 		\right.
+ 		\qquad \Rightarrow \D _x u + \D _y v = 0 \Leftrightarrow \D _x (\D _y \psi) + \D _y (- \D _x \psi) = 0
+ 		\end{equation}
+ 		
+ 		\begin{wrapfigure}[10]{l}{5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.4]{ch2/24}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		We still have to verify the $w=0$ condition:
+ 		\begin{equation}
+ 		\D _x v - \D _y u = 0 \qquad \Rightarrow \frac{\D ^2 \psi}{\D x^2} + \frac{\D ^2 \psi}{\D y^2} = 0 \qquad \Delta \psi = 0
+ 		\end{equation}
+ 		A streamline and a potential line are perpendicular to each other:
+ 		\begin{equation}
+ 		\nabla \psi . \nabla phi = \D _x \psi \D _x \phi + \D_ y \psi \D _y \phi = -vu + uv = 0. 
+ 		\end{equation}
