@@ -209,73 +209,75 @@ Considérons un terme donné ($i,j$ fixé). $V_{ij}$ n'agit que sur l'électron 
 \frac{1}{N!}\sum_p \bra{p_{(1)},p_{(2)}\dots p_{(n)}} V_{ij} \left\{\ket{\text{same}} - \ket{\text{échange $i\leftrightarrow j$}}\right\}
 \end{equation}
 où $\ket{\text{same}}$ rappelle que le seul terme qui survit est celui dont les permutations seront identiques. Ceci 
-est fait pour $i$ et $j$ mais ce n'est qu'une dénomination arbitraire qui peut bien sûr être échangée. LE signe 
-négatif
-On fait exactement le même raisonnement Le - vient de l'antisymétrie. Ceci est pour i et j, mais on peut le remplacer ce 
-n'est qu'un nom. 
+est fait pour $i$ et $j$ mais ce n'est qu'une dénomination arbitraire qui peut bien sûr être échangée. Le signe 
+négatif nous vient de l'anti-symétrie
 
-Two body Term
-24=
+\newpage
+\subsubsection{Terme à deux corps}
+Rappelons l’expression de ce terme
 \begin{equation}
-\begin{split}
-\frac{1}{2}\sum_{i\neq j} &\left(\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}-\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}\right)\\
-\left\langle H\right\rangle &= \sum_i H_i + \frac{1}{2} \sum_{i\neq j} (J_{ij}-K_{ij})\\
-H_i &\equiv \bra{\phi_i}H\ket{\phi_i}
-\end{split}
+\frac{1}{2}\sum_{i\neq j} \left(\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}-\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}\right)
+\end{equation}
+Afin d'adopter une écriture similaire à la forme traditionnelle suivante
+\begin{equation}
+\left\langle H\right\rangle = \sum_i H_i + \frac{1}{2} \sum_{i\neq j} (J_{ij}-K_{ij})
+\end{equation}
+où
+\begin{equation}
+H_i \equiv \bra{\phi_i}H\ket{\phi_i}
+\end{equation}
+Pour se faire, nous devons poser
+\begin{equation}
 \begin{cases}
-J_{ij} \equiv \overset{\text{Coucomb integral}}{\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}}\\
-K_{ij} = \underset{\text{Excahnge integral}}{\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}}
+J_{ij} \equiv \overset{\text{Coulomb integral}}{\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}}\\
+K_{ij} = \underset{\text{Exchange integral}}{\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}}
 \end{cases}
 \end{equation}
+où l'on retrouve bien l'\textit{intégrale de Coulomb} comme dans la méthode d'Hartree mais également un 
+terme supplémentaire : l'\textit{intégrale d'échange}\footnote{C'est ce terme qui corrigera les défauts du 
+spectre obtenu par la méthode d'Hartree.} qui ne peut \textbf{pas} être considéré comme une interaction car 
+l'Hamiltonien est identique à celui du cas précédent.\\
 
-25=
-
+Nous pouvons maintenant passer à la méthode des extrema de Lagrange avec notre nouvelle définition de $\hat{H}$
+\begin{equation}
+\delta \left[\left\langle H\right\rangle - \sum_{i=1}^{N} c_i \bra{\phi_?}\ket{\phi_?}\right] = 0
+\end{equation}
+Effectuons
 \begin{equation}
 \begin{split}
-\delta \left[\left\langle H\right\rangle - \sum_{i=1}^{N} c_i \bra{\phi_?}\ket{\phi_?}\right] &= 0\\
-\sum \bra{\delta\phi_i}H\ket{\phi_i} + \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j} &\sum \bra{\delta\phi_i\phi_j}U\ket{\phi_i\phi_j} - \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j}\sum \bra{\sqrt{\phi_i}\phi_j}V\ket{\phi_j\phi_i}\\
--\sum_i \varepsilon_i\bra{\delta \phi_i}V\ket{\phi_i} +\frac{1}{2}\sum_{i\neq j}\sum &\cancel{\bra{\phi_?\delta\phi_j}V\ket{\phi_?\phi_j}} - \frac{1}{2}\sum_{i \neq j} \sum \cancel{\bra{\phi_i\delta\phi_j}\ket{\phi_j\phi_i}},\quad \forall \ket{\delta\phi}\ |\delta\\
-V \text{ syn : } \phi_j &\delta\phi_?\,V\,\phi_j\phi_i = \delta\phi_?\phi_j\,V\,\phi_?\phi_j
+\sum \bra{\delta\phi_i}\hat H\ket{\phi_i} + \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j} &\sum \bra{\delta\phi_i\phi_j}U\ket{\phi_i\phi_j} - \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j}\sum \bra{\sqrt{\phi_i}\phi_j}V\ket{\phi_j\phi_i}\\
+-\sum_i \varepsilon_i\bra{\delta \phi_i}V\ket{\phi_i} +\frac{1}{2}\sum_{i\neq j}\sum &\cancel{\bra{\phi_i\delta\phi_j}V\ket{\phi_i\phi_j}} - \frac{1}{2}\sum_{i \neq j} \sum \cancel{\bra{\phi_i\delta\phi_j}\ket{\phi_j\phi_i}},\quad \forall \ket{\delta\phi},\ket\delta\\
 \end{split}
 \end{equation}
-
-26=
+où nous avons utilisé la symétrie du potentiel
 \begin{equation}
-\forall i\ :\ H(\phi_i) + \sum_{j\neq i}\bra{\bullet\ \phi_j}V\ket{\phi_i\phi_j}- \sum_{j\neq i} \bra{\bullet\ \phi_j}V\ket{\phi_j\phi_i} = \varepsilon_i\ket{\phi_?}
+\hat V \text{ symétrique : }\ \bra{\phi_j \delta\phi_i}V\ket{\phi_j\phi_i} = \bra{\delta\phi_i\phi_j}V\ket{\phi_i\phi_j}
 \end{equation}
-
-27=
+Comme précédemment\footnote{Et nous adoptons la même notation efficace que précédemment avec $\bullet$.}, 
+nous avons une équation par $i$
+\begin{equation}
+\forall i\ :\ H(\phi_i) + \sum_{j\neq i}\bra{\bullet\ \phi_j}V\ket{\phi_i\phi_j}- \sum_{j\neq i} \bra{\bullet\ \phi_j}V\ket{\phi_j\phi_i} = \varepsilon_i\ket{\phi_i}
+\end{equation}
+Nous pouvons rendre cette expression plus spécifique en considérant dans le cas d'un atome
 \begin{equation}
 \begin{split}
-\forall i\ :\ \left(-\frac{\hbar^2\Delta^2}{2m}-\frac{Z e^2}{r}\right)\phi_i(\vec r) + \overbrace{\left[\sum_{j\neq i}\int d\vec r\,\phi_j(\vec r)^*\frac{e^2}{|\vec r - \vec{r'}|}\phi_?(r)\phi_j(\vec {r'}) |\phi_j(\vec r)|^2\right]}^{\text{il y a du texte}} \\- \begin{cases}
-\sum_{?} \int d\vec r \phi_j^*(\vec r)\frac{e^2}{|\vec r - \vec{r'}|} \phi_j(\vec r)\phi_i(\vec{r'})\\
-\text{verso}
+\forall i\ :\ \left(-\frac{\hbar^2\Delta^2}{2m}-\frac{Z e^2}{r}\right)\phi_i(\vec r) + \overbrace{\left[\sum_{j\neq i}\int d\vec r\,\phi_j(\vec r)^*\frac{e^2}{|\vec r - \vec{r'}|}\phi_?(r)\phi_j(\vec {r'}) |\phi_j(\vec r)|^2\right]}^{V(\vec{r})} \\- \begin{cases}
+\sum_{?} \int d\vec r \phi_j^*(\vec r)\frac{e^2}{|\vec r - \vec{r'}|} \phi_j(\vec r)\phi_i(\vec{r'})\vspace{2mm}\\
+\DS\underbrace{\int d\vec{r'}\left[\sum_{j\neq i} \phi_j^*(\vec{r'})\dfrac{e^2}{|\vec{r}-\vec{r'}|}\phi_j(\vec{r})\right]\phi_i(\vec{r'})}_{V(\vec{r},\vec{r}')}
 \end{cases}
 \end{split}
 \end{equation}
+où le terme soustrait est le \textit{terme d'échange}, où $V(\vec{r})$ vient de la répulsion dans le nuage 
+électronique : il s'agit d'un potentiel \textit{local}. Par contre, $V(\vec{r},\vec{r}')$ est un potentiel \textit{non-local} car il est fonction de $\vec{r}'$ c'est-à-dire qu'il dépend de toutes les autres positions\footnote{On comprend bien que $V(\vec{r})$ est bien local, il ne dépend que de la valeur en un 
+point unique et non de tous les autres également.}.
 
+Nous avons, comme précédemment, $N$ équations de Schrödinger (pas d'interactions entre électrons, nous faisons 
+toujours l'hypothèse d'un champ d'interaction moyen). Il n'est pas possible de tout résoudre en une fois, mais 
+de la résoudre pour chaque $\phi_i$. Or, cette équation est couplée : nous devons-donc la résoudre par itération 
+comme précédemment, l'équation est également auto-consistante.
 
-\begin{equation}
-24
-\end{equation}
-
-
-SI la fonction d'état est un slater et pas un simple product, ona un terme en plus. On a tjs le terme e coulomb mais on a 
-un terme en plus qui peut pas etre une interaction car on a le meme H qu'avant.
-\begin{equation}
-25
-\end{equation}
-On a donc une équation par i
-\begin{equation}
-26
-\end{equation}
-On peut redre cette expression plus spécifique dans le cadre 'un atome
-\begin{equation}
-27
-\end{equation}
-Le terme en - c'est cet exchange.\\
-
-On a donc N schrodinger équation (non interacting electrons).  On a pas besoin de les résoudre tous à la fois, on la 
-résou pour chaque phi i mais cette équation est couplée à cause du terme d'interaction 'change : il faut la résoudre 
-ittérativement exactement comme précéemment. C'est donc également une équation auto consistante. C'est une approx 
-car on a ce champ d'interaction moyen.
+	\vspace{1cm}
+	\begin{center}
+	\includegraphics[scale=0.15]{ch4/fin}
+	%\captionof{figure}{ }
+	\end{center}				
