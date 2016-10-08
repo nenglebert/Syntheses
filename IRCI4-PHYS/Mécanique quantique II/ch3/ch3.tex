@@ -1,0 +1,576 @@
+\chapter{Seconde quantification}
+Considérons un état $\ket{\psi}$ et un opérateur $\hat{A}$. Nous avions précédemment discuté de l'image
+de Schrödinger et d'Heisenberg mais dans les deux cas, nous avions à notre disposition un vecteur d'état 
+et un observable.\\
+
+Pour la seconde quantification, nous allons uniquement nous baser sur  les opérateurs linéaires, mais aussi 
+les opérateurs de création et d'inhalation. Ce formalisme a plusieurs avantage: il prend compte 
+"automatiquement" du fait que la fonction soit symétrique ou non, il s'utilise de la même façon que 
+l'on travaille avec des bosons et des fermions mais aussi il est possible de faire varier le nombre 
+de particules $N$ sans recommencer tous les calculs : $\hat{N}$ devient un observable (grosse différence 
+par rapport à la première quantification). Notons que ce formalisme convient très bien au traitement 
+des champs et des particules identiques.\\
+
+Commençons par définir un ensemble de $N$ état
+\begin{equation}
+\{\ket{i}\} = \{\ket 1,\ket 2,\dots\}
+\end{equation}
+Adoptons une notation efficace :
+\begin{equation}
+\ket{i_1, i_2,\dots,i_N} \equiv \ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+où $i_N$ correspond ici à la $N^e$ particule dans un état $N$. Nous formons donc une "liste" qui nous 
+informe sur quelle particule occupe quel état. Pour former un état totalement symétrique
+ou anti-symétrique, il suffit d'y appliquer $\hat{S}_\pm$ :
+\begin{equation}
+\hat{S}_\pm \ket{i_1, i_2,\dots,i_N} = \dfrac{1}{\sqrt{N!}}\sum(-1)^p\hat{p}
+\end{equation}
+Si on applique l'opérateur permutation à ceci
+\begin{equation}
+\hat{P}\hat{S}_\pm \ket{i_1, i_2,\dots,i_N} = (\pm 1)^p\dfrac{1}{\sqrt{N!}}\sum(-1)^p\hat{p}
+\end{equation}
+Ceci dépend de la parité : si l'on considère des fermions, nous aurons l'apparition d'un signe négatif. Cet 
+objet à la propriété d'être totalement symétrique ou totalement antisymétrique.\\
+
+Considérons que dans notre liste d'états occupés, le quatrième niveau est occupé par deux particules (la 
+particule 3 et la particule 4)
+\begin{center}
+Inclure schéma cours 4, sous (21)
+\end{center}
+On défini le nombre d'occupation $n_i=m$ comme le nombre de particule dans un état $\ket{i}$. Le nombre de 
+termes distincs est donné par
+\begin{equation}
+\dfrac{N!}{n_1!n_2!\dots}
+\end{equation}
+Ceci signifie que lorsque l'on écrit l'état totalement symétrique des bosons, le pré-facteur devient
+\begin{equation}
+\ket{\psi_{N,boson}} = \dfrac{1}{\sqrt{n_1!n_2!\dots}}\hat{S}_+\ket{i_1, i_2,\dots,i_N}
+\end{equation}
+et pour les fermions
+\begin{equation}
+\ket{\psi_{N,fermion}} = \dfrac{1}{\sqrt{n_1!n_2!\dots}}\hat{S}_-\ket{i_1, i_2,\dots,i_N}
+\end{equation}
+La subtilité est au niveau du nombre d'occupation qui ne peut valeur que 0 ou 1 pour les fermions ($n_i=0,1$) 
+et tout pour les bosons ($n_i=0,1,2,\dots$).
+
+
+\section{Système de $N$ bosons}
+\subsection{Espace de Fock, opérateurs création/annihilation, opérateur nombre}
+\subsubsection{Espace de Fock}
+Toute l'idée est que lorsque l'on considère un système de $N$ bosons, nous n'allons pas le décrire comme
+nous l'avions fait avec notre notation efficace. A la place, nous allons lister les orbitales et renseigner, 
+pour chacune d'entre-elles, quelles particules les occupent.
+\begin{equation}
+\text{Etat de Fock }\ \equiv \ket{n_1,n_2,\dots} \equiv \dfrac{1}{\sqrt{n_1!\dots n_N!}}\hat{S}_+
+\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+\danger\ A gauche, le numéro désigne les orbitales (il y en a une infinité, d'où les \dots). Par contre, le 
+numéro du membre de droite correspond à la particules (que nous avons en nombre fini, $N$). Nous avons 
+comme contrainte ($n_i=0,1,\dots$)
+\begin{equation}
+\sum_i n_i = N
+\end{equation}
+L'ensemble de tous les états de Fock forme l'espace de Fock : ceci forme une base complète d'espaces complètement 
+symétrique. Cette base est donc complètement symétrique.\\
+
+Considérons deux états de Fock, chacun caractérisé par une liste d'orbitale. Ces états sont bien orthogonaux
+\begin{equation}
+\bra{n_1,n_2,\dots}\ket{n_1',n_2',\dots} = \delta_{n_1,n_1'}\delta_{n_2,n_2'}\dots
+\end{equation}
+Nous avons également la relation de fermeture
+\begin{equation}
+\sum_{n_1,n_2} = \ket{n_1,n_2,\dots}\bra{n_1,n_2,\dots} =\hat{1}
+\end{equation}
+
+\subsection{Opérateur création}
+L'opérateur création se note $\hat{a_i}^\dagger$ où la présence du dagger se justifie par le fait que son conjugué sera 
+l'opérateur d'annihilation. Par définition
+\begin{equation}
+\hat{a}_i^\dagger \ket{n_1\dots n_i\dots} = \sqrt{n_i+1}\ket{n_1\dots n_i+1\dots}
+\end{equation}
+Regardons ce qu'est l'adjoint de cet opérateur afin d'obtenir l'expression de l’opérateur d'annihilation. Focalisons-nous, 
+comme pour la définition, sur l'orbitale $i$
+\begin{equation}
+\bra{\dots n_i'\dots}\hat{a_i} = \sqrt{n_i'+1}\bra{\dots n_i'+1\dots}
+\end{equation}
+Fermons cette relation
+\begin{equation}
+\begin{array}{ll}
+\bra{\dots n_i'\dots} \hat{a_i}\ket{\dots n_i\dots} &\DS= \sqrt{n_i'+1}\underbrace{\bra{\dots n_i'+1\dots} \hat{a_i}\ket{\dots
+ n_i\dots}}_{
+\delta_{n_i,n_{i+1}}}\\
+&\DS= \sqrt{n_i}\ \delta_{n_i,n_{i+1}}
+\end{array}
+\end{equation}
+Si l'on effectue une somme, celle-ci commencera à 1. Dès lors\footnote{Éclaircir}, $n_i'$ commence à $n_i-1$ 
+\begin{equation}
+\hat{a_i}\ket{\dots n_i\dots} = \sum_{n_i=0}\ket{\dots n_i'\dots}\underbrace{\bra{\dots n_i'\dots}\hat{a_i}\ket{\dots n_i\dots}}_{
+si\ n_i=0 : \sqrt{n_i}\ \delta_{n_i, n_i'+1}}
+\end{equation}
+On appelle ceci l'opérateur d'annihilation. On peut compléter notre définition (\textbf{possible confusion}) :
+\begin{equation}
+\hat{a_i}\ket{\dots n_i\dots} = \left\{\begin{array}{ll}
+\sqrt{n_i}\ket{\dots n_i-1\dots} & \text{ si } n_i\geq 1\\
+0 & \text{ si } n_i = 0
+\end{array}\right.
+\end{equation}
+Nos deux opérateurs sont alors défini comme
+\begin{equation}
+\left\{\begin{array}{ll}
+\DS\hat{a}_i^\dagger \ket{n_1\dots n_i\dots} &= \sqrt{n_i+1}\ket{n_1\dots n_i+1\dots}\vspace{2mm}\\
+\DS\hat{a}_i\ket{n_1\dots n_i\dots} &= \sqrt{n_i}\ket{\dots n_i-1\dots}\qquad\qquad (n_i\geq 1)
+\end{array}\right.
+\end{equation}
+
+\subsection{Relation de commutations}
+Trois relations de commutations sont particulièrement intéressantes
+\begin{equation}
+[\hat{a_i},\hat{a_j}]=0,\qquad\qquad[\hat{a_i}^\dagger,\hat{a_j}^\dagger]=0,\qquad\qquad [\hat{a_i},\hat{a_j}^\dagger]=\delta_{i,j}
+\end{equation}
+On voit donc que l'on peut créer ou annihiler deux particules dans l'ordre que l'on souhaite mais ce n'est pas le cas si 
+on souhaite en créer une pour ensuite l'annihiler. Montrons la première commutation
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{a_i}\hat{a_j}\ket{\dots n_i\dots n_j\dots} &\DS= \hat{a_i}\sqrt{n_j}\ket{\dots n_i\dots n_j-1\dots}\\&\DS= \sqrt{n_i}\sqrt{n_j}\ket{\dots n_i-1\dots n_j-1\dots}\\
+\DS&= \DS\hat{a_j}\hat{a_i}\ket{\dots n_i\dots n_j\dots} 
+\end{array}
+\end{equation}
+La deuxième commutation est une conséquence directe de la première. En effet
+\begin{equation}
+[\hat{a_i},\hat{a_j}]^\dagger=[\hat{a_i}^\dagger,\hat{a_j}^\dagger]=0
+\end{equation}
+Intéressons-nous maintenant à la troisième relation. Dans le cas où $i\neq j$
+\begin{equation}
+\begin{array}{ll}
+\hat{a_i}\hat{a_j}^\dagger\ket{\dots n_i\dots n_j\dots} &\DS = \hat{a_i}\sqrt{n_j+1}\ket{\dots n_i\dots n_j+1\dots}\\
+&\DS = \sqrt{n_i+1}\sqrt{n_j+1}\ket{\dots n_i+1\dots n_j+1\dots}\\
+&\DS = \hat{a_j}^\dagger\hat{a_i}\ket{\dots n_i\dots n_j+1\dots}
+\end{array}
+\end{equation}
+Le seul cas intéressant est donc celui où $i=j$. Soit pour une orbitale
+\begin{equation}
+\begin{array}{ll}
+(\hat{a_i}\hat{a_i}^\dagger -\hat{a_i}^\dagger\hat{a_i})\ket{\dots n_i\dots} &=\DS \hat{a_i}\sqrt{n_i+1}\ket{\dots n_i+1\dots}-
+\hat{a_i}^\dagger\sqrt{n_i}\ket{\dots n_i-1\dots}\\
+&=\DS \sqrt{n_i+1}\sqrt{n_i+1}\ket{\dots n_i\dots}-\sqrt{n_i}\sqrt{n_i}\ket{\dots n_i\dots}\\
+&=\ket{\dots n_i\dots}
+\end{array}
+\end{equation}
+d'où $\hat{a_i}\hat{a_i}^\dagger -\hat{a_i}^\dagger\hat{a_i} = \hat{1}$. Ce résultat est fondamental pour la seconde quantification.
+
+\subsection{Écriture générale d'un état à $N$ bosons et des opérateurs à 1 et 2 corps}
+Reprenons nos deux opérateurs
+\begin{equation}
+\left\{\begin{array}{ll}
+\DS\hat{a}_i^\dagger \ket{n_1\dots n_i\dots} &= \sqrt{n_i+1}\ket{n_1\dots n_i+1\dots}\vspace{2mm}\\
+\DS\hat{a}_i\ket{n_1\dots n_i\dots} &= \sqrt{n_i}\ket{\dots n_i-1\dots}\qquad\qquad (n_i\geq 1)
+\end{array}\right.
+\end{equation}
+Ce qui nous intéresse avec ceux-ci, c'est qu'ils permettent de décrire tous les états complètement symétriques.
+Définisions l'\textbf{état bosonique du vide} (bosonic vacuum state)
+\begin{equation}
+\ket{0} \equiv\ket{0,0,0,\dots}
+\end{equation}
+Dans le cas où nous avons une particule bosonique, l'application de l'opérateur création donne
+\begin{equation}
+\hat{a_i}^\dagger\ket{0} = \ket{0,0,\dots 0,1,0,\dots}
+\end{equation}
+où le 1 apparaît à la $i^e$ composante. Si nous avons maintenant deux particules bosoniques :
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{a_i}^\dagger\hat{a_j}^\dagger\ket{0} &\DS= \ket{0\dots 010\dots 010\dots} = \dfrac{1}{\sqrt{\dots}}\hat{S_+}
+\ket{\dots}\ket{\dots}\dots\ket{\dots}\\
+&\DS=\hat{a_j}^\dagger\hat{a_i}^\dagger\ket{0}
+\end{array}
+\end{equation}
+où les deux 1 occupent respectivement la $i^e$ et la $j^e$ composante. Nous avons ici fait 
+apparaître l'opérateur symétriser pour insister sur le fait que cette forme est complètement symétrique. 
+Même si cela n'apparaît pas explicitement a symétrie est cachée derrière le fait que 
+$\hat{a_i}^\dagger\hat{a_j}^\dagger\ket{0} = \hat{a_j}^\dagger\hat{a_i}^\dagger\ket{0}$.\\
+
+Imaginons que deux bosons occupent le niveau $i$. On peut décrire un tel état comme
+\begin{equation}
+\frac{1}{\sqrt{2}}(\hat{a_i}^\dagger)^2\ket{0}=\underline{\ket{0\dots 020\dots}}
+\end{equation}
+Ce qui est important à remarquer c'est que $\frac{1}{\sqrt{2}}(\hat{a_i}^\dagger)^2$ 
+caractérise complètement l'état souligné ci-dessus. Si on s'intéresse à une orbitale en 
+particulier 
+\begin{equation}
+\left.\begin{array}{ll}
+\hat{a}^\dagger\ket{n} &= \sqrt{n+1}\ket{n+1}\\
+\hat{a}^\dagger\ket{n-1} &= \sqrt{n}\ket{n}
+\end{array}\right\}\quad\rightarrow\quad \ket{n} =\frac{\hat{a}^\dagger}{\sqrt{n}}
+\end{equation}
+Voyons ce que donne l'application de cette nouvelle forme
+\begin{equation}
+\begin{array}{ll}
+\ket 0&\\
+\ket 1&\DS= \frac{\hat{a}^\dagger}{\sqrt{1}}\ket 0\vspace{2mm}\\
+\ket 2&\DS= \frac{\hat{a}^\dagger}{\sqrt{2}}\frac{\hat{a}^\dagger}{\sqrt{1}}\ket 0\vspace{2mm}\\
+\ket 3&\DS= \frac{\hat{a}^\dagger}{\sqrt{3}}\frac{\hat{a}^\dagger}{\sqrt{2}}\frac{\hat{a}^\dagger}{\sqrt{1}}\ket 0\\
+\vdots&\\
+\ket n &=\DS \dfrac{(\hat{a}^\dagger)^n}{\sqrt{n!}}\ket0
+\end{array}
+\end{equation}
+Ceci nous permet de décrire complètement un état en fonction de ces opérateurs. Un état bosonique totalement général 
+s'exprime alors comme
+\begin{equation}
+\ket{n_1, n_2, n_3,\dots} = \dfrac{1}{\sqrt{n_1!n_2!n_3!\dots}}(\hat{a_1}^\dagger)^{n_1}(\hat{a_2}^\dagger)^{n_2}
+(\hat{a_3}^\dagger)^{n_3}\dots\ket0
+\end{equation}
+Ceci n'est donc rien d'autre qu'une façon très générale de noter l'état d'un système de $n$ bosons, totalement en 
+fonction de l'opérateur de création. Pour terminer notre description, nous devons encore introduire un opérateur :
+l'\textbf{opérateur nombre}. Celui-ci se défini
+\begin{equation}
+\hat{n_i}=\hat{a_i}^\dagger\hat{a_i}
+\end{equation}
+La mesure de cet observable donne (valeur propre) le nombre de bosons occupant l'orbitale $i$. Ceci est facile à 
+vérifier
+\begin{equation}
+\hat{n_i}\ket{\dots n_i\dots} = \hat{a_i}^\dagger\sqrt{n_i}\ket{\dots n_i-1\dots}=
+\sqrt{n_i}\sqrt{n_i}\ket{\dots n_i\dots} = n_i\ket{\dots n_i\dots}
+\end{equation}
+où $n_i$ est la valeur propre associée à la fonction propre $\ket{\dots n_i\dots}$. On défini de façon claire 
+l'opérateur \textbf{nombre total}
+\begin{equation}
+\hat{N} = \sum_i n_i = \sum_i \hat{a_i}^\dagger\hat{a_i}
+\end{equation}
+Avec la première quantification, il fallait fixer dès le début le nombre de particules puis résoudre le 
+problème avec ce nombre fixé. Ce n'est plus le cas ici : montrons-le en considérant un problème assez 
+simple. Soit l'Hamiltonien de $N$ particules
+\begin{equation}
+\hat{H} = \sum_\alpha^N \hat{h}^{(\alpha)} 
+\end{equation}
+Pour chaque particule, nous pouvons diagonaliser :
+\begin{equation}
+\hat{h}\ket i = \varepsilon_i\ket{i}
+\end{equation}
+Avec la seconde quantification, cette Hamiltonien peut s'écrire (ceci sera justifié plus tard)
+\begin{equation}
+\hat{H} = \sum_i \varepsilon_i \hat{n_i}
+\end{equation}
+où $n_i$ est le nombre de particules correspondant à une énergie $\varepsilon_i$. Ceci est cohérent 
+avec le fait que l'Hamiltonien est bien l'opérateur énergie totale.
+
+
+\subsubsection{Expression générale pour un corps}
+On définit un opérateur de corps que l'on nomme $\hat{T}$ et qui peut être une énergie cinétique, 
+un Hamiltonien,\dots
+\begin{equation}
+\hat{T} = \hat{t}^{(1)}+\hat{t}^{(2)}+\dots+\hat{t}^{(N)}=\sum_{\alpha=1}^N t^{(\alpha)}\qquad 
+\text{ e.g. } \quad t^{(\alpha)} = \left\{\begin{array}{l}
+p_\alpha^2/2m\\
+V(\vec{r}_\alpha)\\
+\dots
+\end{array}\right.
+\end{equation}
+Cet "opérateur un corps" est écrit dans une certaine base $\{\ket{i}\}$ : utilisons la relation de fermeture pour 
+obtenir
+\begin{equation}
+\begin{array}{ll}
+\hat{t} &\DS= \sum_{ij} \ket{i}\overbrace{\bra{i}\hat{t}\ket{j}}^{t_{ij}}\bra{i}\vspace{2mm}\\
+&=\DS\sum_{ij} t_{ij}\ket{i}\bra{j}
+\end{array}
+\end{equation}
+Donc, l'opérateur total s'écrit
+\begin{equation}
+\hat{T} = \sum_{\alpha=1}^N t_{ij}\ket{i}_\alpha\bra{j}
+\end{equation}
+La première sommation somme sur les particules et las seconde sur les différentes états (il  n'y a pas 
+de valeurs au dessus du $\Sigma$ : ayant un nombre infini d'orbitale, c'est l'infini). Ce qui est 
+fondamental, c'est que $t_{ij}$ n'est pas dépendant de $\alpha$.\\
+
+Physiquement, tout opérateur agissant sur $N$ particules bosonique indiscernables doit être symétrique, cela ne 
+dépend pas d'une dénomination arbitraire des particules : l'observable $\hat{T}$ doit être symétrique à 
+l'échange des particules. Or, tous les $t^{(\alpha)}$ correspondent à un même opérateur pour toutes les 
+particules du système. Par hypothèse que les particules sont identiques, il n'y a pas de sens que les éléments $t$ puissent être 
+différent et donc pas de sens que les éléments de matrices puissent être différent d'une particule à une autre.\\
+
+Nous pouvons dès lors le permuter :
+\begin{equation}
+\hat{T} = \sum_{ij} t_{ij}\overbrace{\sum_{\alpha=1}^N \ket{i}_\alpha\bra{i}}^{?}
+\end{equation}
+Il nous reste à déterminer comment écrire cet opérateur en terme de seconde quantification. Pour se faire, nous allons
+regarder comment celui-ci agit sur un état de Fock. Si nous parvenons ensuite à généraliser à n'importe quel état de 
+Fock, nous l'aurons complètement caractérisé 
+\begin{equation}
+\left( \sum_{\alpha=1}^N \ket{i}_\alpha\bra{j}\right)\ket{\dots n_i\dots n_j\dots}
+\end{equation}
+où $\ket{i}_\alpha\bra{j}$ agit bien entendu sur les deux états. Par définition d'un état de Fock, si 
+$n\neq j$
+\begin{equation}
+\left( \sum_{\alpha=1}^N \ket{i}_\alpha\bra{j}\right)\sqrt{\dots n_i\dots n_j\dots}\hat{S}_+
+\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+Ceci n'est qu'un "liste" des particules renseignant que la particule 1 occupe l'état $i_1,\dots$ 
+L'opérateur $\ket{i}_\alpha\bra{j}$ est symétrique et nous savons que $\hat{S}_+$ commute avec t
+tout opérateur symétrique. Dès lors
+\begin{equation}
+\sqrt{\dots n_i\dots n_j\dots}\hat{S}_+\left( \sum_{\alpha=1}^N \ket{i}_\alpha\bra{j}\right)
+\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+Nous savons que sur toutes les particules, $n_j$ d'entre-elles occupent l'état $j$ : il y aura 
+$n_j$ terme de contribution égale. Chaque terme de cette sommation correspond alors à un $\alpha$. 
+Ceci nous donne lieux à plusieurs termes distincts mais il n'y a pas lieu de s'y intéresser : cela 
+donnera le même état de Fock après application de $\hat{S}_+$ :
+\begin{equation}
+\dfrac{\hat{S}_+}{\sqrt{\dots n_i!\dots n_j!\dots}}\left[\underbrace{\ket{i_1'}\ket{i_2'}\dots \ket{i_N'}+ 
+\ket{i_1''}\dots \ket{i_N''}+\dots}_{N\text{ termes}}\right]
+\end{equation}
+Chaque état entre crochet n'est pas symétrique, mais la forme finale, elle, l'est bien. On peut 
+appliquer la définition d'un espace de Fock pour obtenir
+\begin{equation}
+\dfrac{1}{\sqrt{\dots n_i\dots n_j\dots}}n_j\sqrt{\dots (n_i+1)!\dots (n_j+1)!}\ket{\dots n_i+1\dots 
+n_j-1\dots}
+\end{equation}
+où $\sqrt{\dots (n_i+1)!\dots (n_j+1)!}$ est le pré-facteur venant de la définition de l'état de Fock.
+En simplifiant les factorielles
+\begin{equation}
+\sqrt{\dfrac{n_i+1}{n_j}}n_j\ket{\dots n_i+1\dots n_j-1\dots}
+\end{equation}
+Dès lors
+\begin{equation}
+\left( \sum_{\alpha=1}^N \ket{i}_\alpha\bra{j}\right)\ket{\dots n_i\dots n_j\dots}
+ = \sqrt{n_i+1}\sqrt{n_j}\ket{\dots n_i+1\dots n_j-1\dots}
+\end{equation}
+Si l'on se souvient de comment agit l'opérateur $\hat{a}^\dagger$ sur un état de Fock, on peut dire 
+que cette dernière expression est équivalente à
+\begin{equation}
+\hat{a_i}^\dagger\hat{a_j}^\dagger\ket{\dots n_i\dots n_j\dots}
+\end{equation}
+Nous avons donc prouvé que
+\begin{equation}
+\sum_{\alpha=1}^N \ket{i}_\alpha\bra{j} = \hat{a_i}^\dagger\hat{a_j}^\dagger
+\end{equation}
+Ce qui définit notre opérateur jusqu'ici inconnu. Regardons maintenant le cas ou $i=j$. 
+Il nous faut calculer
+\begin{equation}
+\left(\underline{\sum_{\alpha=1}^N \ket{i}_\alpha\bra{i}}\right)\ket{\dots n_i\dots} = n_i\ket{\dots 
+n_i\dots} = \underline{\hat{a}^\dagger\hat{a}}\ket{\dots n_i\dots}
+\end{equation}
+Cette opérateur nous liste donc le nombre de particules en prenant comme valeur $n_i$ ou 0.\\
+
+Dans le cadre de la seconde quantification, notre opérateur s'écrit alors
+\begin{equation}
+\hat{T} = \sum_{ij} t_{ij}\hat{a}^\dagger\hat{a}\qquad\text{ où }\quad t_{ij} = \bra{i}\hat{t}\ket{j}
+\end{equation}
+Tentons maintenant de justifier notre précédent exemple. Nous avons à calculer l'élément de matrice 
+suivant où $t_{ij} = h_{ij}$
+\begin{equation}
+h_{ij} = \bra{i}\hat{h}\ket{j} = \varepsilon_i\delta_{ij}
+\end{equation}
+Dans notre cas, $\hat{T}=\hat{H}$ :
+\begin{equation}
+\hat{H} = \sum_{ij} \varepsilon_i\delta_{ij} \hat{a_i}^\dagger\hat{a_i} = \sum_i \varepsilon_i\hat{a_i}^\dagger
+\hat{a_i}
+\end{equation}
+Ce qui justifie le résultat précédemment annoncé.\\
+\\
+
+\subsubsection{Expression générale pour deux corps}
+Tout ce que nous avons fait va se généraliser assez naturellement :
+\begin{equation}
+\hat{F} = \frac{1}{2}\sum_{\alpha < \beta}^N \hat{f}(\alpha,\beta)\qquad \text{ e.g. }\quad 
+\hat{f}^{(\alpha,\beta)} = V(\vec{r_\alpha}-\vec{r_\beta}|)
+\end{equation}
+à l'aide de la relation de fermeture, on peut écrire (quadruple somme)
+\begin{equation}
+\hat{f} = \sum_{ijkl} \ket{ij}\underbrace{\bra{ij}\hat{f}\ket{kl}}_{f_{ij,kl}}\bra{kl}
+\end{equation}
+où
+\begin{equation}
+f_{ij,kl} = \iint dxdy\ \phi_i^*(x)\phi_j^*(x)\ f(x,y)\ \phi_k(x)\phi_l(y)
+\end{equation}
+Nous avons alors
+\begin{equation}
+\hat{F} =\frac{1}{2}\sum_{\alpha\neq\beta}^N\sum_{ijkl} f_{ij,kl}\left( \ket{i}_\alpha\bra{k}\otimes
+\ket{j}_\beta\bra{l}\right)
+\end{equation}
+En permutant
+\begin{equation}
+\hat{F} =\frac{1}{2}\sum_{ijkl} f_{ij,kl}\underbrace{\left(\sum_{\alpha\neq\beta}^N \ket{i}_\alpha\bra{k}\otimes
+\ket{j}_\beta\bra{l}\right)}_{\hat{a_i}^\dagger\hat{a_j}^\dagger\hat{a_k}\hat{a_l}}
+\end{equation}
+Il est possible d'écrire chaque opérateur dans une forme compacte : le $t_{ij}$ précédemment obtenu
+devient $f_{ij,kl}$, le reste bien de la symétrie d'état. Conventionnellement, on préfère noter
+\begin{equation}
+\hat{F} =\frac{1}{2}\sum_{ijkl} \bra{ij}\hat{f}\ket{kl}\ \hat{a_i}^\dagger\hat{a_j}^\dagger\hat{a_l}\hat{a_k}
+\end{equation}
+Ce raisonnement peut se suivre pour les fermions, mais cette dernière expression  ne serait pas égale à
+la précédente (anti-symétrie). 
+
+
+
+\section{Système de $N$ fermions}
+\subsection{Espace de Fock, opérateurs création/annihilation, opérateur nombre}
+Comme nous travaillons avec des Fermions, il nous faut une anti-symétrie générale
+\begin{equation}
+\hat{S}_-\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N = \dfrac{1}{\sqrt{N!}}\sum_p(-1)^p \ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+
+\subsubsection{État de Fock}
+Avant toute chose, commençons par introduire la notion d'espace de Fock. Comme pour les bosons, nous 
+dressons ici une "liste". Par définition :
+\begin{equation}
+\text{Etat de Fock }\ \equiv \ket{n_1,n_2,\dots} \equiv \hat{S}_-\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N 
+\end{equation}
+Cet espace de Fock contient \textit{tout les état antisymétrique complet de $m$ fermions.} Ces différents 
+états forment l'espace de Fock qui est cette fois-ci totalement antisymétrique. Ces états sont bien 
+orthogonaux
+\begin{equation}
+\bra{n_1,n_2,\dots}\ket{n_1',n_2',\dots} = \delta_{n_1,n_1'}\delta_{n_2,n_2'}\dots
+\end{equation}
+Pour la relation de fermeture:
+\begin{equation}
+\sum_{n_1,n_2} = \ket{n_1,n_2,\dots}\bra{n_1,n_2,\dots} =\hat{\mathbb{1}}
+\end{equation}
+
+\subsubsection{Opérateurs de création et d'annihilation}
+Il n'est pas possible d'avoir plus d'un fermion par orbitale. Dès lors $(\hat{a}_i^\dagger)^2=0$. Nous 
+voudrions avoir une relation du genre
+\begin{equation}
+\hat{a_{i_1}}^\dagger\hat{a_{i_2}}^\dagger\dots\hat{a_{i_N}}^\dagger\ket{0} = \hat{S}_-\ket{i_1}_1
+\ket{i_2}_2\dots\ket{i_N}_N
+\end{equation}
+Voyons ce qui se produit lorsque nous inter-changeons les deux premiers éléments
+\begin{equation}
+\begin{array}{ll}
+\hat{a_{i_2}}^\dagger\hat{a_{i_1}}^\dagger\dots\hat{a_{i_N}}^\dagger\ket{0} &\DS= \hat{S}_-\ket{i_2}_1
+\ket{i_1}_2\dots\ket{i_N}_N\vspace{2mm}\\
+&=\DS-\hat{S}_-\ket{i_1}_1\ket{i_2}_2\dots\ket{i_N}_N\vspace{2mm}\\
+&=\DS-\hat{a_{i_1}}^\dagger\hat{a_{i_2}}^\dagger\dots\hat{a_{i_N}}^\dagger\ket0
+\end{array}
+\end{equation}
+Des lors
+\begin{equation}
+\hat{a_i}^\dagger\hat{a_j}^\dagger = -\hat{a_j}^\dagger\hat{a_i}^\dagger\quad\Leftarrow\quad
+\hat{a_i}^\dagger\hat{a_j}^\dagger +\hat{a_j}^\dagger\hat{a_i}^\dagger= 0\quad\Leftarrow\quad 
+\{ \hat{a_i}^\dagger, \hat{a_j}^\dagger\}=0
+\end{equation}
+Ces opérateurs ne commutent pas, mais ils \textit{anti-commutent} ce qui est normal car nous avons 
+des fermions et cette propriété antisymétrique est ici recherchée. Le cas où $i=j$ est trivial
+\begin{equation}
+2\hat{a_i}^\dagger\hat{a_i}^\dagger = 0\qquad\Leftrightarrow\qquad (\hat{a_i}^\dagger)^2=0
+\end{equation}
+
+On souhaiterait avoir une forme similaire à celle obtenue pour les bosons afin de pouvoir les 
+traiter de la même façon
+\begin{equation}
+\bra{\dots n_i\dots n_j\dots} = (\hat{a_1}^\dagger)^{n_1}(\hat{a_2}^\dagger)^{n_2}\dots\ket{0}
+\end{equation}
+où $\ket0\equiv \ket{0,0,0,\dots}$ l'\textbf{état fermique du vide} (fermion vacuum state). Comme 
+nous savons que $n_i=0,1 \forall i$ (où $i$ désigne une orbitale), nous pouvons décrire l'application 
+de l'opérateur création sur un état de Fock
+\begin{equation}
+\hat{a_i}^\dagger \ket{\dots n_i\dots} = (1-n_i)(-1)^{\sum_{j<i}n_j}\ket{\dots n_i+1\dots}
+\end{equation}
+où le $\DS (-1)^{\sum_{j<i}n_j}$ est du à l'anti-commutateur : si nous avons $\hat{a_1}^\dagger
+\hat{a_3}^\dagger\ket0 = \ket{1010\dots}$ et que nous voulons créer un fermion dans la quatrième orbitale, 
+on veut noter $\hat{a_4}^\dagger\hat{a_3}^\dagger\hat{a_1}^\dagger$ mais ceci n'est pas un état de 
+Fock, la définition n'est pas respectée. Il nous faut donc évaluer une double permutation pour le 
+mettre à la "bonne place" : $\hat{a_1}^\dagger\hat{a_3}^\dagger\hat{a_4}^\dagger\ket0=\ket{10110\dots}$ : 
+ce nombre de permutation donne un signe positif s'il est pair et négatif sinon (comme nous avons vu 
+ci-dessous) et c'est ce qui est pris en compte avec ce facteur\footnote{Voir schéma cours 5 sous (24)}.\\
+
+Il nous faut maintenant définir l'opérateur d'annihilation. Prenons pour ça le conjugué
+\begin{equation}
+\bra{\dots n_i'\dots}\hat{a_i} = (1-n_i-)(-1)^{\sum_{j<i}n_j}\bra{\dots n_i'+1\dots}
+\end{equation}
+Refermons cette relation
+\begin{equation}
+\bra{\dots n_i'\dots}\hat{a_i}\ket{\dots n_i\dots} = (1-n_i-)(-1)^{\sum_{j<i}n_j}
+\delta_{n_i'+1,n_i}
+\end{equation}
+En appliquant l'opérateur d'annihilation à un état de Fock et en appliquant la relation de fermeture,
+on voit apparaître la relation que nous venons d'obtenir
+\begin{equation}
+\hat{a_i}\ket{\dots n_i\dots} = \sum_{n_i'=0} \ket{\dots n_i'\dots}
+\underbrace{\bra{\dots n_i'\dots}\hat{a_i}\ket{\dots n_i\dots}}_{ (1-n_i-)(-1)^{\sum_{j<i}n_j}
+\delta_{n_i'+1,n_i}}
+\end{equation}
+Or, si
+\begin{equation}
+\left\{\begin{array}{ll}
+n_i = 0 &\rightarrow 0\\
+n_i = 1 &\rightarrow (-1)^{\sum_{j<i}n_j}\ket{\dots n_i-1\dots}
+\end{array}\right.
+\end{equation}
+Dès lors
+\begin{equation}
+\hat{a_i}\ket{\dots n_i\dots} = n_i(-1)^{\sum_{j<i}n_j}\ket{\dots n_i-1\dots}
+\end{equation}
+
+
+
+\subsection{Relations d’anti-commutation}
+Les relations sont les mêmes que pour les bosons, à l'exception du fait que nous utilisons ici 
+l'anticommutateur
+\begin{equation}
+\{\hat{a_i},\hat{a_j}\}=0,\qquad\qquad \{\hat{a_i}^\dagger,\hat{a_j}^\dagger\}=0,\qquad\qquad
+\{\hat{a_i},\hat{a_j}^\dagger\} = \delta_{ij}
+\end{equation}
+Prouvons la première relation. Si $i=j$, nous avons trivialement $(\hat{a_i})^2=0$. Pour $i\neq j$
+\begin{equation}
+\left\{\begin{array}{lll}
+\hat{a_i}\hat{a_j}\ket{\dots n_i\dots n_j\dots} &= n_in_j(\pm 1)\ket{\dots n_j-1\dots n_j-1} &= 
+-\hat{a_j}\hat{a_i}\ket{\dots n_i\dots n_j\dots}\\
+\hat{a_j}\hat{a_i}\ket{\dots n_i\dots n_j\dots} &= n_jn_i(\pm 1)\ket{\dots n_j-1\dots n_j-1} 
+\end{array}\right.
+\end{equation}
+Le résultat est immédiat. Le second anti-commutateur est un résultat immédiat ce ce-dernier. Prouvons alors la troisième relation
+\begin{equation}
+\begin{array}{ll}
+\hat{a_i}^\dagger\hat{a_i}\ket{\dots n_i\dots} &= n_i\ket{\dots n_i\dots}\\
+\hat{a_i}\hat{a_i}^\dagger &=(1-n_i)\ket{\dots n_i\dots}
+\end{array}
+\end{equation}
+Le "préfacteur" de la première relation vaut 1 si l'on a un fermion et 0 sinon alors que pour la 
+seconde, ce préfacteur vaut 0 en présence de fermion et inversement. En sommant ces deux relation, 
+on fait apparaître l'anti-commutateur
+\begin{equation}
+\{\hat{a_i},\hat{a_i}^\dagger\}\ket{\dots n_i\dots} = 1\ket{\dots n_i\dots}\qquad\forall \text{Fock state}
+\end{equation}
+On en tire que 
+\begin{equation}
+\{\hat{a_i},\hat{a_i}^\dagger\} = \hat{\mathbb{1}}
+\end{equation}
+
+\subsection{Écriture générale d'un état à $N$ fermions et des opérateurs à 1 et 2 corps}
+Reprenons notre opérateur nombre. Pour les bosons, nous l'avions défini 
+\begin{equation}
+\hat{n_i} = \hat{a_i}^\dagger\hat{a_i}
+\end{equation}
+Appliquons cet opérateur à un état de Fock (on ne s'intéresse ici qu'à l'orbitale $i$)
+\begin{equation}
+\begin{array}{ll}
+\DS\hat{a_i}^\dagger\hat{a_i}\ket{\dots n_i\dots} &\DS= \hat{a_i}^\dagger n_i(-1)^{\sum_{j<i}n_j}\ket{\dots
+ n_i-1\dots}\\
+&\DS=(1(n_i-1))(-1)^{\sum_{j<i}n_j} n_i(-1)^{\sum_{j<i}n_j}\ket{\dots n_i\dots}\\
+&\DS=(2-n_i)n_i\ket{\dots n_i\dots}\\
+&\DS=2n_i-\underbrace{n_i^2}_{n_i}\ket{\dots n_i\dots}\\
+&=\DS n_i\ket{\dots n_i\dots}
+\end{array}
+\end{equation}
+car $n_i=0,1$. Ce résultat est donc également applicable aux fermions. On peut définir semblablement 
+l'opérateur nombre total
+\begin{equation}
+\hat{N}=\sum_i\hat{n_i}
+\end{equation}
+
+
+\subsubsection{Opérateur à un corps}
+De façon similaire au cas bosonique, nous pouvons écrire
+\begin{equation}
+\hat{T} =\sum_{ij}\bra{i}t\ket{j}\hat{a_j}^\dagger\hat{a_j}
+\end{equation}
+
+\subsubsection{Opérateur à deux corps}
+De même pour l'opérateur à deux corps
+\begin{equation}
+\hat{F} = \frac{1}{2}\sum_{ijkl} \bra{i,j}\hat{f}\ket{k,l}\hat{a_i}^\dagger\hat{a_j}^\dagger\hat{a_l}\hat{a_k}
+\end{equation}
+Si ici nous interchangeons exemple $\hat{a_l}\hat{a_k}$ un signe négatif apparaîtra du au fait que ces 
+deux opérateurs anticommutent. Ce formalisme est très élégant car $\hat{N}$ et $\hat{F}$ peuvent être 
+arbitraire les bosons/fermions se traitent de façon identique.
+
+
