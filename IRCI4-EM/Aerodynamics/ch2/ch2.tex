@@ -391,10 +391,10 @@ The angle of attack is important because the flow has more difficulties to turn 
 		In the other hand, we have the assumption of irrotational flow:
 		
 		\begin{equation}
-		\vec{w} = 0 \qquad \Rightarrow \D _x v - \D _y u = 0.
+		\vec{\omega} = 0 \qquad \Rightarrow \D _x v - \D _y u = 0.
 		\end{equation}
 		
-		Then we define the \textbf{complex potential functoin w}:
+		Then we define the \textbf{complex potential function w}:
 		
 		\begin{equation}
 		w = \phi + I\psi
@@ -430,16 +430,189 @@ The angle of attack is important because the flow has more difficulties to turn 
  		\qquad \Rightarrow \D _x u + \D _y v = 0 \Leftrightarrow \D _x (\D _y \psi) + \D _y (- \D _x \psi) = 0
  		\end{equation}
  		
- 		\begin{wrapfigure}[10]{l}{5cm}
+ 		\begin{wrapfigure}[8]{l}{4cm}
 		\vspace{-5mm}
-		\includegraphics[scale=0.4]{ch2/24}
+		\includegraphics[scale=0.3]{ch2/24}
+		\label{fig:2.23}
 		\captionof{figure}{}
 		\end{wrapfigure}
-		We still have to verify the $w=0$ condition:
+		We still have to verify the $\omega=0$ condition:
  		\begin{equation}
  		\D _x v - \D _y u = 0 \qquad \Rightarrow \frac{\D ^2 \psi}{\D x^2} + \frac{\D ^2 \psi}{\D y^2} = 0 \qquad \Delta \psi = 0
  		\end{equation}
  		A streamline and a potential line are perpendicular to each other:
  		\begin{equation}
- 		\nabla \psi . \nabla phi = \D _x \psi \D _x \phi + \D_ y \psi \D _y \phi = -vu + uv = 0. 
+ 		\nabla \psi . \nabla \phi = \D _x \psi \D _x \phi + \D_ y \psi \D _y \phi = -vu + uv = 0. 
  		\end{equation}
+ 		
+ 		
+ 	\subsubsection{Theory of analytical functions}
+ 		Analytical means differentiable. This consist in defining a function $f(z)$ analytical such that:
+ 		
+ 		\begin{equation}
+ 		 w = f(z) \qquad z,\omega \in \mathbb{C} \qquad \Rightarrow w = \phi +i \psi \qquad \left\{
+ 		 \begin{aligned}
+			&z= x+iy\\ 		 
+			&\phi = \phi (x,y) \in \mathbb{R}\\
+			&\psi =  \psi(x,y) \in \mathbb{R}
+\end{aligned} 		  
+ 		 \right.
+ 		\end{equation}
+ 		
+ 		If this is differentiable everywhere, $\Delta \phi = \Delta \psi = 0$. We have a way to determine the complex velocity (velocity field):
+ 		
+ 		\begin{equation}
+ 		\frac{dw}{dz} = \frac{df}{dz} = A + iB \qquad A = \frac{\D \phi}{\D x} = - \frac{\D \psi}{\D y} = u \quad B = \frac{\D \psi}{\D x} = - \frac{\D phi}{\D y} = -v
+ 		\end{equation}
+ 		
+ 		A property of this $f(z)$ is the superposition principle: $w_1 = f_1(z), w_2 = f_2(z)$ so $w_1 + w_2 = f_1(z)+f_2(z)$.
+ 		
+ 	\subsubsection{Uniform flow}
+ 		This case corresponds to \autoref{fig:2.23}:
+ 		\begin{equation}
+ 		w = U z \qquad \frac{d w}{dz} = U = u+iv \qquad \Rightarrow u = U; v = 0
+ 		\end{equation}
+ 		
+ 	\subsection{Source / Sink}
+ 		\begin{wrapfigure}[8]{r}{3cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.5]{ch2/25}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		In this case, using the cylindrical coordinates, the complex potential is defined as ($\Lambda$ being the volumetric flow): 
+ 		
+ 		\begin{equation}
+ 		\begin{aligned}
+ 		&w = \frac{\Lambda}{2\pi} \ln z = \frac{\Lambda}{2\pi} \ln (r e^{i\theta}) = \frac{\Lambda}{2\pi} (\ln r + i\theta) \\
+ 		&\Rightarrow \phi = \frac{\Lambda}{2\pi} \ln r, \psi =  \frac{\Lambda}{2\pi}\theta.
+ 		\end{aligned}
+ 		\end{equation}
+ 		
+ 		We see that complex lines corresponds to $r =cst$ so are circles and streamlines $\theta = cst$ are line of constant angle. $\oint \vec{v}\, d\vec{l}=0$ as velocity is everywhere tangent to any circular contour. Let's compute the derivative for the velocity field:
+ 		
+ 		\begin{equation}
+ 		\frac{dw}{dz} = \frac{\Lambda}{2\pi z} = \frac{\Lambda (x-iy)}{2\pi (x^2+y^2)} = \frac{\Lambda}{2\pi r} (\cos \theta - i \sin \theta).
+ 		\end{equation}
+ 		
+ 		We see that the velocity decreases in $1/r$, this is due to the constant mass flow, so if the surface increases with r the velocity has to decrease to keep $\dot{m} = \rho v S$ constant. 
+ 		
+ 	\subsubsection{Free vortex}
+ 		\begin{wrapfigure}[5]{l}{3cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.33]{ch2/26}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		We do the same as the other cases: 
+ 		\begin{equation}
+ 		\begin{aligned}
+ 		&w = \frac{i\Gamma}{2\pi} \ln z = \frac{i\Gamma}{2\pi} \ln (re^{i\theta}) = \frac{i\Gamma}{2\pi} (\ln r + i\theta) = -\frac{\Gamma}{2\pi} \theta + \frac{i\Gamma}{2\pi} \ln r \\
+ 		&\phi = -\frac{\Gamma}{2\pi} \theta, \psi = \frac{\Gamma}{2\pi} \ln r
+ 		\end{aligned}
+ 		\end{equation}
+ 		
+ 		We see that this is the inverse case of the previous one, streamlines are circles oriented in negative rotational motion around z-axis (z entering tin the sheet) so clockwise. We can compute the velocity field by deriving among z and we find that: 
+ 		
+ 		\begin{equation}
+ 		u = \frac{\Gamma \sin \theta}{2 \pi r} \qquad v = -\frac{\Gamma \cos \theta}{2\pi r}
+ 		\end{equation}
+ 		
+ 		Let's specify that $v_\theta = \frac{1}{r} \frac{\D \phi}{\D \theta} = -\frac{\Gamma}{2 \pi r}$, and that we have a vortex singularity in the center because $\Gamma = 0. \infty$.
+ 		
+ 	\subsubsection{Flow around a cylinder}
+ 		\begin{wrapfigure}[5]{r}{5.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.33]{ch2/27}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		Let's make a combination of a uniform flow and a source + sink as shown on the figure. The combination gives:
+		
+		\begin{equation}
+		w = Uz + \frac{\Lambda}{2\pi} \ln \frac{z+a}{z-a}= Uz + \frac{\Lambda}{2\pi} \ln \frac{1+a/z}{1-a/z}.
+		\end{equation}
+		
+		To have the flow around a cylinder we need to compute the limit $a\rightarrow 0$, and will need the Taylor expansion of $\ln$:
+		
+		\begin{equation}
+		\ln \frac{1+\epsilon}{1-\epsilon} \approx 2 \epsilon + \cancel{o(\epsilon ^3)} \qquad \Rightarrow \lim _{a\rightarrow 0} w = \lim _{a \rightarrow 0} \left[ Uz + \frac{\Lambda}{2\pi} 2 \frac{a}{z} \right]
+		\end{equation}
+		
+		by defining $\mu = 2\Lambda a$ we find the \textbf{flow around a cylinder}:
+		
+		\begin{equation}
+		w = Uz + \frac{\mu }{2\pi z}.
+		\label{eq:2.42}
+		\end{equation}
+		
+		If we replace $z= x+iy$ to find $\phi$ and $\psi$ we find:
+		
+		\begin{equation}
+		\phi = Ux + \frac{\mu}{2\pi }\frac{x}{r^2} \qquad \psi = Uy - \frac{\mu }{2\pi} \frac{y}{r^2}.
+		\end{equation}
+		
+		In this flow a closed streamline exists forming the so called \textbf{Rankine body} and which describes a cylinder in the case $a\rightarrow 0$. Indeed it is possible to find an exact solution for $\psi = 0$. This configuration has a symmetry according to x and y-axis when taking the center of the cylinder as origin. This implies that $\vec{F} = - \oint _{cyl} p\, d\vec{S} = 0$. This is the so called \textbf{paradox of d'Alembert} because we expect to find at least a drag force. A lift force can be find on the cylinder by adding a vortex. We conclude by saying that we can rewrite \eqref{eq:2.42} as (R the radius of the cylinder):
+		
+		\begin{equation}
+		w = U\left( z + \frac{R^2}{z} \right) \qquad with \ R^2 = \frac{\mu }{2\pi U}.
+		\end{equation}
+		
+		\newpage
+		
+	\subsubsection{Cylinder Joukowski transformation}
+		\begin{wrapfigure}[5]{l}{5.5cm}
+		\vspace{-5mm}
+		\includegraphics[scale=0.2]{ch2/28}
+		\captionof{figure}{}
+		\end{wrapfigure}
+		Let's do a mapping, a transformation, to try to find our airfoil based on simple geometries. Let's as first example apply the transformation $Z = z + \frac{R^2}{z}$ to the cylinder of radius R. Let's first remark that the cylinder will become a flat plate:
+		
+		\begin{equation}
+		Z = z + \frac{R^2}{z} = Re^{i\theta}  \frac{R^2}{Re^{i\theta}} = 2 R \cos \theta 
+		\end{equation}
+		
+		Indeed, as $\cos \theta \in [-1,1]$ and the result is real, we have a flat plate between -2R and 2R in the x-axis. The flow Z is directly found: $W(Z) = UZ$. The second example will be the application of the same transformation on a cylinder of this time radius $r>R$. In this case the circle becomes an ellipse:
+		
+		\begin{equation}
+		Z = r e^{i\theta} + \frac{R^2}{r^2}e^{-i\theta} = \left( r + \frac{R^2}{r} \right)\cos \theta + i \left( r - \frac{R^2}{r} \right) \sin \theta.
+		\end{equation}		 
+		
+		Let's also compute the velocity field using the chain rule:
+		
+		\begin{equation}
+		\frac{dW}{dZ} = \frac{dw}{dZ} = \frac{dw}{dz}\frac{dz}{dZ} = \left( 1 -\frac{r^2}{z^2} \right) \left( \frac{1}{1-\frac{R^2}{z^2}} \right).
+		\end{equation}
+		
+		We see that the expression becomes infinite when $z^2 = R^2$. The reason is that the transformation is not analytical in these points so they must not be in the flow. 
+		
+		The examples are summarized in the figures below 
+		
+		\begin{center}
+		\begin{minipage}{0.45\textwidth}
+		\includegraphics[scale=0.25]{ch2/29}
+		\captionof{figure}{}
+		\end{minipage}
+		\begin{minipage}{0.45\textwidth}
+		\includegraphics[scale=0.3]{ch2/30}
+		\captionof{figure}{}
+		\end{minipage}
+		\end{center}
+		
+		Now suppose that we place no longer the center of the cylinder at the origin, but on the real axis. The mapping of the cylinder now takes the shape of a \textbf{symmetrical wing profile}. We see that there is two remarkable points that are H and A corresponding to the points $H_1$ and $A_1$ of the black and red circles, our profile is in between them. Now to give camber we only have to move the center of the cylinder on the y-axis. Please reffer to figures below. 
+		
+		\begin{center}
+		\begin{minipage}{0.45\textwidth}
+		\includegraphics[scale=0.4]{ch2/31}
+		\captionof{figure}{}
+		\end{minipage}
+		\begin{minipage}{0.45\textwidth}
+		\includegraphics[scale=0.3]{ch2/32}
+		\captionof{figure}{}
+		\end{minipage}
+		\end{center}
+		
+		Note that for the green circle in first figure, the complex potential becomes:
+		
+		\begin{equation}
+		w = U\left( z-z_c + \frac{r^2}{z-z_c} \right)
+		\end{equation}
+		
+		As last remark, let's remind that we had singularities in the second example. These points corresponds here to $H_1$ and $S_1$. The mapping of $H_1$ is always H the trailing edge, the velocity is there infinitely large. This was the discussion we've previously done with the stagnation point that has to move on the trailing edge otherwise $v = \infty$ because of the sharp edge. We can solve this by adding a vortex. This methods gives a limited amount of airfoils. 
