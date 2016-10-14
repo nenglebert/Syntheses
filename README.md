@@ -62,6 +62,7 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Vibration & Accoustics](IRCI4-EM/Vibration & Accoustics/build/Vibration & Accoustics.pdf)
 - [ ] ***Physique***
   - [ ] [Mécanique quantique II](IRCI4-PHYS/Mécanique quantique II/build/Mécanique quantique II - Nicolas Englebert.pdf)
+  - [ ] [Physique des lasers] (IRCI4-PHYS/Physique des lasers/build/Physique des lasers - Nicolas Englebert.pdf)
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors
