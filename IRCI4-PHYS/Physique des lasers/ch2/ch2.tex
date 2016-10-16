@@ -470,17 +470,488 @@ Partons maintenant des équations de Maxwell et des équations constitutives. Co
 	
 	\newpage
 	\section{Interactions dans un milieu à deux niveaux atomiques}
+	\subsection{Coefficients d'Einstein}
+	Nous allons maintenant considérer le point de vue d'A. Einstein et ses coefficients. Soit 
+	un système atomique avec seulement deux niveaux d'énergies $E_1$ et $E_2$ et soit $N_1,N_2$ 
+	le nombre d'atome par unité de volume dans chacun de ces niveaux. \\
 	
+	Il existe plusieurs interactions possibles entre ce système et un champ électromagnétique : 
+	nous allons commencer par supposer que tout photon que l'on trouve dans ce système possède 
+	une énergie proche de l'écart énergétique entre les deux niveaux : $\hbar\omega_a=E_2-E_1$ où 
+	$\omega_a$ est la fréquence de Bohr de la transition. On suppose également que le champ EM 
+	a une densité spectrale de radiation $\omega_a$ : $u(\omega_a)$. \\
 	
+	Notons que $u(\omega_a)$ ne vaut pas forcément celle que nous venons d'obtenir pour le corps
+	noir. Pour un laser, nous aurions
+	\begin{equation}
+	u(\omega_a) = \delta(\omega-\omega_a)\hbar\omega n_p
+	\end{equation}
+	où $n_p$ est la densité de photon. 	Trois interactions sont possibles 
+	\begin{center}
+	\includegraphics[scale=0.85]{ch2/image11.png}
+	\captionof{figure}{ }
+	\end{center}
+	où $\Gamma_{12} (\Gamma_{21})$ est le taux d'absorption (d'émission stimulée) par unité de 
+	volume ($s^{-1}.m^{-3}$), $U_{21}$ est le taux d'émission spontanée par unité de volume et 
+	$A_{ij},B_{ij}$ sont les coefficients d'Einstein.\\
 	
+	On peut alors se demander que vaut $\Gamma_{21}$ pour un photon/mode à $\omega_a$. La seule
+	inconnue est $u(\omega_a)$ qui est une énergie par unité de fréquence par unité de volume
+	\begin{equation}
+	u(\omega_a) = 1*\hbar\omega_a*\left(\dfrac{\omega_a^2}{\hbar^22c^3}*\eta^3\right)
+	\end{equation}
+	où 1 est le nombre de photon que l'on multiplie par l'énergie et la densité spectrale de mode.\\
 	
+	Intéressons-nous au cas particulier d'\textit{atomes à l'équilibre thermique dans une cavité 
+	à la température $T$.} A l'équilibre, le taux de création doit correspondre au taux d'annihilation
+	\begin{equation}
+	{B_{12}}u({\omega _a}){N_1} = {B_{21}}u({\omega _a}){N_2} + {A_{21}}{N_2}
+	\end{equation}
+	On peut en déduire la densité spectrale d'énergie du champ qui permet d'être à cet équilibre
+	\begin{equation}
+	u({\omega _a}) = \frac{{{A_{21}}}}{{\frac{{{N_1}}}{{{N_2}}}{B_{12}} - {B_{21}}}}
+	\end{equation}
+	Comme nous sommes en situation d'équilibre, le rapport de $N_1$ et $N_2$ est donné par la 
+	statistique de Boltzmann
+	\begin{equation}
+	\frac{{{N_1}}}{{{N_2}}} = \exp [({E_2} - {E_1})/{k_B}T] = \exp (\hbar {\omega _a}/{k_B}T)
+	\end{equation}
+	Plank nous donne une autre expression de $u(\omega_a)$ :
+	\begin{equation}
+	u({\omega _a}) = \frac{{{A_{21}}/{B_{21}}}}{{{B_{12}}/{B_{21}}\exp (\hbar {\omega _a}/{k_B}T) - 1}} = \frac{{\hbar {\omega _a}^3{\eta ^3}}}{{{\pi ^2}{c^3}}}\frac{1}{{\exp (\hbar {\omega _a}/{k_B}T) - 1}}
+	\end{equation}
+	Ces deux expressions de $u(\omega_a)$ décrivent une cavité fermé à l'équilibre : il s'agit de 
+	corps noirs, nous pouvons égaler les deux expressions. On en tire que 
+	\begin{equation}
+	B_{12} = B_{21},\qquad\qquad \frac{{{A_{21}}}}{{{B_{21}}}} = \frac{{\hbar {\omega _a}^3{\eta ^3}}}
+	{{{\pi ^2}{c^3}}}
+	\end{equation}
+	Dès lors
+	\begin{equation}
+	\Rightarrow \;\;{U_{21}} = {B_{21}}\rho ({\omega _a})\hbar {\omega _a}{N_2}
+	\end{equation}
+	On peut interpréter l'émission spontanée comme étant une émission stimulée par l'émission du vide : le taux démission spontanée correspond au taux d'émission stimulée à 1 photon/mode.\\
 	
+	A l'équilibre thermique, il y a plus d'atomes dans $E_1$ que $E_2$ car le taux d'émission spontané est bien plus important que le stimulé à l'équilibre thermique.
 	
+	\begin{equation}
+	R = \frac{{spontaneous\ emission\ rate}}{{stimulated\ emission\ rate}} = \exp (\hbar {\omega _a}/{k_B}T) - 1
+	\end{equation}
 	
+	\subsection{Lien avec le temps de vie spontané}
+	\begin{wrapfigure}[11]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.75]{ch2/image12.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	La variation de la densité d'atome dans le niveau excité s'écrit
+	\begin{equation}
+	\frac{{{\rm{d}}{N_2}}}{{{\rm{d}}t}} =  - {A_{21}}{N_2}
+	\end{equation}
+	Ce qui correspond à un photon émis pour un atome désexciter. Après résolution
+	\begin{equation}
+	{N_2}(t) = {N_{20}}{e^{ - {A_{21}}t}}
+	\end{equation}
+	On parle alors de \textit{temps de vie radiatif} (temps de vie avant une émission spontanée)
+	\begin{equation}
+	t_{sp} = 1/A_{21}
+	\end{equation}
+	Il s'agit de l'inverse de $A_{21}$ et cela correspond au temps de vie de notre atome dans 
+	l'état d'énergie supérieure. Ceci n'est valable que pour deux niveaux, mais on peut 
+	généraliser à plusieurs niveaux
+	\begin{equation}
+	\frac{{{\rm{d}}{N_2}}}{{{\rm{d}}t}} =  - \sum\nolimits_k {{A_{2k}}} {N_2} =  - {N_2}/{t_{sp}}
+	\end{equation}
 	
+	\subsection{Gain optique et forme de raie}
+	Jusqu'ici nous avions considéré que les niveaux d'énergies sont bien déterminés : $\hbar
+	\omega_a = E_2-E_1$ ce qui correspond à un delta de Dirac en fréquence. Ceci signifierait une 
+	onde continue temporellement ce qui n'est pas possible
+	\begin{center}
+	Temps de vie spontané $t_{sp}\neq \infty\qquad\Rightarrow\qquad$ spectre d'émission $\neq 
+	\delta(\omega-\omega_a)$
+	\end{center}
+	En conclusion, l'atome interagit avec un continuum de fréquences de radiation centrée 
+	sur la fréquence atomique $\nu_a$ et la probabilité de transition dépend de la fréquence. On 
+	définit la \textbf{forme de raie normalisée} $g(\omega)$ tel que
+	\begin{equation}
+	\int g(\omega)\ \text{d}\omega = 1
+	\end{equation}
+		
+	\begin{itemize}
+	\item[$\bullet$] Le taux d'absorption par unité de volume dans l'intervalle de fréquence 
+	angulaire $[\omega,\omega+\delta\omega$ vaut
+	\begin{equation}
+	{\Gamma _{12}}(\omega )\delta \omega  = {B_{12}}{N_1}g(\omega )u(\omega )\delta \omega 
+	\end{equation}
+	On en tire le taux d'absorption total
+	\begin{equation}
+	{\Gamma _{12}} = \int {{B_{12}}u(\omega )g(\omega ){N_1}{\rm{d}}\omega } 
+	\end{equation}
+	\item[$\bullet$] Taux d'émission stimulée total
+	\begin{equation}
+	{\Gamma _{21}} = \int {{B_{21}}u(\omega )g(\omega ){N_2}{\rm{d}}\omega } 
+	\end{equation}
+	\end{itemize}
+	A la fréquence $\omega$, le système réagit avec une certaine intensité pondérée 
+	par $g(\omega)$.
+	\begin{center}
+	\includegraphics[scale=0.65]{ch2/image13.png}
+	\captionof{figure}{Absorption à $\omega_a$ à l'énergie $E_2$ (gauche) et émission 
+	stimulée (droite)}
+	\end{center}
 	
+
+	\begin{wrapfigure}[7]{l}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.75]{ch2/image14.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Penchons-nous sur l'absorption d'une onde monochromatique à $\omega_0$. La densité 
+	spectrale d'énergie s'obtient facilement : proportionnel à un delta de Dirac centré
+	en $\omega_0$, à l'énergie des photons et à la densité de photon
+	\begin{equation}
+	u(\omega ) = \hbar {\omega _0}{n_p}\delta (\omega  - {\omega _0})
+	\end{equation}
+	Sachant que $\DS {B_{21}} = {B_{12}} = B = \frac{{{\pi ^2}{c^3}}}{{\hbar {\omega _0}^3{\eta ^3}}}
+	{A_{21}}$, avec les deux relations intégrales que nous venons d'obtenir, on trouve
+	\begin{equation}
+	{\Gamma _{12}} = B\hbar {\omega _0}{n_p}g({\omega _0}){N_1},\qquad\qquad 
+	{\Gamma _{21}} = B\hbar {\omega _0}{n_p}g({\omega _0}){N_2}
+	\end{equation}
+	Considérons le taux de variation de la densité de photon $n_p$ : celle-ci peut augmenter 
+	(absorption) ou diminuer (émission spontanée et stimulée)
+	\begin{equation}
+	\frac{{{\rm{d}}{n_p}}}{{{\rm{d}}t}} = ({\Gamma _{21}} - {\Gamma _{12}}) + \underbrace{\text{spontaneous emission}}_{\approx 0}
+	\end{equation}
+	La contribution de l'émission spontanée peut être négligée : elle se produit dans toutes les 
+	directions et dans toutes les fréquences, peu de chance de jouer un rôle dans l'émission laser. 
+	Après ré-écriture
+	\begin{equation}
+	\frac{{{\rm{d}}{n_p}}}{{{\rm{d}}t}} = B\hbar {\omega _0}{n_p}g({\omega _0})({N_2} - {N_1})
+	\end{equation}
 	
+	\begin{wrapfigure}[6]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.75]{ch2/image15.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	En laboratoire, nous avons accès à l'intensité ($I = <S_z> (W.m^{-2})$). Sachant que 
+	$I$ est le flux de photon (flux*énergie photon) et $\mathcal{J}$ est le courant (densité 
+	de photon * vitesse de groupe) :
+	\begin{equation}
+	\left.\begin{array}{ll}
+	I &= {\cal J}\hbar {\omega _0}\\
+	{\cal J} &= {n_p}{v_g}
+	\end{array}\right\}\quad\Rightarrow\quad I = \hbar {\omega _0}{n_p}{v_g}
+	\end{equation}
+	La variation de l'intensité en fonction de la position dans la cavité s'exprime alors
+	\begin{equation}
+	\frac{{{\rm{d}}I}}{{{\rm{d}}z}} = \hbar {\omega _0}{v_g}\frac{{{\rm{d}}{n_p}}}{{{\rm{d}}z}} = \hbar {\omega _0}\frac{{{\rm{d}}{n_p}}}{{{\rm{d}}t}}
+	 = \hbar {\omega _0}B\hbar {\omega _0}g({\omega _0})({N_2} - {N_1})\frac{I}{{\hbar {\omega _0}{v_g}}} =  - \alpha I
+	\end{equation}
+	où $\frac{I}{{\hbar {\omega _0}{v_g}}}=n_p$. Il s'agit d'une simple relation constante*intensité : 
+	cela donne lieu à une exponentielle décroissante de l'intensité lors de la propagation dans un 
+	milieu. Dès lors, $\alpha$ est proportionnel au coefficient d'Einstein (échange matière-lumière) 
+	mais aussi à la différence $N_1-N_2$
+	\begin{equation}
+	\alpha  = \frac{{\hbar {\omega _0}B{n_g}}}{c}g({\omega _0})({N_1} - {N_2}) =  - {\cal G}
+	\end{equation}
+	Dans un laser, on cherche à obtenir $N_2>N_1$ de façon à avoir $\mathcal{G}$ positif, soit un 
+	milieu à gain.\\
 	
+	La seule chose qui peut changer est le $N_1-N_2$ (densité atomique en $m^{-3}$. On introduit 
+	alors la section efficace $\sigma$ ($m^2$)
+	\begin{equation}
+	\alpha  = \frac{{{\pi ^2}{c^2}{n_g}}}{{{\eta ^3}{t_{{\rm{sp}}}}\omega _0^2}}g({\omega _0})({N_1} - {N_2}) =  - {\cal G} = \sigma ({\omega _0})({N_1} - {N_2})
+	\end{equation}
+	\begin{itemize}
+	\item[$\bullet$] A l'équilibre thermique
+	\begin{equation}
+	{N_2}/{N_1} = \exp ( - \hbar {\omega _a}/{k_B}T) \ll 1\qquad\Rightarrow\qquad N_1>N_2\quad 
+	\rightarrow\quad \alpha>0 : \text{ atténuation}
+	\end{equation}
+	\item[$\bullet$] Lors d'une \textit{inversion de la population}, loin de l'équilibre
+	\begin{equation}
+	{N_2} > {N_1} \Rightarrow {\cal G} > 0\ :\ \text{ amplification}
+	\end{equation}
+	\end{itemize}
 	
+	\begin{center}
+		\includegraphics[scale=0.75]{ch2/image16.png}
+	\captionof{figure}{Commentaires intéressants slide 30}
+	\end{center}
 	
+	\subsection{Fonction forme de raie et mécanismes d'élargissement}
+	Le but de cette sous-section est d'établir une expression de $g(\omega)$ à partir des 
+	calculs des spectres d'émission et d'absorptions.
 	
+	\subsubsection{Largeur naturelle}
+	Il s'agit du cas le plus simple, celui où l'atome se désexcite en émettant une radiation 
+	à $\omega_a$. Plusieurs hypothèses sont faites 
+	\begin{enumerate}
+	\item Système à deux niveaux, le retour vers l'état fondamental n'est possible que par 
+	émission radiative
+	\item Le temps d'excitation des atomes est petite par rapport à $t_{sp}$ $\Rightarrow {N_2}(t = 0) 
+	= {N_{20}}{\rm{  et   }}{N_2}(t < 0) \approx 0$
+	\item Faible excitation : $1\ll R$ (émission spontanée prédominante)
+	\end{enumerate}
+	
+	\newpage
+		\begin{wrapfigure}[9]{r}{6.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.75]{ch2/image17.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	L'énergie émise au cours du temps varie car la densité fait de même : l'énergie émise par 
+	unité de temps par unité de volume $W$ s'exprime\footnote{Seulement un photon émis par chaque
+	atome.}
+	\begin{equation}
+	W(t) =  - \hbar {\omega _a}\frac{{d{N_2}}}{{dt}} = \frac{{\hbar {\omega _a}}}{{{t_{{\rm{sp}}}}}}{N_{20}}\exp ( - t/{t_{{\rm{sp}}}}){\rm{ }}(t \ge 0)
+	\end{equation}
+	Le champ EM classique associé à cette désexcitation est un champ oscillant à $\omega_a$ et dont 
+	l'amplitude décroit au cours du temps.\\
+
+	Calculons l'amplitude spectrale (transformée de Fourier, le tilde désigne le domaine des 
+	fréquences)
+	\begin{equation}
+	\tilde E(\omega ) = \int\limits_{ - \infty }^{ + \infty } {E(t)} \,{\rm{exp(}}i\omega t{\rm{)d}}t = \int\limits_0^{ + \infty } {{E_0}{\rm{exp(}} - t/2{t_{sp}} - i{\omega _a}t{\rm{)}}\,} {\rm{exp(}}i\omega t{\rm{)}}\,{\rm{d}}t{\rm{  }}  = \int\limits_0^{ + \infty } {{E_0}\exp \left\{ {t[i(\omega  - {\omega _a}) - 1/2{t_{sp}}]} \right\}{\rm{d}}t}
+	\end{equation}
+	Après intégration
+	\begin{equation}
+	\tilde E(\omega ) = \frac{{{E_0}}}{{ - i(\omega  - {\omega _a}) + 1/2{t_{sp}}}}
+	\end{equation}
+	Le spectre vaut alors
+	\begin{equation}
+	\tilde {\cal I}(\omega ) = |\tilde E(\omega ){|^2}\quad\Rightarrow\quad 
+	\tilde {\cal I}(\omega ) = \frac{{E_0^2}}{{{{(\omega  - {\omega _a})}^2} + {\gamma ^2}/4}}
+	\end{equation}
+	Ceci n'est rien d'autre qu'une lorentzienne avec un profil d'épaisseur $\gamma = 1/t_{sp}=A_{21}$ 
+	(spectre d'émission). Si l'atome reste très peu longtemps dans son état excité $g(\omega)$ sera 
+	important mais s'il reste très longtemps dans le niveau excité $g(\omega)$ sera très 
+	petit\footnote{Calcul de la normalisation slide 33 passé}
+	\begin{equation}
+	g(\omega ) = \frac{K}{{1 + {{(\frac{{\omega  - {\omega _a}}}{{\gamma /2}})}^2}}}
+	\end{equation}
+	où $K=\frac{2}{\pi\gamma}, \gamma=1/t_{sp}$ (largeur spectrale (largeur totale à la moitié 
+	du maximum) : $\Delta\omega = \gamma$.
+	
+	Jusqu'ici nous n'avons travailler qu'à deux niveaux : il est possible de généraliser l'expression 
+	de $\gamma$ (forme de raie) avec le principe d'incertitude temps-énergie : il suffit de considérer 
+	plusieurs coefficients d'Einstein, un pour chaque transition possible
+	\begin{enumerate}
+	\item Pour le niveau supérieur : $\Delta {{\rm{E}}_s} = \hbar \Delta {t_s}^{ - 1} = \hbar \sum
+	\nolimits_k {{A_{sk}}} $
+	\item Pour le niveau inférieur : $\Delta {{\rm{E}}_i} = \hbar \Delta {t_i}^{ - 1} = \hbar \sum\nolimits_l {{A_{\;il}}} $
+	\end{enumerate}
+
+	\begin{wrapfigure}[7]{l}{3.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.85]{ch2/image18.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	En effet, le système ne reste qu'un certain temps sur les niveaux excités : il y a une incertitude
+	 sur les niveaux d'énergie et donc une incertitude sur les photons émis, c'est ce que traduit
+	 $g(\omega)$. La largeur de raie naturelle tient compte de ceci
+	 \begin{equation}
+	{\gamma _n} = \Delta \omega  = \frac{{\Delta {{\rm{E}}_s} + \Delta {{\rm{E}}_i}}}{\hbar } = {\gamma _s} + {\gamma _i} = \sum\limits_{l\,\,t.q.\hfill\atop
+\scriptstyle{{\rm{E}}_k} < {{\rm{E}}_s}\hfill} {{A_{\;sk}}}  + \sum\limits_{l\,\,t.q.\hfill\atop
+\scriptstyle{{\rm{E}}_l} < {{\rm{E}}_i}\hfill} {{A_{\;il}}} 
+	 \end{equation}
+	 
+	 \subsubsection{Mécanisme d'élargissement homogène}
+	 Il existe des principes physiques qui vont "agrandir" la grandeur naturelle (qui est la plus 
+	 petite que possible). Il en existe deux type (selon le type de laser)
+	 \begin{enumerate}
+	 \item Homogène : tous les atomes sont impactés de la même façon par ce mécanisme, ils subissent 
+	 tous le même "élargissement".
+	 \item Inhomogène : le milieu atomique est divisé en classe d'atomes qui interagissent tous 
+	 un peu différemment.
+	 \end{enumerate}
+	 Voyons ici différent mécanismes homogènes.\\
+	 
+	 \textsc{Transition non-radiative}\\
+	 Celles-ci sont dues à des collisions entre les atomes (laser à gas comme dans le laser
+	 He-Ne) où les interactions avec des photons (laser solide)\footnote{Nous avions vu l'incertitude 
+	 temps-énergie: plus un atome reste longtemps dans un état, plus cet état est incertain.}
+	 \begin{center}
+ 	\includegraphics[scale=0.5]{ch2/image19.png}
+	\captionof{figure}{La différence entre les deux niveaux part en énergie cinétique}
+	 \end{center}
+	 \begin{equation}
+	\gamma  = {\gamma _n} + 1/{t_{{\rm{nr - low}}}} + 1/{t_{{\rm{nr - up}}}}
+	 \end{equation}
+	 avec $t_{nr-low/up}$ le temps de vie non radiatif de l'état haut/bas.\\
+	 
+	 \textsc{Collisions (sans transitions)}\\
+	 Cet effet est plus subtil : il se déroule entre les atomes pour les gaz et avec les 
+	 phonons pour les solides (pas de modification du temps de vie). Considérons un atome
+	 oscillant. Si un second atome arrive dans son environnement avec son propre champ électrique, 
+	 il va modifier les écarts d'énergie entre les niveaux : effet Stark. Ceci se traduit par un 
+	 déphasage durant l'émission radiative, qui est aléatoire. 
+	 
+	 	 \begin{center}
+ 	\includegraphics[scale=0.45]{ch2/image20.png}
+	\captionof{figure}{ }
+	 \end{center}
+	 
+	 La solution est entrecoupée de sauts de phase : $\tau_c$ est l'intervalle entre deux collisions 
+	 qui est supposé beaucoup plus grand que le temps de la collision. 
+	 Si l'on a une onde continue le spectre n'est qu'un Delta de Dirac mais comme la solution est 
+	 entrecoupée de sauts de phase, le spectre se voit élargi.\\
+	 
+	 Durant l'intervalle $\tau_c$, le dipôle atomique oscille à $\omega_a$, le champ est donc 
+	 une exponentielle proportionnelle à ce temps
+	 \begin{equation}
+	 E(t) \propto\exp(-i\omega_at')\qquad t<t'<t+\tau
+	 \end{equation}
+	 Le spectre correspondant vaut
+	 \begin{equation}
+	 \tilde E(\omega ;{\tau _c}) \propto \int\limits_t^{t + {\tau _c}} {{{\rm{e}}^{ - i{\omega _a}t'}}} {{\rm{e}}^{i\omega t'}}{\rm{d}}t' = \frac{{{\rm{exp(}}i\Delta \omega {\tau _c}{\rm{)}} - 1}}{{i\Delta \omega }}{{\rm{e}}^{i\Delta \omega t}}{\rm{ }}
+	 \end{equation}
+	 où $\Delta\omega = \omega-\omega_a$. L'intensité spectrale est donnée par le module carré de 
+	 cette transformée de Fourier
+	 \begin{equation}
+	 \tilde I(\omega ;{\tau _c}) \propto \frac{{{{(\cos [\Delta \omega {\tau _c}] - 1)}^2} + {{\sin }^2}[\Delta \omega {\tau _c}]}}{{\Delta {\omega ^2}}}{\rm{  = }}\frac{{2 - 2\cos [\Delta \omega {\tau _c}]}}{{\Delta {\omega ^2}}}
+	 \end{equation}
+	 Nous allons sommer sur tous les spectres en tenant compte du poids de chaque spectre : 
+	 probabilité. On suppose que le saut de phase est aléatoire et que $p(\tau_c)$ est la 
+	 probabilité que le temps entre deux collisions soit $\tau_c$ :
+	 \begin{equation}
+	  \tilde I(\omega ) \propto \int\limits_0^\infty  {\tilde I(\omega ;{\tau _c})p({\tau _c}){\rm{d}}{\tau _c}}
+	 \end{equation}
+	 La théorie cinétique nous donne une expression de la distribution de probabilité du délai entre
+	 deux collisions 
+	 \begin{equation}
+	 p({\tau _c}){\rm{d}}{\tau _c} = 1/{\tau _0}\exp ( - {\tau _c}/{\tau _0}){\rm{d}}{\tau _c}
+	 \end{equation}
+	 Pour calculer l'intensité, on s'intéresse à la valeur moyenne de ce délai entre deux collisions
+	 \begin{equation}
+	 \int\limits_0^\infty  {{\tau _c}p({\tau _c}){\rm{d}}{\tau _c}}  = {\tau _0}
+	 \end{equation}
+	 Il ne reste plus qu'à calculer
+	 \begin{equation}
+	 \tilde I(\omega ) \propto \int\limits_0^\infty  {\frac{{1 - \cos [\Delta \omega {\tau _c}]}}{{\Delta {\omega ^2}}}{{\rm{e}}^{ - {\tau _c}/{\tau _0}}}{\rm{d}}{\tau _c}} 
+	 = \frac{1}{{2\Delta {\omega ^2}}}\int\limits_0^\infty  {(2{{\rm{e}}^{ - {\tau _c}/{\tau _0}}} - {{\rm{e}}^{ - (1/{\tau _0} - i\Delta \omega ){\tau _c}}} - {{\rm{e}}^{ - (1/{\tau _0} + i\Delta \omega ){\tau _c}}}){\rm{d}}{\tau _c}}
+	 \end{equation}
+	 Après intégration
+	 \begin{equation}
+	 \tilde I(\omega ) \propto \frac{1}{{2\Delta {\omega ^2}}}\left[ {2{\tau _0} - \frac{1}{{1/{\tau _0} - i\Delta \omega }} - \frac{1}{{1/{\tau _0} + i\Delta \omega }}} \right] = \frac{{{\tau _0}}}{{{{(1/{\tau _0})}^2} + \Delta {\omega ^2}}}
+	 \end{equation}
+	 Il s'agit d'une lorentzienne ! En normalisant à l'unité, on peut trouver la forme de 
+	 raie $g(\omega)$\footnote{Si on considère que la forme de raie est rectangulaire (vrai 
+	 si très petit) : $\int g(\omega)d\omega = 1\Leftrightarrow g(\omega) = 1/\Delta\omega$.}
+	 \begin{equation}
+	 g(\omega ) = \frac{{{\tau _0}}}{\pi }\frac{1}{{1 + \Delta {\omega ^2}/{{({\gamma _{{\rm{co}}}}/2)}^2}}}
+	 \end{equation}
+	 C'est également un profil lorentzien de largeur $\gamma_{co} = 2/\tau_0$.
+	 
+	 \newpage
+	 	\begin{wrapfigure}[12]{l}{5.5cm}
+	\vspace{-3mm}
+	\includegraphics[scale=0.65]{ch2/image21.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	 On peut comptabiliser la largeur naturelle avec la modification obtenue par les collisions : 
+	 décroissance exponentielle de l'amplitude d'oscillation et saut de phases aléatoires
+	 \begin{equation}
+	 {\gamma _{\rm{h}}} = {\gamma _{\rm{n}}} + 1/{t_{nr}} + 2/{\tau _0}
+	 \end{equation}
+	 En pratique, on remarque que le spectre d'émission est beaucoup plus large que ce à quoi 
+	 on s'attend pour la décroissance exponentielle : ceci est du à l'influence de la température. 
+	 Quand celle-ci augmente, la densité de photon augmente et le temps entre deux collisions diminue,
+	 causant un élargissement de la largeur spectrale.
+	 
+	 \subsubsection{Élargissement inhomogène}
+	 Il s'agit d'un mécanisme qui fait que ça ne se déroule pas toujours de la même façon au 
+	 niveau des interactions lumière-matière. Le milieu est donc un ensemble de groupe d'atomes
+	 ayant une fréquence de résonance différente. Il faut donc connaître la distribution statistique
+	 des groupes d'atomes ayant une fréquence $\omega_c$
+	 \begin{equation}
+	 F(\omega_c) : \text{fonction de distribution statistique normalisée à l'unité}
+	 \end{equation}
+	 On a donc que $\delta N_c = F(\omega_c)N\delta\omega_c$ est le nombre d'atomes entrant en 
+	 résonance pour un champ électromagnétique de fréquence dans $[\omega_c,\omega_c+\delta
+	 \omega_c]$.\\
+	 
+	 Chaque groupe d'atome $\delta N_c$ interagit avec une onde optique de fréquence $\omega$ 
+	 proportionnelle à $g_h(\omega-\omega_c)$ où $g_h$ est la forme de raie normalisée centrée 
+	 en $\omega=0$. La contribution de chaque groupe d'atome au taux d'émission stimulée à la 
+	 fréquence $\omega$ vaut donc
+	 \begin{equation}
+	 {\Gamma _{21,c}} = {B_{21}}u(\omega ){g_h}({\omega _c} - \omega )\delta {N_{2,c}}
+	 \end{equation}
+	 On retrouve le coefficient d'Einstein, la densité spectrale d'énergie et $g$ qui permet de 
+	 ne considérer que la fraction correspondante à la fréquence qui nous intéresse. Pour obtenir 
+	 le taux d'émission stimulée total, il faut intégrer
+	 \begin{equation}
+	 \Gamma  = \sum\nolimits_c {{\Gamma _{21,c}}}  = {B_{21}}u{N_2}\underbrace{\int_0^\infty  {{g_h}({\omega _c} - \omega )F({\omega _c})d{\omega _c}} }_{g = F*g_h}
+	 \end{equation}
+	 La nouvelle forme de raie est donnée par la convolution entre l'élargissement homogène et
+	 la fonction de distribution $F$. Cette forme tient ainsi compte des élargissements 
+	 non-homogène. Dès lors, pour que l'élargissement inhomogène affecte le fonctionnement du 
+	 laser, il faut que $F$ soit au moins aussi large que $g_h$.\\
+
+
+	 Passons en revue deux exemples d'élargissement non-homogène
+	 \begin{enumerate}
+	 \item Doppler. Affecte tous les lasers à gaz : on peut créer des sous-ensemble d'atomes qui 
+	 réagissent à des fréquences différentes. Si les photons vont vers la droite et l'atome également, 
+	 la fréquence sera plus importante et inversement. La vitesse $c$ devient alors une certaine 
+	 vitesse $v(z)$ à cause de ce décalage
+	 \begin{equation}
+	 \omega\to \omega-\vec{k}.\vec{v} = \omega-(\pm k.v_z)
+	 \end{equation}
+\begin{center}
+	 	\includegraphics[scale=0.65]{ch2/image22.png}
+	\captionof{figure}{ }
+\end{center}
+	 Pour des atomes de masse $m$ à température $T$, la distribution des vitesses est celle de Maxwell
+\begin{equation}
+f({v_z}) = {\left( {\frac{m}{{2\pi {k_B}T}}} \right)^{1/2}}\exp ( - \frac{{mv_z^2}}{{2{k_B}T}})
+\end{equation}
+Exprimée en fréquence
+\begin{equation}
+F(\omega ) = {\left( {\frac{m}{{2\pi {k_B}T{k^2}}}} \right)^{1/2}}\exp ( - \frac{m}{{2{k_B}T}}\frac{{{{(\omega  - {\omega _a})}^2}}}{{{k^2}}})
+\end{equation}
+Le profil tenant compte de l'élargissement homogène et inhomogène est donné par la convolution 
+entre une lorentzienne et une gaussienne.
+\begin{equation}
+g(\omega ) = \int {{g_h}({\omega _c} - \omega )} F({\omega _c}){\rm{d}}{\omega _c}
+\end{equation}
+Il s'agit d'un \textit{intégrale de Voigt}. Si $\gamma_h\ll k\sqrt{2k_BT/m}$ alors
+\begin{equation}
+g(\omega ) \approx \frac{{{{\mathop{\rm e}\nolimits} ^{ - \frac{{{{[\omega  - {\omega _a}]}^2}}}{{{k^2}2{k_B}T/m}}}}}}{{k\sqrt {2\pi {k_B}T/m} }}\qquad \Rightarrow\qquad \Delta \omega  \approx 1.66k\sqrt {2{k_B}T/m} 
+\end{equation}
+\begin{center}
+	\includegraphics[scale=0.65]{ch2/image23.png}
+	\captionof{figure}{ }
+\end{center}
+\item Environnement. Les environnements amorphes comme le verre : les distances entre chaque atomes 
+ne sont pas connues. Si l'environnement électrique est différent il y aura un 
+déplacement des niveaux d'énergies différent (Stark), \dots Si le milieu est plus ordonnée par 
+exemple YAG (cristallin) à la place de Nd glass (amorphe) l'élargissement est moins important.
+	 \end{enumerate}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
