@@ -473,7 +473,7 @@ The angle of attack is important because the flow has more difficulties to turn 
  		w = U z \qquad \frac{d w}{dz} = U = u+iv \qquad \Rightarrow u = U; v = 0
  		\end{equation}
  		
- 	\subsection{Source / Sink}
+ 	\subsubsection{Source / Sink}
  		\begin{wrapfigure}[8]{r}{3cm}
 		\vspace{-5mm}
 		\includegraphics[scale=0.5]{ch2/25}
@@ -616,3 +616,433 @@ The angle of attack is important because the flow has more difficulties to turn 
 		\end{equation}
 		
 		As last remark, let's remind that we had singularities in the second example. These points corresponds here to $H_1$ and $S_1$. The mapping of $H_1$ is always H the trailing edge, the velocity is there infinitely large. This was the discussion we've previously done with the stagnation point that has to move on the trailing edge otherwise $v = \infty$ because of the sharp edge. We can solve this by adding a vortex. This methods gives a limited amount of airfoils. 
+		
+\subsection{Thin airfoil theory}
+	We will suppose infinitely thin airfoil and small angle of attack, so that the airfoil is represented by the camber line. This means also small camber about 2-3\% of the chord and $\alpha <8\%$. We can try to retrieve the flow by superposition principle by using infinite number of elementary sources or elementary vorticies. The potential function for the source and the elementary one are:
+	
+	\begin{equation}
+	\phi = \frac{\Lambda}{2\pi} \ln r \qquad d\phi = \frac{d\Lambda}{2\pi} \ln r
+	\end{equation}		
+	
+	We then describe the source distribution by the source intensity $\lambda = \frac{d\Lambda}{ds}$ on a part $ds$ of the wing so that the last equation becomes:
+	
+	\begin{equation}
+	d\phi = \frac{\lambda}{2\pi} \ln r\, ds.
+	\end{equation}
+	
+	We will use the second method presented now which is using the vorticies: 
+	
+	\begin{equation}
+	\phi = -\frac{\Gamma}{2\pi} \theta \qquad \vec{v} = \nabla \phi = \underbrace{\frac{\D \phi}{\D r} \vec{1}_r}_{= v_r = 0} + \underbrace{\frac{1}{r} \frac{\D \phi}{\D \theta} \vec{1} _\theta}_{= v_\theta} \qquad \Rightarrow v_\theta = -\frac{\Gamma }{2\pi} \frac{1}{r}.
+	\end{equation}
+	
+	In the same way as the other we can define a \textbf{vortex intensity} to characterize the vortex distribution on a part ds $\gamma = \frac{d\Gamma}{ds}$, the derivative of $\phi$ and the elementary velocity are then: 
+	
+	\begin{equation}
+	d\phi = -\frac{\gamma}{2\pi} \theta \, ds \qquad dv_\theta = -\frac{\gamma ds}{2\pi r}.
+	\end{equation}
+	
+	The aim now is to make that infinitely thin airfoil a streamline, but which distribution of $\gamma$ is needed? To compute this, we can assume because of superposition that the flow is a uniform flow $\vec{U}_\infty$. We also assume that we have an angle of attack $\alpha$. Because of the vorticies, we have a velocity perturbation $\vec{v}$ such that the total velocity is: 
+	
+	\begin{equation}
+	\vec{V}_\infty = \vec{U}_\infty + \vec{v}.
+	\end{equation}
+	
+	\begin{wrapfigure}[9]{l}{8.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch2/33}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	We must now choose $\gamma$ such that $\vec{V}$ is tangential to the airfoil everywhere (we want the camber line to be a streamline). In other words, $\forall P$ the normal component of the velocity should be null $V_{nP} = U_{\infty _{nP}} + v_{nP} = 0$. Let's determine these components by projection. First, for $U_{\infty _{nP}}$ we can remark the sum of angle $\alpha$ and the camber line slope $\tan \beta =  \left(-\frac{dz}{dx}\right)_p \Rightarrow \beta = -\arctan \left(\frac{dz}{dx}\right)_p$, the projection is (camber line: $z = f(x)$):
+	
+	\begin{equation}
+	U_{\infty _{nP}} = U_\infty \sin \left[ \alpha - \arctan \left(\frac{dz}{dx} \right)_P \right].
+	\label{eq:2.54}
+\end{equation}	 
+
+	Now for $v_{np}$, we consider an elementary vortex on a point $x$ on the airfoil that creates an elementary perturbation $\delta v_n$ on point P. This velocity direction is $\theta$ in a $(r,\theta)$ axis with origin at x, so perpendicular to r on the figure. If the angle with the normal is $\delta _3$, the projection will be:
+	
+	\begin{equation}
+	\delta v_n = -\frac{\gamma (x) ds}{2\pi r} \cos \delta _3 .
+	\end{equation}
+	
+	Now we have infinite number of contribution of the infinite vorticies, as $\gamma , r$ and $\delta _3$ depends on position $P$, we have to integrate over the whole airfoil:
+	
+	\begin{equation}
+	v_n = - \frac{1}{2\pi }\int _0 ^c \frac{\gamma (x) ds}{r} \cos \delta _3
+	\end{equation}
+	
+	where $c$ is the chord length. We can express both $r$ and $ds$ in function of x as: 
+	
+	\begin{equation}
+	r = \frac{x_P - x}{\cos \delta _2} \qquad ds = \frac{dx}{\cos \delta _1}
+	\end{equation}
+	
+	which gives 
+	\begin{equation}
+	v_n = - \frac{1}{2\pi }\int _0 ^c \frac{\gamma (x) dx}{x_P - x} \frac{\cos \delta _2}{\cos \delta _1}\cos \delta _3. 
+	\end{equation}
+	
+	We are able to reconsider the condition \eqref{eq:2.54} by replacing our results: 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	\frac{1}{2\pi }\int _0 ^c \frac{\gamma (x) dx}{x_P - x} \frac{\cos \delta _2}{\cos \delta _1}\cos \delta _3 =  U_\infty \sin \left[ \alpha - \arctan \left(\frac{dz}{dx} \right)_P \right].
+	\end{equation}
+	}
+	\end{center}
+	
+	This is a relatively complicated equation, we can simplify it by \textbf{assuming a small camber} (in practice 2\% of the chord), which allows to say that $\delta _1 \approx \delta _2 \approx \delta _3 \approx 0$ and $\arctan \left( \frac{dz}{dx}\right) _P = \left( \frac{dz}{dx}\right) _P$. By considering $\alpha$ small, $\sin \alpha \approx \alpha$:
+	
+	\begin{equation}
+	\frac{1}{2\pi} \int _0 ^c \frac{\gamma (x)\, dx}{x_P - x} = U_{\infty}\left[ \alpha -  \left(\frac{dz}{dx} \right)_P \right].
+	\end{equation}
+	
+	We will introducce a new variable $\theta$ and not anymore decribe the system using $x$ by considering $x = \frac{1}{2}c (1-\cos \theta)$ and $dx = \frac{1}{2}c \sin \theta\, d\theta$: 
+	
+	\begin{equation}
+	\frac{1}{2\pi} \int _0 ^{\pi} \frac{\gamma (\theta)\sin \theta \, d\theta}{\cos \theta - \cos \theta _P} = U_{\infty}\left[ \alpha -  \left(\frac{dz}{dx} \right)_P \right].
+	\label{eq:2.61}
+	\end{equation}
+	
+	This is a quite difficult equation, so let's complicate it even more by expressing $\gamma (\theta )$ in series: 
+	
+	\begin{equation}
+	\gamma (\theta ) = 2U_\infty \left(A_0 \coth \frac{\theta }{2} + \sum _{n=1}^\infty) A_n \sin (n\theta)\right).
+	\end{equation}
+	
+	This is in fact a solution of the last equation but we will not demonstrate it. Notice simply that this respects the Kutta condition that states that there is no vortex allowed on the trailing edge. Indeed for $\gamma (\pi) = 0$  which means no contribution by vortex. We can also state that at the leading edge, the stagnation point is in the pressure side at the front. Indeed, for $\theta = 0$, $\coth \theta = \infty = \gamma (\pi )$ which means that we have a singularity at the TE and that the velocity is infinite due to the turning on the LE.  \\
+	
+	Now we can replace this definition on the previous equation, knowing that $\coth (\theta /2) \sin \theta = 1+\cos \theta$ and renoting $\theta _P = \theta '$, we get:
+	
+	\begin{equation}
+	\frac{1}{2\pi} \int _0 ^{\pi} \frac{\gamma (\theta)\sin \theta \, d\theta}{\cos \theta - \cos \theta _P}  = \frac{U_\infty}{\pi} \left[ \int _0 ^{\pi} \frac{A_0 (1+\cos \theta ) \, d\theta}{\cos \theta - \cos \theta '} + \sum _n A_n \int _0 ^{\pi}  \frac{\sin (n\theta)\sin \theta \, d\theta}{\cos \theta - \cos \theta '}  \right]
+	\end{equation}
+	
+	By using the equality here and the \textbf{Glauert integral}:
+	
+	\begin{equation}
+	\sin (n\theta ) \sin \theta = - \frac{1}{2} [\cos [(n+1)\theta] - \cos [(n-1)\theta]] \qquad \int _0 ^\pi \frac{\cos (n\theta)\, d\theta}{\cos \theta - \cos \theta '} = \pi \frac{sin(n\theta ')}{sin \theta '}
+	\end{equation}
+	
+	The integral becomes: 
+	
+	\begin{equation}
+	\frac{U_\infty}{\pi} \left[ A_0.0 + A_0. \pi - \frac{\pi}{2} \sum _n A_n \frac{\sin [(n+1)\theta '] - \sin [(n-1)\theta ']}{\sin \theta '} \right] = U_\infty \left[ A_0 - \sum _n A_n \cos (n\theta ') \right]
+	\end{equation}
+	
+	where we used the simpson equation. The \eqref{eq:2.61} becomes: 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	A_0 - \sum _n A_n \cos (n\theta ') = \alpha - \left( \frac{dz}{dx} \right)'
+	\end{equation}
+	}
+	\end{center}
+	
+	This equation must be valid $\forall P$ on the airfoil. To find the coefficients $A_i$, let's integrate first this for $0\leq \theta ' \leq \pi$ in order to compute $A_0$: 
+	
+	\begin{equation}
+	A_0\pi - \cancel{\sum _n A_n \int _0 ^\pi \cos (n\theta ')d\theta '} = \alpha\pi - \int _0 ^\pi \frac{dz}{dx}d\theta\qquad \Rightarrow A_0 = \alpha - \frac{1}{\pi} \int _0^\pi \frac{dz}{dx}\, d\theta.
+	\end{equation}
+	
+	For the $A_n$, we multiply the same equation by $\cos (m\theta ')$ before integrating (we will drop the '). Let's see that $\int _0 ^\pi \cos (n\theta)\cos (m\theta) d\theta = 0$ if $ m \neq n $ and $= \pi /2$ if $n = m$. We finally get:
+	
+	\begin{equation}
+	A_n = \frac{2}{\pi} \int _0 ^\pi \frac{dz}{dx} \cos (m\theta) \, d\theta .
+	\end{equation}
+	
+	We can note that for $A_n$ only the camber plays a role, the angle of attack does not appear. Only $A_0$ is influenced by $\alpha$. We are now able to compute any vorticity distribution $\gamma (\theta)$, for example for a flat plate $A_n = 0$ and $A_0 = \alpha$. 
+	
+\subsubsection{Calculation of the total circulation}
+	To get $\Gamma$ we only have to compute the integral over the whole airfoil:
+	
+	\begin{equation}
+	\begin{aligned}
+	\Gamma &= \int _0 ^c \gamma (x) \, dx = \frac{1}{2} c \int _0 ^c \gamma (\theta ) \sin \theta \, d\theta \\
+	& = \frac{1}{2} c \left[ 2U_\infty \int _0 ^\pi A_0 (1+\cos\theta) \, d\theta + 2U_\infty \sum _{n=1}^\infty \int _0^\pi A_n \sin (n\theta)\sin \theta \, d\theta  \right] \\
+	&= U_\infty  c \left[  A_0 \pi  + 2U_\infty + \int _0^\pi \sin ^2(\theta) \, d\theta - \frac{1}{2} \sum _{n=2}^\infty \cancel{\int _0^\pi A_n \cos [(n+1)\theta - \cos (n-1)\theta ] \, d\theta } \right] \\
+	&= U_\infty c [A_0 \pi + A_1 \pi /2].
+	\end{aligned}
+	\end{equation}
+	
+	We see that the circulation only depends on two coefficients. 
+	
+\subsubsection{Calculation of the lift coefficient}
+We can now compute the lift using the kutta formula $L = \rho _\infty U_\infty \Gamma$. We are interested in the $c_l$ and not the lift itself. In 2D we have to divide by the chord so: 
+	
+	\begin{equation}
+	c_l = \frac{L}{\frac{1}{2} \rho _\infty U_\infty ^2 C} = \frac{2\Gamma}{U_\infty c} = \pi (2A_0 + A_1)
+	\label{eq:2.70}
+	\end{equation}
+	
+	We can now replace by definition of the coefficients: 
+	
+	\begin{equation}
+	c_l = 2\pi\left(\alpha - \underbrace{\frac{1}{\pi} \int _0^\pi \frac{dz}{dx} (1-\cos \theta)\, d\theta}_{\alpha _0} \right) = 2\pi (\alpha - \alpha _0)
+	\label{eq:2.71}
+	\end{equation}
+	
+	where $\alpha _0$ is the \textbf{zero lift angle of attack}. We see that we have a linear relation with respect to $\alpha$. We have the theoretical model the same for every profile, only $\alpha _0$ changes with the profile. Remark that the lift is also the integral of the pressure on the lower and upper side:
+	
+	\begin{equation}
+	L = \int _0 ^c (p_l - p_u) \, dx = \rho _\infty U_\infty \int _0 ^c \gamma \, dx \qquad \Rightarrow p_l - p_u = \rho _\infty U_\infty \gamma (x).
+	\end{equation}
+	
+\subsubsection{Calculation of the momentum at the leading edge}
+	\begin{wrapfigure}[5]{l}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch2/34}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	The contribution of the elementary parts of the airfoil gives:
+	
+	\begin{equation}
+	\begin{aligned}
+	&dM_{LE} = - (\Delta p \, dx) x \\ 
+	\Rightarrow &M_{LE} = -\int _0 ^c \Delta p x \, dx = - \rho _\infty U_\infty \int _0^c \gamma x \, dx
+	\end{aligned}
+	\end{equation}
+	
+	After some manipulations (not detailed):
+	
+	\begin{equation}
+	c_{m_{LE}} = \frac{M_{LE}}{\frac{1}{2}\rho _\infty U_\infty ^2 c^2} = - \frac{\pi}{4} (2A_0 + 2A_1 - A_2) = -\frac{1}{4} c_l - \frac{\pi}{4} (A_1 - A_2)
+	\end{equation}
+	
+	where we used \eqref{eq:2.70} for the last expression. This is of the same shape than \eqref{eq:2.11} with negative k. 
+	
+\subsubsection{The aerodynamic center}
+	\begin{wrapfigure}[6]{l}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch2/35}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	The moment on the LE is related to the moment anywhere:
+	
+	\begin{equation}
+	M_{LE} = M_{ac} - x_{ac} L \qquad \Rightarrow c_{m_{LE}} =c_{m_{ac}} - \frac{x_{ac}}{c}c_{l} 
+	\end{equation}
+	
+	By using the last result of the previous section, we get: 
+	
+	\begin{equation}
+	c_{m_{ac}} = \left( \frac{x_{ac}}{c} - \frac{1}{4} \right) c_l - \frac{\pi}{4} (A_1 -A_2).
+	\end{equation}
+	
+	We see that, for this relation to be independent of the angle of attack, we must have $x_{ac} = \frac{c}{4}$ so that: 
+	
+	\begin{equation}
+	c_{m_{ac}} = \frac{\pi}{4} (A_2 - A_1).
+	\label{eq:2.77}
+	\end{equation}
+	
+	Remark that for symmetrical wings $\frac{dz}{dx} = 0 \Rightarrow A_1 = A_2 = 0 \Rightarrow c_{m_{ac}} = 0$. 
+	
+\subsubsection{Calculation of center of pressure}
+	The formula used in the previous section is valid, we replace ac by cp, and since the moment should be null at this point:
+	
+	\begin{equation}
+	c_{m_{cp}} = c_{m_{LE}} + \frac{x_{cp}}{c} c_l = 0 \qquad \Rightarrow \frac{x_{cp}}{c} = \frac{1}{4} + \frac{\frac{\pi}{4}(A_1-A_2)}{c_l} = \frac{1}{4} - \frac{c_{m_{ac}}}{c_l}.
+	\end{equation}
+	
+	Some remarks: 
+	
+	\begin{itemize}
+	\item[•] the center of pressure is not fixed and varies with the lift
+	\item[•] at 0 lift, $x_{cp}\rightarrow \infty$ (for symmetric wing $x_{cp} = x_{ac} = c/4$ fixed)
+	\item[•] cp always downstream to ac because $c_{m_{ac}}<0$.
+	\end{itemize}
+	
+\subsubsection{Effect of flaps}
+	\begin{wrapfigure}[5]{l}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch2/36}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	According to the definition of the zero lift angle in \eqref{eq:2.71}, the effect of the shape becomes greater when $\theta \approx 180\degres$ (trailing edge). By making the zero lift angle more negative we can produce more lift before the critical angle of attack that decreases a bit. 
+	
+	\ \\\\\\
+	
+	\begin{wrapfigure}[6]{r}{3.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.2]{ch2/37}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	The effect is evaluated by taking a flat plate as camber line with a deflection near the TE, starting at E\% of the chord and slope $\eta$. E in function of $\theta _E$ is: 
+	
+	\begin{equation}
+	E = \frac{1}{2} (1+\cos \theta _E).
+\end{equation}	 
+
+	In this case, $A_0$ and $A_n$ can be rewritten as:
+	
+	\begin{equation}
+	\begin{aligned}
+	&A_0 = \alpha - \frac{1}{\pi} \int _0 ^\pi \frac{dz}{dx} d\theta \approx \alpha - \frac{\eta}{\pi} (\pi - \theta _E) \\
+	&A_n = \frac{2}{\pi} \int _0 ^\pi \frac{dz}{dx} \cos (n\theta )d\theta \approx -\frac{2\eta}{\pi} \frac{1}{n} \sin (n\theta _E)
+	\end{aligned}
+	\end{equation}
+	
+	such that the lift coefficient becomes: 
+	
+	\begin{equation}
+	c_l = \pi (2A_0 + A_1) = \underbrace{2\pi \alpha}_{\mbox{without flaps}} \underbrace{- 2\eta (\pi - \theta _E + \sin \theta)}_{\Delta c_l > 0 \mbox{ since } \eta < 0}.
+	\end{equation}
+	
+	This seams to be like $c_l = 2\pi (\alpha - \alpha _0)$ allowing the definition for the zero lift angle: 
+	
+	\begin{equation}
+	\alpha _0 = \frac{\eta}{\pi} (\pi - \theta _E + \sin \theta)
+	\end{equation}
+	
+	which indicates an increase (decrease since $\eta <0$) of $\alpha _0$ since it is null for the flat plate. For the moment at the ac \eqref{eq:2.77}
+	
+	\begin{equation}
+	\Delta c_{m_{ac}} = \frac{\eta }{2} \sin \theta _E (1- \cos \theta _E)
+	\end{equation}
+	
+	which also indicates a decrease in the momentum which is 0 for the symmetric wing. 
+	
+	\begin{wrapfigure}[3]{l}{4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch2/38}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	Here is plotted the the modification of $\alpha _0$ by the flaps. The theory is quite good except for small E (near the TL). This is due to the fact that the flap is immersed into the boundary layer in this region. 
+	\ \\\\\\
+
+
+\subsection{Numerical methods: source panel and vortex panel}
+\subsubsection{Source panel}
+
+	\begin{center}
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[scale=0.25]{ch2/39}
+	\captionof{figure}{}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[scale=0.25]{ch2/40}
+	\captionof{figure}{}
+	\end{minipage}
+	\end{center}
+	The method consists in subdividing the geometry into panels that each contains a source with source intensity $\lambda _j =\frac{d\Lambda _j}{ds_j}$, where $d\Lambda _j$ is the elementary volumetric flow rate associated to the part $ds_j$. The second figure illustrates the panel concept. We can see the flow obtained by placing sources on a vertical line. From a to d the number of sources increases but the total flow remains the same (d reduced flow rate). \\
+	
+	Using an infinite number of sources and a constant $\lambda$, we obtain a panel in e. Remark that the velocity is perpendicular to the plate in that case. \\
+	
+	Next we have to write the potential function and express that the flow should be tangential to the plate. Remark that since there is no vortex the lift is null. 
+	
+	\begin{wrapfigure}[8]{l}{7cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.18]{ch2/41}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	Consider the airfoil here and let's write the potential function for the uniform flow at point P:
+	
+	\begin{equation}
+	\phi _{uP} = U_\infty \cos \alpha x + U_\infty \sin \alpha y
+	\end{equation}
+	 
+	 On the other hand, the source distribution on panel j also generates a potential function:
+	 
+	 \begin{equation}
+	 \phi _{jP} = \int _{\mbox{panel } j} \frac{\lambda _j}{2\pi} \ln (r_{jP})ds_j\qquad r_{jP} = \sqrt{(x_P - x_j)^2 + (y_P - y_j)^2}.
+	 \end{equation}
+	 
+	 The total potential is the sum of all that and all the panels j. The condition for the flow to be tangential to panel i is $\frac{\D \phi}{\D n_j} = 0$. This applied to our total potential gives (P is the control point of the panel i):
+	 
+	 \begin{equation}
+	 U_\infty \cos \beta _i + \sum _j \frac{\lambda _j}{2\pi} \int _{\mbox{panel }j} \frac{\D}{\D n_i} (\ln (r_{ji})) \, ds_j = 0,
+	 \end{equation}
+	 
+	 where $\lambda _j$ is assumed to be constant on panel j. The integral regroups the effect of panel j on the normal component of the velocity on panel i, this is only function of the geometry! Note that even if the effect of panel i on its own component leads to $r_{ji} = r_{ii} = 0$ (singular integral), one can show that:
+	 
+	 \begin{equation}
+	 \int _{\mbox{panel }i} \frac{\D}{\D n_i} (\ln (r_{ii})) \, ds_i = \pi,
+	 \end{equation}
+	 
+	 so that the contribution of the panel i is reduced to $\lambda /2$, reducing the general equation to: 
+	 
+	 \begin{equation}
+	 U_\infty \cos \beta _i +\frac{\lambda}{2}+ \sum _{j\neq i} \frac{\lambda _j}{2\pi} \int _{\mbox{panel }j} \frac{\D}{\D n_i} (\ln (r_{ji})) \, ds_j = 0.
+	 \end{equation}
+	 
+	 Since this is a system of N equation in N unknowns (N panel), we are able to find every $\lambda _i$. Using again the potential function, we are able to get now the tangential velocity at panel i: 
+	 
+	 \begin{equation}
+	 v_{ti} = \frac{\D \phi}{\D s_i} = U_\infty \sin \beta _i + \sum _j \frac{\lambda _j}{2\pi} \int _{\mbox{panel }j} \frac{\D}{\D s_i} (\ln (r_{ji})) \, ds_j .
+	 \end{equation}
+	 
+	 Since a panel i only generates a normal velocity, it has no effect on its own tangential velocity, we can show that: 
+	 
+	 \begin{equation}
+	 \int _{\mbox{panel }i} \frac{\D}{\D s_i} (\ln (r_{ii})) \, ds_i = 0 
+	 \end{equation}
+	 
+	 simplifying the previous equation by getting a $\sum _{j\neq i}$. It is then possible to retrieve the pressure distribution along the geometry by applying Bernouilli: 
+	 
+	 \begin{equation}
+	 c_{pi} = 1- \left(\frac{v_{ti}}{U_\infty} \right)
+	 \end{equation}
+	 
+\subsubsection{Vortex panel}
+	\begin{wrapfigure}[7]{l}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.25]{ch2/42}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	This method is similar to the previous one, and since we discussed the thin airfoil theory, we can directly use the definition of the potential function:
+	
+	\begin{equation}
+	U_\infty \cos \alpha x +U_\infty \sin \alpha y - \sum _j \frac{\gamma _j}{2\pi} \int _{\mbox{panel }j} \theta _{jP} \, ds_j.
+	\end{equation}
+	
+	The assumptions made on the previous section are reused here (first order method: intensity constant). The angle $\theta _{jP}$ is the $\theta$-value describing the position of P in a coordinate system centered in the control point of panel j:
+	
+	\begin{equation}
+	\tan \theta _{jP} = \frac{y_P-y_j}{x_P - x_j}.
+	\end{equation}
+	
+	As previously, we compute the vorticity distribution by expressing the condition of null normal potential on the panel:
+	
+	\begin{equation}
+	\frac{\D \phi}{\D n_i} = U_\infty \cos \beta _i - \sum _{j\neq i} \frac{\gamma_j}{2\pi} \int _{\mbox{panel }j} \frac{\D}{\D n_i} (\theta _{ji}) \, ds_j = 0.
+	\end{equation}
+	
+	\begin{wrapfigure}[8]{r}{4cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.3]{ch2/43}
+	\captionof{figure}{}
+	\end{wrapfigure}
+	Similarly we get a system of N equation of N unknowns. But we have a circulation in this case and we have to satisfy the Kutta condition which states that the vortex distribution on the trailing must be 0. Reffering to the figure, the Kutta condition can be approximated as:
+	
+	\begin{equation}
+	\gamma _{i} = - \gamma _{i-1}.
+	\end{equation}
+	 
+	 With this, we get an overdetermined system of N+1 equations for N unknowns so we can drop one of the panel equation. Once these are solved, we can get the tangential velocity distribution on the body:
+	 
+	 \begin{equation}
+	 v_{ti} = \frac{\D \phi}{\D s_i} = U_\infty \sin \beta _i - \sum _j \frac{\gamma _j}{2\pi} \int _{\mbox{panel }j} \frac{\D}{\D s_i} (\theta_{ji})) \, ds_j = U_\infty \sin \beta _i + \gamma _i.
+	 \end{equation}
+	 
+	 The last $\gamma$ can be understood intuitively. If we remind the previous method, we had a perpendicular velocity on both side of the source panel of intensity $\lambda /2$. Analogously, the vorticies produce a velocity this time tangential to the panel, in opposite direction on both side of the panel, with size $\gamma /2$. The velocity increases with $\gamma$ when moving from one side to the other. Because of the contribution of the other vorticies, there is no flow in the inner part of the panel, but the jump of velocity remains, causing the velocity on the outer side to become $\gamma$. \\
+	 
+	 The lift is found by using Kutta-Joukowski formula:
+	 
+	 \begin{equation}
+	 \Gamma = \sum _j \gamma _j s_j\qquad \Rightarrow L = \rho _\infty U_\infty \Gamma.
+	 \end{equation}
+	 
+	 Remark: a second order method can be used, choosing the control points on the corner of the panel and postulating a linear variation of the intensity along the panel. In this case the Kutta condition reduces to:
+	 
+	 \begin{equation}
+	 \gamma _1 = 0.
+	 \end{equation}
+	 
+	 \begin{center}
+	 \includegraphics[scale=0.3]{ch2/44}
+	 \captionof{figure}{}
+	 \end{center}
