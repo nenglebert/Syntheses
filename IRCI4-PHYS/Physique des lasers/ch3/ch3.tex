@@ -429,12 +429,21 @@ réel.
 
 \section{État stationnaire d'un laser}
 Le slide 20 détaille une longue étape mathématique ayant pour but d'écrire la relation d'inversion
-de population
+de population. Les équations importantes sont
+\begin{equation}
+[{K_c}/2 - i({\omega _L} - {\omega _c})]{{\cal E}_0} = \frac{{i{\omega _c}}}{{2{\varepsilon _0}}}{{\cal P}_0}
+\label{eq:3prim}
+\end{equation}
+\begin{equation}
+{{\cal P}_0} = \frac{{|{\mu _{21}}{|^2}}}{\hbar }\frac{{{\cal D}{{\cal E}_0}}}{{({\omega _L} - {\omega _a}) + i{\gamma _ \bot }}}
+\label{eq:4prim}
+\end{equation}
+Avec celles-ci, on en tire
 \begin{equation}
 {{\cal D}} = {{{\hat {\cal D}}} \mathord{\left/
  {\vphantom {{{\hat {\cal D}}} {\left[ {1 + \frac{{|{{\cal E}_0}{|^2}}}{{{{{\cal I}}_s}}}\frac{1}{{1 + {{[({\omega _L} - {\omega _a})/{\gamma _ \bot }]}^2}}}} \right]}}} \right.
  \kern-\nulldelimiterspace} {\left[ {1 + \frac{{|{{\cal E}_0}{|^2}}}{{{{{\cal I}}_s}}}\frac{1}{{1 + {{[({\omega _L} - {\omega _a})/{\gamma _ \bot }]}^2}}}} \right]}}
-\label{eq:ch3.5p}
+\label{eq:5prim}
 \end{equation}
 Lorsque $\omega_L=\omega_a$ la cavité est accordée :
 \begin{equation}
@@ -462,7 +471,7 @@ Soit encore
 {\cal D} = {{\cal D}_s} = \frac{{{K_c}{\varepsilon _0}\hbar {\gamma _ \bot }}}{{{\omega _c}|{\mu _{21}}{|^2}}}
 \end{equation}
 L'inversion de population est "bloquée" à une constante $\mathcal{D}_s$. En terme d'intensité (avec
-\eqref{eq:ch3.5p})
+\eqref{eq:5prim})
 \begin{equation}
 {{{\cal D}}_s} = \frac{{{\hat {\cal D}}}}{{1\; + |{{\cal E}_0}{|^2}/{{{\cal I}}_s}}}
 \qquad\Rightarrow\qquad |{{\cal E}_0}{|^2} = (\frac{{{\hat {\cal D}}}}{{{{{\cal D}}_s}}} - 1){{{\cal I}}_s}
@@ -474,7 +483,203 @@ L'inversion de population est "bloquée" à une constante $\mathcal{D}_s$. En te
 La première solution $\mathcal{D}<\mathcal{D}_s$ correspond au laser éteint, champ d'intensité nul 
 dont la densité de population est directement proportionnelle (il n'y a que de la fluorescence ici). A partir d'un certain moment il y a bifurcation vers une seconde solution et on retrouve la solution 
 non triviale pour laquelle l'inversion est bloquée à une constante et l'inversion augmente 
-linéairement avec $\hat{\mathcal{D}}$. On nomme alors $\mathcal{D}_s$ le \textit{seuil laser}.
+linéairement avec $\hat{\mathcal{D}}$. On nomme alors $\mathcal{D}_s$ le \textit{seuil laser}.\\
+
+
+\subsection{Susceptibilité électrique et gain}
+Reprenons notre équation de polarisation \eqref{eq:4prim} et isolons $\chi(\omega)$
+\begin{equation}
+{{\cal P}_0} = \frac{{|{\mu _{21}}{|^2}}}{\hbar }\frac{{{\cal D}{{\cal E}_0}}}{{({\omega _L} - {\omega _a}) + i{\gamma _ \bot }}} \equiv {\varepsilon _0}\chi (\omega ){{\cal E}_0}\qquad\Leftrightarrow\qquad
+\chi (\omega ) = \frac{{|{\mu _{21}}{|^2}}}{{\hbar {\varepsilon _0}}}\frac{{\cal D}}{{({\omega _L} - {\omega _a}) + i{\gamma _ \bot }}}
+\end{equation}
+Avec \eqref{eq:5prim}
+\begin{equation}
+\chi  = \frac{{|{\mu _{21}}{|^2}}}{{\hbar {\varepsilon _0}}}\frac{{{\hat {\cal D}}}}{{{\gamma ^2}_ \bot }}\left( {\frac{{({\omega _L} - {\omega _a}) - i{\gamma _ \bot }}}{{{{({\omega _L} - {\omega _a})}^2} + {\gamma ^2}_ \bot }}} \right)\left( {\frac{{{\gamma ^2}_ \bot  + {{({\omega _L} - {\omega _a})}^2}}}{{1 + |{{\cal E}_0}{|^2}/{{\cal I}_s} + {{[({\omega _L} - {\omega _a})/{\gamma _ \bot }]}^2}}}} \right)
+\end{equation}
+Après simplification
+\begin{equation}
+\chi (\omega ) = \frac{{|{\mu _{21}}{|^2}}}{{\hbar {\varepsilon _0}{\gamma _ \bot }}}\hat {\cal D}\frac{{({\omega _L} - {\omega _a})/{\gamma _ \bot } - i}}{{1 + |{{\cal E}_0}{|^2}/{{{\cal I}}_s} + {{[({\omega _L} - {\omega _a})/{\gamma _ \bot }]}^2}}} = \chi ' + i\chi 
+\label{eq:ch3.6}
+\end{equation}
+
+
+
+	\begin{wrapfigure}[8]{l}{11cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.5]{ch3/image10.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	Ce qui semblait compliqué ne l'est pas tellement lorsque l'on trace les courbes. La partie imaginaire(liée au gain ou aux pertes selon le signe) n'est qu'une lorentzienne. Associé à cette résonance, on observe une observation de la partie réelle de la susceptibilité et donc une variation de l'indice de réfraction.\\
+	
+Le terme $\chi''$ donne le gain ou les pertes. Il apparait un terme $|\mathcal{E}_0|^2/\mathcal{I}_s$ 
+qui dépend de l'amplitude du champ
+\begin{equation}
+\chi  =  - \frac{{|{\mu _{21}}{|^2}}}{{\hbar {\varepsilon _0}{\gamma _ \bot }}}\hat {\cal D}\frac{1}{{1 + |{{\cal E}_0}{|^2}/{{{\cal I}}_s} + {{[({\omega _L} - {\omega _a})/{\gamma _ \bot }]}^2}}}
+\end{equation}
+où $\DS {{\cal G}} =  - \alpha  =  - \frac{{{\omega _L}}}{c}\chi $. Étudions celle-ci en fonction de l'intensité du champ
+\begin{enumerate}
+\item \textit{Cas non-sature} ($|\mathcal{E}_0|^2\ll \mathcal{I}_s$.
+\begin{equation}
+{\cal G} = \frac{{\hbar {\omega _0}B{n_g}}}{c}g({\omega _0})({N_2} - {N_1})
+\end{equation}
+Il s'agit du cas où l'amplitude du champ est petite par rapport à l'intensité de saturation. Comme le
+champ est très petit, nous sommes en dessous du seuil laser et le gain est donné en fonction de la 
+fréquence via $g(\omega)$ (une lorentzienne) comme l'expression $\chi''$ ci-dessus. L'avantage est 
+que l'on va pouvoir, avec Maxwell-Bloch, tirer par identification un coefficient d'Einstein
+\begin{equation}
+B \propto |\mu_{21}|^2
+\end{equation}
+Notons que l'on retrouve la même expression qu'au chapitre 2 pour $g(\omega)$ avec $\gamma_n =
+2\gamma_\perp$.
+\item \textit{Cas sature} (($\mathcal{I}_s\ll|\mathcal{E}_0|^2 $.)
+\begin{equation}
+{{\cal G}}(\omega ) = \frac{{{\omega _L}|{\mu _{21}}{|^2}}}{{c\hbar {\varepsilon _0}{\gamma _ \bot }}}\frac{{\hat {\cal D}}}{{1 + |{{\cal E}_0}{|^2}/{{{\cal I}}_s}}}\frac{1}{{1 + {{[(\omega  - {\omega _a})/\gamma ]}^2}}}
+\end{equation}
+Il n'est plus ici possible de le négliger, mais on peut le mettre en évidence. On retrouve également 
+une lorentzienne mais plus large car le "nouveau" $\gamma$ est l'ancien multiplié par un facteur 
+supérieur à l'unité
+\begin{equation}
+{\gamma _ \bot } \to {\rm{ }}\gamma  = {\gamma _ \bot }\sqrt {1 + |{{\cal E}_0}{|^2}/{{{\cal I}}_s}} 
+\end{equation}
+Il s'agit d'un élargissement homogène de $g(\omega)$ (tous les atomes réagissent de la même façon, 
+par exemple avoir un champ dans la cavité rend le spectre plus large car celui-ci crée de l'émission 
+stimulée).
+\begin{center}
+	\includegraphics[scale=0.5]{ch3/image11.png}
+	\captionof{figure}{$\omega_{c,j}$ est la fréquence angulaire de mode de la cavité. $\omega_{c,0}$
+	est la fréquence la plus proche de la fréquence atomique $\omega_a$.}
+\end{center}
+\end{enumerate}
+Une question légitime serait de se demander ce que vaut le gain après la saturation. On sait 
+qu'il vaut les pertes ce qui ne saute pas aux yeux en regarder MB. Reprenons \eqref{eq:3prim} et 
+\eqref{eq:4prim}
+\begin{equation}
+{K_c}{{\cal E}_0} = \frac{{i{\omega _c}}}{{{\varepsilon _0}}}{{\cal P}_0},\qquad 
+{{\cal P}_0} =  - i\frac{{|{\mu _{21}}{|^2}}}{{\hbar {\gamma _ \bot }}}{\cal D}{{\cal E}_0}
+\end{equation}
+En combinant les deux, on exprime pour les pertes
+\begin{equation}
+{K_c} = \frac{{{\omega _L}}}{{{\varepsilon _0}}}\frac{{|{\mu _{21}}{|^2}}}{{\hbar {\gamma _ \bot }}}{{\cal D}_s}
+\end{equation}
+De l'autre côté, nous avons pour le gain
+\begin{equation}
+{{\cal G}} =  - \frac{{{\omega _L}}}{c}\chi  = \frac{{{\omega _L}}}{c}\frac{{|{\mu _{21}}{|^2}}}{{\hbar {\varepsilon _0}}}\frac{{\cal D}}{{{\gamma _ \bot }}}
+\end{equation}
+Comme à la saturation $\mathcal{D}=\mathcal{D}_s$, on arrive à 
+\begin{equation}
+K_c=c\mathcal{G}
+\end{equation}
+Ce qui est une solution non triviale pour pertes = gain (condition d'oscillation laser). En 
+conclusion en dessous du seuil laser $\hat{\mathcal{D}}_s$, $\mathbb{D}$ et $\mathcal{G}$ garde une 
+valeur constante tel que le gain soit égal au pertes. Quand $\hat{\mathcal{D}}$ augmente au 
+dessus du seuil, cette augmentation supplémentaire d'énergie est convertie en photons lasant
+
+\subsection{Fréquence du champ laser}
+Jusqu'ici nous avions considéré que $\omega_c=\omega_a$ mais que se passe-t-il (pour $\omega_L$) 
+si les deux sont différents ? Reprenons \eqref{eq:3prim} et \eqref{eq:4prim}
+\begin{equation}
+[{K_c}/2 - i({\omega _L} - {\omega _c})]{{\cal E}_0} = \frac{{i{\omega _c}}}{{2{\varepsilon _0}}}{{\cal P}_0},\qquad\qquad
+{{\cal P}_0} = \frac{{|{\mu _{21}}{|^2}}}{\hbar }\frac{{{\cal D}{{\cal E}_0}}}{{({\omega _L} - {\omega _a}) + i{\gamma _ \bot }}}
+\end{equation}
+En substituant l'une dans l'autre
+\begin{equation}
+[{K_c}/2 - i({\omega _L} - {\omega _c})]{{\cal E}_0} = \frac{{i{\omega _c}}}{{2{\varepsilon _0}}}\frac{{|{\mu _{21}}{|^2}}}{\hbar }\frac{{{\cal D}{{\cal E}_0}}}{{({\omega _L} - {\omega _a}) + i{\gamma _ \bot }}}
+\end{equation}
+En isolant l'inversion de population
+\begin{equation}
+\Rightarrow {\cal D} = \frac{{ - 2i{\varepsilon _0}\hbar }}{{{\omega _c}|{\mu _{21}}{|^2}}}[{K_c}/2 - i({\omega _L} - {\omega _c})][({\omega _L} - {\omega _a}) + i{\gamma _ \bot }]
+\end{equation}
+Il s'agit d'un nombre complexe : comme nous savons que l'inversion de population est réelle, la 
+partie imaginaire doit forcément être nulle
+\begin{equation}
+{\cal D} = \frac{{2{\varepsilon _0}\hbar }}{{{\omega _c}|{\mu _{21}}{|^2}}}\left\{ {\underbrace{- i[\frac{{{K_c}}}{2}({\omega _L} - {\omega _a}) + {\gamma _ \bot }({\omega _L} - {\omega _c})]}_{=0} - ({\omega _L} - {\omega _a})({\omega _L} - {\omega _c}) + \frac{{{K_c}{\gamma _ \bot }}}{2}} \right\}
+\label{eq:ch3.7}
+\end{equation}
+La partie imaginaire étant nulle, on en tire que
+\begin{equation}
+({\omega _L} - {\omega _a}){K_c}/2 =  - {\gamma _ \bot }({\omega _L} - {\omega _c})
+\end{equation}
+
+	\begin{wrapfigure}[12]{l}{10cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.5]{ch3/image12.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Et donc
+\begin{equation}
+{\omega _L} = \frac{{{\omega _c}2{\gamma _ \bot } + {\omega _a}{K_c}}}{{2{\gamma _ \bot } + {K_c}}}
+\end{equation}
+La fréquence laser est une sorte de moyenne entre les deux pondérée par le coefficient d'amortissement 
+$K_c$ et $2\gamma_\perp=\gamma_h$. Si la cavité est de très haute finesse (par rapport à la largeur 
+de la transition atomique), la fréquence laser va coïncider avec celle de la cavité $\omega_c$. 
+Inversement, si c'est le milieu atomique qui a une raie très étroite on observera $\omega_L=\omega_a$. 
+On nomme $\omega_L$ le terme de \textit{tirage en fréquence}.\\
+
+	\begin{wrapfigure}[12]{r}{10cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch3/image13.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Nous avons vu que la forme de raie à tendance à s'élargir lorsque l'on est au delà du seuil laser 
+(ceci n'a de sens que si le gain à une largeur qui s'étend sur plusieurs mode). La courbe en noir 
+est obtenue lorsque l'on augmente la pompe (de largeur $2\gamma_\perp$). A un moment donné, la 
+courbe noire croise la ligne des pertes et donne lieu à la courbe rouge : cela commence à laser. Si 
+on augmente encore la puissance le point vert ne va pas changer de place mais nous aurons plus 
+d'émission stimulée. Une seule fréquence lasera, les autres, étant en dessous du seuil gain = pertes,
+ne laseront pas. \\
+
+Nous venons de voir le cas homogène, regardons ce qu'il en est pour les \textit{lasers with inhomogeneously broadened gain line shape}. En effet, les lasers sont souvent multimodes. Si 
+il y a des classes d'atomes, elles auront chacune un mode différent et on peut avoir plusieurs 
+émissions laser : régime multimodale. Pour comprendre ceci, regardons l'équation de l'inversion 
+de population \eqref{eq:ch3.7}
+\begin{equation}
+{\cal D} = \frac{{2{\varepsilon _0}\hbar }}{{{\omega _c}|{\mu _{21}}{|^2}}}\left\{ {\frac{{{K_c}{\gamma _ \bot }}}{2} - ({\omega _L} - {\omega _a})({\omega _L} - {\omega _c})} \right\}
+\end{equation}
+Sachant que $\DS \omega_L-\omega_a =-\frac{{2{\gamma _ \bot }}}{{{K_c}}}({\omega _L} - {\omega _c})$
+\begin{equation}
+{\cal D} = \frac{{2{\varepsilon _0}\hbar }}{{{\omega _c}|{\mu _{21}}{|^2}}}\frac{{{K_c}{\gamma _ \bot }}}{2}\left\{ {1 + \frac{4}{{{K_c}^2}}{{({\omega _L} - {\omega _c})}^2}} \right\} 
+ = {{\cal D}_s}\left\{ {1 + \frac{4}{{{K_c}^2}}{{({\omega _L} - {\omega _c})}^2}} \right\} = {{\cal D}_s}\left\{ {1 + \frac{1}{{{\gamma _ \bot }^2}}{{({\omega _L} - {\omega _a})}^2}} \right\}
+\end{equation}
+Ici comme $\omega_L\neq\omega_a$, l'inversion de population se fait à $\mathcal{D}>\mathcal{D}_s$ : 
+comme il y a un petit décalage entre les résonances, il faut un peu plus d'inversion de population 
+que si on était à résonance (nous sommes dans un cas moins optimal, le cas optimal étant $\mathcal{D}\approx\mathcal{D}_s$).\\
+
+	\begin{wrapfigure}[12]{r}{9cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.75]{ch3/image14.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+La solution stationnaire est représentée en rouge. En noir, il s'agit du cas ou le gain est 
+supérieur aux pertes, il va donc y avoir une diminution du gain jusqu'à arriver à la condition où 
+le gain vaut les pertes. Il est possible d'avoir un multimode car le fait qu'on ai un lasage à 
+un $\omega_c$ n'influence pas le lasage d'un autre $\omega_c$. Entre deux de ces fréquences, 
+le champ n'est pas résonant. En l'absence de lasage, le gain peut être supérieur aux pertes. En 
+dessous de la ligne en pointillé, il n 'y aura pas de lasage, nous décrivons bien ici un laser 
+mutlimode (on parle de trous spectraux, typique He-Ne)\footnote{Paragraphe pas clair, lire slide 31}.\\
+
+	\begin{wrapfigure}[20]{l}{9cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.55]{ch3/image15.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+La réalité est plus compliquée, car la géométrie joue également un rôle. Nous n'avons pour l'instant
+fait aucune différence entre une cavité anneau et FP. Le FP peut donner lieu à des interférences et 
+donc une onde stationnaire. En augmentant la pompe pour un mode $\omega_0$ on va rencontrer à un 
+certain moment la condition \textit{gain=pertes} donnant lieu à un certain profil d'intensité. Comme 
+l'inversion de population varie avec $\mathcal{I}/\mathcal{I}_s$ on crée des trous spatiaux. Si un 
+mode se situe juste dans le creux de $\mathcal{G}$ il n'y a pas assez de gain et on n'observera 
+jamais de lasage. Par contre, il possible (sur un pic de $\mathcal{G}$) d'avoir un autre lasage car 
+la fréquence ne va pas se "nourrir spatialement" au même endroit que le premier mode qui s'est mis à
+laser.
+
+
+
+
+
+
+
+
+
 
 
 
