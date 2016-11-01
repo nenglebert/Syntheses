@@ -1,4 +1,4 @@
-# Syntheses
+﻿# Syntheses
 Synthèses de l'École Polytechnique de Bruxelles
 
 ## Visualisation des synthèses
@@ -63,6 +63,8 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 - [ ] ***Physique***
   - [ ] [Mécanique quantique II](IRCI4-PHYS/Mécanique quantique II/build/Mécanique quantique II - Nicolas Englebert.pdf)
   - [ ] [Physique des lasers] (IRCI4-PHYS/Physique des lasers/build/Physique des lasers - Nicolas Englebert.pdf)
+  - [ ] [Physique des réacteurs nucléaires] (IRCI4-PHYS/Physique des réacteurs nucléaires/build/Physique des réacteurs nucléaires - Nicolas Englebert.pdf)
+
 
 ## Comment contribuer
 Vous pouvez directement éditer les fichiers depuis ce site, ou alors
