@@ -1,0 +1,148 @@
+
+\chapter{Assembly and boundary conditions}
+\section{Assembly}
+	Each elements is modeled by means of a local or elementary stiffness relation $K^e q^e = f^e$. The assembly of the elements constituting the whole domain V has two purposes:
+	
+	\begin{itemize}
+	\item[•] \textbf{compatibility constraint}: coherence of the displacements, a node appertaining to two element must undergo the same displacement;
+	
+	\item[•] \textbf{equilibrium constraints}: equilibrium of the structure, eliminating the contact forces between the elements. 
+	\end{itemize}
+	
+	\minifig{ch9/1}{ch9/2}{0.6}{0.3}{0.4}{0.4}
+	
+	The general pattern of the assembly procedure is represented on \autoref{ch9/1} and \autoref{ch9/2}. The stiffness relation can be decomposed: 
+	
+	\begin{equation}
+	K^eq^e= f^e = f^{V,e} + f^{S_{ext},e} + f^{S_{ext},e} + f^{S_{neighb},e}
+	\end{equation}
+	
+	where we see the external forces and the one due to the neighboring elements. Indeed, the neighboring forces vanish due to action reaction principle when the whole structure is considered. 
+	
+\section{Boundary conditions}
+	\wrapfig{3}{l}{3}{0.35}{ch9/3}
+	We have our matrix K but solving $Kq = f$ as it is would not work, because K is not invertible. To understand this behavior let's take the example of a bar in tension. The system is defined by the displacements on the extreme nodes. However, we observe that for the same strain level ($\epsilon _x = (u_B - u_A)/L$), we can have an infinite number of couple $(u_A, u_B)$. The system is \textbf{underdetermined}. Physically, the rigid body motiion has not been blocked yet. We have to add the supports (boundary conditions). \\
+	
+	\wrapfig{6}{l}{6}{0.35}{ch9/4}
+	In 2D we have 3 rigid body modes, 2 translations 1 rotation. In 3D we have 6, 3 translations and 3 rotations. Th eunderdeterminacy provokes the singularity of the stiffness matrix. This doesn't depend on the external forces, we only have that the solution found by solving the stiffness relation is not unique. There are 3 main types of supports represented on \autoref{ch9/4}.
+	
+\subsection{Direct method}
+	Assuming a given degree of freedom i $q_i = \bar{q}_i$, if one direction is blocked and we apply a displacement, an unknown reaction force $R_i$ will appear in addition to external nodal forces: 
+	
+	\begin{equation}
+	\left[
+	\begin{array}{ccccc}
+	K_{11} & \dots & K_{1i} & \dots & K_{1Q}\\
+	\vdots & & \vdots & & \vdots\\
+	K_{i1}& \dots & K_{ii} & \dots & K_{iQ}\\
+	\vdots & & \vdots & & \vdots\\
+	K_{Q1}& \dots & K_{Qi} & \dots & K_{QQ}
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	q_{1}\\
+	\vdots\\
+	\bar{q}_{i}\\
+	\vdots\\
+	q_Q\\
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	f_{1}\\
+	\vdots\\
+	f_i + R_i\\
+	\vdots\\
+	f_Q
+	\end{array}
+	\right].
+	\end{equation}
+	
+	The displacement in the i-th degree is known but not the force. For every other line $j$ we have:
+	
+	\begin{equation}
+	K_{j1}q_1 + \dots + K_{ji}\bar{q}_i + \dots + K_{jQ}q_Q = f_j \qquad \Rightarrow K_{j1}q_1 + \dots + K_{jQ}q_Q = f_j - K_{ji}\bar{q}_i.
+	\end{equation}
+	
+	By replacing the known displacements and discarding the corresponding equations we get:
+	
+	\begin{equation}
+	\left[
+	\begin{array}{ccccc}
+	K_{11} & \dots & / & \dots & K_{1Q}\\
+	\vdots & & / & & \vdots\\
+	/ & / & / & / & / \\
+	\vdots & & / & & \vdots\\
+	K_{Q1}& \dots & / & \dots & K_{QQ}
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	q_{1}\\
+	\vdots\\
+	/\\
+	\vdots\\
+	q_Q\\
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	f_{1}-K_{1i}\bar{q}_i\\
+	\vdots\\
+	/\\
+	\vdots\\
+	f_Q-K_{Qi}\bar{q}_i
+	\end{array}
+	\right].
+	\end{equation}
+	
+	We see thus that the system is reduced to a $(Q-m)$sized matrix where Q is the number of degrees of freedom. Once the unknown displacements are known, we can find the reaction: 
+	
+	\begin{equation}
+	R_i =\left( \sum _{j=1}^Q K_{ij}q_j \right) - f_i.
+	\end{equation}
+	
+\subsection{Penalty method}
+	Another approach consists in penalizing the $i$-th imposed displacement by a very large number Z ($\approx 10^{20}$). $K_{ii}$ is replaced by $K_{ii} + Z$ and $f_i$ is replaced by $f_i+Z\bar{q}_i$. The system becomes: 
+	
+	\begin{equation}
+	\left[
+	\begin{array}{ccccc}
+	K_{11} & \dots & K_{1i} & \dots & K_{1Q}\\
+	\vdots & & \vdots & & \vdots\\
+	K_{i1}& \dots & K_{ii}+Z & \dots & K_{iQ}\\
+	\vdots & & \vdots & & \vdots\\
+	K_{Q1}& \dots & K_{Qi} & \dots & K_{QQ}
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	q_{1}\\
+	\vdots\\
+	\bar{q}_{i}\\
+	\vdots\\
+	q_Q\\
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	f_{1}\\
+	\vdots\\
+	f_i + Z\bar{q}_i\\
+	\vdots\\
+	f_Q
+	\end{array}
+	\right].
+	\end{equation}
+	
+	where the i-th line is: $Zq_i + \left( \sum _{j=1}^Q K_{ij}q_j \right) = Z\bar{q}_i$, which is almost equivalent to $q_i = \bar{q} _i$ for $Z\gg$. The reactions are given by:
+	
+	\begin{equation}
+	R_i = Z(\bar{q}_i - q_i). 
+	\end{equation}
+	
+	The only limitation of this method is the round-off errors when $\bar{q}_i \neq 0$. For example for a 16 digits precision $q_i = \bar{q}_i - 10^{-20} \approx \bar{q}_i$ so $R_i = 0$ while for $\bar{q}_i = 0$ we have good results. 
