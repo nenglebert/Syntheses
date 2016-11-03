@@ -1,0 +1,238 @@
+
+\chapter{Discretization by finite elements}
+	The formulations we will use:
+	
+	\begin{itemize}
+	\item[•] \textbf{strong formulation:}
+	\begin{equation}
+	b_i \tau _{ij,j} = 0;
+	\end{equation}
+	
+	\item[•] \textbf{weak integral formulation:} $\bm{u}$ solution of the elastic problem if and only if:
+	\begin{equation}
+	a(\bm{u,\hat{u}}) - \varphi (\bm{\hat{u}}) = 0\quad \forall \bm{\hat{u}}	= 0 \ on \ S_u
+	\end{equation}
+	
+	\item[•] \textbf{variational formulation}: // if and only if $\delta \Pi (\bm{u})$ is minimum. 
+	\end{itemize}
+	
+	We will inject the discretized version of the displacement. 
+	
+\section{Weighted residual method}
+	For the equilibrium equations the \textbf{residual} $R_i(\bm{u})$ is given by: 
+	
+	\begin{equation}
+	R_i(\bm{u}) = b_i \tau _{ij,j}(\bm{u}). 
+	\end{equation}
+	
+\subsection{Collocations by points}	
+	\wrapfig{6}{l}{4}{0.3}{ch7/1}
+	To satisfy the equilibrium in the whole body V, one way is to make the residual vanish in a set of points distributed in the body $R_i(\bm{u})^{(1)}=0, \dots , R_i(\bm{u})^{(n_c)}=0$. This is not easily combined with finite elements and we have formally a system of $n_c$ equations:
+	
+	\begin{equation}
+	\int _V R_i \delta (x_j)\, dV = R_i|_{x_j} = 0.
+	\end{equation}
+	
+\subsection{Collocation by sub-domains}
+	\wrapfig{6}{r}{3}{0.3}{ch7/2}
+	Similarly to the previous point, but with sub-domains: 
+	
+	\begin{equation}
+	\int _V R_i \psi _j\, dV = \int _{V_j} R_i\, dV, \qquad \psi _j = \left\{
+	\begin{array}{c}
+	1 \quad \mbox{if x belongs to } V^j\\
+	0 \quad \mbox{if x belongs to } V\neq V^j	
+	\end{array}
+	\right.
+	\end{equation}
+	
+	Here we get a system of $n_d$ equations, $n_d$ the number of sub-domains.
+	
+\subsection{Least square method}
+	This consist in minimizing the sum of the square of the residuals:
+	
+	\begin{equation}
+	\min \int _V R_i^2 \, dV.
+	\end{equation}
+	
+	These last 3 methods cannot be easily implemented, unlike the next method (why do we see them then...)
+	
+\subsection{Galerkin method}
+	This requires the weak integral form and the discretization for the displacements. We will consider $u$ as being the continuous displacement and $u^h$ its finite elements approximation:
+	
+	\begin{equation}
+	u^h (x)= N(x) q. 
+	\end{equation}
+	
+	From seeking a continuous field $u$ we have moved to search for a finite set of nodal values $q$ (displacement of the nodes). Practically:
+	
+	\begin{equation}
+	in\ 2D \rightarrow \quad u^h (x) = \left[
+	\begin{array}{c}
+	u^h(x,y)\\
+	v^h(x,y)
+	\end{array}
+	\right]
+	\qquad 
+	in\ 3D \rightarrow \quad u^h (x) = \left[
+	\begin{array}{c}
+	u^h(x,y,z)\\
+	v^h(x,y,z)\\
+	w^h(x,y,z)
+	\end{array}
+	\right]
+	\end{equation}
+	
+	Next, the linear stress tensor can be computed, since it is symmetric only 3 components in 2D and 6 in 3D are necessary:
+	
+	\begin{equation}
+	in \ 2D \rightarrow \quad \epsilon ^h (x) = \left[
+	\begin{array}{c}
+	\epsilon ^h_x(x,y)\\
+	\epsilon ^h_y(x,y)\\
+	\gamma ^h_{xy}(x,y)
+	\end{array}
+	\right]
+	= \left[
+	\begin{array}{cc}
+	\D _x & 0\\
+	0 & \D _y\\
+	\D _y & \D _x
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	u ^h_x(x,y)\\
+	v ^h_y(x,y)\\
+	\end{array}
+	\right]
+	\end{equation}
+	
+	and same way for the 3D case. In short this can be written as:
+	
+	\begin{equation}
+	\epsilon ^h (x) = Du^h(x) = \underbrace{DN(x)}_B q,
+	\end{equation}
+	
+	where D is the derivation matrix and B the matrix containing the derivatives of the shape functions. Since the material is homogeneous, isotropic and linear elastic, Hooke's law gives a linear relation between the strains and the stresses. If we store the stresses in a vector, they can be obtained via the \textbf{Hooke's matrix} in 3D: 
+	
+	\begin{equation}
+	H = \frac{E(1-\nu)}{(1+\nu)(1-2\nu)} = 
+	\left[
+	\begin{array}{cccccc}
+	1 & \frac{\nu}{1-\nu} & \frac{\nu}{1-\nu} & 0 & 0 & 0\\
+	\frac{\nu}{1-\nu} & 1 & \frac{\nu}{1-\nu} & 0 & 0 & 0\\
+	\frac{\nu}{1-\nu} & \frac{\nu}{1-\nu} & 1 & 0 & 0 & 0\\
+	0 & 0 & 0 & \frac{1- 2\nu}{2(1-\nu)} & 0 & 0\\
+	0 & 0 & 0 & 0 & \frac{1- 2\nu}{2(1-\nu)} & 0\\
+	0 & 0 & 0 & 0 & 0 & \frac{1- 2\nu}{2(1-\nu)}
+	\end{array}
+	\right]
+	\end{equation}
+	
+	Note that in 2D structures, due to the Poisson effect, we also have to take into account the z direction. 2 cases can occur: 
+	
+	\begin{itemize}
+	\item[•] \textbf{plane stress state}: the loading and the stresses only occur on the $(x,y)$-plane, and the dispacements are free in the z direction: $\sigma _z = 0, \epsilon _z \neq 0$. 
+	
+	\item[•] \textbf{plane strain state}: the displacements in z directions are blocked, giving birth to stresses: $\sigma _z\neq 0, \epsilon _z = 0$. 
+	\end{itemize}
+	
+	We have to consider a different Hooke's matrix for each cases: 
+	
+	\begin{equation}
+	H_{\mbox{plane stress}} = \frac{E}{1-\nu ^2}\left[
+	\begin{array}{ccc}
+	1&\nu &0\\
+	\nu&1 &0\\
+	0& 0&\frac{1-2\nu}{2}
+	\end{array}
+	\right]
+	\qquad
+	H_{\mbox{plane strain}} = \frac{E}{(1+\nu)(1-2\nu)} \left[
+	\begin{array}{ccc}
+	1-\nu &\nu &0\\
+	\nu&1-\nu &0\\
+	0& 0&\frac{1-2\nu}{2}
+	\end{array}
+	\right].
+	\end{equation}
+	
+	These can be shorten in: 
+	
+	\begin{equation}
+	\tau ^h (x) = H\epsilon ^h (x) = HB(x) q.
+	\end{equation}
+	
+	The strain energy $W_V$ can be written as the dot product of the stress and strain vectors:
+	
+	\begin{equation}
+	W_V = \frac{1}{2} \tau _{ij} \epsilon _{ij} \Rightarrow W_V^h = \frac{1}{2} \epsilon ^{hT} \tau ^h.  
+	\end{equation}
+	
+	Let's now substitute these lasts into the weak formulation:
+	
+	\begin{equation}
+	\Rightarrow \int _V \tau _{ij} \hat{\epsilon}_{ij} \, dV - \int _V b_i \hat{u}_i \, dV - \int _{S_t} \bar{t}_i^{(n)} \hat{u}_i\, dS = 0 \quad \forall \hat{u} = 0 \ on \ S_u. 
+	\end{equation}
+	
+	The virtual displacements $\hat{u}_i$ have not a direct physical meaning, they are trial functions to verify governing equations. They can be approximated by the same shape function as the real displacements:
+	
+	\begin{equation}
+	\hat{u}^h (x) = N(x) \hat{q}. 
+	\end{equation}
+	
+	Instead of exploring all the continuous trial functions, we have the dscrete points $\hat{q}$:
+	
+	\begin{equation}
+	\begin{aligned}
+	&\Rightarrow \int _V \epsilon ^{hT} \hat{\tau} ^h \, dV - \int _V \hat{q}^TN^Tb \, dV - \int _{S_t} \hat{q}^TN^T \bar{t}^{(n)} \, dS = 0 \quad \forall \hat{q} = 0 \ on \ S_u\\
+	&\Leftrightarrow \hat{q}^T \left( \underbrace{\int _V B^T HB \, dV}_K q - \underbrace{\int _V N^Tb \, dV}_{f^V} - \underbrace{\int _{S_t} N^T \bar{t}^{(n)} \, dS}_{f^S}\right) = 0 \quad \forall \hat{q} = 0 \ on \ S_u\\
+	&\Leftrightarrow Kq = f^V + f^S = f.
+	\end{aligned}
+	\end{equation}
+	
+	We see that if the equation holds for any $\hat{q}$ we get the canonical form:
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	\bm{Kq} = \bm{f}
+	\end{equation}	
+	
+	where K is a Q by Q matrix and q, f are Q-sized vectors, with Q beeing the number of degrees of freedom, equal to the number of nodes multiplied by the number of degrees of freedom per node. K is the stiffness matrix, f are the nodal forces and q the nodal displacements. The only unknown is q.
+	}
+	\end{center}
+	
+\section{Ritz analysis methods}
+	This one bases on the stationarity of the $\Pi$ functional. The discretized version of $\Pi (u) = a(u,\hat{u}) - \varphi (u)$ is:
+	
+	\begin{equation}
+	\begin{aligned}
+	&\Pi (u^h) = \frac{1}{2} q^T \left( \int _V B^T HB \, dV \right) q - q^T \int _V N^T b \, dV - q^T \int _{S^t} N^T \bar{t}^{(n)} \, dS \\
+	&= \frac{1}{2} q^T Kq - q^T f^V - q^Tf^S \quad \Rightarrow \delta \Pi (u) = \frac{1}{2} \delta q^T K q + \frac{1}{2} q^T K \delta q - \delta q^T f^V - \delta q^Tf^S.
+	\end{aligned}
+	\end{equation}
+	
+	This derivative vanishes for all $\delta q$ provided $Kq = f^V + f^S =f$, as the previous case. 
+	
+\section{Properties of the finite element solution}
+	We know that the finite element $u^h$ and the theoretical continuous solution satisfy: 
+	
+	\begin{equation}
+	a(u^h, \hat{u}^h) - \varphi (\hat{u}^h) = 0 \qquad a(u, \hat{u}^h) - \varphi (\hat{u}^h) = 0 \qquad \forall \hat{u} = 0 \ on \ S_u.
+	\end{equation}
+	
+	By substracting the fist from the second we get: 
+	
+	\begin{equation}
+	a(u- u^h, \hat{u}^h) = a(e^h, \hat{u}^h) =  0\quad \forall \hat{u} = 0 \ on \ S_u,
+	\end{equation}
+	
+	where e is the error. This last equation expresses that the finite element solution is the best we can find in the finite element function space. Furthermore:
+	
+	\begin{equation}
+	a(u,u) = a(u^h + e^h, u^h +e^h) = a(u^h,u^h) + \underbrace{2(u^h, e^h)}_{=0 } + a(e^h, e^h),
+	\end{equation}
+	
+	where the a functional is equal to twice the strain energy W, stating that the strain energy of the theoretical solution is an upper bound for the finite element solution. 
