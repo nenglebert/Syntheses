@@ -1,6 +1,6 @@
 \chapter{L’échantillonnage}
 On détermine parfois un signal continu $x(n)$ par des échantillons prélevée à période $T$, 
-$x(nT)$. Nous allons ici considérer des gianux à TC (on utilisera $\Omega$ en rad/s) et 
+$x(nT)$. Nous allons ici considérer des signaux à TC (on utilisera $\Omega$ en rad/s) et 
 TD ($\omega$ en rad).
 
 	\section{Échantillonnage par un train d'impulsions}
@@ -23,7 +23,7 @@ TD ($\omega$ en rad).
 	\begin{equation}
 	\begin{array}{ll}
 	\delta_T &=\DS \sum_{n=-\infty}^\infty \delta(t-nT)\\
-	&= \DS \dfrac{1}{T}\sum_{n=-\infty}^\infty e^{jk\frac{2\pi}{T}t}
+	&= \DS \dfrac{1}{T}\sum_{k=-\infty}^\infty e^{jk\frac{2\pi}{T}t}
 	\end{array}
 	\end{equation}
 	Il s'agit d'une série infinie d'exponentielles complexes. En substituant dans l'équation
@@ -35,13 +35,13 @@ TD ($\omega$ en rad).
 	X^*(p) = \mathcal{L}[x^*(t)] = \dfrac{1}{T}\sum_{k=-\infty}^\infty \mathcal{L}\left[x(t)
 	e^{jk\Omega_St}\right]
 	\end{equation}
-	En posant $\alpha = jk\Omega_S$ on retrouve une forme équivalente à un décalage dans le temps
+	En posant $\alpha = jk\Omega_S$ on retrouve une forme équivalente à un décalage fréquentiel
 	\begin{equation}
 	\int_{-\infty}^\infty \left(x(t)e^{\alpha t}\right)e^{-pt}\ dt = \int_{-\infty}^\infty x(t) 
 	e^{-(p-\alpha)t}\ dt = X(p-\alpha)
 	\end{equation}
 	La transformée de Laplace de la multiplication par une exponentielle imaginaire donne un 
-	décalage dans le temps (soit notre expression en substituant $\alpha$
+	décalage fréquentiel (soit notre expression en substituant $\alpha$)
 	\begin{equation}
 	x(t)e^{jk\Omega_st}\qquad \lt\qquad \frac{1}{T}\sum_{k=-\infty}^\infty X(p-jk\Omega_S)
 	\end{equation}
@@ -78,7 +78,7 @@ TD ($\omega$ en rad).
 	"à l'arrêt" alors qu'il n'en est rien.\\
 	
 	\textbf{
-	Petit plus pour comprendre}\footnote{Source : Wikipedia} : "\textit{Cette distorsion se produit parce qu'un signal de fréquence fréquence porteuse $- f$ a exactement le même effet sur le signal modulé que ceux de fréquence $f$. De même, dans le cas d'un signal échantillonné, tous les signaux dont l'écart de fréquence avec la fréquence d'échantillonnage est identique se représentent par les mêmes échantillons. Lorsqu'on reconstitue le signal d'origine, il est impossible de distinguer ces composantes dont la représentation est identique.}.}\ \\
+	Petit plus pour comprendre}\footnote{Source : Wikipedia} : "\textit{Cette distorsion se produit parce qu'un signal de fréquence fréquence porteuse $- f$ a exactement le même effet sur le signal modulé que ceux de fréquence $f$. De même, dans le cas d'un signal échantillonné, tous les signaux dont l'écart de fréquence avec la fréquence d'échantillonnage est identique se représentent par les mêmes échantillons. Lorsqu'on reconstitue le signal d'origine, il est impossible de distinguer ces composantes dont la représentation est identique.}."}	\ \\
 	\vspace{3mm}
 	
 	Sur la \autoref{fig:rec} : à gauche, on voit que la fonction périodique implique un recouvrement. A 
@@ -94,9 +94,9 @@ TD ($\omega$ en rad).
 	\end{equation}
 	où $g(t) = \frac{T}{\pi t}\sin\Omega_ct$, un filtre passe-bas idéal de gain $T$ et de fréquence 
 	de coupure $\Omega_c$. On peut prendre $\Omega_c = \frac{\Omega_S}{2}=\frac{\pi}{T}$ : par définition, 
-	en coupant à cet endroit, il n'y aura aucun signal utile dans la bande passante. La convolution 
+	en coupant à cet endroit, il n'y aura aucun signal utile hors de la bande passante. La convolution 
 	fait apparaître une série\footnote{Pourquoi $x(nT)$ directement ? On n'utilise pas (4.1) et le $nT$ 
-	ne viendrait pas de la delta de Dirac ?}. En faisant les math
+	ne viendrait pas du delta de Dirac ?}. En faisant les math
 	\begin{equation}
 	\begin{array}{ll}
 	x(t) &= \DS \int_{-\infty}^\infty\sum_{n=-\infty}^\infty x(nT)\delta(\tau-nT)g(t-\tau)\ d\tau\\
@@ -122,8 +122,8 @@ TD ($\omega$ en rad).
 	
 	
 \section{Éviter le repliement spectral}
-En principe, il faut filtre à l'aide d'un filtre passe bas (crucial pour Shannon), c'est-à-dire 
-échantillonner un signal limitée en BP avec $\Omega_c$ adéquat. Hélas la BP des signaux réels n'est 
+En principe, il faut filtrer à l'aide d'un filtre passe-bas (crucial pour Shannon), c'est-à-dire 
+échantillonner un signal limitée en BP avec $\Omega_s$ adéquat. Hélas la BP des signaux réels n'est 
 pas limitée. Cependant, on s'intéresse souvent qu'à une partie de la BP. L'idée du filtre 
 anti-repliement se fait en trois temps. L'idée est de filtrer en \textbf{analogique} avant d'entrer 
 le signal en numérique.
@@ -158,7 +158,7 @@ utiles ne s'y trouve.
 	\end{equation}
 	Le domaine étant continu, $\DS \sum_{k=-\infty}^\infty$ est un nombre infini. On retrouve 
 	comme précédemment les spectres décalés (de là vient la règle $1/2T$, \dots). Ici $c_k$ ne 
-	vaut plus l'unité mais varie avec la fréquence.
+	vaut plus $1/T$ mais varie avec la fréquence.
 	
 	\subsection{Utilisation d'un système à temps discret pour le traitement des signaux à TC}
 	On utilise la chaîne suivante, équivalent à un système à TC (si cond. de Shanon OK) 
@@ -200,7 +200,7 @@ utiles ne s'y trouve.
 	\begin{equation}
 	X^*\left(\frac{\omega}{T}\right) = X(e^{j\omega})
 	\end{equation}
-	La seule différence tren la TF de $x(n)$ (discret) et celle de $x^*(t)$ (impulsionnel) est 
+	La seule différence entre la TF de $x(n)$ (discret) et celle de $x^*(t)$ (impulsionnel) est 
 	un changement d'échelle : $\omega = \Omega T$.
 	
 	\item \textit{Conversion discret $\rightarrow$ continu}
@@ -238,8 +238,8 @@ utiles ne s'y trouve.
 		h(nT) &= 0\qquad \text{ pour } n \neq 0
 		\end{array}\right.
 		\end{equation}
-		Toutes fonctions qui satisfont ça sont des extrapolations. On retrouve bien $y_c'(nT)=y(T)$ 
-		: on a une fonction continue des prends des valeurs imposées pour $t=nT$.
+		Toutes fonctions qui satisfont ça sont des extrapolations. On retrouve bien $y_c'(nT)=y(n)$ 
+		: on a une fonction continue $y_c'(t)$ qui prend des valeurs imposées pour $t=nT$.
 		
 		\exemple{Le filtre passe bas de réponse impulsionnelle $h(t) = \text{sinc}(\pi t/T)$ vérifie 
 		ces conditions.}\ 
@@ -253,7 +253,7 @@ utiles ne s'y trouve.
 		\begin{equation}
 		h_0(t)\quad\lt\quad \frac{1}{p}-\frac{e^{-pt}}{p}\quad\Longrightarrow\quad
 		H_0(\Omega) = \frac{2\sin(\Omega T/2)}{\Omega}e^{-j\Omega T/2}\approx Te^{-j\Omega T/2}\quad 
-		\text{ pour }\Omega \ll 2T
+		\text{ pour }\Omega \ll \frac{2}{T}
 		\end{equation}
 		
 			\begin{wrapfigure}[10]{l}{7cm}
@@ -272,7 +272,7 @@ utiles ne s'y trouve.
 		\end{enumerate}
 		
 	Notons que plutôt que d'interpoler en escalier, on peut utiliser un ordre plus élevée. Pour 
-	l'ordre un, on reliera les points par des droits. On utilise généralement une fonction 
+	l'ordre un, on reliera les points par des droites. On utilise généralement une fonction 
 	triangle pour $h_1(t)$.
 	
 	\subsubsection{Chaîne pour le traitement numérique des signaux analogiques}

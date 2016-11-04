@@ -1,0 +1,283 @@
+\chapter{Méthodes de résolution approchée du problème à $N$ corps}
+Bien souvent, il n'est pas possible de calculer de façon exacte les problèmes à $N$ corps ; il va 
+falloir recourir à des méthodes d’approximations. L'une de ces méthodes est la "Density Fonctionnal 
+Theory" (DFT). Avec celle-ci, une fonctionnelle $\rho_e(\vec{r})$ est créée : celle-ci sera vue comme 
+une fonction de l'énergie qu'il faudra minimiser. Une autre approche, que nous allons maintenant 
+découvrir, est celle du champ moyen.
+
+\section{Modèle à champ moyen (self-consistant)}
+
+L'idée est que l'on considère chaque électron dans un champ qui correspond à l'attraction des nucléons mais 
+aussi la répulsion de tous les autres électrons. Ainsi, chaque électron est indépendant dans son "champ propre" 
+qui prend compte les interactions des autres. Deux grandes méthodes utilisent ce modèle : la méthode d'Hartree (non utilisé aujourd'hui mais pédagogiquement intéressant pour introduire la suivante) et la méthode d'Hartree-Fock. 
+Il s'agit de deux méthodes variationnelles pour laquelle nous allons maintenant faire un bref rappel.
+
+\subsection{Rappels : problèmes à $N$ corps, méthode variationnelle}
+\subsubsection{Problème à $N$ corps}
+L'Hamiltonien que nous avons à traiter est
+\begin{equation}
+\hat{H} = \sum_{i=1}^Z \hat{H_i} + \sum_{i>j}^N V_{ij}\qquad\text{ où }\quad \left\{\begin{array}{ll}
+\hat{H_i} &\DS= \frac{p_i^2}{2m}-\frac{Ze^2}{r_i}\\
+\hat{V}_{ij} &=\DS \dfrac{e^2}{|\vec{r_i}-\vec{r_j}|}
+\end{array}\right.
+\end{equation}où $Z$ est le nombre atomique (soit le nombre d'électrons), $\hat{H_i}$ contient le terme de 
+répulsion du noyau et $\hat{V_{ij}}$ contient la répulsion entre les électrons. Ceci donne lieu à une 
+fonction d'onde $\psi(1,2,\dots Z)$ totalement antisymétrique. \\
+
+Afin d'interpréter de champ moyen, nous pouvons ré-écrire l'Hamiltonien comme (ajout et suppression du 
+même terme)
+\begin{equation}
+\hat{H} =\sum_i\left( \frac{p_i^2}{2m}-\dfrac{Ze^2}{r_i}+V(\vec{r_i}\right)+\underbrace{\sum_i\left(\sum_{j>i} 
+\dfrac{e^2}{|\vec{r_i}-\vec{r_j}|}-V(\vec{r_i}\right)}_{\approx 0}
+\end{equation}
+Le but sera alors d'approcher $V(\vec{r_i})$.
+
+
+\subsubsection{Méthode variationnelle}
+Soit $W$, une fonctionnelle du \textit{ket} $\ket{\phi}$ 
+\begin{equation}
+W\left[\ket{\phi}\right] = \dfrac{\bra{\phi}\hat{H}\ket{\phi}}{\bra{\phi}\ket{\phi}},\qquad\qquad\Leftrightarrow
+\qquad\qquad \min_{\ket{\phi}} W\left[\ket{\phi}\right] = E_0
+\end{equation}
+Le théorème de Ritz nous informe que cette fonctionnelle est stationnaire pour tous les états propres:
+\begin{equation}
+\delta W\left[\ket{\phi}\right] = 0\qquad\qquad\Leftrightarrow\qquad\qquad \hat{H}\ket{\phi}=E\ket{\phi}
+\end{equation}
+Nous allons extrémiser sous la contrainte de normalisation à l'aide des multiplicateurs de Lagrange
+\begin{equation}
+\begin{array}{lll}
+&\DS\delta[\bra{\phi}\hat{H}\ket{\phi}-E\bra{\phi}\ket{\phi}] &=0\vspace{2mm}\\
+\Leftrightarrow&\bra{\delta\phi}\hat{H}\ket{\phi} + \bra{\phi}\hat{H}\ket{\delta \phi} - E\bra{\delta\phi}\ket{\phi}-E
+\bra{\phi}\ket{\delta\phi}&=0\vspace{2mm}\\
+\Leftrightarrow&\DS \bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\phi}\hat{H}-E\ket{\delta\phi}&=0
+\end{array}
+\end{equation}
+où nous avons utilisé le fait que $\hat{E}$ et $E$ permutent. Considérons le conjugué de cette expression : celui-ci
+doit être valable $\forall \ket{\delta\phi}$ :
+\begin{equation}
+\bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\label{eq:NConj}
+\end{equation}
+où $\hat{H}$ est hermitien. Ceci étant vrai $\forall\ket{\phi}$, procédons au changement de variable
+$\ket{\delta\phi} = i\ket{\delta\phi}$
+\begin{equation}
+-i\bra{\delta\phi}\hat{H}-E\ket{\phi}+i\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\end{equation}
+Après division par $-i$
+\begin{equation}
+-\bra{\delta\phi}\hat{H}-E\ket{\phi}+\bra{\delta\phi}\hat{H}-E\ket{\phi}^*\qquad\forall\ket{\phi}
+\label{eq:OConj}
+\end{equation}
+Comme \eqref{eq:NConj} et \eqref{eq:OConj} sont valable $\forall\ket{\phi}$, nous pouvons les sommer. 
+On en tire que ($\forall\ket{\phi}$)
+\begin{equation}
+\bra{\delta\phi}\hat{H}-E\ket{\phi}=0\qquad\qquad\Rightarrow\qquad\qquad \hat{H}\ket{\phi}=E\ket{\phi}
+\end{equation}
+Ce résultat nous montre qu'il n'est pas nécessaire de tenir compte du complexe conjugué, celui-ci n'étant 
+plus présent dans cette dernière expression.
+
+
+\subsubsection{Hartree et Hartree-Fock}
+La seule différence entre ces deux méthodes se situe dans la façon d'écrire. Pour Hartree la 
+fonction d'essai est un produit d'état (non symétrique, car fermions)
+\begin{equation}
+\ket{\psi} = \ket\dots\ket\dots\dots \ket\dots
+\end{equation}
+Alors que pour Hartree-Fock $\ket\psi$ est écrit sous la forme d'un déterminant de Slater.
+
+
+
+
+
+
+\subsection{Méthode de Hartree}
+Pour cette méthode, on considère que
+\begin{equation}
+\psi(1,2,\dots)=\phi_1(1)\phi_2(2)\dots\phi_N(N)
+\end{equation}
+où
+\begin{equation}
+\phi_i(i) = \phi_i(\vec{r_i})\chi(n_i) \quad \dashrightarrow \quad\phi_i(\vec{r_i})
+\end{equation}
+Nous ne tenons pas compte du spin ici afin d'alléger le formalisme.\\
+
+Comme discuté dans la précédente sous-section, nous allons maximiser sous contrainte de 
+normalisation sauf que cette fois nous n'avons plus une, mais $N$ contraintes, chacune 
+des fonction du produit devant être normalisés :  nous avons $N$ fonctions d'onde
+\begin{equation}
+\langle\hat{H}\rangle = \bra{\phi_1\ \phi_2\ \dots\ \phi_N}\sum_i \hat{H_i}+\sum_{i>j}V_{ij}\ket{\phi_1\ \phi_2\ \dots\ \phi_N}
+\end{equation}
+La première sommation peut facilement se résoudre, ne portant que sur $i$\footnote{Pas d'indice $i$ sur 
+$\hat{H}$ car celui-ci doit être symétrique et il est forcément le même pour toutes les fonctions propres.}
+\begin{equation}
+\langle\hat{H}\rangle = \sum_i\bra{\phi_i}\hat{H}\ket{\phi_i} + \sum_{i>j}\bra{\phi_i\phi_j}V_{ij}\ket{\phi_i\phi_j}
+\end{equation}
+Dans la base position, ceci est équivalent à
+\begin{equation}
+\langle\hat{H}\rangle = \sum_i \int d\vec{r}\ \phi_i^*(\vec{r})\left(-\frac{\hbar^2\nabla^2}{2m}-\frac{Ze^2}{r}\right)
+\phi_i(\vec{r}) + \sum_{ij} \underline{\int d\vec{r}d\vec{r'}\ \phi_i^*(\vec{r})\phi_j^*(\vec{r'})\frac{e^2}{|r_i-r_j|}\phi_i(\vec{r})\phi_j(\vec{r'})}
+\end{equation}
+Le terme souligné porte le nom d'\textbf{intégrale de Coulomb} qui est parfois notée
+\begin{equation}
+\mathcal{J}_{ij} = \iint d\vec{r}d\vec{r'}\ |\phi_i(\vec{r})|^2|\phi_j(\vec{r'})|^2\frac{e^2}{|r_i-r_j|}
+\end{equation}
+Revenons à notre fonction de Lagrange
+\begin{equation}
+\delta\left[\langle\hat{H}\rangle - \sum_{i=1}^N \varepsilon_i\bra{\phi_i}\ket{\phi_i} \right] = 0
+\end{equation}
+ Nous avons montré précédemment que le terme du complexe conjugué se 
+simplifiait : il  n'est nécessaire d'appliquer la différentiation uniquement sur le \textit{bra}
+\begin{equation}
+\sum_i\bra{\delta\phi_i}\hat{H}\ket{\phi_i} + \sum_{j<i} \bra{\delta\phi_i\phi_j}\hat{V}\ket{\phi_i\phi_j}
++ \sum_{j<i} \bra{\phi_i\delta\phi_j}\hat{V}\ket{\phi_i\phi_j} - \sum_{i=1}^N \varepsilon_i\bra{\phi_i}\ket{\phi_i} 
++ \underbrace{c.c.}_{\text{inutile}} = 0\qquad \forall \ket{\delta\phi_i}
+\end{equation}
+Le terme de potentiel peut être ré-écrit (en utilisant sa symétrie et la permutation d'indices)
+\begin{equation}
+\sum_{j<i} \bra{\phi_i\delta\phi_j}\hat{V}\ket{\phi_i\phi_j} = \sum_{j>i} \bra{\phi_j\delta\phi_i}\hat{V}\ket{\phi_j\phi_i} = \sum_{j>i} \bra{\delta \phi_i\phi_j}\hat{V}\ket{\phi_i\phi_j}
+\end{equation}
+On peut alors ré-écrire l'équation comme
+\begin{equation}
+\sum_i \bra{\delta \phi_i}\hat{J}\ket{\phi_i} + \sum_{j\neq i} \bra{\delta\phi_i\phi_j}V\ket{\phi_i\phi_j} - 
+\sum_i\varepsilon_i\bra{\delta \phi_i}\ket{\phi_i} = 0
+\end{equation}
+Nous obtenons alors $N$ équations de Schrödinger, une pour chaque $\bra{\delta\phi_i}$. Comme ceci doit être vrai 
+$\forall i$, nous pouvons dire que\footnote{On "se débarrasse" des $\bra{\delta\phi_i}$.}
+\begin{equation}
+\forall i :\qquad \hat{H}\ket{\phi_i} + \sum_{j\neq i} \bra{\bullet \phi_j}V\ket{\phi_i\phi_j} = \varepsilon_i\ket{\phi_i}=0
+\end{equation}
+où $\bullet$ est une notation efficace pour dire que l'on  n'a pas "fermé" la première particule (voir note en 
+bas de page). On observe un terme additionnel (?). Le système de Hartree va ainsi être un système de $N$ équations
+\begin{equation}
+\left(-\frac{\hbar^2V^2}{2m}-\frac{Ze^2}{r}\right)\phi_i(\vec{r}) + \sum_{j\neq i} \int d\vec{r'}\ \phi_j^*(\vec{r'})\frac{e^2}{|\vec{r}-\vec{r'}|}\phi_i(\vec{r})\phi_j(\vec{r'})
+\end{equation}
+où $\phi_j^*(\vec{r'})$ correspond à la probabilité que l'électron $j$ soit en $\vec{r'}$. On peut encore écrire
+\begin{equation}
+\left[-\frac{\hbar^2\nabla^2}{2m}-\underbrace{\frac{Ze^2}{r}+\sum_{i\neq j}\int d\vec{r'}\frac{e^2}{|\vec{r}-
+\vec{r'}|}|\phi_j(\vec{r'})|}_{\equiv V_i(\vec r)}\right]\phi_i(\vec{r})=\varepsilon_i\phi_i(\vec{r})
+\end{equation}
+où $\frac{Ze^2}{r}$ est le terme de répulsion du noyau et $\frac{e^2}{|\vec{r}-
+\vec{r'}|}|\phi_j(\vec{r'})|$ le terme de répulsion entre électron. Comme nous l'avions annoncé, tout se 
+déroule exactement comme si les électrons ne sont pas couplé et que chacun d'entre eux "existe seul dans son champ 
+moyen" constitué de la répulsion du noyau et des autres électron\footnote{On parle parfois de "screening effect".}. Le point clé est que $V_i(\vec{r}$ est auto-constitant. En effet, nous avons besoin de résoudre Schrödinger pour chaque électron et pour se faire, il faut connaître $V_i$ et pour cela il est nécessaire de connaître $\phi_j$ qui est inconnu. On va alors procéder par itération en partant d'un état initial pour chaque électron
+\begin{equation}
+\ket{\phi_1^{\text{init}}}\ket{\phi_2^{\text{init}}}\dots\qquad\rightarrow\qquad V_1(\vec{r})V_2(\vec{r})\dots\qquad\rightarrow\qquad \ket{\phi_1}\ket{\phi_2}\dots
+\end{equation}
+Se faisant, on pourra calculer les $N$ potentiels, résoudre Schrödinger, trouver un $\phi_i$ et recommencer le processus jusqu'à observer une convergence.\\
+
+Si l'on procède à une mesure expérimentale du spectre avec cette méthode, on se rend rapidement compte qu'il y a une légère divergence entre la théorie et la pratique et ceci parce qu'il "manque un terme" à cette relation. Comme nous l'avions annoncé, la méthode de Hartree n'est présentée ici que dans le but (pédagogique) d'introduire une méthode plus cohérente, celle d'Hartree-Fock.
+
+
+\subsection{Méthode de Hartree-Fock}
+La fonction est également totalement antisymétrique mais donnée cette fois par un déterminant de Slater 
+\begin{equation}
+\psi(1,2,\dots, N) = \frac{1}{N!}\left|\begin{array}{ccc}
+\phi_1(1)&\dots&\phi_1(N)\\
+\vdots&\ddots&\vdots\\
+\phi_1(N)&\dots&\phi_N(N)
+\end{array}\right|
+\end{equation}
+où le spin est également négligé. Comme pour la méthode d'Hartree, nous allons utiliser la méthode des extréma de 
+Lagrange. L'idée est identique, l'expression de la valeur moyenne de $\hat{H}$ sera cependant plus compliquée.
+On va aussi utiliser la méthode des extrama de Lagrange. L'idée est la même mais la valeur moyenne de $\hat H$ sera plus compliquée
+\begin{equation}
+\langle\hat{H}\rangle = \left\{\frac{1}{\sqrt{N!}}\sum_p(-1)^p \bra{p_{(1)},p_{(2)}\dots p_{(n)}}\right\}\left(
+\sum_i^N \hat{H}_i+\sum_{i>j}^{\frac{N(N-1)}{2}} V_{ij}\right)\left\{\frac{1}{\sqrt{N!}}\sum_p^N (-1)^p
+\ket{p_{(1)},p_{(2)}\dots p_{(n)}}\right\}
+\end{equation}
+où $\ket{p_{(1)},p_{(2)}\dots p_{(n)}}$ est donnée par le déterminant de Slater. \\
+
+Nous allons regardé le terme "un corps" numéro $i$ en considérant pour l'instant seulement le $\hat{H}_i$. Il peut y 
+avoir toute sorte de permutation dans le \textit{bra} et le \textit{ket} mais si celles-ci ne sont pas identiques, 
+cela donnera zéro. Les seuls contributions viendront du cas ou le \textit{bra} est bien le vecteur dual du 
+\textit{ket} associé
+\begin{equation}
+\frac{1}{N!}\sum_p \bra{p_{(1)},p_{(2)}\dots p_{(n)}}\hat{H}_i\ket{p_{(1)},p_{(2)}\dots p_{(n)}} = \frac{1}{N}
+\sum_j\bra{\phi_j}\hat{H}\ket{\phi_j}
+\end{equation}
+Ceci peut également être interpréter comme le fait de regardes, pour toutes les permutations, la valeur moyenne 
+de l'énergie de la particule numéro $i$. Ici nous avons regardé seulement pour la particule $i$ mais si l'on 
+s'intéresse au "full one body term" nous aurons alors $N$ termes :
+\begin{equation}
+\sum_j\bra{\phi_j}\hat{H}\ket{\phi_j}
+\end{equation}
+La façon de traiter l'anti-symétrie ne diffère en rien pour le terme à un corps\footnote{Ceci est rassurant, 
+celui-ci étant identique dans les deux méthodes}. Ce qui va changer, c'est le terme à deux corps.\\
+
+Considérons un terme donné ($i,j$ fixé). $V_{ij}$ n'agit que sur l'électron $i$ et $j$
+\begin{equation}
+\frac{1}{N!}\sum_p \bra{p_{(1)},p_{(2)}\dots p_{(n)}} V_{ij} \left\{\ket{\text{same}} - \ket{\text{échange $i\leftrightarrow j$}}\right\}
+\end{equation}
+où $\ket{\text{same}}$ rappelle que le seul terme qui survit est celui dont les permutations seront identiques. Ceci 
+est fait pour $i$ et $j$ mais ce n'est qu'une dénomination arbitraire qui peut bien sûr être échangée. Le signe 
+négatif nous vient de l'anti-symétrie
+
+\newpage
+\subsubsection{Terme à deux corps}
+Rappelons l’expression de ce terme
+\begin{equation}
+\frac{1}{2}\sum_{i\neq j} \left(\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}-\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}\right)
+\end{equation}
+Afin d'adopter une écriture similaire à la forme traditionnelle suivante
+\begin{equation}
+\left\langle H\right\rangle = \sum_i H_i + \frac{1}{2} \sum_{i\neq j} (J_{ij}-K_{ij})
+\end{equation}
+où
+\begin{equation}
+H_i \equiv \bra{\phi_i}H\ket{\phi_i}
+\end{equation}
+Pour se faire, nous devons poser
+\begin{equation}
+\begin{cases}
+J_{ij} \equiv \overset{\text{Coulomb integral}}{\bra{\phi_i\phi_j}V\ket{\phi_i\phi_j}}\\
+K_{ij} = \underset{\text{Exchange integral}}{\bra{\phi_i\phi_j}V\ket{\phi_j\phi_i}}
+\end{cases}
+\end{equation}
+où l'on retrouve bien l'\textit{intégrale de Coulomb} comme dans la méthode d'Hartree mais également un 
+terme supplémentaire : l'\textit{intégrale d'échange}\footnote{C'est ce terme qui corrigera les défauts du 
+spectre obtenu par la méthode d'Hartree.} qui ne peut \textbf{pas} être considéré comme une interaction car 
+l'Hamiltonien est identique à celui du cas précédent.\\
+
+Nous pouvons maintenant passer à la méthode des extrema de Lagrange avec notre nouvelle définition de $\hat{H}$
+\begin{equation}
+\delta \left[\left\langle H\right\rangle - \sum_{i=1}^{N} c_i \bra{\phi_?}\ket{\phi_?}\right] = 0
+\end{equation}
+Effectuons
+\begin{equation}
+\begin{split}
+\sum \bra{\delta\phi_i}\hat H\ket{\phi_i} + \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j} &\sum \bra{\delta\phi_i\phi_j}U\ket{\phi_i\phi_j} - \overset{\displaystyle\ 1}{\cancel{\frac{1}{2}}} \sum_{i\neq j}\sum \bra{\sqrt{\phi_i}\phi_j}V\ket{\phi_j\phi_i}\\
+-\sum_i \varepsilon_i\bra{\delta \phi_i}V\ket{\phi_i} +\frac{1}{2}\sum_{i\neq j}\sum &\cancel{\bra{\phi_i\delta\phi_j}V\ket{\phi_i\phi_j}} - \frac{1}{2}\sum_{i \neq j} \sum \cancel{\bra{\phi_i\delta\phi_j}\ket{\phi_j\phi_i}},\quad \forall \ket{\delta\phi},\ket\delta\\
+\end{split}
+\end{equation}
+où nous avons utilisé la symétrie du potentiel
+\begin{equation}
+\hat V \text{ symétrique : }\ \bra{\phi_j \delta\phi_i}V\ket{\phi_j\phi_i} = \bra{\delta\phi_i\phi_j}V\ket{\phi_i\phi_j}
+\end{equation}
+Comme précédemment\footnote{Et nous adoptons la même notation efficace que précédemment avec $\bullet$.}, 
+nous avons une équation par $i$
+\begin{equation}
+\forall i\ :\ H(\phi_i) + \sum_{j\neq i}\bra{\bullet\ \phi_j}V\ket{\phi_i\phi_j}- \sum_{j\neq i} \bra{\bullet\ \phi_j}V\ket{\phi_j\phi_i} = \varepsilon_i\ket{\phi_i}
+\end{equation}
+Nous pouvons rendre cette expression plus spécifique en considérant dans le cas d'un atome
+\begin{equation}
+\begin{split}
+\forall i\ :\ \left(-\frac{\hbar^2\Delta^2}{2m}-\frac{Z e^2}{r}\right)\phi_i(\vec r) + \overbrace{\left[\sum_{j\neq i}\int d\vec r\,\phi_j(\vec r)^*\frac{e^2}{|\vec r - \vec{r'}|}\phi_?(r)\phi_j(\vec {r'}) |\phi_j(\vec r)|^2\right]}^{V(\vec{r})} \\- \begin{cases}
+\sum_{?} \int d\vec r \phi_j^*(\vec r)\frac{e^2}{|\vec r - \vec{r'}|} \phi_j(\vec r)\phi_i(\vec{r'})\vspace{2mm}\\
+\DS\underbrace{\int d\vec{r'}\left[\sum_{j\neq i} \phi_j^*(\vec{r'})\dfrac{e^2}{|\vec{r}-\vec{r'}|}\phi_j(\vec{r})\right]\phi_i(\vec{r'})}_{V(\vec{r},\vec{r}')}
+\end{cases}
+\end{split}
+\end{equation}
+où le terme soustrait est le \textit{terme d'échange}, où $V(\vec{r})$ vient de la répulsion dans le nuage 
+électronique : il s'agit d'un potentiel \textit{local}. Par contre, $V(\vec{r},\vec{r}')$ est un potentiel \textit{non-local} car il est fonction de $\vec{r}'$ c'est-à-dire qu'il dépend de toutes les autres positions\footnote{On comprend bien que $V(\vec{r})$ est bien local, il ne dépend que de la valeur en un 
+point unique et non de tous les autres également.}.
+
+Nous avons, comme précédemment, $N$ équations de Schrödinger (pas d'interactions entre électrons, nous faisons 
+toujours l'hypothèse d'un champ d'interaction moyen). Il n'est pas possible de tout résoudre en une fois, mais 
+de la résoudre pour chaque $\phi_i$. Or, cette équation est couplée : nous devons-donc la résoudre par itération 
+comme précédemment, l'équation est également auto-consistante.
+
+	\vspace{1cm}
+	\begin{center}
+	\includegraphics[scale=0.15]{ch4/fin}
+	%\captionof{figure}{ }
+	\end{center}				

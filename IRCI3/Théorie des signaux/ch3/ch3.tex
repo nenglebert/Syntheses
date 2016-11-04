@@ -33,7 +33,7 @@ y(n) &= \sum_{k=-\infty}^\infty h(k)x(n-k) = \sum_{k=-\infty}^\infty h(k)z^{n-k}
 En effet, la dernière somme peut être vue comme une constante complexe (dépendant de $z$ 
 et du SLP). Cette sortie  n'est que la fonction d'entrée multipliée par quelque chose : 
 $z^n,z\in\mathbb{C}$ est une \textit{fonction propre} de tout SLP discret.\\
-Si par hasard le signal d'entrée peut se mettre tous la forme d'une somme d'exponentielle 
+Si par hasard le signal d'entrée peut se mettre sous la forme d'une somme d'exponentielle 
 complexe (fonction propre) multipliée par un scalaire
 \begin{equation}
 x(n) = \sum_p a_pz_p^n
@@ -68,7 +68,7 @@ d'une série $x(n)$ donnée :
 \left\{\begin{array}{ll}
 x(0) &= \sum_{k=0}^{N-1} a_k\\
 x(1) &= \sum_{k=0}^{N-1} a_ke^{jk\frac{2\pi}{N}}\\
-\dots\\
+\vdots\\
 x(N-1) &= \sum_{k=0}^{N-1} a_ke^{jk\frac{2\pi}{N}(N-1)}
 \end{array}\right.
 \end{equation}
@@ -85,13 +85,13 @@ x(N-1) &= \sum_{k=0}^{N-1} a_ke^{jk\frac{2\pi}{N}(N-1)}
 	\left\{\begin{array}{llll}
 	x(0) &=1 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k0/4} &= a_0+a_1+a_2+a_3\\
 	x(1) &=0 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k1/4} &= a_0+ja_1-a_2-ja_3\\
-	x(0) &=1 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k2/4} &= a_0-a_1+a_2-a_3\\
-	x(0) &=1 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k3/4} &= a_0-ja_1-a_2+ja_3		
+	x(2) &=2 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k2/4} &= a_0-a_1+a_2-a_3\\
+	x(3) &=-1 &= \sum_{k=0}^{4-1} a_ke^{j2\pi k3/4} &= a_0-ja_1-a_2+ja_3		
 	\end{array}\right.\quad\Leftrightarrow\quad\left\{\begin{array}{ll}
 	a_0 &= 1/2\\
 	a_1 &= -\frac{1+j}{4}\\
 	a_2 &= -1\\
-	a_" &= -\frac{1-j}{4}
+	a_3 &= -\frac{1-j}{4}
 	\end{array}\right.
 	\end{equation}}
 
@@ -108,7 +108,7 @@ Il faut pour cela calculer
 \end{equation}
 La dernière somme peut être écrite
 \begin{equation}
-S = \sum_{n=0}^{N-1}x(n) e^{-j(k-m)\frac{2\pi}{N}n}  = \sum_{n=0}^{N-1} \alpha^n
+S = \sum_{n=0}^{N-1}e^{-j(k-m)\frac{2\pi}{N}n}  = \sum_{n=0}^{N-1} \alpha^n
 \end{equation}
 où $\displaystyle \alpha = e^{-j(k-m)\frac{2\pi}{N}}$. Il s'agit de la série géométrique
 \begin{equation}
@@ -155,8 +155,8 @@ soit l'expression des coefficients de la série de Fourier discrète.
 	\begin{equation}
 	x(n) = \dfrac{e^{j\frac{2\pi}{N}n}-e^{-j\frac{2\pi}{N}n}}{2j}
 	\end{equation}
-	La série de Fourier ayant la forme $x(n) = \sum_{k=0}^{N-1} a_ke^{j\pi kn/N}$, 
-	en en déduit directement les coefficients par identification
+	La série de Fourier ayant la forme $x(n) = \sum_{k=0}^{N-1} a_ke^{j2\pi kn/N}$, 
+	on en déduit directement les coefficients par identification
 	\begin{equation}
 	a_1 = \frac{1}{2j},\qquad a_{-1} = -\frac{1}{2j},\qquad a_x=0\ \text{sinon}.
 	\end{equation}}
@@ -177,7 +177,7 @@ ici de sorte que la sortie sera donnée par
 \begin{equation}
 y(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)H\left(e^{j\frac{2\pi}{N}k}\right)
 e^{j\frac{2\pi}{N}kn}\qquad \text{ où }\quad H\left(e^{j\frac{2\pi}{N}k}\right) = 
-\sum_{k=-\infty}^\infty h(n)e^{-j\frac{2\pi}{N}kn}
+\sum_{n=-\infty}^\infty h(n)e^{-j\frac{2\pi}{N}kn}
 \end{equation}
 Il s'agit d'une convolution où $x$ est remplacé par sa série de Fourier.
 	
@@ -200,7 +200,7 @@ Dès lors, pour un signal d'entrée réel du type $x(n) = A\cos(\omega_0n+\varph
 sortie vaut (superposition)
 \begin{equation}
 y(n) = A \left|H\left(e^{j\omega_0 }\right)\right|\cos\left(\omega_0n+\varphi+\text{arg} 
-H\left(e^{j\omega n}\right)\right)
+H\left(e^{j\omega_0}\right)\right)
 \end{equation}
 On peut considérer $H\left(e^{j\omega}\right)$ comme le développement de la fonction 
 périodique $H$ en série de Fourier (où $\omega$ est continu). Dès lors, on peut exprimer 
@@ -228,7 +228,7 @@ est nécessairement périodique).\\
 La \textit{transformée de Fourier (et inverse) d'un signal apériodique} est définie par
 \begin{equation}
 X(e^{j\omega}) = \sum_{n=-\infty}^\infty x(n)e^{-j\omega n},\qquad\qquad x(n) = \dfrac{1}{2\pi}
-\int_{-\pi}^\pi H(e^{j\omega}) e^{j\omega n}\ d\omega
+\int_{-\pi}^\pi X(e^{j\omega}) e^{j\omega n}\ d\omega
 \end{equation}
 La limitation sur $(-\pi,\pi)$ permet de considérer toutes les exponentielles complexes 
 distinctes, évitant ainsi les répétitions. \\
@@ -282,7 +282,7 @@ Notons que toute fonction de carré sommable est forcément absolument sommable.
 		n'est qu'une simple multiplication dans le domaine fréquentiel.
 		
 		\subsubsection{Modulation}
-		Soit $y(n) = x_1(n)x_2(n)$. En calculant le spectre\footnote{Explications complémentaires plz}
+		Soit $y(n) = x_1(n)x_2(n)$. En calculant le spectre\footnote{La démonstration se trouve dans le cours d'analyse complexe}
 		\begin{equation}
 		\begin{array}{ll}
 		Y(e^{j\omega}) &= \DS \dfrac{1}{2\pi}\int_{-\pi}^\pi X_1(e^{j\theta})X_2(e^{j(\omega-\theta)})\ 
@@ -313,7 +313,7 @@ En décomposant l'expression ci-dessous, on retrouve l'exponentielle de départ 
 nombre fixe de fois $2\pi$ ($e^{jx}$ est périodique, de période $2\pi : e^{j2\pi}=1$, cela ne 
 change donc rien) :
 \begin{equation}
-X_d(k) = \sum_{k=-\infty}^\infty x_1(m)e^{-j\frac{2\pi}{N}mk} = X_1(e^{j\frac{2\pi}{N}k})
+X_d(k) = \sum_{m=-\infty}^\infty x_1(m)e^{-j\frac{2\pi}{N}mk} = X_1(e^{j\frac{2\pi}{N}k})
 \end{equation}
 On passe ainsi en revue toutes les valeurs de $x_1(n)$ avec une exponentielle complexe associée : 
 ces coefficients sont les échantillons de $X_1(e^{j\omega})$ prélevés à intervalle $2\pi/N$. Le 
@@ -346,13 +346,13 @@ fait en discret dans le passé).
 \end{equation}
 Calculons donc ses coefficients
 \begin{equation}
-\begin{array}{ll}
-c_n &= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \Delta_T(t)e^{-i2\pi nt/T}\ dt\qquad (-\infty < t_0<+\infty)\\
-&= \DS \dfrac{1}{T}\int_{-T/2}^{T/2} \Delta_T(t)e^{-i2\pi nt/T}\ dt \\
-&= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \delta(t) e^{-i2\pi nt/T}\ dt \\
-&= \DS \dfrac{1}{T} e^{-i2\pi n0/T}\ dt\\
-&= \DS \dfrac{1}{T}
-\end{array}
+\begin{split}
+c_n &=  \frac{1}{T}\int_{t_0}^{t_0+T} \Delta_T(t)e^{-i2\pi nt/T}\ dt\qquad (-\infty < t_0<+\infty)\\
+&= \frac{1}{T}\int_{-T/2}^{T/2} \Delta_T(t)e^{-i2\pi nt/T}\ dt \\
+&= \frac{1}{T}\int_{-T/2}^{T/2} \delta(t) e^{-i2\pi nt/T}\ dt \\
+&= \frac{1}{T} e^{-i2\pi n0/T}\\
+&= \frac{1}{T}
+\end{split}
 \end{equation}
 En effet, une période correspond à l'intervalle $[-T/2,T/2]$. Sur cette intervalle on retrouve une 
 seule impulsion (en zéro), les autre sont en dehors d'où le $\delta(t)$. On a donc
@@ -369,7 +369,7 @@ Revenons à notre somme de train d'impulsion. Comme le signal n'est non-nul que 
 $\omega = k\frac{2\pi}{N}$ :
 \begin{equation}
 \begin{array}{ll}
-X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty e^{j\omega rN}\delta\left(
+X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(
 \omega-k\dfrac{2\pi}{N}\right)\\
 &=\DS \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty X_1\left(e^{j\frac{2\pi}{N}k}\right)\delta\left(
 \omega-k\dfrac{2\pi}{N}\right)\\

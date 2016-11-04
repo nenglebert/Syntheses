@@ -1,0 +1,594 @@
+\chapter{Opérateur densité}
+\section{Introduction}
+\subsection{Distinction entre superposition quantique et mélange statistique}
+L'opérateur densité peut être vu comme une généralisation du vecteur d'état. 
+En effet, pour décrire un système plus compliqué, on utilise la mécanique 
+statistique : on considère un système d'axes $(x,p)$ que l'on peut subdiviser 
+en plusieurs cases $dx\ dp$. On peut alors introduire $f(x,p)\ dx\ dp$ comme 
+étant la probabilité de trouver la particules dans $dx\ dp$. Avant de nous 
+intéresser à distribution $f(x,p)$, il est nécessaire d'introduire un nouveau 
+formalisme.\\
+
+Le problème est que nous ne savons pas où est une particule et on aimerait 
+associer la notion de probabilité à un formalisme quantique
+\begin{equation}
+\ket\psi = \int dx\ \psi(\vec{r})\ket{\vec{r}}
+\end{equation}
+Nous ne savons pas exactement dans quel état nous nous sommes : les probabilités 
+reflètent ainsi le manque connaissance de la position et l'impulsion.\\
+
+Définissons la notion d'\textbf{état pure}. Tous les états considérés jusqu'ici 
+étaient considérés comme tel. Il s'agit d'un état qui peut être décrit à partir 
+des vecteurs propres d'un ECOC. Mais il se peut que l'on n'ai pas toujours la 
+parfaite connaissance d'un observable de notre ECOC : nous avons ainsi 
+un manque de connaissance qui se traduit par un \textbf{état mixte}. \\
+
+La nécessite d'introduire la notion d'état mixte se justifie expérimentalement : 
+l'expérience de Stern et Gerlach ne peut être comprise si cette notion n'est pas
+introduite.
+
+\subsubsection{Expérience de Stern et Gerlach}
+Cette expérience consiste à envoyer un jet d'atome d'argent (spin $1/2$) et les 
+envoyer à travers un champ magnétique. Si l'on procède ensuite à l'analyse de 
+la projection du spin, par exemple le long de l'axe $z$, on peut observer deux 
+taches à cause du spin $1/2$
+\begin{equation}
++\frac{\hbar}{2}\ (50\%),\qquad\qquad\qquad -\frac{\hbar}{2}\ (50\%)
+\end{equation}
+Cette projection sur l'axe $z$ dénonce la quantification, ces deux spins sont 
+équiprobables : nous avons une chance sur deux d'avoir l'une ou l'autre. Ceci 
+peut être décrit par le vecteur d'état
+\begin{equation}
+\ket \psi = \frac{1}{\sqrt{2}}\ket{\frac{1}{2},+\frac{1}{2}}+\frac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}
+\end{equation}
+où l'on utilise la notation efficace $\ket{s,m_s}$.  On retrouve bien cette 
+équiprobabilité
+\begin{equation}
+S_z\ \left\{\begin{array}{lll}
+\DS p\left(S_z = \frac{\hbar}{2}\right) &\DS= \left| \bra{\frac{1}{2},\frac{1}{2}}\ket{\psi}\right|^2&=\DS\frac{1}{2}\vspace{2mm}\\
+\DS p\left(S_z = -\frac{\hbar}{2}\right) &\DS= \left| \bra{\frac{1}{2},-\frac{1}{2}}\ket{\psi}\right|^2&=\DS\frac{1}{2}
+\end{array}\right.
+\end{equation}
+Nous avons ici travaillé avec des états purs. L'axe $z$ étant totalement arbitraire 
+(on doit avoir le même résultat peu importe l'axe choisi), analysons la situation 
+selon l'axe $x$
+\begin{equation}
+S_x = \frac{\hbar}{2}\left(\begin{array}{cc}
+0&1\\
+1&0
+\end{array}\right)
+\end{equation}
+Nos deux états propres sont
+\begin{equation}
+\left\{\begin{array}{ll}
+\ket{+} &\DS\equiv \frac{1}{\sqrt{2}}\ket{\frac{1}{2},+\frac{1}{2}}+\frac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}\vspace{2mm}\\
+\ket{-} &\DS\equiv \frac{1}{\sqrt{2}}\ket{\frac{1}{2},+\frac{1}{2}}-\frac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}
+\end{array}\right.
+\end{equation}
+Calculons maintenant les probabilités
+\begin{equation}
+\left\{\begin{array}{lll}
+p\left( S_x = +\frac{\hbar}{2}\right) &= |\bra{+}\ket{\psi}|^2 &= 1\\
+p\left( S_x = -\frac{\hbar}{2}\right) &= |\bra{-}\ket{\psi}|^2 &= 0
+\end{array}\right.
+\end{equation}
+Or, ceci n'est pas ce qui est observé expérimentalement, cette modélisation de $\ket\psi$ n'est pas 
+modélisable avec des états purs, d'où une première motivation à l'utilisation des états mixtes.\\
+
+\subsubsection{Oscillateur harmonique (2D)}
+Dans ce cas, la quantification de l'énergie est donnée par
+\begin{equation}
+E_{n_x, n_y} = (1+n_x+n_y)\hbar\omega
+\end{equation}
+Supposons que l'on ai deux états et que l'on souhaite le décrire. Trois candidats basés sur les états 
+purs sont possibles
+\begin{equation}
+\ket{n_x=1,n_y=0},\qquad\ket{n_x=0,n_y=1},\qquad \alpha\ket\dots + \beta\ket\dots
+\end{equation}
+où $|\alpha|^2+|\beta|^2 = 1$. Nous ne savons pas dans lequel de ces trois états possibles nous nous 
+trouvons, nous sommes bien dans la situation d'un manque de connaissance.
+
+
+\section{Opérateur densité d'un état pur}
+Montrons tout d'abord comment ce formalisme fonctionne lors de l'utilisation d'états purs. Ensuite, 
+nous étendrons cette notions pour les états mixtes.
+
+\subsection{Trace, propriété de $\rho$, Liouville quantique, mesure de l'état $\rho$}
+
+\subsubsection{Trace d'un opérateur}
+La trace d'un opérateur correspond à la trace de la matrice de cet opérateur. Soit $\hat{A}\in \mathcal{H}$, 
+un opérateur hermitien et $\left\{\ket n\right\}$ une base orthonormée de $\mathcal{H}$. On définit alors la 
+\textbf{trace de $\hat{A}$} 
+\begin{equation}
+\Tr(\hat{A}) \equiv \sum_n \bra{n}\hat{A}\ket{n}
+\label{eq:DefTR}
+\end{equation}
+Le choix de la base étant arbitraire, nous devrions retrouver ce résultat peu importe la base choisie.  
+Considérons une autre base orthonormée $\left\{\ket{\overline{n}}\right\}$ tel que nous pouvons écrire comme 
+relation de fermeture
+\begin{equation}
+\sum_{\overline{n}}\ket{\overline{n}}\bra{\overline{n}} = \hat{\mathbb{1}}
+\end{equation}
+La définition \eqref{eq:DefTR} est équivalente à
+\begin{equation}
+\Tr(\hat{A}) = \sum_n\sum_{\overline{n}}\sum_{\overline{m}}\bra{n}\ket{\overline{n}} \bra{\overline{n}}\hat{A}\ket{\overline{m}}
+\bra{\overline{m}}\ket{n}
+\end{equation}
+En réorganisant les termes
+\begin{equation}
+\Tr(\hat{A}) = \sum_{\overline{n}}\sum_{\overline{m}} \bra{\overline{n}}\hat{A}\ket{\overline{m}}\sum_n
+\underbrace{\bra{\overline{m}}\overbrace{\ket{n}\bra{n}}^{\mathbb{1}}\ket{\overline{n}}}_{\delta_{\overline{m},
+\overline{n}}}
+\end{equation}
+Par propriété de $\delta_{\overline{m},\overline{n}}$, on en tire que
+\begin{equation}
+\Tr(\hat{A}) = \sum_{\overline{n}} = \bra{\overline{n}}\hat{A}\ket{\overline{n}}
+\end{equation}
+ce qui montre que la définition de la trace est indépendante du choix de la base. Une autre propriété intéressante est que 
+\begin{equation}
+\Tr(\hat{A}\hat{B})  = \Tr(\hat{B}\hat{A})
+\end{equation}
+\begin{proof}\ \\
+Insérons la relation de fermeture entre $\hat{A}$ et $\hat{B}$. Nous avons alors
+\begin{equation}
+\begin{array}{ll}
+\Tr(\hat{A}\hat{B}) = \sum_n\bra{n}\hat{A}\hat{B}\ket{n} &=\DS \sum_n\sum_m \bra{n}\hat{A}\ket{m}\bra{m}\hat{B}\ket{n}\\
+&=\DS \sum_n\sum_m \bra{m}\hat{B}\ket{n}\bra{n}\hat{A}\ket{m}\\
+&=\DS \sum_m \bra{m}\hat{B}\hat{A}\ket{m} = \Tr(\hat{B}\hat{A})
+\end{array}
+\end{equation}
+\end{proof}
+Considérons le cas particulier ou l'on considère $\hat{A}=\ket{\psi}\bra{\varphi}$
+\begin{equation}
+\begin{array}{ll}
+\Tr(\ket{\psi}\bra{\varphi}\hat{B}) &=\DS \sum_n \bra{n}\ket{\psi}\bra{\varphi}\hat{B}\ket{n}\\
+&=\DS \sum_n \bra{\varphi}\hat{B}\ket{n}\bra{n}\ket{\psi} \\
+&=\DS \bra{\varphi}\hat{B}\ket{\psi}
+\end{array}
+\end{equation}
+Ce qui revient au calcul d'un élément de matrice.\\
+
+Définissions maintenant l'\textbf{opérateur densité d'état}? Soit un système dans un état $\ket{psi}$ (normalisé). L'opérateur densité associé à cet état est 
+\begin{equation}
+\underline{\hat{\rho} = \ket{\psi}\bra{\psi}}
+\end{equation}
+\subsubsection{Propriétés de $\hat{\rho}$}
+Cet opérateur a plusieurs propriétés indifférentes
+\begin{enumerate}
+\item[i] $\hat{\rho} = \hat{\rho}^\dagger$  (valeur propre réelle)
+\item[ii] $\hat{\rho} \geq 0$ (valeur propre positive)
+\begin{equation}
+\begin{array}{lll}
+\forall\ket{\varphi} :&\DS \bra{\varphi}\hat{\rho}\ket{\varphi} &\geq 0\\
+&\DS \bra{\varphi}\ket{\psi}\bra{\psi}\ket{\varphi} &\DS\geq 0\quad \Leftrightarrow\quad |\bra{\psi}\ket{\varphi}|^2 \geq 0
+\end{array}
+\end{equation}
+Il s'agit bien d'un opérateur positif
+\item[iii] $\Tr(\hat{\rho}) = 1$ (somme des valeurs propres vaut 1)
+\begin{equation}
+\Tr(\hat{\rho})=Tr(\ket{\psi}\bra{\psi}) = \bra{\psi}\ket{\psi} = 1
+\end{equation}
+Ceci est une conséquence directe de la normalisation de $\ket{\psi}$.
+\end{enumerate}
+On remarque que ces trois propriétés correspondent à la définition d'une probabilité : les valeurs propres
+de l'opérateur $\hat{\rho}$ vont jouer un rôle analogue aux distributions de probabilités. On peut dès lors 
+en tirer trois autres propriétés :
+\begin{enumerate}
+\item Les éléments de matrices diagonales  de l'opérateur $\hat{\rho}$ correspondent aux probabilité de mesures du système\footnote{La matrice de l'opérateur densité $\hat{\rho}$ est la \textit{matrice densité}.}. La probabilité 
+de mesurer la particule au point $\vec{r}$ est donnée par
+\begin{equation}
+\underline{p(\vec{r}) = \bra{\vec{r}}\hat{\rho}\ket{\vec{r}}}
+\end{equation}
+\begin{proof}
+\begin{equation}
+\begin{array}{ll}
+p(\vec{r}) = |\psi(\vec{r})|^2 = |\bra{\vec{r}}\ket{\psi}|^2 &=\DS \bra{\vec{r}}\ket{\psi}^*\bra{\vec{r}}\ket{\psi}\\
+&=\DS \bra{\vec{r}}\ket{\psi}\bra{\psi}\ket{\vec{r}}\\
+&=\DS \bra{\vec{r}}\hat{\rho}\ket{\vec{r}}
+\end{array}
+\end{equation}
+\end{proof}
+Vérifions que ceci est consistant
+\begin{equation}
+\int p(\vec{r})\ d\vec{r} = \int \bra{\vec{r}}\hat{\rho}\ket{\vec{r}}\ d\vec{r} = \Tr\hat{\rho} = 1
+\end{equation}
+Ceci étant connecté à la notion de probabilité, la normalisation prend tout son sens. 
+Ceci était pour l'observable position, voyons pour un autre observable. 
+\item Soit $\hat{A}$, de valeurs propres $a_i$ et $\DS \hat{P_i} = \sum_{j=1}^{d_i} \ket{\varphi_{ij}}\bra{\varphi_{ij}}$ (le projecteur associé à la valeur propre $a_i$). La probabilité de mesurer $a_i$ peut s'écrire
+\begin{equation}
+\underline{p(a_i) = \Tr(\hat{\rho}\hat{P_i})}
+\end{equation}
+\begin{proof}
+\begin{equation}
+\begin{array}{ll}
+p(a_i) = \|\hat{P_i}\ket{\psi}\|^2 &=\DS \bra{\psi}\hat{P_i}\ket{\psi}\\
+&=\DS \sum_k \bra{\psi}\hat{P_i}\ket{u_k}\bra{u_k}\ket{\psi}\\
+&=\DS \sum_k \bra{u_k}\underbrace{\ket{\psi}\bra{\psi}}_{\hat{\rho}}\hat{P_i}\ket{u_k} = \Tr(\hat{\rho}\hat{P_i})
+\end{array}
+\end{equation}
+\end{proof}
+Ceci est cohérent avec ce que nous avions obtenu avec l'observable $\vec{r}$
+\begin{equation}
+\hat{P_{\vec{r}}} = \ket{\vec{r}}\bra{\vec{r}}\quad\rightarrow\quad p(\vec{r}) = \Tr(\hat{\rho}\ket{\vec{r}}\bra{\vec{r}})
+= \bra{\vec{r}}\hat{\rho}\ket{\vec{r}}
+\end{equation}
+\item Montrons que ceci est consistant avec la notion de valeur moyenne de l'opérateur $\hat{A}$. Cette dernière s'exprime
+\begin{equation}
+\underline{\langle\hat{A}\rangle = \Tr(\hat{\rho}\hat{A})}
+\end{equation}
+\begin{proof}
+\begin{equation}
+\begin{array}{ll}
+\langle\hat{A}\rangle = \sum_i a_ip(a_i) &=\DS \sum_i a_i\Tr(\hat{\rho}\hat{P_i})\\
+&=\DS \Tr(\hat{\rho}\underbrace{\left(\sum_i a_i\hat{P_i}\right)}_{\hat{A}})
+\end{array}
+\end{equation}
+où nous avons  utiliser la décomposition spectrale de l'opérateur $\hat{A}$.
+\end{proof}
+\end{enumerate}
+Ceci est un formalisme différent, mais équivalent à celui vu précédemment.
+
+\subsubsection{Équation de Liouville quantique}
+Reprenons l'équation de Schrödinger temporelle
+\begin{equation}
+i\hbar \frac{d}{dt}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}
+\end{equation}
+Intéressons nous à la dérivée temporelle de $\hat{\rho}$, multipliée par $i\hbar$
+\begin{equation}
+\begin{array}{ll}
+i\hbar\dfrac{d\hat{\rho}}{dt} &=\DS i\hbar\left(\frac{d}{dt}\ket{\psi(t)}\right)\bra{\psi(t)} + i\hbar\ket{\psi(t)}\left(
+\frac{d}{dt}\bra{\psi(t)}\right)\vspace{2mm}\\
+&=\DS \hat{H}\underbrace{\ket{\psi}\bra{\psi}}_{\hat{\rho}}-\underbrace{\ket{\psi}\bra{\psi}}_{\hat{\rho}}\hat{A}\\
+&=\DS [\hat{H},\hat{\rho}]
+\end{array}
+\end{equation}
+où nous avons utilisé l'équation de Schrodinger dépendante du temps ainsi que son équation conjuguée pour 
+exprimer les dérivées des vecteurs d'états. Il s'agit de l'\textbf{équation de Liouville quantique}. Ce 
+formalisme est identique à celui de la mécanique quantique ; nous avons ici vu un "autre langage" d'écrire les 
+états purs, que nous allons étendre aux états mixtes. \\
+
+Notons qu'il est possible d'obtenir le théorème d'Ehrenfest à partir de la relation suivante (vu en séance d'exercices)
+\begin{equation}
+\langle\hat{A}\rangle = \Tr(\hat{\rho}\hat{A})\qquad\Leftrightarrow\qquad i\hbar\frac{d}{dt}\langle\hat{A}\rangle = 
+i\hbar\frac{d}{dt}\Tr(\hat{\rho}\hat{A})
+\end{equation}
+
+%%%%%%%
+
+
+\newpage
+	
+\section{Opérateur densité d'un mélange statistique}
+Un état pure d'un système, par exemple $\ket{\psi_i}\bra{\psi_i}$ est caractérisé par le déterminisme de la 
+mécanique classique dans l'évolution de l'état quantique\footnote{Sauf lorsqu'il y a une mesure}. Par contre, 
+un état mixte est un mélange statistique d'états purs. On verra que l'on peut toujours écrire un état mixte 
+\begin{equation}
+\sum_i p_i\ket{\psi_i}\bra{\psi_i}
+\end{equation}
+où les $p_i$ sont les probabilités du mélange statistique, et les $\ket{\psi_i}\bra{\psi_i}$ les différents 
+états purs du système\footnote{Source : \textsc{Wikipedia}}.
+
+\subsection{Définition, propriétés de $\hat{\rho}$, interprétation (diagonalisation)}
+\subsubsection{Définition}	
+Soit $\{\ket{\psi_k},p_k\}$ un \textbf{ensemble statistique} où les $p_k$ représentent les probabilités $\left(p_k \geq 0, 
+\sum_k p_k=1\right)$ et où les $\ket{\psi_k}$ ne sont pas forcément orthogonal (mais normalisés). On va définir, comme 
+annoncé dans l'introduction, les \textbf{états mixtes} :
+\begin{equation}
+\hat{\rho} = \underline{\sum_k p_k\ket{\psi_k}\bra{\psi_k}}
+\label{eq:DefRho2}
+\end{equation}
+où $\ket{\psi_k}\bra{\psi_k} = \hat{\rho_k}$ est un projecteur. Cette définition nous dit que l'opérateur densité 
+est une combinaison complexe d'\textit{opérateur densité purs} $\hat{\rho_k}$, pondérée par une probabilité.
+
+\subsubsection{Propriétés de $\hat{\rho}$}
+\begin{itemize}
+\item[$\bullet$] Mesure de $\hat{A}$. Rappelons-nous que
+\begin{equation}
+p(a_i|k) = \bra{\psi_k}\hat{P_i}\ket{\psi_k} = \Tr(\ket{\psi_k}\bra{\psi_k}\hat{P_i}) = \Tr(\hat{\rho_k}\hat{P_i})
+\end{equation}
+où $\hat{\rho_k}$ est l'opérateur densité correspondant à l'état pur $\ket{\psi_k}$. Nous voulons maintenant\footnote{Multiplication de deux probas ? Pas clair.}
+\begin{equation}
+p(a_i) = \sum_k p_k\ p(a_i|k) = \sum_k p_k \Tr(\hat{\rho_k}\hat{P_i}) = \Tr(\left(\sum_k p_k\hat{\rho_k}\right)\hat{P_i}) = 
+\Tr(\hat{\rho}\hat{P_i})
+\end{equation}
+où nous avons utilisé \eqref{eq:DefRho2}. Ceci nous montre que le formalisme introduit ici est général, la forme 
+obtenue étant la même que pour les états purs.\\
+
+\item[$\bullet$] La valeur moyenne de l'opérateur $\hat{A}$ s'obtient
+\begin{equation}
+\langle\hat{A}\rangle = \Tr(\hat{\rho}\hat{A})
+\end{equation}
+\begin{proof}
+\begin{equation}
+\langle\hat{A}\rangle = \sum_k p_k \bra{\psi_k}\hat{A}\ket{\psi_k} = \sum_k p_k\Tr(\underbrace{\ket{\psi_k}\bra{\psi_k}}_{\hat{\rho_k}}\hat{A}) = \Tr(\left(\sum_k p_k\hat{\rho_k}\right)\hat{A})
+\end{equation}
+\end{proof}
+
+\item[$\bullet$] L'équation de Liouville quantique a elle aussi une forme similaire à celle obtenue pour les états purs
+\begin{equation}
+\begin{array}{ll}
+i\hbar\dfrac{d\hat{\rho}}{dt} &=\DS i\hbar\frac{d}{dt}\left(\sum_k p_k \hat{\rho_k}\right)\vspace{2mm}\\
+&=\DS  \sum_k p_k \underbrace{i\hbar \frac{d\hat{\rho_k}}{dt}}_{[\hat{A},\hat{\rho_k}]}\vspace{2mm} \\
+&\DS= \left[\hat H, \sum_k p_k\hat{\rho_k}\right] = [\hat{H},\hat{\rho}]
+\end{array}
+\end{equation}
+\end{itemize}
+Si nous calculons la trace de $\hat{\rho_k^2}$, nous obtenons
+\begin{equation}
+\Tr(\hat{\rho_k^2}) = \hat{\rho_k} = 1
+\end{equation}
+car $\hat{\rho_k}$ est idempotent. Ceci est vrai \textbf{pour un état pur} mais en général
+\begin{equation}
+\Tr(\hat{\rho^2}) \leq 1
+\end{equation}
+Il s'agit de la seule différence entre un état pur et un état mixte. Pour un état mixtes, nous avons donc $\hat{\rho}
+=\hat{\rho}^\dagger, \hat{\rho}\geq 0, Tr(\hat{\rho})=1$ mais $\Tr(\hat{\rho^2})\leq 1$.
+
+
+\subsubsection{Diagonalisation de $\hat\rho$ (interprétation)}
+A l'aide du théorème de décomposition spectrale, nous pouvons écrire $\hat{\rho}$ à l'aide de ses valeurs 
+et vecteurs propres
+\begin{equation}
+\hat{\rho} = \sum_i \Pi_i \ket{\chi_i}\bra{\chi_i}
+\end{equation}
+où les $\Pi_i \geq 0$ sont les valeurs propres de l'opérateur densité et les $\ket{\chi_i}$ sont les vecteurs propres 
+(orthogonaux) de ce même opérateur. \\
+
+Ceci peut s'interpréter comme un mélange des $\ket{\chi_i}$. Nous pouvons remarquer que toutes les expressions 
+précédemment obtenues ne dépendaient toujours que de $\hat{\rho}$ et jamais des $\ket{\psi_k}$ : tout est 
+caractérisé par $\hat{\rho}$. Ceci montre qu'il peut y avoir des cas où il n'est pas possible d'extraire l'état 
+dans laquel le système a été préparé : on peut comprendre que l'expérience de S\&G  est une combinaison de spin 
+\textit{up} et \textit{down} mais l'axe sur lequel on prend la mesure n'a pas d'importance car, peu importe 
+celui-ci, la matrice densité contient toute l’information, les propriétés physiques ne dépendent de rien d'autre 
+que de $\hat{\rho}$.\\
+
+
+Un autre point à soulevé est que la notion de \textit{phase globale} disparaît totalement lors du traitement des 
+états mixtes. Soit $\ket{\psi'} = e^{i\alpha}\ket{\psi}$
+\begin{equation}
+\hat{\rho}' = \ket{\psi'}\bra{\psi'} = e^{i\alpha}\ket{\psi}\bra{\psi}e^{-i\alpha} = \ket{\psi}\bra{\psi}= \hat{\rho}
+\end{equation}
+Il n'y a donc plus de notion de phase globale : ceci montre que $\hat{\rho}$ est l'unique représentation du système. 
+L'opérateur densité $\hat{\rho}$ est \textbf{complet} et l'\textbf{unique} représentation d'un état du système\footnote{Unique 
+car il n'y a pas de phase globale irrelevante.}.\\
+
+Interprétons maintenant l'experience de Stern et Gerlach pour des atomes non polarisés. Empiriquement, la 
+probabilité de mesurer un spin \textit{up} ou \textit{down} est identique et vaut $1/2$. Soit la projection 
+du spin selon l'axe $\vec{u}$
+\begin{equation}
+\hat{S_{\vec{u}}} = \hat{\vec{S}}.\vec{u}
+\end{equation}
+La matrice densité décrivant l'état de notre système s'écrit
+\begin{equation}
+\hat{\rho} = \left(\begin{array}{cc}
+\frac{1}{2}&0\\
+0&\frac{1}{2}
+\end{array}\right) = \frac{1}{2}\hat{\mathbb{1}}
+\end{equation}
+Une rotation de la matrice identité reste une matrice identité : peu importe l'axe de mesure, les probabilités de 
+mesures seront les mêmes, nous avons correctement décrit notre système. \\
+
+Si l'on s'intéresse à la valeur moyenne 
+\begin{equation}
+\begin{array}{ll}
+\langle \hat{S_{\vec{u}}}\rangle =\langle \hat{\vec{S}}.\vec{u}\rangle &\DS= \langle S_x\rangle u_x+
+\langle S_y\rangle u_y+\langle S_z\rangle u_z\vspace{2mm}\\
+&=\DS \Tr(\hat{\rho}.S_x)u_x+\Tr(\hat{\rho}.S_y)u_y+\Tr(\hat{\rho}.S_z)u_z\vspace{2mm} \\
+&=\DS \frac{u_x}{2}\Tr(S_x)+\frac{u_y}{2}\Tr(S_y)+\frac{u_z}{2}\Tr(S_z)\vspace{2mm}\\
+&=0
+\end{array}
+\end{equation}
+car les traces des matrices de Pauli sont nulles. On voit donc que peu importe la direction, on observe le même
+caractère équiprobable. \\
+
+Nous savons maintenant que la représentation suivante est fausse
+\begin{equation}
+\ket{\psi} \neq \dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},\frac{1}{2}}\ \ +\ \ \dfrac{1}{\sqrt{2}}\ket{\frac{1}{2},-\frac{1}{2}}
+\end{equation}
+Pour le montrer, considérons la matrice densité associé à ce $\ket{\psi}$
+\begin{equation}
+\hat{\rho} = \ket{\psi}\bra{\psi} = \left(\begin{array}{cc}
+\frac{1}{2} & \frac{1}{2}\vspace{1mm}\\
+\frac{1}{2} & \frac{1}{2}
+\end{array}\right)
+\end{equation}
+La diagonalisation de la matrice dans la base des états propres donne alors
+\begin{equation}
+1\ket{+}\bra{+} \ \ +\ \  0\ket{-}\bra{-}\qquad\rightarrow\qquad \left(\begin{array}{cc}
+1&0\\
+0&0
+\end{array}\right)
+\end{equation}
+ce qui ne correspond clairement pas à la réalité physique observée : on se retrouve dans un autre état en diagonalisant 
+dans la base des états propres.
+
+\subsubsection{Exemples physiques}
+Ces exemples montrent des situations classiques traduit dans le cadre de la mécanique quantique.\\
+
+\textsc{A. Ensemble micro-canonique}\\
+Sot un ensemble micro-canonique
+\begin{equation}
+\mathcal{F}\subset\mathcal{H}
+\end{equation}
+L'énergie (connue) correspond à un sous-espace de l'espace de Hilbert. Dans le cas d'un ensemble micro-canonique, 
+l'opérateur densité s'écrit
+\begin{equation}
+\hat{\rho} = \frac{1}{d}\hat{\mathbb{P}_f} = \frac{1}{d}\sum_{i=1}^d \ket{e_i}\bra{e_i}
+\end{equation}
+Sa matrice n'est rien d'autre qu'une matrice diagonale composée uniquement de $1/d$ : tous les états sont bien 
+équiprobables.\\
+
+\textsc{B. Ensemble canonique}\\
+Un tel ensemble décrit un système en équilibre thermodynamique avec le réservoir (régit par la distribution de 
+Boltzmann). L'opérateur densité est donné par
+\begin{equation}
+\hat{\rho} = \dfrac{e^{-\beta\hat{H}}}{\Tr(e^{-\beta\hat{H}})}
+\end{equation}
+où $\hat{H}$ est l'Hamiltonien et $\beta = \dfrac{1}{k_BT}$. Si l'on cherche à diagonaliser :
+\begin{equation}
+\hat{H}\ket{\psi_n} = E_n\ket{\psi_n}\qquad \text{où }\ \hat{H} = \sum_n E_n\ket{\psi_n}\bra{\psi_n}
+\end{equation}
+A l'aide de la relation de fermeture, nous pouvons obtenir la relation suivante
+\begin{equation}
+e^{-\beta\hat{H}} = \sum_n e^{-\beta E_n}\ket{\psi_n}\bra{\psi_n}\qquad\Rightarrow\qquad \Tr(e^{-\beta \hat{H}}) = 
+\sum_n e^{-\beta E_n}
+\end{equation}
+L'opérateur densité peut alors se réécrire
+\begin{equation}
+\hat{\rho} = \sum_n \dfrac{e^{-\beta E_n}}{\sum_m e^{-beta E_m}} \ket{\psi_n}\bra{\psi_n}
+\end{equation}
+où l'on reconnaît la fonction de partition de Boltzmann. Il s'agit d'un état mixte (chaque état est pondéré par
+une probabilité). 
+
+ 
+
+\section{Distribution de Wigner}
+\subsection{Définition, propriétés de $W(x,p)$, négativité de $W(x,p)$}
+\subsubsection{Définition}
+Nous allons ici présenter une autre façon de représenter un système dans un état pure et mixte. Pour se faire, 
+considérons une particule dans une espace $3D$ et choisissons une base - ici la base position -de sorte à exprimer 
+son opérateur densité. En utilisant deux fois la relation de fermeture, nous pouvons écrire
+\begin{equation}
+\hat{\rho} = \iint d^3\vec{r} d^3\vec{r'}\ \ket{\vec{r}}\underbrace{\bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}}_{\hat\rho(\vec{r},\vec{r})}\bra{\vec{r'}}
+\end{equation}
+où $\hat\rho(\vec{r},\vec{r})$ est une fonction complexe qui pondère chaque $\ket{\vec{r}}\bra{\vec{r}}$. Regardons l'élément 
+diagonal de la matrice densité de cette fonction complexe
+\begin{equation}
+\hat{\rho} = \bra{\vec{r}}\hat{\rho}\ket{\vec{r}} = \mathbb{P}(\vec{r}) = \Tr(\hat{\rho}\ket{\vec{r}}\bra{\vec{r}})
+\end{equation}
+En intégrant sur  $\vec{r}$ et par linéarité de la trace
+\begin{equation}
+\int d\vec{r}\ \rho(\vec{r},\vec{r}) = \Tr(\hat{\rho}\hat{\mathbb{1}}) = 1
+\end{equation}
+Il devient possible interpréter $\hat \rho(\vec{r})$ comme la probabilité de se trouver à une certaine position. Il serait 
+intéressant de pouvoir traiter l'impulsion de façon similaire à la position. Le problème est similaire à celui introduit 
+en début de chapitre : la probabilité d'être dans un domaine infinitésimal $dx\ dp$ est donné par $f(x,y)\ dx\ dy$. 
+Intéressons-nous à ce que pourrait être une fonction jouant le rôle joué par $f(x,y)$. Une telle fonction, une telle 
+distribution, peut être la (quasi) distribution de Wigner.\\
+
+Par \textbf{définition}
+\begin{equation}
+\underline{W(\vec{r},\vec{p}) = \dfrac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat\rho\left(\vec{r}-\frac{\vec{a}}{2},\vec{r}
++\frac{\vec{a}}{2}\right)e^{\frac{i}{\hbar}\vec{a}.\vec{p}}}
+\end{equation}
+Cette fonction prend en compte deux positions choisies proche l'une de l'autre. Nous savons que la partie diagonale donne 
+la probabilité de mesurer $\vec{r}$ et nous avons introduit le vecteur $\vec{a}$ qui est la différence entre les deux 
+positions ; la transformée de Fourier est ensuite effectuée de sorte à avoir l'impulsion.
+On a deux position, on les prends proche l'une de l'autre et on sait que la partie diagonale donne la probabilité de mesurer r et on a introduit le vecteur a qui est la différence entre les deux et on prend la transformée de Fourier pour avoir l'impulsion.
+
+\subsubsection{Propriétés de $W(x,p)$}
+La (quasi) distribution de Wigner possède les propriétés suivantes
+\begin{itemize}
+\item[$\bullet$] $W(\vec \hat r,  \vec \hat p)$ est réel :
+\begin{equation}
+\begin{array}{ll}
+W^*(\vec{r},\vec{p}) &\DS= \frac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat{\rho}^\dagger\left(\vec{r}-\frac{\vec{a}}{2},\vec{r}
++\frac{\vec{a}}{2}\right)e^{-\frac{i}{\hbar}\vec{a}.\vec{p}}\\
+&\DS= \frac{1}{(2\pi\hbar)^3}\int d^3\vec{a}\ \hat{\rho}^\dagger\left(\vec{r}+\frac{\vec{a}}{2},\vec{r}
+-\frac{\vec{a}}{2}\right)e^{-\frac{i}{\hbar}\vec{a}.\vec{p}}
+\end{array}
+\end{equation}
+où nous avons utilisé le fait que $\hat{\rho}^\dagger(\vec{r},\vec{r'}) = \hat{\rho}(\vec{r'},\vec{r})$ :
+\begin{equation}
+\hat{\rho}^\dagger(\vec{r},\vec{r'}) = \bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}^*= \bra{\vec{r'}}\hat{\rho}\ket{\vec{r}} 
+= \hat{\rho}(\vec{r'},\vec{r})
+\end{equation}
+car $\hat{\rho}$ est hermitien. Nous pouvons conclure\footnote{Pas de signe négatif avec $d^3\vec{a}$, le jacobien 
+étant pris en valeur absolue.} en effectuant le changement de variable $\vec{b}=-\vec{a}$
+\begin{equation}
+W^*(\vec{r},\vec{p}) = \dfrac{1}{(2\pi\hbar)^3}\int d^3\vec{b}\ \hat\rho\left(\vec{r}-\frac{\vec{b}}{2},\vec{r}
++\frac{\vec{b}}{2}\right)e^{\frac{i}{\hbar}\vec{b}.\vec{p}} = W(\vec{r},\vec{p})
+\end{equation}
+\item[$\bullet$] $W(\vec{r},\vec{p})$ étant une distribution, elle doit être normalisable : sa trace doit valoir 1.
+\begin{equation}
+\begin{array}{ll}
+\DS\iint d^3\vec{r}d^3\vec{p}\ W(\vec{r},\vec{p}) &=\DS \int d^3\vec{r}\int d^3\vec{a}\ r\left(\vec{r}+\frac{\vec{a}}{2},\vec{r}
+-\frac{\vec{a}}{2}\right) \overbrace{\frac{1}{(2\pi\hbar)^3}\int d^3\vec{p}\ e^{\frac{i}{\hbar}\vec{a}.\vec{p}}}^{\delta^{(3)}(\vec{a})}\vspace{2mm}\\
+&=\DS \int d^3\vec{r}\ \hat{\rho}(\vec{r},\vec{r}) = \Tr(\hat{\rho}) = 1
+\end{array}
+\end{equation}
+où nous avons utilisé $\int e^{iax}\ dx = 2\pi \delta(x)$.
+\item[$\bullet$] La valeur moyenne de la position se calcule
+\begin{equation}
+\langle\vec{r}\rangle = \Tr(\hat{\rho}\hat{\vec{r}}) = \int d^3\vec{r}\ \bra{\vec{r}}\hat{\rho}\hat{\vec{r}}\ket{\vec{r}} = 
+\int d\vec{r}\ \vec{r}\underbrace{\bra{\vec{r}}\hat{\rho}\ket{\vec{r}}}_{\mathbb{P(\vec{r})}}
+\end{equation}
+Ceci est équivalent à 
+\begin{equation}
+\iint d\vec{r}d\vec{p}\ \vec{r}\ W(\vec{r},\vec{p}) = \int d\vec{r}\ \vec{r}\ \hat{\rho}(\vec{r},\vec{r})
+\end{equation}
+où nous avons utilisé (montré lors de la propriété précédente)
+\begin{equation}
+\iint d^3\vec{r}d^3\vec{p}\ \ W(\vec{r},\vec{p}) = \int d^3\vec{r}\ \ \hat{\rho}(\vec{r},\vec{r})
+\end{equation}
+
+\item[$\bullet$] Nous pouvons obtenir une équation similaire pour calculer la valeur moyenne de l'impulsion. Nous avions obtenu
+\begin{equation}
+\langle\vec{p}\rangle = \Tr(\hat{p}\hat{\rho}) = \int d\vec{p}\ \bra{\vec{p}}\hat{p}\hat{\rho}\ket{\vec{p}} =
+\int d\vec{p}\ \ \vec{p}\underbrace{\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}}_{\mathbb{P}(\vec{p})}
+\end{equation}
+L'idée est de ré-obtenir une forme semblable en utilisant notre distribution de Wigner. Pour se faire, partons de la 
+définition de la valeur moyenne de $\hat{\rho}$ et utilisons la relation de fermeture
+\begin{equation}
+\bra{\vec{p}}\hat{\mathbb{1}}\hat{\rho}\hat{\mathbb{1}}\ket{\vec{p}}= \int d\vec{r}d\vec{r}'\ \ 
+\underbrace{\bra{\vec{p}}\ket{\vec{r}}}_{\frac{1}{(2\pi\hbar)^{3/2}}e^{-\frac{i}{\hbar}\vec{p}.\vec{r}}}\bra{\vec{r}}\hat{\rho}\ket{\vec{r}'}\underbrace{\bra{\vec{r}'}\ket{\vec{p}}}_{\frac{1}{(2\pi\hbar)^{3/2}}e^{
+\frac{i}{\hbar}\vec{p}.\vec{r}}}
+\label{eq:ReecritVMRho}
+\end{equation}
+Après ré-écriture, nous obtenons
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}=\frac{1}{(2\pi\hbar)^3}\iint d\vec{r}d\vec{r'}\ \
+\bra{\vec{r}}\hat{\rho}\ket{\vec{r'}}e^{\frac{i}{\hbar}\vec{p}(\vec{r'}-\vec{r})}
+\end{equation}
+Effectuons le changement de variable suivant
+\begin{equation}
+\left\{\begin{array}{ll}
+\vec{r} &= \vec{u}-\frac{\vec{v}}{2}\\
+\vec{r'} &= \vec{u}+\frac{\vec{v}}{2}
+\end{array}\right.\qquad\Rightarrow\qquad \mathcal{J} = \left(\begin{array}{cc}
+1&1/2\\
+1&-1/2
+\end{array}\right)\quad \rightarrow\quad |\mathcal{J}| = 1
+\end{equation}
+Nous obtenons
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}= \iint d\vec{u}d\vec{v}\ \ \hat{\rho}\left(\vec{u}-\frac{\vec{v}}{2},
+\vec{u}+\frac{\vec{v}}{2}\right)e^{\frac{i}{\hbar}\vec{p}.\vec{v}}
+\end{equation}
+En remplaçant $\vec{v}\to\vec{a}$, on retrouve $W(\vec{r},\vec{p})$
+\begin{equation}
+\bra{\vec{p}}\hat{\rho}\ket{\vec{p}}=\int d\vec{u}\ \ W(\vec{u},\vec{p}) = \int d\vec{r}\ \ W(\vec{r},\vec{p})
+\end{equation}
+Nous pouvons alors ré-écrire \eqref{eq:ReecritVMRho}
+\begin{equation}
+\langle p \rangle = \iint d\vec{r}d\vec{p}\ \ \vec{p}\ W(\vec{r},\vec{p})
+\end{equation}
+La valeur moyenne de $\hat{p}$ est donc obtenue par simple intégration de $\vec{p}\ W(\vec{r},\vec{p})$. Ceci 
+peut se généraliser : si l'on souhaite la valeur moyenne de n'importe quelle fonction de la position où 
+l'impulsion, on retrouve
+\begin{equation}
+\begin{array}{ll}
+\langle f(\vec{r})\rangle &= \Tr(\hat{\rho}f(\vec{r})) = \iint d\vec{r}d\vec{p}\ \ f(\vec{r})\ W(\vec{r},\vec{p})\\
+\langle g(\vec{p})\rangle &= \Tr(\hat{\rho}g(\vec{p})) = \iint d\vec{r}d\vec{p}\ \ g(\vec{p})\ W(\vec{r},\vec{p})
+\end{array}
+\end{equation}
+\end{itemize}
+En plus d'être une fonction réelle, on peut montrer que
+\begin{equation}
+\left\{\begin{array}{ll}
+\DS\int d\vec{p}\ W(\vec{r},\vec{p}) &= \mathbb{P}(\vec{r})\\
+\DS\int d\vec{r}\ W(\vec{r},\vec{p}) &= \mathbb{P}(\vec{p})\\
+\DS\int d\vec{r}d\vec{p}\ W(\vec{r},\vec{p}) &= 1
+\end{array}\right.
+\end{equation}
+Peut-on dès lors voir $W(\vec{r},\vec{p})$ comme la probabilité d'occuper une cellule $d\vec{r}d\vec{p}$ ? 
+La réponse est \textbf{non} car $W(\vec{r},\vec{p})$ n'est pas toujours positive. C'est la raison pour 
+laquelle on parle de \textit{quasi} distribution. Néanmoins, pour les états purs, on peut utiliser le 
+théorème de Hudson-Piquet
+\begin{equation}
+W(\vec{r},\vec{p}) \geq 0\ \forall \vec{r},\vec{p}\qquad\Leftrightarrow\qquad \hat{\rho} \text{ est un 
+état gaussien pur}
+\end{equation}
+Pour considérer un exemple pratique : l'état fondamental $\ket{\psi_0}$ de l'oscillateur harmonique est 
+un état gaussien : il est possible d'écrire l'opérateur densité $\hat{\rho}$ correspondant pour ensuite 
+écrire $W_n(\vec{x},\vec{p})$ et l'utiliser comme bon nous semble.
