@@ -223,10 +223,8 @@ or the more recent:
 	}
 	\end{center}	
 	
-	\wrapfig{5}{l}{4}{0.3}{ch6/12}{fig:6.12}
+	\wrapfig{7}{l}{4}{0.3}{ch6/12}{fig:6.12}
 	We can see experimental results here, using these coefficient we match better the lower values. 
-	
-	\ \\
 	
 \subsection{The critical Mach number}
 	By definition, it is the $M_\infty$ when $M = 1$ somewhere on the airfoil. Consider a point A, the drag is given by: 
@@ -333,7 +331,7 @@ or the more recent:
 	The linearized potential equation corresponds to the wave equation with $\lambda ^2 = M_\infty ^2 -1 >0$. We can show that the solution of this equation is 
 	
 	\begin{equation}
-	\hat{\phi}(x,y)= f(x\lambda y) = \hat{\phi} _{1}(x-\lambda y) + \hat{\phi} _{2} (x+\lambda y).
+	\hat{\phi}(x,y)= f(x-\lambda y) = \hat{\phi} _{1}(x-\lambda y) + \hat{\phi} _{2} (x+\lambda y).
 	\end{equation}		
 	
 	Let's define 2 families of characteristic curves:
@@ -371,6 +369,148 @@ or the more recent:
 	\begin{equation}
 	\hat{ \phi} (x_p,y_p) = \hat{\phi} (x_A - \lambda y_A) + \hat{\phi} _2 (x_B + \lambda y_B) = F (x_A - \lambda y_A) + G (x_B + \lambda y_B)
 	\end{equation}
+
+	\wrapfig{8}{l}{5}{0.26}{ch6/17}{fig:6.17}
+	Now let's define the initial conditions at $x=0$ for small $\alpha$ for a thin profile:
 	
-\subsubsection{Application to a flat plate}
+	\begin{equation}
+	F(y) = K_1 = cst \qquad G(y) = K_2 = cst \qquad \Rightarrow \hat{\phi} = cst
+	\end{equation}
 	
+	since the incoming flow is uniform. On the pressure side, we have $\hat{\phi} _1(x-\lambda y) = K_1$ which gives in the solution: 
+	
+	\begin{equation}
+	\hat{\phi}(q) = K_1 + \hat{\phi}_2 (q) \qquad \rightarrow \hat{\phi}_x = \frac{d\hat{\phi}_2}{dq} = \hat{u} ^- \quad \hat{\phi}_y = \frac{d\hat{\phi}_2}{dq}\lambda = \hat{v} ^- \qquad \Rightarrow \hat{v}_{wall} = \lambda \hat{u}_{wall}
+	\end{equation}
+	
+	If we express the tangent as $\tan \theta_w \approx \theta_w = \frac{\hat{v}^-_w}{\hat{u}^-+V_\infty} \approx \frac{\hat{v}^-_w}{V_\infty}$,
+	We can get by replacing the last results in the previous pressure coefficient equation for small perturbations:
+	
+		
+	\begin{center}
+	\theor{
+	\textbf{Law of Ackeret}
+	\begin{equation}
+	C_p ^- = -\frac{2\hat{u}^-_w}{V_\infty} = -\frac{2\theta_w^-}{\sqrt{M^2_\infty - 1}}.
+	\end{equation}
+	}
+	\end{center}
+	
+	The same reasoning can be done for the suction side where we'll get:
+	
+	\begin{equation}
+	\hat{\phi} _x = \frac{d\hat{\phi}_1}{dq} = \hat{u}^+_w \qquad \hat{\phi} _x = \frac{d\hat{\phi}_1}{dq}(-\lambda) = \hat{v}^+_w = -\lambda \hat{u}^+_w\qquad \Rightarrow C_p^+ = \frac{2\theta_w^+}{\sqrt{M^2_\infty - 1}}.
+	\end{equation}
+	
+	\subsubsection{Application to a flat plate}
+	\wrapfig{8}{l}{7.5}{0.24}{ch6/18}{fig:6.18}
+	Consider the thin profile define by functions $y^+(x)$ and $y^-(x)$ with angles defines as:
+	
+	\begin{equation}
+	\begin{aligned}
+	&\epsilon = \frac{dy}{dx} <0 \qquad \theta = \frac{\hat{v}}{\hat{u} +V_\infty} <0 \\
+	 \Rightarrow &\theta = \epsilon - \alpha = \frac{dy}{dx} - \alpha
+	\end{aligned}
+	\end{equation}
+	
+	as $\alpha > 0$. We can then apply the last formula: 
+	
+	\begin{equation}
+	C_p^+ = \frac{2\theta_w^+}{\sqrt{M^2_\infty - 1}} = \frac{2\left( \frac{dy^+}{dx} -\alpha \right)}{\sqrt{M^2_\infty - 1}} \qquad C_p^- = -\frac{2\theta_w^-}{\sqrt{M^2_\infty - 1}} = \frac{2\left( \alpha -\frac{dy^-}{dx}\right)}{\sqrt{M^2_\infty - 1}}.
+	\end{equation}
+	
+	We are now interested in computing the normal and tangential force applied on the wing, for a counter-clock contour: 
+	
+	\begin{equation}
+	C_N = \int _0 ^1 C_p ^- \, \frac{dx}{c} + \int _1 ^0 C_p ^+ \, \frac{dx}{c} = \frac{4\alpha }{\sqrt{M_\infty ^2-1}}
+	\end{equation}
+	
+	where we replace the $C_p$'s by their definition and we neglect $\frac{dy}{dx}$ terms. For the drag we have the same procedure but by neglecting this time $\alpha$:
+	
+	\begin{equation}
+	\begin{aligned}
+	&C_\Gamma = -\int _0 ^1 C_p ^- \, \frac{dy}{c} - \int _1 ^0 C_p ^+ \, \frac{dy}{c} = \frac{2}{\sqrt{M_\infty ^2-1}} \left[ \int _0^1 \left(\frac{dy^-}{dx} \right)^2 \frac{dx}{c} + \int _0^1 \left(\frac{dy^+}{dx} \right)^2 \frac{dx}{c} \right]\\
+	\Rightarrow &C_\Gamma =  \frac{2}{\sqrt{M_\infty ^2-1}} [I^- + I^+]
+	\end{aligned}
+	\end{equation}
+	
+	To compute the lift and drag coefficient we only have to make the projections, and in case of flat plate $\frac{dy}{dx} = 0 = I^\pm$: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&C_l = -C_\Gamma \sin \alpha + C_N \cos \alpha \approx -\alpha C_\Gamma  + C_N \qquad C_d = C_\Gamma  + \alpha C_N\\
+	\Rightarrow &C_l = \frac{4\alpha}{\sqrt{M_\infty ^2 -1}} \qquad C_d = \frac{4\alpha}{\sqrt{M_\infty ^2 -1}}.
+		\end{aligned}
+	\end{equation}
+	
+	Remind that the drag is the \textbf{wave drag}. 
+	
+\subsubsection{Application to a double wedge}
+	\wrapfig{8}{r}{6.5}{0.24}{ch6/19}{fig:6.19}
+	If we apply the Ackeret law to this profile we have:
+	
+	\begin{equation}
+	\begin{aligned}
+	&C_{p1} = \frac{2(\delta - \alpha)}{\sqrt{M_\infty^2 -1}} \qquad C_{p2} = \frac{2(\delta + \alpha)}{\sqrt{M_\infty^2 -1}} \\
+	&C_{p3} = \frac{-2(\delta + \alpha)}{\sqrt{M_\infty^2 -1}} \qquad C_{p4} = \frac{-2(\delta - \alpha)}{\sqrt{M_\infty^2 -1}}
+	\end{aligned}
+	\end{equation}
+	
+	We can compute the lift and drag coefficients by integrating over the surface:
+	
+	\begin{equation}
+	\begin{aligned}
+	&\vec{F} = -\oint p\, d\vec{S} = -\oint (p-p_\infty)\, d\vec{S} = -\frac{1}{2} \rho _\infty V_\infty ^2 \oint C_p\, d\vec{S}\\
+	\Rightarrow &\vec{F}_1 = -\frac{1}{2} \rho _\infty V_\infty ^2 C_{p1} \frac{c}{2} \vec{n}_1
+	\end{aligned}
+	\end{equation}
+	
+	If we make the force non dimensional: 
+	\begin{equation}
+	\vec{C}_1 = \frac{\vec{F}_1}{\frac{1}{2}\rho _\infty V_\infty ^2 c} = -\frac{C_{p1}}{2} \vec{n}_1 \qquad \Rightarrow \vec{C}_i = -\frac{C_{pi}}{2} \vec{n}_i
+	\end{equation}
+	
+	If we look to the normal and tangent forces we find: 
+	
+	\begin{equation}
+	\begin{aligned}
+	C_y = \vec{C}_i .\vec{1}_y = \left(-\frac{C_{p1}}{2} + \frac{C_{p2}}{2} -\frac{C_{p3}}{2} +\frac{C_{p4}}{2} \right) \cos \delta= \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} \cos \delta \approx \frac{4\alpha }{\sqrt{M_\infty ^2 -1}}\\
+	C_x = \vec{C}_i .\vec{1}_x = \left(\frac{C_{p1}}{2} + \frac{C_{p2}}{2} -\frac{C_{p3}}{2} -\frac{C_{p4}}{2} \right) \sin \delta = \frac{4\delta }{\sqrt{M_\infty ^2 -1}} \sin \delta \approx \frac{4\delta ^2}{\sqrt{M_\infty ^2 -1}}
+	\end{aligned}
+	\end{equation}
+	
+	Then we make the same projection as previously: 
+	
+	\begin{equation}
+	c_l \approx C_y - \alpha C_x = \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} - \frac{4\delta ^2\alpha }{\sqrt{M_\infty ^2 -1}}  \approx \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} 
+	\end{equation}
+	
+	We find thus the same lift coefficient as the flat plate. Let's see the drag: 
+	
+	\begin{equation}
+	c_d = C_x + \alpha C_y = \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} + \frac{4\delta}{\sqrt{M_\infty ^2 -1}},
+	\end{equation}
+	
+	\wrapfig{11}{l}{3}{0.5}{ch6/20}{fig:6.20}
+	where the first term is \textbf{incidence wave drag} (result of lift), the same as the flat plate and the second term the \textbf{thickness wave drag} (result of volume) corresponding to the drag of the wedge at 0 degrees and angle of attack. The following empirical formula can be used for both drag on wing and on \textbf{complete plane}: 
+	
+	\begin{equation}
+	C_{Dw} = k_0 \frac{128}{\pi} \frac{V^2}{Sl^4} + k_1 \frac{1}{2\pi} \frac{S}{l^2}\lambda ^2 C_L^2
+	\end{equation}
+	
+	where $k_0$ and $k_1$ are constant of order 1 depending on the geometry and l the average length as represented on the figure. 
+	
+\subsection{Supersonic wings}
+	The flow properties are different from the subsonic case, as they are mainly given by shocks and expansions. Straight lines and sharp corners are as good as curved surfaces. Thus a flat plate is already the optimum theoretically, but there are structural constraints and fuel storage problems. \\
+	
+	Camber is thus not appropriate for the supersonic case, as the zero lift angle of attack is positive (lift negative when $\alpha = 0$). The camber reduces the lift in all incidences when supersonic. Consequently, we mainly use \textbf{symmetrical wings}. 
+	
+	\wrapfig{8}{l}{6.5}{0.25}{ch6/21}{fig:6.21}
+	A way to realize the symmetrical wing is the so-called \textbf{double wedge} wing. The situation is at $\alpha = 0\degres$ and we can see that the pressure distribution is symmetrical wrt horizontal axis but not wrt to the vertical one, meaning 0 lift but presence of drag. The paradox of d'Alembert is no longer applied in supersonic (in non-viscous flows the pressure distribution is symmetrical wrt both axis). The drag arising because of shocks and their expansion is called \textbf{wave drag}. When $\alpha \neq 0\degres$ a lift arises, is comparable to the flat plate one but the drag is larger. 
+	
+	\ \\
+	
+	\wrapfig{7}{r}{5.5}{0.35}{ch6/22}{fig:6.22}
+	Another useful profile is the \textbf{biconvex profile}. Here both sides are circle arcs of same radius. The Prandtl-Meyer expansion of the double wedge is replaced by a range of \textbf{Mach waves} (expansion waves, ch8). The leading edge shock is bent, we have more drag than the double wedge for the same t/c ratio and approximately the same lift. The leading edge angle is larger, the Mach number must be higher before the shock to be attached to the LE. 
+	
+	\ \\ This profile offers structural advantages and more fuel storage. In conclusion, in supersonic flight, we'd better have sharp leading edge to limit the shock drag, but this is not good for subsonic flight, take-off and landing as the stalling speed will be too low and the lift too. 
