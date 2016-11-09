@@ -1,7 +1,271 @@
 
 \chapter{2D wings in compressible flow}
-\setcounter{section}{1}
+\section{Subsonic flows}
+\subsection{The Prandtl-Glauert relation}
+	Remind that we have defined a potential function to describe incompressible flows, conservation of mass giving:
+	
+	\begin{equation}
+	\vec{v} = \nabla \phi \qquad \frac{\D u}{\D x} + \frac{\D v}{\D y} = 0 = \frac{\D^2 \phi}{\D x^2} + \frac{\D^2 \phi}{\D y^2}.
+	\end{equation}
+	
+	This can also be used to describe compressible flows, conservation of mass is then: 
+	
+	\begin{equation}
+	\rho (\phi _{xx} + \phi _{yy}) + \rho _x \phi _x + \rho _y \phi _y = 0
+	\label{eq:6.2}
+	\end{equation}
+	
+	where we introduced the shorthand notation $\frac{\D a}{\D x} = a_x$. We assume that the flow is isentropic, this is satisfied by inviscid flows (no shock  wave): 
+	
+	\begin{equation}
+	\frac{\rho}{T^{\frac{1}{\gamma -1}}} = cst \qquad \Rightarrow \frac{d \rho}{\rho} = \frac{1}{\gamma -1} \frac{dT}{T}
+	\end{equation}
+	
+	if the flow does not work (turbine), the temperature is constant and the equation becomes:
+	
+	\begin{equation}
+	d\rho = -\frac{\rho}{2a^2} d(u^2+v^2).
+	\end{equation}
 
+	If we replace the velocities we get: 
+	
+	\begin{equation}
+	\rho _x = -\frac{\rho}{a^2} (\phi _x \phi _{xx} + \phi _y \phi _{xy}) \qquad \rho _y = -\frac{\rho}{a^2} (\phi _x \phi _{xy} + \phi _y \phi _{yy}).
+	\end{equation}		
+	
+	That we can substitute in \eqref{eq:6.2}:
+	
+	\begin{equation}
+	\left( 1-\frac{1}{a^2} \phi^2_x \right) \phi _{xx} + \left( 1-\frac{1}{a^2 }\phi^2_y \right) \phi _{yy} - \frac{2}{a^2} \phi_x \phi_y \phi _{xy} = 0.
+	\label{eq:6.6}
+	\end{equation}		
+	
+	We can now apply this to an airfoil, if the far field velocity profile is $u= V_\infty$, we can note the velovity field by means of perturbations: $u = V_\infty + \hat{u}, v = \hat{v}$. A perturbation potential function can be defined: 
+	
+	\begin{equation}
+	\phi = V_\infty x + \hat{\phi}\qquad with \qquad \hat{\phi} _x = \hat{u}, \quad \hat{\phi}_y = \hat{v}. 
+	\end{equation}
+	
+	By substitution of this in \eqref{eq:6.6}:
+	
+	\begin{equation}
+	\left[ a^2- (V_\infty + \hat{\phi} _x )^2 \right] \hat{\phi} _{xx} + \left[ a^2-\hat{\phi}_y ^2 \right] \hat{\phi} _{yy} - 2 (V_\infty + \hat{\phi} _x) \hat{\phi}_y \hat{\phi} _{xy} = 0.
+	\label{eq:6.8}
+	\end{equation}
+	
+	Since the total temperature is constant:
+	
+	\begin{equation}
+	\frac{a^2_\infty}{\gamma -1} + \frac{V_\infty ^2}{2} = \frac{a^2}{\gamma -1} + \frac{(V_\infty + \hat{u}) ^2 = \hat{v}^2}{2} 
+	\label{eq:6.9}
+	\end{equation}
+	
+	If we make the assumption of small perturbation, the quadratic terms cancel and \eqref{eq:6.8} and \eqref{eq:6.9} become:
+	
+	\begin{equation}
+	\begin{aligned}
+	&\frac{a^2_\infty}{a^2} = 1 - (\gamma -1) \frac{\hat{u}}{V_\infty} M^2_\infty\\
+	&\left[ a^2- V^2_\infty + 2V_\infty \hat{u}  \right] \hat{\phi} _{xx} + a^2 \hat{\phi} _{yy} - 2 V_\infty \hat{v} \hat{\phi} _{xy} = 0 \\ 
+	\Rightarrow 
+	&\left[ 1- M_\infty^2 - (\gamma + 1) M_\infty \frac{\hat{u}}{V_\infty} \right] \hat{\phi} _{xx} + \left[ 1 - (\gamma -1 )M_\infty ^2\frac{\hat{u}}{V_\infty} \right] \hat{\phi} _{yy} - 2 M^2_\infty \frac{\hat{v}}{V_\infty} \hat{\phi} _{xy} = 0 
+	\end{aligned}
+	\end{equation}
+	
+	where the last expression is obtained by dividing by $a^2_\infty$ and replacing. By considering again the small perturbation ($V_\infty \ll$) equation we get the:
+	
+	\begin{center}
+	\theor{
+	\textbf{Transonic smal perturbation potential equation}
+	\begin{equation}
+	\left[ (1-M_\infty ^2) - (\gamma +1) M^2_\infty \frac{\hat{\phi}_x}{V_\infty}  \right] \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+	\end{equation}
+	}
+	\end{center}
+	
+	We can see that the $\hat{u}$ appears in $\\hat{phi} _{xx}$ term, this is no longer negligible for \textbf{sonic} velocities. For sub- and super-sonic flows however the equation simplifies in: 
+	
+	\begin{equation}
+	(1-M_\infty ^2) \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+	\end{equation}
+	
+	Note that we retrieve our incompressible equation for $M_\infty \rightarrow 0$. Be aware that this last relation is only valid for small perturbations (small bodies in practice) and sub- or super-sonic flows ($M_\infty > 1.2, M_\infty < 0.8$). \\
+	
+	Let's now operate a change of coordinate $(x,y) \rightarrow (\xi , \eta)$, recalling $1-M_\infty ^2 \equiv \beta ^2$: 
+	
+	\begin{equation}
+	\xi = x \quad \eta = \beta y \qquad \bar{\phi} (\xi , \eta) = m .\hat{\phi}(x,y)
+	\end{equation}
+	
+	where m is a constant. Let's find the expression of $\bar{\phi} (\xi, \eta)$. The chain rule gives: 
+	
+	\begin{equation}
+	\begin{aligned}
+	\hat{\phi} _x = \hat{\phi}_\xi = \frac{1}{m} \bar{\phi} _\xi \qquad  \hat{\phi} _y = \frac{\beta}{m} \bar{\phi}_\eta &\qquad \hat{\phi} _{xx} = \frac{1}{m} \bar{\phi}_{\xi \xi} \qquad \hat{\phi} _{yy} = \frac{\beta ^2}{m} \bar{\phi}_{\eta \eta}\\
+	&\Rightarrow \bar{\phi}_{xx} + \bar{\phi}_{yy} = 0
+	\end{aligned}
+	\label{eq:6.14}
+	\end{equation}
+	
+	We can see that the compressible flow in $(x,y)$ is reduced to an incompressible flow in the $(\xi, \eta)$ plane. Pay attention that $\bar{\phi}$ describes the perturbation velocities $\bar{u}, \bar{v}$. in the $(\xi, \eta)$ plane.  
+	
+	\wrapfig{7}{l}{7.5}{0.2}{ch6/9}{fig:6.9}
+	We can now focus on the shape of the profile in the new axis. Let's analyze the tangent to the profile by defining the angle $\theta$ for the profile in (x,y). Under the assumption of small perturbation (thin airfoil), we can see that:
+	
+	\begin{equation}
+	\tan \theta \approx \theta = \frac{\hat{v}}{V_\infty + \hat{u}} \approx \frac{\hat{v}}{V_\infty} = \frac{1}{V_\infty} \hat{\phi} _y \qquad \Rightarrow \chi \approx \frac{1}{V_\infty} \bar{\phi} _\eta
+	\end{equation}
+	
+	where the analogy for the new plane is done. Using \eqref{eq:6.14}, we get: 
+	
+	\begin{equation}
+	\theta = \frac{\beta}{m} \chi.
+	\end{equation}
+	
+	Let's investigate two cases: 
+	\begin{itemize}
+	\item[•] If we choose $m=\beta$, $\theta = \chi$, the two profiles are identical. We have for the velocity: 
+	
+	\begin{equation}
+	\hat{u} = \hat{\phi} _x = \frac{\bar{\phi}_\xi}{\beta} = \frac{\bar{u}}{\beta}
+	\end{equation}
+	
+	and since the pressure coefficient is given by $C_p = -\frac{2\hat{u}}{V_\infty}$: 
+		\end{itemize}		
+		
+	\begin{center}
+	\theor{
+	\textbf{Prandtl-Glauert rule}
+	\begin{equation}
+	C_p = \frac{C_{p,inc}}{\beta} = \frac{C_{p,inc}}{\sqrt{1 - M_\infty ^2}}.
+	\end{equation}
+	This equation allows us to compute the pressure distribution in compressible flow, beginning from the incompressible one. 
+	}
+	\end{center}
+
+	
+	\wrapfig{12}{r}{5}{0.3}{ch6/10}{fig:6.10}
+	Since the lift and moment coefficient are given by the integration of the pressure coefficient along the wing, we have the same result for them (so also the slope of lift curve $m$). Here is plotted the experimental data and the approximated m by means of the above relation for $\alpha = 0$ and for different airfoil thickness $\tau$. We can see that for the thinner wings, we have a good agreement, until we reach the \textbf{critical Mach number} (Mach number at infinity for which Mach number 1 is reached on the profile).  This value exceeded, we have shock waves (formula valid only for Mach until 0.8). 
+	For thicker wings, we see that the slope m is always underestimated. The critical Mach number is here much lower. 
+	
+	\ \\
+\begin{itemize}
+	\item[•] If we choose $m=1, \hat{u} = \bar{u}$ so that $C_p = C_{p, inc}$. We see that the pressure coefficient is now the same but the profiles are different following we are in the compressible or incompressible case $\theta = \beta \chi$. 
+\end{itemize}
+
+\wrapfig{5}{l}{6.5}{0.2}{ch6/11}{fig:6.11}
+	The angle relation must be true along the entire profile, particularly at the maximum thickness: 
+	
+	\begin{equation}
+	\tau = \beta \tau _{inc}. 
+\end{equation}		
+	
+\paragraph{Remark 1}
+	If we take into account the aspect ratio, we can rewrite the slope m as: 
+	
+	\begin{equation}
+	m = \frac{m_{inc}}{\beta} \frac{2\pi}{\beta \left(1+\frac{2}{eAR}\right)}
+\end{equation}		
+
+	where we used the theoretical 2D slope $2\pi$. Another possibility is to write the lift as:
+	
+	\begin{equation}
+	c_l = \frac{2\pi}{\beta} (\alpha - \alpha _{L_0} - \alpha _i) = \frac{2\pi}{\beta+\frac{2}{eAR}} (\alpha - \alpha _{L_0})
+	\end{equation}
+
+	We can	last note the existence of the DATCOM formula that accounts for the effect of the aspect ratio, sweep angle $\Lambda$, Mach number and has also a correction factor for viscous effects $\kappa \approx 0.97$: 
+	
+	\begin{equation}
+	m = \frac{2\pi AR}{2+\sqrt{\frac{AR^2 + beta ^2}{\kappa ^2}\left( 1+\frac{\tan ^2\Lambda}{\beta ^2} \right)+4}}.
+	\end{equation}
+	
+\paragraph{Remark 2}
+	We can also rearrange the expression of $C_p$ with the approximation of small angles, we had: 
+	
+	\begin{equation}
+	C_p = \frac{p-p_\infty}{\frac{1}{2}\rho _\infty V_\infty^2} = \frac{\gamma 2p_\infty}{\gamma \rho _\infty V_\infty ^2}\left(\frac{p}{p_\infty}-1 \right) =  \frac{2}{\gamma M^2_\infty} \left(\frac{p}{p_\infty} -1 \right) \qquad \gamma \frac{p_\infty}{\rho _\infty} = \gamma rT = a^2
+	\label{eq:6.23}
+	\end{equation}
+	
+	The isentropic flow and the constant $T_c$ give: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&\frac{p}{p_\infty}  =\left( \frac{T}{T_\infty} \right) ^{\frac{\gamma}{\gamma - 1}} = \left( \frac{T_t - \frac{1}{2c_p}\left[ (V_\infty +\hat{u})^2 +\hat{v}^2 \right]}{T_\infty} \right)^{\frac{\gamma}{\gamma-1}} \qquad T_t = T_\infty + \frac{V_\infty^2}{2c_p}\\
+	\Rightarrow &\frac{p}{p_\infty}  =\left[ 1- \frac{\gamma -1}{2}M^2_\infty \left( \frac{2\hat{u}}{V_\infty} +\frac{\hat{u}^2 +\hat{v}^2}{V^2_\infty} \right) \right]^{\frac{\gamma}{\gamma-1}} = 1- \frac{\gamma}{2}M^2_\infty \left( \frac{2\hat{u}}{V_\infty} +\frac{\hat{u}^2 +\hat{v}^2}{V^2_\infty} \right)+\dots
+	\end{aligned}
+	\end{equation}
+	
+	where the last expression comes from the fact that the second term is small so that we have the Taylor development of $1+\epsilon$ (first order limited). We can neglect the second term in bracket since we have small perturbation square, and we get by \eqref{eq:6.23}:
+	
+	\begin{equation}
+	\frac{p}{p_\infty} = -\frac{2\hat{u}}{V_\infty}
+	\end{equation}
+	
+\subsection{Improved corrections for compressibility}
+	With the increasing cruise speed of WW2, we have 2 more precise relations:
+	
+	\begin{center}
+	\theor{
+	\textbf{Karman-Tsien relation}
+	\begin{equation}
+	C_p = \frac{C_{p,inc}}{\sqrt{1-M^2_\infty}+\frac{M^2_\infty}{1+\sqrt{1-M^2_\infty}}\frac{C_{p,inc}}{2}}
+	\end{equation}
+	}
+	\end{center}
+or the more recent:
+
+	\begin{center}
+	\theor{
+	\textbf{Laitone relation}
+	\begin{equation}
+	C_p = \frac{C_{p,inc}}{\sqrt{1-M^2_\infty}+\frac{M^2_\infty (1+\frac{\gamma -1}{2}M^2_\infty)C_{p,inc}}{2\sqrt{1-M^2_\infty}}}
+	\end{equation}
+	}
+	\end{center}	
+	
+	\wrapfig{5}{l}{4}{0.3}{ch6/12}{fig:6.12}
+	We can see experimental results here, using these coefficient we match better the lower values. 
+	
+	\ \\
+	
+\subsection{The critical Mach number}
+	By definition, it is the $M_\infty$ when $M = 1$ somewhere on the airfoil. Consider a point A, the drag is given by: 
+	
+	\begin{equation}
+	C_{p,A} = \frac{2}{\gamma M_\infty^2} \left( \frac{p_A}{p_\infty} -1 \right)
+	\end{equation}
+	
+	If we combine the fact that the flow is isentropic:
+	
+	\begin{equation}
+	\frac{p_A}{p_\infty} = \left(\frac{T_A}{T_\infty}\right)^{\frac{\gamma}{\gamma -1}} = \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} 
+	\quad \Rightarrow C_{p,A} = \frac{2}{\gamma M_\infty^2} \left[ \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} -1 \right]
+	\end{equation}
+	
+	If now we consider $M_\infty = M_{kr} \rightarrow M_A = 1$, so that the equation becomes: 
+	
+	\begin{equation}
+	C_{p,A} = \frac{2}{\gamma M_\infty^2} \left[ \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} -1 \right] \qquad C_{p,A} = \frac{C_{p,A,inc}}{\sqrt{1-M_{kr}^2}},
+	\end{equation}
+	
+
+
+	\wrapfig{10}{r}{5}{0.3}{ch6/13}{fig:6.13}
+	where the second equation is the Prandtl-Glauert relation. 
+	We can plot the two equations on a graph. The intersection of the two graphs gives the critical Mach number. We can see that the minimum lift coefficient at low velocities is more negative than the thin case, characterized by a smaller $M_{kr}$. The perturbation of the flow is higher. Flying at high subsonic velocities is important $\rightarrow$ thin airfoil. When the angle of attack increases, the lift increases but the higher velocity on the suction part makes the $M_{kr}$ much lower. We want so the wing to be as thin as possible but we are limited by the structural strength and the fuel storage.
+	
+	\ \\
+	\wrapfig{10}{l}{4.5}{0.25}{ch6/14}{fig:6.14}
+	 We avoid also large bending of the leading edge to avoid large accelerations. One solution to increase $M_{kr}$ is to place the maximum camber downstream, about 50\% of the chord because the velocities on the suction side will be lower. Placing it too downstream will create a too high opposite gradient and cause separation. 
+	
+	\ \\ Symmetrical wings have a larger $M_{kr}$, however be careful with combination of sharp LE because of LE separation. In practice we have a quasi-symmetrical profile with camber near LE. \textbf{Swept} wings also increase the $M_{kr}$. 
+	
+	\minifig{ch6/15}{ch6/16}{0.45}{0.3}{0.45}{0.3}
+	
+	We wan observe here above, the plot of $\alpha, C_L$ and $C_D$ for a symmetrical and a non-symmetrical airfoil. We can observe on \autoref{ch6/15} that the slope of the lift curve goes up to $M=0.83$ (Prandtl-Glauert). Once above $M_{kr}$ it starts to decrease and the drag suddenly increases. \\
+	
+	On \autoref{ch6/16} we can see similar effects at the difference that around $M_{kr}$ we have a positive increase of the zero lift angle, having a negative effect on longitudinal stability. Note that the decrease of the lift curve starts earlier, $M_{kr}$ is smaller. 
+	
 \section{Transonic flows}
 \subsection{Drag divergence Mach number}
 	\wrapfig{22}{l}{4.5}{0.5}{ch6/1}{fig:6.1}
