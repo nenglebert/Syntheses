@@ -1,0 +1,244 @@
+
+\chapter{2D elements in plane stress and plane strain}
+\label{chap:8}
+	\wrapfig{6}{l}{8.5}{0.3}{ch8/1}
+	We will now focus on the 2D elements for plane stress and plane strain states. The (x,y)-plane dimensions are much larger than the z direction dimension. These elements are called \textbf{membrane elements}.
+	
+	\ \\\\
+	
+\section{Triangular elements}
+\subsection{TRIM-3}
+	\wrapfig{10}{r}{3}{0.3}{ch8/2}
+	The first element is a triangle with three nodes on the vertex of the triangle. We have 3 degree of freedom for each nodes meaning that 6 degree of freedom characterize this element: 
+	
+	\begin{equation}
+	q^e = [u_1 \  v_1 \ u_2 \  v_2 \ u_3 \  v_3]^T.
+	\end{equation}
+	
+	TRIM-3 means triangle, membrane and 3 nodes. Notice that only linear displacements can be performed since we have 2 nodes per side. We will also assume that: 
+	
+	\begin{itemize}
+	\item[•] the nodal displacement following x-axis $(u^e(x))$ only depends on the x nodal displacement: $u_i$;
+	
+	\item[•] same for y-axis
+	
+	\item[•] same shape functions are used for u and v. 
+	\end{itemize}
+	
+	From these hypothesis, we can approximate the displacement as:
+	
+	\begin{equation}
+	u^e(x) = N^e(x) q^e = \left[
+	\begin{array}{cccccc}
+	N_1(x) & 0 & N_2(x) & 0 & N_3(x) & 0\\
+	0 & N_1(x) & 0 & N_2(x) & 0 & N_3(x)
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	u_1\\
+	v_1\\
+	u_2\\
+	v_2\\
+	u_3\\
+	v_3
+	\end{array}
+	\right]
+	\end{equation}
+	
+	Enforcing the approximation to be interpolant at the nodes we have 6 additional constraints: 
+	
+	\begin{equation}
+	u^e(x_j) = u_i N_i (x_j) = u_i \qquad v^e(x_j) = v_i N_i (x_j) = v_i \qquad \Rightarrow N_i (x_j) = \delta _{ij}.
+	\end{equation}
+	
+	\wrapfig{5}{l}{8.5}{0.31}{ch8/3}
+	The nodes functions are represented here, we see that it has to be 1 on the i-th node and 0 at the others, linearly. The analytical expression can be obtained by considering it co-planar to $(x_i,y_i, 1)$ and $(x_j,y_j, 0)$ for $j\neq i$. For $N_1(x)$ for example we have: 
+	
+	\begin{equation}
+	\left|
+	\begin{array}{cccc}
+	1 & 1 & 1 & 1\\
+	x_1 & x_2 & x_3 & x\\
+	y_1 & y_2 &y_3 y\\
+	1 & 0 & 0 & N_1(x)
+	\end{array}
+	\right|
+	=0
+	\quad \Rightarrow 
+	N_1(x) = - \frac{1}{2\Delta} [(y_3 - y_2) (x-x_2) - (x_3 - x_2)(y-y_2)]
+	\end{equation}
+	
+	\wrapfig{5}{r}{7}{0.3}{ch8/4}
+	With $\Delta = \frac{1}{2} \left| \begin{array}{ccc}
+	1 & 1 & 1\\
+	x_1 & x_2 & x_3\\
+	y_1 & y_2 &y_3
+\end{array}	 \right|$ which is the signed area of the element. Note that the numbering of the nodes has an impact. The numbering should be the same for all the elements. From the displacement, the strains can be obtained:
+
+	\begin{equation}
+	\epsilon ^e (x) = Du^e(x) = DN^e(x) q^e = B(x) q^e.
+	\end{equation}
+	
+	The TRIM-3 element is the rare case where the $B(x)$ ends up as a constant, not depending on the actual position x:
+	
+	\begin{equation}
+	B(x) = -\frac{1}{2A^e} \left[
+	\begin{array}{cccccc}
+	y_3 -y_2 & 0 & y_1-y_3 & 0 & y_2-y_1 & 0\\
+	0 & -(x_3-x_2) & 0 & -(x_1-x_3) & 0 & -(x_2-x_1)\\
+	-(x_3-x_2) & y_3 -y_2 & -(x_1-x_3) & y_1-y_3 & -(x_2-x_1) & y_2-y_1
+	\end{array}
+	\right]
+	\end{equation}
+	
+	Finally, as $B$ is a constant, the integral for the stiffness matrix K gives:
+	
+	\begin{equation}
+	K = B^T H B d^eA^e
+	\end{equation}
+	
+	where $d^e$ is the thickness and $A^e$ the area of the volume $V^e$ of the element. The forces have to be put in nodal values, from the definition:
+	
+	\begin{equation}
+	f^{e,V}_{i,x} = \int_{V^e} b_x \, dV = \frac{1}{3} b_x d^e A^e \qquad f^{e,V}_{i,y} = \int_{V^e} b_y \, dV = \frac{1}{3} b_y d^e A^e
+	\end{equation}
+	
+	For the surface forces, we have to consider the forces integrated on each side of the element: 
+	
+	\begin{equation}
+	f_{i,x}^{e,S} = \int _{S_t} N_i t_x^{(n)} \, dS = \frac{1}{2} d^e l_{side\, i-j} t_x^{(n)} = f_{j,x}^{e,S}.
+	\end{equation}
+	
+	As mentioned, the TRIM-3 element is a particular case where the B matrix is constant. While the displacement are continuous across the elements, the strains and stresses are constant on each elements and so discontinuous across the elements. $K^e$ is obtained by matrix multiplication, without integration. 
+	
+	\wrapfig{5}{l}{7}{0.3}{ch8/5}
+	The simplicity of TRIM-3 is to find K directly in the real space. It is also interesting to use the procedure based on the reference element ($\xi, \eta$ coordinates). The coordinates in the real space can be mapped as follows: 
+	
+	\begin{equation}
+	x = \sum _{i=1}^3 N_i (\xi, \eta) x_i\qquad y = \sum _{i=1}^3 N_i (\xi, \eta) y_i
+	\end{equation}
+	
+	The goal is to replace the stiffness calculation in real space by its calculation on the reference element:
+	
+	\begin{equation}
+	\int_{V^e} B(x,y)^T H B(x,y) \, dx\, dy \, dz \qquad \Rightarrow \int _{\xi} \int _\eta \int _z B(\xi,\eta)^T H B(\xi,\eta) \det (J) \, d\xi \, d\eta \, dz
+	\end{equation}
+	
+	for a constant thickness in the z-axis, we can replace $\int_z dz$ by $d^e$ directly. The derivatives of the shapes functions wrt x, y involves the derivatives wrt $\xi, \eta$ by chain: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D \xi}\\
+	\frac{\D N_i}{\D \eta}
+	\end{array}
+	\right]
+	=
+	\underbrace{
+	\left[
+	\begin{array}{cc}
+	\frac{\D x}{\D \xi} & \frac{\D x}{\D \eta}\\
+	\frac{\D y}{\D \xi} & \frac{\D y}{\D \eta}
+	\end{array}
+	\right]
+	}_{J}
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D x}\\
+	\frac{\D N_i}{\D y}
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{cc}
+	\sum _{i=1}^{n_e} \frac{\D N_i(\xi, \eta)}{\D \xi}x_i & \sum _{i=1}^{n_e} \frac{\D N_i(\xi, \eta)}{\D \xi}y_i\\
+	\sum _{i=1}^{n_e} \frac{\D N_i(\xi, \eta)}{\D \eta}x_i & \sum _{i=1}^{n_e} \frac{\D N_i(\xi, \eta)}{\D \eta}y_i
+	\end{array}
+	\right]
+		\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D x}\\
+	\frac{\D N_i}{\D y}
+	\end{array}
+	\right]\\
+	&\Rightarrow 
+		\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D x}\\
+	\frac{\D N_i}{\D y}
+	\end{array}
+	\right]
+	= J^{-1}
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D \xi}\\
+	\frac{\D N_i}{\D \eta}
+	\end{array}
+	\right].
+	\end{aligned}
+	\end{equation}
+	
+	Practically, the computation of $K^e$ is not performed analytically (ouf) but numerically, see later. There are 2 ways to improve the accuracy, increasing the number of nodes or increasing the order of the approximation. To implement the \textbf{quadratic} approximation required from the second method, we need the six-node element. 
+	
+\subsection{TRIM-6}
+	\wrapfig{6}{l}{7}{0.3}{ch8/6}	
+	In the specific case of triangular elements, we use the \textbf{area coordinates} to get the shape functions. We can define each point by the relative area of the three sub-trianglesit creates inside the triangular element, $L_1,L_2,L_3$. Notice that in TRIM-3, the $L_i$ corresponds to the shape functions since $L_i = 1$ at node i and $L_i = 0$ for nodes $i\neq j$ (figure: left).  We see on figure: right that the shape functions in TRIM-6 have an easy expression too. \\
+	
+	From a similar integration to what we have seen, the body and contact forces are given by:
+	
+	\begin{equation}
+	\left\{
+	\begin{aligned}
+	&f_{i,x}^{e,V} = 0 \quad i = 1,2,3\\
+	&f_{i,x}^{e,V} = \frac{1}{3}b_x d^eA^e \quad i = 4,5,6
+	\end{aligned}
+	\right.
+	\qquad 
+	\left\{
+	\begin{aligned}
+	&f_{i,x}^{e,S} = \frac{1}{6}t^{(n)}_x l_{side \, i-j} d^e = f_{j,x}^{e,S} \\
+	&f_{k,x}^{e,S} = \frac{4}{6} t_x^{(n)} l_{side \, i-j}d^e \quad k \mbox{ middle of side } i-j
+	\end{aligned}
+	\right.
+	\end{equation}
+	
+	We see that for the quadratic form, the forces are not equally distributed anymore, the weight is dictated by the position. 
+	
+\section{Quadrangular elements}
+\subsection{REM-4}
+	\wrapfig{6}{l}{6}{0.3}{ch8/7}	
+	This is the second family of 2D elements we study. A linear approx gives the following 4-node element. The shape functions in $(\xi, \eta)$ have already been studied in §6.5: 
+	
+	\ \\
+	
+	\begin{equation}
+	\begin{aligned}
+	&N_1(\xi , \eta) = \frac{1}{4} (1-\xi)(1-\eta), \quad N_2(\xi , \eta) = \frac{1}{4} (1+\xi)(1-\eta), \\ 
+	&N_3(\xi , \eta) = \frac{1}{4} (1+\xi)(1+\eta), \quad N_4(\xi , \eta) = \frac{1}{4} (1-\xi)(1+\eta)
+	\end{aligned}
+	\end{equation}
+	
+	\wrapfig{6}{r}{8}{0.3}{ch8/8}
+	Note that the shape functions are linear on each side but note within the element since we have now a term in $\xi \eta$. The body and contact forces are:
+	
+	\begin{equation}
+	f_{i,x}^{e,V} = \frac{1}{4} b_x d^eA^e \qquad f_{i,x}^{e,S} = f_{j,x}^{e,S} = \frac{1}{2} t_x^{(n)} l_{side \, i-j}d^e
+	\end{equation}
+	
+	for constant $d^e$ and $t_x^{(n)}$. 
+	
+\subsection{REM-8 and REM-9}
+	Better accuracy can be reached by increasing the number of nodes. However, since only 8 nodes are implied, the corresponding polynomial approximation does not contain all the bi-quadratic polynomial terms omitting $x^2y^2$. Elements containing incomplete polynomial basis are called \textbf{Serendipity elements}. 
+	
+	\wrapfig{6}{l}{7}{0.3}{ch8/9}
+	To get a complete bi-quadratic approximation, we add a node at the center (REM-9). The shape functions still satisfy the condition $N_j(x_i) = \delta _{ij}$. Such element is called \textbf{Lagrange} element. The full basis of polynomials (pascal triangle) and the forces are depicted on \autoref{ch8/10} and \autoref{ch8/11}.
+	
+	\minifig{ch8/10}{ch8/11}{0.3}{0.3}{0.5}{0.46}
+	
+	Remark that the central node does not intervene when assembled to other elements and can be extracted from the stiffness relations (\textbf{condensation} of central node). 
+	
+\section{Connecting elements of different types}
+	\wrapfig{6}{l}{6}{0.3}{ch8/12}
+	Different elements can be connected if the continuity between the elements is ensured. For example, TRIM-3 and REM-4 is ok because they have both continuity on their side. Same for TRIM-6, REM-8 and REM-9. Linear and quadratic can be assembled but by adding a linearity constraint. 

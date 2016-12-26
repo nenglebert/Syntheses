@@ -10,12 +10,11 @@
 
 %%% Général %%%
 \usepackage[utf8]{inputenc}
-\usepackage[british,french]{babel}
-\usepackage[T1]{fontenc}
-%\addto\extrasfrench{\sisetup{locale = FR,detect-all}} % Switch siunitx en fonction de la langue babel :)
-%\addto\extrasbritish{\sisetup{locale = UK,detect-all}}
-\usepackage{mathpazo}
+\usepackage{babel}
 \usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\addto\extrasfrench{\sisetup{locale = FR,detect-all}} % Switch siunitx en fonction de la langue babel :)
+\addto\extrasbritish{\sisetup{locale = UK,detect-all}}
 \usepackage{courier}
 \usepackage{graphicx}
 \usepackage{cancel}
@@ -40,9 +39,9 @@
 \usepackage{circuitikz}
 
 %%% Mise en page %%%
-\usepackage{amsmath}
-\usepackage{amsfonts}
+\usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{bbm}
 \usepackage{amsthm}
 \usepackage[tt]{titlepic}% Centre le titre
 \usepackage{fancyhdr}   % Permet de modifier l'entête & footer
@@ -59,9 +58,7 @@
 %%% Math %%%
 \usepackage{delarray} % Belles matrices
 \usepackage{siunitx}
-\sisetup{locale = FR,detect-all}
 
-% Pour mettre siunitx en mode français (virgule plutôt que point etc.)
 
 %%% Codes %%%
 \usepackage{listings}
@@ -98,32 +95,35 @@
 \newcommand{\ft}{\overset{\mathcal{F}}{\longleftrightarrow}}
 \newcommand{\lt}{\overset{\mathcal{L}}{\longleftrightarrow}}
 \newcommand{\DS}{\displaystyle}
+\newcommand{\Tr}{\text{Tr }}
 
 
 
 %% Box
-\newcommand{\theor}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Théorème : }#1}}
-\newcommand{\defi}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Définition : }#1}}
-\newcommand{\lemme}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Lemme : }#1}}
-\newcommand{\prop}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Propriété}\\ #1}}
+\shorthandon{:}
+\newcommand{\theor}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Theorem}{Théorème}: }#1}}
+\newcommand{\defi}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Definition}{Définition}: }#1}}
+\newcommand{\lemme}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Lemma}{Lemme}: }#1}}
+\newcommand{\prop}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Property}{Propriété}}\\ #1}}
 \newcommand{\proposition}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Proposition}\\#1}}
-\newcommand{\retenir}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textbf{\textit{\textsc{À retenir} : }}#1}}
-\newcommand{\corollaire}[1]{\ \\\begin{tabular}{||c}
+\newcommand{\cadre}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{#1}}
+\newcommand{\retenir}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textbf{\textit{\textsc{\iflanguage{british}{To remember}{À retenir}}: }}#1}}
+
+\newcommand{\corollaire}[1]{\bigbreak\begin{tabular}{||c}
 	\begin{minipage}{\textwidth}
-		\textsc{Corollaire : } \textit{#1}
+		\textsc{\iflanguage{british}{Corollary}{Corollaire}: } \textit{#1}
 	\end{minipage}
 	\end{tabular}}
-\newcommand{\exemple}[1]{\ \\\begin{tabular}{|c}
+\newcommand{\exemple}[1]{\bigbreak\begin{tabular}{|c}
 	\begin{minipage}{\textwidth}
-		\textsc{Exemple : } #1
-	\end{minipage}
-	\end{tabular}}
-    
+		\textsc{\iflanguage{british}{Example}{Exemple}: } #1
+	\end{minipage}%
+	\end{tabular}}%
+\shorthandoff{:}
     
 
 %\pagestyle{headings} % Titre du ch et numéro page dans l'entete
 \renewcommand{\proofname}{Démonstration}
-\selectlanguage{french}
 \addto\captionsfrench{\def\tablename{Tableau}}
 
 
@@ -147,9 +147,34 @@
 
 %%% Attributs %%%
 \newcommand*{\NomduCours}[2]{\def\cours{#1}\def\memo{#2}}
-\newcommand*{\auteur}[2]{\def\prenom{#1}\def\nom{#2}}
-\newcommand*{\noteur}[2]{\def\nprenom{#1}\def\nnom{#2}}
-\newcommand*{\rappeltheo}[2]{\def\rappeltheoprenom{#1}\def\rappeltheonom{#2}}
-\newcommand*{\professeur}[2]{\def\pprenom{#1}\def\pnom{#2}}
-\newcommand*{\sprofesseur}[2]{\def\spprenom{#1}\def\spnom{#2}}
 \newcommand*{\annee}[2]{\def\adebut{#1}\def\afin{#2}}
+
+\newcounter{auteurcnt}
+\newcommand\addauteur[2]{%
+	\stepcounter{auteurcnt}%
+	\csdef{auteur\theauteurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getauteur[1]{%
+	\csuse{auteur#1}}
+
+\newcounter{illustrateurcnt}
+\newcommand\addillustrateur[2]{%
+	\stepcounter{illustrateurcnt}%
+	\csdef{illustrateur\theillustrateurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getillustrateur[1]{%
+	\csuse{illustrateur#1}}
+
+\newcounter{rappeltheocnt}
+\newcommand\addrappeltheo[2]{%
+	\stepcounter{rappeltheocnt}%
+	\csdef{rappeltheo\therappeltheocnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getrappeltheo[1]{%
+	\csuse{rappeltheo#1}}
+
+\newcounter{professeurcnt}
+\newcommand\addprofesseur[2]{%
+	\stepcounter{professeurcnt}%
+	\csdef{professeur\theprofesseurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getprofesseur[1]{%
+	\csuse{professeur#1}}
+
+\newcounter{iter}

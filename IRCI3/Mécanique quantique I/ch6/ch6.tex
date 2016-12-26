@@ -2,7 +2,7 @@
 \section{Méthode des perturbations dépendant du temps}
 	\subsection{Principe de base, résolution itérative, fréquence/pulsation de Bohr}	
 		\subsubsection{Principe de base}
-	Cette fois-ci, l'équation que nous voulons répondre dépend du temps
+	Cette fois-ci, l'équation que nous voulons résoudre dépend du temps
 	\begin{equation}
 	i\hbar\dfrac{\partial}{\partial t}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}
 	\end{equation}
@@ -58,7 +58,7 @@
 		i\hbar \sum_k \dfrac{d}{dt}C_k\ket{\psi_k} = \sum_k C_k\underbrace{\hat{H_0}\ket{\psi_k}}_{
 		E_n\ket{\psi_k}} + \sum_k C_k\hat{W}(t)\ket{\psi_k}
 		\end{equation}
-		Si on projette par $\ket{psi_n}$, seul le terme $n$ va rester dans la somme (états orthonormés 
+		Si on projette par $\ket{\psi_n}$, seul le terme $n$ va rester dans la somme (états orthonormés 
 		formant une	base). On aura alors
 		\begin{equation}
 		\forall n : i\hbar \dfrac{d}{dt}C_n = C_n E_n + \sum_k C_k \underbrace{
@@ -75,7 +75,7 @@
 		toute simple connue. En dérivant par rapport au temps
 		\begin{equation}
 		i\hbar\left(\dfrac{d}{dt}b_ne^{-\frac{i}{\hbar}E_n.t} + \dfrac{E_n}{i\hbar}b_ne^{-\frac{i}
-		{\hbar}E_nt}\right) = b_ne^{-\frac{i}{\hbar}E_nt}+ \sum_k b_k e^{-\frac{i}{\hbar}E_kt}W_{n,k}(t)
+		{\hbar}E_nt}\right) = b_ne^{-\frac{i}{\hbar}E_nt}E_n+ \sum_k b_k e^{-\frac{i}{\hbar}E_kt}W_{n,k}(t)
 		\end{equation}
 		où encore
 		\begin{equation}
@@ -86,7 +86,7 @@
 		la transition $t\rightarrow n$. La force de couplage de la transition $k\rightarrow n$ est 
 		donné par 
 		\begin{equation}
-		W_{n,k}(t) = \ket{\psi_n}\hat{W}(t)\ket{\psi_k}
+		W_{n,k}(t) = \bra{\psi_n}\hat{W}(t)\ket{\psi_k}
 		\end{equation}
 		Celle-ci sera d'autant plus grande que la transition est forte.\\
 		L'équation \eqref{eq:11.24} est exacte. Nous allons écrire la perturbation
@@ -171,7 +171,7 @@
 		initialement dans l'état initial $i$ et, après allumage de la perturbation, de se 
 		trouver dans un état $f$ à l'instant $t$ 
 		\begin{equation}
-		\mathbb{P}_{if}(t) = |\ket{\psi_f}\bra{\psi(t)}|^2 = |C_f(t)|^2 = |b_f(t)|^2
+		\mathbb{P}_{if}(t) = |\bra{\psi(t)}\ket{\psi_f}|^2 = |C_f(t)|^2 = |b_f(t)|^2
 		\end{equation}
 		On peut directement lire cette probabilité en remplaçant $n$ par $f$ dans \eqref{eq:11.9} 
 		et en prenant le module carré de cette expression : 
@@ -507,8 +507,7 @@ le système va être bloqué dans cet état propre instantané.
 	\begin{equation}
 	\left|\bra{\psi_n}\frac{dH}{dt}\ket{\psi_k}\right| \ll \dfrac{|E_n-E_k|^2}{\hbar}
 	\end{equation}
-	Cette condition compare le couplage entre deux états au gap entre ces deux états\footnote{Note cours 12
-	pour graphique.}. 
+	Cette condition compare le couplage entre deux états au gap entre ces deux états.
 	
 	
 	

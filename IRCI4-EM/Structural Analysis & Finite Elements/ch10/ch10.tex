@@ -1,0 +1,161 @@
+
+\chapter{Numerical integration}
+\section{Exploiting isoparametric properties}
+	Except for the TRIM-3 element we already discussed, the other elements require an integration over the element with varying shape. Here is the efficiency of the isoparametric elements: 
+	
+	\begin{itemize}
+	\item[•] instead of integrating on the real element, it will be done on a parent element;
+	\item[•] due to the presence of the inverse of the Jacobian, the integration will be done numerically: 
+	
+	\begin{equation}
+	K^e = \int _{V^e} B(x) ^T H B(x) \, dV \qquad \Rightarrow 	K^e = \int _{\xi} \int _\eta \int _\zeta B(x(\xi)) ^T H B(x(\xi)) \det (J(\xi,\eta))\, d\xi \, d\eta \, d\zeta 
+	\end{equation}
+	
+	where the $B(x(\xi))$ contain the derivative of the shape functions wrt $x,y,z$.
+	\end{itemize}	 
+	
+	For the integration process, let's consider a constant thickness $d^e$. The developments of \autoref{chap:8} will be used. Remind that the derivatives of $N(x,y)$ respect the chain rule: 
+	
+	\begin{equation}
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D \xi}\\
+	\frac{\D N_i}{\D \eta}
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{cc}
+	\frac{\D x}{\D \xi} & \frac{\D y}{\D \xi}\\
+	\frac{\D x}{\D \eta} & \frac{\D y}{\D \eta}
+	\end{array}
+	\right]
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D x}\\
+	\frac{\D N_i}{\D y}
+	\end{array}
+	\right].
+	\end{equation}
+	
+	Knowing that the coordinates are related as:
+	
+	\begin{equation}
+	x(\xi, \eta) = \sum_{i=1}^{n_e} N_i(\xi, \eta) x_i, \qquad y(\xi, \eta) = \sum_{i=1}^{n_e} N_i(\xi, \eta) y_i
+	\end{equation}
+	
+	the derivatives are given by: 
+	\begin{equation}
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D x}\\
+	\frac{\D N_i}{\D y}
+	\end{array}
+	\right]
+	=
+	\underbrace{
+	\left[
+	\begin{array}{cc}
+	\sum_{i=1}^{n_e} \frac{\D N_i}{\D \xi}x_i & \sum_{i=1}^{n_e}\frac{\D N_i}{\D \xi}y_i\\
+	\sum_{i=1}^{n_e} \frac{\D N_i}{\D \eta}x_i & \sum_{i=1}^{n_e}\frac{\D N_i}{\D \eta}y_i\\
+	\end{array}
+	\right]^{-1}
+	}_{J^{-1}}
+	\left[
+	\begin{array}{c}
+	\frac{\D N_i}{\D \xi}\\
+	\frac{\D N_i}{\D \eta}
+	\end{array}
+	\right].
+	\end{equation}
+	
+	The derivatives wrt $\xi, \eta$ are easy to compute (see p.83 of the syllabus for REM-4). But the Jacobian containing terms in $\xi, \eta, x_j, y_j$, the analytical integration is no longer possible. 
+	
+\section{Numerical integration}
+	Numerical integration methods consist in replacing the calculation of an integral by a weighted sum of function values at specified points. In 1D the integral of a function f(x) is estimated as: 
+	
+	\begin{equation}
+	\int _{-1}^1 f(x) \, dx \approx \sum _{k=1}^K w_k f(x_k), 
+	\end{equation}	 
+
+	\wrapfig{7}{l}{9.5}{0.3}{ch10/1}	
+	where $w(k)$ are the weights. The \textbf{Gauss-Legendre quadrature} allows an exact integration of $(2K-1)$-order polynomials where $K$ Gauss points are used. The figure shows an example for $K=1,2,3$. This is easily extended into 2D and 3D. This applied on the REM-4 gives: 
+	
+	\begin{equation}
+	\begin{aligned}
+	K^e &=\int_{-1}^1\int_{-1}^1 B(\xi,\eta) ^T HB(\xi, \eta) d^e \det(J(\xi, \eta)) \, d\xi\,  d\eta \\
+	&\approx \sum _{k_1=1}^{K_1} \sum _{k_2=1}^{K_2} B(\xi _{k_1}, \eta _{k_2})^T H B(\xi _{k_1}, \eta _{k_2}) d^e \det(J(\xi_{k_1}, \eta _{k_2})) w_{k_1} w_{k_2}.
+	\end{aligned}
+	\end{equation}
+	
+	Note that the external forces can also be computed like that: 
+	
+	\begin{equation}
+	f^{V,e} = \int _{V^e} N^T b\, dV \approx \sum _{k_1=1}^{K_1} \sum _{k_2=1}^{K_2} N(\xi _{k_1}, \eta _{k_2})^T B d^e \det(J(\xi_{k_1}, \eta _{k_2})) w_{k_1} w_{k_2}. 
+	\end{equation}
+	
+	it's a bit different for surfaces forces which are applied on faces defined as $\xi, \eta = cst$ or $\xi = cst, \eta$. In the first case we have: 
+	
+	\begin{equation}
+	\begin{array}{c}
+	ds = \sqrt{\left( \frac{\D x}{\D \xi} \right)^2 + \left( \frac{\D y}{\D \xi} \right)^2} \, d\xi,\\
+	\Rightarrow f^{S,e} = \int _{S_d^e} N^T \bar{t}^{(n)} \, dS \approx \sum_{k_1 = 1}^{K_1} N(\xi _{k_1})^T \bar{t} ^{(n)} d^e \sqrt{\left.\left( \frac{\D x}{\D \xi} \right)\right|^2_{\xi _{k_1}} + \left.\left( \frac{\D y}{\D \xi} \right)\right|^2_{\xi _{k_1}}}
+	\end{array}
+	\end{equation}
+	
+	and similarly for $\eta$. 
+	
+\section{Selection of the quadrature order}
+	From the continuous form to the finite element approximation w have already 2 errors: 
+	
+	\begin{itemize}
+	\item[•] error on the geometry, if the mesh does not exactly coincide with the real geometry;
+	
+	\item[•] discretization error, the solution is not searched from all the functinos but only some discrete subset.
+	\end{itemize}
+	
+	Another one is the integration error. This is related to the number of Gauss points. 
+	
+\subsection{Matrix singularity due to numerical integration}
+	\minifig{ch10/2}{ch10/3}{0.3}{0.3}{0.4}{0.6}
+	
+	The insufficient number of Gauss points is related to the stiffness matrix conditioning. A few examples with 2 degrees of freedom per nodes are depicted on \autoref{ch10/3}. At each integration point 3 strain relations ($\epsilon _x, \epsilon _y, \gamma _{xy}$) gives a total variable number of $3N_{integ}$. The number of unknowns is $2N-r$ where $N$ is the number of nodes and $r$ the number of restrained dof. \autoref{ch10/2} collects the balance between equations and unknowns for all the examples and shows the importance of sufficient $N_{integ}$. 
+	
+\subsection{Detection of skewed elements}
+	\minifig{ch10/4}{ch10/5}{0.3}{0.3}{0.4}{0.6}
+	Since node coordinates are independent parameters, some configurations can lead to distorted or \textbf{skewed} elements. Since the Jacobian is computed by adding the contribution on all Gauss point, the configuration on \autoref{ch10/4} does not allow to detect skewness, while on \autoref{ch10/5} this is possible as the last determinant of the Jacobian matrix is negative. 
+	
+\subsection{Full vs. reduced integration}
+	How many Gauss point do we need? As seen K points allow to calculate exactly a $(2K-1)$-order polynomial. So we should select the number of integration point in function of the polynomial order, but the inverse of Jacobian matrix hinder an exact integration. A reasonable choice is a quadrature order that integrates exactly for a rectangular or straight side triangular element. 
+	
+	\minifig{ch10/6}{ch10/7}{0.3}{0.3}{0.45}{0.45}
+	
+	On the figures above we can see the number of Gauss points necessary to do the \textbf{exact integration}. 
+	
+	\wrapfig{8}{l}{8.5}{0.3}{ch10/8}	
+	The \textbf{minimum quadrature order} is based on the guarantee of reproducing a constant strain when the element size tends to zero. In this case the order of integration should only be sufficient to assess the element volume like: 
+	
+	\begin{equation}
+	\int _{V^e} \det (J) \, d^e\, d\xi \, d\eta.
+	\end{equation}
+	
+	This process is called \textbf{reduced integration} and is shown on \autoref{ch10/8}. But this can lead to some problems like the stiffness singularity. Indeed, the strain field can be such to vanish at some integration point and cause singularity. Sometimes, this mechanism is compatible with adjacent elements and can lead to the singularity of the global matrix. 
+	
+	\wrapfig{10}{l}{6.5}{0.28}{ch10/9}	
+	As example consider the reduced one point in the REM-4 and the 2 mechanisms induced.  The mechanisms in (c) are called Hourglass modes. They correspond to non-zero displacements endowed with zero energy. Mathematically with one Gauss point we have for a REM-4:
+	
+	\begin{equation}
+	\underbrace{K^e}_{8\times 8} = \underbrace{B(\xi _1 , \eta _1)^T}_{8\times 3} \underbrace{H}_{3\times 3} \underbrace{B(\xi _1, \eta_1)}_{3\times 8} \det (J(\xi_1, \eta_1)) \, d^e w_1 w_1.  
+	\end{equation}
+	
+	Since the rank of the product of matrices is the rank of the smallest one and since we have one term in the quadrature (NG = 1), the rank of K is 3, while it should be equal to 5 in 2D (8 - 3 (rigid body motion) = 5). Reduced integration must be used with care. \\
+	
+	But reduced integration is useful when minimum quadrature points coincide with the accurate points for the computation of strains and stresses. It can be shown that: 
+	
+	\begin{itemize}
+	\item[•] the displacements are best sampled on the nodes of the element;
+	
+	\item[•] for strains and stresses the best accuracy is obtained at the Gauss points, called \textbf{Barlow points} and the phenomenon is \textbf{superconvergence}. 
+	\end{itemize}
+	
+	

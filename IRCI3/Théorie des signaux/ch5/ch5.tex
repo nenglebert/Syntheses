@@ -10,14 +10,14 @@ Celui-ci possède une TF discrète
 \begin{equation}
 x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)e^{j\frac{2\pi}{N}kn}\quad\rightarrow\text{TF discrète inverse}
 \end{equation}
-La relation inverse permet le calculer les valeurs $K(k)$
+La relation inverse permet le calculer les valeurs $X(k)$
 \begin{equation}
 X(k) = \sum_{n=0}^{N-1} x(n)e^{-j\frac{2\pi}{N}nk} \rightarrow\text{TF discrète}
 \end{equation}
 Ce $X(k)$ est aussi périodique, de période $N$
 \begin{equation}
 \begin{array}{lll}
-X(N) &= X(0) &= X(lN)\\
+X(N) &= X(0) = X(lN)\\
 X(N+1) &= X(1) = X(lN+1)\\
 X(k) &= X(k+lN)
 \end{array}
@@ -89,18 +89,18 @@ attention, ce sont souvent des questions d'examen.
 	\begin{equation}
 	f(n) = e^{j\omega_0n}\qquad 0\leq n\leq N-1
 	\end{equation}
-	Ce choix nouspermet de tester un large range de fréquence en faisant varier $\omega_0$. On 
+	Ce choix nous permet de tester un large range de fréquence en faisant varier $\omega_0$. On 
 	obtient alors
 	\begin{equation}
 	F(k) = \sum_{n=0}^{N-1}e^{j\omega_0n}e^{-j\frac{2\pi}{N}nk} = \sum_{n=0}^{N-1}\alpha^n = 
-	\dfrac{1-\alpha^n}{1-\alpha}\qquad \alpha\neq0
+	\dfrac{1-\alpha^N}{1-\alpha}\qquad \alpha\neq1
 	\end{equation}
 	Imposons deux valeurs pour $\omega_0$.
 	\begin{enumerate}
 	\item
 	$$\omega_0 = q\dfrac{2\pi}{N}\quad\Leftrightarrow\quad q = \dfrac{\omega_0N}{2\pi}$$
 	où $q$ est entier. Notre signal est juste périodique de période $N$. On obtient alors
-	$$\alpha = e^{j\frac{2\pi}{N}(q-k)}\quad \text{et}\quad \alpha^N\qquad \forall k$$
+	$$\alpha = e^{j\frac{2\pi}{N}(q-k)}\quad \text{et}\quad \alpha^N = 1\qquad \forall k$$
 	On obtient par contre $\alpha=1$ si $q=k$. Dès lors
 	\begin{equation}
 	\begin{array}{lll}
@@ -122,7 +122,7 @@ attention, ce sont souvent des questions d'examen.
 	\begin{itemize}
 	\item[2]
 		\item
-	$$\omega_0 = x\dfrac{a2\pi}{N}\qquad\rightarrow\qquad\alpha = e^{j\frac{2\pi}{N}(x-k)}$$
+	$$\omega_0 = x\dfrac{2\pi}{N}\qquad\rightarrow\qquad\alpha = e^{j\frac{2\pi}{N}(x-k)}$$
 	où $x$ n'est \textbf{pas} entier. En appliquant la suite géométrique
 	\begin{equation}
 	F(k) =\DS \frac{1-\alpha^N}{1-\alpha} = \dots = e^{j\frac{\pi}{N}(N-1)(x-k)}\dfrac{\sin(
@@ -170,7 +170,7 @@ attention, ce sont souvent des questions d'examen.
 	\textbf{plus grand que $N$} : on va échantillonner en fréquence, mais prendre un échantillon 
 	plus petit. Soit une tel séquence finie
 	\begin{equation}
-	x(n) \qquad 0\leq n \leq N-1
+	x(n) \quad \text{for} \quad 0\leq n \leq N-1
 	\end{equation}
 	Sa TF est 
 	\begin{equation}
@@ -189,7 +189,7 @@ attention, ce sont souvent des questions d'examen.
 	&=0&\quad N\leq n\leq L-1
 	\end{array}
 	\end{equation}
-	Calculons la DT de ce signal (ou plus exactement la DFT du signal périodique, de période $L$,
+	Calculons la DFT de ce signal (ou plus exactement la DFT du signal périodique, de période $L$,
 	dont $x(n)$ représente une période). Celle-ci est facile à calculer, le signal étant nul entre 
 	$N-1$ et $L-1$
 	\begin{equation}
@@ -200,13 +200,13 @@ attention, ce sont souvent des questions d'examen.
 	\end{array}
 	\end{equation}
 	La DFT est de nouveau l'estimation de $x(n)$ en $L$ points. Ceci constitue une technique simple pour 
-	calculer la transformée de Fourier d'une séquence finie en un grand nombre de points (choisi).
+	calculer la transformée de Fourier d'une séquence finie en un grand nombre de points (choisis).
 	
 	
 	\subsection{Inversion d'une transformée de Fourier}
 		\subsubsection{Séquence finie}
-		Soit les échantillon $x(n)$ d'une séquence finie dont les $N$ valeurs sont prises à intervalle 
-		régulier entre $\omega=0$ et $\omega=2\pi$. On a vu que si on donne $N$ valeurs de $X_p(k)$, 
+		Soit les échantillon $x(n)$ d'une séquence finie dont les $N$ valeurs sont prises à intervalles 
+		réguliers entre $\omega=0$ et $\omega=2\pi$. On a vu que si on donne $N$ valeurs de $X_p(k)$, 
 		on peut trouver $x(n)$ tel que sa TF prenne les valeurs de $X_p(k)$ imposées aux $N$ points\footnote{
 		Uniformément réparti sur l'axe des fréquences.} (problème d'interpolation). La TF est (ici la somme 
 		est bien finie, on prend $N$ points de la séquence finie et continue)
@@ -233,9 +233,9 @@ attention, ce sont souvent des questions d'examen.
 		\begin{equation}
 		H(e^{j\omega}) = \sum_{n=-\infty}^\infty h(n)e^{-j\omega n}
 		\end{equation}
-		L'information est exprimée en une infinité de points : n'en prendre que $N$ sera louper 
+		L'information est exprimée en une infinité de points : n'en prendre que $N$ serait louper 
 		quelque chose. Néanmoins, évaluons $H(e^{j\omega})$ en $N$ (ici arbitraires, le signal est 
-		infini), mais uniformément 	répartis sur l'axe des fréquences
+		infini), mais uniformément répartis sur l'axe des fréquences
 		\begin{equation}
 		H_p(k) = H(e^{j\omega})|_{\omega=k\frac{2\pi}{N}} = \sum_{n=-\infty}^\infty h(n)e^{-j\frac{2\pi}{
 		N}kn}
@@ -250,15 +250,15 @@ attention, ce sont souvent des questions d'examen.
 		zéro que l'on a sommé. Le dernier est un spectre à raie où l'on a pris $k$ échantillons 
 		uniformément réparti sur l'axe des fréquences.}
 	\end{wrapfigure}	
-		La dernier membre est la série de Fourier d'un signal $h_p(n)$ périodique contrit à partir d'un 
+		La dernier membre est la série de Fourier d'un signal $h_p(n)$ périodique construit à partir d'un 
 		signal non périodique $h(n)$ : c'est ce que nous avions vu au chapitre 3 ! On va alors procéder 
-		à un copier coller infini pour trouver un signal périodique d'ordre $n$
+		à un copié-collé infini pour trouver un signal périodique d'ordre $n$
 		\begin{equation}
 		h_p(n) = \frac{1}{N}\sum_{k=0}^{N-1} H_p(k)e^{j\frac{2\pi}{N}nk} = \sum_{r=-\infty}^\infty h(n+rN)
 		\end{equation}
 		D'autre part
 		\begin{equation}
-		x(n) = \sum_{r=-\infty}^\infty x_1(n+rN) \ft X_d(k) = X_1(e^{j\frac{2\pi}{N}k}
+		x(n) = \sum_{r=-\infty}^\infty x_1(n+rN) \ft X_d(k) = X_1(e^{j\frac{2\pi}{N}k})
 		\end{equation}
 		On ne retombe pas sur le signal initial mais sur un autre : le copié-collé du signal initial 
 		de façon infinie. Si par hasard les coefficients valent zéro en dehors de l'intervalle 
@@ -288,7 +288,7 @@ attention, ce sont souvent des questions d'examen.
 	On espère que le filtre de garde va couper de $-\pi$ à $\pi$ pour n'obtenir que le spectre qui 
 	nous intéresse de façon à ce qu'il ne soit pas spoilé par les spectres décalés
 	\begin{equation}
-	X(e^{j\omega})\approx \frac{1}{T}\left(\frac{\omega}{T}\right)\qquad -\pi<\omega<\pi
+	X(e^{j\omega})\approx \frac{1}{T}X_c\left(\frac{\omega}{T}\right)\qquad -\pi<\omega<\pi
 	\end{equation}
 	On cherche à évaluer $X_c(\Omega)$ avec la DFT (évaluation en $N$ points). Ce n'est pas exactement 
 	le signal $S_C(\Omega)$ à cause du filtre de garde (car coupe les fréquences, mais on considère que 
@@ -321,11 +321,11 @@ attention, ce sont souvent des questions d'examen.
 	Problème : si on ne peut pas négliger le repliement spectral, il est nécessaire d'utiliser un 
 	filtre de garde $(b)$ (qui a ici une allure réelle). L'application de ce filtre de garde donne 
 	$(c)$. On voit que les hautes fréquences ont été atténuées. Il faut ensuite passer dans le domaine 
-	numérique $(d)$ : le spectre a été copié-coll indéfiniment. Heureusement, dans le continu, le 
+	numérique $(d)$ : le spectre a été copié-collé indéfiniment. Heureusement, dans le continu, le 
 	spectre s'arrêtait à $\pi/T$, il s'arrête donc à $\pi$ dans le numérique.\\
 
 \newpage
-	 On multiplie (!)\footnote{
+	 On multiplie (\!!)\footnote{
 	Si on avait fait la convolution ça aurait été le produit des deux. Ici on fait un PRODUIT au niveau 
 	temporel donc en spectre on a une convolution.} notre signal $x(n)$ par un autre signal qui lui est
 	rectangulaire (fenêtre). Le $(e)$ est le spectre de la fonction fenêtre. Nous allons gentillement 
@@ -348,17 +348,17 @@ attention, ce sont souvent des questions d'examen.
 	\end{equation}
 	Or, $v(n)$ est de longueur finie ($N$)
 	\begin{equation}
-	V(k) = V(e^{j\omega)}|_{\omega=k\frac{2\pi}{N}}
+	V(k) = V(e^{j\omega})|_{\omega=k\frac{2\pi}{N}}
 	\end{equation}
 	Même chanson : on évalue le spectre en $N$ points et on a toute l'information nécessaire. Dis 
 	plus formellement : la DFT $V(k)$ correspond donc à l’échantillonnage de $V(e^{j\omega})$ en $N$ points
 	uniformément répartis. Chaque échantillon correspond à une fréquence réduite et est donc à temps 
 	continu\footnote{Pq?}.\\
 	
-	Notre but d'avaluer $X$ nous permet d'évaluer $V$ (après fenêtre). Comme $v(n)=x(n).w(n)$, il suffit 
+	Notre but d'évaluer $X$ nous permet d'évaluer $V$ (après fenêtre). Comme $v(n)=x(n).w(n)$, il suffit 
 	de faire la convolution périodique des spectres
 	\begin{equation}
-	V(e^{j\omega}) = \dfrac{1}{2\pi}\int_{-\pi}^\pi X(e^{j\theta}.W(e^{j(\omega-\theta)}\ d\theta
+	V(e^{j\omega}) = \dfrac{1}{2\pi}\int_{-\pi}^\pi X(e^{j\theta}).W(e^{j(\omega-\theta)})\ d\theta
 	\end{equation}
 	$V$ sera alors une version "lissée" de $X$. Nous allons examiner deux effets différents dus à 
 	l'utilisation de la DFT pour évaluer $X_c$

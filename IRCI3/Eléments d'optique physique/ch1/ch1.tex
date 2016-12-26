@@ -25,14 +25,14 @@ l'unité.
 \int_{-\infty}^\infty f_a(x)\ dx = 1
 \label{eq:lim1}
 \end{equation}
-La distribution de dirac peut être définie à partir de cette fonction 
+La distribution de Dirac peut être définie à partir de cette fonction 
 en prenant la limite de $a$ tendant vers l'infini : sa hauteur tend vers 
 l'infini tandis que sa largeur tend vers zéro.
 \begin{equation}
-\delta(x) = \lim\limits_{a\rightarrow\infty} f_a(x)
+\delta(x) = \lim\limits_{a\rightarrow\infty} f_a(x)%pour te simplifier la vie avec les \rightarrow tu peux mettre \to
 \end{equation}
 On va appeler cette distribution $\delta(x)$ qui représente un pic placé en 
-zéro, l'origine est le seul point ou l'on trouve une valeur particulière. On 
+zéro, l'origine est le seul point où l'on trouve une valeur particulière. On 
 peut néanmoins dire que la surface sous la courbe vaut l'unité. Cela se 
 voit à partir de \autoref{eq:lim1} : la surface sous la courbe ne dépend pas 
 du paramètre $a$, d'où la surface unitaire :
@@ -130,7 +130,7 @@ L)]\\
 \captionof{figure}{ }
 \end{wrapfigure}
 Considérons l'artifice mathématique suivant, permettant de faire apparaître le 
-sinus cardinal ($sinc(x) \equiv \sin x/x$) :
+sinus cardinal ($sinc(x) \equiv \sin (x)/x$) :
 \begin{equation}
 \begin{array}{ll}
 f(\alpha) &= 2L \frac{\sin(\alpha L)}{\alpha L}\\
@@ -164,7 +164,7 @@ graphe. Inversement, lorsque $L$ augmente elle gagne en hauteur et les zéros se
 de l'origine. Que devient cette fonction pour $L \rightarrow\infty$ ? Montrons que l'on 
 obtient, à un facteur près, la distribution de Dirac 
 \begin{equation}
-f(a) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\limits_{L 
+f(\alpha) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\limits_{L 
 \rightarrow \infty}[2L\text{sinc}(\alpha L)]
 \end{equation}
 Cette limite n'est pas facile à appréhender, l'étude du graphe n'est pas fort utile. A 
@@ -203,7 +203,7 @@ On peut ainsi assimiler ce résultat à la distribution de Dirac :
 Cette fonction est \textit{piquée} à l’origine et une largeur tendant vers zéro dont l'aire
 sous la courbe vaut bien 1. On peut dès lors écrire
 \begin{equation}
-f(a) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\limits_{L 
+f(\alpha) = \lim\limits_{L\rightarrow\infty} \int_{-L}^L \cos(\alpha x)\ dx = \lim\limits_{L 
 \rightarrow \infty}[2L\text{sinc}(\alpha L)] = 2\pi \delta(\alpha)
 \end{equation}
 Sous la forme d'une intégrale généralisée, résultat pratique pour l'étude des transformées 
@@ -256,7 +256,7 @@ Calculons sa transformée de Fourier
 \begin{equation}
 \begin{array}{ll}
 TF(f) &= \int_{-L}^L ae^{i\alpha x}\ dx = a\left[\dfrac{1}{i\alpha}e^{i\alpha x}\right]^L_{-L}\\
-&= a\dfrac{1}{1\alpha}\left[e^{i\alpha L}-e^{-i\alpha L}\right] = 2a\dfrac{\sin(\alpha L)}{\alpha}
+&= a\dfrac{1}{i\alpha}\left[e^{i\alpha L}-e^{-i\alpha L}\right] = 2a\dfrac{\sin(\alpha L)}{\alpha}
 \end{array}
 \end{equation}
 
@@ -286,8 +286,8 @@ g(x)= \int_{-\infty}^\infty \int_{-\infty}^\infty  f(x')e^{i\alpha x'}\ dx'\ e^{
 Par Fubini
 \begin{equation}
 \begin{array}{ll}
-g(x) &= \int_{-\infty}^\infty  f(x') \int_{-\infty}^\infty  e^{i\alpha x'}e^{-i\alpha x}\ d\alpha\ dx'\\
-&= \int_{-\infty}^\infty  f(x') \int_{-\infty}^\infty  e^{i\alpha (x'-x)}\ d\alpha\ dx'
+g(x) &= \int_{-\infty}^\infty  f(x') \left(\int_{-\infty}^\infty  e^{i\alpha x'}e^{-i\alpha x}\ d\alpha\right)\ dx'\\
+&= \int_{-\infty}^\infty  f(x') \left(\int_{-\infty}^\infty  e^{i\alpha (x'-x)}\ d\alpha\right)\ dx'
 \end{array}
 \end{equation}
 En utilisant une des définition de la distribution de Dirac : $\dfrac{1}{2\pi}\int_{-\infty}^\infty 
@@ -341,7 +341,7 @@ très générale.
 \captionof{figure}{ }
 \end{center}
 
-En faisant tendre $x_0 \rightarrow$ et en supposant une normalisation, on retrouve le delta de 
+En faisant tendre $x_0 \rightarrow \infty$ et en supposant une normalisation, on retrouve le delta de 
 Dirac $f(x) = \delta(x)$. On peut montrer que si on fait ça, la gaussienne dans le domaine de 
 Fourier tend vers l'infini : c'est une constante. Pour trouver la valeur de celle-ci, calculons
 \begin{equation}
@@ -432,9 +432,9 @@ f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty \int_{-\i
 \end{equation}
 Par Fubini
 \begin{equation}
-f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y') \int_{-\infty}^\infty
-\int_{-\infty}^\infty e^{i\alpha x'}e^{i\beta y'}\ e^{-i\alpha x}e^{-i\beta y}\
- d\alpha\ d\beta\ dx'\ dy' 
+f(x,y) = \frac{1}{(2\pi)^2} \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y') \left[\int_{-\infty}^\infty
+\left(\int_{-\infty}^\infty e^{i\alpha x'}e^{i\beta y'}\ e^{-i\alpha x}e^{-i\beta y}\
+ d\alpha\right)\ d\beta\right]\ dx'\ dy' 
 \end{equation}
 En intégrant sur $\alpha$
 \begin{equation}
@@ -447,7 +447,7 @@ On voit apparaître la distribution de Dirac, de sorte à pouvoir écrire
 f(x,y) = \int_{-\infty}^\infty\int_{-\infty}^\infty f(x',y')\delta(x'-x)\delta(y'-y)\ dx'\ dy'
 \end{equation}
 En appliquant la notion de Distribution de Dirac qui "sélectionne" l'argument de la fonction tel 
-que l'argument de la fonction de Dirac s'annule c'est à dire que $x'=x$ et $y'=y$. Ce résultat-ci 
+que l'argument de la fonction de Dirac s'annule c'est-à-dire lorsque $x'=x$ et $y'=y$. Ce résultat-ci 
 est bien $f(x,y)$, pas besoin d'aller plus loin. Ceci prouve que le résultat est cohérent.
 
 
@@ -483,7 +483,7 @@ L'idée est de construire une grosse impulsion à partir de la somme d'impulsion
 progressive pour créer une grosse amplitude gaussienne à partir de la somme de petite gaussienne 
 $g(t)$ chacune centrée en $t_n$ donnant lieu à l'enveloppe du signal $s(t)$. Comme on peut le voir, 
 l'amplitude d'une gaussienne donne à peu près l'amplitude du champ. Le signal d'entrée peut alors 
-être écrit comme étant la somme de toutes ces petites gaussiennes centrée en $t_1,t_2,\dots$ chaque 
+être écrit comme étant la somme de toutes ces petites gaussiennes centrées en $t_1,t_2,\dots$ chaque 
 fois avec une amplitude qui va donner l'amplitude de l'enveloppe en ce $t_n$\footnote{$s(t_n)$ est 
 l'amplitude de la Gaussienne.} :
 \begin{equation}
@@ -506,7 +506,7 @@ s(t) = \int_{-\infty}^\infty s(t_n)\delta(t-t_n)\ dt_n
 L'amplitude est donnée par $s(t_n)$ et on multiplie par la Dirac en suivant le même raisonnement 
 qu'avec des gaussiennes : un continuum de fonction de Dirac
 \begin{equation}
-s(t) = \int_{-\infty}^\infty s(t')\delta(t-')\ dt'
+s(t) = \int_{-\infty}^\infty s(t')\delta(t-t')\ dt'
 \end{equation}
 Comment interpréter ça ? En effet, la fonction de Dirac monte jusqu'à l'infini et est arbitrairement 
 étroite, ça a du sens ? Oui, le delta de Dirac sélectionne la valeur de la fonction pour laquelle 
@@ -546,6 +546,9 @@ s(t) &= \frac{1}{2\pi}\int_{-\infty}^\infty S(\omega)e^{-i\omega t}\ d\omega\\
 h(t) &= \frac{1}{2\pi}\int_{-\infty}^\infty H(\omega)e^{-i\omega t}\ d\omega
 \end{array}\right.
 \end{equation}
+
+où $S(\omega)$ est le spectre du signal et $H(\omega)$ est la fonction de transfert spectrale.
+
 En ré-écrivant l'intégrale de convolution (substituer $t$ par $t'$) :
 \begin{equation}
 \int_{-\infty}^\infty s(t')h(t-t')\ dt' = \int_{-\infty}^\infty \left[\dfrac{1}{2\pi}
@@ -557,7 +560,7 @@ En faisant de même pour $h(t-t')$ (en substituant $t$ par $t-t'$)
 \int_{-\infty}^\infty S(\omega)e^{-i\omega t'}\ d\omega\right]\left[\frac{1}{2\pi}
 \int_{-\infty}^\infty H(\omega')e^{-i\omega'(t-t')}\ d\omega' \right]\ dt'
 \end{equation}
-En passant à des notation efficaces
+En passant à des notations efficaces
 \begin{equation}
 \int_{-\infty}^\infty s(t')h(t-t')\ dt' = \int_{t'} \left[\dfrac{1}{2\pi}
 \int_{\omega} S(\omega)e^{-i\omega t'}\ d\omega\right]\left[\frac{1}{2\pi}
@@ -566,7 +569,7 @@ En passant à des notation efficaces
 Commençons par aborder l'intégrale sur $t'$ (et en sortant le terme en $t$)
 \begin{equation}
 \int_{-\infty}^\infty s(t')h(t-t')\ dt' = \frac{1}{2\pi}\int_\omega\int_{\omega'}
-S(\omega)H(\omega')\ \frac{1}{2\pi}\int_{t'}e^{-i\omega t'}e^{+i\omega't')}\ dt'\ e^{-i
+S(\omega)H(\omega')\ \frac{1}{2\pi}\int_{t'}e^{-i\omega t'}e^{+i\omega't'}\ dt'\ e^{-i
 \omega' t}\ d\omega'\ d\omega
 \end{equation}
 Par propriété des exponentielles
@@ -610,7 +613,7 @@ Considérons le delta de Dirac dans le domaine spectral $S(\omega) = \delta(\ome
 La sortie sera donnée par $S'(\omega) = \delta(\omega-\omega_0)H(\omega)$ qui n'est rien 
 d'autre que $H(\omega_0)\delta(\omega-\omega_0)$ ! Si l'on repasse dans le domaine temporel, 
 on trouve $s(t) = e^{-i\omega_0t}$. A ce signal harmonique correspond une certaine sortie 
-donnée par la réponse elle même donnée par la transformée inverse de $S'(\omega)$, c'est à dire 
+donnée par la réponse elle-même donnée par la transformée inverse de $S'(\omega)$, c'est-à-dire 
 $H(\omega_0)e^{-i\omega_0t}$. Un système linéaire va conserver le caractère harmonique de 
 l'entrée à un facteur près, $H(\omega_0)$.\\
 
@@ -686,7 +689,7 @@ TF[f(x)g(x)] = \frac{1}{2\pi}F(\alpha)\otimes G(\alpha)
 
 \newpage
 \section{La transformée de Fourier : illustration}
-Le but de cette section est d'illustrer l'intérêt de cet transformée. On s'intéressera 
+Le but de cette section est d'illustrer l'intérêt de cette transformée. On s'intéressera 
 ici au cas de la transformée de Fourier temporelle
 \begin{equation}
 TF(f) = \int_{-\infty}^\infty f(t)e^{i\omega t}\ dt = F(\omega)
@@ -701,7 +704,7 @@ qui n'est rien d'autre qu'une somme d'onde d'amplitude $F(\omega)$.\\
 On se propose d'étudier la propagation d'impulsions lumineuses en fibre optique. On utilisera 
 pour ça un laser de fréquence $\omega_0$ extrêmement élevé monochromatique : si c'est le cas, 
 la distribution des fréquences sera un delta de Dirac. Décrivons l'onde électromagnétique de 
-la façon suiante
+la façon suivante
 \begin{equation}
 E(z,t) = ae^{ik(\omega_0)z}e^{-i\omega_0t}
 \end{equation}
