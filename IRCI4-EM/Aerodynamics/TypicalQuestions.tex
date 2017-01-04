@@ -37,6 +37,11 @@
 }
 
 % Document
+\makeatletter%
+\@ifclassloaded{article}%
+{\newcommand{\chapter}[1]{\section*}}%
+{ }%
+\makeatother%
 \begin{document}
 	\selectlanguage{british}
 	\def\equationautorefname~#1\null{%
@@ -47,7 +52,7 @@
 	%%%%%%%%%%%%%%%%%
 
 	\input{../../Builder/titlepage/titlepage.tex}
-	%\input{../../Builder/APropos.tex}
+	\input{../../Builder/APropos.tex}
 	\newpage
 	\tableofcontents
 	%Si abstract, \input ici
