@@ -1,0 +1,199 @@
+
+\chapter{Dynamics}
+\section{Basic equations}
+	
+	Until now we worked with static forces, we will see dynamic forces. Newton's second law for the applied forces states: 
+	
+	\begin{equation}
+	b = m \frac{d ^2u}{dt^2} = m\ddot{u} \Rightarrow mb-m\ddot{u} = 0
+	\end{equation}
+	
+	D'Alembert's principle of inertial forces consists in considering the term $-m\ddot{u}$ as $b^I$ (inertial forces). In addition we consider also the viscous damping forces $b^D = -\mu \dot{u}$ so that we get the equilibrium:
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	b + b^I + b^D = 0.
+	\end{equation}
+	}
+	\end{center}
+	
+	When we have a deformable body, we use finite elements for the integration, since the derivation is temporal: 
+	
+	\begin{equation}
+	u^h(x,t) = N(x) q(t) \qquad \dot{u}^h(x,t) = N(x) \dot{q}(t) \qquad \ddot{u}^h(x,t) = N(x) \ddot{q}(t)
+	\end{equation}
+	
+	We can now use $f^V = \int _V N^T b\, dV$ for the computations: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&f^I = \int _V N^T (-\rho \ddot{u}^h) dV = - \left(\int _V \rho N^T N\, dV \right) \ddot{q} = -M\ddot{q}\\
+	&f^D = \int _V N^T (-\mu \dot{u}^h) dV = - \left(\int _V \mu N^T N\, dV \right) \dot{q} = -C\dot{q}
+	\end{aligned}
+	\end{equation}
+	
+	where $M$ is the mass matrix and $C$ the damping matrix. If we consider our $Kq = f$ with $f = f^{ext}+f^{I}+f^{D}$, we have: 
+	
+	\begin{center}
+	\theor{
+	\textbf{Dynamic equilibrium equation}
+	\begin{equation}
+	M\ddot{q} + C\dot{q} + Kq = f^{ext}
+	\end{equation}}
+	\end{center}
+	
+	This can be seen as the governing equations to a one DOF composed by a spring, a damping and a mass. As further development, the kinetic energy, the power of damping forces and the strain energy are given by: 
+	
+	\begin{equation}
+	\left\{	
+	\begin{aligned}
+	&E^{h,kinetic} = \frac{1}{2}\int _V \rho \dot{u}^{hT}\dot{u}^h\, dV = \frac{1}{2} \dot{q} ^T \int _V \rho N^{T}N \, dV \, \dot{q} = \frac{1}{2} \dot{q}^T M \dot{q} > 0\\
+	&P^{h,damping} = - \int _V \rho \dot{u}^{hT}\dot{u}^h\, dV = - \dot{q} ^T \int _V \mu N^{T}N \, dV \, \dot{q} = - \dot{q}^T C \dot{q} \leq 0\\
+	&W^h = \frac{1}{2}\int _V \tau _{ij}^h \epsilon _{ij}^h\, dV = \frac{1}{2} q^T K q > 0
+	\end{aligned}
+	\right.
+	\end{equation}
+	
+	If we multiply now our dynamic equation by $\dot{q}^T$ (left) we can find 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	\dot{E}^{h,kinetic} - P^{h,damping} + \dot{W}^h = P^{h,ext} 
+\end{equation}		
+	}
+	\end{center}
+	
+\section{Resolution}
+	The general equation forms a system of Q second-order differential equations, where Q is the number of DOF. Initial boundary condition at $t = t_0$ is required. Three resolution approaches are available: 
+	
+	\begin{itemize}
+	\item[•] \textbf{modal analysis:} eigenmodes and eigenvalues study;
+	\item[•] \textbf{response in the modal basis:} projection onto the modal basis, getting Q decoupled equations;
+	\item[•] \textbf{direct integration methods:} step by step incremental method. 
+	\end{itemize}
+	
+\section{Eigenmodes and eigenvalues}
+\subsection{Principles}
+	The free vibrations of an undamped system will be studied: 
+	
+	\begin{equation}
+	M\ddot{q} + K q = 0
+	\end{equation}
+	
+	The solutions are harmonic $q(t) = \phi e^{i\omega t}$, by replacing: 
+	
+	\begin{equation}
+	(K - \omega ^2 M) \phi = 0
+	\end{equation}
+	
+	The ssystel has non-trivial solutions only if the determinant is null, leading to the eigenvalue problem 
+	
+	\begin{equation}
+	K \phi _i = \lambda _i M\phi _i
+	\label{eq:19.10}
+	\end{equation}
+	
+	where $\lambda _i = \omega ^2$ are the eigenvalues and $\phi _i$ the corresponding eigenmodes. $\omega _i$ are the eigenfrequencies. Moreover, if $\phi _i$ are the modes, $K\phi _i$ too for any real value of K. Therefor the following normalization exist: \\
+	
+	\begin{itemize}
+	\item[•] Euclidean normalization: $\phi _i | \phi _i^T \phi i = 1$
+	\item[•] Mass matrix normalization: $\phi _i | \phi _i^T M\phi i = 1$\\
+\end{itemize}	  
+
+	The mass one is preferred because it takes into account the mass distribution. For vertical structures, the two first modes are generally bending modes and the third one a torsion mode, followed by more and more complex shapes. In addition, the modes can be asymmetric, we cannot use the symmetry for the computations. 
+	
+\subsection{Properties of the eigenmodes and eigenvalues}
+\subsubsection{Rayleigh coefficient}
+	If we multiply left by $\phi _i$ in \eqref{eq:19.10} and make the division (since the mass matrix is regular): 
+	
+	\begin{equation}
+	\lambda _i = \frac{\phi _i^T K \phi _i}{\phi _i^T M \phi _i} \geq 0
+	\end{equation}
+	
+\subsubsection{Case of distinct eigenvalues}
+	Let us now consider $\lambda _i \neq \lambda _j$: 
+	
+	\begin{equation}
+	K \phi _i = \lambda _i M\phi _i \qquad K \phi _j = \lambda _j M\phi _j
+	\end{equation}
+	
+	By premultiplying the first by $\phi _j^T$ and the send by $\phi ^T_i$ and making (1)-(2):
+	 
+	 \begin{equation}
+	 (\lambda _i - \lambda _j) \phi _j^T M \phi _i = 0 \qquad \Rightarrow \phi _j^T M \phi _i = 0
+	 \end{equation}
+	 
+	 since the eigenvalues are different. The eigenmodes associated to distinct eigenvalues are mutually M-orthogonal. 
+	 
+\subsubsection{Case of multiple eigenvalues}
+	If $\lambda _i = \lambda _j \equiv \lambda ^*$ with different eigenmodes, it is possible to get (same system as above but without premultiplying, but summing):
+	
+	\begin{equation}
+	K(a\phi _i + b \phi _j) = \lambda ^* M(a\phi _i + b \phi _j)
+	\end{equation}
+	
+	We see that a linear combination of the eigenvectors associated to the same eigenvalue are an eigenvector too (M-orthogonal).
+	
+\subsubsection{K-orthogonality}
+	Consider the distinct eigenvalues case, the final result implies K-orthogonality: 
+	
+	\begin{equation}
+	\phi _j ^T K \phi _i = 0
+\end{equation}	 
+
+\section{Modal basis}
+	Let us consider the matrix $\Phi = [\phi _1 \ \phi _2 \ \dots \ \phi _Q]$.  containing the eigenmodes. Applying the orthogonality properties we get:
+	
+	\begin{equation}
+	\Phi ^T M\Phi = I \qquad \Phi ^T K\Phi = \Lambda \qquad \Rightarrow \det (\Phi ^T) \det( M ) \det (\Phi ) = 1
+	\end{equation}
+	
+	where $\Lambda$ is the matrix containing the eigenvalues on the diagonal. Since M is regular, $\det (\Phi) \neq 0$ meaning that the eigenmodes are linearly independent from each other and constitute the so-called \textbf{modal basis}. So any vector can be expressed as: 
+	
+	\begin{equation}
+	q = a_1 \phi _1 + \dots + a_Q \phi _Q = \Phi a 
+	\label{eq:19.17}
+	\end{equation}
+	
+	and by premultiplying by $\Phi ^T M$ we get $\Phi ^T Mq = a$ and initial conditions can be expressed as: 
+	
+	\begin{equation}
+	a_0 = \Phi ^T M q_0\qquad \dot{a}_0 = \Phi ^T M \dot{q}_0
+	\end{equation}
+	
+	and the equations of motion becomes injecting \eqref{eq:19.17}:
+	
+	\begin{equation}
+	M\Phi \ddot{a} + C\Phi \dot{a} + K\Phi a = f^{ext} \Leftrightarrow \ddot{a} + \Phi ^T C\Phi \dot{a} + \Lambda a = f^{ext} 
+	\end{equation}
+	
+	for the last line we pre multiply by $\Phi ^T$. Assuming a proportional damping we can define damping ratios $\xi _i$ and define 
+	
+	\begin{equation}
+	\Phi ^T C \Phi = \Gamma = \left[ 
+	\begin{array}{cccc}	
+	2\xi _1 \omega _1 & 0 & \dots & 0\\
+	0 & 2\xi _2 \omega _1 & \dots & 0\\
+	\vdots & \vdots & \vdots & \vdots\\
+	0 & 0 & \dots & 2\xi _Q \omega _Q \\ 
+	\end{array}	
+	\right]
+	\end{equation}
+	
+	Now the equation of motion is a system of decoupled scalar differential equations: 
+	
+	\begin{equation}
+	\ddot{a} + 2\xi _i \omega _i \dot{a}_i + \lambda _i a_i = f_i^{ext} = \phi _i^T f^{ext}
+	\end{equation}
+	
+\subsection{Numerical resolution of dynamic systems}
+There is two way of solving, the first consist in a conversion in a first order differential equation system by posing $h = \dot{q}$, indeed we double the number of unknowns. The second way are the explicit and implicit methods, this is not seen in the lecture. 
+
+\ \\
+
+
+\begin{center}
+\textbf{This is the end of a long way, I hope you'll get good marks.}
+\end{center}
