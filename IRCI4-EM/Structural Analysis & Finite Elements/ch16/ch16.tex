@@ -1,0 +1,230 @@
+
+\chapter{Structural analysis of plates}
+\section{Overview of the theory of plates}
+
+	\wrapfig{6}{l}{6}{0.22}{ch16/1}
+	Here we can see the convention of sign for the different variables. The middle plate is equidistant from the upper and lower plates on $z=0$. The thickness is a function of x, y $d(x,y)$. We assume homogeneous isentropic material. The plates can be studied after one of the following theories: \\
+	
+	\begin{itemize}
+	\item[•] \textbf{Kirchoff-Love theory:} the sections normal to the middle plane remain normal after deformation, plane and orthogonal to the middle plane (no shear strain). Applicable to thin plates. 
+	\item[•] \textbf{Reissner-Mindlin theory:} the sections plane before deformation remain plane but not necessarily orthogonal to the middle plane. Applicable to thin and thick.\\
+	\end{itemize}
+	
+	To be thin, the shorter distance between two support must be at least 50 times higher than the thickness. If it is smaller than 10 we speak about thin plates. Finally, both theory assumes that the thickness remains unmodified after deformation: 
+	
+	\begin{equation}
+	\epsilon _z = \frac{\D w}{\D z} = 0 \qquad \Rightarrow w = w(x,y,\cancel{z})
+	\end{equation}
+	
+	and the plane stress hypothesis $\sigma _z = 0$ holds. 
+	
+\section{Equilibrium equations in plate theory}
+	Since $\sigma _z=0$, the remaining stresses to study are $\sigma _x, \sigma _y, \tau _{xy}, \tau _{xz}$ and $\tau _{yz}$. Since the thickness is much smaller than the other dimensions, the integration will be performed along it to reduce the number of elements. $\sigma _x$ and $\sigma _y$ provoke normal unit forces $N_x$ and $N_y$ as well as bending moments $M_x$ and $M_y$.\\
+	
+	$\tau _{xy}$ and $\tau _{yx}$ lead to shear unit forces $N_{xy}$ and $N_{yx}$ as well as torsion unit moments $M_{xy}$ and $M_{yx}$. Since the stress tensor is symmetric: indices $xy = yx$. $\tau _{xz}$ and $\tau _{yz}$ lead to shear unit forces $V_{xz}$ and $V_{yz}$, transversal to the thickness. \\
+	
+	For the equilibrium equations we have two options: integrate $b_i + \tau _{i,j} = 0$ over the thickness or writing the balance of forces/couples on an elementary element plate. Let's assume these on external forces: 
+	
+	\begin{itemize}
+	\item[•] body forces only applied on x and y;
+	\item[•] transversal force is a contact pressure $p(x,y)$ on the upper surface;
+	\item[•] $\tau _{xz}$ and $\tau _{yz}$ null on lower and upper surface.\\
+	\end{itemize}
+
+	\wrapfig{5}{l}{4}{0.2}{ch16/2}
+	The integration of the equilibrium along x gives: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&\int _{-d/2}^{d/2} \left( \frac{\D \sigma _x}{\D x} + \frac{\D \tau _{xy}}{\D y} + \frac{\D \tau _{xz}}{\D z} + b_x\right)dz = 0\\
+	\Leftrightarrow\qquad &\frac{\D N_x}{\D x} + \frac{\D N_{xy}}{\D y} + \underbrace{[\tau _{xz}]_{-d/2}^{d/2}}_{=0} + \int_{-d/2}^{d/2} b_x \, dz = 0\\
+	\Leftrightarrow \qquad&\frac{\D N_x}{\D x} + \frac{\D N_{xy}}{\D y} + q_x = 0 
+	\end{aligned}
+	\end{equation}
+	
+	Similarly for y: 
+	
+	\begin{equation}
+	\frac{\D N_{xy}}{\D x} + \frac{\D N_{x}}{\D y} + q_y = 0.
+	\end{equation}
+	
+	\wrapfig{5}{r}{4}{0.2}{ch16/3}
+	Along z:	
+	
+	\begin{equation}
+	\begin{aligned}
+	&\int _{-d/2}^{d/2} \left( \frac{\D \tau _{xz}}{\D x} + \frac{\D \tau _{yz}}{\D y} + \frac{\D \sigma _{z}}{\D z} + \underbrace{b_z}_{=0} \right) dz = 0\\
+	\Leftrightarrow\qquad &\frac{\D V_{xz}}{\D x} + \frac{\D V_{yz}}{\D y} + \underbrace{[\sigma _z]_{-d/2}^{d/2}}_{=p} = 0\\
+	\Leftrightarrow \qquad&\frac{\D V_{xz}}{\D x} + \frac{\D V_{yz}}{\D y} + p = 0 
+	\end{aligned}
+	\end{equation}
+	
+	We can shorten all these equations as: 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	N_{\alpha \beta, \beta} + q_{\alpha} = 0 \qquad V_{\alpha z , \alpha} + p = 0
+	\end{equation}
+	}
+	\end{center}
+	
+	For the equilibrium in rotation, the idea is to take the equilibrium of translation and make the rotation around an axis, for y we multiply by z: 
+	
+	\begin{equation}
+	\begin{aligned}
+	&\int _{-d/2}^{d/2} z \left( \frac{\D \sigma _x}{\D x} + \frac{\D \tau _{xy}}{\D y} + \frac{\D \tau _{xz}}{\D z} + b_x\right)dz = 0 = \frac{\D M_x}{\D x} + \frac{\D M_{xy}}{\D y} + \int _{-d/2}^{d/2} z \frac{\D \tau _{xz}}{\D z} dz + \int _{-d/2}^{d/2} b_x z \, dz \\
+	&\Leftrightarrow \qquad \frac{\D M_x}{\D x} + \frac{\D M_{xy}}{\D y} + \underbrace{\int _{-d/2}^{d/2} z \frac{\D (z\tau _{xz})}{\D z} dz}_{=0} - \int_{-d/2}^{d/2} \tau _{xz} \, dz + \int _{-d/2}^{d/2} b_x z \, dz  = 0 \\
+	& \Leftrightarrow \qquad \frac{\D M_x}{\D x} + \frac{\D M_{xy}}{\D y} - V_{xz} + m_x = 0 \qquad \mbox{and} \qquad \frac{\D M_{xy}}{\D x} + \frac{\D M_{y}}{\D y} - V_{yz} + m_y = 0
+	\end{aligned}
+	\end{equation}
+	
+	In the particular case where the body fores are uniformly distributed throughout the thickness, $m_\alpha = 0$, which leads to: 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	M_{\alpha\beta , \beta} - V_{\alpha z} = 0 
+	\end{equation}		
+	}
+	\end{center}
+	
+	Introducing $V_{\alpha z,\alpha} + p = 0$ into this last equation: 
+	
+	\begin{center}
+	\theor{
+	\begin{equation}
+	M_{\alpha\beta , \beta\alpha} + p = 0  = \frac{\D ^2 M_{xx}}{\D x^2} + 2\frac{\D^2 M_{xy}}{\D x \D y} + \frac{\D ^2 M_{yy}}{\D y^2} = -p.
+	\end{equation}		
+	}
+	\end{center}
+	
+	which relates the second derivative of the moment to the pressure load. 
+	
+\section{Kirchoff-Love theory vs. Reissner-Mindlin theory}
+	\wrapfig{6}{l}{5}{0.28}{ch16/4}
+	As seen, the second theory assumes that sections normal to the middle plane remain plane but not necessarily normal. Based on the figure, consider a point O belonging to the middle plane and a point P belonging to the normal plane, with the motion of P composed of a translation and rotation: 
+	
+	\begin{equation}
+	u = u_0 + z\beta \qquad \vec{u}(x,y,z) = \left\{
+	\begin{array}{c}
+	u(x,y,z) = u^0(x,y,0) + z\beta ^x (x,y,0)\\
+	v(x,y,z) = v^0(x,y,0) + z\beta ^x (x,y,0)\\
+	w(x,y,z) = w_0(x,y,0) 
+	\end{array}
+	\right. 
+	\end{equation}
+	
+	where $\beta _x = \theta _y$ and $\beta _y = - \theta _x$. From the displacement field, the strain tensor is obtained by derivation $\epsilon _{ij} = \frac{1}{2}(u_{i,j} + u_{j,i})$ leading to: 
+	
+	\begin{equation}
+	\epsilon _x = \epsilon _x^0 + z\beta _{x,x} \qquad \epsilon _x = \epsilon _y^0 + z\beta _{y,y} \qquad \epsilon _x = \gamma _{xy}^0 + z(\beta _{x,y} + \beta _{y,x})
+	\end{equation}
+	
+	and storing them into vectors we get the 
+	
+	\begin{center}
+	\theor{
+	\textbf{Kinematic relations}
+	\begin{equation}
+	\epsilon = \epsilon ^0 + zL\beta\qquad L = \left[ \begin{array}{cc}
+	\frac{\D }{\D x} & 0 \\
+	0 & \frac{\D }{\D y} \\
+	\frac{\D }{\D y} & \frac{\D }{\D x}
+\end{array}	 \right]
+\end{equation}		
+	or directly by defining the \textbf{curvatures} $\bm{\chi}$: $\epsilon = \epsilon ^0 + z\chi$.}
+	\end{center}
+	
+	Furthermore: 
+	
+	\begin{equation}
+	\gamma _{xz} = \beta _x +\frac{\D w}{\D x}\qquad \gamma _{xz} = \beta _y +\frac{\D w}{\D y} \qquad \epsilon _z = 0 \qquad \Rightarrow \gamma = \beta + \nabla w
+	\end{equation}
+	
+	If we consider Kirchoff-Love theory the shear effects between layers is neglected and: $0 = \beta + \nabla w \Leftrightarrow \beta = -\nabla w$. That shows that the transversal displacement wrt x and y is directly proportional to angle variations. 
+	
+\section{The generalized Hooke's law}
+	Since $\sigma _z = 0$ in the plate, each layer parallel to the middle plate is in plane stress: 
+	
+	\begin{equation}
+	\tau _{\alpha \beta} = \frac{E}{1-\nu ^2} \left( (1-\nu)\epsilon _{\alpha \beta} + \nu \delta _{\alpha \beta}\epsilon _{\gamma \gamma} \right).
+	\end{equation}
+	
+	The Hooke's law in matrix form is $\tau = H \epsilon = H \epsilon ^0 + zH\chi$. The membrane behavior is obtained by integration over thickness: 
+	
+	\begin{equation}
+	n = \underbrace{\left(\int _{-d/2}^{d/2} H\, dz \right)}_{\equiv H_m}\epsilon ^0 + \underbrace{\int _{-d/2}^{d/2} zH\, dz}_{\equiv H_{mb}} \chi = H_{m} \epsilon ^0 + H_{mb} \chi
+	\end{equation}
+	
+	Similarly the bending behavior is obtained by integrating $z\tau = z H \epsilon ^0 + z^2 H\chi$:
+	
+	\begin{equation}
+	m = H_{mb} \epsilon ^0 + H_b \chi \qquad \Rightarrow \left[ 
+	\begin{array}{c}
+	n\\
+	m
+	\end{array}
+	\right] = \left[ 
+	\begin{array}{cc}
+	H_{m} & H_{mb}\\
+	H_{mb} & H_b
+	\end{array}
+	\right]
+	\left[ 
+	\begin{array}{c}
+	\epsilon ^0\\
+	\chi
+	\end{array}
+	\right]
+	\end{equation}
+	
+	where $H_m$ represents the membrane effect, $H_b$ the bending effect and $H_{mb}$ the membrane-bending coupling. If the material properties are distributed symmetrically around the material $H_{mb} = 0$. This means decoupling between bending and membrane effects, the membrane loads do not induce curvatures and bending do not induce membrane strains. For the transverse shear stresses: 
+	
+	\begin{equation}
+	v =\underbrace{\left( \int _{d/2} ^{-d/2} \left[
+	\begin{array}{cc}
+	G & 0\\
+	0 & G
+	\end{array}
+	\right] dz\right)}_{\equiv H_s} \gamma
+	\end{equation}
+	
+		\wrapfig{5}{l}{4.5}{0.2}{ch16/5}
+	where $H_s$ is the generalized Hooke's matrix for shear effects. This formula states that $\tau _{xz}$ and $\tau _{yz}$ should be constant, this is in contradiction with the hypothesis that they vanish. This is similar to the contradiction in Jourawski theory for 2D beams. A correction factor is thus applied: 
+	
+	\begin{equation}
+	H_{s,corrected} = \frac{5}{6} d \left[
+	\begin{array}{cc}
+	G & 0\\
+	0 & G
+	\end{array}
+	\right]
+	\end{equation}
+	
+	\begin{center}
+	\theor{
+	\textbf{Conclusion: homogeneous elastic plate}	
+	\begin{equation}
+	\sigma _x = \frac{N_x}{d} + \frac{M_x z}{d^3/12} \quad \sigma _y = \frac{N_y}{d} + \frac{M_y z}{d^3/12} \quad \tau _{xy} = \frac{N_{xy}}{d} + \frac{M_{xy}z}{d^3/12} \quad \tau _{xz} = \frac{3}{2} \frac{V_{xz}}{d} \quad \tau _{yz} = \frac{3}{2} \frac{V_{yz}}{d}
+	\end{equation}
+	}
+	\end{center}
+	
+\section{Lagrange equation}
+	We start from Kirchoff-Love assumptions: 
+	
+	\begin{equation}
+	\nabla ^T v = -p \Leftrightarrow \nabla ^T L^T H_b L \nabla w = p
+	\end{equation}
+	
+	where we used $m = -H_b L \nabla w$ and $v = -L^T m$. Using Hooke's law and some developments
+	
+	\begin{center}
+	\theor{
+	\textbf{Lagrange equation for plates}
+	\begin{equation}
+	\Delta ^2 w = \frac{p}{D}, \qquad \mbox{where } D = \frac{Ed^3}{12(1-\nu ^2)}
+	\end{equation}
+	}
+	\end{center}
