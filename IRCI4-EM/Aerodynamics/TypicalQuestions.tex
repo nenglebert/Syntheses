@@ -1097,46 +1097,1008 @@ Some remarks:
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{title}
-\subsection{title}
-\subsection{title}
-\subsection{title}
+\section{3D wing theory}
+
+\subsection{Explain mean chord, span, aspect ratio, taper, sweep of wing}
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.1]{ch3/1}
+		\captionof{figure}{}	
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[scale=0.15]{ch3/2}
+		\captionof{figure}{}	
+	\end{minipage}
+\end{center}
+The \textbf{span} is the total distance between the tips of the wings, plane body included. It is a straight line.\\
+The \textbf{mean chord} is defined by dividing the wing area by the span. This is used to avoid having a chord that varies for calculations.\\
+The \textbf{aspect ratio} is the span divided  by the mean chord, or the span squared divided by the wing surface. Higher aspect ration means higher lift to drag ratio.\\
+\textbf{Tapered wings} are wing that have a bigger chord near the body. The \textbf{taper ratio} is defined by $\frac{c_{tip}}{c_{root}}$\\
+\textbf{Swept wings} are wings that are (at least partially) not $\perp$ to the flow. This is to delay shock wave formation. The sweep is the angle of the leading and/or trailing edge compared to the $\perp$ to the flow.
+
+\subsection{Explain downwash effect, downwash angle, effective angle of attack, total and
+	induced drag}
+\wrapfig{7}{l}{6.5}{0.1}{ch3/3}{fig:3.3}
+Finite span $\Rightarrow$the pressure on both side must be equal at the end of the span. This means that the pressure on the upper side must increase when going to the tip, and decrease on the lower side. This creates a pressure gradient between the root and the tip. This gradient will push the streamlines on the upper side towards the fuselage and towards the tip on the lower side. 
+
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.1]{ch3/4}
+		\captionof{figure}{}	
+		\label{fig:3.4}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.1]{ch3/5}
+		\captionof{figure}{}	
+		\label{fig:3.5}
+	\end{minipage}
+\end{center}
+
+Looking from downstream, this discontinuity in velocity induces an infinite series of infinitely small vortices, clockwise on the left and anti clockwise on the right wing (\autoref{fig:3.4}), resulting in 2 discrete vortices at the tip, the s\textbf{wong-tip vortices or trailing vortices} (\autoref{fig:3.5}). 
+
+\wrapfig{7}{l}{6.5}{0.08}{ch3/6}{fig:3.6}
+These vortices induce a \textbf{downward velocity component, the downwash} $\vec{w}$. This component superposes on the incoming flow and changes the angle of attack (\autoref{fig:3.6}). The angle of change is the \textbf{downwash angle}, or induced angle of attack and we compute the \textbf{effective angle of attack} $\alpha _{eff} = \alpha - \epsilon$ where $\epsilon$ is the induced angle of attack.
+
+The decrease of $\alpha$ means a decrease in liftas the new lift is perpendicular to the new flow, some oof it's force produces an \textbf{induced drag}.
+
+The \textbf{total drag $C_D$} is computed as being the sum of the profil drag and the induced one. (in reality, we also have to take into account the parasite drags created by the fuselage, antennas,...)
+
+\subsection{Starting from the given expression for the downwash angle, compute the induced
+	drag force and the induced drag coefficient}
+
+\begin{equation}
+\alpha _{eff} = \alpha - \epsilon
+\end{equation}
+
+\textbf{induced drag}: 
+
+\begin{equation}
+D_i = L \sin \alpha _i \approx L\alpha _i \qquad with \qquad \alpha _i = \frac{C_L}{\pi e AR} 
+\label{eq:3.2}
+\end{equation}
+
+\wrapfig{10}{r}{5.5}{0.1}{ch3/7}{fig:3.7}
+where $e$ is the \textbf{span efficiency factor or Oswald's efficiency factor} $0.85<e<1$. We get the Drag coefficient:
+
+\begin{equation}
+C_{D_i} =  \frac{C_L^2}{\pi e AR} .
+\end{equation}
+
+\subsection{Explain the lift curve as a function of the angle of attack for a 3D wing, compare
+	with the lift curve for a 2D profile}
+The theoretical lift curve can be obtained based on the 2D wing as \autoref{fig:3.7}. We can see that the 3D wing lift for a certain $\alpha$ corresponds to the 2D lift for the effective angle of attack $\alpha - \epsilon$. The induced angle of attack decreases with lift, at $\alpha _0$ the two curve are on the same point. Algebraically the 2D and 3D curves can be noted:
+
+\begin{equation}
+c_l = m(\alpha - \alpha _0), \qquad C_L = m(\alpha - \epsilon - \alpha _0) = m^* (\alpha - \alpha _0)
+\label{eq:3.4}
+\end{equation}
+
+where $m^*$ is the slope of the 3D lift. We can isolate this and find that:
+
+\begin{equation}
+m^* = m\left( 1 - \frac{\epsilon}{\alpha - \alpha _0} \right) = \frac{m}{1+\frac{m}{\pi e AR}} 
+\end{equation}
+
+where we used the definition \eqref{eq:3.2} and \eqref{eq:3.4} for the last result. We see that the slope is independent from $\alpha$. 
+
+\subsection{Give the expression for the total drag coefficient as a function of $C_L$}
+
+The total drag is the sum of the profile drag and the induced one:
+
+\begin{equation}
+C_D = C_{D_0} + kC_L^2 + C_{D_i} = C_{D_0} + C_L^2 \left( k + \frac{1}{\pi e AR}\right)
+\end{equation}	 
+
+where $k$ is generally small compared to the other. 
+
+\wrapfig{8}{l}{5.5}{0.08}{ch3/8}{fig:3.8}
+With these formulas we can plot the characteristics in 3D. We can note that the maximum lift does not change so more, but there is a strong decrease in the maximum glide ratio, $C_D$ increases with $C_L$ so $\alpha$. Finally we note an increase of the stall angle but in practice this is not as large as predicted. This means also that the maximum lift decreases slightly with decreasing AR. No significant difference for the moment. 
+
+\wrapfig{5}{l}{5}{0.1}{ch3/9}{fig:3.9}
+To avoid the adverse effect which is increasing induced drag. We can use high AR or add winglet on the tip, a kind of end plate that forces a vertical diffusion of the tip vortex, reducing drag. They have to be carefully designed to not increase the viscous drag. 
+
+\subsection{Give the expression of the drag force D as a function of the velocity at infinity}
+
+Let's compute the total drag using the coefficient definition:
+
+\begin{equation}
+\begin{aligned}
+D &= C_D \frac{1}{2} \rho _\infty v_\infty ^2 S = C_{D_0} \frac{1}{2} \rho _\infty v_\infty ^2 S + \left(k +\frac{1}{\pi e AR} \right)\frac{L^2}{( \frac{1}{2} \rho _\infty v_\infty ^2 S)^2} \frac{1}{2} \rho _\infty v_\infty ^2 S \\
+&= k_1 v_\infty ^2 + k_2 v_\infty^2.
+\end{aligned}
+\label{eq:3.7}
+\end{equation}
+
 
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{title}
-\subsection{title}
-\subsection{title}
-\subsection{title}
+\section{3D wing theory – Derivation of Prandtl lifting line method
+	Give the basic ideas and the development of Prandtl’s lifting line theory}
+
+\subsection{Velocity induced by a vortex filament}
+\wrapfig{6}{l}{7}{0.12}{ch3/11}{fig:3.11}
+The seen free vortex is characterized by circular streamlines around a certain point P. In this point the vorticity is concentrated such that the circulation around the contours that don't contain the point are null. If we consider several planes above each other containing a 2D free vortex, the point P form a line called \textbf{vortex line or vortex filament}. The circulation on each point of that line have the same circulation.
+
+\wrapfig{6}{l}{6.5}{0.06}{ch3/13}{fig:3.13}
+This line can be a random line with bending. Now if one places an infinite number of vortex lines besides each other, we get a \textbf{vortex sheet}.
+
+The normal component of the velocity is continuous while the tangential one varies as $ \Delta v_t = \gamma $ with gamma given by the circulation around a vortex sheet.
+
+\wrapfig{10}{l}{5}{0.1}{ch3/14}{fig:3.14}
+Using Bio-Savart at point P:
+
+\begin{equation}
+\vec{v} = \frac{\Gamma }{4\pi}\int _{-\infty}^{+\infty} \frac{d\vec{l}\times r}{|r|^3}.
+\end{equation}
+
+We have: $d\vec{l} \times \vec{r} = Rdl \vec{1}_n$ , $\vec{v} = v \vec{1}_n$ (see figure). Let's define the length $l$ beginning from the piercing point on the surface until the $d\vec{l}$. We can graphically see that: 
+
+\begin{equation}
+l  = -R \coth \theta \Rightarrow dl = \frac{R}{\sin ^2\theta} d\theta, \qquad r = \frac{R}{\sin \theta} 
+\end{equation}
+
+Replacing all this we get:
+
+\begin{equation}
+v = \frac{\Gamma}{4\pi} \int _{0}^{\pi} \frac{R^2}{\sin^2 \theta } \frac{\sin ^3 \theta}{R^3} d\theta \qquad \Rightarrow v = \frac{\Gamma}{2\pi R}.
+\end{equation}
+
+This is the velocity distribution of the 2D free vortex.  
+
+\subsection{Helmholtz theorems, Biot-Savart law}
+\begin{center}
+	\theor{\textbf{Helmholtz theorems}\\
+		\begin{itemize}
+			\item[•] Along a vortex line, the circulation must be constant.
+			\item[•] A vortex line cannot finish in the flow but must continue to the edges of the flow or form a closed contour. 
+		\end{itemize}
+	}
+\end{center}
+
+\wrapfig{6}{r}{4}{0.1}{ch3/12}{fig:3.12}
+This law gives the induced velocity in a certain point P cause by an elementary piece $d\vec{l}$ of the filament: 
+
+\theor{
+	\textbf{Law of Biot-Savart}
+	\begin{equation}
+	d\vec{v} = \frac{\Gamma }{4\pi} \frac{d\vec{l}\times r}{|r|^3}
+	\end{equation}
+}
+
+\ \\ With analogy to electrical wire where we have a current intensity that induces a magnetic field on point P: $d\vec{B} = \frac{\mu I }{4\pi} \frac{d\vec{l}\times r}{|r|^3}$.
+\subsection{Circulation around a vortex sheet}
+ For the total circulation to be finite, the circulations must be infinitely small, but can vary from one line to the other. The circulation of the vortex sheet is calculated as:
+
+\begin{equation}
+\Gamma = \int _a ^b d\Gamma = \gamma \, ds
+\end{equation}
+
+\subsection{Downwash velocity induced by a single horseshoe vortex, why this model for a
+	wing is not working}
+
+\wrapfig{10}{l}{7}{0.08}{ch3/15}{fig:3.15}
+The idea is to represent the 3D wing by means of vortex filaments. On the figure we have the \textbf{horseshoe vortex} where the x direction continues to infinity to satisfy the Helmholtz condition and the y direction extends from $-b/2$ to $b/2$ and represents the two wings. This last is the bound vortex and the one in x direction represents the tip vortices. The problem with the representation is that we have a constant circulation while we have seen that the lift decreases when going to the tips. 
+
+\wrapfig{10}{r}{5}{0.1}{ch3/16}{fig:3.16}
+Let's try to compute the downwash velocity on a point from the bound vortex. The law of Biot-Savart has 3 contributions: 
+
+\begin{equation}
+\vec{v} = \int _{-\infty} ^{-b/2} \dots + \int _{-b/2} ^{b/2} \dots + \int _{b/2}^{\infty}.
+\end{equation}
+
+The second integral vanishes as dl and r are parallel, the two others were computed at the previous section. Pay attention that we have to take half the contribution as the integral is not $-\infty,+\infty$:
+
+\begin{equation}
+\vec{v}(y) = \left(\frac{\Gamma}{4\pi R} + \frac{\Gamma}{4\pi R^*} \right) \vec{1}_n
+\end{equation}
+
+We can see that the velocity is infinity at the tips and minimum at the middle. This is clearly not the reality.
+
+\subsection{Downwash velocity induced by a superposition of horseshoe vortices}
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.15]{ch3/17}
+		\captionof{figure}{}	
+		\label{fig:3.17}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.12]{ch3/18}
+		\captionof{figure}{}	
+		\label{fig:3.18}
+	\end{minipage}
+\end{center}
+
+The solution is to superpose the horseshoes with bound vortices with different length (fig:\autoref{fig:3.17}). If now we let tend the number of superimposed horseshoe vortices to infinity, we will get a vortex sheet as represented on \autoref{fig:3.18}. The continuously varying circulation on the wing is no longer constant and this corresponds better with the reality. 
+
+\wrapfig{10}{l}{5}{0.08}{ch3/19}{fig:3.19}
+Consider this figure, we will try to compute the downwash velocity by considering a large but finite number of vortices of circulation $d \Gamma$ for each. We have 3 regions to consider with our basic formula:
+
+\begin{itemize}
+	\item[•] $y<0$: $d\vec{v}(y_0) =  \frac{d \Gamma}{4\pi (y_0-y)}\vec{1}_n$
+	\item[•] $0<y<y_0$: $d\vec{v}(y_0) = \frac{d \Gamma}{4\pi (y_0-y)}\vec{1}_N = \frac{-d \Gamma}{4\pi (y_0-y)}\vec{1}_n$
+	\item[•] $y_0<y$: $d\vec{v}(y_0) =  \frac{d \Gamma}{4\pi (y-y_0)}\vec{1}_n = \frac{-d \Gamma}{4\pi (y_0-y)}\vec{1}_n$  
+\end{itemize}
+
+We can see that the three formulas are the same if we take $\Gamma < 0$ for $y>0$. We can so write the total contribution and its extension to the infinite number of lines:
+
+\begin{equation}
+\vec{v} = \left[ \sum \frac{d\Gamma}{4\pi (y_0 - y)} \right] = \left[ \int _{-b/2}^{b/2} \frac{d\Gamma}{4\pi (y_0 - y)} \right]
+\end{equation}
+
+
+\subsection{Derivation of Prandtl’s fundamental equation of lifting line theory}
+\wrapfig{10}{l}{5}{0.15}{ch3/20}{fig:3.20}
+The induced angle of attack is then given by:
+
+\begin{equation}
+\tan \alpha _i \approx \alpha _i = \frac{v(y_0)}{v_\infty} = \frac{1}{4\pi v_\infty} \int _{-b/2} ^{b/2}\frac{d\Gamma}{y_0-y}.
+\label{eq:3.18}
+\end{equation}
+
+Now let's denote $\alpha _{eff} = \alpha - \epsilon$. We know that the theory says $c_l = 2\pi (\alpha _{eff}(y_0)- \alpha _0(y_0))$, and using the definition of $c_l$ and the Kutta-Jukowski for $L(y_0)$ we get:
+
+\begin{equation}
+\begin{aligned}	
+&c_l = \frac{L(y_0)}{\frac{1}{2}\rho_\infty v_\infty ^2 c(y_0)} = \frac{\rho _\infty v_\infty \Gamma (y_0)}{\frac{1}{2}\rho_\infty v_\infty ^2 c(y_0)} = \frac{\Gamma (y_0)}{\frac{1}{2}v_\infty ^2 c(y_0)} \\
+&\Rightarrow \alpha _{eff} = \frac{\Gamma (y_0)}{\pi v_\infty c(y_0)} + \alpha _0(y_0)
+\end{aligned}
+\end{equation}
+
+Combining all the result, we can compute the $\alpha$: 
+
+\begin{center}
+	\theor{
+		\textbf{Fundamental equation of Prandtl's lifting line theory}
+		\begin{equation}
+		\alpha(y_0) = \frac{\Gamma (y_0)}{\pi v_\infty c(y_0)} + \alpha _0(y_0) + \frac{1}{4\pi v_\infty} \int _{-b/2}^{b/2} \frac{d\Gamma}{y_0 - y}. 
+		\end{equation}		
+	}
+\end{center}
+
+The only unknown in this equation is the circulation: several cases.
+%-----------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------
+
+\section{3D wing theory: application of Prandtl lifting line theory for a wing with given
+	circulation
+	Starting from Prandtl’s fundamental equation of lifting line theory and the formula
+	for the induced angle of attack:}
+\begin{center}
+	\theor{
+		\textbf{Fundamental equation of Prandtl's lifting line theory}
+		\begin{equation}
+		\alpha(y_0) = \frac{\Gamma (y_0)}{\pi v_\infty c(y_0)} + \alpha _0(y_0) + \frac{1}{4\pi v_\infty} \int _{-b/2}^{b/2} \frac{d\Gamma}{y_0 - y}. 
+		\end{equation}		
+	}
+
+\begin{equation}
+\tan \alpha _i \approx \alpha _i = \frac{v(y_0)}{v_\infty} = \frac{1}{4\pi v_\infty} \int _{-b/2} ^{b/2}\frac{d\Gamma}{y_0-y}.
+\label{eq:3.18}
+\end{equation}
+
+
+\end{center}
+
+\subsection{Discuss the different terms of the equation}
+$\Gamma$ is the circulation around the vortex sheet, $v_\infty$ the flow speed, $c(y_0)$ the point where we calculate the downwash,$y$ the position of a vortex wire. (see graphs above)
+
+\subsection{Apply to a wing with a given circulation distribution: find lift and drag coefficients}
+
+Idea is to solve the integral. The discussions below do it for more complicated case, so good luck!
+
+\subsection{Apply to a wing with a given shape and unknown circulation distribution defined
+	by a truncated Fourier series and compute the lift $C_L$ and the induced drag $C_{Di}$ coefficients}
+
+Local and total lift by:
+
+\begin{equation}
+L'(y_0) = \rho _\infty v_\infty \Gamma (y_0) \qquad L = \int _{-b/2}^{b/2} L'(y)\, dy
+\end{equation}
+
+and the local and total induced drag: 
+
+\begin{equation}
+D'_i (y_0) = \Gamma (y_0) \epsilon (y_0) \qquad D_i = \int _{-b/2}^{b/2} D_i'(y)\, dy
+\end{equation}
+
+We assume a serie:
+
+\begin{equation}
+\Gamma = \sum _{n=1} ^N A_n \sin (n\theta).
+\end{equation}
+
+Substitution of this in the Prandtl's fundamental equation gives:
+
+\begin{equation}
+\alpha (\theta _0) = \frac{1}{\pi v_\infty c(\theta _0)} \sum _n A_n \sin (n\theta_0) + \alpha_0(\theta _0) + \frac{1}{2\pi v_\infty b} \sum _n A_n n \int ^0_\pi \frac{\cos (n\theta)d\theta}{\cos \theta _0 - \cos \theta}
+\label{eq:3.32}
+\end{equation}
+
+$\rightarrow$ Glauert integral. We can find a solution by considering N equations for N points distributed along the span.
+
+By integration of the local lift and definition of $C_L$ and $C_D$:
+\begin{equation}
+C_L = \frac{1}{\frac{1}{2}v_\infty S} \int _{-b/2}^{b/2} \Gamma (y) \, dy = \frac{b}{u_\infty S} \sum _n \int _0 ^\pi A_n \sin (n\theta) \sin \theta \, d\theta = \frac{\pi b A_1}{2Sv_\infty}. 
+\end{equation}
+
+\begin{equation}
+C_{D_i} = \frac{1}{\frac{1}{2} v_\infty S} \int _{-b/2} ^{b/2} \Gamma (y)\alpha _i \, dy. 
+\end{equation}
+
+Using \eqref{eq:3.18}, we can express $\alpha _i (\theta _0)$ as:
+
+\begin{equation}
+\alpha _i (\theta _0) = \frac{1}{2\pi v_\infty b} \int ^{0}_{\pi} \frac{\frac{d\Gamma }{d\theta}}{\cos \theta _0 - \cos \theta} \, d\theta = \frac{1}{2\sin \theta _0 v_\infty b} \sum _n A_n n \sin (n \theta _0)
+\end{equation}
+
+which gives:
+
+\begin{equation}
+C_{D_i} = \frac{1}{2v_\infty ^2 S} \int _0 ^\pi \sum _n \sum _k A_n A_k \sin (n\theta) \sin (k\theta) \, d\theta = \frac{\pi}{4v_\infty ^2 S} \sum _n A_n ^2 n
+\end{equation}
+
+and using the lift coefficient:
+
+\begin{equation}
+C_{D_i} = \frac{C_L^2}{\pi AR}  \left(1+\sum _{n=2} n \left(\frac{A_n}{A_1}\right)^2 \right) \qquad \Rightarrow e = \frac{1}{1+\sum _{n=2} n \left(\frac{A_n}{A_1}\right)^2} = \frac{1}{1+\delta}
+\end{equation}
+
+where $\delta $ is the \textbf{induced drag factor}, since it is always positive, $e<1$. 
+
+\subsection{Apply to a tapered wing}
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.05]{ch3/21}
+		\captionof{figure}{}	
+		\label{fig:3.21}
+	\end{minipage}
+	\begin{minipage}{0.22\textwidth}
+		\includegraphics[scale=0.02]{ch3/22}
+		\captionof{figure}{}	
+		\label{fig:3.22}
+	\end{minipage}
+\end{center}
+
+Same 2D profile along the span and no twist. Because of the symmetry, it is obvious that the pair n in the series will have no contribution. Let's go until 7:
+
+\begin{equation}
+\Gamma = A_1\sin \theta + A_3\sin 3\theta + A_5\sin 5\theta + A_7\sin 7\theta.
+\end{equation}
+
+To determine the coefficient we have to apply \eqref{eq:3.32} to 4 points. Let's take half the span because of symmetry: $\theta = \pi /8, \pi /4, 3\pi /8, \pi /2$. Since the 2D profile is constant, $\alpha _0$ is independent of $\theta$, same for $\alpha$ since there are no twist. 
+
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.15]{ch3/23}
+		\captionof{figure}{}	
+		\label{fig:3.23}
+	\end{minipage}
+	\begin{minipage}{0.22\textwidth}
+		\includegraphics[scale=0.12]{ch3/24}
+		\captionof{figure}{}	
+		\label{fig:3.24}
+	\end{minipage}
+\end{center}
+
+After some calculation one find a circulation distribution as in \autoref{fig:3.23}, where $\lambda$ is defined such that $c_t = (1- \lambda) c_r$. $\lambda = 0$ corresponds to a rectangular wing and $\lambda = 1$ is the triangular one. Note that the figure also represents the lift. The lift coefficient no, because it becomes larger at the tips due to $c\searrow$. On \autoref{fig:3.24} is represented the induced drag coefficient $\delta$. We see that it is always possible to find the taper ratio to have the minimum drag. Most of the planes use tapered wings since it is more simple to produce than elliptic wing.
+
+\subsection{Assume an elliptic distribution for the circulation. Show that the platform of the
+	wing must be an ellipse.}
+
+The elliptic circulation distribution is written:
+
+\begin{equation}
+\Gamma (y) = \Gamma (y_0) \sqrt{1-\left( \frac{y}{b/2} \right)^2}.
+\end{equation}
+
+where $\Gamma _0$ is the circulation in the plane of symmetry. Let's compute the velocity:
+
+\begin{equation}
+v(y_0) = \frac{1}{4\pi} \int _{-b/2}^{b/2} \frac{d\Gamma }{y_0 - y} = \frac{\Gamma _0}{2b} = cst \qquad \Rightarrow \epsilon = \alpha _i = \frac{v(y_0)}{v_\infty} = \frac{\Gamma _0}{2b v_\infty} = cst.
+\end{equation}
+
+where we used the transformation $y = b/2 \cos \theta$. Induced angle of attack is constant along the span.
+
+\begin{equation}
+L'(y) = \rho v_\infty \sqrt{1-\left( \frac{y}{b/2} \right)^2}.
+\end{equation}
+
+On the other hand we can use \eqref{eq:3.4} to express the lift as: 
+
+\begin{equation}
+L'(y) = m (\alpha - \alpha _i - \alpha _0) \frac{1}{2} \rho _\infty v_\infty ^2 c
+\end{equation}
+
+Combining the equations we get: 
+
+\begin{equation}
+(\alpha - \alpha _i - \alpha _0) c = \frac{2\Gamma _0}{v_\infty} \sqrt{1-\left( \frac{y}{b/2}\right)^2}. 
+\end{equation}
+
+Note that if the left hand side is constant, the equation is satisfied for an \textbf{elliptic platform}. Since $\alpha _i$ is already constant, the whole term is constant only if the geometric angle of attack is constant and the profile does not change along the span. Since $C_{d_i} = C_L \alpha _i$, we can make the same analysis for the drag. \\
+
+On the other hand, if the platform is non elliptic, since m varies little, the different angles must vary too. This is done by introducing a \textbf{twist} in the wing so that $\alpha$ varies. The lift coefficient is obtained by integration of the local lift:
+
+\begin{equation}
+\frac{1}{\frac{1}{2}\rho v_\infty ^2 S} \int _{-b/2}^{b/2} L'(y) \, dy = \frac{\Gamma _0\pi b}{2v_\infty S} = \frac{\Gamma _0 \pi}{2bv_\infty} AR.
+\end{equation}
+
+Combination of this and what we found for $\alpha _i$ in this section we get:
+
+\begin{equation}
+\alpha _i = \frac{C_L}{\pi AR}
+\end{equation}
+
+which is what we defined at the beginning of the chapter but for $e =1$ (span efficiency factor). The induced drag is given by:
+
+\begin{equation}
+D_i'(y) = L'(y) \alpha _i \qquad \Rightarrow C_{D_i} = C_L \alpha _i = \frac{C_L^2}{\pi AR}.
+\end{equation}
+
 
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{title}
-\subsection{title}
-\subsection{title}
-\subsection{title}
+\section{2D airfoil in compressible flow}
+\subsection{Derive the compressible potential equation}
+TODO
+
+\subsection{Assume a thin airfoil at small angle of attack: derive the linearized potential
+	equation. What is the range of validity as a function of the free stream Mach
+	number}
+TODO
+
+\subsection{Discuss the type of this equation as a function of free stream Mach number,
+	what are the consequences}
+TODO
 
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{title}
-\subsection{title}
-\subsection{title}
-\subsection{title}
+\section{2D airfoil compressible flow around an airfoil using the small perturbation
+	approach}
 
+\subsection{Derive the equation governing compressible potential equation, what are the
+	assumptions}
+
+Remind that we have defined a potential function to describe incompressible flows, conservation of mass giving:
+
+\begin{equation}
+\vec{v} = \nabla \phi \qquad \frac{\D u}{\D x} + \frac{\D v}{\D y} = 0 = \frac{\D^2 \phi}{\D x^2} + \frac{\D^2 \phi}{\D y^2}.
+\end{equation}
+
+This can also be used to describe compressible flows, conservation of mass is then: 
+
+\begin{equation}
+\rho (\phi _{xx} + \phi _{yy}) + \rho _x \phi _x + \rho _y \phi _y = 0
+\label{eq:6.2}
+\end{equation}
+
+where we introduced the shorthand notation $\frac{\D a}{\D x} = a_x$. We assume that the flow is isentropic, this is satisfied by inviscid flows (no shock  wave): 
+
+\begin{equation}
+\frac{\rho}{T^{\frac{1}{\gamma -1}}} = cst \qquad \Rightarrow \frac{d \rho}{\rho} = \frac{1}{\gamma -1} \frac{dT}{T}
+\end{equation}
+
+if the flow does not work (turbine), the temperature is constant and the equation becomes:
+
+\begin{equation}
+d\rho = -\frac{\rho}{2a^2} d(u^2+v^2).
+\end{equation}
+
+If we replace the velocities we get: 
+
+\begin{equation}
+\rho _x = -\frac{\rho}{a^2} (\phi _x \phi _{xx} + \phi _y \phi _{xy}) \qquad \rho _y = -\frac{\rho}{a^2} (\phi _x \phi _{xy} + \phi _y \phi _{yy}).
+\end{equation}		
+
+That we can substitute in \eqref{eq:6.2}:
+
+\begin{equation}
+\left( 1-\frac{1}{a^2} \phi^2_x \right) \phi _{xx} + \left( 1-\frac{1}{a^2 }\phi^2_y \right) \phi _{yy} - \frac{2}{a^2} \phi_x \phi_y \phi _{xy} = 0.
+\label{eq:6.6}
+\end{equation}	
+
+
+\subsection{Derive the equation in the case of small perturbations. What are the assumptions
+	for this equation to be valid ?}
+
+If the far field velocity profile is $u= V_\infty$, we can note the velocity field by means of perturbations: $u = V_\infty + \hat{u}, v = \hat{v}$. A perturbation potential function can be defined: 
+
+\begin{equation}
+\phi = V_\infty x + \hat{\phi}\qquad with \qquad \hat{\phi} _x = \hat{u}, \quad \hat{\phi}_y = \hat{v}. 
+\end{equation}
+
+By substitution of this in \eqref{eq:6.6}:
+
+\begin{equation}
+\left[ a^2- (V_\infty + \hat{\phi} _x )^2 \right] \hat{\phi} _{xx} + \left[ a^2-\hat{\phi}_y ^2 \right] \hat{\phi} _{yy} - 2 (V_\infty + \hat{\phi} _x) \hat{\phi}_y \hat{\phi} _{xy} = 0.
+\label{eq:6.8}
+\end{equation}
+
+Since the total temperature is constant:
+
+\begin{equation}
+\frac{a^2_\infty}{\gamma -1} + \frac{V_\infty ^2}{2} = \frac{a^2}{\gamma -1} + \frac{(V_\infty + \hat{u}) ^2 = \hat{v}^2}{2} 
+\label{eq:6.9}
+\end{equation}
+
+If we make the assumption of small perturbation, the quadratic terms cancel and \eqref{eq:6.8} and \eqref{eq:6.9} become:
+
+\begin{equation}
+\begin{aligned}
+&\frac{a^2_\infty}{a^2} = 1 - (\gamma -1) \frac{\hat{u}}{V_\infty} M^2_\infty\\
+&\left[ a^2- V^2_\infty + 2V_\infty \hat{u}  \right] \hat{\phi} _{xx} + a^2 \hat{\phi} _{yy} - 2 V_\infty \hat{v} \hat{\phi} _{xy} = 0 \\ 
+\Rightarrow 
+&\left[ 1- M_\infty^2 - (\gamma + 1) M_\infty \frac{\hat{u}}{V_\infty} \right] \hat{\phi} _{xx} + \left[ 1 - (\gamma -1 )M_\infty ^2\frac{\hat{u}}{V_\infty} \right] \hat{\phi} _{yy} - 2 M^2_\infty \frac{\hat{v}}{V_\infty} \hat{\phi} _{xy} = 0 
+\end{aligned}
+\end{equation}
+
+where the last expression is obtained by dividing by $a^2_\infty$ and replacing. By considering again the small perturbation ($V_\infty \ll$) equation we get the:
+
+\begin{center}
+	\theor{
+		\textbf{Transonic smal perturbation potential equation}
+		\begin{equation}
+		\left[ (1-M_\infty ^2) - (\gamma +1) M^2_\infty \frac{\hat{\phi}_x}{V_\infty}  \right] \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+		\end{equation}
+	}
+\end{center}
+
+We can see that the $\hat{u}$ appears in $\hat{phi} _{xx}$ term, this is no longer negligible for \textbf{sonic} velocities. For sub- and super-sonic flows however the equation simplifies in: 
+
+\begin{equation}
+(1-M_\infty ^2) \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+\end{equation}
+
+Note that we retrieve our incompressible equation for $M_\infty \rightarrow 0$. Be aware that this last relation is only valid for small perturbations (small bodies in practice) and sub- or super-sonic flows ($M_\infty > 1.2, M_\infty < 0.8$). \\
+
+Let's now operate a change of coordinate $(x,y) \rightarrow (\xi , \eta)$, recalling $1-M_\infty ^2 \equiv \beta ^2$: 
+
+\begin{equation}
+\xi = x \quad \eta = \beta y \qquad \bar{\phi} (\xi , \eta) = m .\hat{\phi}(x,y)
+\end{equation}
+
+where m is a constant. Let's find the expression of $\bar{\phi} (\xi, \eta)$. The chain rule gives: 
+
+\begin{equation}
+\begin{aligned}
+\hat{\phi} _x = \hat{\phi}_\xi = \frac{1}{m} \bar{\phi} _\xi \qquad  \hat{\phi} _y = \frac{\beta}{m} \bar{\phi}_\eta &\qquad \hat{\phi} _{xx} = \frac{1}{m} \bar{\phi}_{\xi \xi} \qquad \hat{\phi} _{yy} = \frac{\beta ^2}{m} \bar{\phi}_{\eta \eta}\\
+&\Rightarrow \bar{\phi}_{xx} + \bar{\phi}_{yy} = 0
+\end{aligned}
+\label{eq:6.14}
+\end{equation}
+
+We can see that the compressible flow in $(x,y)$ is reduced to an incompressible flow in the $(\xi, \eta)$ plane. Pay attention that $\bar{\phi}$ describes the perturbation velocities $\bar{u}, \bar{v}$. in the $(\xi, \eta)$ plane.  
+
+\wrapfig{7}{l}{7.5}{0.1}{ch6/9}{fig:6.9}
+We can now focus on the shape of the profile in the new axis. Let's analyze the tangent to the profile by defining the angle $\theta$ for the profile in (x,y). Under the assumption of small perturbation (thin airfoil), we can see that:
+
+\begin{equation}
+\tan \theta \approx \theta = \frac{\hat{v}}{V_\infty + \hat{u}} \approx \frac{\hat{v}}{V_\infty} = \frac{1}{V_\infty} \hat{\phi} _y \qquad \Rightarrow \chi \approx \frac{1}{V_\infty} \bar{\phi} _\eta
+\end{equation}
+
+where the analogy for the new plane is done. Using \eqref{eq:6.14}, we get: 
+
+\begin{equation}
+\theta = \frac{\beta}{m} \chi.
+\end{equation}
+
+Let's investigate two cases: 
+\begin{itemize}
+	\item[•] If we choose $m=\beta$, $\theta = \chi$, the two profiles are identical. We have for the velocity: 
+	
+	\begin{equation}
+	\hat{u} = \hat{\phi} _x = \frac{\bar{\phi}_\xi}{\beta} = \frac{\bar{u}}{\beta}
+	\end{equation}
+	
+	and since the pressure coefficient is given by $C_p = -\frac{2\hat{u}}{V_\infty}$: 
+\end{itemize}		
+
+\begin{center}
+	\theor{
+		\textbf{Prandtl-Glauert rule}
+		\begin{equation}
+		C_p = \frac{C_{p,inc}}{\beta} = \frac{C_{p,inc}}{\sqrt{1 - M_\infty ^2}}.
+		\end{equation}
+		This equation allows us to compute the pressure distribution in compressible flow, beginning from the incompressible one. 
+	}
+\end{center}
+
+
+\wrapfig{12}{r}{5}{0.15}{ch6/10}{fig:6.10}
+Since the lift and moment coefficient are given by the integration of the pressure coefficient along the wing, we have the same result for them (so also the slope of lift curve $m$). Here is plotted the experimental data and the approximated m by means of the above relation for $\alpha = 0$ and for different airfoil thickness $\tau$. We can see that for the thinner wings, we have a good agreement, until we reach the \textbf{critical Mach number} (Mach number at infinity for which Mach number 1 is reached on the profile).  This value exceeded, we have shock waves (formula valid only for Mach until 0.8). 
+For thicker wings, we see that the slope m is always underestimated. The critical Mach number is here much lower. 
+
+\ \\
+\begin{itemize}
+	\item[•] If we choose $m=1, \hat{u} = \bar{u}$ so that $C_p = C_{p, inc}$. We see that the pressure coefficient is now the same but the profiles are different following we are in the compressible or incompressible case $\theta = \beta \chi$. 
+\end{itemize}
+
+\wrapfig{5}{l}{6.5}{0.1}{ch6/11}{fig:6.11}
+The angle relation must be true along the entire profile, particularly at the maximum thickness: 
+
+\begin{equation}
+\tau = \beta \tau _{inc}. 
+\end{equation}		
+
+\paragraph{Remark 1}
+If we take into account the aspect ratio, we can rewrite the slope m as: 
+
+\begin{equation}
+m = \frac{m_{inc}}{\beta} \frac{2\pi}{\beta \left(1+\frac{2}{eAR}\right)}
+\end{equation}		
+
+where we used the theoretical 2D slope $2\pi$. Another possibility is to write the lift as:
+
+\begin{equation}
+c_l = \frac{2\pi}{\beta} (\alpha - \alpha _{L_0} - \alpha _i) = \frac{2\pi}{\beta+\frac{2}{eAR}} (\alpha - \alpha _{L_0})
+\end{equation}
+
+We can	last note the existence of the DATCOM formula that accounts for the effect of the aspect ratio, sweep angle $\Lambda$, Mach number and has also a correction factor for viscous effects $\kappa \approx 0.97$: 
+
+\begin{equation}
+m = \frac{2\pi AR}{2+\sqrt{\frac{AR^2 + beta ^2}{\kappa ^2}\left( 1+\frac{\tan ^2\Lambda}{\beta ^2} \right)+4}}.
+\end{equation}
+
+\paragraph{Remark 2}
+We can also rearrange the expression of $C_p$ with the approximation of small angles, we had: 
+
+\begin{equation}
+C_p = \frac{p-p_\infty}{\frac{1}{2}\rho _\infty V_\infty^2} = \frac{\gamma 2p_\infty}{\gamma \rho _\infty V_\infty ^2}\left(\frac{p}{p_\infty}-1 \right) =  \frac{2}{\gamma M^2_\infty} \left(\frac{p}{p_\infty} -1 \right) \qquad \gamma \frac{p_\infty}{\rho _\infty} = \gamma rT = a^2
+\label{eq:6.23}
+\end{equation}
+
+The isentropic flow and the constant $T_c$ give: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{p}{p_\infty}  =\left( \frac{T}{T_\infty} \right) ^{\frac{\gamma}{\gamma - 1}} = \left( \frac{T_t - \frac{1}{2c_p}\left[ (V_\infty +\hat{u})^2 +\hat{v}^2 \right]}{T_\infty} \right)^{\frac{\gamma}{\gamma-1}} \qquad T_t = T_\infty + \frac{V_\infty^2}{2c_p}\\
+\Rightarrow &\frac{p}{p_\infty}  =\left[ 1- \frac{\gamma -1}{2}M^2_\infty \left( \frac{2\hat{u}}{V_\infty} +\frac{\hat{u}^2 +\hat{v}^2}{V^2_\infty} \right) \right]^{\frac{\gamma}{\gamma-1}} = 1- \frac{\gamma}{2}M^2_\infty \left( \frac{2\hat{u}}{V_\infty} +\frac{\hat{u}^2 +\hat{v}^2}{V^2_\infty} \right)+\dots
+\end{aligned}
+\end{equation}
+
+where the last expression comes from the fact that the second term is small so that we have the Taylor development of $1+\epsilon$ (first order limited). We can neglect the second term in bracket since we have small perturbation square, and we get by \eqref{eq:6.23}:
+
+\begin{equation}
+\frac{p}{p_\infty} = -\frac{2\hat{u}}{V_\infty}
+\end{equation}
+
+\subsection{Discuss the application to an airfoil in supersonic flow: lift coefficient, influence
+	of the Mach number, Ackeret formula, lift and drag formula}
+
+The potential equation we used in the framework of potential equation can be rewritten in the case of supersonic flow as:
+
+\begin{equation}
+(1-M_\infty^2) \hat{\phi}_{xx} + \hat{\phi}_{yy} = 0 \qquad \Rightarrow \lambda ^2 \hat{\phi} _{xx} - \hat{\phi} _{yy} = 0.
+\end{equation}
+
+The linearized potential equation corresponds to the wave equation with $\lambda ^2 = M_\infty ^2 -1 >0$. We can show that the solution of this equation is 
+
+\begin{equation}
+\hat{\phi}(x,y)= f(x-\lambda y) = \hat{\phi} _{1}(x-\lambda y) + \hat{\phi} _{2} (x+\lambda y).
+\end{equation}		
+
+Let's define 2 families of characteristic curves:
+
+\begin{equation}
+\left\{
+\begin{aligned}
+&C^+ : x-\lambda y = cst \qquad \Rightarrow y = \frac{1}{\lambda} x + cst = \frac{1}{\sqrt{M_\infty ^2 -1}} c + cst\\
+&C^+ : x+\lambda y = cst \qquad \Rightarrow y = -\frac{1}{\lambda} x + cst = -\frac{1}{\sqrt{M_\infty ^2 -1}} c + cst
+\end{aligned}
+\right.
+\end{equation}
+
+\wrapfig{8}{r}{5}{0.15}{ch6/8}{fig:6.8}
+In this way, $\hat{\phi} _1$ and $\hat{\phi} _2$ are respectively constant on $C^+$ and $C^-$. The slope is denoted $\mu _\infty ^\pm$ for $C^\pm$ such that: 
+
+\begin{equation}
+\tan \mu _\infty ^\pm = \pm \frac{1}{\sqrt{M_\infty ^2 -1}} \qquad \sin \mu _\infty ^\pm = \pm \frac{1}{M_\infty}.
+\end{equation}
+
+To find the general solution in P, let's first consider the initial data given on the y-axis: 
+
+\begin{equation}
+\hat{\phi} _1(y) = F(y)\qquad \hat{\phi}_2 (y) = G(y)
+\end{equation}
+
+Now let's construct $C^+$ and $C^-$ : 
+
+\begin{equation}
+C^+ : x-\lambda y = x_A - \lambda y_A\qquad C^- : x-\lambda y = x_B + \lambda y_B.
+\end{equation}
+
+Finally, the solution in P is so given by:
+
+\begin{equation}
+\hat{ \phi} (x_p,y_p) = \hat{\phi} (x_A - \lambda y_A) + \hat{\phi} _2 (x_B + \lambda y_B) = F (x_A - \lambda y_A) + G (x_B + \lambda y_B)
+\end{equation}
+
+\wrapfig{8}{l}{5}{0.1}{ch6/17}{fig:6.17}
+Now let's define the initial conditions at $x=0$ for small $\alpha$ for a thin profile:
+
+\begin{equation}
+F(y) = K_1 = cst \qquad G(y) = K_2 = cst \qquad \Rightarrow \hat{\phi} = cst
+\end{equation}
+
+since the incoming flow is uniform. On the pressure side, we have $\hat{\phi} _1(x-\lambda y) = K_1$ which gives in the solution: 
+
+\begin{equation}
+\hat{\phi}(q) = K_1 + \hat{\phi}_2 (q) \qquad \rightarrow \hat{\phi}_x = \frac{d\hat{\phi}_2}{dq} = \hat{u} ^- \quad \hat{\phi}_y = \frac{d\hat{\phi}_2}{dq}\lambda = \hat{v} ^- \qquad \Rightarrow \hat{v}_{wall} = \lambda \hat{u}_{wall}
+\end{equation}
+
+If we express the tangent as $\tan \theta_w \approx \theta_w = \frac{\hat{v}^-_w}{\hat{u}^-+V_\infty} \approx \frac{\hat{v}^-_w}{V_\infty}$,
+We can get by replacing the last results in the previous pressure coefficient equation for small perturbations:
+
+
+\begin{center}
+	\theor{
+		\textbf{Law of Ackeret}
+		\begin{equation}
+		C_p ^- = -\frac{2\hat{u}^-_w}{V_\infty} = -\frac{2\theta_w^-}{\sqrt{M^2_\infty - 1}}.
+		\end{equation}
+	}
+\end{center}
+
+The same reasoning can be done for the suction side where we'll get:
+
+\begin{equation}
+\hat{\phi} _x = \frac{d\hat{\phi}_1}{dq} = \hat{u}^+_w \qquad \hat{\phi} _x = \frac{d\hat{\phi}_1}{dq}(-\lambda) = \hat{v}^+_w = -\lambda \hat{u}^+_w\qquad \Rightarrow C_p^+ = \frac{2\theta_w^+}{\sqrt{M^2_\infty - 1}}.
+\end{equation}
+
+\subsubsection{Application to a flat plate}
+\wrapfig{8}{l}{7.5}{0.1}{ch6/18}{fig:6.18}
+Consider the thin profile define by functions $y^+(x)$ and $y^-(x)$ with angles defines as:
+
+\begin{equation}
+\begin{aligned}
+&\epsilon = \frac{dy}{dx} <0 \qquad \theta = \frac{\hat{v}}{\hat{u} +V_\infty} <0 \\
+\Rightarrow &\theta = \epsilon - \alpha = \frac{dy}{dx} - \alpha
+\end{aligned}
+\end{equation}
+
+as $\alpha > 0$. We can then apply the last formula: 
+
+\begin{equation}
+C_p^+ = \frac{2\theta_w^+}{\sqrt{M^2_\infty - 1}} = \frac{2\left( \frac{dy^+}{dx} -\alpha \right)}{\sqrt{M^2_\infty - 1}} \qquad C_p^- = -\frac{2\theta_w^-}{\sqrt{M^2_\infty - 1}} = \frac{2\left( \alpha -\frac{dy^-}{dx}\right)}{\sqrt{M^2_\infty - 1}}.
+\end{equation}
+
+We are now interested in computing the normal and tangential force applied on the wing, for a counter-clock contour: 
+
+\begin{equation}
+C_N = \int _0 ^1 C_p ^- \, \frac{dx}{c} + \int _1 ^0 C_p ^+ \, \frac{dx}{c} = \frac{4\alpha }{\sqrt{M_\infty ^2-1}}
+\end{equation}
+
+where we replace the $C_p$'s by their definition and we neglect $\frac{dy}{dx}$ terms. For the drag we have the same procedure but by neglecting this time $\alpha$:
+
+\begin{equation}
+\begin{aligned}
+&C_\Gamma = -\int _0 ^1 C_p ^- \, \frac{dy}{c} - \int _1 ^0 C_p ^+ \, \frac{dy}{c} = \frac{2}{\sqrt{M_\infty ^2-1}} \left[ \int _0^1 \left(\frac{dy^-}{dx} \right)^2 \frac{dx}{c} + \int _0^1 \left(\frac{dy^+}{dx} \right)^2 \frac{dx}{c} \right]\\
+\Rightarrow &C_\Gamma =  \frac{2}{\sqrt{M_\infty ^2-1}} [I^- + I^+]
+\end{aligned}
+\end{equation}
+
+To compute the lift and drag coefficient we only have to make the projections, and in case of flat plate $\frac{dy}{dx} = 0 = I^\pm$: 
+
+\begin{equation}
+\begin{aligned}
+&C_l = -C_\Gamma \sin \alpha + C_N \cos \alpha \approx -\alpha C_\Gamma  + C_N \qquad C_d = C_\Gamma  + \alpha C_N\\
+\Rightarrow &C_l = \frac{4\alpha}{\sqrt{M_\infty ^2 -1}} \qquad C_d = \frac{4\alpha}{\sqrt{M_\infty ^2 -1}}.
+\end{aligned}
+\end{equation}
+
+The drag is the \textbf{wave drag}.
+
+\subsection{What is wave drag ? discuss supersonic flow over double wedge profile}
+A wave drag is a drag due to a shock wave. When a shock wave appears, it uses energy, which has to be provided by the aircraft, it is thus seen as a drag.
+
+\wrapfig{8}{r}{6.5}{0.1}{ch6/19}{fig:6.19}
+If we apply the Ackeret law to this profile we have:
+
+\begin{equation}
+\begin{aligned}
+&C_{p1} = \frac{2(\delta - \alpha)}{\sqrt{M_\infty^2 -1}} \qquad C_{p2} = \frac{2(\delta + \alpha)}{\sqrt{M_\infty^2 -1}} \\
+&C_{p3} = \frac{-2(\delta + \alpha)}{\sqrt{M_\infty^2 -1}} \qquad C_{p4} = \frac{-2(\delta - \alpha)}{\sqrt{M_\infty^2 -1}}
+\end{aligned}
+\end{equation}
+
+We can compute the lift and drag coefficients by integrating over the surface:
+
+\begin{equation}
+\begin{aligned}
+&\vec{F} = -\oint p\, d\vec{S} = -\oint (p-p_\infty)\, d\vec{S} = -\frac{1}{2} \rho _\infty V_\infty ^2 \oint C_p\, d\vec{S}\\
+\Rightarrow &\vec{F}_1 = -\frac{1}{2} \rho _\infty V_\infty ^2 C_{p1} \frac{c}{2} \vec{n}_1
+\end{aligned}
+\end{equation}
+
+If we make the force non dimensional: 
+\begin{equation}
+\vec{C}_1 = \frac{\vec{F}_1}{\frac{1}{2}\rho _\infty V_\infty ^2 c} = -\frac{C_{p1}}{2} \vec{n}_1 \qquad \Rightarrow \vec{C}_i = -\frac{C_{pi}}{2} \vec{n}_i
+\end{equation}
+
+If we look to the normal and tangent forces we find: 
+
+\begin{equation}
+\begin{aligned}
+C_y = \vec{C}_i .\vec{1}_y = \left(-\frac{C_{p1}}{2} + \frac{C_{p2}}{2} -\frac{C_{p3}}{2} +\frac{C_{p4}}{2} \right) \cos \delta= \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} \cos \delta \approx \frac{4\alpha }{\sqrt{M_\infty ^2 -1}}\\
+C_x = \vec{C}_i .\vec{1}_x = \left(\frac{C_{p1}}{2} + \frac{C_{p2}}{2} -\frac{C_{p3}}{2} -\frac{C_{p4}}{2} \right) \sin \delta = \frac{4\delta }{\sqrt{M_\infty ^2 -1}} \sin \delta \approx \frac{4\delta ^2}{\sqrt{M_\infty ^2 -1}}
+\end{aligned}
+\end{equation}
+
+Then we make the same projection as previously: 
+
+\begin{equation}
+c_l \approx C_y - \alpha C_x = \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} - \frac{4\delta ^2\alpha }{\sqrt{M_\infty ^2 -1}}  \approx \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} 
+\end{equation}
+
+We find thus the same lift coefficient as the flat plate. Let's see the drag: 
+
+\begin{equation}
+c_d = C_x + \alpha C_y = \frac{4\alpha }{\sqrt{M_\infty ^2 -1}} + \frac{4\delta}{\sqrt{M_\infty ^2 -1}},
+\end{equation}
+
+\wrapfig{11}{l}{3}{0.3}{ch6/20}{fig:6.20}
+where the first term is \textbf{incidence wave drag} (result of lift), the same as the flat plate and the second term the \textbf{thickness wave drag} (result of volume) corresponding to the drag of the wedge at 0 degrees and angle of attack. The following empirical formula can be used for both drag on wing and on \textbf{complete plane}: 
+
+\begin{equation}
+C_{Dw} = k_0 \frac{128}{\pi} \frac{V^2}{Sl^4} + k_1 \frac{1}{2\pi} \frac{S}{l^2}\lambda ^2 C_L^2
+\end{equation}
+
+where $k_0$ and $k_1$ are constant of order 1 depending on the geometry and l the average length as represented on the figure. 
+
+\subsection{Transonic flow over a profile: what is critical free stream Mach number(+ discussion), what is
+	drag divergence Mach number}
+\subsubsection{Critical Mach number}
+The critical Mach Number is the $M_\infty$ when $M = 1$ somewhere on the airfoil. Consider a point A, the drag is given by: 
+
+\begin{equation}
+C_{p,A} = \frac{2}{\gamma M_\infty^2} \left( \frac{p_A}{p_\infty} -1 \right)
+\end{equation}
+
+If we combine the fact that the flow is isentropic:
+
+\begin{equation}
+\frac{p_A}{p_\infty} = \left(\frac{T_A}{T_\infty}\right)^{\frac{\gamma}{\gamma -1}} = \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} 
+\quad \Rightarrow C_{p,A} = \frac{2}{\gamma M_\infty^2} \left[ \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} -1 \right]
+\end{equation}
+
+If now we consider $M_\infty = M_{kr} \rightarrow M_A = 1$, so that the equation becomes: 
+
+\begin{equation}
+C_{p,A} = \frac{2}{\gamma M_\infty^2} \left[ \left(\frac{1+\frac{\gamma - 1}{2}M^2_\infty}{1+\frac{\gamma - 1}{2}M^2_A}\right)^{\frac{\gamma}{\gamma -1}} -1 \right] \qquad C_{p,A} = \frac{C_{p,A,inc}}{\sqrt{1-M_{kr}^2}},
+\end{equation}
+
+
+\wrapfig{10}{r}{5}{0.15}{ch6/13}{fig:6.13}
+where the second equation is the Prandtl-Glauert relation. 
+We can plot the two equations on a graph. The intersection of the two graphs gives the critical Mach number. We can see that the minimum lift coefficient at low velocities is more negative than the thin case, characterized by a smaller $M_{kr}$. The perturbation of the flow is higher. Flying at high subsonic velocities is important $\rightarrow$ thin airfoil. When the angle of attack increases, the lift increases but the higher velocity on the suction part makes the $M_{kr}$ much lower. We want so the wing to be as thin as possible but we are limited by the structural strength and the fuel storage.
+
+\ \\
+\wrapfig{10}{l}{4.5}{0.1}{ch6/14}{fig:6.14}
+We avoid also large bending of the leading edge to avoid large accelerations. One solution to increase $M_{kr}$ is to place the maximum camber downstream, about 50\% of the chord because the velocities on the suction side will be lower. Placing it too downstream will create a too high opposite gradient and cause separation. 
+
+\ \\ Symmetrical wings have a larger $M_{kr}$, however be careful with combination of sharp LE because of LE separation. In practice we have a quasi-symmetrical profile with camber near LE. \textbf{Swept} wings also increase the $M_{kr}$. 
+
+\minifig{ch6/15}{ch6/16}{0.2}{0.15}{0.45}{0.3}
+
+We wan observe here above, the plot of $\alpha, C_L$ and $C_D$ for a symmetrical and a non-symmetrical airfoil. We can observe on \autoref{ch6/15} that the slope of the lift curve goes up to $M=0.83$ (Prandtl-Glauert). Once above $M_{kr}$ it starts to decrease and the drag suddenly increases. \\
+
+On \autoref{ch6/16} we can see similar effects at the difference that around $M_{kr}$ we have a positive increase of the zero lift angle, having a negative effect on longitudinal stability. Note that the decrease of the lift curve starts earlier, $M_{kr}$ is smaller. 
+
+\subsubsection{Drag divergence Mach number}
+\wrapfig{22}{l}{4.5}{0.2}{ch6/1}{fig:6.1}
+At the critical Mach number $M_\infty = M_{cr}$, the flow reaches $M=1$ somewhere on the wing. If the velocity at $\infty$ is increased, $M_\infty$ also (still <0), a small area where the flow becomes \textbf{supersonic} will develop on the \textbf{suction side}. For increasing $M_\infty$ this area will growth and at a certain $M_\infty$ a \textbf{shock wave} will develop, as a result of which the flow will become \textbf{subsonic} again (the supersonic area abruptly terminated). Such area also develops on the \textbf{pressure side} at high $M_\infty$ (\autoref{fig:6.1} (a)).
+
+\ \\ If $M_\infty$ increases further, the supersonic regions further extends and the shock waves moves downstream, the one on the pressure side more rapidly (\autoref{fig:6.1} (b) (c)). As soon as the shock waves are strong enough, they can cause separation of the boundary layer, this separation is the \textbf{shock stall} and the $M_\infty$ where this happen is called the \textbf{drag divergence Mach number}. Indeed, the drag suddenly increases as result of the separation, this called \textbf{transonic drag rise}, shown on \autoref{fig:6.2}. 
+
+\ \\ For further increase of $M_\infty <1$, the shock wave on the pressure side eventually reaches the trailing edge (\autoref{fig:6.1} (d)). In a certain Mach number range, the shock wave manifests the so-called $\bm{\lambda}$ \textbf{shocks}. Near the profile the shock has two legs, a first oblique one through which the flow is slowed down but remains supersonic, and a second normal one through which the flow becomes subsonic. 
+
+\ \\ Eventually the shock wave on the suction side can also reach the trailing edge and give birth to the \textbf{bifurcated trailing edge shock} patern (\autoref{fig:6.1} (e)). 
+
+\ \\ For further increase of $M_\infty$ there is no change, till $M_\infty$ exceeds 1. In this case, a so-called \textbf{detached bow shock} develops upstream of the leading edge. There is a small subsonic region between this shock and the leading edge. This manifests both for thick, bounded leading edge and thin one (\autoref{fig:6.1} (f) (g)). In the second case, the bow shock changes into 2 oblique shocks at the leading edge for increasing $M_\infty$ (\autoref{fig:6.1} (h)). This happens at the \textbf{shock attachment Mach number}, $\bm{M_{SA}}$. For further $M_{\infty}$, the flow becomes fully supersonic and the drag decreases. In the case of rounded leading edge, the bow shock continues to exist and comes closer to the leading edge. 
+
+\begin{center}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[scale=0.15]{ch6/2}
+		\captionof{figure}{}
+		\label{fig:6.2}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\includegraphics[scale=0.15]{ch6/3}
+		\captionof{figure}{}
+		\label{fig:6.3}
+	\end{minipage}
+\end{center}
+
+Under transonic conditions the flow is non-stationary, the shock waves moves up and down on the wing. The pilot senses this as \textbf{buffeting} (response of the structure to aerodynamic excitation) and vibrations. This can make the plane uncontrollable or cause serious damages. The cause of the excitation is the fluctuating pressure in non-stationary conditions. Normally one flies under the buffeting margin but one can exceed it in case of sudden maneuvers for fighters for example. \\
+
+The center of pressure is also moving with $M_\infty$ (\autoref{fig:6.3}). First, it goes backward as the shock wave going backward on the suction side makes the underpressure greater. Then, it goes forward because the shock wave on the pressure side is moving faster. The latter reaches the trailing edge while the shock wave on the suction side still moves backward, making the center of pressure again move backward, tending to the 50\% chord. This makes the control of the plane more difficult. \\
+
+\wrapfig{7}{l}{5.5}{0.15}{ch6/4}{fig:6.4}
+It is this buffeting effect that imposes an upper limit to the velocity of subsonic planes. With the increase of the drag due to separation when shock waves (shock-stall) is associated a decrease of the lift. We can see that the lift temporary increases after the lower shock reaches the trailing edge. This is explained by the smaller separation when in this location. The drag divergence Mach number is 5-10\% larger than $M_{cr}$. 
+
+\ \\
+
+\begin{center}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.15]{ch6/5}
+		\captionof{figure}{}
+		\label{fig:6.5}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[scale=0.4]{ch6/6}
+		\captionof{figure}{}
+		\label{fig:6.6}
+	\end{minipage}
+\end{center}
+
+On \autoref{fig:6.5} we can see the influence of increasing lift (increasing $\alpha$). We can notice that with increasing lift, the drag increases for all Mach numbers, the moment increases in the transonic region and $M_{cr}$ decreases. On \autoref{fig:6.6}, we notice that the lift coefficient strongly decreases in the transonic region due to buffering effects. 
+
+
+\subsection{Compute the lift coefficient for a 2D profile in compressible flow, assuming
+	that the lift coefficient for the same airfoil is known for incompressible flow.}
+Using Prandtl-Glauert : $C_p = \frac{C_{p,inc}}{\beta} = \frac{C_{p,inc}}{\sqrt{1 - M_\infty ^2}}$. Since lift is an integration of pressure: $C_L = \frac{C_{L,inc}}{\beta} = \frac{C_{L,inc}}{\sqrt{1 - M_\infty ^2}}$
+
+
+\subsection{Discuss the graph giving the slope of the lift curve as a function of the free
+	stream Mach number ($M_{infinity}$)}
+
+TODO
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{title}
-\subsection{title}
-\subsection{title}
-\subsection{title}
+\section{Discuss effect of sweep on performance of a 3D wing in compressible flow -- Influence on Lift and drag}
+
+\minifig{ch7/2}{ch7/3}{0.15}{0.15}{0.3}{0.3}
+This is a technique used in order to increase the critical mach number. Indeed, the flow seen by the 2D wing is the one perpendicular to the wing:
+
+\begin{equation}
+V_{\infty n} = V_{\infty}\cos \sigma \qquad \Rightarrow M_{kr}^\sigma= \frac{M_{kr}^{\sigma = 0}}{\cos^m \sigma}
+\end{equation}
+
+where we can see that the $M_\infty$ will be higher and where m varying parameter in function of the $C_L$, it decreases with lift (\autoref{ch7/3}). If the sweep angle is large enough, the flow seen by the LE can become subsonic and allow rounded shapes which is advantageous for subsonic speeds. The drag divergence mach number also increases:
+
+\begin{equation}
+M_{div} = M_{kr} [1.02 + 0.08 (1-\cos \sigma)].
+\end{equation}
+
+\subsection{Lift of swept wings}
+Remind the definition of $C_p$: 
+
+\begin{equation}
+C_{pn} = \frac{p-p_\infty}{\frac{1}{2} \rho _\infty V_{\infty n} ^2} \qquad L_n = \frac{1}{2}\rho _\infty V_{\infty n} ^2 \int _{LE} ^{TE} (C_{pln} - C_{pun}) \, dx 
+\end{equation}
+
+\wrapfig{11}{l}{4.5}{0.12}{ch7/4}{ch7/4}
+where we see that if $M_{\infty n} = M_\infty^*$ ($M_\infty^*$ in this case is the one we have without sweep), the pressure distribution and thus the lift remains constant. This means that for a same approaching speed $V_\infty^*$ without and with sweep we will decrease the lift (we have to fly at higher speed). The lift coefficient also decreases for $V_{\infty n} = V_\infty^*$:
+
+\begin{equation}
+c_{l}^* = \frac{L^*}{\frac{1}{2}\rho _\infty V_{\infty}^*} > c_{l} = \frac{L^*}{\frac{1}{2}\rho _\infty V_{\infty}}
+\end{equation}
+
+where $^*$ designate the same value in non swept wing. We see that the lift coefficient decreases. 
+
+\wrapfig{5}{l}{6}{0.15}{ch7/5}{ch7/5}
+Pay attention that this is the case when we are in subsonic flight. Indeed, the sweep increases the lift for supersonic as the shock stall is postponed ($M_{\infty n}$ seen smaller). In practice, to have significant influence of sweep $\sigma$ must be high (at least 30\degres - 40\degres). 
+
+\subsection{Lift coefficient as a function of the angle of attack for swept wings}	
+\wrapfig{8}{r}{6}{0.15}{ch7/6}{ch7/6}
+As we have seen, the lift and the lift coefficient decreases when sweep wings. This implies that the slope of the lift curve is also smaller. Remark that we have the same AR in the figure, in practive the AR of swept wing is smaller than the one without (2 to 4 - sweep, 6 to 10 - subsonic), but the lift slope is even smaller. 
+
+\ \\ There are structural advantages as it allows to have thinner airfoils (better for high speed), and the $M_{kr}$ increases. To increase the structural strength we use \textbf{taper} (chord decreases from root to tip). This smaller AR induces more drag, demanding more take-off and landing distance. The reduced slope of lift requires high $\alpha$ when landing and take-off (Concorde drooped nose), but there is no pronounced stall limit.    
+
+\subsection{Influence of the sweep angle on the drag}	
+\wrapfig{7}{l}{6}{0.1}{ch7/7}{ch7/7}
+One observes the increase of $M_{div}$, the decrease of the maximum drag coefficient (must have large angles to have significant effects). At sufficiently high Mach numbers, $M_n$ will reach the supersonic limit and produce the same effect as seen previously. In that case, the drag with no swept wing is smaller at this stage. 
+
+
 
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
