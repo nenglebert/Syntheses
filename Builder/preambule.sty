@@ -1,0 +1,140 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preambule}[5/01/2017 package personnel]
+
+%%%%%%%%%%%%%%%%
+%%% Packages %%%
+%%%%%%%%%%%%%%%%
+
+%%% Compatibilité %%%
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname IncludeInRelease\endcsname\relax
+\RequirePackage{fixltx2e}
+\fi 					% Si version LaTeX < 2015, inclut un fix.
+
+%%% Général %%%
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{babel}
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\addto\extrasfrench{\sisetup{locale = FR,detect-all}} % Switch siunitx en fonction de la langue babel :)
+\addto\extrasbritish{\sisetup{locale = UK,detect-all}}
+\addto\captionsfrench{\def\tablename{Tableau}}
+\RequirePackage{courier}
+\RequirePackage{graphicx}
+\RequirePackage[autostyle]{csquotes}
+
+%%% Mise en page %%%
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+\RequirePackage{bbm}
+\RequirePackage{amsthm}
+\RequirePackage{caption}     % Permet d'ajouter des légendes en images sans les mettre en float + dans la marge + ref vers le haut de l'envirronement
+\RequirePackage{wrapfig}
+\RequirePackage{fullpage}
+\RequirePackage{float}      %permet de mettre du texte entre les figures grace a [H]. Génial!
+\RequirePackage{eso-pic}    % Fond d'écran page de garde
+\RequirePackage{adjustbox}  % Empêche les box de sortir de la page
+
+
+%%% Math %%%
+\RequirePackage{siunitx}
+
+%% Reference
+\RequirePackage{hyperref}
+
+
+%%%%%%%%%%%%%%%%%
+%%% Commandes %%%
+%%%%%%%%%%%%%%%%%
+
+%%% Physique %%%
+\newcommand{\cst}{\text{cst}}
+\newcommand{\D}{\partial}
+\newcommand{\E}{\vec E}
+\newcommand{\B}{\vec B}
+\newcommand{\F}{\vec F}
+\newcommand{\modu}[1]{|$#1$|}
+
+%%% Math %%%
+\newcommand{\oiint}{\int\!\!\!\!\!\!\! \:\!\subset\!\!\supset\!\!\!\!\!\!\!\int}
+\newcommand{\rot}{\operatorname{\vec{rot}}}
+\newcommand{\divv}{\operatorname{div}}
+\newcommand{\phas}[1]{\underline{#1}}
+\newcommand{\RE}{\text{Re}}
+\newcommand{\ft}{\overset{\mathcal{F}}{\longleftrightarrow}}
+\newcommand{\lt}{\overset{\mathcal{L}}{\longleftrightarrow}}
+\newcommand{\DS}{\displaystyle}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+
+
+%% Box
+\newcommand{\theor}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Theorem}{Théorème}: }#1}}
+\newcommand{\defi}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Definition}{Définition}: }#1}}
+\newcommand{\lemme}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Lemma}{Lemme}: }#1}}
+\newcommand{\prop}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{\iflanguage{british}{Property}{Propriété}}\\ #1}}
+\newcommand{\proposition}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textsc{Proposition}\\#1}}
+\newcommand{\cadre}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{#1}}
+\newcommand{\retenir}[1]{\adjustbox{minipage=\linewidth-2\fboxsep-2\fboxrule,fbox}{\textbf{\textit{\textsc{\iflanguage{british}{To remember}{À retenir}}: }}#1}}
+
+\newcommand{\corollaire}[1]{\bigbreak\begin{tabular}{||c}
+		\begin{minipage}{\textwidth}
+			\textsc{\iflanguage{british}{Corollary}{Corollaire}: } \textit{#1}
+		\end{minipage}
+\end{tabular}}
+\newcommand{\exemple}[1]{\bigbreak\begin{tabular}{|c}
+		\begin{minipage}{\textwidth}
+			\textsc{\iflanguage{british}{Example}{Exemple}: } #1
+		\end{minipage}%
+\end{tabular}}%
+
+
+%%% Background %%%
+\newcommand\BackgroundPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight,%
+			keepaspectratio]{../../Builder/ulb.jpg}%
+			\vfill
+}}}
+
+%%% Annexes Cedu %%%
+\RequirePackage{fourier-orns}
+
+\setlength{\parindent}{0pt}
+
+%%% Attributs %%%
+\newcommand*{\NomduCours}[2]{\def\cours{#1}\def\memo{#2}}
+\newcommand*{\annee}[2]{\def\adebut{#1}\def\afin{#2}}
+
+\newcounter{auteurcnt}
+\newcommand\addauteur[2]{%
+	\stepcounter{auteurcnt}%
+	\csdef{auteur\theauteurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getauteur[1]{%
+	\csuse{auteur#1}}
+
+\newcounter{illustrateurcnt}
+\newcommand\addillustrateur[2]{%
+	\stepcounter{illustrateurcnt}%
+	\csdef{illustrateur\theillustrateurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getillustrateur[1]{%
+	\csuse{illustrateur#1}}
+
+\newcounter{rappeltheocnt}
+\newcommand\addrappeltheo[2]{%
+	\stepcounter{rappeltheocnt}%
+	\csdef{rappeltheo\therappeltheocnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getrappeltheo[1]{%
+	\csuse{rappeltheo#1}}
+
+\newcounter{professeurcnt}
+\newcommand\addprofesseur[2]{%
+	\stepcounter{professeurcnt}%
+	\csdef{professeur\theprofesseurcnt}{\mbox{#1~\textsc{#2}}}}
+\newcommand\getprofesseur[1]{%
+	\csuse{professeur#1}}
+
+\newcounter{iter}
