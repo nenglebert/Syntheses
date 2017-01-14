@@ -421,7 +421,7 @@ Starting from what is said in 3.2, experiment showed that lift is increasing lin
 \end{wrapfigure}
 At a certain angle of attack ($\approx 15\degres$), the lift suddenly drops. This is due to massive separation on the suction side (reverse pressure gradient too high) and happens at the \textbf{critical angle of attack}. This phenomenon is called \textbf{stall}. In the separated part, the pressure will no longer decrease and will form a pressure plateau. \\
 
-We have to make the difference between leading-edge stall and trailing-edge stall. For \textbf{leading-edge stall}, the massive separation occurs suddenly near the LE resulting \newpage
+We have to make the difference between leading-edge stall and trailing-edge stall. For \textbf{leading-edge stall}, the massive separation occurs suddenly near the LE resulting 
 
 \begin{wrapfigure}[13]{r}{5.7cm}
 	\vspace{-5mm}
@@ -1509,23 +1509,9 @@ D_i'(y) = L'(y) \alpha _i \qquad \Rightarrow C_{D_i} = C_L \alpha _i = \frac{C_L
 %-----------------------------------------------------------------------------------------------------------------
 %-----------------------------------------------------------------------------------------------------------------
 
-\section{2D airfoil in compressible flow}
-\subsection{Derive the compressible potential equation}
-TODO
-
-\subsection{Assume a thin airfoil at small angle of attack: derive the linearized potential equation. What is the range of validity as a function of the free stream Mach number}
-TODO
-
-\subsection{Discuss the type of this equation as a function of free stream Mach number,	what are the consequences}
-TODO
-
-%-----------------------------------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------------------------------
-%-----------------------------------------------------------------------------------------------------------------
-
 \section{2D airfoil compressible flow around an airfoil using the small perturbation approach}
 
-\subsection{Derive the equation governing compressible potential equation, what are the assumptions}
+\subsection{Derive the compressible potential equation / Derive the equation governing compressible potential equation, what are the assumptions}
 
 Remind that we have defined a potential function to describe incompressible flows, conservation of mass giving:
 
@@ -1566,7 +1552,7 @@ That we can substitute in \eqref{eq:6.2}:
 \end{equation}	
 
 
-\subsection{Derive the equation in the case of small perturbations. What are the assumptions for this equation to be valid ?}
+\subsection{Assume a thin airfoil at small angle of attack: derive the linearized potential equation. What is the range of validity as a function of the free stream Mach number / Derive the equation in the case of small perturbations. What are the assumptions for this equation to be valid ?}
 
 If the far field velocity profile is $u= V_\infty$, we can note the velocity field by means of perturbations: $u = V_\infty + \hat{u}, v = \hat{v}$. A perturbation potential function can be defined: 
 
@@ -1610,7 +1596,7 @@ where the last expression is obtained by dividing by $a^2_\infty$ and replacing.
 	}
 \end{center}
 
-We can see that the $\hat{u}$ appears in $\hat{phi} _{xx}$ term, this is no longer negligible for \textbf{sonic} velocities. For sub- and super-sonic flows however the equation simplifies in: 
+We can see that the $\hat{u}$ appears in $\hat{\phi} _{xx}$ term, this is no longer negligible for \textbf{sonic} velocities. For sub- and super-sonic flows however the equation simplifies in: 
 
 \begin{equation}
 (1-M_\infty ^2) \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
@@ -1728,6 +1714,27 @@ where the last expression comes from the fact that the second term is small so t
 \begin{equation}
 \frac{p}{p_\infty} = -\frac{2\hat{u}}{V_\infty}
 \end{equation}
+
+
+
+\subsection{Discuss the type of this equation as a function of free stream Mach number,	what are the consequences}
+\begin{center}
+	\theor{
+		\textbf{Transonic smal perturbation potential equation}
+		\begin{equation}
+		\left[ (1-M_\infty ^2) - (\gamma +1) M^2_\infty \frac{\hat{\phi}_x}{V_\infty}  \right] \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+		\end{equation}
+	}
+\end{center}
+
+We can see that the $\hat{u}$ appears in $\hat{\phi} _{xx}$ term, this is no longer negligible for \textbf{sonic} velocities. For sub- and super-sonic flows however the equation simplifies in: 
+
+\begin{equation}
+(1-M_\infty ^2) \hat{\phi} _{xx} + \hat{\phi} _{yy} = 0.
+\end{equation}
+
+Note that we retrieve our incompressible equation for $M_\infty \rightarrow 0$. Be aware that this last relation is only valid for small perturbations (small bodies in practice) and sub- or super-sonic flows ($M_\infty > 1.2, M_\infty < 0.8$). 
+
 
 \subsection{Discuss the application to an airfoil in supersonic flow: lift coefficient, influence of the Mach number, Ackeret formula, lift and drag formula}
 \label{Ackeret}
@@ -2660,7 +2667,8 @@ If $Fr > 1$: supercritical = supersonic, if $Fr < 1$: subcritical = subsonic.
 %-----------------------------------------------------------------------------------------------------------------
 
 \section{Discuss characteristic theory for a first order scalar wave equation}
-\subsection{Discuss the theory of characteristics for a first order linear wave equation with wave speed a. Define characteristic curves, what are Rieman invariants. Can discontinuous solutions exist ?}
+\subsection{Discuss the theory of characteristics for a first order linear wave equation with wave speed a. Define characteristic curves, what are Riemann invariants. Can discontinuous solutions exist ?}
+We will discuss different cases:
 
 \subsubsection{a cst}	
 The prototype equation is the linear scalar wave equation: 
@@ -2692,7 +2700,9 @@ If a is not a constant but respects $a = a(x,y)$ the results are similar.
 \wrapfig{7}{l}{5}{0.2}{ch8/10}{ch8/10}
 The result is shown here, the only change is that the wave is deformed since the propagation speed is not constant. 
 
+\textbf{Riemann invariant} are constant along the characteristic curves.
 
+Flow equations allow non-continuous solutions $\rightarrow$ weak. We limit the study to stationary weak solutions, satisfying Euler's equation
 
 \subsection{What changes for a nonlinear wave equation, take the case a(u) = u}
 
@@ -2735,6 +2745,8 @@ See above: overturning wave, unique solution for Euler $\rightarrow$ shock wave
 
 \section{Discuss characteristic theory for steady supersonic potential flow}
 \subsection{What are the assumptions for potential flow}
+Irrotational velocity field, steady flow, isentropic flow.
+
 \subsection{Write the two equations which govern the velocity components u and v.}
 
 \begin{equation}
@@ -3136,9 +3148,58 @@ If we increase the Mach number keeping the deflection constant, we have $\beta$ 
 
 \section{Oblique shock relations}
 \subsection{Derive the shock polar for the velocity components behind the shock, with the upstream velocity as a parameter (shock polar in the hodograph plane)}
+The so-called hodograph plane is the (u,v) plane. It can be constructed as follow:\\
+\wrapfig{8}{l}{5}{0.15}{ch8/35}{ch8/35}	
+Consider the compression as shown in graphe\autoref{ch8/35} for a finite angle change $\theta$. Assume that velocity $\vec{u_1}$ before the angle change is known and of x-direction(flow only in x); the velocity $\vec{u_2}$ can be calculated using the relations seen in previous questions. It makes an angle theta (since the flow is deflected from an angle theta).
+
+To compute $\vec{u_2}$ starting from $u_{1n}u_{2n}=a^{*^{2}}-\frac{\gamma-1}{\gamma+1}u_{t}^{2}$, let's pass in cartesian axes where $\vec{u_2}=u_21_x+v_21_y$, $u_2=||\vec{u_2}||cos(\theta)$, $v_2=||\vec{u_2}||sin(theta)$, one gets $u_1 sin(\beta)|\vec{u_2}sin(\beta-\theta)=a^{*^2}-\frac{\gamma-1}{\gamma +1}u_{1}^{2}cos^2(\beta)$.
+
+\wrapfig{15}{r}{8}{0.30}{ch8/42}{ch8/42}
+
+Using $tg^2(\beta)=\frac{u_1-v_2}{u_2}$, after some calculation:
+\begin{equation}
+	v_2^2=(u_1-u_2)^2\frac{a^{*^{2}}-u_1u_2}{a^{*^{2}}+\frac{2}{\gamma+1}u_1^2-u_1u_2}
+\end{equation}
+
+or, with $\vec{u_1}=\frac{u_1}{M_1^*}$, $\vec{u_2}=\frac{u_2}{a^*}$ and $\vec{v_2}=\frac{v_2}{a^*}$:
+\begin{equation}
+	\vec{v_2}^{\,2}=(\vec{u_1}-\vec{u_2})^2\frac{1-\vec{u_1}\vec{u_2}}{1+\frac{2}{\gamma +1}\vec{u_1}-\vec{u_1}\vec{u_2}}
+\end{equation}
+
+
+These two can be drawn in the hodograph, where we can see that we have two solutions for the strong and weak shock, and where $\beta$ is the angle from the vertical passing at the end of $\vec{v_2}$ and the line connecting the two speed vectors. By drawing the positions of the end of $\vec{v_2}$ for various $\theta$, we obtain the shock polar for $M_1$ fixed. Note that the axis are often give divided by $a^*$.
+
 \subsection{Using this graph, discuss maximum deviation, weak shock and strong shock solutions, normal shock and Mach wave}
-\subsection{title}
+The maximum deviation can easily be seen on the graph by taking the tangent to the shock polar from the origin ($\theta_{max}$). The weak and strong shock where discussed before, the Mach wave is for an infinitively weak shock, hence when the two velocities are identical. The normal shock is the strong version of the Mach wave, one can see that we have an angle $\beta$ of 90\degres .
+
+\subsection{Consider the flow around a sharp concave corner. Using the above graph,	find the downstream Mach number for a given upstream Mach number}
+One can just draw the circle around the origin passing through the end of $\vec{u_2}$, the radius is $M_2$.
+
+\subsection{Discuss the shock structure appearing for supersonic flow around a cylindrical body}
+Nothing found in the slides or notes about this, so personal interpretation.
+
+As the cylinder can be seen as a variable angle wall starting from 90\degres to 0\degres in compression, then going the other way around in expansion, one would expect a detached shock in front of the cylinder (curved shock) that reattaches going near to the radius of the cylinder and follows it's curvature. The same would happen on the expansion side, with the shock detaching after an angle of just above 50\degres (53 was said to be a limit value for most cases).
 
 
+\subsection{Discuss shock reflection in a supersonic channel}
+\begin{center}
+	\begin{minipage}{0.33\textwidth}
+		\includegraphics[scale=0.15]{ch9/5}
+		\captionof{figure}{}
+	\end{minipage}
+	\begin{minipage}{0.35\textwidth}
+		\includegraphics[scale=0.12]{ch9/6}
+		\captionof{figure}{}
+	\end{minipage}
+	\begin{minipage}{0.25\textwidth}
+		\includegraphics[scale=0.11]{ch9/7}
+		\captionof{figure}{}
+	\end{minipage}
+\end{center}
+
+The situation is represented on the first figure, the flow is first deviated by the first shock then the flow must be horizontal near the upper wall, this is possible by a second shock wave appearing at the intersection between the first shock and the upper wall (reflection shock). If this shock touches the lower wall a new shock will appear deviating the flow and so on. The velocities and the pressures can be retrieved as shown on the figures.
+
+\wrapfig{10}{r}{10}{0.30}{ch9/24}{ch9/24}
+Sometimes  the angle is too big and there is no crossing  from the polar curve, a normal shock appears (Mach reflexion), which connects with the lower wall shock via a bowed shock, with a slip line across which only pressures are conserved. This type of bowed shocks also appear when having a crossing of shocks\autoref{ch9/24}.
 
 \end{document}
