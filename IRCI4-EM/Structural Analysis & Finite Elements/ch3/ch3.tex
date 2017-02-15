@@ -21,7 +21,7 @@
 			\item[•] \textbf{Body forces b:} acting throughout the volume $V$. This depending on position, the resultant:
 			
 			\begin{equation}
-				\mathbf{f}^v = \int _V \mathbf{b}(x,y,z) \rho (x,y,z)\, dV.
+				\mathbf{f}^v = \int _V \mathbf{b}(x,y,z) \, dV.
 			\end{equation}
 			
 			In statics, gravity loads are the main body forces: 
@@ -31,9 +31,9 @@
 			\begin{array}{c}
 			0\\
 			0\\
-			- g
+			- g\rho (x,y,z)
 			\end{array}
-			 \right],
+			 \right], \qquad [N/m^3]
 			\end{equation}
 			z assumed to be the vertical axis oriented upwards. 
 			
@@ -45,7 +45,7 @@
 		\includegraphics[scale=0.3]{ch3/2}
 		\captionof{figure}{}
 		\end{wrapfigure}		
-		To introduce the notion of \textbf{Cauchy stresses}, let's cut a section $A$ in the a volume $V$. The arbitrary surface $dS$ on $A$ is characterized by a resultant force $d\mathbf{f}$ and a resultant moment $d\mathbf{m}$. The \textbf{Cauchy stress vector} is defined as: 
+		To introduce the notion of \textbf{Cauchy stresses}, let's cut a section $A$ in a volume $V$. The arbitrary surface $dS$ on $A$ is characterized by a resultant force $d\mathbf{f}$ and a resultant moment $d\mathbf{m}$. The \textbf{Cauchy stress vector} is defined as: 
 		
 		\begin{equation}
 		\mathbf{t}^{(n)} = \lim _{dS\rightarrow 0} \frac{d\mathbf{f}}{dS}. 
@@ -129,7 +129,7 @@
 			
 			\begin{equation}
 			\begin{aligned}
-			&\int _V \epsilon _{ijk}\left[ x_j b_k + (x_j \tau _{qk},q)\right] dV' = \int _V \epsilon _{ijk}\left[ x_j b_k + x_j \tau _{qk,q} +x_{j,q} \tau _{qk} \right] dV'\\
+			&\int _V \epsilon _{ijk}\left[ x_j b_k + (x_j \tau _{qk}),q\right] dV' = \int _V \epsilon _{ijk}\left[ x_j b_k + x_j \tau _{qk,q} +x_{j,q} \tau _{qk} \right] dV'\\
 			=\qquad &\int _V \epsilon _{ijk}\left[ x_j\underbrace{(b_k + \tau _{qk,q})}_{=0} +x_{j,q} \tau _{qk} \right] dV' = \int _V \epsilon _{ijk} x_{j,q} \tau _{qk} \, dV' = 0.
 			\end{aligned}
 			\end{equation}
@@ -160,7 +160,7 @@
 			This simplifies our live because we assume the deformed volume to remain as the initial one and we can perform the integrals interchangeably on the initial or deformed configuration. This is valid for stiff materials like steel. Other flexible materials are the scope of non linear mechanics. The \textbf{linear strain tensor} is derived from the displacement field:
 			
 			\begin{equation}
-			\epsilon _{ij}= \frac{1}{2} (u_{i,j + u_{j,i}})\qquad \bm{\bar{ \bar{\epsilon}}} = 
+			\epsilon _{ij}= \frac{1}{2} (u_{i,j} + u_{j,i})\qquad \bm{\bar{ \bar{\epsilon}}} = 
 			\left[
 			\begin{array}{ccc}
 			\epsilon _x &\frac{\gamma _{xy}}{2} &\frac{\gamma _{xz}}{2} \\
@@ -186,7 +186,7 @@
 			\sigma = \frac{P}{A_0} \qquad \epsilon = \frac{\delta}{L_0.}	
 			\end{equation}			 
 			
-			On \autoref{fig:3.6}, the O state corresponds to no strain no stress, then a straight line to A. The slope of OA is called the \textbf{modulus of elasticity} or the \textbf{Young's modulus}, noted E [$N/m^2$]. After A, the relation is no longer linear. In AB the strain increases more rapidly than the strain, until a plateau BC where large strains are obtain without increase of load, \textbf{perfect plasticity}. The constant stress at this stage is the \textbf{yield stress}. \\
+			On \autoref{fig:3.6}, the O state corresponds to no strain no stress, then a straight line to A. The slope of OA is called the \textbf{modulus of elasticity} or the \textbf{Young's modulus}, noted E [$N/m^2$]. After A, the relation is no longer linear. In AB the strain increases more rapidly than the stress, until a plateau BC where large strains are obtained without increase of load, \textbf{perfect plasticity}. The constant stress at this stage is the \textbf{yield stress}. \\
 			
 			After this, the material \textbf{strain harden}, it resists to further deformation. The maximum stress is the \textbf{ultimate stress} on D. Then, the section A is shrunk and the bar is necking. The load decreases until the failure. By using the "true" cross-section area $A_{true}$, we can draw a true stress-strain curve CE'. We will focus on \textbf{linear elastic materials}. Elasticity points that $\sigma$ is a unique function of $\delta$ and that the material recovers initial state when unloaded. Linearity points to the proportionality. \\
 			
@@ -246,7 +246,7 @@
 	dW = \frac{1}{2} \sigma _x \epsilon _x \, dx\, dy\, dz.
 	\end{equation}
 	
-	In the general case, the conservation of energy for linear elastic materials, the work cannot depend on the order of magnitude of the load. In other word, we have to multiply stress and strain tensors component by component:
+	In the general case, the conservation of energy for linear elastic materials states that the work cannot depend on the order of the loads but on only on the amplitudes. In other word, we have to multiply stress and strain tensors component by component:
 	\begin{equation}
 	\begin{aligned}
 	dW &= W_V \, dx\, dy\, dz = \frac{1}{2} \tau _{ij} \epsilon _{ij} \, dx\, dy\, dz.\\
