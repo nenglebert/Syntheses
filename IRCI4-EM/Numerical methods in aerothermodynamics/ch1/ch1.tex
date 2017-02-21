@@ -1,0 +1,159 @@
+
+\chapter{Discretization methods}
+\section{Finite difference method}
+\wrapfig{9}{l}{5}{0.4}{ch1/1}
+It is based on discrete representation of numerical solution consisting in values of the solution at the nodes of a Cartesian mesh of uniform spacing (\autoref{ch1/1}). The discretization will consist in estimating the partial derivatives appearing in the governing equations by some algebraic relations at the nodes. Because of the limitation of the mesh we cannot deal with curved geometries. To do so we need coordinate changes. In this type of mesh, each grid point can be identified by a set of indexes i, j, (k), this type of mesh is called \textbf{structured mesh}. The neighbors are implicitly given by the index identification. 
+
+\subsection{Evaluation of derivatives by finite differences}
+\subsubsection{Difference formulas for the derivative $\bm{\D u / \D x}$}
+The value of a function $u(x)$ on a point of indexes i,j on the mesh is noted $u_{ij}$, for time dependent functions we use $u^n_i$ where $n$ denotes the time index and $i$ the space index. Let's estimate $(\D u / \D x)_{ij}$, by definition: 
+
+\begin{equation}
+\left.\frac{\D u }{\D x}\right| _{ij} = \left.\frac{\D u }{\D x}\right| _{x_0,y_0}= \lim _{\xi \rightarrow 0} \frac{u(x_0+\xi, y_0) - u(x_0,y_0)}{\xi}  
+\end{equation}
+
+By taking $\xi = \Delta x$ to fit our grid points we get: 
+
+\begin{equation}
+\left.\frac{\D u }{\D x}\right| _{ij} \approx \lim _{\Delta x \rightarrow 0} \frac{u(x_0+\Delta x, y_0) - u(x_0,y_0)}{\Delta x}= \frac{u_{i+1\, j} - u_{ij}}{\Delta x}  
+\end{equation}
+
+In order to find a systematic way of deriving the equations, let's build the Taylor expansion of $u(x,y)$ around the mesh point $ij$: 
+
+\begin{equation}
+\begin{aligned}
+&u_{i+1 \, j} = u_{ij}+ \Delta x \left.\frac{\D u }{\D x}\right| _{ij}  +\frac{\Delta x^2}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  + \frac{\Delta x^3}{6} \left.\frac{\D ^3u }{\D x^3}\right| _{\xi} \qquad x_0 \leq \xi \leq x_0 + \Delta x\\
+&\Leftrightarrow \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{i+1 \, j} - u_{ij}}{\Delta x} -\underbrace{\frac{\Delta x}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  - \frac{\Delta x^2}{6} \left.\frac{\D ^3u }{\D x^3}\right| _{\xi}}_{\mbox{truncation error}} = \frac{u_{i+1 \, j} - u_{ij}}{\Delta x} + \mathcal{O}(\Delta x)
+\end{aligned}
+\end{equation}
+
+Giving the \textbf{forward difference formula}. We have then a truncation error which behavior is dominated by the first term when $\Delta x \rightarrow 0$, so that $TE = \mathcal{O}(\Delta x)$, meaning that there exists a bounded number $K$ such that $\Delta x < \epsilon \rightarrow |TE| < K\Delta x$. The truncation error is always in the form $TE = \mathcal{O}(\Delta x ^q)$ where $q$ is the order of accuracy. The forward finite difference approximation of $\frac{\D u }{\D x}$ is first order accurate since $q = 1$. I\\
+
+If the order of the method is larger, for example second order, it means that if $\Delta x\rightarrow 0$, after a certain $\Delta x _{crit}$ the truncation error goes to 0 faster than the truncation error of a lower order method. If the mesh is not finer than a critical value, this is not true. When we go higher than a second order it is not clear in practice if we have something better because increasing the order allows the use of larger mesh, but is computationally expensive too.\\
+
+The definition for the derivative is not unique, for instance the \textbf{backward difference formula}:
+
+\begin{equation}
+u_{i-1 \, j} = u_{ij}- \Delta x \left.\frac{\D u }{\D x}\right| _{ij}  +\frac{\Delta x^2}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  + H.O.T \Leftrightarrow \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{ij} - u_{i-1 \, j}}{\Delta x} + \mathcal{O}(\Delta x)
+\end{equation}
+
+We have an infinity of finite difference formula if make the linear combination of the two last expressions. For example if we sum half of the two we get the \textbf{central finite difference formula}: 
+
+\begin{equation}
+ \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{i+1\, j} - u_{i-1\, j}}{2\Delta x} +\mathcal{O}(\Delta x2)
+\end{equation}
+
+We see that the central difference formula is more accurate than the others and involves the same mesh distance. We could thus get as high order as desired, but at the cost of increasing the number of neighboring grid points in the equation and thus the computational cost. 
+
+\subsubsection{General method to obtain finite difference formulas}
+\begin{itemize}
+\item[•] Choose the stencil (set of points involved in the expression);
+\item[•] write Taylor series expansion of all the points in the stencil around the point where the derivative is to be evaluated;
+\item[•] write the finite difference formula as a linear combination of stencil point values and adjust the coefficients such that it approximates the derivative to be evaluated with the desired order of accuracy.
+\end{itemize}
+
+\exemple{
+Let's compute the finite difference formula for $\D ^2u /\D x^2$ using $i-1\, j, ij$ and $i+1\, j$ (first step). The second step gives: 
+
+\begin{equation}
+\begin{aligned}
+&u_{i+1\, j} = u_{ij}+ \Delta x \left.\frac{\D u }{\D x}\right| _{ij}  +\frac{\Delta x^2}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  + \frac{\Delta x^3}{6} \left.\frac{\D ^3u }{\D x^3}\right| _{ij} + \frac{\Delta x^4}{24} \left.\frac{\D ^4u }{\D x^4}\right| _{ij} + H.O.T\\
+&u_{ij} = u_{ij}\\
+&u_{i-1\, j} = u_{ij}- \Delta x \left.\frac{\D u }{\D x}\right| _{ij}  +\frac{\Delta x^2}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  - \frac{\Delta x^3}{6} \left.\frac{\D ^3u }{\D x^3}\right| _{ij} + \frac{\Delta x^4}{24} \left.\frac{\D ^4u }{\D x^4}\right| _{ij} + H.O.T
+\end{aligned}
+\end{equation}
+
+The third step gives: 
+
+\begin{equation}
+\left. \frac{\D ^2 u}{\D x^2} \right|_{ij} = au_{i+1\, j} + b u_{ij} + c u_{i-1\, j} = (a+b+c)u_{ij}+ (a-c) \Delta x \left. \frac{\D u}{\D x} \right|_{ij} + (a+c) \left. \frac{\D ^2 u}{\D x^2} \right|_{ij} + H.O.T
+\end{equation}
+}
+
+\begin{tabular}{|c}
+	\begin{minipage}{\textwidth}
+	Depending on the accuracy needed, establish a system of 3 equations of 3 variables and solve by imposing the value for the different terms. For example if we want to approximate exactly we should cancel all the terms except the second order derivative term. 
+	\end{minipage}
+	\end{tabular}
+
+\ \\\\
+We can repeat this method again and again to obtain various finite difference formulas. You can consult pages 14 and 15 of the syllabus to see the list, not useful, just know that we can express the mixed second derivatives like $\D ^2u/\D x\D y$ too. 
+
+\subsubsection{Derivation of finite difference formulas using operators}
+In order to make the writing more compact, let's introduce some operators:
+\begin{center}
+\begin{tabular}{cc|cc}
+$E_x^{+1}u_{ij} = u_{i+1\, j}$ & Forward shift &  $E_x^{-1}u_{ij} = u_{i-1\, j}$ & Backward shift\\
+$\delta_x^{+}u_{ij} = u_{i+1\, j} - u_{ij}$ & Forward difference & $\delta_x^{-}u_{ij} =  u_{ij} - u_{i-1\, j}$ & Backward difference \\
+$\mu _x u_{ij} = \frac{1}{2} \left(u_{i+\frac{1}{2} \, j}+u_{i-\frac{1}{2} \, j}\right)$ & Averaging & $\delta _xu_{ij} = u_{i+\frac{1}{2} \, j}-u_{i-\frac{1}{2} \, j}$ & Centered difference\\
+\end{tabular}
+\end{center}
+
+Another operator for the centered difference can be used: 
+
+\begin{equation}
+\bar{\delta}_x = \frac{1}{2}\left(\delta ^+_x + \delta ^-_x\right) \qquad \Rightarrow \bar{\delta}_x u_{ij} = \frac{1}{2} \left( u_{i+1\, j} - u_{i-1 \, j} \right) 
+\end{equation}
+
+All these operators are also valid for $y$ coordinate. The following relations are verified: 
+
+\begin{equation}
+\delta^+ = E^{+1}-1 \qquad \delta^- = 1-E^{-1} \qquad \bar{\delta} = \mu \delta = \delta \mu 
+\end{equation}
+
+It is easy to derive finite difference formulas with these operator. For example, the Taylor series expansion of $u(x)$ is: 
+
+\begin{equation}
+\begin{array}{c}
+u(x+\Delta x) = u(x) + \Delta x\frac{\D u}{\D x} (x) + \frac{\Delta x^2}{2} \frac{\D^2u}{\D x^2}(x) + \dots \\
+ \Leftrightarrow E u(x) = \left( 1 + \Delta x D + \frac{(\Delta x D)^2}{2} + \dots \right) u(x) \qquad \Leftrightarrow Eu(x) = \exp (\Delta x D) u(x)
+ \end{array}
+\end{equation}
+
+where we clearly see the Taylor expansion of $\exp (\Delta x D)$ and where $D_x = \frac{\D u }{\D x}$. We can then make the following manipulation: 
+
+\begin{equation}
+E = \exp (\Delta x \D) \leftrightarrow \ln (E \bm{+1 - 1}) = \ln(1 + \delta ^+) = \Delta x D \qquad \Rightarrow D = \frac{\ln (1 + \delta ^+)}{\Delta x}
+\end{equation}
+
+And finally if we make the Mac Laurin expansion: 
+
+\begin{equation}
+D = \frac{\delta ^+}{\Delta x} - \frac{{\delta ^+}^2}{2\Delta x} + \frac{{\delta ^+}^3}{3\Delta x} + \dots
+\end{equation}
+
+By keeping the first term we find the first order forward difference formula, by keeping the second term we find the second order one, and so on. 
+
+\subsection{Finite difference formulas for partial differential equations}
+
+There is two strategy to express equations: 
+\begin{itemize}
+\item[•] \textbf{Strategy 1}: simply assemble the finite difference formula for each individual derivative;
+\item[•] \textbf{Strategy 2}: same strategy used to find the finite difference in many steps, select the stencil, Taylor expansion on each point of the stencil, write the FD formula as a linear combination of the stencil points values and select the coefficients. 
+\end{itemize}
+
+The first method is the most used. For the Laplace equation $\frac{\D ^2 u}{\D x^2}+ \frac{\D ^2 u}{\D y^2} = 0$ we have: 
+
+\begin{equation}
+\left. \frac{\D^2 u}{\D x^2} \right|_{ij} = \frac{{\delta_x} ^2u_{ij}}{\Delta x^2} + \mathcal{O}(\Delta x^2) \qquad \left. \frac{\D^2 u}{\D y^2} \right|_{ij} = \frac{{\delta _y} ^2u_{ij}}{\Delta y^2} + \mathcal{O}(\Delta y^2)
+\end{equation}
+
+If we sum this up we get: 
+
+\begin{equation}
+\frac{{\delta _x} ^2u_{ij}}{\Delta x^2} + \frac{{\delta _y} ^2u_{ij}}{\Delta y^2} = 0 \qquad \Rightarrow \frac{u_{i+1 \, j} - 2u_{ij} + u_{i-1\, j}}{\Delta x ^2} + \frac{u_{i \, j+1} - 2u_{ij} + u_{i\, j-1}}{\Delta y ^2} = 0
+\end{equation}
+
+The equation can contain a first order derivative and there can thus exists several discretization (forward, backward, ...). 
+
+\subsection{Arbitrary geometries - irregular meshes}
+The method we have seen is very simple, we love it. But the expressions rapidly become very difficult when dealing with irregular meshes. In addition, the order of accuracy is lower when irregular meshes compared to the regular one with same size mesh. The formulas become intractable for more than 3 points.  We cannot only use uniform meshes for at least two reasons: \\
+
+\begin{itemize}
+\item[•] \textbf{Computational domain geometry:} when the boundary is curved, it is quasi impossible to use uniform rectangular mesh. On the aerofoil example below, one can see that the grid points not always intersect the nodes on the geometry.  
+\item[•] \textbf{Presence of regions where the solution varies rapidly:} for example, in fluid mechanics, there are regions such as the boundary layer where the fluid properties vary more rapidly than anywhere else. It is thus interesting to have finer mesh there and larger mesh somewhere where we don't care. 
+\end{itemize}
+
+\minifig{ch1/2}{ch1/3}{0.3}{0.4}{0.25}{0.5}
+
+To tackle these problems, one can use coordinate transformation as suggests \autoref{ch1/3}. One can thus first fit a certain geometry, but also achieve a local concentration of mesh points. There are two disadvantages to this: we transform the geometrical complexity into equation complexity, and it is very difficult to find these transformation (numerical methods needed). The good news are that in the numerical plane, the mesh is regular and numerical algorithms have high efficiency. 
