@@ -75,10 +75,110 @@ If there is no vane in the distributor, the flow penetrates in the rotor axially
 where $w'_{fD}$ represents the pressure losses in the distributor, proportional to the square of $Q$ and thus to $v_1^2$: $w'_{fD}= K_D \frac{v^2_1}{2}$ where $K_D \approx 5.10^{-3}$
 
 \subsection{The rotor}
-The impeller starts at $r_1$ and finish at $r_2$, the sections at these levels are: 
+The impeller starts at $r_1$ and finish at $r_2$, the section of the rotor at these levels are: 
 
 \begin{equation}
 A_1 = 2\pi r_1b_1 e_1 \qquad A_1 = 2\pi r_2b_2 e_2
 \end{equation}
 
-where $e_1,e_2$ are blockage coefficients taking into account the  
+where $e_1,e_2$ are blockage coefficients taking into account the decrease in area due to the thickness of the impeller. 
+
+\wrapfig{12}{l}{4.5}{0.3}{ch2/8}
+The rotor and impeller velocity triangles are represented on the figure. $v_1$ is known by the previous discussion and is purely radial and $u_1$ can be computed: 
+
+\begin{equation}
+v_1 = \frac{Q_R}{2\pi r_1 b_1 e_1} \qquad u_1 =r_1\omega _1 = \frac{2\pi n}{60} r_1 \qquad \alpha _1 = 90\degres
+\end{equation}
+
+The missing components of the velocity triangles are $w_1$ and $\beta _1$ and can be retrieved by construction. In addition we make an assumption for $\beta _1$ (fluid angle) which must be equal to $\bar{\beta} _1$ (solid angle), this is imposed by the design to avoid collision or separation. Indeed, the pump is designed to work with a certain $Q_R$ and a certain $n$, if this changes, shocks and separation can occur, leading to losses. Same considered for $\beta _2$, $u_2 = r_2 \omega$ and this time the radial velocity is the projection of $w_2$: 
+
+\begin{equation}
+u_2 = r_2 \omega _2 \qquad w_2 \sin \beta _2 = \frac{Q_R}{2\pi r_2 b_2 e_2}
+\label{2.9}
+\end{equation}
+
+$\beta _2$ is chosen larger than 90\degres in order to make $v_2$ small and thus limit the diffuser size (limit the losses, $\beta _2$ between 145\degres and 165\degres). We are now able to retrieve $v_2$ and $w_2$. 
+
+\subsection{Number and shape of the blades}
+\wrapfig{10}{r}{5}{0.3}{ch2/9}
+The number of blades determine the volume available to the flow and the guidance. The more we have blades, the more the fluid is guided but the more we have pressure losses. The designer must make a trade-off, generally there are 6 to 12 blades. The profile of the blades must be so that the angles $\beta _1 = \bar{\beta}_1$ and $\beta _2 = \bar{\beta}_2$ are respected. 
+
+\ \\
+If the blades are made of two surfaces, one active and one non-active as represented on the figure, if the the two surfaces makes an angle too large at the entrance, it is impossible that $\beta _1$ is tangent to both and lead to shocks. At the exit, since there is a pressure gradient between active and non active sides, the $\beta _2$ is "sucked" by the non-active part where the pressure is lower. 
+
+\section{Head of Euler of the rotor}
+Using Euler-Rateau and power distribution, we have: 
+
+\begin{equation}
+P_R =  \dot{m}_R (u_2v_{2u}-u_1v_{1u}) = \dot{m}_R e_R + \dot{m}_R w^"_{fR} \qquad \Rightarrow e_R = u_2v_{2u}-u_1v_{1u} - w^"_{fR}
+\end{equation}
+
+\wrapfig{5}{l}{4}{0.25}{ch2/10}
+as we have seen, $\alpha _1 = 90\degres \Rightarrow v_{1u} = 0$ and $e_R = u_2v_{2u} - w^"_f$. The term $u_2v_{2u}$ is called the \textbf{energy of Euler} and is the theoretical energy that the rotor transfers to the fluid. The \textbf{head of Euler} is $\frac{u_2v_{2u}}{g}$. Lets show that this energy is function of $Q_R, N, \bar{\beta}_1$ and $\bar{\beta _2}$ using the velocity triangle relation: 
+
+\begin{equation}
+\bm{u_2} v_2 \cos \alpha 2 = \bm{u_2}  (u_2 + w_2 \cos \bar{\beta} _2) \Rightarrow e_r = u^2_2 + \frac{Q_R}{2\pi r_2 e_2 b_2 \tan \bar{\beta} _2}
+\end{equation}
+
+where we used \autoref{2.9}. We see that as $\bar{\beta}_2>90\degres$ in practice, we have a linearly decreasing function. We still don't have the characteristics since we are underestimating the angles deviation, the number of blades and the fluid losses. 
+
+\subsection{Losses in the rotor due to friction}
+He skipped the previous section. The term $w^"_f$ regroups the different losses that occurs in the rotor and can be separated in:\\ 
+
+\begin{itemize}
+\item[•] the losses due to the development of the boundary layer in the channel sidewalls and $\propto Q_R^2$: 
+
+\begin{equation}
+k_1 Q_R^2 = K_R\frac{w_1^2}{2} \qquad K_R \approx 0.025
+\end{equation}
+
+\item[•] a second loss due to the shocks and separation of the boundary layer each time $w_2$ is not tangent to the blade. Looking to the situation on \autoref{ch2/11}, we find experimentally that these losses are $\propto (\Delta w)^2$ that is $\propto v_1$ that is $\propto Q_R - Q_{RD}$ where $Q_{RD}$ is the flow rate in design conditions $\beta _1 = \bar{\beta} _1$: 
+
+\begin{equation}
+Q_R = 2\pi r_1 b_1 e_1 v_1 \qquad Q_{RD} = 2\pi r_1 b_1 e_1 v_{1D}
+\end{equation}  
+\end{itemize}
+
+\minifig{ch2/11}{ch2/12}{0.3}{0.28}{0.3}{0.3}
+
+The sum is represented on \autoref{ch2/12} and we see that even at low $Q_R$ $w^"_f$ is high, this is due to the second loss. 
+
+\subsection{Loss due to the internal leak flow}
+We already know what it is, it goes from 1 for large pumps to 10\% of $\dot{m}_R$ for small pumps. This is due to the fact that the clearance cannot be reduced under an absolute size and the seals in large machines cannot be more efficient than in small machines. The power loss is: 
+
+\begin{equation}
+\dot{m}_i e_R = (0.01\ to\ 0.1)\dot{m}_Re_R \quad [W]
+\end{equation}
+
+\subsection{Friction of the disc on the non-active fluid}
+Per side of the disc, it can be estimated as: 
+
+\begin{equation}
+P_{fr} = 1.21 \, 10^{-3} u_2^3 D_2^2 \quad [ch]
+\end{equation}
+
+\subsection{The diffuser}
+\subsubsection{Energy transformation in the diffuser}
+The velocity $v_2$ at the exit of the pump is generally too high for some applications, the diffuser converts part of the kinetic energy into pressure energy. There exists 4 types of diffuser: straight parallel sidewalls or inclined, and for each we can have vaned or vaneless. The kinetic energy equation in a fixed frame with $z_3 - z_2 = 0$ is: 
+
+\begin{equation}
+\frac{p_3-p_2}{\rho} = -\frac{v_3^2-v_2^2}{2} -w'_{fd}
+\end{equation}
+
+where $w'_{fd}\approx 0.02 - 0.03 v^2_2/2$ [J/kg]. We see that kinetic energy gives pressure and loss. 
+
+\subsubsection{The vaneless diffuser with flanges} 
+\wrapfig{10}{l}{4}{0.4}{ch2/13}
+The common architecture of the diffuser is composed of two circular flanges put around and in the continuity of the exhaust of the rotor. Let's apply the equation of the kinetic moment to a fluid element of mass $m$ and at a radius $r$: 
+
+\begin{equation}
+\frac{d}{dt} M_{axis}(m\bar{v}) = M_{axis} \bar{F}_e
+\end{equation}
+
+The situation is represented on \autoref{ch2/13}, the flow in the diffuser is axisymmetric. If one neglect the weight of the particles, the external forces moment is null since the pressure is radial. All particles are facing the same pressure for symmetrical reasons and have thus the same trajectory. We have: 
+
+\begin{equation}
+\frac{d}{dt} (mvr\cos \alpha) = 0 \qquad \Leftrightarrow mvr\cos \alpha = rv_u = cst
+\end{equation}
+
+This is valid for a non-rotational flow. On the other hand we have the mass flow rate 

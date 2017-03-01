@@ -156,4 +156,142 @@ The method we have seen is very simple, we love it. But the expressions rapidly 
 
 \minifig{ch1/2}{ch1/3}{0.3}{0.4}{0.25}{0.5}
 
-To tackle these problems, one can use coordinate transformation as suggests \autoref{ch1/3}. One can thus first fit a certain geometry, but also achieve a local concentration of mesh points. There are two disadvantages to this: we transform the geometrical complexity into equation complexity, and it is very difficult to find these transformation (numerical methods needed). The good news are that in the numerical plane, the mesh is regular and numerical algorithms have high efficiency. 
+To tackle these problems, one can use coordinate transformation as suggests \autoref{ch1/3}. One can thus first fit a certain geometry, but also achieve a local concentration of mesh points. There are two disadvantages to this: we transform the geometrical complexity into equation complexity, and it is very difficult to find these transformation (numerical methods needed). The good news are that in the numerical plane, the mesh is regular and numerical algorithms have high efficiency, the transformation will be discussed later.
+
+
+\section{Finite volume method}
+The main idea is to take advantage of conservation equations whose fundamental form is the \textbf{integral form}, we discretize the integral. The principle consist in the application of the control volume method (macroscopic balances) in a large scale. The classical example is to have a bent tube, the flow exerts a force on the elbow and we can easily estimate it by momentum balance. We just take several small volumes where to apply this. \\
+
+The great advantage of this method is to use arbitrary polygons (2D) or polyhedra (3D) as control volume so that it offers great \textbf{flexibility}. Unlike the finite difference method, the finite volume method can accommodate arbitrary control volume shapes, this eases mesh generation dramatically. There are some independent variables (time and space) that does not need flexibility it is the time variable, this is why wee still use finite differences for time discretization. In addition, since the integral form is discretized, it allows the computation of \textbf{weak solutions} of the flow.
+
+\subsection{Fundamental principles and variants of the method}
+Let's consider the integral form of a general system of conservation equations: 
+
+\begin{equation}
+U = \left(
+\begin{array}{c}
+\rho \\
+\rho \vec{u}\\
+\rho E
+\end{array}
+ \right)
+\qquad \Rightarrow \frac{\D U}{\D t} + \nabla . \vec{F} = Q,
+\end{equation} 
+
+where $\vec{F}$ is the \textbf{flux vector} and $Q$ the \textbf{source term}. If we take the momentum equation and the conservation equation, we can see that there is a part independent of the derivative of $U$ (convective term) and a diffusive term dependent of $\nabla U \rightarrow \vec{F} = \vec{F}(U,\nabla U)$: 
+
+\begin{equation}
+\frac{\D \rho \vec{u}}{\D t} + \nabla (\underbrace{\rho \vec{u}\otimes \vec{u}+ p \bar{\bar{1}}}_{\mbox{convective}}  - \underbrace{\bar{\bar{\tau}}}_{\mbox{diffusive}}) = \rho \vec{g}
+\end{equation}
+
+The corresponding integral form is the basic original form obtained by integration of the equation over a control volume $\Omega$: 
+
+\begin{equation}
+\frac{d}{dt}\int _\Omega U d\Omega + \oint _{\D \Omega} \vec{F}.\vec{n}\, dS = \int _{\Omega} Q \, d\Omega
+\end{equation}
+
+Remark that discontinuities are allowed in this integral form since we do not have to verify the differentiation everywhere in the domain. If we subdivide the domain in elementary volumes and use the average value of $U$ on that volumes $\int _{\Omega _k}U\, d\Omega = U_k \Omega _k$ these are chosen as the parameters of the discrete representation, and assume the control volume to be a polygon ($\Gamma _m$ the faces), we have: 
+
+\begin{equation}
+\frac{d}{dt}(\Omega _k U_k) + \sum _{\Gamma _m \in \D \Omega _k} \int _{\Gamma _m} \vec{F}.\vec{n}\, dS = \int _{\Omega _k}Q\, d\Omega
+\end{equation}
+
+To make the discretization, we need to evaluate the remaining surface and volume integrals in terms of neighboring control volume averages. How to build the control volumes? First a mesh of non-overlapping elementary surfaces/volumes is generated, these are called cells. The design of control volumes must respect a certain number of conditions: \\
+
+\begin{itemize}
+\item[•] the union of CVs must cover the whole domain of interest; 
+\item[•] the CVs may overlap but the boundaries of a CV should be either lying on the domain boundary or belong to the boundary of another CV. Each CV boundary must be shared by two CVs;
+\item[•] the expression of the flux integral on a common edge should be the same for the two CVs it belongs to. \\
+\end{itemize}
+
+Consider two CVs K and L with a common face $\Gamma _c$ and make the sum: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{d}{dt}(\Omega _K U_K) + \sum _{\Gamma _m \in \D \Omega _K} \int _{\Gamma _m} \vec{F}.\vec{n}\, dS = \int _{\Omega _K}Q\, d\Omega \\
+ &\frac{d}{dt}(\Omega _L U_L) + \sum _{\Gamma _m \in \D \Omega _L} \int _{\Gamma _m} \vec{F}.\vec{n}\, dS = \int _{\Omega _L}Q\, d\Omega\\
+ \Rightarrow \frac{d}{dt}(\Omega _K &U_K + \Omega _L U_L) + \sum _{\Gamma _m \in \D \Omega _K \cup\, \D\Omega _L \setminus \Gamma _c} \int _{\Gamma _m} \vec{F}.\vec{n}\, dS = \int _{\Omega _K\cup \Omega _L}Q\, d\Omega 
+\end{aligned}
+\end{equation}
+
+where we can observe that the common boundary integral disappears since the flux should be the same but the normals are opposite to each others. This last property is called \textbf{telescopic property} that ensures the conservation at the discrete level and the capture of discontinuities. Indeed, if the flux was different on K and L, the term would remain. \\
+
+\wrapfig{11}{l}{2.8}{0.3}{ch1/4}
+Several arrangement methods exists: 
+\begin{itemize}
+\item[•] the CV coincide with the mesh cell $\rightarrow$ cell-centered method;
+\item[•] the CV is made out of mesh cells having a common vertex $\rightarrow$ cell-vertex method;
+\item[•] the CV is made out of part of mesh cells sharing a common vertex $\rightarrow$ vertex centered method. \\
+\end{itemize}
+
+In the two last ones, it is common to associate the volume average to the corresponding vertex as done in finite difference. Only these will be considered. Let's mention that it is not compulsory to use the same CVs for different equations of a system of equations. 
+
+\subsection{Evaluation of fluxes through faces}
+In general we will approximate the integral over a length/surface $Gamma _i$ by a one point quadrature integration formula: 
+
+\begin{equation}
+\int _{\Gamma _m} \vec{F}.\vec{n} \, dS \approx \vec{F}_m .\vec{n}_m S_m
+\end{equation}
+
+This is sufficient for first order and second order methods, for higher order you have to use more points quadrature. Moreover, higher order are not easy to construct, this is why we have finite element methods. Let's discuss about aerothermodynamic problems ($\vec{F} = \vec{F} (U, \nabla U)$) in 1D for simplicity. We will consider a vertex-centered 1D FV method and the CVs are segments. The discretization becomes: 
+
+\begin{equation}
+\frac{d}{dt} (\Delta x_i U_i) + F_{i+\frac{1}{2}} - F_{i-\frac{1}{2}} = 0
+\label{1.21}
+\end{equation}
+
+How to express the $F_{i+1/2}$ and the other in function of cell averages? One needs to specify a \textbf{numerical flux formula} which plays the same role as finite difference formulas in finite difference method. We will say that: 
+
+\begin{equation}
+F_{i+\frac{1}{2}} \approx \Phi (U_{i-k+1}, \dots , U_{i+k})
+\end{equation}
+
+For the method to be at least of order one, the approximation should be exact for a uniform field $\Phi (U,\dots , U) = F(U)$. The simplest choice is to take an arithmetic average of the fluxes or of the variables: 
+
+\begin{equation}
+\Phi (U_i, U_{i+1}) = (F_i + F_{i+1})/2 \qquad \Phi (U_i , U_{i+1}) = F\left(\frac{U_i + U_{i+1}}{2}\right)
+\end{equation}
+
+This applied to \autoref{1.21} gives: 
+
+\begin{equation}
+\frac{d}{dt}(\Delta x_i U_i) + \frac{F_{i} + F_{i+1}}{2} - \frac{F_{i-1} + F_i}{2} = 0 \qquad \Rightarrow \frac{dU_i}{dt} + \frac{F_{i+1} - F_{i-1}}{2\Delta x_i} = 0
+\end{equation}
+
+which is the same expression as obtained by central finite difference formula. One can retrieve the first order forward and backward finite difference formula by choosing $\Phi (U_i,U_{i+1}) = F(U_{i+1})$ and $\Phi (U_i,U_{i+1}) = F(U_i)$. \\
+
+Let's come back to the nature of the finite volume numerical representation. It consists of a set of average values over subdomains and is thus clearly a discrete representation. For cell-centered or vertex-centered methods (not overlapping) it is easy to reconstruct a functional representation out of the averages. A piecewise constant reconstruction and a linear reconstruction are illustrated below. 
+
+\minifig{ch1/5}{ch1/6}{0.5}{0.5}{0.35}{0.35}
+
+In the second, the solution gradient is estimated in each CV but the reconstruction remains discontinuous at the boundaries so that it does not eliminate the need for a numerical flux function to compute the flux across the boundaries. But it allows to easily construct more accurate flux functions, starting from a two variable flux function: 
+
+\begin{equation}
+F_{i+\frac{1}{2}} \approx \Phi (U_i , U_{i+1})
+\end{equation}
+
+associated with the constant reconstruction, one obtains more accuracy by replacing $U_i$ and $U_{i+1}$ by $U_L$ and $U_R$. For instance using the backward flux formula $\Phi (U_L,U_R) = F(U_L)$ and a gradient estimation in CV i based on the back point:
+
+\begin{equation}
+\left(\frac{\D U}{\D x} \right)_i \approx \frac{U_i - U_{i-1}}{\Delta x} \qquad \Rightarrow U_{L, i+\frac{1}{2}} = \frac{3}{2} U_i -\frac{1}{2}U_{i-1},
+\end{equation}
+
+One can obtain the following space discretization: 
+
+\begin{equation}
+\frac{dU_i}{dt} + \frac{1}{\Delta x} \left( F\left(\frac{3U_i - U_{i-1}}{2} \right) - F\left(\frac{3U_{i-1} - U_{i-2}}{2} \right) \right) = 0
+\end{equation}
+
+and for a particular $F(U) = au$, we have: 
+
+\begin{equation}
+\frac{dU_i}{dt} + a \frac{3U_i - 4U_{i-1}+U_{i-2}}{2\Delta x}
+\end{equation}
+
+which is the one we found in previous section. Generally, for a polynomial reconstruction of order $k$ we shall obtain a discretization of order at least $k+1$. For the diffusive fluxes we have to estimate the gradient of variables on the faces which can be done directly or by averaging the estimated gradients in the two neighboring CVs. This is done by Green-Gauss theorem: 
+
+\begin{equation}
+\int _\Omega \nabla U \, d\Omega = \oint _\Gamma U\vec{n}\, dS
+\end{equation}
+
+by choosing an auxiliary control volume $\Omega$ centered on the point where one wishes to estimate the gradient. 
