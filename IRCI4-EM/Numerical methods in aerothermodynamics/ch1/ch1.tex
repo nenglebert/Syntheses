@@ -295,3 +295,350 @@ which is the one we found in previous section. Generally, for a polynomial recon
 \end{equation}
 
 by choosing an auxiliary control volume $\Omega$ centered on the point where one wishes to estimate the gradient. 
+
+\subsection{Vertex-centered finite volumes in two dimensions and comparison with finite differences in transformed coordinates}
+\wrapfig{8}{l}{3.5}{0.3}{ch1/7}
+Here we will show that the FV method is equivalent to the FD in transformed coordinates. We consider first a vertex centered FV method on a structured mesh and then FD method in transformed coordinates. The advantage of structured mesh is the explicit connectivity, but its generation is more complex. We take the finite volume around the point $i, j$. Let's write the Euler equation: 
+
+\begin{equation}
+\frac{\D U}{\D t} +\frac{\D F_x}{\D x} + \frac{\D F_y}{\D y} = \frac{\D U}{\D t } + \nabla .\vec{F} = 0
+\end{equation}
+
+The finite volume discretization over the 4 points can be written as: 
+
+\begin{equation}
+\Omega _{ABCD} \frac{dU_{ij}}{dt} + \sum_{m=1}^{4} \vec{F}_m\vec{n}_ml_m=0
+\end{equation} 
+
+where $\vec{F}_m$ can be chosen as the average value (middle of sides) and $n_x l = \Delta y, n_y l =  - \Delta x$ since if we consider the angle $\theta$ made by AB we have that $\vec{n} = \cos \theta \vec{e}_1 + \sin \theta \vec{e}_2$ with $\cos \theta = \frac{\Delta y_{AB}}{AB}$ and $\sin \theta = -\frac{\Delta x_{AB}}{AB}$. $\Omega _{ABCD}$ can be computed as the vector product of diagonals: 
+
+\begin{equation}
+\Omega _{ABCD} = \frac{1}{2}|\Delta \vec{x} _{AC} \times \Delta \vec{x}_{BD}| = \frac{1}{2} (\Delta x_{AC}\Delta y_{BD}-\Delta x_{BD}\Delta y_{AC})
+\end{equation}
+
+We see that the remaining work to discretize is to express $\frac{dU_{ij}}{dt}$ by a finite difference formula. We could do in other way. \\
+
+Let's now examine the transformed coordinates FD, let's do the chain rule and replace the expressions in Euler equation to get the transformed coordinates equation: 
+
+\begin{equation}
+\frac{\D F_x}{\D x} = \xi _x\frac{\D F_x}{\D \xi} + \eta _x\frac{\D F_x}{\D \eta}\qquad \frac{\D F_y}{\D y} = \xi _y\frac{\D F_y}{\D \xi} + \eta _y\frac{\D F_y}{\D \eta}
+\label{1.33}
+\end{equation}
+
+$\xi _x, \xi _y, \eta _x \eta _y$ are the \textbf{metric terms}. We have the relation $\frac{dx}{d\xi} \frac{d\xi}{dx} = 1$ that can be generalized into matrix as follows: 
+
+\begin{equation}
+\left( 
+\begin{array}{cc}
+x _\xi & x_\eta\\
+y _\xi & y_\eta
+\end{array}
+\right)
+\left( 
+\begin{array}{cc}
+\xi _x & \xi _y\\
+\eta _x & \eta _y
+\end{array}
+\right)
+=
+\left( 
+\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}
+\right)
+\end{equation}
+
+We can express the following relations: 
+
+\begin{equation}
+\begin{array}{c}
+\xi _x = \frac{\left| 
+\begin{array}{cc}
+1 & x_\eta\\
+0 & y_\eta
+\end{array}
+\right|}{\left|
+\begin{array}{cc}
+x _\xi & x_\eta\\
+y _\xi & y_\eta
+\end{array}
+\right|}
+\qquad \Rightarrow J\xi _x = y_\eta \quad J\xi _y = -x_\eta \quad J\eta _x = -y_\xi \quad J\eta _y = x_\xi
+\\
+\Rightarrow \frac{\D (J\xi _x)}{\D \xi} + \frac{\D (J\eta_x)}{\D \eta} = 0 \qquad \frac{\D (J\xi _y)}{\D \xi} + \frac{\D (J\eta_y)}{\D \eta} = 0
+\end{array}
+\end{equation}
+
+We can multiply by J \eqref{1.33} and find: 
+
+\begin{equation}
+\begin{aligned}
+&J\frac{\D F_x}{\D x} = J\xi _x\frac{\D F_x}{\D \xi} + J\eta _x\frac{\D F_x}{\D \eta} = \frac{\D (J\xi _x F_x)}{\D \xi} + \frac{\D (J\eta _xF_x)}{\D \eta} - F_x\underbrace{ \left( \frac{\D (J\xi _x)}{\D \xi} + \frac{\D (J\eta _x)}{\D \eta} \right)}_{=0}
+\\
+&J\frac{\D F_y}{\D y} = J\xi _y\frac{\D F_y}{\D \xi} + J\eta _y\frac{\D F_y}{\D \eta} = \frac{\D (J\xi _y F_y)}{\D \xi} + \frac{\D (J\eta _yF_y)}{\D \eta} - F_y\underbrace{ \left( \frac{\D (J\xi _y)}{\D \xi} + \frac{\D (J\eta _y)}{\D \eta} \right)}_{=0}
+\end{aligned}
+\end{equation}
+
+So that by multiplying the transformed Euler equation (conservative) by J and replacing we get: 
+
+\begin{equation}
+J\frac{\D U}{\D t} + \frac{\D (J\xi _x F_x + J\xi _y F_y)}{\D \xi} + \frac{\D (J\eta _xF_x + J\eta _yF_y)}{\D \eta} = 0
+\end{equation}
+
+We can now discretize this equation using centered finite differences: 
+
+\begin{equation}
+\begin{aligned}
+J\frac{\D U_{ij}}{\D t} &+ \frac{(J\xi _x F_x + J\xi _y F_y)_{i+\frac{1}{2}\, j}-(J\xi _x F_x + J\xi _y F_y)_{i-\frac{1}{2}\, j}}{\Delta \xi}\\ 
+&+ \frac{(J\eta _xF_x + J\eta _yF_y)_{i\, j+\frac{1}{2}} - (J\eta _xF_x + J\eta _yF_y)_{i\, j-\frac{1}{2}}}{\Delta \eta} = 0
+\end{aligned}
+\end{equation}
+
+where $\Delta \xi = \Delta \eta = 1$. We can easily rewrite this by defining the middle point as average: 
+
+\begin{equation}
+\begin{aligned}
+J\frac{\D U_{ij}}{\D t} &+ (J \nabla \xi)_{i+\frac{1}{2}\, j} \frac{\vec{F}_{ij}+ \vec{F}_{i+1\, j}}{2} - (J \nabla \xi)_{i-\frac{1}{2}\, j} \frac{\vec{F}_{i-1 \, j}+ \vec{F}_{ij}}{2} \\
+&+ (J \nabla \eta)_{i \, j + \frac{1}{2}} \frac{\vec{F}_{ij}+ \vec{F}_{i\, j + 1}}{2}
+- (J \nabla \eta)_{i \, j -\frac{1}{2}} \frac{\vec{F}_{i\, j-1}+ \vec{F}_{ij}}{2} = 0
+\end{aligned}
+\end{equation}
+
+We can express the derivatives of the metric terms easily, for example for: 
+
+\begin{equation}
+\begin{aligned}
+&(J\xi _x)_{i+\frac{1}{2}\, j} = (y_\eta) _{i+\frac{1}{2}\, j} = \frac{y_B - y_A}{\Delta \eta} = \Delta y_{AB}\\
+&(J\xi _y)_{i+\frac{1}{2}\, j} = (-x_\eta) _{i+\frac{1}{2}\, j} = \frac{-x_B + x_A}{\Delta \eta} = -\Delta x_{AB}
+\end{aligned}
+\end{equation}
+
+We found out that $(J\nabla \xi)_{i+\frac{1}{2}\, j} = (\vec{n} l)_{AB}$ and we can do the same for the others. To conclude, we have to proof that $J = \Omega _{ij}$ but this is obvious by computing the determinant and we know the expression of $\vec{x}_\xi$ and $\vec{x}_\eta$ at point $i\pm \frac{1}{2} \, j$ and $i\, j \pm\frac{1}{2}$ so we just have to make the average to have $ij$: 
+
+\begin{equation}
+J_{ij} = |\vec{x}_\xi \times \vec{x}_\eta |_{ij} = \frac{1}{2}(\Delta \vec{x}_{DA}-\Delta \vec{x}_{BC}\times \Delta \vec{x}_{AB}- \Delta \vec{x}_{CD})
+\end{equation}
+
+We can conclude that FV is the generalization of FD in changed coordinate. The advantage of the finite volume is that we can now deal with any quadrilateral. 
+
+\section{Finite element method}
+It is based on a functional representation, a linear combination of basis or \textbf{shape functions} $u*(x) = \sum _{i=1}^n a_iv_i(x)$ and the parameters are the \textbf{coefficients} of the basis functions, that are determine such that we get the best approximation of the exact solution. It differs from Galerkin and Ritz method by the selection of a \textbf{piecewise polynomial interpolation function} as shape functions. It is a method to construct generalized finite difference formulas. For example, the numerical solution parameters are values of the solution at particular points (nodes) and the discretized equations have a local character as in FD. \\
+
+The convergence of the method is primordial, the numerical solution must tend to the exact solution when the number of parameters tends to infinity.
+
+\subsection{Various form of a differential equation}
+We already saw that the conservation laws can be put under an integral form. But other forms exist, for example the \textbf{weak form} and the \textbf{variational form}. \\
+
+The \textbf{differential form}, also called strong form (needs to be satisfied on all points of the domain and thus the derivatives too). Then we have the \textbf{integral form} developed by physicians and that does not require to be differentiable everywhere and thus allows the existence of discontinuities: \textbf{weak solutions}. \\
+
+To illustrate the weak form, consider the elastic deformation of a bar fixed at his upper end and submitted to its own weight and a traction force at the other end. Taking x-axis pointing downward, the strong form is: 
+
+\begin{equation}
+\frac{d}{dx} \left( k\frac{du}{dx} \right) + \mu g = 0 \qquad u(0) = 0 \quad k\frac{du}{dx}(L) - F = 0
+\end{equation} 
+
+where u is the displacement, k the rigidity (can be discontinuous) and $\mu$ the mass per unit length. As the equation must be satisfied everywhere, we can integrate the equation after having multiplied by a test function and add a null term due to the boundary condition: 
+
+\begin{equation}
+-\int _0^L \nu (x) \left[ \frac{d}{dx} \left( k\frac{du}{dx} \right)+ \mu g\right]\, dx + \nu (L) \left[ k \frac{du}{dx}(L) - F \right] = 0
+\end{equation}
+
+And by integrating by parts $f = \nu (x)$ and $g' = \frac{d}{dx}(k\frac{du}{dx})$: 
+
+\begin{equation}
+\int _0 ^L \left[\frac{d\nu}{dx} k \frac{du}{dx} - \mu g \nu \right]\, dx - \underbrace{\nu (0)k\frac{du}{dx}(0)}_{=0} -\nu (L) F = 0
+\end{equation}
+
+where we make the underbraced term = 0 by choosing $\nu(0)=0$ in order to satisfy the boundary condition at the fixation. This is the weak form of the equation and is also found by application of the virtual work theorem. The highest differentiation order is here reduced from two to one and allows the first order derivative to be discontinuous. This example does not contain that unless the material property is discontinuous. \\
+
+In fluid mechanics, shocks are discontinuities and consider the following equation in conservation form of a quasi-one dimensional nozzle flow: 
+
+\begin{equation}
+\begin{aligned}
+\frac{d}{dx} \left( \frac{u^2}{2} \right) - &xu = 0 \qquad u(-1) = 1; \quad u(1) = -0.5\\
+&u\frac{du}{dx} = xu  \Leftrightarrow u = \frac{x^2}{2}  + c 
+\end{aligned}
+\end{equation}
+
+By considering the two boundary conditions the discontinuity appears: 
+
+\begin{equation}
+U_L = \frac{x^2 + 1}{L} \qquad U_R = -1 + \frac{x^2}{2}
+\end{equation}
+
+The weak form of the previous equation is again obtained using the weighting function $\nu (x)$ that must now vanish at 1 and -1: 
+
+\begin{equation}
+\int _{-1}^1 \nu (x)\left[ \frac{d}{dx}\left( \frac{u^2}{2} \right) - xu \right]\, dx = \int _{-1}^{1}\left[\frac{d\nu }{dx} \frac{u^2}{2} - ux \right]\, dx= 0a
+\end{equation}
+
+where there is no longer the derivative of $u$. Come back to the bar, an extremum case can be to choose a variation for $\nu(x) = \delta u(x)$ such that: 
+
+\begin{equation}
+\int _0 ^L \left[\frac{d\delta u}{dx} k \frac{du}{dx} - \mu g \delta u \right]\, dx  -\delta u (L) F = 0 = \delta \left[ \int _0 ^L \left[\frac{k}{2} \left(\frac{du}{dx}\right) ^2 - \mu g u \right]\, dx  -u(L) F \right]
+\end{equation}
+
+This can be interpreted as the variation of the total energy and the solution is the one that gives stationary energy.
+
+\subsection{Shape functions - finite element interpolation}
+
+As explained, shape functions are piecewise polynomial interpolation functions and its parameters are values of the numerical solution in certain points. Here are the principles to construct these shape functions: \\
+
+\begin{itemize}
+\item[•] The domain is divided into a set of non-overlapping simple polygons or polyhedra (the edges are not forced to be straight);
+\item[•] To each domain we associate some points called \textbf{nodes} and we get an \textbf{element}. In almost all cases, the nodes include the vertices but could also be on the edges or inside the element.; 
+\item[•] To each node N is associated a function $\nu_n (x)$ which is defined locally within the element as a polynomial interpolation function. It must vanish at other nodes: 
+
+\begin{equation}
+\forall P \in \Omega _e : \nu _n(xp) = \delta _{np}
+\end{equation} 
+
+This definition of the interpolation function has several consequences: 
+
+\begin{itemize}
+\item The order of the polynomial is directly linked to the number of nodes. For example for a triangular 3 nodes element we will use a linear interpolation in 2 space variables (P1), while for quadratic polynomials 6 nodes are required since we have 6 coefficients in the interpolation (P2). \\
+
+\item The shape function is defined locally for each element. The global basis function associated to a node is thus simply the function equal to the local basis function on each element. If the node belongs to one element the global basis function is the local basis function of the element, if it belongs to several, the global basis function is made of all the local shape function of all the elements it belongs to. A consequence is that the global function associated to node N vanish on all other nodes (called compact support). \\
+
+Also since the basis functions are uniquely defined on each element and since they coincide on a mesh belonging to several element, these are continuous functions. \\
+
+\item The coefficients of the interpolations are values of the numerical solution at the corresponding node: 
+
+\begin{equation}
+u^* (x_i) = \sum _{j = 1}^n a_j \nu_j(x_i) = a_i
+\end{equation}
+
+We shall call them $a_i = u_i$. \\
+\end{itemize}
+\end{itemize}
+
+
+We are going to consider some example in 1D, where we have to divide the the domain into set of intervals and associate nodes. The attribution of nodes differs from polynomial order. 
+
+\paragraph{P1 element}
+\wrapfig{5}{l}{5}{0.3}{ch1/8}
+First order polynomial has two coefficients ($a + bx$) thus we need two nodes per element to determine them all, we take them on vertices. If we call the local shape functions on element A and B, the global shape function around node $j$ is made of the two.
+
+\begin{equation}
+\phi _i^A = \frac{x-x_{j-1}}{x_j-x_{j-1}}\qquad\phi _i^B = \frac{x_{j+1}-x}{x_{j+1}-x_j}
+\end{equation}
+
+\paragraph{P2 element}
+We have now a 2nd order polynomial ($a + bx + cx^2$) with 3 coefficients and thus 3 nodes are needed. In general the third node is placed at the middle of the element. The shape functions can be simply chosen via the Lagrange interpolation, for example: 
+
+\begin{equation}
+\begin{array}{c}
+\phi _j ^A = \frac{(x_{j+2} - x)(x_{j+1} - x)}{(x_{j+2} - x_j)(x_{j+1} - x_j)} \qquad \phi _{j+1} ^A = \frac{(x_{j+2} - x)(x - x_j)}{(x_{j+2} - x_{j+1})(x_{j+1}- x_{j})} \\
+\phi _{j+2} ^A = \frac{(x_{j+1} - x)(x - x_j)}{(x_{j+1} - x_{j+2})(x_{j+2}- x_{j})}
+\end{array}
+\end{equation}
+
+or for higher dimensions, using a parent element. The parent element is defined in $\xi , \eta$ for the higher dimension case and in $\xi$ coordinate for 1D where for P2 element the nodes are placed at 0, 1/2 and 1. The shape functions in the normalized coordinates are: 
+
+\begin{equation}
+\phi _1 = (2\xi - 1)(\xi -1)\qquad \phi _2= 4\xi (1-\xi)\qquad \phi _3 = \xi (2\xi -1)
+\end{equation}
+
+The same shape functions can be used for the transformation, in higher dimension we have: 
+
+\begin{equation}
+x(\xi , \eta) = \sum x_i\phi _i (x, y) \qquad y(\xi , \eta) = \sum y_i\phi _i (x, y)
+\end{equation}
+
+We speak about \textbf{isoparametric mapping} in this case since the polynomial order is equal to the number of nodes. If lower order polynomials are used we speak of subparametric mapping. 
+
+\paragraph{P3 Hermite element}
+\wrapfig{5}{l}{5}{0.3}{ch1/9}
+We have $a + bx + cx^2 + dx^3$, we need thus 4 nodes per element. We could just do as before so use Lagrange interpolation with the 2 vertices and two internal nodes, but it is also possible to use Hermite element: we only use the vertices and the numerical parameters are not only solution at nodes but also of its derivative. We have 2 dof at each node so that the shape functions in the normalized element are: 
+
+\begin{equation}
+\phi_{0,0} = (2\xi  + 1)(\xi -1)\quad \phi_{0,1} = \xi (\xi -1)^2\quad \phi_{1,0} = (3-2\xi )\xi^2\quad \phi_{1,1} = (\xi - 1)\xi ^2
+\end{equation}
+
+In P1 and P2 the basis functions have discontinuous derivatives. The advantage of Hermite is to ensure also the continuity of the derivatives at the nodes. The other advantage is counting the number of dof. Suppose an interval from 0 to L and n elements in the interval, how many unknowns with Lagrange? $\#dof = n+1 + 2 internals = n+1+ 2n = 3n +1 = \mathcal{O}(3n)$ while it is $\mathcal{O}(2n)$ for Hermite. We have the same accuracy at a lower cost. 
+
+\subsection{Discretization - extremum form: Ritz method}
+In some cases we do have a variational form, we can find the numerical solution by imposing it to make the variation stationary within the set of numerical solutions of the chosen form: 
+
+\begin{equation}
+\frac{\D E (u^h)}{\D u_i} = 0 \qquad i = 1, \dots , n
+\end{equation}
+
+We have thus n equations and n unknowns and the solution will be the best in the energy sense. Generally we have something of the form: 
+
+\begin{equation}
+\begin{aligned}
+E(u) &= \int _\Omega F(u,\nabla u) \, d\Omega + \int _{\D \Omega} g(u) \, d\Gamma \\
+\Rightarrow \frac{\D E(u^h)}{\D u_i} &= \int _\Omega \left[ \frac{\D F}{\D u}\frac{\D u^h}{\D u_i} + \frac{\D F}{\D u_{x_p}}\frac{\D}{\D u_i} \left( \frac{\D u^h}{\D x_{p}}\right) \right] \, d\Omega + \int _{\D \Omega} \frac{\D g(u)}{\D u}\frac{\D u^h}{\D u_i} \, d\Gamma = 0\\
+&= \int _\Omega \left[ \frac{\D F}{\D u}v _i + \frac{\D F}{\D u_{x_p}}\frac{\D v _i}{\D x_{p}} \right] \, d\Omega + \int _{\D \Omega} \frac{\D g(u)}{\D u}v_i \, d\Gamma = 0
+\end{aligned}
+\end{equation}
+
+The last line of the equation is obtained by remembering $u^h (x) = \sum _{i=1}^n u_i v_i (x)$. Remark that the last line is the weak form of the equation with $v_i$ as test function. 
+
+\subsection{Discretization - weak form: weighted residual method}
+All the differential equations cannot be put under variational form and the previous case is not always applicable. In contrast weak form exists in all case and can be used as basis for discretization. Symbolically if we have $D(u)= 0$, for a numerical solution $u^h$ the equation will not vanish. We will have a residual $D(u^h) = r^h$. It is thus logical to determine the coefficients $u_i$ so that the residual is minimized. The \textbf{least-square} definition consists in minimizing the residual quadratic nom: 
+
+\begin{equation}
+J(u^h) = \int _\Omega (r^h)^2 \, d\Omega
+\end{equation}
+ where for simplicity we considered prescribed solution at the boundary but in general case the boundary condition terms should be added. The minimization consists in: 
+ 
+ \begin{equation}
+ \frac{\D J(u^h)}{\D u_i} = \int _\Omega 2\frac{\D r^h}{\D u_i}r^h \, d\Omega = 0 \qquad i = 1,\dots , n
+ \end{equation}
+
+the weighting functions are $w_i^{LS} = 2(\D r^h / \D u_i)$, and after integration we find the weak form of the differential equation:
+
+\begin{equation}
+\int _\Omega [v F(u, \nabla u) + \nabla v . \vec{g} (u,\nabla u) ] \, d\Omega + \int _{\Gamma = \D \Omega} vH(u) \, d\Gamma = 0
+\end{equation}
+
+were we choose $v_i = w_i(x)$. You take as many weighting functions as parameters. Let's enumerate a certain number of requirements the $w_i$ should satisfy: 
+
+\begin{itemize}
+\item[•] They should be in the same number of the numerical parameters/shape functions to provide closed algebraic system;
+\item[•] They should form a complete set: if you have a domain $\Omega$ the weighting functions should fill the whole domain, no empty space. 
+\end{itemize}
+
+Discretization is not unique it depends on the choice of weight. 
+
+\subsubsection{Galerkin method}
+The shape functions satisfy the two criteria. If we do that we refind the Ritz method. When a problem can be cast in extremum form, Galerkin method is similar to the Ritz method and is optimal in energy sense. Since the weighting functions belongs to the same functional space than the numerical solution, it requires continuity of the shape functions only up to one order less than that of the highest derivative in the weak form.
+
+\subsubsection{Least squares method}
+Has been seen at the beginning of the section. It has the advantage to be tackled by classical minimization methods and to solve the instability problems of the Galerkin method for convection problems. But in contrast it requires $C^1$ continuities for second order derivatives, costly. 
+
+\subsubsection{Point collocation method}
+One of the drawbacks of previous methods is to perform computation of comlpex integrals. This can be avoided by using Dirac distributions as weighting functions $w_i (x) = \delta (x-x_i)$ so that the discrete equations become $r^h (x) = 0$. The main disadvantages are that to require a high order approximation and to be less accurate.   
+
+\subsubsection{Subdomain collocation method}
+This is a finite volume-like method whereas the previous is a finite element-like method. We choose piecewise constant functions equal to one on a subdomain $\Omega _i$ and zero elsewhere: 
+
+\begin{equation}
+\int _{\Omega  _i} r^h \, d\Omega = 0
+\end{equation}
+
+This approach offers advantage when the equation to be solved is a conservation law so that the integral can be transformed into surface integral through Gauss theorem. This is known as control-volume based finite element method. The number of subdomains must be equal to the number of nodes. The method is similar to cell vertex centered or vertex centered method since the subdomain is chosen as the set of nodes like them.
+
+\subsubsection{Petrov-Galerkin method}
+When it is not one of the previous method and we use several weighting we speak of that. 
+
+\section{Spectral methods}
+\subsection{Representation}
+Just like finite element, it is based on a functional representation of the solution $u^* (x) = \sum _{i=1}^n a_i v_i (x)$. The difference is that instead of choosing a piecewise polynomial as shape function, we choose trigonometric functions or families of orthogonal functions. For example in lifting line theory it was logical to express $\Gamma (\theta) = \sum {m=1}^N a_m \sin mx$ with $\Gamma (0) = \Gamma (\pi) = 0$, use of truncated Fourrier serie.  As long as the solution is smooth it provides accurate values for few terms in the serie. There are 2 fundamental differences, basic functions are infinitely differentiable, we don’t have to worry about the continuity. In finite elements we had $C^0$ continuity. The convergence is much faster for spectral methods when number of elements increases: FE: $\epsilon \propto h^{k+1}$, spectral: $\epsilon \propto \exp(-1/h)$ . The approximation can be noted as:
+
+\begin{equation}
+u^* (x) = \sum _{k = -\frac{n}{2}+1}^{\frac{n}{2}}\hat{u}_k\exp \left( \frac{2\pi Ikx}{L}\right)
+\end{equation}
+
+For periodic problems, $v_i$ are trigonometric functions. For non periodic problems we use families of orthogonal polynomials such as Chebyskev, Legendre, Laguerre. Spectral methods is very limited to some problems, it is used for numerical computations around the atmosphere (forecasting).\\
+
+But there is a price to pay for that, the shape functions are not defined locally but globally and the shape functions do not represent the solution value in some certain point. They are non zero over the whole domain, so the system of equations is not sparse, all the parameters are coupled. Basis functions are not of compact support! 
+
+\subsubsection{Discretization}
+Same as FE. Since the basis functions are infinitely differentiable we don't have problems with collocations. 
+
+
+ 

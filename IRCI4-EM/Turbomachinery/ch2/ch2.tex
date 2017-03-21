@@ -106,7 +106,7 @@ The number of blades determine the volume available to the flow and the guidance
 \ \\
 If the blades are made of two surfaces, one active and one non-active as represented on the figure, if the the two surfaces makes an angle too large at the entrance, it is impossible that $\beta _1$ is tangent to both and lead to shocks. At the exit, since there is a pressure gradient between active and non active sides, the $\beta _2$ is "sucked" by the non-active part where the pressure is lower. 
 
-\section{Head of Euler of the rotor}
+\subsection{Head of Euler of the rotor}
 Using Euler-Rateau and power distribution, we have: 
 
 \begin{equation}
@@ -181,4 +181,242 @@ The situation is represented on \autoref{ch2/13}, the flow in the diffuser is ax
 \frac{d}{dt} (mvr\cos \alpha) = 0 \qquad \Leftrightarrow mvr\cos \alpha = rv_u = cst
 \end{equation}
 
-This is valid for a non-rotational flow. On the other hand we have the mass flow rate 
+This is valid for a non-rotational flow. On the other hand we have the mass flow rate: 
+
+\begin{equation}
+2 \pi r b \sin \alpha = cst \qquad \Rightarrow b \tan \alpha = cst
+\label{2.19}
+\end{equation}
+
+If the flanges are parallel $b = cst$ and thus $\alpha = cst$, this gives a logarithmic spiral for the particles trajectory. The only way to make $v_3$ decrease is to have larger $r_3$: 
+
+\begin{equation}
+2\pi r_2 b_2 v_2 \sin \alpha _2 = 2\pi r_3 b_3 v_3 \sin \alpha _3 \qquad \Rightarrow v_3 = v_2 \frac{r_2}{r_3}
+\end{equation}
+
+Another way is to have variable b. In \eqref{2.19} this would mean that $\alpha$ decreases. We have thus: 
+
+\begin{equation}
+2\pi r_2 b_2v_2 \sin \alpha _2 = 2\pi r_3 b_3 v_3\sin \alpha _3 \qquad \Rightarrow v_3 = v_2\frac{r_2 b_2 \sin \alpha _2}{r_3 b_3 \sin \alpha _3} = v_2\frac{r_2 \cos \alpha _2}{r_3 \cos \alpha _3}
+\end{equation}
+
+Since $\cos \alpha _3> \cos \alpha _2$, $v_3$ will be lower. The divergence angle is limited to 6-7\degres because of separation (have to look for another method). 
+
+\subsubsection{The diffuser with blades}
+With the previous discussion, if $v_2$ increases we still have to increase $r_3$. Another method to avoid this, is the use of vanes between the flanges. Their job is to guide the fluid particle so that $\alpha$ increases: 
+
+\begin{equation}
+2\pi r_2 b_2 v_2 \sin \alpha _2 = e_3 2\pi r_3 b_3 v_3 \sin \alpha _3 \qquad \Rightarrow \frac{r_3}{r_2} = \frac{1}{e_3}\frac{v_2 \sin \alpha _2}{v_3 \sin \alpha _3} 
+\end{equation}
+
+where $e_3$ is the filling coefficient taking into account the presence of the vanes. We see that for higher $\alpha _3$, we can take lower $r_3$. But blade means friction and thus shock. 
+
+\wrapfig{10}{l}{5}{0.3}{ch2/14}
+To avoid this the entrance of the diffuser should be 1 or 2 mm larger and the vanes should be tangent to the flow, depending on Q and N. The design is thus made in order to be tangent for a certain couple $N_D, Q_D$ called design conditions. In off-design conditions, shocks and separation occur. There is a small gap between vanes and the rotor blades to limit the noise produiced by turbulences. Due to the shocks and separation, $w^"$ is never equal to zero and rather large for small $Q$. In conclusion, the vaned diffuser gives smaller dimensions, but lead to considerable losses when far from the working point and it is maybe preferable to use the vaneless involving $Q^2$ losses.  
+
+\subsection{The volute or collector}
+Its job is to collect the flow coming out of the diffuser or the rotor, it's section increases from the beginning to the end, the flow in radial section is non uniform and respects:
+
+\begin{equation}
+v_u r = v_{u3}r_3 = cst
+\end{equation}
+
+and the losses in the diffuser and volute are estimated to $(0.02$ and $0.03)\frac{v^2}{2}$ [J/kg].
+
+\subsection{Characteristic curves of a centrifugal pump}
+We are now able to understand the shape of the characteristic curve on \autoref{ch2/10} since the losses $w^"_f$ have a parabolic shape. To deduce the curve in function of the flow $Q$, we still have to consider the internal leak flow $Q = Q_R - Q_i$ and the $w'_{fD}$ and $w'_{fd}$ that are function of $Q^2$ and $(Q-Q_D)^2$ when the diffuser is vaned. We can make these curves for different rpm it goes up and right, we will see how to plot them without experiment, we only have to measure for one rpm. 
+
+\minifig{ch2/15}{ch2/16}{0.3}{0.3}{0.3}{0.3}
+
+\section{Performance curves of centrifugal pumps non-dimensional analysis}
+\subsection{Theory of Vachy-Buckingham}
+Consider a machine characterized by some physical variables containing $q$ fundamental parameters. It is possible to choose $p$ independent variables and to build $p-q$  independent non-dimensional variables. Any other dimensionless combination of these variables will be function of the independent reduced variables. 
+
+\subsection{Application to turbopumps}
+The variables differentiating geometrically equivalent pumps working points are: $r$ [L], $n$ $[T^{-1}]$, $\dot{m}$ $[MT^{-1}]$, $\rho$ $[ML^{-3}]$ and $\mu$ $[ML^{-1}T^{-1}]$. We can limit the physical variables to 4 parameters by noticing that $u = r \frac{2\pi n}{60}$ and that $\mu$ is in Re number already non-dimensional and 3 fundamental variables. The non-dimensional variable can be found as follows: 
+
+\begin{equation}
+\begin{aligned}
+&\pi = r^xu^y\dot{m}^z\rho^w \qquad \Rightarrow \pi = (L)^x(LT^{-1})^y(MT^{-1})^z(ML^{-3})^w = M^0L^0T^0\\
+&x+y-3w = 0 \qquad -y-z = 0\qquad z+w = 0
+\end{aligned}
+\end{equation}
+
+We have a system of 3 equations with 4 variables, we will fix $z=1$ to have $\dot{m}$ in the expression, that gives $y = -1, w = -1, x=-2$, and the reduced variable is: 
+
+\begin{equation}
+\frac{\dot{m}}{\rho u r^2} = \frac{Q}{ur^2} \quad \Rightarrow \frac{Q}{u r^2} \quad \frac{\dot{e}}{u^2} \quad \eta _g \quad \frac{\dot{P}}{\rho u^3 r^2}
+\end{equation}
+
+\subsection{Performance curves of a type of pumps}
+\wrapfig{6}{l}{4}{0.2}{ch2/17}
+For a family of pumps with same $r$, $\rho$ and $u$ we can plot the non-dimensional $\frac{gH}{u^2}, \eta _g, \frac{P}{\rho u^3 r^2}$ in function of the non dimensional $\frac{Q}{\rho u r^2}$. If two of the parameters are known, the third is known since: 
+
+\begin{equation}
+\frac{P}{\rho u^3 r^2} = \frac{P}{\dot{m}e}\frac{\dot{m}}{\rho u r^2} \frac{e}{u^2} = \frac{1}{\eta _g}\frac{Q}{ur^2}\frac{gH}{u^2}
+\end{equation}
+
+\ \\
+\subsection{Characteristic curves of a pump}
+\wrapfig{6}{r}{4}{0.3}{ch2/18}
+It is possible to plot the previous curves for different values of the parameters $u, \rho, r$. Indeed, if one has a different value, he just has to compute the new dimensional curves (replace the value of the parameter) and plot. This is shown on the figure.  For the viscosity, prof just mentioned that we have to introduce a correction factor in right time. 
+
+\subsection{Stability of a turbopump}
+\subsubsection{Stability of the motor + pump assempbly}
+\wrapfig{9}{l}{5}{0.3}{ch2/19}
+This is based on the driving torque of the motor and resistive torque of the pump. These can be found considering the characteristic curve of a pump in a fixed network. For what concerns the torque curve of the pump, one just has to divide the $H$ curve by the rpm and will get a torque curve for every rpm. For the resistive torque, determine the intersection of $H_{network}$ and $H_{pump}$ and make the projection on the pump torque for every rpm. We find a positive slope curve. 
+
+\subsubsection{Stability of the pump on the circuit}
+\wrapfig{8}{r}{5}{0.3}{ch2/20}
+The second stability problem is the problem of the pump in the circuit. Consider the figure illustrating a water tower without losses inducing a horizontal network characteristic, (b) has a small design mass flow rate and the other (c) large. The small one has in fact the same curve as the second but the maximum is shifted on the y-axis. 
+
+\ \\
+Now, imagine a town to supply with a water tower. At a given moment we have a certain amount of users, and we are at point A. If now there are using less and less of water, the level of water is increasing so that more power is requested from the pump. The two configuration are good in the sense where the increase of the level makes the flow reduce. If now the level goes higher and higher until reaching the maximum of the curve, the pump stops, there is no intersection on the curve. The configuration (b) is ok because the level drops the pump is used normally. 
+\ \\
+
+But for configuration (c), when the pump stops, we go directly to point C and when the level drops, the pump will be functional only when the level reaches C and has a jump to point D. The problem is that the flow is maximal and the level goes rapidly up such that we have a cycle ABCD. This is called \textbf{surge mode}. This is a low frequency loop because it requires time to go from D to B ($\approx 1\, Hz$). In conclusion, the (b) is very good for stability but not for performance and the contrary for the other. So we want to combine the two. We put a c pump on the network that is always used and we have in parallel another pump b that will be used at high levels. 
+
+\subsection{Pump cavitation}
+\wrapfig{8}{l}{4}{0.3}{ch2/21}
+When the pump is placed above the free fluid level, the intrance pressure should be less than the atmospheric pressure to allow suction. We can define the minimum section as the end of the distributor. When Q increases this will be the place of high velocities and thus low pressures. When the pressure is lower than the saturation pressure, gas bubbles or vapor pockets will be formed. There are problems due to the gas dissolved in the fluid: \\
+
+\begin{itemize}
+\item[•] reduction of the flow rate due to narrowing of the fluid section;
+\item[•] noise characteristic of the phenomenon and changing with the intensity of the cavitation; 
+\item[•] degradation of the blades due to the interaction with bubbles, they produce a locally concentrated stress, erosion and corrosion of the metal of the blades. \\
+\end{itemize}
+
+The pressure at the minimum section can be found by using the kinetic energy equation between free level and minimum section, expressing the losses as $kQ^2$ and replacing the velocity by $v_m = Q/A_m$: 
+
+\begin{equation}
+\frac{v_m^2 - 0}{2} + g(z_m - z') + \frac{p_m - p_a}{\rho} = - kQ^2 \qquad \Rightarrow p_m = p_a - g\rho (z_m - z') -\rho \left( k +\frac{1}{2A_m^2} \right) Q^2
+\end{equation}
+
+Using this formula we can see that increase of $Q$ makes $p_m$ smaller, same for decrease of $A_m$, increase of k and higher level differences. The gas to liquid ratio is also important (ability to liberate gas into the liquid). The saturation pressure is changing with temperature. What we can do to avoid cavitation is to place the pump at the same level as the free level or below, and avoid all the friction before the entrance such as additional valves or pipe turns, \dots . \\
+
+We can conclude by stating that a modification in the circuit can have important consequences on the efficiency of a pump, always check!
+
+\subsubsection{NSPH}
+In order to make rise a column of fluid, underpressure is needed for suction. If this underpressure is lower than the saturation pressure of the fluid, cavitation will take place. If the water head to be sucked is too important to be elevated without cavitation, one has to use several pumps. The maximum possible underpressure before cavitation is called the available NPSH (Net Positive Suction Head). This is related to the water head aspiration, there is also one related to the pump flow rate since we need an extra underpressure to give a certain more or less high flow rate called requested NPSH: 
+
+\begin{equation}
+NPSH _{avail}  = H_e - \frac{p_s}{\rho g} \qquad NPSH_{avail} > NPSH _{requ} \mbox{ to avoid cavitation}
+\end{equation}
+
+\section{The network and its characteristic curve}
+\subsection{Simple circuit}
+By simple circuit we mean the one composed by two reservoir the pipes and one turbopump. If we apply the kinetic energy equation between ' and i and between o and " we can combine them and get: 
+
+\begin{equation}
+\frac{{v^"}^2-v'^2}{2g} + \frac{p^"-p'}{\rho g} + (z^"-z') +  \frac{\sum w_f}{g} =\frac{{v_o}^2-v_i^2}{2g} + \frac{p_o-p_i}{\rho g} + (z_o-z_i)  \qquad H_n = H
+\end{equation}
+
+$H_n$ is the characteristic of the circuit. In a simple configuration as in \autoref{ch2/4} we have $v^" = v' \approx 0$ and $p^" = v' = p_a$ such that: 
+
+\begin{equation}
+H_n = (z^" - z') + \frac{\sum w_f}{g}
+\end{equation}
+
+but in some applications we cannot neglect these terms so that we have 2 terms independent of $Q^2$ and two dependent and thus the actual characteristic $H_n(Q)$ is the increasing part of a parabol beginning at ordinate $z^"-z' + \frac{p^"-p'}{\rho g}$.
+
+\subsection{Calculation of the characteristic curve of a circuit} 
+\subsubsection{Losses in the circuit}
+We consider non incrusted circular pipes for turbulent pipes: 
+
+\begin{equation}
+Re = \frac{vD}{\nu}\qquad > 2500
+\end{equation}
+
+where $\nu$ is the kinematic viscosity. There will be losses in straight pipes, accessories and shape modifications. 
+
+\subsubsection{Regular pressure losses (in straight pipes)}
+They are $\propto L, Q (\nu), \nu$ and inversely $\propto D^2$. 
+
+\subsubsection{Singular losses (in all accessories)}
+They can be replaced by equivalent straight pipe losses thanks to coefficients listed in a table that one must multiply by the diameter in cm to get m. Each accessory has its own coefficient. 
+
+\subsubsection{Losses due to abrupt shape modifications}
+\wrapfig{8}{l}{4}{0.3}{ch2/22}
+They are computed in meter using the formula: 
+
+\begin{equation}
+\zeta \frac{v^2}{2g}
+\end{equation}
+
+where $v$ is the downward velocity in case of an opening of the section and backward in the case of a restriction. In the case of a section increase: 
+
+\begin{equation}
+\zeta = \left(\frac{D^2_{aval}}{D^2_{amont}} - 1 \right)
+\end{equation}
+
+In the case of a restriction the value is computed using the graph. An example of computation is made at page 56, a remark: in case of rough pipes more rigorous computations must be made. 
+
+\subsubsection{Complex circuits}
+\minifig{ch2/23}{ch2/24}{0.3}{0.3}{0.48}{0.48}
+
+In the case of complex circuits like the two above, one has just to consider the two characteristics, which are superimposed in the first case since the water head is the same and where they are different in the second case because of the height difference (start on y-axis). In the first case, once the pump is able to deliver to one of the reservoir it is also able to deliver to the other and thus we need a larger flow rate. This manifests by doubling the x-axis. In the second case, when the height is between $z'$ and $z^"$ only the lower one is filled, and once we arrive at $z^"$ the combination is made as the first case. 
+
+\section{Selection of a pump of a pump type}
+\subsection{Users of pumps}
+We take the point of view of the process engineer and not the designer, so we select an existing pump fitting at best the need in $H$ and $Q$. The speed is normally fixed by the driving motor, variable speed could be useful to select the region of maximum efficiency for a working region but is more expensive. A high rotation speed makes the device more compact and cheaper. We need thus to fix the circuit on which the pump will be used, the desired $Q_D$, the nature of the fluid $\rho$ and the rpm $N$. 
+
+\subsection{General case}
+For a same family of pumps, it is possible to reduce the performance curves in a single one as seen previously with non-dimensional numbers at certain rpm: 
+
+\begin{equation}
+\frac{W_m}{\rho u^3 r^2}, \frac{e}{u^2}, \frac{gH}{u^2} \qquad \eta _g\qquad \mbox{in } f\left(\frac{Q}{ur^2} \right)
+\end{equation}
+
+\subsection{Choice of the pump type}
+\wrapfig{8}{r}{4.5}{0.4}{ch2/25}
+We can plot $\left(\frac{e}{u^2}\right)^{\frac{3}{2}}$ in function of $\frac{Q}{ur^2}$ we can plot the performance curve of each family on the same graph and can target the maximum efficiency region on each curve. Let's define the angle:
+
+\begin{equation}
+\tan \psi = \frac{\left(\frac{e}{u^2}\right)^{\frac{3}{2}}}{\frac{Q}{ur^2}} = \frac{(gH)^{3/2}r^2}{Qu^2} =\left( \frac{60}{2\pi}\right)^2\frac{(gH)^{3/2}}{Qn^2}
+\end{equation}
+
+where we used the relation $u = \frac{2\pi n}{60}r$ for the last expression. By replacing $n,Q,H$ by the desired ones, we can find a $\psi _D$ that one draws on the figure and select the pump that intersects the nearest to the maximum efficiency region (here 1).
+
+\subsection{Choice of the pump}
+Once the previous point has been done, one knows the value of $\frac{Q}{ur^2}$ and can compute $r_D$ as follows: 
+
+\begin{equation}
+\frac{Q}{ur^2} = \frac{60}{2\pi}\frac{Q}{nr^3}
+\end{equation}
+
+and replacing by the design values. It is not always possible to have exact values of radius disponible for every families and one has sometimes to make compromises and thus we have to compute the final values of: 
+
+\begin{equation}
+u_D = \frac{2\pi n_D r_D}{60} \qquad \frac{Q_D}{u_D r_D^2}\qquad P_m = \frac{\rho gQ_DH_D}{\eta _g}
+\end{equation}
+
+where $\eta _g$ is read on the curve. The rotation speed of the rotor is determined via $u_D = r\omega $.
+
+\subsection{Groups of pumps}
+\subsubsection{Problem}
+For low $Q$ and high $H$ or high $Q$ and low $H$ it is possible that the desired line with $\psi _D$ does not intersect any performance curve with an admissible efficiency. This problem can be solved using several pumps in parallel or series. 
+
+\subsubsection{Serial grouping of pumps}
+\wrapfig{10}{l}{4.5}{0.35}{ch2/26}
+Consider the figure and apply the kinetic energy equation to the 3 subdivisions then sum and group: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{v_{i1}^2-v^2}{2}  +g (z_{i1}-z) + \frac{p_{i1}-p}{\rho} + w_{fa}=0 \\
+&\frac{v_{i2}^2-v^2_{o1}}{2}  +g (z_{i2}-z_{o1}) + \frac{p_{i2}-p_{o1}}{\rho} + w_{fb}=0\\
+&\frac{{v'}^2-v^2_{o2}}{2}  +g (z'-z_{o2}) + \frac{p'-p_{o2}}{\rho} + w_{fc}=0\\
+\Rightarrow & H_1 + H_2 = H_n\qquad Q_1 = Q_2 = Q
+\end{aligned}
+\end{equation}
+
+We can see on the figure that for very demanding circuits as for $H_{n1}$, none of the single pump is sufficient so the series is mandatory. For lower demands, the use of a single pump induces lower $Q$, one has to determine if the use of the series is a good compromise for the increase in $Q$. For cases where high $Q$ and low $H$ are required, the series are limited by the maximum $Q$ of one of the pump and thus on the figure we see that pump2 single could deliver while the combination not. In conclusion, this type is reserved for high head and low $Q$. 
+
+\subsubsection{Grouping of pumps in parallel}
+\wrapfig{15}{r}{4.5}{0.35}{ch2/27}
+For this case we have: 
+
+\begin{equation}
+H = H_1 = H_2 \qquad Q_1  +Q_2 = Q
+\end{equation}
+
+and the graph is just obtained by the summation of the two in the $Q$ direction. We can observe that the combination shows its interest only after a certain flow rate since for $H_{n1}$ for example the pump1 can work alone and pumps2 is useless. In this case an anti-return valve is to be foreseen. For higher flow rates, one can observe that both pumps can deliver flow but at a lower rate. In conclusion, we see that this configuration is reserved for high flow rate applications. 
