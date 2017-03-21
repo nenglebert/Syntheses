@@ -1,0 +1,173 @@
+\chapter{Axial turbines}
+\section{Stages of axial turbines}
+\subsection{Organization of a stage - 2D flow}
+A turbine is composed of 2 main stages, the distributor with fixed vanes and the rotor (also called receptor) with rotating blades. The aim is to find the best shape for the vanes and blades in order to have the minimum flow losses. We limit ourselves to the flow through the mean cylinder (flow intersecting the blades and vanes at the mid span). \\
+
+\minifig{ch3/1}{ch3/2}{0.3}{0.3}{0.47}{0.47}
+
+\ \\
+The 3D turbine will be simplified in a 2D study by considering the distributor and the receptor as a grid of blades with constant distance called \textbf{pitch} or \textbf{spacing} and a constant span $h$ (while not in 3D) and we consider the flow identical over the span. We can end up with the first figure where we have a limited and non constant span of the blades, no presence of carter and swirling effect on the rotor not considered. 
+
+\wrapfig{10}{l}{6}{0.3}{ch3/3}
+If we look to the evolution on a T-S diagram, we know the inlet and outlet pressures, so if we define the initial state as D with $p_0,t_0,v_0$, we can first consider the isentropic expansion through the stator (E). But isentropic doesn't exist so we consider the losses to arrive at F. Then we go to G through the blades since the only kinetic energy is converted into mechanical energy and not pressure. At the outlet, some kinetic energy remains and this is a loss, so we have to deduce it and arrive at point H to compute the useful energy. By drawing two iso-enthalpic curves we can find the total enthalpy variation through the machine. 
+
+\subsection{Impulse stage with one velocity drop}
+\subsubsection{Definition of the stage}
+The principle of this type of turbine is to first extend the ONLY flow through the vanes of the stator and then to transform kinetic energy into mechanical energy through the rotor. Since no expansion is made on rotor, the rotor blades should have the same inlet and outlet sections as shown on \autoref{ch3/1}. One can observe the velocity evolution on the same figure, where only one velocity drop happens, giving the name to the turbine. 
+
+\subsubsection{Evolution of the gas/steam - Velocity triangles}
+\paragraph{Computation of the flow velocity $\bm{v_1}$ at the outlet of the stator vanes}\ \\
+The expansion in the stator is the stage D to E on \autoref{ch3/3}, since the total enthalpy is conserved: 
+
+\begin{equation}
+h_{t0} = h_{t1} \qquad \Rightarrow h_0 + \frac{v_0^2}{2} = h_1 + \frac{v_{1}^2}{2}\qquad \Rightarrow v_1 = \sqrt{v_0^2 + 2(h_0- h_1)}
+\label{3.1}
+\end{equation}
+
+In fact this is not true since losses occur in reality. Let's define the reheat coefficient:
+
+\begin{equation}
+\xi = \frac{h_1 - h_{1i}}{h_0 - h_{1i}}
+\end{equation}
+
+where $h_{1i}$ is the isentropic enthalpy that can be computed by laws and $h_1$ the real one. This is kind of efficiency factor. We have then that by making appear the equal total enthalpies (considering $v_0$ negligible):
+
+\begin{equation}
+\xi = \frac{\frac{v_{1i}^2}{2} - \frac{v_{1}^2}{2}}{\frac{v_{1i}^2}{2} - \cancel{\frac{v_{0}^2}{2}}} = 1-\left( \frac{v_1}{v_{1i}} \right)^2 = 1 - \varphi ^2 \qquad \Rightarrow \varphi = \sqrt{1 - \xi} 
+\end{equation}
+
+where we define the \textbf{speed reduction coefficient} $\bm{\varphi}$. The velocity $v_1$ can thus be expressed in term of $h_{1i}$ replacing in \eqref{3.1}:  
+
+\begin{equation}
+v_1 = \sqrt{v_0^2 + 2 (1-\xi)(h_0 - h_{1i})} \approx \varphi \sqrt{2(h_{t_0} - h_{1i})}
+\end{equation}
+
+where we considered $v_0$ negligible so that $h_0 = h_{t0}$.
+
+\paragraph{Velocity triangle in section 1}
+\wrapfig{10}{l}{4}{0.3}{ch3/4}
+In the figure, for now we only know $v_1$. But we can assume to know $u_1 = r_m \omega$ where $\omega$ is the rotation speed of the rotor and $r_m$ the mean radius at the entrance of the wheel. To be able to compute all the triangle, we still need the angles. We will consider that in fact $\alpha _1$ is an angle to fix and thus we are able to compute $w_1$ but also $\beta _1$ the important design angle for the rotor blades: 
+
+\begin{equation}
+w_1 ^2 = v_1^2+u_1^2 - 2u_1v_1\cos \alpha _1\qquad \cos \beta _1 = \frac{v_1\cos \alpha _1 - u_1}{w_1}
+\end{equation}
+
+\paragraph{Channel in the rotor blades - relative velocity $\bm{w_2}$ at the receptor exit}
+
+We know that the rotor blades should be so that the pressure at inlet and outlet sections should be the same. We can also consider that $u_1 = u_2$ since it depends on the radius and the rotation speed. This applied to the kinetic energy equation we have that: 
+
+\begin{equation}
+\frac{w_2^2 - w_1^2}{2} = -w^"_f < 0
+\end{equation}
+
+For isentropic flow, so without losses, we should have the same velocity between entrance and outlet. This is not the case in reality since we have losses and following the equation $w_2 < w_1$. Applying energy equation we see that the enthalpy increases: 
+
+\begin{equation}
+\frac{w_2^2 - w_1^2}{2} = h_1 - h_2
+\end{equation}
+
+This was only qualitative description, to compute these outlet values, we need to know the relative velocity reduction ratio $\psi = \frac{w_2}{w_1}$ that can be known experimentally (around 0.8 - 0.9 in practice) depending on the shape of the receptor blades:
+
+\begin{equation}
+w_2 = \psi w_1 \qquad h_2 = h_1 + \frac{w_1^2 - w_2 ^2}{2} = h_1 + (1- \psi ^2) \frac{w^2_1}{2}
+\end{equation}
+
+Finally, in order to compute the the inlet and outlet sections, one has to use the mass flow rate equation since the velocities $w$ are known and the density can be determined for a gas using T-S diagram point F (inlet) and G (outlet). Note that for a flow without friction, $w_2  = w_1$ and $h_2 = h_1$ so that $A_2 = A_1$ and F = G. 
+
+\paragraph{Shape of the rotor blades}
+As we have seen, in the case of no loss, $w_1 = w_2$ and the flow sections can be chosen identical. This is easily done when we give a symmetric shape to the rotor blades with the complementary solid angles $\bar{\beta}_1, \bar{\beta}_2$ (increased by 90\degres). \\
+
+But as we have seen, in reality $w_2<w_1$ and $\nu_2>\nu_1$ that forces us to increase the outlet section. This is accomplished with symmetrical blades by increasing the height $h$ of the blades between inlet and outlet. \\
+
+ In a pre-design phase, one will always chose $\bar{\beta}_1 = \beta _1$ the flow angle computed in the velocity triangle in order to avoid shock and separation. If the working conditions are changed further extra losses must be added. 
+ 
+\paragraph{Velocity triangle at the exit of the receptor}
+If we admit that we chose a symmetric blade such that $\bar{\beta}_1 = \beta _1 $ and $\bar{\beta}_2 = \pi - \bar{\beta}_1$, as long as the flow in the rotor remains sane, $w_2$ is tangent to the blade and thus $\beta _2 = \bar{\beta}_2$. Since $u_1 = u_2$ and $w_2 = \psi w_1$, the velocity triangle is computed as: 
+
+\begin{equation}
+v_2 ^2 = u_2^2+w_2^2 - 2u_2w_2\cos \beta _2 \qquad \cos \alpha _2 = \frac{u_2+ w_2\cos \beta _2}{v_2}
+\end{equation}
+
+\paragraph{Losses in the rotor channel}
+The lost energy corresponds to the area under the curve FG on the TS diagram, or given by the formula: 
+
+\begin{equation}
+w^"_f = h_2 - h_1 = \frac{w_1^2 - w_2^2}{2} =(1-\psi^2) \frac{w_1^2}{2}
+\end{equation}
+
+\paragraph{Losses at the receptor exit}
+At the exit, the fluid has still kinetic energy corresponding to $\frac{v^2_2}{2}$ which is lost. This energy corresponds to the projection area under GH. A part of this could be recuperated in a second stage. 
+
+\subsubsection{Power on the wheel shaft $\bm{(P_R)}$}
+The power on the shaft is given by the Euler-Rateau equation: 
+
+\begin{equation}
+P_R = \dot{m}_R u (v_1\cos \alpha _1 - v_2 \cos \alpha _2) = \dot{m}_R \left(\frac{v_1^2-v_2^2}{2}-\frac{w_1^2-w_2^2}{2}\right) = \dot{m}_R (\underbrace{h_{t1}}_{h_{t0}} - h_{t2})
+\end{equation}
+
+We see from this formula that the power can be computed by the total enthalpy difference. We have also: 
+
+\begin{equation}
+P_R = \dot{m}_R \left(\frac{v_1^2 -v_2^2}{2} + \int _{p_2}^{p_1} - w^"_f\right) \qquad \Rightarrow \dot{m}_R\frac{v_1^2 -v_2^2}{2} = P_R + \dot{m}_R w^"_f
+\end{equation}
+
+Where the pressure variation is null through the rotor and we see that we find the same explanations we've made. The torque applied on the blades is: 
+
+\begin{equation}
+P_R/ \omega = \dot{m}_R  (v_1\cos \alpha _1 - v_2 \cos \alpha _2) r_m
+\end{equation}
+
+This shows how the variation of $v$ in amplitude and angle gives a torque. The intersection of the iso enthalpy curve $h_{t0}$ with $p_2 = p_1$ (point K) is represented on the same figrure. The extracted energy is given by the aera under HK: 
+
+\begin{equation}
+HK = h_{t1} - h_{t2} = P_R/\dot{m_R}
+\end{equation}
+
+\subsubsection{Degree of reaction}
+By definition it is the ratio between the power of the fluid in a reactive working and the total power to the rotor: 
+
+\begin{equation}
+R= \frac{(P_R)_{react}}{P_R} = \frac{\frac{w_2^2 - w_1^2}{2}}{\frac{v_1^2 - v_2^2}{2}+ \frac{w_2^2 - w_1^2}{2}} = \frac{\int _{p_2}^{p_1}\nu\, dp -w^"_f}{\frac{v_1^2 - v_2^2}{2}+ \int _{p_2}^{p_1}\nu\, dp -w^"_f} \approx 0
+\end{equation}
+
+This is nearly 0 since the difference in $v$ is very small and the pressure constant over the blade. It would be strictly 0 if there was no friction, this is why this kind of blade is an impulse or action stage. 
+
+\subsubsection{Stage efficiency – Pre-design}
+\paragraph{Stage efficiency}
+This is by definition the ratio of the power of the stage (delivered to the rotor) and the theoretical available power that is obtained by product of $\dot{m}_R$ with the kinetic energy available after isentropic and complete expansion, and no remaining energy at the exit of the rotor. The theoretical power and the efficiency are: 
+
+\begin{equation}
+\dot{m}_R\frac{v^2_{1i}}{2} = \dot{m}_R (h_{t0} - h_{1i}) \qquad \Rightarrow \eta _E = \frac{\dot{m }_R u(v_1 \cos \alpha _1 - v_2 \cos \alpha _2)}{\dot{m}_R\frac{v^2_{1i}}{2}} =  \frac{h_{t0} - h_{t2}}{ h_{t0} - h_{1i} } =  \eta _D \eta _R
+\end{equation} 
+
+also the product of distributor and rotor efficiency since $\frac{\dot{m}_R\frac{v_1^2}{2}}{\dot{m}_R\frac{v_{1i}^2}{2}}\frac{\dot{m }_R u(v_1 \cos \alpha _1 - v_2 \cos \alpha _2)}{\dot{m}_R\frac{v_1^2}{2}}$. Previously we said $\alpha _1$ and $u$ are chosen, let's see how to choose the most efficient. If $\bar{\beta}_1$ is chosen tangent to $w_1$, there is no shock and thus the coefficient of reduction $\psi = \psi _r$ depends on the friction in the rotor. Then, if one consider a symmetric blade, these relations in the velocity triangle can be made: 
+
+\begin{equation}
+v_2 \cos \alpha _2 = u + w_2 \cos \beta _2 = u - \psi _R w_1 \cos \beta _1 = u - \psi _r (v_1 \cos \alpha _1 - u)
+\end{equation}
+
+and after replacing in the definition of $\eta _E = \eta _D \eta _R$: 
+
+\begin{equation}
+\eta _E = 2\eta _D \frac{u}{v_1} \left[ \cos \alpha _1 - \frac{u}{v_1} + \psi _r \left( \cos \alpha _1 - \frac{u}{v_1}\right)\right] = f(\eta _D , \alpha _1, \frac{u}{v_1}, \psi _r)
+\end{equation}
+
+where $\eta _D = \frac{v_1^2}{v_{1i}^2} = \varphi ^2 = 1-\xi$ as demonstrated previously. $\xi = \frac{u}{v_1}$ is the \textbf{speed coefficient} and thus: 
+
+\begin{equation}
+\eta _E = 2\eta _D \xi (1+\psi _r) \left( \cos \alpha _1 - \xi\right)
+\end{equation} 
+
+\paragraph{Optimal values of the elements in the velocity triangles}
+$\eta _D$ depends on $\alpha _1$ related to the camber of the distributor blades, on $v_1$ depending on the pressure drop $P_0/P_1$ that depends on the shape of the distributor (convergent/divergent). The velocity coefficient $\psi$ is also function of $\alpha _1$ and $v_1$ since it depends on the difference $\bar{\beta} _2 - \bar{\beta} _1$. $\psi _r$ depends also on $w_1$. Due to lack of information, we can just suppose that since these parameters are limited $\eta _D$ and $\psi$ are constant and we will try to optimize using $\xi$ and $\alpha _1$. \\
+
+The maximum stage efficiency $\eta _E$ in function of $\xi$ is obtained for null derivative (do it as exercise it's ok for me): 
+
+\begin{equation}
+\xi _{opt} = \frac{\cos \alpha _1}{2} \qquad \Rightarrow \eta _E = 2\eta _D (1+\psi _r) \xi _{opt}^2
+\end{equation} 
+
+\wrapfig{8}{l}{5}{0.3}{ch3/5}
+On basis of this, we can see that the maximum efficiency is obtained for maximum $\cos \alpha _1$ and thus minimum $\alpha _1$. But small $\alpha _1$ means smaller axial component, larger vertical component, larger flow section required and thus longer vanes/blades. Moreover, the stator vanes must have higher curvature and larger chord. This is negative effects and the angle is chosen between 15-25\degres in practice. The evolution of $\eta _E$ in function of $\xi$ is shown on the figure. The value of $\eta _D$ is around 0.9-0.96, $\psi _r$ between 0.8-0.95 for $\alpha _1 \approx 20\degres$ and the maximum stage efficiency is around 0.8.
+
+\paragraph{Selection of a speed coefficient different from the optimum}
