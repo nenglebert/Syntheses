@@ -1,0 +1,251 @@
+\chapter{Numerical methods for evolution problems}
+We are going to consider model equations for hyperbolic and parabolic equations which will be respectively: 
+
+\begin{equation}
+\frac{\D u}{\D t} + \underbrace{a}_{\mbox{or } u} \frac{\D u}{\D x} = 0 \qquad \frac{\D u }{\D t} = \alpha \frac{\D ^2u}{\D x^2}
+\end{equation}
+
+\section{Consistency - stability - convergence}
+Convergence is a concept we have introduced before, the numerical method is convergent if $\lim _{h\rightarrow 0} || u^h - u|| = 0$ where $u^h$ is the approximate numerical solution and $u$ the exact solution and $h$ is representative of the mesh size. In such method the $h$ is inversely prop to the number of degrees of freedom. For methods based on a functional representation (finite elements, spectral methods), convergence can be proven directly using functional analysis, see literature. The evolution variable is special, here time. When it is time dependent problem, we use finite differences for time integration, we don't need flexibility for time it is uniform. For Finite differences convergence cannot be proven directly, but in contrasts is proven indirectly using the concept of consistency and stability. 
+
+\subsection{Consistency}
+We say that a numerical method is consistent if $\lim _{h\rightarrow 0} ||D^h(u^h) - D(u)||$, where $D(u)$ is the differential operator applied to exact solution and the other discrete approximation of the differential operator. That's nothing else but the truncation error.  For example if the problem was: 
+
+\begin{equation}
+\frac{\D u}{\D x} = f \qquad \frac{u_{i+1}-u_{i-1}}{2h} = f_i \qquad
+ \rightarrow \frac{u_{i+1}-u_{i-1}}{2h} - \left( \frac{\D u}{\D x}\right) _i + f_i - f_i = TE = \mathcal{O}(\Delta x^2)
+\end{equation}
+
+We know that the truncation error was of the form $\mathcal{O}(h^2)$. So we need that to be consistent the polynomial is at least first order accurate $p\leq 1$. Sometimes, this implies a condition on discretization steps. Example: 
+
+\begin{equation}
+\frac{\D u}{\D t} + \frac{\D u }{\D x} = 0
+\end{equation}
+
+The Lax method gives: 
+
+\begin{equation}
+\frac{u_i^{n+1}-\frac{1}{2}(u_{i-1}^n+u_{i+1}^n)}{\Delta t} + a \frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} = 0 \qquad \Rightarrow \left\{
+\begin{array}{c}
+u_{i+1}^n = u_i ^n + \Delta x \left(\frac{\D u}{\D x} \right)^n_i + \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \frac{\Delta x^3}{6} \left.\frac{\D ^3 u}{\D x^3} \right|^n_i\\
+u_{i}^{n+1} = u_i ^n + \Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i
+\end{array}
+ \right.
+ \frac{\Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i - \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \dots}{\Delta t} + a \left( \left.\frac{\D u}{\D x}\right|^n_i + \left.\frac{\Delta x^2}{3} \frac{\D ^3 u }{\D x^3}\right|^n_i  + \dots \right) = \left(\frac{\D u }{\D t} \right)^n_i - a \left(\frac{\D u}{\D x}\right)^n_i + \frac{\Delta t }{2} \frac{\D ^2 u}{\D t^2} - \frac{\Delta x^2}{\Delta t} \frac{\D ^2 u}{\D x^2} + \frac{\Delta x^3}{3} \frac{\D ^3 u}{\D x^3}
+\end{equation}
+
+ODE: Compute the solution at time T with $\Delta t \rightarrow a$. A method is stable id $u^h, h(\Delta t)\rightarrow 0, nh \gg T$ is bounded (does not grow unboundedly). 
+
+\subsubsection{Lax's equivalence theorem}
+For a large class of well posed initial value problems, consistency and stability are necessary and sufficient condition for convergence. 
+
+\section{Spectrum of the space discretization - Fourrier analysis}
+If we start from a PDE and we discretize all the variables except the evolution variables, we get a system of ODS: 
+
+\begin{equation}
+\frac{d U}{d t} = F(U)
+\end{equation}
+
+If the PDE is linear, and if the discretization formula is linear, then this system becomes a system of ODE: 
+
+\begin{equation}
+\frac{d U}{dt} = SU + Q
+\end{equation}
+
+where $U$ is an n vector and $S$ is an $n\times n$ matrix. So far all the discretization methods we discussed, have been linear, for example: 
+
+\begin{equation}
+\frac{\D u}{\D x} \approx \frac{u_{i+1}u_{i-1}}{2\Delta x}
+\end{equation}
+
+because if we replace $u$ by a combination of u and v we will have a linear combination. It turns out that for hyperbolic problems and in particular for non-linear ones, linear discretization will produce purely oscillatory solutions, except first order. It has been discovered that it was possible to go beyond first order discretization without oscillatory solution but this is not viewed in the frame of this course. \\
+
+If we assume that the matrix $S$ has a complete set of eigenvalues and eigenvectors (real or complex) then we know that the matrix can be diagonalized such that $LS = \Lambda L$. By multiplying the equation by $L$ we have: 
+
+\begin{equation}
+L\frac{dU}{dt} - LSU = LQ \Leftrightarrow L\frac{dU}{dt} - \Lambda LU = LQ \qquad \Rightarrow \frac{dw_i}{dt} - \lambda ^{(i)}w_i = (LQ )_i 
+\end{equation}
+
+which gives a set of uncoupled equations. We call that the model equations. The set of eigenvalues is the spectrum of the space discretization of the PDE. It will depend on the PDE and the discretization. Sometimes, the search for the eigenvalues is as difficult than solving the problem, this is why we make also an approximation of the spectrum. 
+
+\subsection{Spectrum of the central space discretization of the diffusion equation}
+The equation we want to look at is the model of parabolic equations:
+\begin{equation}
+\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2}
+\end{equation}
+
+where $\alpha $ is the diffusivity coefficient [$L^2T^{-1}$]. The evolution parameter is t, imagine we want to solve it for  going from 0 to L in N intervals so that $\Delta t =L/N$. We have thus $N+1$ points. If we look to the discretization of an internal point: 
+
+\begin{equation}
+\frac{d u _i}{d t} = \alpha \frac{u_{i+1}-2u_i + u_{i-1}}{\Delta x^2}
+\end{equation}
+
+We will consider 3 problems varying from boundary conditions. We have to impose an initial condition on one boundary at left and right boundary. 
+
+\begin{itemize}
+\item[•] Dirichlet BCs: $u_0,u_N$ specified
+
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_1\\
+\vdots\\
+u_{N-1}
+\end{array} \right) = \frac{\alpha }{\Delta x^2}
+\left(
+\begin{array}{cccc}
+-2 & 1 &  \\
+1 & -2 & 1&  \\
+\vdots\\
+&  & 1 & -2
+\end{array}
+\right)\left(\begin{array}{c}
+u_1\\
+\vdots\\
+u_{N-1}
+\end{array} \right)
++
+\left(\begin{array}{c}
+\frac{\alpha u_0}{\Delta x^2}\\
+\vdots\\
+\frac{\alpha u_N}{\Delta x^2}
+\end{array} \right)
+\end{equation}
+
+The eigenvalues are: 
+
+\begin{equation}
+\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{2N} \right) \qquad j = 1\dots N-1
+\end{equation}
+
+We can solve now: 
+
+\begin{equation}
+\begin{aligned}
+&\lambda ^{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{2N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{2N} \right)^2 = - \frac{\alpha}{L^2}\pi ^2\\
+&\lambda ^{(N-1)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (N-1)}{2 N}\approx \frac{-4 \alpha}{\Delta x^2} 
+\end{aligned}
+\end{equation}
+
+\item[•] Neumann/Dirichlet: $\left.\frac{\D u}{\D x}\right|_0, u_N$ specified
+
+\begin{equation}
+\begin{aligned}
+&\frac{d u _0}{dt} = \frac{\alpha}{\Delta x^2} (u_1 -2u_0 + u_{-1}) = \frac{\alpha }{\Delta x^2}(2u_1 - 2 u_0) - \frac{2\alpha q_0}{\Delta x}\\
+&\left. \frac{\D u}{\D x}\right|_0 = \frac{u_1 - u_{-1}}{2\Delta x} = q_0 \Rightarrow u_{-1} = u_1 - 2q_0 \Delta x
+\end{aligned}
+\end{equation}
+
+So that here we have: 
+
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_0\\
+\vdots\\
+u_{N-1}
+\end{array} \right) = \frac{\alpha }{\Delta x^2}
+\left(
+\begin{array}{cccc}
+-2 & 2 &  \\
+1 & -2 & 1&  \\
+\vdots\\
+&  & 1 & -2
+\end{array}
+\right)\left(\begin{array}{c}
+u_0\\
+\vdots\\
+u_{N-1}
+\end{array} \right)
++
+\left(\begin{array}{c}
+-\frac{2\alpha q_0}{\Delta x^2}\\
+\vdots\\
+\frac{\alpha u_N}{\Delta x^2}
+\end{array} \right)
+\end{equation}
+
+The eigenvalues are: 
+
+\begin{equation}
+\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{(2j-1)\pi j}{4N} \right) \qquad j = 1 \dots N
+\end{equation}
+
+We can solve now: 
+
+\begin{equation}
+\begin{aligned}
+&\lambda ^{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{4N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{4N} \right)^2 = - \frac{\alpha}{4L^2}\pi ^2\\
+&\lambda ^{(N)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (2N-1)}{4 N}\approx \frac{-4 \alpha}{\Delta x^2} 
+\end{aligned}
+\end{equation}
+
+
+\item[•] Periodic BC: $u_0 = u_N$
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_1\\
+\vdots\\
+u_N
+\end{array} \right) = \frac{\alpha }{\Delta x^2}
+\left(
+\begin{array}{ccccc}
+-2 & 1 & & 1 \\
+1 & -2 & 1 & & \\
+\vdots\\
+1 & & & 1 & -2
+\end{array}
+\right)\left(\begin{array}{c}
+u_1\\
+\vdots\\
+u_N
+\end{array} \right)
+\end{equation}
+
+The eigenvalues are: 
+
+\begin{equation}
+\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{N} \right) \qquad j = 0 \dots N-1
+\end{equation}
+
+We can solve now: 
+
+\begin{equation}
+\begin{aligned}
+&\lambda ^{0} = 0\\
+&\lambda ^{(1)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi }{ N}=\frac{-4 \alpha}{L^2}\pi ^2\\
+&\lambda ^{\frac{N-1}{2}} \approx -\frac{4\alpha}{\Delta x^2}
+\end{aligned}
+\end{equation}
+\end{itemize}
+
+The diffusion equation becomes: 
+
+\begin{equation}
+\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2} \qquad u = \hat{u}(t)g(x) \qquad g(x) \frac{d \hat{u}}{d t} = \alpha \hat{u}(t)g^"(x)\Rightarrow \frac{d\hat{u}}{\hat{u}dt} = \alpha \frac{g^"}{g}= cst - \alpha k^2 g^" + k^2 g = 0 \qquad \Leftrightarrow \frac{d \hat{u}}{dt} + alpha k^2 \hat{u} = 0
+\end{equation}
+
+where 
+
+\begin{equation}
+g = A \cos k x / B \sin kx \qquad g(0) = g(L) = 0 \Rightarrow A = 0 \Rightarrow B\sin kL = 0 la suite j'ai pas
+\end{equation}
+
+\subsubsection{Approximation of the spectrum by Fourrier analysis}
+Remember that a running discrete equation at inner point was given by: 
+
+\begin{equation}
+\frac{d u_i}{dt}= \alpha \frac{u_{i+1} -2u_i + u_{i+1}}{\Delta x^2}
+\end{equation}
+
+The Fourrier analyis is to assume a preiodic solution in space: 
+
+\begin{equation}
+u(x, t) = \hat{u}(t) e^{ikx} \qquad u_i( t) = u(x_i,t) =  \hat{u}(t) e^{ikx_i} \qquad u_{i\pm1}( t) = u(x_{i\pm1},t) =  \hat{u}(t) e^{ikx_{i\pm1}} = \hat{u}(t) e^{ik(x_i \pm \Delta x)} = u_i e^{\pm ik\Delta x\equiv i\eta}
+\end{equation}
+
+where $\eta$ is the reduced wave number. We have thus that: 
+
+\begin{equation}
+\frac{d u_i}{dt}= \alpha \frac{e^{i\eta} -2 + u^{-i\eta}}{\Delta x^2}u_i = \frac{2\alpha}{\Delta x^2} (\underbrace{\cos \eta -1}_{1 - 2 \sin \frac{\eta}{2}}) u_i = \underbrace{-\frac{4\alpha }{\Delta x^2} \sin ^2 \frac{\eta}{2}}_{\mbox{Fourrier footprint }\lambda} u_i
+\end{equation}
+
+Since $\lambda$ is negative it is on the negative  Figure for this. 
