@@ -1,0 +1,56 @@
+
+\chapter{Symmetry, repeatability, modularity}
+\section{Notion of symmetry}
+	To have symmetry, one must have the symmetry of the \textbf{geometry, material properties} and \textbf{the boundary conditions}. The two main symmetries are \textbf{plane} and \textbf{axial} symmetry. 
+	
+	\wrapfig{9}{l}{9}{0.28}{ch12/1}
+	We have to take care when using a plane symmetry because some degrees of freedom have to be blocked as seen in the example. Anti symmetry can also be exploited. Axial symmetry is also used for example for a cooling tower, where the whole geometry can be retrieved by revolution of a 2D section (most turbomachinery have sectorial symmetry). This allows to considerably decrease the computational time because most of the times the 3D problem becomes a 2D problem. Be aware that this is only applicable when the three conditions are met! 
+	
+\section{Notion of repeatability and modularity}
+	\wrapfig{9}{l}{7}{0.2}{ch12/2}
+	Modular structures are more and more appreciated due to the lower cost. Complex structures can be decomposed into simpler parts as depicted in the picture. For sure the connection of the boundaries has to be performed to transmit the forces, for this we use \textbf{superelements}. A superelement is a grouping of finite elements that usually consists in a sub-structure within the global structure (S1 to S6 in the figure). Three main advantages: \\\\
+	
+	\begin{itemize}
+	\item[•]	facilitate the division of the task in the engineering department of a company; 
+	\item[•] advantage of symmetry, modularity and repeatability; 
+	\item[•] reduce the computational effort. \\
+	\end{itemize}
+	
+	The degrees of freedom in such elements can be divided into internal degrees of freedom which are not connected to the DOF of the other elements, and the boundary DOF which lie on the frontier between superelements. The stiffness matrix is written as: 
+	
+	\begin{equation}
+	\left[
+	\begin{array}{cc}
+	K_{bb} &K_{bi}\\
+	K_{ib} & K_{ii}
+	\end{array}
+	\right]
+		\left[
+	\begin{array}{c}
+	q_{b} \\
+	q_{i} 
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	f_{b} \\
+	f_{i} 
+	\end{array}
+	\right]
+	\end{equation}
+	
+	where the indices b and i means boundary and internal. The second equation gives: 
+	
+	\begin{equation}
+	K_{ib} q_b + K_{ii}q_i = f_i \qquad \Rightarrow q_i = K_{ii}^{-1} f_i - K_{ii}^{-1} K_{ib}q_b,
+	\end{equation}
+	
+	provided $K_{ii}$ is invertible. This injected in first equation: 
+	
+	\begin{equation}
+	K_{bb}q_b + K_{bi}K_{ii}^{-1} f_i - K_{bi}K_{ii}^{-1} K_{ib}q_b = f_b \qquad \Rightarrow \underbrace{(K_{bb} - K_{bi}K_{ii}^{-1}K_{ii})}_{\bar{K}_{bb}} q_b = \underbrace{f_b - K_{bi}K_{ii}^{-1}f_i}_{\bar{f}_b}.
+	\label{eq:2.3}
+	\end{equation}
+	
+	This procedure is called \textbf{condensation of the stiffness equations}, allowed only in the condition $K_{ii}$ not singular (if all rigid body motion are blocked). The condensed superelement can be seen as an individual elemeent described by \autoref{eq:2.3}. Then we proceed to assembly and the internal DOF can be retrieved by going back to each superelement.

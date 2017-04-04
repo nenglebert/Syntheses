@@ -1,0 +1,723 @@
+\chapter{Approximation de l'équation de diffusion}
+\section{Équation de Boltzmann monocinétique}
+\subsection{Équation de transport monocinétique}
+Reprenons notre fameuse équation
+\begin{equation}
+\begin{array}{ll}
+\DS\bar \Omega .\bar \nabla \varphi (\bar r,v,\bar \Omega ) &\DS+ {\Sigma _t}(\bar r,v)\varphi (\bar r,v,\bar \Omega ) - \int\limits_{4\pi }    \int_o^\infty     {\Sigma _s}(\bar r,v',\bar \Omega ' \to v,\bar \Omega )\varphi (\bar r,v',\bar \Omega ')dv'd\bar \Omega '\\
+&\DS = \frac{1}{{4\pi }}\chi (v)\int\limits_{4\pi }    \int_o^\infty     \nu {\Sigma _f}(\bar r,v')\varphi (\bar r,v',\bar \Omega ')dv'd\bar \Omega ' + Q(\bar r,v,\bar \Omega )
+\end{array}
+\end{equation}
+Supprimons la dépendance en vitesse dans l'équation de Boltzmann
+\begin{equation}
+\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega ) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega ) - \int\limits_{4\pi }   {\Sigma _s}(\bar r,\bar \Omega ' \to \bar \Omega )\varphi (\bar r,\bar \Omega ')d\bar \Omega '=  = \frac{{\nu {\Sigma _f}(\bar r)}}{{4\pi }}\int\limits_{4\pi }    \varphi (\bar r,\bar \Omega ')d\bar \Omega ' + Q(\bar r,\bar \Omega )
+\end{equation}
+Le terme de scattering ne fait plus que changer la direction de propagation et non plus la vitesse. Dès
+lors, la probabilité que les neutrons soit émis à vitesse unique vaut forcément l'unité. \\
+
+Introduisons le n ombre de neutrons secondaires par interaction
+\begin{equation}
+c(\bar r) = \frac{{{\Sigma _s}(\bar r) + \nu {\Sigma _f}(\bar r)}}{{{\Sigma _t}(\bar r)}}
+\end{equation}
+Nous avons déjà pris en considération que la probabilité de capture d'un neutron secondaire est 
+nulle, pour une fission également et pour le scattering, l'unité\footnote{Incohérence.}. En effet, 
+la valeur moyenne c'est 0*proba1+1*porba2+1*proba3???\\
+
+Considérons la distribution angulaire de scattering
+\begin{equation}
+\frac{1}{{2\pi }}f(\bar r,\bar \Omega .\bar \Omega ') = \frac{1}{{c(\bar r){\Sigma _t}(\bar r)}}({\Sigma _s}(\bar r,\bar \Omega ' \to \bar \Omega ) + \frac{{\nu {\Sigma _f}(\bar r)}}{{4\pi }})
+\end{equation}
+En regroupant les termes e l'équation ci-dessus ensemble, on va avoir dans une même intégrale la 
+section différentielle et la $\nu\Sigma_f/4\pi$. Si l'on fait l'intégrale de cette densité de 
+probabilité sur tous les $\bar\Omega$ on obtient bien 1.  Après ré-écriture
+\begin{equation}
+\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega ) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega ) - \frac{{c{\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }    f(\bar \Omega '.\bar \Omega )\varphi (\bar r,\bar \Omega ')d\bar \Omega ' = Q(\bar r,\bar \Omega )
+\end{equation}
+Dans le membre de gauche, on a introduit pour le scattering la section différentielle. Pour des 
+raisons de symétrie (azimutale) il n'y a pas de raison qu'un angle $\phi$ apparaisse comme 
+direction de scattering : on peut clairement mettre en évidence $1/2\pi$ en supposant que l'on 
+travaille avec les $\cos\theta$ des coordonnées classiques pour obtenir cette forme compacte.\\
+
+Les fonction de Legendre sont pratiques lorsqu'un terme dépend de $\theta$ ou $\cos\theta$
+\begin{equation}
+f(\mu ) = \sum\limits_l    \frac{{2l + 1}}{2}{f_l}{P_l}(\mu ),\qquad \mu  = \bar \Omega .\bar \Omega ',\qquad {P_l}(\mu ) = \sum\limits_{m = 0}^{l/2}    {( - 1)^m}\frac{{(2l - 2m)!}}{{{2^l}m!(l - m)!(l - 2m)!}}{\mu ^{l - 2m}},
+\end{equation}
+\begin{equation}
+\int_{ - 1}^{ + 1}    {P_m}(\mu ){P_n}(\mu )d\mu  = \frac{{2{\delta _{mn}}}}{{2n + 1}}, \qquad
+{f_l} = \int_{ - 1}^{ + 1} {  {P_l}(\mu )f(\mu )d\mu } 
+\end{equation}
+Si l'anisotropie est faible, on va se limiter au premier ordre dans la dépendance en les angles. Le 
+scattering de fission peut alors se ramener à une expression qui fait apparaitre trois fois la 
+moyenne de $\cos\theta$, on y reviendra. L'expression devient alors\footnote{Il faut savoir justifier?}
+\begin{equation}
+\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega ) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega ) - \frac{{c{\Sigma _t}(\bar r)}}{{4\pi }}\int\limits_{4\pi }    (1 + 3 < {\mu _o} > \bar \Omega '.\bar \Omega )\varphi (\bar r,\bar \Omega ')d\bar \Omega ' = Q(\bar r,\bar \Omega )
+\end{equation}
+
+
+\subsection{Forme intégrale}
+Dans le cas d'un scattering isotropique et d'une source, nous avions vu au chapitre précédent que 
+le flux s'exprimait
+\begin{equation}
+\varphi (\bar r,v) = \int_{{R^3}}^{} {\frac{{{e^{ - {\tau _v}(\bar r,{{\bar r}_o})}}}}{{4\pi {{\left| {\bar r - {{\bar r}_o}} \right|}^2}}}} S({\bar r_o},v)d{\bar r_o}
+\label{eq:Ch3.cp}
+\end{equation}
+Dans le cas monocinétique, 
+\begin{equation}
+\varphi (\bar r) = \int_{{R^3}}^{} {  \frac{{{e^{ - {\tau _v}(\bar r,{{\bar r}_o})}}}}{{4\pi {{\left| {\bar r - {{\bar r}_o}} \right|}^2}}}} (c{\Sigma _t}({\bar r_o})\varphi ({\bar r_o}) + Q({\bar r_o}))d{\bar r_o}
+\end{equation}
+où on définit le \textbf{noyau de transport}
+\begin{equation}
+K(\bar r,{\bar r_o}) = \frac{{{e^{ - {\tau _v}(\bar r,{{\bar r}_o})}}}}{{4\pi {{\left| {\bar r - {{\bar r}_o}} \right|}^2}}}
+\end{equation}
+Tout ceci signifie que pour une source ponctuelle en $\bar r_0$, le flux que l'on va avoir dans le 
+milieu est purement absorbant à cause de l'exponentielle négative dans le noyau ; pas de 
+multiplication des neutrons et $C=0$ si purement absorbant. On trouvera alors comme solution pour 
+un point source dans un milieu purement absorbant
+\begin{equation}
+Q(\bar r,\bar \Omega ) = \frac{1}{{4\pi }}\delta (\bar r - {\bar r_o})
+\end{equation}
+
+\newpage
+\subsection{Théorème de réciprocité et théorème}
+\theor{
+\begin{equation}
+\varphi (\bar r,\bar \Omega |{\bar r_o},{\bar \Omega _o}) = \varphi ({\bar r_o}, - {\bar \Omega _o}|\bar r, - \bar \Omega )
+\end{equation}
+où $\DS\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega ) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega ) - \frac{{c{\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }  f(\bar \Omega '.\bar \Omega )\varphi (\bar r,\bar \Omega ')d\bar \Omega ' = Q(\bar r,\bar \Omega )$.}\ \\
+
+Il s'agit du théorème équivalent au "renversement du temps" en mécanique rationnelle.\\
+
+\begin{proof}\ \\
+Nous aimerions prouver que le flux en un point $\bar r$ dans la direction $\bar \Omega$ à partir 
+d'une source ponctuelle en $\bar r_0$ et monodirectionnelle en $\bar r_0$ est équivalent au flux 
+en $\bar r_0$ dans la direction de propagation $-\Omega r_0$ pour une source en $\bar r$ de 
+direction $-\bar\Omega$. Pour se faire, écrivons l'équation de transport en faisant apparaître les 
+flux étant donné la source ponctuelle en une direction. La source extérieure est le membre de 
+droite (neutrons émis en $\bar r_0$ dans une direction $\bar \Omega_0$).
+\begin{equation}
+\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o}) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o}) - \frac{{c(\bar r){\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }    f(\bar \Omega '.\bar \Omega )\varphi (\bar r,\bar \Omega '|{{\bar r}_o},{{\bar \Omega }_o})d\bar \Omega ' = \delta (\bar r - {{\bar r}_o})\delta (\bar \Omega  - {{\bar \Omega }_o})
+\label{eq:Ch3.1}
+\end{equation}
+Écrivons cette même équation mais pour un flux au point $\bar r$ dans la direction $-\bar\Omega$ 
+pour une source de direction $-\bar\Omega_1$ (le fait d'avoir changé $\bar \Omega$ en $-\bar \Omega$
+ne change rien car tous les cas de figures seront pris en compte lors de l'intégration
+\begin{equation}
+ - \bar \Omega .\bar \nabla \varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1}) + {\Sigma _t}(\bar r)\varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1}) - \frac{{c(\bar r){\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }    f(\bar \Omega '.\bar \Omega )\varphi (\bar r, - \bar \Omega '|{{\bar r}_1}, - {{\bar \Omega }_1})d\bar \Omega '
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  = \delta (\bar r - {{\bar r}_1})\delta ( - \bar \Omega  + {{\bar \Omega }_1})
+\label{eq:Ch3.2}
+\end{equation}
+Multiplions \eqref{eq:Ch3.1} par le flux de la seconde ($\times \varphi (\bar r, - \bar \Omega |{\bar r_1}, - {\bar \Omega _1})$) et inversement pour \eqref{eq:Ch3.2} ($ \times \varphi (\bar r,\bar \Omega |{\bar r_o},{\bar \Omega _o})$). En effectuant la différence
+\begin{equation}
+\begin{array}{l}
+\bar \Omega .\bar \nabla (\varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o}).\varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})) - \frac{{c(\bar r){\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }    f(\bar \Omega '.\bar \Omega )[\varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})\varphi (\bar r,\bar \Omega '|{{\bar r}_o},{{\bar \Omega }_o})\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  - \varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o})\varphi (\bar r, - \bar \Omega '|{{\bar r}_1}, - {{\bar \Omega }_1})]d\bar \Omega '\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  = \varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})\delta (\bar r - {{\bar r}_o})\delta (\bar \Omega  - {{\bar \Omega }_o}) - \varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o})\delta (\bar r - {{\bar r}_1})\delta (\bar \Omega  - {{\bar \Omega }_1})
+\end{array}
+\label{eq:Ch3.3}
+\end{equation}
+Intégrons sur le volume du réacteur
+\begin{equation}
+\int_V \eqref{eq:Ch3.3}\ \text{d}\bar r
+\end{equation}
+Les $\delta_{DiDi}$ du membres de droite sautent. L'intégrale du $\bar\Omega\bar\nabla$ va redonner
+une intégrale de la divergence de $\bar\Omega\varphi_0\varphi_1$ soit une intégrale de surface du 
+produit des deux flux avec un vecteur normal orientée vers l'extérieur. Comme on intègre sur toute 
+la surface du réacteur nous aurons d'un côté $\bar\Omega$ et de l'autre $-\bar\Omega$ : il y a 
+toujours un facteur qui correspond à un flux entrant, nous permettant d'appliquer les conditions 
+aux limites du vide
+\begin{equation}
+\int_V \bar\Omega.\bar \nabla(\varphi_0,\varphi_1)d\bar r = \int_V \div \bar\Omega \varphi_0
+\varphi_1)d\bar r,\qquad \oint_S = \varphi_0\varphi_1 \bar\Omega ds
+\end{equation}
+Comme on considère ce produit pour tous les $\bar r$ de la surface, ce qui est $\bar \Omega$ sortant
+pour le premier facteur est sortant pour le second : grace à ceci, nous avons
+\begin{equation}
+\begin{array}{l}
+\bar \Omega .\bar \nabla (\varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o}).\varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})) - \frac{{c(\bar r){\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }   f(\bar \Omega '.\bar \Omega )[\varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})\varphi (\bar r,\bar \Omega '|{{\bar r}_o},{{\bar \Omega }_o})\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  - \varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o})\varphi (\bar r, - \bar \Omega '|{{\bar r}_1}, - {{\bar \Omega }_1})]d\bar \Omega '\\
+\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  = \varphi (\bar r, - \bar \Omega |{{\bar r}_1}, - {{\bar \Omega }_1})\delta (\bar r - {{\bar r}_o})\delta (\bar \Omega  - {{\bar \Omega }_o}) - \varphi (\bar r,\bar \Omega |{{\bar r}_o},{{\bar \Omega }_o})\delta (\bar r - {{\bar r}_1})\delta (\bar \Omega  - {{\bar \Omega }_1})
+\end{array}
+\label{eq:Ch3.4}
+\end{equation}
+Intégrons ceci sur toutes les directions
+\begin{equation}
+\int_{4\pi} \eqref{eq:Ch3.4}\ \text{d}\bar\Omega
+\end{equation}
+Grâce aux $\delta$, si on parvient à montrer que le membre de gauche est nul (en oubliant les indices
+1) nous aurons démontrer la proposition. Est-ce le cas ? Nous avons $f(\bar \Omega'\bar \Omega)$. Si 
+on pose $\bar \Omega=\bar \Omega'$ (simplement changement de variable) cela n'a aucune conséquence, 
+c'est totalement équivalent. Mais nous avons alors les deux mêmes termes qui se soustraient, la 
+proposition est démontrée.
+\end{proof}
+Si la source est isotrope, en intégrant le résultat précédent on en tire que le flux en un point 
+$\bar r$ pour une source $\bar r_0$ sera le même que le flux en $\bar r_0$ pour une source en 
+$\bar r$.
+\begin{equation}
+\varphi (\bar r|{\bar r_o}) = \varphi ({\bar r_o}|\bar r)
+\end{equation}
+Il s'agit d'un corollaire de notre théorème. 
+
+\subsubsection{Probabilité de collision}
+Soit un ensemble de zones homogènes $V_i$. On définit $P_{i\to j}^t$ comme la probabilité qu'un 
+neutron qui est émis de façon uniforme et isotrope dans $V_i$ va faire sa prochaine collision dans 
+$V_j$.
+\begin{equation}
+P_{i \to j}^t = \int\limits_{{V_i}}   \int\limits_{{V_j}} {  {\Sigma _{tj}}} \varphi (\bar r|{\bar r_o})\frac{1}{{{V_i}}}d\bar rd{\bar r_o}
+\end{equation}
+où $1/V_id\bar r_0$ est le nombre de neutrons émis en $d\bar r_0$ autour de $\bar r_0$ et 
+$\Sigma_{tj}\varphi(\bar r|\bar{r_0})d\bar{r}$ est le taux de réaction dans $d\bar{r}$ autour de
+$\bar r$ par neutrons émis en $\bar{r_0}$.Il s'agit donc de l'intégration d'un taux de réaction sur
+$V_j$ avec un $d\bar r$ qui correspond aux variables du volume cible, il s'agit bien d'une 
+probabilité.\\
+
+Si une source donne un neutron, ce volume intégré sur $V_j$ va donner la fraction par rapport à ce 
+neutron qui va avoir une interaction. Quel est l'intensité d'une telle source pour être uniforme ? Il 
+faut intégrer sur $V_i$ et diviser par $V_i$. La source d'intensité $1/V_i$ élément pendant une 
+introduit un temps implicite qui compense le "par unité de temps" que l'on retrouve dans le 
+$\Sigma_t\varphi$. L'intensité de la source uniforme est donc $1/V_i$ et on peut dire que 
+$\Sigma_t$ est constant sur un volume $V_j$.\\
+
+Nous avons alors
+\begin{equation}
+\frac{{{V_i}P_{i \to j}^t}}{{{\Sigma _{tj}}}} = \int\limits_{{V_i}}   \int\limits_{{V_j}}   \varphi ({\bar r_o}|\bar r)d\bar rd{\bar r_o} = \frac{{{V_j}P_{j \to i}^t}}{{{\Sigma _{ti}}}}
+\end{equation}
+où nous avons appliqué le théorème de réciprocité en permutant $i$ et $j$. En en tire que
+\begin{equation}
+{\Sigma _{ti}}{V_i}P_{i \to j}^t = {\Sigma _{tj}}{V_j}P_{j \to i}^t
+\end{equation}
+Il s'agit d'une autre forme directe du théorème de réciprocité.
+
+\subsubsection{Probabilité de fuite}
+Considérons une région $V$ homogène de surface $S$. La probabilité de fuite signifie que l'on va 
+devoir considérer un courant ($\varphi.\bar\Omega$) par neutron émis (plutôt qu'un taux de réaction)
+d'où la variation autour de la direction. Soit $P_0$ la probabilité de fuite pour un neutron apparaissant uniformément et de façon isotrope dans $V$
+\begin{equation}
+{P_o} = \int\limits_S    \int\limits_{\bar n.\bar \Omega  > 0}    \int\limits_V   \int\limits_{{{\bar \Omega }_o}}    \varphi ({\bar r_s},\bar \Omega |{\bar r_o},{\bar \Omega _o})\frac{1}{{4\pi V}}d{\bar r_o}d{\bar \Omega _o}\bar n.\bar \Omega d\bar \Omega dS
+\end{equation}
+Pour avoir le courant en tout point de la surface en direction $\bar\Omega$ étant donné une source
+en $\bar r_0$ de direction $\bar\Omega_0$ il faut intégrer le courant sur toutes les directions 
+sortantes soit sur toute la surface avec la normale sortante. Il s'agit de la partie d'intégration 
+$\bar r_s$ sur ces variables $\bar\Omega$. Comme il faut tenir compte de la position et de la 
+direction de propagation, on retrouve $1/V$.\footnote{Pq?} Le $1/4\pi$ est la pour que ce soit isotrope. L'intégration de $1/4\pi V$ donne bien 1, soit le nombre de neutrons sources. Rappelons que 
+l'intégration se fait sur la normale sortante car on s'intéresse au courant de fuite.\\
+
+On définit $\Gamma_0$ comme la probabilité d'absorption par neutron (par unité de temps). On 
+considère donc un $\Sigma_a\varphi$ (où $\Sigma_a$ est constant car la région est homogène). Nous 
+devons intégrer sur tout le volume d$\bar r$ et toutes les direction $\bar\Omega$ au sein du 
+volume pour des neutrons qui ont été émis sur la surface c'est à dire entrante, d'où la présence 
+du vecteur normal $\bar n$ de la surface extérieure et $\bar\Omega_s$ le courant.\\
+
+Il reste à trouver l'intensité de la source tel que l'on ai un et un seul neutron par unité de 
+temps (implicite) qui va donner une probabilité. Reprenons la probabilité de fuite
+\begin{equation}
+\begin{array}{ll}
+\DS {P_o} = \frac{1}{{4\pi V}}\int\limits_S    \int\limits_{\bar n.\bar \Omega  > 0}    \int\limits_V   \int\limits_{{{\bar \Omega }_o}}&  \DS  \varphi ({\bar r_o}, - {\bar \Omega _o}|{\bar r_s}, - \bar \Omega )d{\bar r_o}d{\bar \Omega _o}\bar n.\bar \Omega d\bar \Omega dS\\ & \DS = \frac{S}{{4V}}.\frac{1}{{\pi S}}\int\limits_S    \int\limits_{\bar n.\bar \Omega  < 0}    \int\limits_V    \int\limits_{{{\bar \Omega }_o}}    \varphi ({\bar r_o},{\bar \Omega _o}|{\bar r_s},\bar \Omega )d{\bar r_o}d{\bar \Omega _o}\bar n.\bar \Omega d\bar \Omega dS
+\end{array}
+\end{equation}
+Sachant que $d\bar\Omega_s = \in\theta d\theta d\varphi)$, il faut intégrer ça de $0$ à $\pi$ sur 
+$d\varphi$ et puis intégrer de 0 à $\pi/2$. L'intégration sur $d\varphi$ donne 2$\pi$. Sachant que 
+$d\cos\theta = \sin\theta d\theta$, l'intégration donne $2\pi x^2/2$ entre 0 et 1 si $x=\cos\theta$. 
+Ceci donne $\pi$. Voici comment calculer l'intégrale ci-dessus. On en tire une expression 
+entre les deux probabilités\\
+
+\cadre{\begin{equation}
+{\Gamma _o} = {\Sigma _a}\frac{{4V}}{S}{P_o}
+\end{equation}}
+
+
+\newpage
+\section{Approximation de la diffusion}
+\subsection{Équation de continuité}
+L'idée est que comme l'anisotropie est assez faible sur certains type de réacteur, il doit être 
+possible de se débarrasser de la dépendance de la direction angulaire. Pour se faire, on 
+intègre l'équation de Boltzmann sur toutes les directions
+\begin{equation}
+\div(\bar J(\bar r,v)) + {\Sigma _t}(\bar r,v)\varphi (\bar r,v) - \int_o^\infty     {\Sigma _s}(\bar r,v' \to v)\varphi (\bar r,v')dv'  = \chi (v)\int_o^\infty     \nu {\Sigma _f}(\bar r,v')\varphi (\bar r,v')dv' + Q(\bar r,v)
+\end{equation}
+\textit{Justifications} :
+\begin{itemize}
+\item[$\bullet$] $\Sigma_t\varphi$ c'est juste le flux sur $d\bar\Omega$
+\item[$\bullet$] On peut faire apparaître la divergence du courant $\bar{\Omega}\varphi$
+\item[$\bullet$] Le terme en $\Sigma_s$ ne dépend que de la déflection angulaire. Comme on intègre 
+sur toutes les $\bar\Omega$ pour un $\bar{\Omega}'$ donné ce qui donné le scattering différentiel 
+en vitesse, encore une fois parce que toutes les vitesses ont été intégrées.
+\end{itemize}\ \\
+
+L'équation obtenue ne dépend plus que de $\bar r$ et $v$\dots mais aussi de $\bar\Omega$, ce n'est 
+pas encore aussi compacté que ça : c'est plus simple, mais ce n'est pas bon pour déterminer le 
+flux uniquement avec $\bar r$ et $v$. Le souci est le terme de courant qui contient implicitement 
+du $\bar\Omega$
+\begin{equation}
+\bar J(\bar r,v) = \int\limits_{4\pi }   \bar \Omega \varphi (\bar r,v,\bar \Omega )d\bar \Omega 
+\end{equation}
+Nous allons chercher à établir une unique équation, et ce grâce à une équation constitutive.
+
+\subsection{Équation de diffusion}
+Une équation de continuité doit lier le gradient du flux intégré $\varphi(\bar r,v)$ au courant 
+$\bar J(\bar r, v)$. Dans l'idée de supprimer les deux dépendances aux variables angulaires dans 
+l'équation de transport, on va postuler une équivalence générale de la loi de Fick
+\begin{equation}
+\bar J(\bar r,v) =  - D(\bar r,v)\bar \nabla \varphi (\bar r,v)
+\end{equation}
+où $D(\vec r, v)$ est le coefficient de diffusion (unité de longueur) sur lequel nous n'avons 
+aucune information, c'est juste une hypothèse. En utilisant cette loi constitutive (sans 
+justification), on obtient
+\begin{equation}
+\begin{array}{ll}
+\DS- \bar \nabla (D(\bar r,v)\bar \nabla \varphi (\bar r,v)) &\DS+ {\Sigma _t}(\bar r,v)\varphi (\bar r,v) - \int_o^\infty    {\Sigma _s}(\bar r,v' \to v)\varphi (\bar r,v')dv'\\
+&\DS = \chi (v)\int_o^\infty    \nu {\Sigma _f}(\bar r,v')\varphi (\bar r,v')dv' + Q(\bar r,v)
+\end{array}
+\end{equation}
+Il s'agit d'une équation du second ordre qui défini le flux uniquement en fonction de $\vec r$ et $v$.
+
+
+\subsection{Conditions aux limites}
+Nous avions introduit les conditions aux limites de vide sur l'équation de transport en annonçant 
+que le flux en périphérie d'un réacteur convexe s'annule pour toutes les directions entrantes ; le 
+flux net entrant dans le réacteur est nul. Le souci est que ces CL dépendent de $\bar\Omega$ que 
+l'on vient de gommer. \\
+
+Avant d'en venir à la CL, regardons la continuité en intégrant l'équation sur un petit volume 
+autour d'une discontinuité (sans sources superficielles)
+\begin{equation}
+\int\limits_{{V_\varepsilon }}   div(\bar J(\bar r,v))dV = 0
+\end{equation}
+Sur un volume élémentaire le divergence est constante, sors de l'intégrale, on multiplie par $V_s$ 
+qui tend vers zéro, ça fait bien zéro. On en tire que la continuité de la composante normale 
+du courant ${J_n}({\bar r_s},v) \equiv \bar n.\bar J({\bar r_s},v)$ est continue. Dès lors, il faut 
+avoir la dérivée normale du flux\footnote{Le courant doit être continu la dérivée normale du flux
+peut être discontinue si l'on a pas le même coefficient de diffusion de part et d'autre}
+\begin{equation}
+{D_ + }\frac{{\partial {\varphi _ + }({{\bar r}_s},v)}}{{\partial n}} = {D_ - }\frac{{\partial {\varphi _ - }({{\bar r}_s},v)}}{{\partial n}}
+\end{equation}
+En montrant la continuité de la dérivée tangentielle du flux, on démontre la continuité du flux
+\begin{equation}
+\varphi ({\bar r_s} + \varepsilon \bar n,v) - \varphi ({\bar r_s} - \varepsilon \bar n,v) = \int_{ - \varepsilon }^{ + \varepsilon }   \frac{{\partial {\varphi _ - }({{\bar r}_s} + \xi \bar n,v)}}{{\partial n}}d\xi 0
+\end{equation}
+Le courant entrant dans le réacteur (le courant net, soit ce qui entre - ce qui sort) est nul
+\begin{equation}
+{J_ - } =  - \int\limits_{\bar n.\bar \Omega  < 0}   \bar n.\bar \Omega \varphi ({\bar r_s},v,\bar \Omega )d\bar \Omega  = 0
+\end{equation}
+Dans l'hypothèse de l'anisotropie faible, faisons un développement au premier ordre 
+\begin{equation}
+\varphi (\bar r,v,\bar \Omega ) = \frac{1}{{4\pi }}({\varphi _o}(\bar r,v) + \bar \Omega .{\bar \varphi _1}(\bar r,v))
+\end{equation}
+Le terme $1/4\pi$ est la pour prendre de l'avance, $\bar\Omega\bar\varphi_i$ est une contribution 
+non-identifiée. Nous pouvons juste dire qu'à partir du développement du flux angulaire au premier 
+ordre, nous devrions avoir une conservation du flux et du courant intégré. Tentons de justifier 
+cette expression\footnote{Il faudrait vérifier avec des  notes manuscrites.}
+\begin{equation}
+\int_{4\pi} \bar\Omega \bar\varphi(\bar r, v,\bar{\Omega})\ d\bar{\Omega} = \int_{4\pi} \varphi_0\ 
+d\bar{\Omega} + 0 = \varphi_0(\bar r, v)= \varphi'(\bar r, v)
+\end{equation}
+Le terme nul vient de l'intégration de $\cos$ sur une période. Dans le second cas, nous avons
+\begin{equation}
+\int_{4\pi} \bar\Omega \bar\varphi(\bar r, v, \Omega) = 0 + \frac{1}{4\pi}\int_{4\pi} 
+\bar \Omega (\bar\Omega\bar{\varphi_1}(\bar{r},v)\ d\bar \Omega
+\end{equation}
+Le terme nul vient de l'intégration d'une fonction impaire. En considérant un flux orienté selon
+$\vec{1_z}$
+\begin{equation}
+\int_{4\pi} \Omega_z(\Omega_x\varphi_{1x}+\Omega_x\varphi_{1y}+\Omega_x\varphi_{1z})\ d\bar{\Omega}
+\end{equation}
+Il va alors rester
+\begin{equation}
+\frac{1}{4\pi} \int_{4\pi} \Omega_z^2\varphi_{1z}\ d\bar{\Omega}
+\end{equation}
+La composante $\Omega_z^2$ fait intervenir un $\cos^2\theta$ qui va simplifier les $4\pi$ après 
+intégration. De même
+\begin{equation}
+\frac{1}{2}\int_{-\pi/2}^{\pi/2} \cos^2\theta\sin\theta d\theta = \frac{1}{2}\int_{-1}^1\frac{x^3}{3}
+\varphi_{1z}\ dx = \frac{\varphi_{1z}}{3} = J_z(\vec{r},v)
+\end{equation}
+En appliquant ce raisonnement pour les autres directions, on comprend le facteur trois devant 
+la composante $\bar{\Omega}\bar{J}$, le flux devant être le même pour les autres directions. Ceci 
+étant fait, il est possible d'exprimer les courants partiels 
+\begin{equation}
+\left\{\begin{array}{ll}
+\DS {J_ + } =  + \int\limits_{\bar n.\bar \Omega  > 0}   \bar n.\bar \Omega \varphi (\bar r,v,\bar \Omega )d\bar \Omega  = \frac{1}{4}{\varphi _o}(\bar r,v) + \frac{1}{6}{\varphi _{1n}}(\bar r,v) &=\DS
+ \frac{1}{4}\varphi (\bar r,v) - \frac{1}{2}D\bar n.\bar \nabla \varphi (\bar r,v)\vspace{2mm}\\
+\DS{J_ - } =  - \int\limits_{\bar n.\bar \Omega  < 0}   \bar n.\bar \Omega \varphi (\bar r,v,\bar \Omega )d\bar \Omega  = \frac{1}{4}{\varphi _o}(\bar r,v) - \frac{1}{6}{\varphi _{1n}}(\bar r,v) 
+&=\DS \frac{1}{4}\varphi (\bar r,v) + \frac{1}{2}D\bar n.\bar \nabla \varphi (\bar r,v)
+\end{array}\right.
+\end{equation}
+où ${\varphi _{1n}}(\bar r,v) = \bar n.{\bar \varphi _1}(\bar r,v)$. Justifions avec, pour 
+simplifier, $\bar n = \vec{1_z}$.
+\begin{equation}
+J_+ = \int_{\bar n.\bar{\Omega}>0} \Omega_z\frac{1}{4\pi}(\varphi(\bar r,v)+3\bar\Omega\bar{J}
+(\bar r,v))\ d\bar{\Omega}
+\end{equation}
+Pour la direction sortante, on peut mettre des bornes\footnote{Je vois pas trop d'où sortent les $\cos\theta$}
+\begin{equation}
+J_+ = \int_0^{2\pi} \int_0^{\pi/2} d\varphi d\cos\theta \left(\cos\theta\frac{1}{4\pi} \varphi(\bar r,v) + \cos\theta\left(\frac{3}{4\pi}\Omega_z J_z(\bar r,v)\right)\right)
+\end{equation}
+Ce qui donne (les bornes sont prise pour ne considérer que la direction sortante)
+\begin{equation}
+\frac{1}{2}\int_0^1 \varphi(\bar r,v) \dfrac{x^2}{2}dx  + \frac{3}{2}J_z(\bar r,v)\left[
+\frac{x^3}{3}\right]_0^1
+\end{equation}
+Avec Fick, on montre alors que le courant partiel entrant est donné par $1/4\dots$\footnote{Je ne 
+vois pas du tout l'intérêt de la dernière ligne}.\\
+
+Le courant partiel entrant s'annule à la frontière (${J_ - }({\bar r_s},v) = 0$) si 
+\begin{equation}
+ - \frac{{{\varphi _n}'({{\bar r}_s},v)}}{{\varphi ({{\bar r}_s},v)}} = \frac{1}{{2D({{\bar r}_s},v)}}
+\end{equation}
+En diffusion, le courant est donné par la loi de Fick. Mathématiquement, on exprime la nullité du flux
+en $d_e = 2D(\bar r_s, v)$ qui est la \textbf{frontière extrapolée} (approximation linéaire du flux 
+en dehors du réacteur et donc de la dérivée).
+
+
+\subsection{Conditions de validités}
+Nous utilisons pour l'instant un coefficient $D$ sans vraiment savoir de quoi il s'agit. La seul 
+hypothèse implicite est que ce coefficient est la à cause de la diffusion d'un milieu matériel. Si 
+le libre parcours moyen est petit par rapport à la dimension du milieu considéré, cette diffusion 
+va être globalement de l'ordre de ce libre parcours moyen.  Par contre, proche des frontières, 
+l'approximation sera moins bonne.
+
+
+
+\subsection{Approximation $P_1$ à une vitesse de diffusion}
+En considérant une anisotropie au premier ordre mono-cinétique
+\begin{equation}
+\varphi (\bar r,\bar \Omega ) = \frac{1}{{4\pi }}(\varphi (\bar r) + 3\bar \Omega .\bar J(\bar r))
+\label{eq:Ch3.4}
+\end{equation}
+L'équation de transport à une vitesse s'écrit 
+\begin{equation}
+\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega ) + {\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega ) - \frac{{c{\Sigma _t}(\bar r)}}{{2\pi }}\int\limits_{4\pi }   f(\bar \Omega '.\bar \Omega )\varphi (\bar r,\bar \Omega ')d\bar \Omega ' = Q(\bar r,\bar \Omega )
+\label{eq:Ch3.5}
+\end{equation}
+où $f$ est la probabilité de déflection angulaire lors de la diffusion. En substituant 
+\eqref{eq:Ch3.5} dans \eqref{eq:Ch3.4} et prenons-en le moment d'ordre 0\footnote{Pour 
+rappel, le moment à l'ordre $r$ : $m_r(f) = \int x^r f(x)dx$.}\ \\
+
+\cadre{
+\begin{equation}
+div{\kern 1pt} \bar J(\bar r) + (1 - c){\Sigma _t}(\bar r)\varphi (\bar r) = Q(\bar r)
+\end{equation}}\ \\
+
+L'intégration fait apparaître la divergence de $\bar J$, $\Sigma_t\varphi$ va donner le 
+flux intégrer et pour le terme en courant, un $\bar{\Omega}$ intégré sur tous les 
+$\bar\Omega$ s'annule. Pour le terme de fission de scattering ($\int_{4\pi}$), l'intégration 
+sur tous les $\bar\Omega$ fait disparaître le $2\pi$ et le $\cos\theta$ donne 1. \\
+
+Un peu plus de sport, le moment du premier ordre. Il faut multiplier l'équation de transport 
+par $\bar\Omega$ et intégrer sur tous les $\bar\Omega$. Quelques préliminaires 
+\begin{enumerate}
+\item Résulte d'une intégration d'un sin ou cos, qui donne zéro.
+\begin{equation}
+\int\limits_{4\pi }   {\Omega _i}d\bar \Omega  = 0\quad ,\;i = x,y,z
+\end{equation}
+\item "Non vu, refaire calmement l'intégrale"
+\begin{equation}
+\int\limits_{4\pi }    {\Omega _i}{\Omega _j}d\bar \Omega  = \frac{{4\pi }}{3}{\delta _{ij}}\quad ,\;i,j = x,y,z
+\end{equation}
+\item\begin{equation}
+\int\limits_{4\pi }    {\Omega _i}{\Omega _j}{\Omega _k}d\bar \Omega  = 0\quad ,\;i,j,k = x,y,z
+\end{equation}
+\end{enumerate}
+En conséquence, il en vient que 
+\begin{itemize}
+\item[$\triangleright$]
+\begin{equation}
+\int\limits_{4\pi }   {\Omega _x}\bar \Omega .\bar \nabla \varphi (\bar r,\bar \Omega )d\bar \Omega\overset{P_1}{\longrightarrow} \frac{1}{3}\frac{{\partial \varphi (\bar r)}}{{\partial x}}
+\end{equation}
+\begin{proof}
+\begin{equation}
+\int_{4\pi} \bar{\Omega}(\bar{\Omega}\bar\nabla\varphi(\bar r,\bar\Omega))\ d\Omega
+\end{equation}
+En regardant uniquement pour $z$
+\begin{equation}
+\int_{4\pi} \Omega_z(\Omega_x\partial_x\varphi +\Omega_y\partial_y\varphi+\Omega_z\partial_z\varphi)\ d\bar\Omega =\int_{4^pi} \Omega_z^2 \partial_z\varphi d\bar{\Omega}
+\end{equation}
+En sortant $\partial_z\varphi$ qui ne dépend pas de $\bar\Omega$ on obtient $\dfrac{\partial_z\phi}{3}$.
+\end{proof}
+
+\item[$\triangleright$]
+\begin{equation}
+\int\limits_{4\pi }    {\Omega _x}{\Sigma _t}(\bar r)\varphi (\bar r,\bar \Omega )d\bar \Omega\overset{P_1}{\longrightarrow} {\Sigma _t}(\bar r){J_x}(\bar r)
+\end{equation}
+\item[$\triangleright$]
+\begin{equation}
+\int\limits_{4\pi }    \int\limits_{4\pi }    {\Omega _x}f(\bar \Omega .\bar \Omega ').\varphi (\bar r,\bar \Omega ')d\bar \Omega d\bar \Omega ' \overset{P_1}{\longrightarrow} ??
+\end{equation}
+\end{itemize}
+Nous avions en effet vu que l'on pouvait utiliser les polynômes de Legendre pour exprimer
+\begin{equation}
+f(\mu ) = \sum\limits_l   \frac{{2l + 1}}{2}{f_l}{P_l}(\mu )\quad \quad ,\quad \mu  = \bar \Omega .\bar \Omega '
+\end{equation}
+On va utiliser le \textit{théorème d'addition des polynômes de Legendre} : 
+\begin{equation}
+{P_l}(\bar \Omega .\bar \Omega ') = {P_l}(\bar \Omega .\bar n).{P_l}(\bar \Omega '.\bar n) + \sum\limits_{\begin{array}{*{20}{c}}
+{m =  - l}\\
+{m \ne 0}
+\end{array}}^{ + l}    {e^{im\phi }}...
+\end{equation}
+Le problème est le terme de sommation supplémentaire qui n'est pas très joli mais non gênant : il 
+donnera un cos/sin qui, intégré sur la sphère unité, vaudra zéro. Pour des raisons d'orthogonalité, 
+seul $m=1$ devra être considéré dans la développement en série de $f(\mu)$
+\begin{equation}
+\int\limits_{4\pi }   \int\limits_{4\pi }   {\Omega _x}{P_l}(\bar \Omega .\bar \Omega ').\varphi (\bar r,\bar \Omega ')d\bar \Omega d\bar \Omega ' = \int\limits_{4\pi }   2\pi \frac{2}{3}\Omega {'_x}{\delta _{1l}}\varphi (\bar r,\bar \Omega ')d\bar \Omega ' = \frac{{4\pi }}{3}{\delta _{1l}}{J_x}(\bar r)
+\end{equation}
+Le moment du premier ordre vaut donc\\
+
+\cadre{
+\begin{equation}
+\frac{1}{3}\frac{{\partial \varphi (\bar r)}}{{\partial x}} + {\Sigma _t}(\bar r)(1 - c{f_1}(\bar r)){J_x}(\bar r) = \int\limits_{4\pi }    {\Omega _x}Q(\bar r,\bar \Omega )d\bar \Omega 
+\end{equation}}\ \\
+
+Soit (1-nombre de neutron)\dots = élément de source extérieure. Le résultat se généralise facilement
+à trois dimensions
+\begin{equation}
+\frac{1}{3}\bar \nabla \varphi (\bar r) + ({\Sigma _t}(\bar r) - {\Sigma _{s1}}(\bar r))\bar J(\bar r) = {\bar Q_1}(\bar r)
+\end{equation}
+où $\DS {Q_{1i}}(\bar r) = \int\limits_{4\pi }    {\Omega _i}Q(\bar r,\bar \Omega )d\bar \Omega \quad ,\;i = x,y,z$ et $\DS {\Sigma _{s1}}(\bar r) = c(\bar r){\Sigma _t}(\bar r){f_1}(\bar r) = c(\bar r){\Sigma _t}(\bar r) < {\mu _o} > $.\\
+
+En considérant un matériau homogène et des sources isotopiques, on obtient une loi constitutive 
+qui donne la loi de diffusion
+\begin{equation}
+\bar J(\bar r) =  - \frac{1}{{3({\Sigma _t} - {\Sigma _{s1}})}}\bar \nabla \varphi (\bar r)
+\end{equation}
+Ce qui n'est rien d'autre que la loi de Fick où $D = \frac{1}{{3({\Sigma _t} - {\Sigma _{s1}})}}$.\\
+
+En considérant le moment du premier ordre du transport mono-énergétique développé au premier ordre, 
+nous avons établi une première manière, dans ce contacte, de pouvoir relier le coefficient de 
+diffusion à un $\Sigma_t$, une caractéristique neutronique ! En définissant la section efficace 
+de transport ${\Sigma _{tr}} = {\Sigma _t} -  < {\mu _o} > {\Sigma _s}$, on peut approximer le 
+coefficient de diffusion (\textbf{sans} fissions)
+\begin{equation}
+D = \frac{1}{{3{\Sigma _{tr}}}}
+\end{equation}
+
+
+\subsection{Solution de l'équation de diffusion monocinétique (sans fission)}
+\subsubsection{Milieu infini}
+Soit la diffusion à vitesse constante dans un milieu infini homogène ($D$ constant) avec un point
+source en $O$
+\begin{equation}
+ - \bar \nabla (D(\bar r)\bar \nabla \varphi (\bar r)) + {\Sigma _t}(\bar r)\varphi (\bar r) - {\Sigma _s}(\bar r)\varphi (\bar r) = Q(\bar r)
+\end{equation}
+La source étant ponctuelle et les fissions nulles
+\begin{equation}
+ - D\Delta \varphi (\bar r) + {\Sigma _a}\varphi (\bar r) = Q\delta (\bar r)
+\end{equation}
+Posons ${\Sigma _a}/D = {\kappa ^2}$ de sorte à ré-écrire l'équation
+\begin{equation}
+ - \Delta \varphi (\bar r) + {\kappa ^2}\varphi (\bar r) = \frac{Q}{D}\delta (\bar r)
+\end{equation}
+A l'aide de la transformée de Fourier\footnote{Dans quel but ?}
+\begin{equation}
+\hat \varphi (\bar k) = {\left( {\frac{1}{{2\pi }}} \right)^{3/2}}\int   {e^{ - i\bar k.\bar r}}\varphi (\bar r)d\bar r\qquad\Rightarrow\qquad \hat \varphi (\bar k) = {\left( {\frac{1}{{2\pi }}} \right)^{3/2}}\frac{Q}{{D({\kappa ^2} + {k^2})}}
+\end{equation}
+On retrouve\footnote{Comment?} la fonction de Green
+\begin{equation}
+{\varphi _G}(\bar r) = \frac{{{e^{ - \kappa r}}}}{{4\pi Dr}}
+\end{equation}
+Pour une source générale
+\begin{equation}
+\varphi (\bar r) = \int\limits_{{R^3}}    \frac{{{e^{ - \kappa |\bar r - {{\bar r}_s}|}}}}{{4\pi D|\bar r - {{\bar r}_s}|}}Q({\bar r_s})d{\bar r_s}
+\end{equation}
+Nous obtenons une exponentielle décroissante mais nous avions obtenu en étudiant l'épaisseur optique
+un facteur $1/r^2$ ce qui n'est plus le cas ici : l'approximation de diffusion change quelque peu 
+la nature de la diffusion elle-même. Le slide 17 reprend quelques exemples de calcul, voir TP.
+
+\subsubsection{Milieu fini}
+Nous allons utiliser la méthodes des sources virtuelles : on va remplacer le problème possédant une 
+source réelle et une limite physique par un problème qui a des sources réelles, des sources 
+virtuelles à la périphérie le tout dans un milieu infini. Sur les bords, les sources virtuelles 
+étant négatives cela crée de l'absorbance et donc une équivalence des situations. Ceci permet de 
+satisfaire les CL.  Prenons l'exemple d'une source plane centrée (frontière extrapolée d'épaisseur 
+$2a$)
+\begin{equation}
+Q(\bar r) = {Q_o}\delta (x)
+\end{equation}
+La CL de la frontière extrapolée s'exprime $\varphi ( \pm a) = 0$ et celle-ci est satisfaite par 
+l'ajout de source virtuelles
+\begin{equation}
+{Q_v}(\bar r) = A\delta (x - a) + A\delta (x + a)
+\end{equation}
+Le flux total est donc induit par trois sources : la "vraie" et nos virtulles
+\begin{equation}
+\varphi (x) = \frac{1}{{2\kappa D}}({Q_o}{e^{ - \kappa |x|}} + A{e^{ - \kappa (x + a)}} + A{e^{ - \kappa (a - x)}})\quad ,\quad x \in [ - a, + a]
+\end{equation}
+En appliquant les CL on trouve
+\begin{equation}
+\varphi (x) = {Q_o}\frac{{\sinh \kappa (a - |x|)}}{{2\kappa D\cosh \kappa a}}\quad  < {\varphi _\infty }(x)\;,\quad x \in [ - a, + a]
+\end{equation}
+Le slide 19 donne l'exemple d'une source uniforme.
+
+
+
+
+\subsubsection{Longueur de diffusion}
+Pour une source plane, nous avions une idée du temps de relaxation qui est la longueur sur laquelle 
+la réaction va se produire. Nous avons vu que celui-ci devait se rapprocher du libre parcours moyen. 
+En définissant la \textbf{longueur de diffusion}
+\begin{equation}
+L = \dfrac{1}{\kappa}
+\end{equation}
+où $\DS {L^2} = \frac{D}{{{\Sigma _a}}} =  = \frac{1}{{3{\Sigma _{tr}}{\Sigma _a}}} = \frac{{ < {\lambda _{tr}} >  < {\lambda _a} > }}{3}$ nous voyons que $L$ fait bien intervenir $D$ mais aussi
+des caractéristiques neutroniques.  Pour une source plane, on trouverait
+\begin{equation}
+\varphi (x) = \frac{L}{{2D}}{e^{ - \frac{{|x|}}{L}}}
+\end{equation}
+où $L$ est la longueur de relaxation. \\
+
+Regardons la distance quadratique moyenne à la source ponctuelle. Pour se faire, considérons cette 
+distance $r^2$, pondérons-la par la source et intégrons sur une calotte sphérique pour enfin 
+normaliser. En faisant apparaître la fonction gamma, on trouve
+\begin{equation}
+\DS < {r^2} > \, = \dfrac{{\int_o^\infty     {r^2}\varphi (r)4\pi {r^2}dr}}{{\int_o^\infty     \varphi (r)4\pi {r^2}dr}} = \dfrac{{\int_o^\infty     {r^3}{e^{ - \kappa r}}dr}}{{\int_o^\infty    r{e^{ - \kappa r}}dr}} = 6{L^2}
+\end{equation}
+Il s'agit de la distance sur laquelle le flanc s'étale en présence d'une source ponctuelle.
+
+
+\section{Approximation multi-groupe}
+\subsection{Groupe d'énergie}
+Faire l'approximation mono-cinétique n'est pas réaliste ($E \in [10^{-2}, 10^6]$ eV). Pour tout de 
+même garder notre approximation précédente, nous allons discrétiser l'énergie en $G$ groupes
+\begin{equation}
+E_G < \dots < E_g < \dots < E_0
+\end{equation}
+avec $E_0$ qui correspond aux neutrons rapide et $E_G$ aux thermiques. On va ainsi travailler avec un 
+ensemble moyenné sur toute ces intervalles d'énergie mais ce qu'il faut retenir c'est que la 
+dépendance en énergie est supprimée mais nous avons autant d'équations qu'il y a de groupes
+\begin{equation}
+{\varphi _g}(\bar r) = \int_{{E_g}}^{{E_{g - 1}}}    \varphi (\bar r,E)dE = \int\limits_g    \varphi (\bar r,E)dE\quad ,\;g = 1,\dots, G
+\end{equation}
+On essaye de conserver le taux de réaction. Lorsqu'on intègre $\Sigma_t\varphi(\bar r,E)$ sur 
+un groupe on peut dire que c'est $\Sigma_{tg}\varphi_g$ où $\Sigma_{tg}$ défini la\textit{ section  efficace totale} dans le groupe $g$. Ainsi, le taux de réaction dans $g$ va définir la section totale $\Sigma_{tg}$
+\begin{equation}
+{\Sigma _{tg}}(\bar r) = \frac{1}{{{\varphi _g}(\bar r)}}\int\limits_g    {\Sigma _t}(\bar r,E)\varphi (\bar r,E)dE
+\end{equation}
+Il s'agit très clairement de l'expression d'une moyenne.\\
+
+De façon similaire, nous allons avoir un \textit{coefficient de diffusion }moyen pour chaque groupe $g$ qui dépendra de chacune des directions $x$ que l'on peut avoir
+\begin{equation}
+{D_{gx}}(\bar r) = \frac{1}{{{\textstyle{{\partial {\varphi _g}(\bar r)} \over {\partial x}}}}}\int\limits_g   D(\bar r,E)\frac{{\partial \varphi (\bar r,E)}}{{\partial x}}dE
+\end{equation}
+Il est possible de perdre l'isotropie ! Dans un cas isotropique : $\DS{\bar J_g}(\bar r) =  - {D_g}(\bar r)\bar \nabla {\varphi _g}(\bar r)$.\\
+
+Il est possible de définir la \textit{section efficace de transfert} par scattering entre deux groupes 
+(simple généralisation du scattering où les énergies de départ et d'arrivées sont dans un 
+continuum) soit le passage d'un groupe $g'$ à un groupe $g$ :
+\begin{equation}
+{\Sigma _{sg'g}}(\bar r) = \frac{1}{{{\varphi _{g'}}(\bar r)}}\int\limits_g    \int\limits_{g'}    {\Sigma _s}(\bar r,E' \to E)\varphi (\bar r,E')dE'dE
+\end{equation}
+La \textit{fission} dans le groupe $g$ s'exprime
+\begin{equation}
+\nu {\Sigma _{fg}}(\bar r) = \frac{1}{{{\varphi _g}(\bar r)}}\int\limits_g   \nu {\Sigma _f}(\bar r,E)\varphi (\bar r,E)dE
+\end{equation}
+En généralisant le spectre mawellien à un groupe ${\chi _g} = \int\limits_g    \chi (E)dE$ ainsi 
+que la \textit{source externe} ${Q_g}(\bar r) = \int\limits_g    Q(\bar r,E)dE$ on obtient en 
+mettant tout ensemble les \textbf{équations de diffusion multi-groupes} :\\
+
+\cadre{\begin{equation}
+\begin{array}{ll}
+\DS - \bar \nabla ({D_g}(\bar r)\bar \nabla {\varphi _g}(\bar r)) &\DS+ {\Sigma _{tg}}(\bar r){\varphi _g}(\bar r) - \sum\limits_{g' = 1}^G    {\Sigma _{sg'g}}(\bar r){\varphi _{g'}}(\bar r)\\
+&\DS= {\chi _g}\sum\limits_{g' = 1}^G    \nu {\Sigma _{fg'}}(\bar r){\varphi _{g'}}(\bar r) + {Q_g}(\bar r)\quad ,\,g = 1,\dots,G
+\end{array}
+\end{equation}}\ \\
+
+Nous avons ici un système de $G$ équations couplées, en grande partie à cause du scattering, sur les
+$G$ groupes mais nous n'avons pas fait d'approximations supplémentaires. De cette sommation, on 
+peut extraire le cas où $g=g'$ et interpréter ce terme comme une "extraction" de $g$ par tout type 
+d'interaction. En l'isolant, on peut définir une \textit{section de removal} qui est la probabilité par unité de longueur qu'un neutron soit supprimé du groupe $g$
+\begin{equation}
+{\Sigma _{rg}}(\bar r) = {\Sigma _{tg}}(\bar r) - {\Sigma _{sgg}}(\bar r) = {\Sigma _{ag}}(\bar r) + \sum\limits_{g' \ne g}^{}    {\Sigma _{sgg'}}(\bar r)
+\end{equation}
+Encore une fois, aucune hypothèse supplémentaire n'a été faite.
+
+
+
+
+
+
+
+\newpage
+\section{Méthode de probabilité de première collision}
+Le slide 24 (re)donne la (lourde) forme intégrale de l'équation de transport ainsi que le cas 
+isotropique avec l'énergie en tant que variable. On va définir la \textit{distance optique} dans le
+groupe $g$ comme le scattering au sein même de ce groupe
+\begin{equation}
+{\tau _{vg}}(\bar r,{\bar r_o}) \equiv \int_o^s    {\Sigma _{tg}}({\bar r_o} + s'\bar \Omega )ds'
+\end{equation}
+On peut alors établir l'équation suivante, qui possède une forme analogue à \eqref{eq:Ch3.cp}, 
+établie pour le transport monoénergétique. Il s'agit des \textit{équations de transport 
+multi-groupes} dans le cas isotropique
+\begin{equation}
+{\varphi _g}(\bar r) = \int_{{R^3}}^{} {  \frac{{{e^{ - {\tau _{vg}}(\bar r,{{\bar r}_o})}}}}{{4\pi {{\left| {\bar r - {{\bar r}_o}} \right|}^2}}}} ({\Sigma _{sgg}}({\bar r_o}){\varphi _g}({\bar r_o}) + {S_g}({\bar r_o}))d{\bar r_o}\quad ,\;g = 1,\dots,G
+\end{equation}
+Il s'agit d'un noyau de transport que multiplie un source extérieure $Q$ et un autre terme de 
+scattering. Pour le cas multigroupe, il faut remplacer (par rapport à \eqref{eq:Ch3.cp}) $\Sigma_t$
+par $\Sigma_{sgg}$ (scattering au sein d'un même groupe d'énergie) ainsi qu'une source extérieure qui
+comprend toutes les contributions liées à $g$
+\begin{equation}
+{S_g}(\bar r) = \nu {\chi _g}\sum\limits_{g'}^{}    {\Sigma _{fg'}}(\bar r){\varphi _{g'}}(\bar r) + {Q_g}(\bar r) + \sum\limits_{g' = 1}^{g - 1}   {\Sigma _{sg'g}}(\bar r){\varphi _{g'}}(\bar r)
+\end{equation}
+Ce terme prend donc en compte les contributions extérieures : fission qui se passent un peu partout 
+(le dernier terme est le scattering des autres groupes pour le ralentissement des neutrons). Les 
+équations ont la même forme que le cas monoénergétique. Par similitude, les théorème de réciprocité 
+reste valable, son corollaire également, \dots
+
+
+\section{Implémentation de la méthode de probabilité de première collision}
+La méthode de probabilité de première collision revient à partir d'une équation de Boltzmann 
+mono-énergétique pour chaque groupe
+\begin{equation}
+\varphi (\bar r) = \int_{{R^3}}^{} {  K(\bar r,{{\bar r}_o})} ({\Sigma _s}({\bar r_o})\varphi ({\bar r_o}) + S({\bar r_o}))d{\bar r_o}  \equiv \int_{{R^3}}^{} {  K(\bar r,{{\bar r}_o})} {Q_t}({\bar r_o})d{\bar r_o}
+\end{equation}
+où $S$ contient les différentes sources et 
+\begin{equation}
+K(\bar r,{\bar r_o}) = \frac{{{e^{ - {\tau _v}(\bar r,{{\bar r}_o})}}}}{{4\pi {{\left| {\bar r - {{\bar r}_o}} \right|}^2}}}
+\end{equation}
+Nous allons partitionner le réacteur en petits volumes $V_i$ homogènes où le flux est constant (
+hypothèse du flux plat). Multiplions l'équation de Boltzmann par $\Sigma_t$ et intégrons sur ces 
+volumes
+\begin{equation}
+\int\limits_{{V_i}}    {\Sigma _t}(\bar r)\varphi (\bar r)d\bar r = \sum\limits_j    \int\limits_{{V_j}}    {Q_t}({\bar r_o})d{\bar r_o}\int\limits_{{V_i}}   {\Sigma _t}(\bar r)K(\bar r,{\bar r_o})d\bar r
+\end{equation}
+Étant donné l'homogénéité des volumes et en notant $\varphi_i$ le flux moyen sur un volume $V_i$
+\begin{equation}
+\DS{V_i}{\Sigma _{ti}}{\varphi _i} = \sum\limits_j    \bar P_{j \to i}^{1t}{V_j}{Q_{tj}}\quad\text{ avec }\quad \left\{\begin{array}{ll}
+\DS\varphi _i^{} &\DS= \frac{1}{{{V_i}}}\int\limits_{{V_i}}    \varphi (\bar r)d\bar r\;,
+Q_{ti}^{} = \frac{1}{{{V_i}}}\int\limits_{{V_i}}    {Q_t}(\bar r)d\bar r\vspace{2mm}\\
+\DS\bar P_{j \to i}^{1t} &\DS= \frac{{\int\limits_{{V_j}}    d{{\bar r}_o}{Q_t}({{\bar r}_o})\int\limits_{{V_i}}    {\Sigma _t}(\bar r)K(\bar r,{{\bar r}_o})d\bar r}}{{\int\limits_{{V_j}}    {Q_t}({{\bar r}_o})d{{\bar r}_o}}}
+\end{array}\right.
+\label{eq:Ch3.6}
+\end{equation}
+Nous avons quelque chose qui ressemble fortement ($P_j$) à ce que nous avions introduit avec le 
+théorème de réciprocité. On retrouve le noyau de transport $K$ donnant le flux à la première collision 
+que l'on multiplie par $\Sigma_t$ pour avoir le taux de réaction. Celui-ci concerne des neutrons qui
+proviennent de $\bar r_0$ dans le volume $V_j$ et qui vont subir une première collision dans le 
+volume $V_i$ le tout pondéré par l'intensité de la source dans le volume $V_j$ et normalisé. Ceci 
+est quasiment ce que nous avions obtenu mais avec une barre pour indiquer la valeur moyenne de la 
+source.\\
+
+Si la source est uniforme, il n'y a plus de dépendance en $\bar r_0$ et on se retrouve avec du 
+1/(volume de départ). L'intérêt est que le système d'équations algébrique \eqref{eq:Ch3.6} devient 
+assez simple lorsqu'on l'explicite dans un petit volume $j$, grâce à l'hypothèse d'uniformité.
+\begin{equation}
+{V_i}{\Sigma _{ti}}{\varphi _i} = \sum\limits_j    P_{j \to i}^{1t}{V_j}({\Sigma _{sj}}{\varphi _j} + {S_j})
+\end{equation}
+Il ne reste qu'à définir les probabilités $P$ de première collision entre deux volumes donnés mais 
+ceci dépendant de la géométrie, il n'est pas possible de l'écrire de façon générale.\\
+
+Lors de la résolution, si le volume est infini on peut en tirer quelques simplifications grâce à la
+conservation des probabilités : si infini, la probabilité qu'un neutron dans un volume ai une 
+interaction avec n'importe quel autre volume est 1
+\begin{equation}
+\sum\limits_j    P_{i \to j}^{1t} = 1
+\end{equation}
+Dans le vide, il faut compléter par la probabilité de fuite
+\begin{equation}
+\sum\limits_j    P_{i \to j}^{1t} + {P_{io}} = 1
+\end{equation}
+où $P_{io}$ est la probabilité de fuite dans un réacteur sans collision pour un neutron apparaissant 
+dans $V_i$. Pour un réacteur fini
+\begin{equation}
+\sum\limits_j   P_{i \to j}^{1t} + {P_{iS}} = 1
+\end{equation}
+où $P_{iS}$ est la probabilité de fuite à travers une surface $S$ du réacteur, sans collision, pour 
+un neutron apparaissant dans $V_i$. Le slide 30 applique le théorème de réciprocité et le slide 31 est cadeau ! 

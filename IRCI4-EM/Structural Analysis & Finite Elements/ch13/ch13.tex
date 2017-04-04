@@ -1,0 +1,109 @@
+
+\chapter{Verification \& Validation}
+	Keep in mind that each level of modeling introduces its own error in the process. But how can we be sure of the relevance of the finite element model. 
+	
+	\begin{itemize}
+	\item[•] the verification process consists in determining the reliability of the computational model wrt the real world problem. Here we will focus on comparing the theoretical values and not the real world;
+	
+	\item[•] validation is the assessment of the accuracy of the numerical results with respect to experimental data. This involves \textbf{calculation verification} comparing the discrete solution with the exact one of the mathematical problem, and \textbf{code verification} that consists in checking the difference between the mathematical solution and its algorithm implementation. 
+	\end{itemize}
+	
+\section{Criteria for convergence}	
+	There are 3 criteria to ensure convergence when the mesh size tends to 0: 
+	
+	\begin{itemize}
+	\item[•] \textbf{Criterion 1}: the displacement function has to be such that it does not permit the deformation of an element when rigid body motion. The violation  of this criterion induces no ability to get exact displacements when size tending to 0.\\
+	\item[•] \textbf{Criterion 2}: the displacement function has to be such that if the nodes are compatible with constant strain condition, such constant strains will be obtained. When the element get smaller, there is constant strain within and has to be able to represent it. \\
+
+	\item[•] the displacement functions have to be such that the strains at the interface of elements are finite. \\
+	\end{itemize}
+	
+	\wrapfig{9}{l}{3}{0.25}{ch13/1}
+	Let's look to the third condition. As the stresses and strains only involves first order derivatives, the displacement function can be approximated by a linear approximation. In the figure is investigated the continuity between two elements. When discontinuity in $u$, the first-order derivative is finite but the second one not. Criterion 3 can be restated as when applying the energy equations to the whole structure, discontinuity in the displacements between two element cannot occur. When violation an artificial contribution stating the work of strain and stresses has to be added between elements. Element violating one of the criterion is called \textbf{non-conforming element}.
+	
+\section{The patch test for solid elements}
+	The above criteria can be checked by means of a patch test. A patch is the set of all the elements attached to a given node. The idea is that a good element has to solve simple problems exactly: 
+	
+	\begin{itemize}
+	\item[•] \textbf{Displacement Patch Test (DPT)}: the patch has to reproduce exactly rigid body modes and constant strain states when the corresponding boundary displacements are applied to the patch. \\
+	\item[•] \textbf{Force Patch Test (FPT)}: the patch must reproduce exactly constant stresses when the corresponding boundary forces are applied. \\
+	\end{itemize}	 
+	
+	\wrapfig{10}{l}{5}{0.25}{ch13/2}
+	Consider the DPT, the idea is that for infinitely small mesh, the strain is almost constant in an element and thus the displacement distribution is linear. At the limit two cases should be considered: the rigid body mode and the constant strain states. For figure (a) we apply $u=x, v=0$ and thus $\epsilon _x = \D u/ \D x = 1$. The verification is: 
+	
+	\begin{itemize}
+	\item[•] evaluate the displacement on the external nodes and apply them as prescribed displacement;
+	\item[•] forces at internal DOF set to 0; 
+	\item[•] solve $Kq = f$ for interior nodes. 
+	\item[•] compute the strain field over the elements, components vanish except $\epsilon _x = 1$ at any point. 
+	\end{itemize}
+	
+	Similar proceddure for FPT. 
+	
+\section{A short glimpse into error estimation techniques}
+	The farness/closeness of the finite element displacement $u^h$ wrt the theoretical $u$ is measured trough distance, norm in math. The energy norm is defined as: 
+	
+	\begin{equation}
+	||e||_W = \sqrt{\int _V (\epsilon - \epsilon^h)^T(\tau - \tau ^h)\, dV} = \sqrt{\int _V (\epsilon - \epsilon^h)^TH(\epsilon - \epsilon^h)\, dV}.
+	\end{equation}
+	
+	Alternatively $L_2$ norms can be defined for displacement, strain and stresses: 
+	
+	\begin{equation}
+	\left\{
+	\begin{aligned}
+	&||e_u ||_{L_2} = \sqrt{\int _V (u - u^h)^T(u - u^h)\, dV}\\
+	&||e_\epsilon ||_{L_2}= \sqrt{\int _V (\epsilon - \epsilon^h)^T(\epsilon - \epsilon^h)\, dV}\\
+	&||e_\tau ||_{L_2} = \sqrt{\int _V (\tau- \tau^h)^T(\tau- \tau^h)\, dV}
+	\end{aligned}
+	\right.
+	\end{equation}
+	
+	A relative error can be defined as for the energy norm: 
+	
+	\begin{equation}
+	\eta = \frac{||e|_W|}{\sqrt{\int _V \epsilon ^T \tau \, dV}}.
+	\end{equation}		
+	
+	Only two man approaches allow for enhancing the computational procedure: 
+	\begin{itemize}
+	\item[•] the h-element technique: decreasing the mesh size, or adapting it;
+	\item[•] the p-element technique: improving the finite elements by:
+	\begin{enumerate}
+	\item	increasing the number of nodes while keeping the same number of DOF (Lagrange);
+	\item increasing the number of DOF per node (Hermite);
+	\item adopting a mixed approach.
+	\end{enumerate}
+	\end{itemize}
+	
+	\wrapfig{8}{l}{7}{0.25}{ch13/3}
+	These methods are depicted on the figure. 
+	Convergence rate for a 2D structure. NDF (= Q) is the number of degrees of freedom. (0), (1), and (2) refer to the initial mesh, the refined mesh with subdivision 1, and the refined mesh with subdivision 2, respectively. The different curves refer to the order of the polynomial used for the shape functions. The predicted optimal order is: 
+	
+	\begin{equation}
+	||e||_W \rightarrow O(h^p),
+	\end{equation}
+	
+	where h is the size of the element and p the order of the polynomial. In 2D the number of DOF Q can be used: 
+		
+	\begin{equation}
+	||e||_W \rightarrow O(Q^{-p/2}).
+	\end{equation}
+	
+	Two final conclusions: 
+	
+	\begin{itemize}
+	\item[•] singularities (like the sharp corner) degrade the actual convergence with respect to the theoretical order of convergence. For smoother problems, the error curves can be closer to (but still always larger than) the theoretical results;
+	
+	\item[•] an increase of the polynomial order is not always advisable. Second-order polynomials usually constitute a good compromise between accuracy, number of degrees of freedom, and complexity of the shape functions.
+	\end{itemize}
+	
+	In practice the order of the polynomial is determined by the element used, the results can be improved by mesh adaptivity techniques: 
+	
+	\begin{enumerate}
+	\item \textbf{element subdivision}: elements are divided into smaller ones;
+	\item \textbf{remeshing}: new mesh is created, computationally more expensive but best results; 
+	\item r-refinement: the mesh connectivity is unchanged but the nodes coordinate change (rarely used in practice because error impossible to control). 
+	\end{enumerate}
+	
