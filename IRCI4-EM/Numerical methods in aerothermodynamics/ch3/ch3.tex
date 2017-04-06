@@ -1,164 +1,207 @@
-\chapter{Numerical methods for evolution problems}
-We are going to consider model equations for hyperbolic and parabolic equations which will be respectively: 
+\chapter{Numerical methods for evolution problems - Stability}
+As seen previously, evolution problems concern is the stability of the forward substitution. We will introduce the subject on ordinary differential equations since after discretization a partial differential equation is transformed into a system of ordinary differential equations. We are going to consider model equations for hyperbolic and parabolic equations which will be respectively advection and diffusion equations: 
 
 \begin{equation}
 \frac{\D u}{\D t} + \underbrace{a}_{\mbox{or } u} \frac{\D u}{\D x} = 0 \qquad \frac{\D u }{\D t} = \alpha \frac{\D ^2u}{\D x^2}
 \end{equation}
 
 \section{Consistency - stability - convergence}
-Convergence is a concept we have introduced before, the numerical method is convergent if $\lim _{h\rightarrow 0} || u^h - u|| = 0$ where $u^h$ is the approximate numerical solution and $u$ the exact solution and $h$ is representative of the mesh size. In such method the $h$ is inversely prop to the number of degrees of freedom. For methods based on a functional representation (finite elements, spectral methods), convergence can be proven directly using functional analysis, see literature. The evolution variable is special, here time. When it is time dependent problem, we use finite differences for time integration, we don't need flexibility for time it is uniform. For Finite differences convergence cannot be proven directly, but in contrasts is proven indirectly using the concept of consistency and stability. 
+Convergence is a concept we have introduced before, the numerical method is convergent if $\lim _{h\rightarrow 0} || u^h - u|| = 0$ when the number of parameters tends towards infinity, where $u^h$ is the approximate numerical solution and $u$ the exact solution and $h$ is representative of the mesh size. For methods based on a functional representation (finite elements, spectral methods), convergence can be proven directly using functional analysis, see literature. When it is time dependent problem, we use finite differences for time integration (we don't need flexibility for time it is uniform). Finite differences convergence cannot be proven directly, but in contrasts is proven indirectly using the concept of consistency and stability. 
 
 \subsection{Consistency}
-We say that a numerical method is consistent if $\lim _{h\rightarrow 0} ||D^h(u^h) - D(u)||$, where $D(u)$ is the differential operator applied to exact solution and the other discrete approximation of the differential operator. That's nothing else but the truncation error.  For example if the problem was: 
+We say that a numerical method is consistent if $\lim _{h\rightarrow 0} ||D^h(u^h) - D(u)||=0$ when the mesh size tends towards 0, where $D(u)$ is the differential operator applied to exact solution and the other discrete approximation of the differential operator. That's nothing else but the truncation error.  For example if the problem was: 
 
 \begin{equation}
 \frac{\D u}{\D x} = f \qquad \frac{u_{i+1}-u_{i-1}}{2h} = f_i \qquad
- \rightarrow \frac{u_{i+1}-u_{i-1}}{2h} - \left( \frac{\D u}{\D x}\right) _i + f_i - f_i = TE = \mathcal{O}(\Delta x^2)
+ \underbrace{\Rightarrow}_{+} \frac{u_{i+1}-u_{i-1}}{2h} - \left( \frac{\D u}{\D x}\right) _i + f_i - f_i = TE = \mathcal{O}(\Delta x^2)
 \end{equation}
 
-We know that the truncation error was of the form $\mathcal{O}(h^2)$. So we need that to be consistent the polynomial is at least first order accurate $p\leq 1$. Sometimes, this implies a condition on discretization steps. Example: 
+which shows that we have indeed the truncation error. For ODE the truncation error only depends on the mesh size $\mathcal{O}(h^p)$, so we need at least a first order accurate $p\leq 1$ method. For PDE, this depends on the mesh spacing in all variables under various combinations, and sometimes it is imposed to be consistent. Consider for example the advection equation
 
 \begin{equation}
-\frac{\D u}{\D t} + \frac{\D u }{\D x} = 0
+\frac{\D u}{\D t} + a\frac{\D u }{\D x} = 0
 \end{equation}
 
-The Lax method gives: 
+The Lax-Friedrichs method gives: 
 
 \begin{equation}
-\frac{u_i^{n+1}-\frac{1}{2}(u_{i-1}^n+u_{i+1}^n)}{\Delta t} + a \frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} = 0 \qquad \Rightarrow \left\{
-\begin{array}{c}
-u_{i+1}^n = u_i ^n + \Delta x \left(\frac{\D u}{\D x} \right)^n_i + \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \frac{\Delta x^3}{6} \left.\frac{\D ^3 u}{\D x^3} \right|^n_i\\
-u_{i}^{n+1} = u_i ^n + \Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i
-\end{array}
- \right.
- \frac{\Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i - \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \dots}{\Delta t} + a \left( \left.\frac{\D u}{\D x}\right|^n_i + \left.\frac{\Delta x^2}{3} \frac{\D ^3 u }{\D x^3}\right|^n_i  + \dots \right) = \left(\frac{\D u }{\D t} \right)^n_i - a \left(\frac{\D u}{\D x}\right)^n_i + \frac{\Delta t }{2} \frac{\D ^2 u}{\D t^2} - \frac{\Delta x^2}{\Delta t} \frac{\D ^2 u}{\D x^2} + \frac{\Delta x^3}{3} \frac{\D ^3 u}{\D x^3}
+\begin{aligned}
+&\frac{u_i^{n+1}-\frac{1}{2}(u_{i-1}^n+u_{i+1}^n)}{\Delta t} + a \frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} = 0 \\ 
+\mbox{but } &\left\{
+\begin{aligned}
+&u_{i+1}^n = u_i ^n + \Delta x \left(\frac{\D u}{\D x} \right)^n_i + \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \frac{\Delta x^3}{6} \left.\frac{\D ^3 u}{\D x^3} \right|^n_i\\
+&u_{i}^{n+1} = u_i ^n + \Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i
+\end{aligned}
+\right.\\
+\Rightarrow &\frac{\Delta t \left(\frac{\D u}{\D t} \right)^n_i + \frac{\Delta t^2}{2} \left.\frac{\D ^2 u}{\D t^2} \right|^n_i - \frac{\Delta x^2}{2} \left.\frac{\D ^2 u}{\D x^2} \right|^n_i + \dots}{\Delta t} + a \left( \left.\frac{\D u}{\D x}\right|^n_i + \left.\frac{\Delta x^2}{3} \frac{\D ^3 u }{\D x^3}\right|^n_i  + \dots \right) \\
+&= \left(\frac{\D u }{\D t} \right)^n_i + a \left(\frac{\D u}{\D x}\right)^n_i + \frac{\Delta t }{2} \frac{\D ^2 u}{\D t^2} - \frac{\Delta x^2}{2\Delta t} \frac{\D ^2 u}{\D x^2} + \dots
+\end{aligned}
 \end{equation}
 
-ODE: Compute the solution at time T with $\Delta t \rightarrow a$. A method is stable id $u^h, h(\Delta t)\rightarrow 0, nh \gg T$ is bounded (does not grow unboundedly). 
+We see that when $\Delta t \rightarrow 0$, the first term is 0 but the second one is 0 only if $\lim _{\Delta t, \Delta x \rightarrow 0}(\Delta x^2 /\Delta t) = 0$. 
 
-\subsubsection{Lax's equivalence theorem}
-For a large class of well posed initial value problems, consistency and stability are necessary and sufficient condition for convergence. 
+\subsection{Stability}
+Following Lax's definition, a numerical method is said to be stable if the numerical solution in a value T of the evolution variable t remains bounded as the mesh size $\Delta t \rightarrow 0$. For ODE: 
+
+\begin{equation}
+\lim _{\Delta t \rightarrow 0, n \rightarrow \infty, n\Delta t = T} u ^n \mbox{ exists}
+\end{equation}
+
+
+\subsection{Convergence}
+A numerical method is said to be convergent if: 
+
+\begin{equation}
+\lim _{h\rightarrow 0} (u - u^h) = 0
+\end{equation}
+
+We prove convergence from consistency and stability using Lax's equivalence theorem: \\
+
+\theor{
+\textbf{Lax's equivalence theorem}\\
+
+For a well posed initial value problem and a consistent discretization method, stability is the necessary and sufficient condition for convergence: 
+
+$$ \mbox{Consistency + Stability } \Leftrightarrow \mbox{ Convergence} $$
+}
 
 \section{Spectrum of the space discretization - Fourrier analysis}
-If we start from a PDE and we discretize all the variables except the evolution variables, we get a system of ODS: 
+If we start from a PDE and we discretize all the variables except the evolution variables, we get a system of ODE's: 
 
 \begin{equation}
 \frac{d U}{d t} = F(U)
 \end{equation}
 
-If the PDE is linear, and if the discretization formula is linear, then this system becomes a system of ODE: 
+If the PDE is linear, and if the discretization formula is linear, then this system is linear as well: 
 
 \begin{equation}
 \frac{d U}{dt} = SU + Q
 \end{equation}
 
-where $U$ is an n vector and $S$ is an $n\times n$ matrix. So far all the discretization methods we discussed, have been linear, for example: 
+where $U$ is an n vector and $S$ is an $n\times n$ matrix ($n$ is the number of degrees of freedom). So far all the discretization methods we discussed, have been linear, for example: 
 
 \begin{equation}
-\frac{\D u}{\D x} \approx \frac{u_{i+1}u_{i-1}}{2\Delta x}
+\frac{\D u}{\D x} \approx \frac{u_{i+1}+u_{i-1}}{2\Delta x}
 \end{equation}
 
-because if we replace $u$ by a combination of u and v we will have a linear combination. It turns out that for hyperbolic problems and in particular for non-linear ones, linear discretization will produce purely oscillatory solutions, except first order. It has been discovered that it was possible to go beyond first order discretization without oscillatory solution but this is not viewed in the frame of this course. \\
+because if we replace $u$ by a combination of u and v we will have a linear combination. It turns out that for hyperbolic problems and in particular for non-linear ones, linear discretization will produce purely oscillatory solutions, except in first order. It has been discovered that it was possible to go beyond first order discretization without oscillatory solution but this is not viewed in the frame of this course. \\
 
-If we assume that the matrix $S$ has a complete set of eigenvalues and eigenvectors (real or complex) then we know that the matrix can be diagonalized such that $LS = \Lambda L$. By multiplying the equation by $L$ we have: 
+If we assume that the matrix $S$ has a complete set of eigenvalues and eigenvectors (real or complex) then we know that the matrix can be diagonalized such that $LS = \Lambda L$:
 
 \begin{equation}
 L\frac{dU}{dt} - LSU = LQ \Leftrightarrow L\frac{dU}{dt} - \Lambda LU = LQ \qquad \Rightarrow \frac{dw_i}{dt} - \lambda ^{(i)}w_i = (LQ )_i 
 \end{equation}
 
-which gives a set of uncoupled equations. We call that the model equations. The set of eigenvalues is the spectrum of the space discretization of the PDE. It will depend on the PDE and the discretization. Sometimes, the search for the eigenvalues is as difficult than solving the problem, this is why we make also an approximation of the spectrum. 
+which gives a set of uncoupled equations, model equations. This allows to separately study the stability of time integration for each mode, that depends on the eigenvalue spectrum of the matrix $S$ resulting from the space discretization of the differential operator. Finding the space discretization is complex because depends on the PDE and the discretization. However, some analytic results have been obtained for some model problems.
 
 \subsection{Spectrum of the central space discretization of the diffusion equation}
-The equation we want to look at is the model of parabolic equations:
+The equation we want to look at is the model of parabolic equations (diffusion equation):
 \begin{equation}
 \frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2}
 \end{equation}
 
-where $\alpha $ is the diffusivity coefficient [$L^2T^{-1}$]. The evolution parameter is t, imagine we want to solve it for  going from 0 to L in N intervals so that $\Delta t =L/N$. We have thus $N+1$ points. If we look to the discretization of an internal point: 
+where $\alpha $ is the diffusivity coefficient [$L^2T^{-1}$]. The evolution parameter is $t$, we want to discretize the equation by central finite differences on a mesh of $N+1$ points in the interval $0 \leq x \leq L$ (so $\Delta x = L/N$). The discretization of an internal point ($1\leq i \leq N-1$) is: 
 
 \begin{equation}
 \frac{d u _i}{d t} = \alpha \frac{u_{i+1}-2u_i + u_{i-1}}{\Delta x^2}
+\label{3.12}
 \end{equation}
 
 We will consider 3 problems varying from boundary conditions. We have to impose an initial condition on one boundary at left and right boundary. 
 
-\begin{itemize}
-\item[•] Dirichlet BCs: $u_0,u_N$ specified
+\subsubsection{Dirichlet conditions} 
+
+Here $u(0,t) = u_0(t) = a, u(N,t) = u_N(t) = b$ are specified. These can easely be eliminated by having the following system for the remaining $N-1$ points: 
 
 \begin{equation}
 \frac{d}{dt} \left(\begin{array}{c}
 u_1\\
+u_2 \\
 \vdots\\
+u_{N-2}\\
 u_{N-1}
 \end{array} \right) = \frac{\alpha }{\Delta x^2}
 \left(
-\begin{array}{cccc}
--2 & 1 &  \\
-1 & -2 & 1&  \\
-\vdots\\
-&  & 1 & -2
+\begin{array}{ccccc}
+-2 & 1  \\
+1 & -2 & 1  \\
+& \ddots & \ddots & \ddots \\
+&  & 1 & -2 & 1\\
+& & & 1& -2
 \end{array}
 \right)\left(\begin{array}{c}
 u_1\\
+u_2 \\
 \vdots\\
+u_{N-2}\\
 u_{N-1}
 \end{array} \right)
 +
 \left(\begin{array}{c}
 \frac{\alpha u_0}{\Delta x^2}\\
+0\\
 \vdots\\
+0\\
 \frac{\alpha u_N}{\Delta x^2}
 \end{array} \right)
 \end{equation}
 
-The eigenvalues are: 
+The eigenvalues are (not detailed in the course): 
 
 \begin{equation}
-\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{2N} \right) \qquad j = 1\dots N-1
+\lambda ^{(j)} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{2N} \right) \qquad j = 1,\dots ,N-1
 \end{equation}
 
-We can solve now: 
-
-\begin{equation}
-\begin{aligned}
-&\lambda ^{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{2N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{2N} \right)^2 = - \frac{\alpha}{L^2}\pi ^2\\
-&\lambda ^{(N-1)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (N-1)}{2 N}\approx \frac{-4 \alpha}{\Delta x^2} 
-\end{aligned}
-\end{equation}
-
-\item[•] Neumann/Dirichlet: $\left.\frac{\D u}{\D x}\right|_0, u_N$ specified
+Notice that they are all negative reals and they span a very large range, the first Fourrier mode corresponds to a wave of wavelength $2L$:
 
 \begin{equation}
 \begin{aligned}
-&\frac{d u _0}{dt} = \frac{\alpha}{\Delta x^2} (u_1 -2u_0 + u_{-1}) = \frac{\alpha }{\Delta x^2}(2u_1 - 2 u_0) - \frac{2\alpha q_0}{\Delta x}\\
-&\left. \frac{\D u}{\D x}\right|_0 = \frac{u_1 - u_{-1}}{2\Delta x} = q_0 \Rightarrow u_{-1} = u_1 - 2q_0 \Delta x
+&\lambda _{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{2N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{2N} \right)^2 = - \frac{\alpha}{L^2}\pi ^2\\
+&\lambda _{N-1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (N-1)}{2 N}\approx \frac{-4 \alpha}{\Delta x^2} 
 \end{aligned}
 \end{equation}
 
-So that here we have: 
+\subsubsection{Neumann conditions at the left end and Dirichlet at the right end}
+ $\left.\frac{\D u}{\D x}\right|_0 = a, u_N$ specified, we have to express the discretization of the left boundary point (i = 0). This can be done like: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{d u _0}{dt} = \frac{\alpha}{\Delta x^2} (u_1 -2u_0 + u_{-1}) = \frac{\alpha }{\Delta x^2}(2u_1 - 2 u_0) - \frac{2\alpha a}{\Delta x}\\
+&\left. \frac{\D u}{\D x}\right|_0 = \frac{u_1 - u_{-1}}{2\Delta x} = a \Rightarrow u_{-1} = u_1 - 2a \Delta x
+\end{aligned}
+\end{equation}
+
+So that here we have $N$ unknowns, and only the first line changes:
 
 \begin{equation}
 \frac{d}{dt} \left(\begin{array}{c}
 u_0\\
+u_1 \\
 \vdots\\
+u_{N-2}\\
 u_{N-1}
 \end{array} \right) = \frac{\alpha }{\Delta x^2}
 \left(
-\begin{array}{cccc}
--2 & 2 &  \\
-1 & -2 & 1&  \\
-\vdots\\
-&  & 1 & -2
+\begin{array}{ccccc}
+-2 & 2  \\
+1 & -2 & 1  \\
+& \ddots & \ddots & \ddots \\
+&  & 1 & -2 & 1\\
+& & & 1& -2
 \end{array}
 \right)\left(\begin{array}{c}
 u_0\\
+u_1 \\
 \vdots\\
+u_{N-2}\\
 u_{N-1}
 \end{array} \right)
 +
 \left(\begin{array}{c}
--\frac{2\alpha q_0}{\Delta x^2}\\
+-\frac{2\alpha a}{\Delta x}\\
+0\\
 \vdots\\
+0\\
 \frac{\alpha u_N}{\Delta x^2}
 \end{array} \right)
 \end{equation}
@@ -166,86 +209,444 @@ u_{N-1}
 The eigenvalues are: 
 
 \begin{equation}
-\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{(2j-1)\pi j}{4N} \right) \qquad j = 1 \dots N
+\lambda ^{(j)} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{(2j-1)\pi}{4N} \right) \qquad j = 1, \dots , N
 \end{equation}
 
-We can solve now: 
+The first Fourrier mode is now a wave with wavelength = $4L$:
 
 \begin{equation}
 \begin{aligned}
-&\lambda ^{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{4N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{4N} \right)^2 = - \frac{\alpha}{4L^2}\pi ^2\\
-&\lambda ^{(N)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (2N-1)}{4 N}\approx \frac{-4 \alpha}{\Delta x^2} 
+&\lambda _{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi}{4N} \approx - \frac{4\alpha}{\Delta x^2} \left( \frac{\pi}{4N} \right)^2 = - \frac{\alpha}{4L^2}\pi ^2\\
+&\lambda _{N} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi (2N-1)}{4 N}\approx \frac{-4 \alpha}{\Delta x^2} 
 \end{aligned}
 \end{equation}
 
 
-\item[•] Periodic BC: $u_0 = u_N$
+\subsubsection{Periodic boundary conditions}
+Now $u_0 = u_N$ and the system is 
 \begin{equation}
 \frac{d}{dt} \left(\begin{array}{c}
-u_1\\
+u_0\\
+u_1 \\
 \vdots\\
-u_N
+u_{N-2}\\
+u_{N-1}
 \end{array} \right) = \frac{\alpha }{\Delta x^2}
 \left(
 \begin{array}{ccccc}
--2 & 1 & & 1 \\
-1 & -2 & 1 & & \\
-\vdots\\
-1 & & & 1 & -2
+-2 & 1& & & 1  \\
+1 & -2 & 1  \\
+& \ddots & \ddots & \ddots \\
+&  & 1 & -2 & 1\\
+1 & & & 1& -2
 \end{array}
 \right)\left(\begin{array}{c}
-u_1\\
+u_0\\
+u_1 \\
 \vdots\\
-u_N
-\end{array} \right)
+u_{N-2}\\
+u_{N-1}
+\end{array} \right) 
++
+\left(\begin{array}{c}
+0\\
+0 \\
+\vdots\\
+0\\
+0
+\end{array} \right) 
 \end{equation}
 
 The eigenvalues are: 
 
 \begin{equation}
-\lambda ^{j} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{N} \right) \qquad j = 0 \dots N-1
+\lambda ^{(j)} = \frac{-4\alpha}{\Delta x^2}\sin ^2 \left( \frac{\pi j}{N} \right) \qquad j = 0, \dots, N-1
 \end{equation}
 
-We can solve now: 
+Since the system has $N$ unknowns, it has $N$ eigenvalues, the first one is zero since the system matrix is singular. The first to be non zero is the first Fourrier mode of wavelength $L$: 
 
 \begin{equation}
 \begin{aligned}
-&\lambda ^{0} = 0\\
-&\lambda ^{(1)} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi }{ N}=\frac{-4 \alpha}{L^2}\pi ^2\\
-&\lambda ^{\frac{N-1}{2}} \approx -\frac{4\alpha}{\Delta x^2}
+&\lambda _{0} = 0\\
+&\lambda _{1} = -\frac{4\alpha}{\Delta x^2} \sin ^2 \frac{\pi }{ N}\approx\frac{-4 \alpha}{L^2}\pi ^2\\
+&\lambda _{\frac{N-1}{2}} \approx -\frac{4\alpha}{\Delta x^2}
 \end{aligned}
 \end{equation}
-\end{itemize}
 
-The diffusion equation becomes: 
+The largest modulus eigenvalue is the one for $j = (N-1)/2$. Now we can decompose the $u$ variable in its time and space functions, the diffusion equation becomes: 
 
 \begin{equation}
-\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2} \qquad u = \hat{u}(t)g(x) \qquad g(x) \frac{d \hat{u}}{d t} = \alpha \hat{u}(t)g^"(x)\Rightarrow \frac{d\hat{u}}{\hat{u}dt} = \alpha \frac{g^"}{g}= cst - \alpha k^2 g^" + k^2 g = 0 \qquad \Leftrightarrow \frac{d \hat{u}}{dt} + alpha k^2 \hat{u} = 0
+\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2} \qquad u = \hat{u}(t)g(x) \qquad g(x) \frac{d \hat{u}}{d t} = \alpha \hat{u}(t)g^"(x)\qquad
+\Rightarrow \frac{d\hat{u}}{\hat{u}dt} = \alpha \frac{g^"}{g} 
+\end{equation}
+
+and if we define $g$ such that: 
+
+\begin{equation}
+g^" + k^2 g = 0 \qquad
+\Rightarrow  \frac{d\hat{u}}{\hat{u}dt} = \alpha \frac{g^"}{g}= cst - \alpha k^2 \qquad \Leftrightarrow \frac{d \hat{u}}{dt} + \alpha k^2 \hat{u} = 0
 \end{equation}
 
 where 
 
 \begin{equation}
-g = A \cos k x / B \sin kx \qquad g(0) = g(L) = 0 \Rightarrow A = 0 \Rightarrow B\sin kL = 0 la suite j'ai pas
+\begin{aligned}
+g = A \cos &k x + B \sin kx \qquad g(0) = g(L) = 0 \Rightarrow A = 0 \\ 
+&B\sin kL = 0 \Rightarrow kL = m \pi \Rightarrow k = \frac{m\pi}{L}
+\end{aligned}
 \end{equation}
 
-\subsubsection{Approximation of the spectrum by Fourrier analysis}
-Remember that a running discrete equation at inner point was given by: 
+\subsubsection{Fourier analysis}
+As the eigenvalue computations are difficult, a method consist in approximating the spectrum based on Fourier analysis. Remember that a running discrete equation at inner point was given by: 
 
 \begin{equation}
 \frac{d u_i}{dt}= \alpha \frac{u_{i+1} -2u_i + u_{i+1}}{\Delta x^2}
 \end{equation}
 
-The Fourrier analyis is to assume a preiodic solution in space: 
+The Fourier analysis is to assume a periodic solution in space: 
 
 \begin{equation}
-u(x, t) = \hat{u}(t) e^{ikx} \qquad u_i( t) = u(x_i,t) =  \hat{u}(t) e^{ikx_i} \qquad u_{i\pm1}( t) = u(x_{i\pm1},t) =  \hat{u}(t) e^{ikx_{i\pm1}} = \hat{u}(t) e^{ik(x_i \pm \Delta x)} = u_i e^{\pm ik\Delta x\equiv i\eta}
+\begin{aligned}
+u(x, t) = \hat{u}(t) e^{ikx} \qquad u_i( t) = u(x_i,t) =  \hat{u}(t) e^{ikx_i} \qquad u_{i\pm1}( t) &= u(x_{i\pm1},t) =  \hat{u}(t) e^{ikx_{i\pm1}}\\
+&= \hat{u}(t) e^{ik(x_i \pm \Delta x)}\\
+&= u_i e^{\pm ik\Delta x\equiv \pm i\eta}
+\end{aligned}
 \end{equation}
 
-where $\eta$ is the reduced wave number. We have thus that: 
+where $\eta$ is non-dimensional and is the \textbf{reduced wave number}. Inserting these results in the discretized equation we get:
 
 \begin{equation}
-\frac{d u_i}{dt}= \alpha \frac{e^{i\eta} -2 + u^{-i\eta}}{\Delta x^2}u_i = \frac{2\alpha}{\Delta x^2} (\underbrace{\cos \eta -1}_{1 - 2 \sin \frac{\eta}{2}}) u_i = \underbrace{-\frac{4\alpha }{\Delta x^2} \sin ^2 \frac{\eta}{2}}_{\mbox{Fourrier footprint }\lambda} u_i
+\frac{d u_i}{dt}= \alpha \frac{e^{i\eta} -2 + e^{-i\eta}}{\Delta x^2}u_i = \frac{2\alpha}{\Delta x^2} (\underbrace{\cos \eta -1}_{1 - 2 \sin \frac{\eta}{2}}) u_i = \underbrace{-\frac{4\alpha }{\Delta x^2} \sin ^2 \frac{\eta}{2}}_{\mbox{Fourier footprint }\lambda} u_i
 \end{equation}
 
-Since $\lambda$ is negative it is on the negative  Figure for this. 
+The locus of all possible values of $\lambda$ as a function of the reduced wavenumber is called the \textbf{Fourrier footprint} of the discretized equation. Since $-1 \leq \sin \frac{\eta}{2} \leq 1$, in this case it is located on the negative real axis between 0 and $- 4\frac{\alpha}{\Delta x^2}$ and is indeed an approximation of what we obtained with the previous boundary condition discussion.  
+
+\section{Spectra of various discretization of the advection equation}
+\begin{equation}
+\frac{\D u}{\D t} + a\frac{\D u}{\D x} = 0 
+\end{equation}
+
+which will be solved in the same interval 0 to L with $N+1$ points with $\Delta x = L / N$.
+
+\subsubsection{Backward upwind space-discretization}
+It means that when we make the discretization in space in an interior point we have: 
+
+\begin{equation}
+\frac{d u_i}{dt} + a \frac{u_i - u_{i-1}}{\Delta x} = 0
+\end{equation}
+
+Accordingly to Section 2.3.2, with $a>0$ only a boundary condition in $x=0$ has to be imposed $u(0,t) = u_0(t) = g(t)$, such that the matrix form as previously gives:
+
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_1\\
+u_2 \\
+\vdots\\
+u_{N-1}\\
+u_{N}
+\end{array} \right) = -\frac{a }{\Delta x}
+\left(
+\begin{array}{ccccc}
+1  \\
+-1 & 1  \\
+& \ddots & \ddots & \ddots \\
+&  & -1 & 1 \\
+& & & -1& 1
+\end{array}
+\right)\left(\begin{array}{c}
+u_1\\
+u_2 \\
+\vdots\\
+u_{N-1}\\
+u_{N}
+\end{array} \right)
++
+\left(\begin{array}{c}
+\frac{a}{\Delta x}g(t)\\
+0\\
+\vdots\\
+0\\
+0
+\end{array} \right)
+\end{equation}
+
+Since the matrix is lower triangular, the eigenvalues are on the the diagonal elements: 
+
+\begin{equation}
+\lambda ^{(j)}= -\frac{a}{\Delta x} \qquad j = 1, \dots, N
+\end{equation}
+
+They are all negative and real $\rightarrow$ well posed problem and discretization. 
+If we express in terms of modal expression using the $\lambda$, we have: $\frac{dw_j}{dt} = \frac{-a}{\Delta x}w_j \rightarrow w_j = w_{j0} e^{-\frac{a}{\Delta x}t}$. Looking to the exponential term, we observe that the space discretization in this case has provided damping to the solution. This is an inaccuracy in the method because we have seen in chapter 2 that the solution is a wave propagation without damping. In the case of $a>0$, the damping transforms into amplification and this is even worse (positive eigenvalue so ill-defined problem). 
+
+\subsubsection{Fourier analysis}
+Let's estimate the spectrum. When we do a Fourier analysis we assume the solution to be periodic: 
+
+\begin{equation}
+u_{i \pm 1} = u_i e^{\pm i\eta} \qquad \eta = k \Delta x \qquad u = \hat{u}(t)e^{ikx}
+\end{equation}
+
+So that the discretization becomes: 
+
+\begin{equation}
+\frac{du_i}{dt} + \underbrace{a \frac{1- e^{-I\eta}}{\Delta x}}_{\lambda}u_i = 0 
+\end{equation}
+
+If we try to draw this $\lambda$, we begin with a circle $e^{-I\eta}$ then transpose to the right $1 - e^{-I\eta}$ and then we change the direction, the radius is $a/\Delta x$ centered in $-a/\Delta x$. The form of the footprint is completely different and this is due to the boundary condition. If we have periodic boundary conditions: 
+
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_0\\
+u_1 \\
+\vdots\\
+u_{N-2}\\
+u_{N-1}
+\end{array} \right) = -\frac{a }{\Delta x}
+\left(
+\begin{array}{ccccc}
+1 & & & & -1 \\
+-1 & 1  \\
+& \ddots & \ddots & \ddots \\
+&  & -1 & 1 \\
+& & & -1& 1
+\end{array}
+\right)\left(\begin{array}{c}
+u_0\\
+u_1 \\
+\vdots\\
+u_{N-2}\\
+u_{N-1}
+\end{array} \right)
++
+\left(\begin{array}{c}
+0\\
+0\\
+\vdots\\
+0\\
+0
+\end{array} \right)
+\end{equation}
+
+with the eigenvalues $\lambda _j = \frac{-a}{\Delta x} (1 - e^{-I2\pi j /N}) \quad j = 0, \dots , N-1$. This method allows to prove that the forward discretization is inappropriate for this method since the Fourier footprint is a circle entirely situated on the right half plane. 
+
+\subsubsection{Central discretization}
+For an interior point we have now: 
+
+\begin{equation}
+\frac{du_i}{dt} + a \frac{u_{i+1} - u_{i-1}}{2\Delta x} = 0
+\end{equation}
+
+The problem is that for the last point N, we need a point on the right which does not exist, so we replace by the backward discretization at point N:
+
+\begin{equation}
+\frac{du_N}{dt} = -\frac{a}{\Delta x} (u_N - u_{N-1})
+\end{equation}
+
+The matrix system we get is: 
+
+\begin{equation}
+\frac{d}{dt} \left(\begin{array}{c}
+u_1\\
+u_2 \\
+\vdots\\
+u_{N-1}\\
+u_{N}
+\end{array} \right) = -\frac{a}{\Delta x}
+\left(
+\begin{array}{ccccc}
+0 & 1  \\
+-1 & 0 & 1  \\
+& \ddots & \ddots & \ddots \\
+& & -1 & 0 & 1 \\
+& & & -2 & 2
+\end{array}
+\right)\left(\begin{array}{c}
+u_1\\
+u_2 \\
+\vdots\\
+u_{N-1}\\
+u_{N}
+\end{array} \right)
++
+\left(\begin{array}{c}
+\frac{a}{2\Delta x}g(t)\\
+0\\
+\vdots\\
+0\\
+0
+\end{array} \right)
+\end{equation}
+
+If we make a Fourier analysis of that we can find that: 
+
+\begin{equation}
+\frac{du_i}{dt} + a \frac{u_{i+1}-u_{i-1}}{2\Delta x} = 0 \qquad u_{i\pm 1} = u_ie^{\pm I\eta }
+\end{equation}
+
+\begin{equation}
+\frac{du_i}{dt}+ a \frac{e^{I\eta}-e^{-I\eta}}{2\Delta x} u _i = 0\qquad \frac{du_i}{dt} = -\frac{2Ia\sin \eta}{2\Delta x}u_i = - I\frac{a}{\Delta x}u_i \sin \eta
+\end{equation}
+
+\ \\
+\wrapfig{9}{l}{2}{0.3}{ch3/1}
+The eigenvalues of the matrix cannot be found analyticlly but havec to be computed numerically, the result is shown on the figure. We can observe that all the eigenvalues are in the negative real half plane but much closer to the imaginary axis than the backward method. This implies that the numerical damping is much smaller. When looking to the Fourier analysis, we remark that the footprint is purely imaginary. The important conclusion is that we see a fundamental different behavior between the diffusion and advective, advection is essentially an imaginary footprint with a possible negative real part while the other has real negative footprint. 
+
+\section{Stability of time-integration schemes for ODE}
+\subsection{Definition — examples}
+We will study the stability of time integration with the following linear  homogeneous test problem:
+
+\begin{equation}
+\frac{du}{dt} = f(u,t) \qquad \Rightarrow \frac{du}{dt} = \underbrace{q}_{\lambda}u\qquad u(0) = 1
+\end{equation}
+
+where $q$ is complex $q = \sigma + i w$ and the solution $u = e^{qt}$ corresponds to a stable behavior if $\mathcal{R}(q)\leq 0$. When discretization by finite difference is applied on it, the equation can be cast in the form:  
+
+\begin{equation}
+u^{n+1} = g(q, \Delta t) u ^n \qquad \Rightarrow u^{n+1} = [g(q, \Delta t)]^n u ^1
+\end{equation} 
+
+where $g$ is generally complex and is called the \textbf{amplification factor}. The stability condition then requires that $[g(q, \Delta t)]$ must be uniformly bounded for $0<\Delta t < t, 0\leq n\Delta t \leq T$. A necessary condition is that $|g(q,\Delta t)|\leq 1+ \mathcal{O}(\Delta t)$ and in particular that $|g(q, 0)|\leq 1|$. Stable if the numerical solution remains bounded when the number of steps n goes to infinity and the time step size goes to 0. There are two examples on p.81, here is the second one more interesting: 
+
+\exemple{
+Let us show that the forward finite difference discretization is stable:
+
+\begin{equation}
+\frac{dun}{dt} \approx \frac{u^{n+1}-u^n}{\Delta t} = q u^n \qquad u^{n+1} = (1+q \Delta t) u^n \qquad g = 1 + q\Delta t = 1+ \mathcal{O} (\Delta t)
+\end{equation}
+
+Let us use a centered finite difference discretization of the time derivative $du/dt$ (two step explicit mid-point method)
+
+\begin{equation}
+\frac{du}{dt} = qu \Rightarrow \frac{u^{n+1}- u^{n-1}}{2\Delta t} = qu^n \qquad \Rightarrow u^{n+1}= u^{n-1} + 2\Delta t qu^n  
+\end{equation}
+
+Let's look for $g$ such that $u^{n+1} = gu^n = g^2 u^{n-1}$, replacing everything we get: 
+
+\begin{equation}
+(g^2 - 2q \Delta t g -1)u^{n-1} = 0 \qquad \Rightarrow g = q\Delta \pm \sqrt{1+(q\Delta t)^2}
+\end{equation}
+
+This method is thus stable since $|g|\leq 1 + \mathcal{O}(\Delta t)$ and in particular $g(q, 0)= \pm 1$. 
+}
+
+\subsection{Weak (in)stability}
+\wrapfig{10}{l}{3}{0.3}{ch3/2}
+Consider the centered discretization for the test problem with $q=-1, \Delta t =0.1$. Since it is a two step method, one should provide two initial values. One is provided by the initial condition $u^0 = 1$. To compute the first point, we will apply the forward discretization (cause centered need previous point):
+
+\begin{equation}
+\frac{u_1-u_0}{\Delta t} = q u_0 \qquad \rightarrow u _1 = (1+ q\Delta t) u _0 = 0.9
+\end{equation}
+
+which we have shown it is stable as well. This is a good approx since $u(-1,0.1) = e^{-0.1} = 0.905$. The result of the numerical computation is shown on the figure for $u^1 = 0.9$ and for $u^1 = 0.85$. One can observe that the small perturbation on $u^1$ gives rise to amplifying oscillations. As small as the initial perturbation can be, there will always be amplification. This is called \textbf{weak instability} and is unacceptable. \\
+
+Let's look for the reason, we have seen that we can have two values for $g$ (solution of quadratic equation) with centered discretization. An expression of the form the following form is solution of the difference equation: 
+
+\begin{equation}
+u^n = c_1g_1 + c
+\end{equation}
+
+where $c_1$ and $c_2$ are found by the boundary conditions: 
+
+\begin{equation}
+u^0 = c_1 + c_2 \qquad u^1 = c_1 g_1 + c_2 g_2
+\end{equation}
+
+Let's now look at what happens when we rise the coefficient by the exponent $n$, from previous analysis we know that for $q=-1$:
+
+\begin{equation}
+g_{1,2} = -\Delta t \pm \sqrt{1 + \Delta t^2}
+\end{equation}
+
+where we remark that $|g_1| < 1$ and $|g_2|>1, g_2 < 0$. When we make the Taylor expansion of these, we refind the Taylor expansion of the exponentials: 
+
+\begin{equation}
+\begin{aligned}
+&g_1 = 1 -\Delta t + \frac{\Delta ^2}{2} + \mathcal{O}(\Delta t^3) = e^{-\Delta t} + \mathcal{O} (\Delta t^3) = e^{-\Delta t + \mathcal{O}(\Delta t^3)}\\
+&g_2 = -1 -\Delta t - \frac{\Delta ^2}{2} - \mathcal{O}(\Delta t^3) = (-1)(e^{\Delta t} + \mathcal{O} (\Delta t^3)) = (-1)e^{\Delta t + \mathcal{O}(\Delta t^3)}\\
+&g_1^n = e^{-n\Delta t}e^{\mathcal{O}(n\Delta t^3)}  = e^{-t}e^{\mathcal{O}(n\Delta t^2)}\\
+&g_2^n = (-1)^ne^{n\Delta t}e^{\mathcal{O}(n\Delta t^3)}  = (-1)^ne^{t}e^{\mathcal{O}(n\Delta t^2)}
+\end{aligned}
+\end{equation}
+
+where we see that the problem comes from $g_2$ which has an increasing exponential and changing sine every time step $n$. The term $c_2g_2$ has no relation with the exact solution and is a numerical artefact. It is impossible to have $c_2 = 0$ because there will always be round-off errors as small they can be. The problem with the stability definition is that it limits itself to $\Delta t \rightarrow 0$ and not finite one. 
+
+\subsection{Region of (absolute stability)}
+In that definition, the region of stability of numerical algorithm for integrating an ODE is defined as the set of values of the complex variable $z=q\Delta t$ such that the sequence $u^n$ of numerical values remains bounded as $n\rightarrow \infty$ (no more $\Delta \rightarrow 0$). This is equivalent to stating that the origin $z = q \Delta t = 0$ lies in the region of absolute stability. 
+
+\subsubsection{Forward Euler method}
+\wrapfig{9}{l}{4}{0.4}{ch3/3}
+Let's begin with this first example: 
+
+\begin{equation}
+\frac{u^{n+1}-u^n}{\Delta t} = qu^n \qquad \Rightarrow g = 1+q\Delta t = 1+z
+\end{equation}
+
+The region of stability is $|1+z|\leq 1 \rightarrow$ we have a circle centered at $z=-1$ as shown on the figure. With $q=-1$ we find out that the condition is $\Delta \leq 2$. This is not a severe restriction, $\Delta t$ is thus more limited for accuracy condition than for stability. 
+
+\subsubsection{Central finite difference method}
+The amplification factor was: 
+
+\begin{equation}
+g^2 - 2q\Delta t g \underbrace{- 1}_{g_1g_2} = 0\qquad \Rightarrow g = q\Delta t \pm \sqrt{1+(q\Delta t)^2}
+\end{equation}
+
+\wrapfig{10}{l}{4}{0.4}{ch3/4}
+Since we have a second order equation we see that $|g_1g_2| = 1$ and the only possibility to have $|g_{1,2}\leq 1|$ is to have $|g_1| = |g_2| = 1 \rightarrow g= e^{i\alpha}$. If we isolate $z$ in the second order equation: 
+
+\begin{equation}
+z = q\Delta t= \frac{g - 1/g}{2} = \frac{e^{i\alpha} - e^{-i\alpha}}{2} = 2 i \sin \alpha
+\end{equation}
+
+From which we deduce that the region of stability is the imaginary segment $[-i, i]$. It is thus not surprising that our previous computation with $q= -1, \Delta t = 0.1 \rightarrow z = -0.1$ is unstable since it is outside of the region of stability. 
+
+\subsection{Stiff problems}
+The previous case was already a bit restrictive, let's see another example extremely restrictive: 
+
+\begin{equation}
+\frac{d u}{dt} = 100 (\sin t - u) \qquad u(0)= 0
+\end{equation} 
+
+which is a problem composed by a forcing term $\sin t$ and a homogeneous term $u$. The solution is a linear combination of the forced periodic response and a transitory term: 
+
+\begin{equation}
+u(t) = \frac{\sin t - 0.01 \cos t + 0.01 e^{-100t}}{1.0001}
+\end{equation}
+
+Due to the relatively small coefficient, the transient dies very quickly and we can keep interest on the forced response of period $2\pi$ only. One can thus choose a time step of let's say $\Delta t = 2\pi/20 \approx 0.3$. Using the Runge-Kutta method on matlab one gets the following results: 
+
+\begin{center}
+\begin{tabular}{ccccc}
+\hline 
+$\Delta t$ & 0.015 & 0.020 & 0.025 & 0.030\\
+Number of steps & 200 & 150 & 120 & 100\\
+$u(3)$ & 0.151004 & 0.150996 & 0.150943 & 6.7 $10^{11}$\\
+\hline 
+\end{tabular}
+\end{center}
+
+\wrapfig{11}{l}{3}{0.4}{ch3/5}
+We see that for a very small time step as 0.03 the result blows up. This is due to the homogeneous term. Indeed, if we neglect the periodic term, we have $\frac{du}{dt} = -100 u$ so that $q = -100$ and the region of stability on the figure shows that we must have $q\Delta t \leq 2.8 \rightarrow \Delta t \leq 0.028$. The limiting term is thus the homogeneous one. The difficulty comes from the coexistence of two phenomena with very different time scales and it is the shortest time scale that determines the maximum allowable time step.  Problems with very different time scales phenomena are called \textbf{stiff problems} and are common in fluid mechanics. For example the discretization of the one-dimensional heat equation gave $\lambda_1 = \mathcal{O}(\alpha /L^2)$ and $\lambda_N = \mathcal{O}(\alpha /\Delta x^2)$, the ratio of the two time scale is thus $\mathcal{O}(L/\Delta x^2)$ which becomes very large for fine meshes. We want to find something stable independently of the time step, this is called \textbf{absolute stability} or \textbf{A-stability}. 
+
+\subsection{Absolute stability}
+If we translate what we have introduce at the end of previous section into maths: a homogeneous modal problem such as the test problem $du/dt = q u$ is stable if $\mathcal{R}(q)\leq0$. Therefore the set of value of $q\Delta t$ corresponding to stable  is the left half plane. We remark that the Forward Euler and the Runge-Kutta methods are not A-sable. What about the backward Euler? 
+
+\begin{equation}
+\frac{u^n-u_{n-1}}{\Delta t} = q u^n \qquad \Rightarrow u^n = \frac{1}{1 - q\Delta t} u^{n-1}
+\end{equation}
+
+the region of stability requires thus that $|1-q\Delta t| < 1$ which corresponds to the whole space without the region in a circle in the right half plane. The method is A-stable. However, this method requires to solve an equation in order to have the point $u^n$ while the others not. In case of non-linear equation or system of equations the solving becomes more difficult. Methods like that are called \textbf{implicit} while methods like forward where we can compute the point directly using the previous one are called \textbf{explicit}. With implicit methods the set-up will be more complex and costly in computing time. A theorem by Dahlquist states that: 
+
+\begin{itemize}
+\item[•] An A-stable method must be implicit;
+\item[•] An A-stable method has an accuracy of order $p\leq 2$.\\
+\end{itemize} 
+
+It is thus not possible to have explicit A-stable methods. It is however possible to have methods with higher accuracy order by extending the class of methods under consideration (implicit Runge-Kutta method).\\
+
+For stiff problems one will frequently choose among the simplest second order A-stable methods like the trapezoidal one: 
+
+\begin{equation}
+\frac{u^{n+1} - u^n}{\Delta t} = \frac{q}{2} (u^n + u^{n+1})
+\end{equation}
+
+It can be shown that it is the method with the lowest truncation error. In summary, the gain in time step is not compensated by the cost in memory. On the other hand, extremely stiff problems like viscous and reactive flows requires the use of implicit methods. 
