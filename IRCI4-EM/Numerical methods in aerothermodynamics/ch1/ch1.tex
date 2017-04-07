@@ -2,11 +2,11 @@
 \chapter{Discretization methods}
 \section{Finite difference method}
 \wrapfig{9}{l}{5}{0.4}{ch1/1}
-It is based on discrete representation of numerical solution consisting in values of the solution at the nodes of a Cartesian mesh of uniform spacing (\autoref{ch1/1}). The discretization will consist in estimating the partial derivatives appearing in the governing equations by some algebraic relations at the nodes. Because of the limitation of the mesh we cannot deal with curved geometries. To do so we need coordinate changes. In this type of mesh, each grid point can be identified by a set of indexes i, j, (k), this type of mesh is called \textbf{structured mesh}. The neighbors are implicitly given by the index identification. 
+It is based on discrete representation of numerical solution consisting of values of the solution at the nodes of a Cartesian mesh of uniform spacing (\autoref{ch1/1}). The discretization will consist in estimating the partial derivatives appearing in the governing equations by some algebraic relations at the nodes. Because of the limitation of the mesh we cannot deal with curved geometries. To do so we need coordinate changes. In this type of mesh, each grid point can be identified by a set of indexes i, j, (k), this type of mesh is called \textbf{structured mesh}. The neighbors are implicitly given by the index identification. 
 
 \subsection{Evaluation of derivatives by finite differences}
 \subsubsection{Difference formulas for the derivative $\bm{\D u / \D x}$}
-The value of a function $u(x)$ on a point of indexes i,j on the mesh is noted $u_{ij}$, for time dependent functions we use $u^n_i$ where $n$ denotes the time index and $i$ the space index. Let's estimate $(\D u / \D x)_{ij}$, by definition: 
+The value of a function $u(x)$ on a point of indexes i, j on the mesh is noted $u_{ij}$, for time dependent functions we use $u^n_i$ where $n$ denotes the time index and $i$ the space index. Let's estimate $(\D u / \D x)_{ij}$, by definition: 
 
 \begin{equation}
 \left.\frac{\D u }{\D x}\right| _{ij} = \left.\frac{\D u }{\D x}\right| _{x_0,y_0}= \lim _{\xi \rightarrow 0} \frac{u(x_0+\xi, y_0) - u(x_0,y_0)}{\xi}  
@@ -27,9 +27,9 @@ In order to find a systematic way of deriving the equations, let's build the Tay
 \end{aligned}
 \end{equation}
 
-Giving the \textbf{forward difference formula}. We have then a truncation error which behavior is dominated by the first term when $\Delta x \rightarrow 0$, so that $TE = \mathcal{O}(\Delta x)$, meaning that there exists a bounded number $K$ such that $\Delta x < \epsilon \rightarrow |TE| < K\Delta x$. The truncation error is always in the form $TE = \mathcal{O}(\Delta x ^q)$ where $q$ is the order of accuracy. The forward finite difference approximation of $\frac{\D u }{\D x}$ is first order accurate since $q = 1$. I\\
+Giving the \textbf{forward difference formula}. We have then a truncation error whose behavior is dominated by the first term when $\Delta x \rightarrow 0$, so that $TE = \mathcal{O}(\Delta x)$, meaning that there exists a bounded number $K$ such that $\Delta x < \epsilon \rightarrow |TE| < K\Delta x$. The truncation error is always in the form $TE = \mathcal{O}(\Delta x ^q)$ where $q$ is the order of accuracy. The forward finite difference approximation of $\frac{\D u }{\D x}$ is first order accurate since $q = 1$.\\
 
-If the order of the method is larger, for example second order, it means that if $\Delta x\rightarrow 0$, after a certain $\Delta x _{crit}$ the truncation error goes to 0 faster than the truncation error of a lower order method. If the mesh is not finer than a critical value, this is not true. When we go higher than a second order it is not clear in practice if we have something better because increasing the order allows the use of larger mesh, but is computationally expensive too.\\
+If the order of the method is larger, for example second order, it means that if $\Delta x\rightarrow 0$, after a certain $\Delta x _{crit}$ the truncation error goes to 0 faster than the truncation error of a lower order method. If the mesh is not finer than a critical value, this is not true. When we go higher than a second order it is not clear in practice if we have something better because increasing the order allows the use of larger mesh, but is computationally more expensive too.\\
 
 The definition for the derivative is not unique, for instance the \textbf{backward difference formula}:
 
@@ -37,10 +37,10 @@ The definition for the derivative is not unique, for instance the \textbf{backwa
 u_{i-1 \, j} = u_{ij}- \Delta x \left.\frac{\D u }{\D x}\right| _{ij}  +\frac{\Delta x^2}{2} \left.\frac{\D ^2u }{\D x^2}\right| _{ij}  + H.O.T \Leftrightarrow \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{ij} - u_{i-1 \, j}}{\Delta x} + \mathcal{O}(\Delta x)
 \end{equation}
 
-We have an infinity of finite difference formula if make the linear combination of the two last expressions. For example if we sum half of the two we get the \textbf{central finite difference formula}: 
+We have an infinity of finite difference formula if make the linear combination of the two last expressions. For example, if we sum half of the two we get the \textbf{central finite difference formula}: 
 
 \begin{equation}
- \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{i+1\, j} - u_{i-1\, j}}{2\Delta x} +\mathcal{O}(\Delta x2)
+ \left.\frac{\D u }{\D x}\right| _{ij} = \frac{u_{i+1\, j} - u_{i-1\, j}}{2\Delta x} +\mathcal{O}(\Delta x^2)
 \end{equation}
 
 We see that the central difference formula is more accurate than the others and involves the same mesh distance. We could thus get as high order as desired, but at the cost of increasing the number of neighboring grid points in the equation and thus the computational cost. 
@@ -110,28 +110,28 @@ u(x+\Delta x) = u(x) + \Delta x\frac{\D u}{\D x} (x) + \frac{\Delta x^2}{2} \fra
  \end{array}
 \end{equation}
 
-where we clearly see the Taylor expansion of $\exp (\Delta x D)$ and where $D_x = \frac{\D u }{\D x}$. We can then make the following manipulation: 
+where we clearly see the Taylor expansion of $\exp (\Delta x D)$ and where $D_x = \frac{\D}{\D x}$. We can then make the following manipulation: 
 
 \begin{equation}
 E = \exp (\Delta x \D) \leftrightarrow \ln (E \bm{+1 - 1}) = \ln(1 + \delta ^+) = \Delta x D \qquad \Rightarrow D = \frac{\ln (1 + \delta ^+)}{\Delta x}
 \end{equation}
 
-And finally if we make the Mac Laurin expansion: 
+And finally if we make the Mac Laurin expansion of the logarithm: 
 
 \begin{equation}
 D = \frac{\delta ^+}{\Delta x} - \frac{{\delta ^+}^2}{2\Delta x} + \frac{{\delta ^+}^3}{3\Delta x} + \dots
 \end{equation}
 
-By keeping the first term we find the first order forward difference formula, by keeping the second term we find the second order one, and so on. 
+By keeping the first term we find the first order forward difference formula, by keeping the first two terms we find the second order one, and so on. 
 
 \subsection{Finite difference formulas for partial differential equations}
 
-There is two strategy to express equations: 
+There are two strategies to express equations: 
 \begin{itemize}
 \item[•] \textbf{Strategy 1}: simply assemble the finite difference formula for each individual derivative;
 \item[•] \textbf{Strategy 2}: same strategy used to find the finite difference in many steps, select the stencil, Taylor expansion on each point of the stencil, write the FD formula as a linear combination of the stencil points values and select the coefficients. 
 \end{itemize}
-
+These methods can't be differentiated by using the trucation error.
 The first method is the most used. For the Laplace equation $\frac{\D ^2 u}{\D x^2}+ \frac{\D ^2 u}{\D y^2} = 0$ we have: 
 
 \begin{equation}
