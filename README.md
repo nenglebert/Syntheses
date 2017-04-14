@@ -58,7 +58,10 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
 ### 4<sup>ème</sup> année
 - [ ] ***Électromécanique***
   - [ ] [Aerodynamics](IRCI4-EM/Aerodynamics/build/Aerodynamics.pdf)
+  - [ ] [Numerical methods in aerothermodynamics](IRCI4-EM/Numerical%20methods%20in%20aerothermodynamics/build/Numerical%20methods%20in%20aerothermodynamics.pdf)
   - [ ] [Piston engines](IRCI4-EM/Piston%20engines/build/Piston%20engines.pdf)
+  - [ ] [Structural analysis & Finite elements](IRCI4-EM/Structural%20Analysis%20%26%20Finite%20Elements/build/Structural%20Analysis%20%26%20Finite%20Elements.pdf)
+  - [ ] [Turbomachinery](IRCI4-EM/Turbomachinery/build/Turbomachinery.pdf)
   - [ ] [Vibration & Accoustics](IRCI4-EM/Vibration%20&%20Accoustics/build/Vibration%20&%20Accoustics.pdf)
 - [ ] ***Physique***
   - [x] [Mécanique quantique II](IRCI4-PHYS/Mécanique%20quantique%20II/build/Mécanique%20quantique%20II%20-%20Nicolas%20Englebert.pdf)
