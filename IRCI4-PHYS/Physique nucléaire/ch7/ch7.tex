@@ -102,7 +102,108 @@ Pour le spin, c'est plus compliqué : $g_{si}$ contient un terme associé au pro
 g_{si} = g_p\left(\frac{1}{2}-t_{iz}\right)+g_n\left(\frac{1}{2}+t_{iz}\right)
 \end{equation}
 où $g_p=5.586$ et $g_n=-3.826$ sont des facteur gyromagnétiques déterminés expérimentalement\footnote{Pour une
-particule élémentaire, ce facteur vaut exactement 2.}.\\
+particule élémentaire, ce facteur vaut exactement 2.}. Notons que pour $\lambda = 0$, il n'y a pas de transition monopolaire.Une étude de la \textbf{parité} est donnée au \textit{slide 106} (je n'ai pas de notes\dots Si 
+quelqu'un pouvait compléter).
 
-Notons que pour $\lambda = 0$, il n'y a pas de transition monopolaire.
+
+\section{Probabilité de transition}
+\subsection{A. Distributions angulaires}
+Considérons comme état initial la fonction d'onde du noyau $\Psi^{J_iM_i\pi_i}$ et 0 photon et comme état final
+la fonction d'onde du noyau $\Psi^{J_fM_f\pi_f}$ et 1 photon.La probabilité de transition est donnée par la
+règle d'or de \textsc{Fermi}
+\begin{equation}
+dw_{if} = \frac{2\pi}{\hbar}\left|\bra{1,\Psi^{J_fM_f\pi_f}}H_{int}\ket{0,\Psi^{J_iM_i\pi_i}}\right|^2d\rho(E_i)
+\end{equation}
+où $d\rho(E_i)=\frac{d\vec k_\gamma}{dE}=\frac{k_\gamma^2}{\hbar c}d\Omega_\gamma$ est la densité d'état avec
+$\Omega_\gamma$ l'angle d'émission du photon. \\
+
+Considérons l'Hamiltonien d'interaction écrit à l'aide de l'opérateur élévateur
+\begin{equation}
+H_{int} = H_ea_{kq}^\dagger
+\end{equation}
+où $H_e(k,\epsilon_{kq}) = -\sum_{\lambda\mu\sigma}(-1)^\lambda q^\sigma a_\lambda^\sigma \mathcal{M}_\mu^{
+\sigma\lambda}D_{\mu-q}^\lambda(\Omega_\gamma)$.\\
+
+Pour l'émission d'un photon de nombre d'onde $k_y$ nous avons
+\begin{equation}
+\bra{1}a_{kq}^\dagger\ket{0} = \delta(k-k_\gamma)
+\end{equation}
+En intégrant sur $dk$ ce résultat
+\begin{equation}
+\int dk\ \bra{1}a_{kq}^\dagger\ket{H_e(k\epsilon_{kq})} = H_e(k_\gamma,\epsilon_{kq})
+\end{equation}
+Il est possible de réécrire la distribution angulaire $w_{if}$
+\begin{equation}
+\frac{dw_{if}}{d\Omega_\gamma} = \sum_q\left|\sum_{\lambda\mu\lambda}(-1)^\lambda q^\sigma\alpha_\lambda^\sigma
+\underbrace{\bra{\Psi^{J_fM_f\pi_f}}\mathcal{M}_\mu^{\sigma\lambda}\ket{\Psi^{J_iM_i\pi_i}}}_{\text{nucléons}}
+\underbrace{D_{\mu-q}^\lambda(\Omega_\gamma)}_{\text{photon}}\right|^2
+\end{equation}
+Après intégration sur $\Omega_\gamma$, on trouve
+\begin{equation}
+w_{J_iM_i\pi_i\to J_fM_f\pi_f} \approx \sum_{\lambda\mu\sigma} |\alpha_\lambda^\sigma|^|\left|
+\bra{\Psi^{J_fM_f\pi_f}}\mathcal{M}_\mu^{\sigma\lambda}\ket{\Psi^{J_iM_i\pi_i}}\right|^2
+\end{equation}
+Cette somme porte sur les trois multipôles :
+\begin{itemize}
+\item[$\bullet$] $\sigma = E$ (électrique) ou $M$ (magnétique)
+\item[$\bullet$] $\lambda=$ ordre du multipôle (de 0 à $\infty$)
+\item[$\bullet$] $\mu =$ projection $-\lambda\leq \mu\leq\lambda$
+\end{itemize}\ 
+
+Heureusement en pratique, seul un petit nombre de terme de cette somme contribue grâces notamment aux 
+règles de sélections mais aussi via le développement en puissance de $k_\gamma R$ ($\ll 1$).
+
+\subsection{B. Règles de sélection}
+Pas de notes (tout fait au tableau\dots) pour cette section et les trois suivantes. En demander!
+\subsection{C. Probabilité de transition totale}
+\subsection{D. Largeur gamma}
+\subsection{F. Cas particuliers : transition $E_1$ dans les noyaux $N=Z$}
+Considérons l'opérateur $E1$
+\begin{equation}
+\mathcal{M}_\mu^{E1} = e\sum_i\left(\frac{1}{2}-t_{iz}\right)r_iY_1^\mu(\Omega_{ri})\propto \sum_i
+\left(\frac{1}{2}-t_{iz}\right)\vec{r}_{i\mu}
+\end{equation}
+
+Dans la coordonnée $\vec{R}$, on doit supprimer le centre de masse. En effet, si on prend le premier
+facteur $1/2$, le centre de masse est défini de sorte à ce que cette somme soit nulle. Il ne reste donc
+que la contribution du terme en isospin
+\begin{equation}
+\mathcal{M}_\mu^{E1} \propto sum_i\left(\frac{1}{2}-t_{iz}\right)(\vec{r}_{i\mu}-\vec{R}_{c.m.,\mu})
+\propto -sum_i-t_{iz}(\vec{r}_{i\mu}-\vec{R}_{c.m.,\mu})
+\end{equation}
+Il s'agit d'un OTI de rang 1 dans l'espace des isospin. Pour un noyau où $N=Z$, $T_Z=0, T\approx0$. Le 
+coefficient de CG peut se calculer via le théorème de \textsc{Wigner-Eckart}
+\begin{equation}
+\bra{0010}\ket{00} = 0
+\end{equation}
+Les transitions $E1$, qui sont en principe dominantes, sont ici interdites. Cependant, comme $T$ n'est 
+pas un bon nombre quantique exact, les largeurs $E_1$ sont en générales non-nulles.
+
+
+
+
+
+\subsection{G. Unités Weisskopf}
+Il s'agit d'unités souvent utilisées. L'idée n'est pas de faire un calcul savant de la probabilité de transition
+mais un certain \textit{feeling} pour avoir un ordre de grandeur. En supposant qu'un seul nucléons participe à
+la transition, elles permettent donc d'estimer très simplement les probabilités de transitions réduites. Les
+définitions de cette unité sont données \textit{slide 114}.
+
+\subsection{F. Exemples}
+Serait fait lorsque les sections \textsc{B,C,D,F} seront faites, pas de sens avant.
+
+
+
+
+
+\subsection{I. États isométriques}
+Les états isométriques sont des états de longue durée de vie. Comme $\tau\propto 1/W$, il faut que
+$W$ soit petit. Rappelons l'expression de $W$
+\begin{equation}
+W(\sigma,\lambda) \propto E_\gamma^{2\lambda+1}\left|\bra{\Psi^{J_f\pi_f}}\mathcal{M}^{\sigma\lambda}\ket{
+\Psi^{J_i\pi_i}}\right|^2
+\end{equation}
+Pour avoir une longue durée de vie, il faut donc que $E_\gamma$ soit petit et donc $\lambda$ grand, impliquant
+que $J_f-J_i$ soit être important. De façon assez surprenante, il existe parfois des durées de vies plus 
+longue que le fondamental.
 
