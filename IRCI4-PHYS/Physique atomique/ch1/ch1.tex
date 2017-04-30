@@ -475,22 +475,247 @@ des effets relativiste. Notons qu'il n'y a pas de contradiction pour $Z>137$ (c'
 faut en effet se rappeler que la vitesse de l'électron est estimée d'un modèle non-relativite.}.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Le spin électronique}
+\subsection{Les matrices de Pauli}
+Pour un fermions, nous avons 
+\begin{equation}
+\left\{\begin{array}{ll}
+s &= 1/2\\
+m_s &= +s, \dots, -s \Rightarrow m_s = \pm 1/2
+\end{array}\right.\qquad\qquad\left\{\begin{array}{ll}
+\left[S_x,S_y\right] &= i\hbar S_z\\
+\left[S_y,S_z\right] &= i\hbar S_x\\
+\left[S_z,S_x\right] &= i\hbar S_y
+\end{array}\right.
+\end{equation}
+Comme $\vec{S}^2$ et $S_z$ commutent, il existe un \textsc{ecoc} de ces deux observables
+\begin{equation}
+[\vec{S}^2, S_z] = 0\Rightarrow \{\vec{S}^2, S_z\} \text{ forme un \textsc{ecoc}}
+\end{equation}
+Il existe donc une base de fonctions propres communes :
+\begin{equation}
+\left\{\begin{array}{ll}
+\vec{S}^2 \chi_{s,m_s} &= s(s+1)\hbar^2\chi_{s,m_s}\\
+S_z\chi_{s,m_s} &= \hbar m_s\chi_{s,m_s}
+\end{array}\right.
+\end{equation}
+Nous allons adopter la notation suivante 
+\begin{equation}
+\left\{\begin{array}{ll}
+\alpha &\equiv \chi_{1/2,1/2}\\
+\beta &\equiv \chi_{1/2,-1/2}
+\end{array}\right.
+\end{equation}
+Ceci nous permet de faire la différence entre spin \textit{up} et \textit{down} en fonction de la valeur
+propre de $S_z$.
+\begin{equation}
+\begin{array}{ll}
+\text{spin \textbf{up}}\ \uparrow\\
+\vec{S}^2\alpha &= (3/4)\hbar^2\alpha\\
+S_z\alpha &= +(1/2)\hbar \alpha
+\end{array}\qquad\qquad\qquad
+\begin{array}{ll}
+\text{spin \textbf{down}}\ \downarrow\\
+\vec{S}^2\alpha &= (3/4)\hbar^2\alpha\\
+S_z\alpha &= -(1/2)\hbar \alpha
+\end{array}
+\end{equation}
+
+On peut écrire une fonction d'onde avec \textit{un peu de spin up et un peu de spin down}
+\begin{equation}
+\chi = \chi_+\alpha+\chi_-\beta
+\end{equation}
+où
+\begin{equation}
+\begin{array}{lll}
+\bra{\alpha}\ket{\alpha} &= \bra{\beta}\ket{\beta} &= 1\\
+\bra{\alpha}\ket{\beta} &= \bra{\beta}\ket{\alpha} &= 0
+\end{array}\quad\Rightarrow\quad |\chi_+|^2+|\chi_-|^2=1
+\end{equation}
+Nous allons travailler dans un espace bidimensionnelle sous-tendu par les vecteurs \textit{purement up} et 
+\textit{purement down}
+\begin{equation}
+\alpha = \left(\begin{array}{c}
+1\\
+0
+\end{array}\right),\qquad\qquad\qquad\beta = \left(\begin{array}{c}
+0\\
+1
+\end{array}\right)
+\end{equation}
+De même dans l'espace dual en considérant l'adjoint
+\begin{equation}
+\alpha^\dagger = (1\ 0), \qquad\qquad\qquad \beta^\dagger = (0\ 1)
+\end{equation}
+On peut jouer avec les opérateurs de montée et de descente
+\begin{equation}
+S_\pm \equiv S_x \pm i S_y
+\end{equation}
+On peut montrer que l'on ne monde pas un spin \textit{up} mais aussi que l'on ne descend pas un spin \textit{down}
+\begin{equation}
+S_+\alpha = 0,\qquad\qquad S_-\alpha = \hbar\beta,\qquad\qquad S_+\beta = \hbar\alpha,\qquad\qquad S_-\beta = 0
+\end{equation}
+Le vecteur $S_z$ lève l'ambiguïté rencontrée avec $\vec S^2$. Dans les représentations de l'espace 2D sous-tendu
+à ces vecteurs, $S_+$ et $S_-$ sont bien évidemment orthogonaux. Il est possible de les écrire sous forme
+matricielle
+\begin{equation}
+\vec{S}^2 = \frac{3}{4}\hbar^2\left(\begin{array}{cc}
+1&0\\
+0&1
+\end{array}\right),\quad 
+S_z = \frac{\hbar}{2}\left(\begin{array}{cc}
+1&0\\
+0&-1
+\end{array}\right),\quad
+S_+ = \hbar\left(\begin{array}{cc}
+0&1\\
+0&0
+\end{array}\right),\quad S_- = \hbar\left(\begin{array}{cc}
+0&0\\
+1&0
+\end{array}\right)
+\end{equation}
+Ces expressions nous permettent d'écrire $S_x$ et $S_y$ de façon matricielle
+\begin{equation}
+S_x = \left(\begin{array}{cc}
+0&1\\
+1&0
+\end{array}\right),\qquad\qquad
+S_y = \left(\begin{array}{cc}
+0&-i\\
+i&0
+\end{array}\right)
+\end{equation}
+On peut alors écrire que
+\begin{equation}
+\vec{S} \equiv \frac{\hbar}{2}\vec{\sigma}
+\end{equation}
+où $\vec\sigma$ correspond aux matrices de \textsc{Pauli}
+\begin{equation}
+\left(\begin{array}{cc}
+0&1\\
+1&0
+\end{array}\right),\qquad\qquad
+\sigma_y = \left(\begin{array}{cc}
+0&-i\\
+i&0
+\end{array}\right),\qquad
+\sigma_z = \left(\begin{array}{cc}
+1&0\\
+0&-1
+\end{array}\right)
+\end{equation}
+Ceci fait donc le lien avec les trois matrices de \textsc{Pauli} auquel on joint souvent l'identité pour 
+avoir une représentation complète du spin. En toute généralité, on va définir un \textbf{spinneur}. Il 
+s'agit d'une fonction à deux composantes
+\begin{equation}
+q\equiv (\vec{r},\sigma)
+\end{equation}
+où $\vec{r} = f(x,y,z)$ et $\sigma$ décrit le spin ($\alpha$ ou $\beta$). Une fonction dans l'espace sera 
+composée d'un peu de \textit{up} et d'un peu de \textit{down} avec chaque fois une certaine amplitude
+\begin{equation}
+\Psi(q,t) = \Psi_+(\vec{r},t)\alpha + \Psi_-(\vec{r},t)\beta
+\end{equation}
+On adopte l'écriture en spinneur de rang 2 avec un peu de \textit{up} et un peu de \textit{down}
+\begin{equation}
+\Psi = \left(\begin{array}{c}
+\Psi_+\\
+\Psi_-
+\end{array}\right)
+\end{equation}
+
+
+\subsection{Les spin-orbitales}
+Nous avions les \textit{orbitales} fonctions des nombres quantiques $n,l$ et $m_l$. Si l'on veut tenir compte
+du spin, il faut rajouter le nombre quantique $m_s$ et définir alors une \textbf{spin-orbitale}
+\begin{equation}
+\psi_{nlm_lm_s}(q) =  \psi_{nlm_l}\chi_{1/2,m_s}
+\end{equation}
+Cette fonction caractérise un spin $1/2$ en précisant s'il est \textit{up} ou \textit{down}. Il est bien 
+évidemment toujours possible de faire une séparation des variables pour la "partie orbitale"
+\begin{equation}
+\psi_{nlm_lm_s}(q) =  R_{nl}(r)Y_{lm_l}\chi_{1/2,m_s}
+\end{equation}
+L'\textsc{ecoc} est toujours celui attendu, ou nous avons rajouté $\vec{S}^2$ et $S_z$
+\begin{equation}
+\{\vec{L}^2, L_z, \vec{S}^2, S_z, I\}\ \text{ forme un \textsc{ecoc}}
+\end{equation}
+Toutes les observables de cet \textsc{ecoc} commutent deux à deux. \\
+
+Généralement, le spin n'est pas écrit ($1/2$ pour l'électron), mais $m_s$ bien. On va utiliser la notation 
+spectroscopique 
+\begin{center}
+Notation spectroscopique\quad :\quad $\overline{nl_{m_l}}$
+\end{center}
+où la barre signifie $m_s=-1/2$. Une spin-orbitale est caractérisée par ce quartet de nombre quantiques. Par
+le principe d'exclusion de \textsc{Pauli}, on ne peut mettre au maximum qu'\textbf{un seul} électron par 
+spin-orbitale pour les systèmes polyélectroniques (voir chapitre 5) !
+
+
+
+\newpage
 \section{Effets relativistes et structure fine}
+	\begin{wrapfigure}[20]{l}{8cm}
+	\vspace{-8mm}
+	\includegraphics[scale=0.4]{ch1/image8}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'élaboration d'une théorie visant à décrire la structure fine vient d'une suprise expérimentale. L'énergie de
+l'atome d'hydrogène est donné par
+\begin{equation}
+E_n = -\frac{Z^2}{2m^2}\ \text{u.a.}
+\end{equation}
+Cette énergie est indépendante de $m_l$, ce qui implique que $3p_-, 3p_0$ et $3p_+$ ont la même énergie. Ceci
+est logique, la différence entre ces niveau est l’orientation de l'orbitale et nous avons bien une invariance
+par rotation tant que la symétrie sphérique est conservée. Ceci explique pourquoi l'énergie est indépendante
+de $m_l$, on pouvait s'y attendre. L'énergie est également indépendante de $l$ mais on ne peut le deviner : 
+c'est une conséquence du potentiel en $1/r$.\\
+
+On se demande combien il y a de raies spectrales entre $n=2$ et $n=3$. Si l'équation de \textsc{Schrödinger} 
+est valable, comme les niveaux $n=3$ sont tous dégénérés en énergie, on ne devrai s'attendre qu'à une seule
+différence et donc qu'à une seule raie. Or, ce n'est ps ce qui est observé expérimentalement : le niveau
+$3d_{3/2}$ n'a pas la même énergie que le niveau $3d_{5/2}$ et ceci résulte de la \textbf{structure fine}. \\
+
+En "observant" la notation spectroscopique, on peut se douter d'une interaction entre $\vec{L}$ et $\vec S$. 
+Mais il ne faut pas être trop naïf et penser que tout se résume en $\vec{j}=\vec l +\vec s$ sans quoi 
+"\textit{nous aurions fini l'atome d'hydrogène en une demi-heure}". L'appellation \textit{structure fine} 
+vient que cet effet est très fin (0.36 cm$^{-1}$), il faut une très bonne résolution pour l’apercevoir.
+
+\iffalse
+
+
+\fi
+
+\subsection{L'équation de Dirac}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
