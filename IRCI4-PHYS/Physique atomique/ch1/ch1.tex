@@ -5,7 +5,9 @@
 	\includegraphics[scale=0.4]{ch1/image1}
 	\captionof{figure}{ }
 	\end{wrapfigure}
-Avant toute chose, commençons par rappeler le système de coordonnées sphérique
+Avant toute chose, signalons que ce chapitre (ainsi que le suivant) est grandement inspiré
+de \textit{Physics of Atomes and Molecules} de \textsc{B.H. Bransden} et \textsc{C.J.
+Joachain}. Commençons par rappeler le système de coordonnées sphérique
 \begin{equation}
 \left\{\begin{array}{ll}
 x &= r\sin\theta\cos\phi\\
@@ -54,18 +56,22 @@ Pour les retenir, un petit moyen mnémotechnique : \textit{"\textbf{S}olar \text
 \textbf{F}ind \textbf{G}iraffes \textbf{H}idding \textbf{I}n \textbf{K}itchens}.\\
 
 Les harmoniques sphériques sont définies pour $m \geq 0$ par 
-\begin{center}
-\textbf{INCLURE EQ SLIDE 4}
-\end{center}
+\begin{equation}
+Y_{lm} (\theta, \phi) = (-1)^m
+\left[ \frac{(2l+1)}{4 \pi} \frac{(l-m)!}{(l+m)!}
+\right] ^{\frac{1}{2}}  P^{m}_l (\cos \theta) e^{i m \phi}
+\end{equation}
 Dans le cas où $m$ est négatif, on trouve l'harmonique sphérique associée via : 
-\begin{center}
-\textbf{INCLURE EQ SLIDE 4}
-\end{center}
+\begin{equation}
+Y_{l,-m} (\theta, \phi) = (-1)^m Y^\ast_{lm} (\theta, \phi)
+\end{equation}
 Les harmoniques sphériques répondent aux relations d'orthonormalité, où il convient de ne pas oublier le 
 facteur en $\theta$. Le prix à payer est bien évidemment celui de la normalisation :
-\begin{center}
-\textbf{INCLURE EQ SLIDE 4}
-\end{center}
+\begin{equation}
+\int_0^\pi d \theta \sin \theta 
+\int_0^{2 \pi} d\phi \; Y_{lm}^\ast (\theta,\phi) \; 
+Y_{l'm'} (\theta,\phi) = \delta_{ll'} \delta_{mm'}
+\end{equation}
 
 On peut définir des opérateurs de montée et de descente
 \begin{equation}
@@ -76,7 +82,25 @@ $m_l$ (ou encore, $m$)
 \begin{equation}
 L_\pm Y_{lm}(\theta,\phi) = \hbar\sqrt{l(l+1)-m(m\pm 1)}Y_{lm\pm1}(\theta,\phi)
 \end{equation}
-Suivant cette définition, quelques harmoniques sphériques sont données au \textit{slide 5}.
+\newpage
+Suivant cette définition, voici quelques harmoniques sphériques 
+\begin{equation}
+\begin{array}{l}
+ Y_{0,0} = \frac{1}{(4 \pi)^{1/2}}  \\
+\ \\
+ Y_{1,0} = \left( \frac{3}{4 \pi} \right)^{1/2} \cos \theta \\
+ Y_{1,\pm 1}  = \mp \left( \frac{3}{8 \pi} \right)^{1/2} \sin \theta \; e^{\pm i \phi} \\
+\ \\
+ Y_{2,0} = \left( \frac{5}{16 \pi} \right)^{1/2} (3 \cos^2 \theta - 1)   \\
+ Y_{2,\pm 1} = \mp \left( \frac{15}{8 \pi} \right)^{1/2} \sin \theta \cos \theta \; e^{\pm i \phi} \\
+ Y_{2,\pm 2} = \left( \frac{15}{32 \pi} \right)^{1/2} \sin^2 \theta \; e^{\pm 2i \phi} \\
+\ \\
+ Y_{3,0} = \left( \frac{7}{16 \pi} \right)^{1/2}   (5 \cos^3 \theta - 3 \cos \theta)  \\
+ Y_{3,\pm 1} = \mp \left( \frac{21}{64 \pi} \right)^{1/2}    \sin \theta (5 \cos^2 \theta - 1)  \; e^{\pm i \phi} \\
+ Y_{3,\pm 2} =  \left( \frac{105}{32\pi} \right)^{1/2}    \sin^2 \theta \cos \theta \; e^{\pm 2 i \phi} \\
+ Y_{3,\pm 3} = \mp \left( \frac{35}{64 \pi} \right)^{1/2}    \sin^3 \theta  \; e^{\pm 3 i \phi}
+\end{array}
+\end{equation}
 
 
 
@@ -336,12 +360,40 @@ Compte tenu de ce système d'unité, on peut alors ré-écrire la solution pour 
 \begin{equation}
 E_n = -\frac{e^2}{(4\pi\epsilon_0)a_\mu}\frac{Z^2}{2n^2}=-\dfrac{Z^2}{2n^2}\left(\frac{\mu}{m}\right)\text{ u.a.}
 \end{equation}
-\begin{center}
-\textbf{INCLURE QUELQUES EX SLIDE 18}
-\end{center}
-où l'on possède une loi d'échelle reliant $\rho$ à $r$.
-
-
+La fonction radiale s'écrit alors
+\begin{equation}
+R_{nl}(r) = P_{nl}(r) / r=
+  - \left\{ \left( \frac{2Z}{na_\mu} \right)^3
+   \frac{(n-l-1)!}{2n[(n+l)!]^3} \right\}^{1/2} \;
+  e^{-\rho/2} \rho^l \; L^{2l+1}_{n+l} (\rho)
+\end{equation}
+$\mbox{o\`u}~L^{2l+1}_{n+l}(\rho)~\mbox{est un polyn\^ome de
+degr\'e}~n_r = n-l-1$. On possède donc une loi d'échelle reliant $\rho$ à $r$.
+\begin{equation}
+\rho 
+= \frac{2Z}{na_\mu} \; r, \hspace*{2cm} 
+ a_\mu = \frac{4 \pi \epsilon_0 \hbar^2}{\mu e^2}
+\end{equation}
+Quelques exemples, pour le plaisir des yeux
+\begin{equation}
+\begin{array}{l}
+R_{10}(r) = 2 (Z/a_0)^{3/2} \exp (-Zr/a_0) \\
+\ \\
+R_{20}(r) = 2 (Z/2 a_0)^{3/2} (1-Zr/2 a_0) \exp (-Zr/2 a_0) \\
+R_{21}(r) = \frac{1}{\sqrt{3}}  (Z/2 a_0)^{3/2} (Zr/a_0)
+        \exp (-Zr/2 a_0) \\
+\ \\
+R_{30}(r) = 2 (Z/3a_0)^{3/2} (1 - 2Zr/3 a_0 + 2 Z^2r^2/27a_0^2) \\
+  \hspace*{4cm}  \exp(-Zr/3a_0) \\
+R_{31}(r) = \frac{4 \sqrt{2}}{9} (Z/3a_0)^{3/2}
+  (1 -Zr/6a_0)(Zr/a_0) \\
+  \hspace*{4cm} \exp(-Zr/3 a_0) \\
+R_{32}(r) = \frac{4}{27 \sqrt{10}} (Z/3a_0)^{3/2} (Zr/a_0)^2 
+   \exp(-Zr/3a_0)
+\end{array}
+\end{equation}
+Notons que le nombre de nœuds est donné 
+par $n_r=n-l-1$.
 
 \subsubsection{Densités radiales}
 Le \textit{slide 19} donne des exemples de densité radiale, justifiant la structure en couche des 
@@ -352,11 +404,7 @@ sont forcément positives car elle détermineront les densités de probabilités
 On remarque que $2s$ s'éteint de façon exponentielle, sans nœud. La grande différence entre l'orbitale $s$ et
 les autres est qu'elle est non-nulle en $r=0$ (car pas de potentiel centrifuge).
 
-\begin{center}
-\textbf{INCLURE QUELQUES EX SLIDE 19}
-\end{center}
 
-\newpage
 \section{Spectre de l’atome d’hydrogène}
 
 \subsection{Série de Balmer}
@@ -418,7 +466,7 @@ d'une autre raie : c'est celle du deutérium.}. Calculons l'émission de $H\alph
 \bar\nu = \frac{1}{\lambda}= \bar{R}_H\left(\frac{1}{4}-\frac{1}{9}\right) = 15237\ \text{cm}^{-1}
 \end{equation}
 
-\newpage
+
 	\begin{wrapfigure}[14]{l}{6cm}
 	%\vspace{-5mm}
 	\includegraphics[scale=0.3]{ch1/image6}
@@ -930,7 +978,7 @@ coefficients de CB explicités (à cause du couplage \textit{spin-orbite}).
 \subsection{Spectre de Dirac}
 	\begin{wrapfigure}[14]{l}{6cm}
 	\vspace{-5mm}
-	\includegraphics[scale=0.45]{ch1/image8.PNG}
+	\includegraphics[scale=0.45]{ch1/image82}
 	\captionof{figure}{ }
 	\end{wrapfigure}
 	
@@ -994,7 +1042,7 @@ une contraction de l'énergie de liaison. La structure ressemble cependant toujo
 	\captionof{figure}{ }
 \end{center}
 
-
+\newpage
 \subsection{Limite non relativiste de Dirac}
 Il n'est pas possible d'ignorer les résultats obtenu par l'équation de \textsc{Dirac}. Cependant, 
 il est possible d'essayer de "mimiquer" le spectre de \textsc{Dirac} en bye-passant la complexité
@@ -1045,7 +1093,7 @@ l'expression de l'énergie dû à la structure fine)\footnote{Lire notes personn
 
 
 
-
+\newpage
 \section{Lamb shift (1947)}
 \subsection{Levée de la dégénérescence pour $j=1/2$}
 La catastrophe (ou beauté) c'est que tout n'est pas prévu par l'équation de \textsc{Dirac}. En 
@@ -1071,7 +1119,7 @@ L'énergie d'ionisation de l'hydrogène est d'à peu près 110 000 cm$^{-1}$. Ce
 \textsc{Lamb} est d'à peu près 0.038 cm$^{-1}$ pour l'hydrogène mais peut atteindre 75 eV pour 
 l'uranium.
 
-\newpage
+
 \section{Structure hyperfine de l'hydrogène}
 	\begin{wrapfigure}[14]{r}{7cm}
 	\vspace{-5mm}
@@ -1113,6 +1161,10 @@ Le moment nucléaire est colinéaire au moment magnétique : le rapport $\mu_N/\
 1836. La définition de $\vec F$ crée évidemment un nouvel \textsc{ecoc}.
 
 \subsection{État fondamental $1s_{1/2}$}
+Considérons l'interaction hyperfine dipolaire magnétique (M1)
+\begin{equation}
+H = H^0 + H^{M1}
+\end{equation}
 Il existe des interactions avec le spin de l'électron. Dans l'état $1s$, nous avons 
 ${\bf J} = {\bf L} + {\bf S} = {\bf S}$. En définissant $\mbox{\boldmath $ \mu $}_S = -g_S \mu_B {\bf
 S}/ \hbar$, on peut écrire un Hamiltonien décrivant cette interaction
@@ -1199,45 +1251,165 @@ Une image vaut mieux qu'un long discours
 $\nu_{exp} = 1420405751.800$ Hz. Il s'agit de la raie à $\lambda=21$ cm.}
 \end{center}
 
-\iffalse
-
-
-
-Ca vient du fait que le moment magnétique I aura un moment nucléaire. Il est clolinéaire à mu. . Le rapport entre mu_N et mu_B c'est a peu pres 1836. 
-
-Ici on fait bien un changement d'ECOC en écrivant F=...
-
-
-
-\fi
 
 
 
 
 
+\subsection{Interaction hyperfine électrique quadrupolaire}
+En plus de l'interaction hyperfine dipolaire magnétique $M1$ dont nous avons discuté ci-dessus, il
+existe l'interaction hyperfine électrique quadrupolaire $E2$\footnote{Voir cours de \textit{Physique
+nucléaire.}}
+\begin{equation}
+H = H^0 + H^{M1} + H^{E2}
+\end{equation}
+Nous avions déjà énoncé le moment magnétique de spin $\mbox{\boldmath $ \mu $}_I = g_I \mu_N {\bf I}/
+\hbar$. Définissons maintenant le \textit{moment quadrupolaire électrique du noyau}
+\begin{equation}
+Q = \langle I, M_I=I \vert Q_{zz} \vert I, M_I=I \rangle
+= \langle I, M_I=I \vert \sum_p (3 z^2_p - r^2_p)  \vert I, M_I=I \rangle
+\end{equation}
+Si l'on effectue le changement de variable $z=r\cos\theta$, on retrouve la partie radiale de 
+$Y_{20}$. La valeur moyenne de ce moment angulaire se calcule alors
+\begin{equation}
+Q_{20} = sum_p r_p^2 Y_{20}(\Omega_p)
+\end{equation}
+où l'on somme sur tous les protons\footnote{Il faudrait expliciter, je n'ai pas tout compris. Il 
+faut les notes du tableau!}. La composante $z$ peut être calculée par deux fonctions
+nucléaires. En fonction du signe de $Q$ trois cas peuvent se présenter (soit la distance de charge 
+nucléaire) : sphérique $(Q=0)$, prolate ($Q>0$) et oblate ($Q<0$). Si $I=0$ ou $I=1/2$, il en vient
+que $Q=0$. Par exemple, $Q(^2\mbox{H}) = 0.0028~\mbox{barns} = 0.0028~10^{-24}~\mbox{cm}^{2}$.
 
 
 
+\section{Largeurs de raies}
+\subsection{Largeur naturelle}
+
+	\begin{wrapfigure}[15]{r}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.5]{ch1/image13}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+	
+Même si \textsc{Schrödinger}, \textsc{Dirac}, \dots prévoient tous des niveaux bien distincts, ce 
+n'est pas le cas en pratique (à cause des incertitudes sur les niveaux). Il peut donc pour une 
+transition entre deux niveau, émettre des photons de différentes énergies (à cause des incertitudes
+sur les deux niveaux). On peut montrer que la largeur naturelle (qui concerne même le fondamental et
+qui donc empêche d'avoir des raies parfaitement piquées) est un profil lorentzien, ici exprimé 
+en fonction de l'intensité
+\begin{equation}
+I(\nu) = I_0 \; \frac{ (\gamma / 4\pi )^2}
+{ (\nu - \nu_0 )^2 + (\gamma / 4\pi )^2 }
+\end{equation}
+On peut en définir la largeur à mi-hauteur $\delta \nu_L = \gamma / 2 \pi$. Ce coefficient $\gamma$
+n'est en réalité rien d'autre que le coefficient d'\textsc{Einstein} d'émission spontanée
+\begin{equation}
+\gamma = A_{21} = 1 / \tau_2 \rightarrow 
+\delta \nu_L = \frac{1}{2 \pi \tau_2}
+\end{equation}
+ici de $2\to1$. Comme mentionné ci-dessus, il faut tenir compte de l'incertitude des deux niveaux. 
+La largeur à mi-hauteur s'écrit alors
+\begin{equation}
+\delta\nu_{12}=\delta\nu_1+\delta\nu_2 = \frac{1}{2\pi}\left(\frac{1}{2\pi\tau_2}+\frac{1}{2\pi\tau_2}
+\right)
+\end{equation}
 
 
 
+\subsection{Élargissement par pression}
+Comme on l'a déjà dit, même avec \textsc{Dirac, Schrödinger}, \dots où on croit avoir une raie bien
+pure il y aura un élargissement, notamment par pression. La forme mathématique est équivalente, il
+s'agit d'une lorentzienne
+\begin{equation}
+I(\nu) = I_0 \; \frac{ (w/2 )^2}
+{ (\nu - \nu_0 - d )^2 + (w/2 )^2 }
+\end{equation}
+Sauf qu'ici, la largeur à mi-hauteur est liée à $w$ qui vaut
+\begin{equation}
+w =  \frac{1}{ 2 \pi t_0}
+\end{equation}
+où l'on voit apparaître $t_0$, le temps moyen entre collisions. A pression nulle, chaque particule 
+possède un libre parcours moyen infini. Pour se débarrasser de cet effet on effectue les manipulations
+à différentes mesures et on essaye d'extrapoler à pression nulle afin d'avoir un signal "idéal". Les
+manipulations d'atomes froids sont aussi courants dans ce domaine.
 
 
+\subsection{Élargissement Doppler}
+Hélas il n'y avait pas que cet effet et il y a bien pire : l'effet \textsc{Doppler}
+\begin{equation}
+\omega = \left(
+\frac{1 \mp v/c}{1 \pm v/c} \right) ^{1/2} \omega_0
+\end{equation}
+La fréquence que l'on voit dans une raie n'est propre que s'il n'y a pas ni mouvement, ni dynamique
+entre la source émettrice et l'observateur (ou l'inverse). La fréquence apparente n'est pas la 
+fréquence propre. Développons en série
+\begin{equation}
+\omega - \omega_0 = \mp \frac{v}{c} \omega_0
++ \frac{1}{2} \frac{v^2}{c^2} \omega_0 + \ldots
+\end{equation}
+Au premier ordre
+\begin{equation}
+\omega = \omega_0 \left( 1 \mp \frac{v}{c} \right),\qquad\qquad\qquad
+\lambda = \lambda_0 \left( 1 \pm \frac{v}{c} \right)
+\end{equation}
+On peut alors avoir un \textit{red-shift} $\omega = \omega_0 \left( 1 {\color{red} - } 
+\frac{v}{c} \right)$ ou un \textit{blue-shift} $\omega = \omega_0 \left( 1 {\color{blue} + } 
+\frac{v}{c} \right)$.\\
+
+C'est lorsque une source d'émission s'approchant de l'observateur à vitesse $v_x$ que l'on parle
+de décalage vers le bleu. Celui-ci est donné par
+\begin{equation}
+- \frac{\Delta \lambda }{\lambda_0} =
+\frac{\Delta \nu}{\nu_0} = \frac{ \nu - \nu_0 }{\nu_0}  
+= \frac{v_x}{c}
+\end{equation}
+La distribution de Maxwell des vitesses des atomes nous permet, à l'équilibre et à la température
+$T$, de connaître la fraction d'atomes ayant une vitesses comprises entre $v_x$ et $v_x+dv_x$
+\begin{equation}
+dN(v_x) = N_0 \exp (-M v_x^2 /2kT) \; dv_x
+\end{equation}
+Avoir connaissance de la vitesse est important : l'effet \textsc{Doppler} est nul pour une source 
+se déplaçant orthogonalement à l'observateur, mais est colossal lorsqu'une particule se rapproche
+vers l'observateur.\\
+
+La profil est cette fois-ci gaussien
+\begin{equation}
+I(\nu) =  I_0 \; e^{-x^2}~~\mbox{avec}~~
+x = 2 \sqrt{\ln 2} \; \frac{\nu_0 - \nu}{\delta \nu_D}
+\end{equation}
+La largeur à mi-hauteur (\textsc{fwhm}) est donnée par
+\begin{equation}
+\delta \nu_D = 
+2 \sqrt{\ln 2} \; \frac{\nu_0}{c} 
+ \sqrt {\frac{2 k{\color{red} T}}
+{ {\color{red} M} }}
+\end{equation}
+Cette largeur est inversement proportionnelle à la racine de la masse. Si la masse est grande, pour
+une même énergie, la particule ne se déplacera pas de la même façon. La largeur \textsc{Doppler} sera
+donc suffisamment mince pour de gros noyaux. On s'intéresse ici également aux atomes froid, dont le
+but est d'immobiliser un atome. S'il est piéger, il ne subit plus d'effet de pression et il n'y a 
+pas d'effet \textsc{Doppler}.\\
+
+	\begin{wrapfigure}[8]{r}{5.7cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch1/image14}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Cet effet peut paraître anodin, mais on l'a rencontré dans l'étude
+des systèmes binaires (décale une raie parfois dans un sens, parfois dans l'autre). Autre exemple,
+\textsc{Ewen} et \textsc{Purcell} n'ont pas observé une raie bien étroite de 21cm en observant la
+\textit{Milkyway}, mais une raie avec une certaine largeur. En pointant sur le centre de la 
+galaxie, certaines étoiles se rapprochent et d'autres s'éloignent : shift. C'est ce qui a permis de
+modéliser la forme de notre galaxie.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Comparaison des profils Doppler et Lorentzien, convolution et profil de Voigt}
+Lorsque les deux effets sont présents en même temps, il se produit une convolution entre ces deux effets. Ceci donne un \textit{profil de} \textsc{Voigt}
+\begin{equation}
+I(x) = \mbox{cste} \; 
+\int_{-\infty}^\infty 
+\frac{e^{-y^2}}{(x-y)^2 + a^2} dy
+\end{equation}
+où $\DS x = 2 \sqrt{ \ln 2} \; \;
+\frac{\nu_0 - \nu}{\delta \nu_D}$ et $\DS a =  \sqrt{ \ln 2} \; \; 
+\frac{\delta \nu_L}{\delta \nu_D}$.
