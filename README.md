@@ -65,9 +65,11 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
   - [ ] [Vibration & Accoustics](IRCI4-EM/Vibration%20&%20Accoustics/build/Vibration%20&%20Accoustics.pdf)
 - [ ] ***Physique***
   - [x] [Mécanique quantique II](IRCI4-PHYS/Mécanique%20quantique%20II/build/Mécanique%20quantique%20II%20-%20Nicolas%20Englebert.pdf)
-  - [x] [Métronolgie nucléaire](IRCI4-PHYS/Métrologie%20nucléaire/build/Métrologie%20nucléaire%20-%20Nicolas%20Englebert.pdf)
+  - [x] [Métrololgie nucléaire](IRCI4-PHYS/Métrologie%20nucléaire/build/Métrologie%20nucléaire%20-%20Nicolas%20Englebert.pdf)
   - [x] [Physique des lasers](IRCI4-PHYS/Physique%20des%20lasers/build/Physique%20des%20lasers%20-%20Nicolas%20Englebert.pdf)
   - [x] [Physique des réacteurs nucléaires](IRCI4-PHYS/Physique%20des%20réacteurs%20nucléaires/build/Physique%20des%20réacteurs%20nucléaires%20-%20Nicolas%20Englebert.pdf)
+  - [x] [Physique atomique](IRCI4-PHYS/Physique%20atomique/build/Physique%20atomique%20-%20Nicolas%20Englebert.pdf)  
+  - [x] [Physique nucléaire](IRCI4-PHYS/Physique%20nucléaire/build/Physique%20nucléaire-%20Nicolas%20Englebert.pdf)  
   
 
 
