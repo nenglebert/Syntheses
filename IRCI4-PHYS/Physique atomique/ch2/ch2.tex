@@ -423,9 +423,373 @@ de fréquence $\omega_{ba}$ dans une direction particulière à l'intérieur d'u
 
 
 \section{L'approximation dipolaire électrique}
+Lorsqu'un atome excité se désexcite par l'émission d'un photon, rien ne dit que celui-ci sera
+polarisé et de même pour sa direction. Il faut alors intégrer sur tous les angles d'émission tout
+en sommant sur les deux états de polarisation
+\begin{equation}
+W_{a \leftarrow b}^s = \frac{\hbar}{ 2 \pi m^2 c^3} \left( \frac{e^2}{4 \pi \epsilon_0 } \right)
+\int d\Omega \sum_{\lambda = 1}^2 \omega_{ba} \vert M^{\lambda}_{ba} (\omega_{ba}) \vert ^2
+\end{equation}
+Outre cette dépendance fréquentielle, on retrouve le même élément de matrice couplant $a$ et $b$. La
+question est maintenant de savoir ce que vaut cet élément de matrice et pour ça, nous allons faire
+l'\textit{approximation dipolaire électrique (E1)}. Considérons le développement en série
+\begin{equation}
+e^{i {\bf k} \cdot {\bf r} } = 1 + (i {\bf k} \cdot {\bf r} ) + \frac{1}{2!} 
+  ( i {\bf k} \cdot {\bf r} ) ^2 + \ldots
+\end{equation}
+Si l'on se trouve dans le cas des transitions optiques, $ \leq  1~\mbox{\AA~et }~k = 2 \pi / \lambda
+\approx 10^5~\mbox{cm}^{-1}$. Il en vient que $(kr)\ll 1$. On peut approximer l'exponentielle 
+à un dans ce régime la
+\begin{equation}
+e^{i {\bf k} \cdot {\bf r} } \approx  1  \Rightarrow
+M_{ba} = \hat{  \mbox{\boldmath $ \epsilon $}} \cdot \langle \psi_b \vert
+\mbox{\boldmath $ \nabla $} \vert \psi_a \rangle
+\end{equation}
+Il faudra alors juste calculer les éléments de matrice de l'opérateur gradient. Connaissant les 
+deux relations suivantes reliant l'impulsion et la vitesse, on peut ré-écrire cet élément de 
+matrice
+\begin{equation}
+\left.
+\begin{array}{l}
+{\bf p} = m \dot{{\bf r}} = -i \hbar \mbox{\boldmath $ \nabla $} \\
+\dot{{\bf r}}  = \frac{1}{i \hbar} [ {\bf r}, H_0 ] \end{array}
+\right\} \Rightarrow
+M_{ba} = - \frac{m \omega_{ba}}{\hbar} \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\langle \psi_b \vert {\bf r} \vert \psi_a \rangle
+\end{equation}
+Cette forme permet de comprendre le nom de l'approximation : on voit apparaître la position 
+moyenne qui, multipliée à la charge, donne le \textit{moment dipolaire}. Sachant que
+$ $, on peut écrire
+\begin{equation}
+W^{E1}_{b \leftarrow a} = \frac{4 \pi^2}{c \hbar^2} \left( \frac{1}{4 \pi \epsilon_0 } \right)
+ I(w_{ba}) \vert  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+ \mbox{\boldmath $ \mu $}_{ba} \vert ^2
+\end{equation}
+En faisant apparaître $\vec\mu$ via le formalisme position, la probabilité $E1$ permet de comprendre
+le passage de $a$ à $b$ (ou l'inverse) où apparaît le moment dipolaire entre les deux états. On peut
+alors trouver la radiation isotropique non polarisée pour l'absorption
+\begin{equation}
+W^{E1}_{b \leftarrow a} = \frac{4 \pi^2}{3 c \hbar^2} \left( \frac{1}{4 \pi \epsilon_0 } \right)
+ I(w_{ba}) \vert  
+ \mbox{\boldmath $ \mu $}_{ba} \vert ^2
+\end{equation}
+Et de même pour l'émission spontanée
+\begin{equation}
+W_{a \leftarrow b}^{E1,s} = \frac{4}{3 \hbar c^3} \left( \frac{1}{4 \pi \epsilon_0} \right)
+  \omega_{b a}^3 \vert  \mbox{\boldmath $ \mu $}_{ba} \vert ^2
+\end{equation}
+On remarque que plus la différence entre $a$ et $b$ est grande, plus la probabilité de transition
+est grande : c'est le \textit{comportement suicidaire de l'électron}.\\
 
+
+	\begin{wrapfigure}[8]{r}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.6]{ch2/image2}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+On peut (et en on parlera d'avantage dans la section suivante) faire le lien avec les coefficients
+d'\textsc{Einstein}. Commentons les transitions ci-contre. Pour que la première flèche existe, il
+faut que $N_a$ existe, mais également une densité de radiation $\rho$. Le coefficient $B_{ab}$ n'est
+autre que le coefficient de proportionnalité donnant une probabilité. Il existe également le 
+phénomène symétrique (seconde flèche) : il faut ici que $N_b$ soit peuplé et qu'il y ai une certaine
+densité de radiations. La troisième flèche (émission spontanée) peut elle se produire sans radiation
+à condition que le niveau $b$ soit peuplé.
+
+
+\section{Lien avec les coefficients d'Einstein}
+Écrivons l'équation cinétique du niveau $a$. La transition $a\to b$ dépeuple $a$ tandis que
+la $b\to a$ le repeuple
+\begin{equation}
+\frac{dN_a}{dt} = - \frac{dN_b}{dt} =
+- B_{ab} \rho(\omega_{ba}) N_a + B_{ba} \rho(\omega_{ba}) N_b
+ + A_{ba} N_b
+\end{equation}
+A l'équilibre, $\frac{dN_a}{dt} = \frac{dN_b}{dt} = 0$. On peut en tirer un expression de $\rho$
+\begin{equation}
+\rho(\omega_{ba}) = 
+\frac{A_{ba} }{B_{ab} (N_a/N_b) - B_{ba}}
+\end{equation}
+L'équation de \textsc{Boltzmann} (en oubliant les facteurs de dégénérescence) permet de déterminer
+l'évolution du rapport $N_a/N_b$
+\begin{equation}
+\frac{N_a}{N_b} = e^{-(E_a - E_b)/kT} = e^{\hbar \omega_{ba} /kT}
+\end{equation}
+De son côté, \textsc{Planck} a proposé un expression pour la densité d'un corps noir
+\begin{equation}
+\rho(\omega_{ba})
+= \frac{\hbar \omega_{ba}^3}{\pi^2 c^3}
+\frac{1}{e^{\hbar \omega_{ba} /kT} -1  }
+\end{equation}
+\textsc{Einstein} avait les précédentes équations sous la main.  Il a remarqué - avec en plus 
+l'équation de \textsc{Boltzmann} à disposition - que l'égalité entre son $\rho$ et celui trouvé par
+\textsc{Planck} est vérifiée si les conditions si les conditions suivantes sont respectées
+\begin{equation}
+\left\{
+\begin{array}{l}
+B_{ab} = B_{ba} \\
+A_{ba} = \frac{\hbar \omega_{ba}^3}{\pi^2 c^3} \; B_{ba}
+\end{array} \right. \quad\Leftrightarrow\quad
+ \left\{ \begin{array}{l}
+B_{ab} = \frac{W_{b \leftarrow a}}{\rho} \\
+A_{ba} = W^s_{a \leftarrow b}
+\end{array} \right.
+\end{equation}
+\textsc{Interprétation manquante} (au pire, cf. \textit{Physique des lasers}).
+
+\section{Spectre des atomes hydrogénoïdes}
+Maintenant que nous avons établi la forme de l'élément matriciel, il serait intéressant de comprendre
+comment celui-ci couple les états $n=2$ et $n=3$ par exemple. Pour se faire, reprenons la probabilité
+de transition d'émission stimulée et spontanée($s$)
+\begin{equation}
+\begin{array}{ll}
+W^{E1}_{b \leftarrow a} &\DS= \frac{4 \pi^2}{c \hbar^2} \left( \frac{e^2}{4 \pi \epsilon_0 } \right)
+ I(w_{ba}) \vert  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+{\bf  r}_{ba} \vert ^2\vspace{2mm}\\
+W_{a \leftarrow b}^{E1,s}(\theta, \phi) \; d \Omega &\DS= 
+\frac{1}{2 \pi \hbar c^3} \left( \frac{e^2}{4 \pi \epsilon_0} \right)
+  \omega_{b a}^3
+\vert  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+{\bf  r}_{ba} \vert ^2 d \Omega
+\end{array}
+\end{equation}
+Exprimons le vecteur polarisation $\hat{\vec{\epsilon}}$ en composantes sphériques
+\begin{equation}
+\left\{
+\begin{array}{ll }
+\epsilon^{(1)}_{+1}  & = - \frac{1}{\sqrt{2}} 
+ \left( \hat{\epsilon}_x + i  \hat{\epsilon}_y \right) \\
+\epsilon^{(1)}_{0}  & =  \hat{\epsilon}_z \\
+\epsilon^{(1)}_{-1}  & = + \frac{1}{\sqrt{2}}
+ \left(  \hat{\epsilon}_x - i  \hat{\epsilon}_y \right)
+\end{array} \right.
+\end{equation}
+En faisant de même pour le vecteur $\vec{r}$
+\begin{equation}
+\left\{
+\begin{array}{ll }
+r^{(1)}_{+1}  & = - \frac{1}{\sqrt{2}} \left( x + i y \right) \\
+r^{(1)}_{0}  & = z \\
+r^{(1)}_{-1}  & = + \frac{1}{\sqrt{2}} \left( x - i y \right)
+\end{array} \right.
+\end{equation}
+Ceci forme un tenseur sphérique irréductible d'ordre 1 (se transforme comme un vecteur par
+rotation). A partir de deux tenseur, il est possible d'en tirer un tenseur scalaire. Il faut
+pour cela faire un produit tensoriel des deux OTI
+\begin{equation}
+\left[ {\bf T}^{(k_1)} \times {\bf W}^{(k_2)} \right]^{(K)}_Q \equiv
+\sum_{q_1,q_2} C(k_1k_2q_1q_2;KQ) \; T^{(k_1)}_{q_1} W^{(k_2)}_{q_2}
+\end{equation}
+En couplant des tenseurs sphériques irréductibles, il est possible de créer un tenseur irréductible
+scalaire.
+
+\subsubsection*{Parenthèse : symboles $3-j$}
+Pour se faciliter la vie, on introduit les symboles $3-j$. Pour comprendre leur utilité, repartons
+des coefficients de Clebsch-Gordon
+\begin{equation}
+C(j_1 j_2 m_1 m_2; J M) 
+= ( j_1 j_2 m_1 m_2 \vert j_1 j_2 J M)= ( j_1 j_2 m_1 m_2 \vert  J M) 
+= ( j_1 m_1 j_2 m_2 \vert  J M)
+\end{equation}
+Par \textbf{définition} des \textit{symboles $3-j$}
+\begin{equation}
+( j_1 j_2 m_1 m_2 \vert j_1 j_2 J M)
+\equiv
+(-1)^{j_1 - j_2 + M} [ J ]^{1/2} 
+\left( \begin{array}{ccc} j_1 & j_2 & J \\ m_1 & m_2 & -M \end{array} 
+\right) 
+\end{equation}
+L'utilité de ces symboles se trouve dans les propriétés de ceux-ci
+\begin{equation}
+\left( 
+\begin{array}{ccc} j_1 & j_2 & j_3 \\ m_1 & m_2 & m_3 \end{array} 
+\right) 
+= 
+\left( 
+\begin{array}{ccc} j_2 & j_3 & j_1 \\ m_2 & m_3 & m_1 \end{array} 
+\right)= (-1)^{j_1 + j_2 + j_3}
+\left( 
+\begin{array}{ccc} j_2 & j_1 & j_3 \\ m_2 & m_1 & m_3 \end{array} 
+\right)
+\end{equation}
+Ceux-ci sont non nuls si
+\begin{equation}
+ \neq 0 \Rightarrow \left\{
+\begin{array}{l}
+\delta(j_1,j_2,j_3) \\
+m_1 + m_2 + m_3 = 0
+\end{array}  \right.
+\end{equation}
+Ce qui constitue une puissante règle de sélection.
+
+\subsection{Produit scalaire de 2 OTI}
+Construisons le produit scalaire entre deux OTI. Pour se faire, évaluons le produit entre deux
+tenseurs suivant\footnote{Je n'ai pas de notes sur ce slide (20), si quelqu'un peut compléter}
+\begin{equation}
+\left[ T^{(k)} \times W^{(k)} \right]^{(0)}_0 \equiv
+\sum_{q} 
+\left( \begin{array}{ccc} k & k & 0 \\ -q & q & 0 \end{array} 
+\right)  \; T^{(k)}_{-q} W^{(k)}_{q}
+= (-1)^k [k]^{-1/2} \sum_q (-1)^q \; T^{(k)}_{-q} W^{(k)}_{q}
+\end{equation}
+On en tire l'expression du produit scalaire tensoriel\\
+
+\cadre{
+\begin{equation}
+Q \equiv T^{(k)} \cdot W^{(k)} \equiv
+\sum_q (-1)^q \; T^{(k)}_{-q} W^{(k)}_{q}
+\end{equation}}\ \\
+
+Nous avons comme probabilité de transition
+\begin{equation}
+W^{E1}_{b \leftarrow a} = \frac{4 \pi^2}{c \hbar^2} \left( \frac{e^2}{4 \pi \epsilon_0 } \right)
+ I(w_{ba}) \vert  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+{\bf  r}_{ba} \vert ^2
+\end{equation}
+Développons le produit scalaire se trouvant dans le module carré
+\begin{equation}
+\begin{array}{ll}
+  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+{\bf  r}_{ba}
+&\DS= - \epsilon^{(1)}_{-1} \left( r^{(1)}_{+1} \right)_{ba} 
++ \epsilon^{(1)}_{0} \left(  r^{(1)}_{0} \right)_{ba}
+- \epsilon^{(1)}_{+1}\left(  r^{(1)}_{-1} \right)_{ba}\vspace{2mm}\\
+&\DS= +  \epsilon^{(1)\ast}_{+1}  \left( r^{(1)}_{+1} \right)_{ba} 
++  \epsilon^{(1)\ast}_{0}  \left(  r^{(1)}_{0} \right)_{ba}
++  \epsilon^{(1)\ast }_{-1}  \left(  r^{(1)}_{-1} \right)_{ba}\vspace{2mm}\\
+&\DS= \sum_q \; \epsilon^{(1)\ast}_q I^q_{n'l'm';nlm}
+\end{array}
+\end{equation}
+Dans l'atome d'hydrogène, $a$ et $n$ ne sont finalement qu'un \textit{set} de nombres quantiques.
+Continuons en explicitant $I^q_{n'l'm';nlm}$
+\begin{equation}
+\begin{array}{ll}
+I^q_{n'l'm';nlm} &\DS=  \sqrt{\frac{4 \pi}{3}} \int_0 ^\infty
+\; dr \; r^3 R_{n'l'}(r)^\ast  R_{nl}(r)\times \int_0^{2 \pi} \int_0^{\pi}
+Y^\ast_{l'm'} Y_{1q} Y_{lm} \sin \theta d\theta d\phi\vspace{2mm}\\
+&\DS= \langle l' m' \vert C^{(1)}_q \vert l m  \rangle \int_0 ^\infty
+\; dr \; r^3 R_{n'l'}(r)  R_{nl}(r)
+\end{array}
+\end{equation}
+où l'on voit apparaître les harmoniques sphériques de l'opérateur. Explicitons cette fois 
+$\langle l' m' \vert C^{(1)}_q \vert l m \rangle$
+\begin{equation}
+\langle l' m' \vert C^{(1)}_q \vert l m \rangle
+= \sqrt{\frac{4 \pi}{3}} \int_0^{2 \pi} \int_0^{\pi}
+Y^\ast_{l'm'} Y_{1q} Y_{lm} \sin \theta d\theta d\phi
+= (-1)^{-m'} [l',l]^{1/2}
+\left( \begin{array}{ccc} l' & 1 & l \\ 0 & 0 & 0 \end{array} \right)
+\left( \begin{array}{ccc} l' & 1 & l \\ -m' & q & m \end{array} \right)
+\end{equation}
+Grâce à la propriété des coefficients $3-j$ énoncée ci-dessus, on en tire la \textbf{forte} 
+règle de sélection suivante :\\
+
+\cadre{\begin{equation}
+ \neq 0 \Rightarrow \left\{
+\begin{array}{l}
+\delta(l',1,l) \\
+(l' +1 + l)~\mbox{pair} \end{array} \right\} 
+\Rightarrow \Delta l = l' - l = \pm 1
+\end{equation}}\ \\
+
+Le nombre quantique $l$ ne peut varier que d'au maximum \textbf{une} unité lors d'une transition.
+On obtient finalement quelque chose de simple, à géométrie sphérique
+\begin{equation}
+-m' + q + m = 0 \Rightarrow
+\left\{ \begin{array}{ll}
+m' = m \; \; (\Delta m = 0) & \mbox{si}~q = 0 \\
+m' = m \pm 1 \; \; (\Delta m = \pm 1) &\mbox{si}~q = \pm 1
+\end{array} \right.
+\end{equation}\ \\
+
+A l'aide de l'explicitation de $\langle l' m' \vert C^{(1)}_q \vert l m \rangle$, on peut 
+ré-écrire $I^q_{n'l'm';nlm}$
+\begin{equation}
+I^q_{n'l'm';nlm} =  \sqrt{\frac{4 \pi}{3}} \int_0 ^\infty
+\; dr \; r^3 R_{n'l'}(r)^\ast  R_{nl}(r)\times \int_0^{2 \pi} \int_0^{\pi}
+Y^\ast_{l'm'} Y_{1q} Y_{lm} \sin \theta d\theta d\phi
+\end{equation}
+
+
+\subsection{Lien de la règle de sélection $\Delta l = \pm 1$ avec la parité}
+Nous avons
+\begin{equation}
+\phi_{ n l m }(r, \theta, \phi) = R_{nl} (r) Y_{lm} (\theta, \phi)
+\end{equation}
+A l'aide de l'opérateur parité
+\begin{equation}
+\hat{I} \phi_{ n l m }({\bf r}) = 
+\hat{I} R_{nl} (r) Y_{lm} (\theta, \phi)
+\equiv 
+\phi_{ n l m }( - {\bf r})=
+R_{nl} (r) Y_{lm} (\pi - \theta, \phi + \pi)
+=  (-1)^l R_{nl} (r) Y_{lm} (\theta, \phi)
+\end{equation}
+En en tire que
+\begin{equation}
+\begin{array}{ll}
+I^q_{n'l'm';nlm} &\DS=  (-1)^{l' + 1 + l}  I^q_{n'l'm';nlm}\\
+&\DS \neq 0 ~\mbox{si}~(l' +1 + l)~\mbox{pair} 
+\end{array}
+\end{equation}
+En résumé, l'inversion ne touche que la partie sphérique. Si $l$ est pair la parité sera impaire
+et paire inversement. On en déduit qu'une\textbf{transition E1 ne peut relier que des états de
+parité différentes}. La règle $\Delta l=\pm1$ est la \textit{règle de }\textsc{Laporte}. Le
+\textit{slide 23} représente les transitions à l'aide de cette règle de sélection tandis que 
+le \textit{slide 24} les classe par parité.
+
+
+\section{Force de raie, force d'oscillateur et temps de vie}
+Le théorème de \textsc{Wigner-Eckart} est apprécié pour les règles de sommes extraordinaires
+des $3-j$ mais aussi pour ses règles de sélection.\\
+
+\theor{\textsc{Wigner-Eckart}\ 
+\begin{equation}
+\langle \alpha j m \vert T^{(k)}_q \vert \alpha' j' m' \rangle
+= (-1)^{j-m} \left( \begin{array}{ccc}
+j  &  k  &  j'  \\ -m  &  q  &  m' \end{array} \right) 
+\langle \alpha j \Vert {\bf T}^{(k)} \Vert \alpha' j' \rangle
+\end{equation}}\ \\
+
+Chaque élément de matrice peut s'écrire comme un élément de matrice réduit multiplié par un
+$3-j$. Ré-écrivons alors l'élément de matrice qui nous intéresse sous cette forme
+\begin{equation}
+ \langle l m_l \vert C^{(1)}_q \vert l'm_l' \rangle =
+(-1)^{l-m_l} \left( \begin{array}{ccc}
+l  &  1  &  l'  \\ -m_l  &  q  &  m_l' \end{array} \right) 
+\langle  l \Vert {\bf C}^{(1)} \Vert l' \rangle
+\end{equation}
+L'élément de matrice réduit s'écrit
+\begin{equation}
+\langle  l \Vert {\bf C}^{(1)} \Vert l' \rangle
+= (-1)^l [l,l']^{1/2} \left( \begin{array}{ccc}
+l  &  1  &  l'  \\ 0  &  0 &  0 \end{array} \right)
+\end{equation}
+Énonçons la fabuleuse \textbf{règle de somme}
+\begin{equation}
+\sum_{mm'}  \vert
+\langle \alpha j m \vert T^{(k)}_q \vert \alpha' j' m' \rangle \vert ^2
+= \vert \langle \alpha j \Vert {\bf T}^{(k)} \Vert \alpha' j' \rangle \vert ^2 
+\sum_{mm'} \left( \begin{array}{ccc}
+j  &  k  &  j'  \\ -m  &  q  &  m' \end{array} \right) ^2 
+=  \frac{1}{2k+1} \vert \langle \alpha j \Vert {\bf T}^{(k)} \Vert \alpha' j' \rangle \vert ^2
+\end{equation}
+
+
+\subsection{Force de raie et force d'oscillateur}
+Appliquons la règle de somme et utilisons une notation plus efficace
+\begin{equation}
+S(\alpha J, \alpha' J' ) = \sum_{MM'q} \vert \langle \alpha JM \vert \mu^{(1)}_q  \vert \alpha J' M' \rangle \vert^2= 
+\vert \langle \alpha J \Vert 
+\mbox{\boldmath $ \mu $}^{(1)} \Vert \alpha J' \rangle \vert^2
+\end{equation}
+Suite au cours de demain!
 
 \iffalse
+unité atomique de moment dipolaire au carré. C'est (e*a0)^2 l'unité de ça
+
+303.7 : nombre quand S exprime en u.a., quand lamda est en 1. il faut... pour calculer un nombre sans dimension
+
+nombre sans dim qui va introduire la force d'oscillateur. EN injectant çala dedans on trouve 1. g_k c'est facteur de dégen
 \fi
 
 
