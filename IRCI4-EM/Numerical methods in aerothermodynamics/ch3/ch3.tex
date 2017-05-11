@@ -868,27 +868,24 @@ We can see that the effects are indeed similar on the figure just below.
 \captionof{figure}{}
 \end{center}
 
-COURSE
-
 \subsection{Centred schemes: leap-frog, Lax-Friedrichs and Lax-Wendroff}
 
-We started by looking to the FTCS for the transport equation and we saw that it was unstable. We changed space discretization in upwind scheme. This can run to problems with systems, let's show why. If we look to: 
+We started by looking to the FTCS for the transport equation and we saw that it was unstable. We changed space discretization in forward time upwind scheme. This can run to problems with systems, let's show why. First, it is highly dissipative. Second, if we look to the forward time backward space we have: 
 
 \begin{equation}
-\frac{\D U}{\D t} + A\frac{\D U}{\D x} \qquad FTBS \ \frac{U^{n+1}_{i} - U^{n}_{i}}{\Delta t} + \frac{U^{n}_{i} - U^{n}_{i-1}}{\Delta x} = 0
+\frac{\D U}{\D t} + A\frac{\D U}{\D x} \qquad \Rightarrow \frac{U^{n+1}_{i} - U^{n}_{i}}{\Delta t} + A \frac{U^{n}_{i} - U^{n}_{i-1}}{\Delta x} = 0
 \end{equation}
 
-If we assume as previously that we have periodic solutions in space we have: 
+If we assume as previously that we have periodic solutions in space, we have: 
 
 \begin{equation}
-U_{i-1} = U_i e^{-i k \Delta x} \qquad U_i^{n+1} = U_i^n + \frac{A \Delta t}{\Delta x} (1 - e^{-i\eta}) U_i^n 
+\begin{aligned}
+U_{i-1} = U_i &e^{-i k \Delta x} \qquad \Rightarrow U_i^{n+1} = U_i^n - \frac{A \Delta t}{\Delta x} (1 - e^{-i\eta}) U_i^n \\
+&U_i^{n+1} = \underbrace{\left[I - A \frac{\Delta t}{\Delta x} (1 - e^{-i\eta})\right]}_{G} U_i^n
+\end{aligned}
 \end{equation}
 
-\begin{equation}
-U_i^{n+1} = [I - A \frac{\Delta t}{\Delta x} (1 - e^{-i\eta})] U_i
-\end{equation}
-
-Now we have an \textbf{amplification matrix} instead of factor! As the system is supposed to be hyperbolic it has a complete set of eigenvalues and eigenvectors: 
+Now we have an \textbf{amplification matrix G} instead of an amplification factor. As the system is supposed to be hyperbolic it has a complete set of eigenvalues and eigenvectors, A is diagonalizable: 
 
 \begin{equation}
 A = R\Lambda R^{-1}
@@ -897,31 +894,40 @@ A = R\Lambda R^{-1}
 where $\Lambda = diag (\lambda ^{i})$. In addition $I = RR^{-1}$ so that we can rewrite the equation: 
 
 \begin{equation}
-G = R diag (1 - \lambda ^{(i)})\frac{\Delta t}{\Delta x} (1-e^{-i\eta})) R^{-1}\\
-R^{-1}U_i^{n+1} = R^{-1}R diag (1 - \lambda ^{(i)}) \frac{\Delta t}{\Delta x} (1-e^{-i \eta}) ) R^{-1}U_i^n
+\begin{aligned}
+&G = R \, \mbox{diag }\left(1 - \lambda ^{(i)}\frac{\Delta t}{\Delta x} (1-e^{-i\eta})\right) R^{-1}\\
+&R^{-1}U_i^{n+1} = R^{-1}R \,\mbox{diag} \left(1 - \lambda ^{(i)} \frac{\Delta t}{\Delta x} (1-e^{-i \eta}) \right) R^{-1}U_i^n
+\end{aligned}
 \end{equation}
 
-We pose $W_i^{n+1} = R^{-1}U_i^{n+1}$, $R^{-1}R = I$ and $W_i^{n} = R^{-1}U_i^{n}$. The stability condition is that the coefficient of all the eigenvectors are lower than one: 
+We pose $W_i^{n+1} = R^{-1}U_i^{n+1}$, $R^{-1}R = I$ and $W_i^{n} = R^{-1}U_i^{n}$. We can finally write $g^{(i)}$ the eigenvalues of $G$: 
 
 \begin{equation}
-0 \leq \frac{\lambda ^{(i)}\Delta t}{\Delta x} \leq 1
+W_i^{n+1} = \mbox{diag}\left(g^{(i)}\right) W_i ^n = \sum _{i=1}^m R_i g^{(i)}w_i
 \end{equation}
 
-If the lambdas are some positif and some negatives it is possible to satisfy it for positive lambdas but not for negative lambdas. This is true for example for 1D Euler equation (subsonic flow) the eigenvalues are of both signs $u-a, u, u+a$, so we cannot use fully backward Euler scheme. This has been done by the CIR scheme which consisted in multiplying the quasi linear form by $R$ and get a linearized equation with W and use another discretization. It works not for something but don't remember. 
+The stability condition can be generalized to: 
 
-If we come back to the reason the FTCS doesn't work, we have a region for CS that is purely imaginary and the FT on the left plane of the complex plane no extend on the imaginary axis. We have 3 candidates to correct that: the central time (imaginary), runga kutta (extension on the real negative and imaginary axis) or implicit schemes (let's forget to the two last and look to the central time). 
+\theor{A numerical scheme for the solution of a system of evolution equations is stable iff all eigenvalues of the amplification matrix G are such that their modulus is smaller or equal to unity.
 
-\subsubsection{CTCS}
-For the advection equation we will get: 
+\begin{equation}
+|g^{(i)}| =  \left|1 - \lambda ^{(i)} \frac{\Delta t}{\Delta x} (1-e^{-i \eta}) \right| \qquad\Rightarrow 0 \leq \frac{\lambda ^{(i)}\Delta t}{\Delta x} \leq 1
+\end{equation}}\ \\
+
+This condition is violated for negative eigenvalues and thus if the eigenvalues are of mixed type (some positive and some negative), the system is unconditionally unstable. This is the case for 1D Euler with eigenvalues of both signs $u-a, u, u+a$, so we cannot use FTBS. We should use then a centered space discretization. 
+
+\subsubsection{Leap-frog scheme}
+If we come back to the reason the FTCS doesn't work, we have a region for CS that is purely imaginary and the FT on the left plane of the complex plane has no extend on the imaginary axis. We have already treated the change in space discretization, for time discretization modification we have 3 candidates: the explicit mid-point method (imaginary), Runga Kutta (extension on the real negative and imaginary axis) or implicit schemes (let's forget to the two last and look to the central time). 
+The leap-frog consists in using the explicit mid-point, central discretization. For the advection equation we will get: 
 
 \begin{equation}
 \frac{u_{i}^{n+1} - u_{i}^{n-1}}{2\Delta t} + a \frac{u_{i+1}^{n} - u_{i-1}^{n}}{2\Delta x} = 0
 \end{equation}
 
-First of all we know that the Truncation error is more accurate $\mathcal{O}(\Delta t^2, \Delta x^2)$. He makes a graph of the situation with an x t axis centered around n i point. We use the four points around without using the point itself so it has been called \textbf{Lepfrog scheme}. If we look to the stability via the Fourrier footprint we had a stability region on the imaginary axis going from $-\frac{ia}{\Delta x}$ to $\frac{ia}{\Delta x}$ for the space discretization and for the time discretization the region of stability is between $-i,i$. Thus the condition of stability is: 
+First of all we know that the truncation error is more accurate $\mathcal{O}(\Delta t^2, \Delta x^2)$. Since we use the four points around point i, n without using the point itself, it has been called \textbf{Leap-frog scheme}. If we look to the stability via the Fourrier footprint we had a stability region on the imaginary axis going from $-\frac{ia}{\Delta x}$ to $\frac{ia}{\Delta x}$ for the space discretization and for the time discretization is between $-i,i$. Thus the condition of stability is: 
 
 \begin{equation}
-\left|\frac{a\Delta t}{\Delta x} \right| = |\sigma| \leq 1
+\left|\frac{a\Delta t}{\Delta x} \right| = |\sigma | \leq 1
 \end{equation}
 
 If we do the one step analysis, we will replace the discretized equation by: 
@@ -930,34 +936,42 @@ If we do the one step analysis, we will replace the discretized equation by:
 \frac{g u^n_i - \frac{1}{g}u^n_i}{2\Delta t} + a \underbrace{\frac{e^{i\eta}- e^{-i\eta}}{2\Delta x}}_{I\frac{\sin \eta}{\Delta x}} u^n_i = 0 \qquad \Rightarrow g^2 - 1 + 2\frac{a \Delta t}{\Delta x} i \sin \eta g = 0
 \end{equation}
 
-Then 
+For which we get the following solution:
 
 \begin{equation}
 g = - i \sigma \sin \eta \pm \sqrt{-\sin ^2 \eta + 1}
 \end{equation}
 
-The stability condition is that $1 - \sigma ^2 \sin ^2 \eta \geq 0$ and since $\sin ^2\eta$ is between 1 and 0, we have $\sigma ^2 \leq 1$. 
+The stability condition is that $1 - \sigma ^2 \sin ^2 \eta \geq 0$ and since $\sin ^2\eta$ is between 1 and 0, we have $\sigma ^2 \leq 1$. We can compute the dissipative and dispersive errors: 
 
 \begin{equation}
-|g|^2 = 1 - \sigma ^2 \sin ^2 \eta + \sigma ^2\sin ^2 \eta = 1 \qquad \Rightarrow arg(g) = \arctan \left(\frac{-\sigma \sin \eta }{1 - \sigma ^2 \sin ^2 \eta} \right) \Rightarrow \epsilon _\varphi = \frac{arg(g)}{-\eta \sigma } = \frac{1}{\eta \sigma } \arctan \frac{\sigma \sin \eta}{1 - \sigma ^2 \sin ^2 \eta}
+\begin{aligned}
+&|g|^2 = 1 - \sigma ^2 \sin ^2 \eta + \sigma ^2\sin ^2 \eta = 1 \\
+&\Rightarrow arg(g) = \arctan \left(\frac{-\sigma \sin \eta }{1 - \sigma ^2 \sin ^2 \eta} \right) \Rightarrow \epsilon _\varphi = \frac{arg(g)}{-\eta \sigma } = \frac{1}{\eta \sigma } \arctan \frac{\sigma \sin \eta}{1 - \sigma ^2 \sin ^2 \eta}
+\end{aligned}
 \end{equation}
 
-For $\sigma \rightarrow 0, \frac{\sin \eta }{\eta}$, there is no dissipative error, this seems to look perfect. We can see on the figure that we preserve the amplitude of the wave packet. We have dispersive error, phase lag and thus this leeds to spurious oscillations. In case of non continuity we have something really poor because of the phase lag. We can show these oscillations, let's take the discretized equation: 
+For $\sigma \rightarrow 0$ the dispersive error becomes $\frac{\sin \eta }{\eta}$, there is no dissipative error, this seems to look perfect. We can see on the figure that we preserve the amplitude of the wave packet. We have dispersive error, phase lag and thus this leeds to spurious oscillations. Poorly resolved high wave number modes are trailing behind the wavepacket on the figure (a). In case of non continuity we have something really poor, showing that non damped poorly resolved modes can affect the solution very badly. We can show these oscillations, let's take the discretized equation: 
 
 \begin{equation}
 u^{n+1}_i = u^{n-1}_i - \sigma u_{i+1}^n + \sigma u_{i-1}^n
 \end{equation}
 
-Where we have a negative term with sigma. 
+Where we have a negative term with sigma, the reason of oscillations. 
 
-\subsubsection{Lax-Friedrischs}
-We want to manipulate the FTCS to stabilize it and we want to replace the $u_i^n$ in the time discretization by an average of the two neighbours $\frac{1}{2} (u_{i-1}^n + u_{i+1}^n)$, this gives: 
+\begin{center}
+\includegraphics[scale=0.5]{ch3/11}
+\captionof{figure}{}
+\end{center}
+
+\subsubsection{Lax-Friedrischs scheme}
+We want to manipulate the FTCS to stabilize it and we want to replace the $u_i^n$ in the time discretization by an average of the two neighbors $\frac{1}{2} (u_{i-1}^n + u_{i+1}^n)$, this gives: 
 
 \begin{equation}
 \frac{u_i ^{n+1} - \frac{1}{2}(u_{i-1}^n + u_{i+1 ^n})}{\Delta t} + a \frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} = 0
 \end{equation}
 
-We see that the two discretizations are not independent and are coupled due to the neighboring average. The truncation error of this is $TE = \mathcal{O} (\Delta t, \Delta x^2 / \Delta t)$. We can rewrite the scheme as: 
+The truncation error of this is $TE = \mathcal{O} (\Delta t, \Delta x^2 / \Delta t)$. We see that the two discretizations are not independent and are coupled due to the neighboring average, this does not allow us to make a separate region of dependance analysis. We can rewrite the scheme as: 
 
 \begin{equation}
 u_i^{n+1} = \frac{1}{2} (1 + \sigma )u_{i-1}^n + \frac{1}{2} (1- \sigma ) u_{i+1}^n
@@ -966,20 +980,31 @@ u_i^{n+1} = \frac{1}{2} (1 + \sigma )u_{i-1}^n + \frac{1}{2} (1- \sigma ) u_{i+1
 For this to be stable we need $-1 \leq \sigma \leq 1$ so that both coefficients are >0 to have stability and non oscillatory solution. We can check this by Fourrier footprint: 
 
 \begin{equation}
-g = \frac{1}{2} (1+\sigma) e^{-i\eta} + \frac{1}{2}(1-\sigma) e^{i\eta} = \cos \eta - \sigma i \sin \eta \qquad \Rightarrow |g|^2
- = \cos ^2 \eta + \sigma ^2 \sin ^2 \eta \leq 1 \Rightarrow \sigma ^2 \leq 1
+g = \frac{1}{2} (1+\sigma) e^{-i\eta} + \frac{1}{2}(1-\sigma) e^{i\eta} = \cos \eta - \sigma i \sin \eta \qquad
+\begin{aligned}
+&\Rightarrow |g|^2= \cos ^2 \eta + \sigma ^2 \sin ^2 \eta \\
+&= 1 - (1 - \sigma ^2)\sin ^2\eta \leq 1 \Rightarrow \sigma ^2 \leq 1
+\end{aligned}
  \end{equation}
  
 We can compute the arg(g): 
  
 \begin{equation}
-arg(g) = \arctan \frac{-\sigma \sin \eta}{\cos \eta} = \arctan (-\sigma \tan \eta) \qquad \Rightarrow \epsilon _\varphi = \frac{arg(g)}{-\eta \sigma} = \frac{\arctan (\sigma \tan \eta)}{\sigma \eta} \rightarrow \frac{\tan \eta}{\eta} \quad for \sigma \rightarrow 0
+\begin{aligned}
+&arg(g) = \arctan \frac{-\sigma \sin \eta}{\cos \eta} = \arctan (-\sigma \tan \eta) \\
+\Rightarrow &\epsilon _\varphi = \frac{arg(g)}{-\eta \sigma} = \frac{\arctan (\sigma \tan \eta)}{\sigma \eta} \rightarrow \frac{\tan \eta}{\eta} \quad \mbox{for } \sigma \rightarrow 0
+\end{aligned}
 \end{equation}
 
-It is dissipative (stronger damping than upwind scheme) but there is no oscillation as can be seen in the case of the front. Can we assemble the two schemes? 
+It is dissipative (stronger damping than upwind scheme) but there is no oscillation as can be seen in the case of the front. Can we assemble the two schemes? We will see it in the next method.
 
-\subsubsection{•}
-One step of Friedrichs and one step of leap frog. We will generate using Fridrichs the points $u^(n+1)_{i-1}, u^(n+1)_{i+1}$ and use the Leap to get from these two the point $u_{i}^{n+2}$. Mathematically: 
+\begin{center}
+\includegraphics[scale=0.5]{ch3/12}
+\captionof{figure}{}
+\end{center}
+
+\subsubsection{Lax-Wendroff scheme}
+It consists in one step of Friedrichs and one step of Leap-Frog. We will generate using Fridrichs the points $u^(n+1)_{i-1}, u^(n+1)_{i+1}$  and use the Leap to get from these two the point $u_{i}^{n+2}$. Mathematically, we use the Friedrichs method: 
 
 \begin{equation}
 u_i^{n+1} = \frac{1}{2}(1+\sigma )u_{i-1}^n + \frac{1}{2}(1-\sigma) u_{i+1}^n
@@ -992,7 +1017,7 @@ u_{i-1}^{n+1} = \frac{1}{2}(1+\sigma )u_{i-2}^n + \frac{1}{2}(1-\sigma) u_{i}^n\
 u_{i+1}^{n+1} = \frac{1}{2}(1+\sigma )u_{i}^n + \frac{1}{2}(1-\sigma) u_{i+2}^n
 \end{equation}
 
-Then we will just shift the n indices +1 in central central schemes to make appear the n+1 on u: 
+Then we will just shift the n indices +1 in central central schemes to make appear the $n+1$ on $u$: 
 
 \begin{equation}
 \frac{u_i^{n+2} - u_i^n}{2\Delta t} + a \frac{\frac{1}{2}(1+\sigma)u_i^{n} + \frac{1}{2}(1-\sigma)u_{i+2}^n-\left(\frac{1}{2}(1+\sigma)u_{i-2}^n + \frac{1}{2}(1-\sigma)u_i^n \right)}{2\Delta x}
@@ -1007,31 +1032,24 @@ By considering the mesh regrouping two squares in one
 Then we can rewrite
 
 \begin{equation}
-u_i^{n+1} - u_i ^n + \sigma \underbrace{\left[ \frac{1}{2}(1-\sigma)u_{i+1}^n + \sigma u_i ^n - \frac{1}{2} (1+\sigma) u _{i-1}^n \right]}_{\frac{u_{i+1}- u _{i-1}}{2} - \sigma \frac{u_{i+1}^n - 2u_i ^n + u_{i-1}^n}{2}} = 0
+\begin{aligned}
+&u_i^{n+1} - u_i ^n + \sigma \underbrace{\left[ \frac{1}{2}(1-\sigma)u_{i+1}^n + \sigma u_i ^n - \frac{1}{2} (1+\sigma) u _{i-1}^n \right]}_{\frac{u_{i+1}^n- u _{i-1}}{2}^n - \sigma \frac{u_{i+1}^n - 2u_i ^n + u_{i-1}^n}{2}} = 0\\
+&\Rightarrow u_i^{n+1} = u_i^n - \sigma \frac{u_{i+1}^n - u_{i-1}^n}{2} + \sigma ^2 \frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{2}
+\end{aligned}
 \end{equation}
 
-So that
-
-\begin{equation}
-u_i^{n+1} = u_i^n - \sigma \frac{u_{i+1}^n - u_{i-1}^n}{2} + \sigma ^2 \frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{2}
-\end{equation}
-
+\theor{
+\textbf{MIGUEL CAN YOU DO HERE PLEASE}\\
 If we do a Taylor expansion 
 
 \begin{equation}
-u_{i}^{n+1}  u_i^n + \Delta t \left. \frac{\D u}{\D t} \right|^n_i + \frac{\Delta t^2}{2} \left. \frac{\D ^2 u}{\D t^2} \right| ^n_i  + \mathcal{O}(\Delta t^3)
+u_{i}^{n+1} =  u_i^n + \Delta t \left. \frac{\D u}{\D t} \right|^n_i + \frac{\Delta t^2}{2} \left. \frac{\D ^2 u}{\D t^2} \right| ^n_i  + \mathcal{O}(\Delta t^3)
 \end{equation}
 
-We know that 
+We know from the advection $\frac{\D u}{\D t} + a \frac{\D u}{\D x} = 0$ equation that 
 
 \begin{equation}
-\frac{\D ^2 u}{\D t^2} = \frac{\D}{\D t}\left(\frac{\D u}{\D t} \right) = \frac{\D }{\D t} \left( -a \frac{\D u}{\D x} \right) = -a \frac{\D}{\D x} \left( \frac{\D u }{\D t} \right) = - a \frac{\D u }{\D x}
-\end{equation}
-
-and we get that 
-
-\begin{equation}
-\frac{\D u}{\D t} + a \frac{\D u}{\D x} = 0
+\frac{\D ^2 u}{\D t^2} = \frac{\D}{\D t}\left(\frac{\D u}{\D t} \right) = \frac{\D }{\D t} \left( -a \frac{\D u}{\D x} \right) = -a \frac{\D}{\D x} \left( \frac{\D u }{\D t} \right) = a^2 \frac{\D^2 u }{\D x^2}
 \end{equation}
 
 If we come back to the Taylor we can replace the first derivative and the second by respectively: 
@@ -1041,21 +1059,38 @@ If we come back to the Taylor we can replace the first derivative and the second
 \end{equation}
 
 Not had the time to copy ...
+}
 
 Stability analysis: 
 
 \begin{equation}
-g = 1 - \sigma \frac{e^{i\eta} - e^{-i\eta}}{2} + \frac{\sigma ^2}{2} (e^{i\eta} + e^{-i\eta}-2) = 1 - i \sigma \sin \eta + \sigma ^2 (\cos \eta -1)
+\begin{aligned}
+g &= 1 - \sigma \frac{e^{i\eta} - e^{-i\eta}}{2} + \frac{\sigma ^2}{2} (e^{i\eta} + e^{-i\eta}-2) = 1 - i \sigma \sin \eta + \sigma ^2 (\cos \eta -1)\\
+|g|^2 &= [1 - \sigma ^2 (1 -\cos \eta)]^2 +\sigma^2 \sin ^2 \eta = 1 - 2 \sigma ^2 (1- \cos \eta) + \sigma ^4 (1 - \cos \eta)^2 \\
+&+ \sigma ^2 (1-\cos ^2\eta)= 1 - (1 -\cos \eta) [2- (1 + \cos \eta) - \sigma ^2 (1 - \cos \eta)] \\
+ &= 1 - \sigma ^2 (1-\cos \eta ) [1 - \cos \eta - \sigma ^2 (1- \cos \eta)] = 1 - \sigma ^2 (1- \sigma ^2) (1 - \cos \eta )^2 \leq 1
+\end{aligned}
 \end{equation}
+
+Since the squares are positive, we have $1 - \sigma ^2 \geq 0\Leftrightarrow \sigma ^2 \leq 1$. Studying the dissipative error, $1 - \cos \eta = 2\sin ^2 (\eta /2)$ so that: 
 
 \begin{equation}
-|g|^2 = [1 - \sigma ^2 (1 -\cos \eta)]^2 +\sigma^2 \sin ^2 \eta = 1 - 2 \sigma ^2 (1- \cos \eta) + \sigma ^4 (1 - \cos \eta)^2 + \sigma ^2 (1-\cos ^2\eta) = 1 - (1 -\cos \eta) [2- (1 + \cos \eta) - \sigma ^2 (1 - \cos \eta)] = 1 - \sigma ^2 (1-\cos \eta ) [1 - \cos \eta - \sigma ^2 (1- \cos \eta)] = 1 - \sigma ^2 (1- \sigma ^2) (1 - \cos \eta )^2 \leq 1
+\epsilon _D = \ln(g) = \frac{1}{2}\ln (1-4\sigma ^4\frac{\eta}{2}(1-\sigma ^2))
 \end{equation}
 
-Since the squares are positive, we have $1 - \sigma ^2 \geq 0$. $1 - \cos \eta = 2\sin ^2 (\eta /2)$ so that we have a $4 \sin ^4 (\eta /2)$ for the dissipation we see that the $^4$ term is much smaller than the previous case, reducing the damping. Now if we do the argument: 
+we have a $4 \sin ^4 (\eta /2)$ for the dissipation so that the $^4$ term being much smaller than the previous case, reduces the damping in the amplitude. Now if we do the argument: 
 
 \begin{equation}
 arg(g) = - \arctan \frac{\sigma \sin \eta }{1 - \sigma ^2 (1 - \cos \eta)} \Rightarrow \epsilon _\varphi = \frac{1}{\eta \sigma} \arctan \frac{\sigma \sin \eta}{1- \sigma ^2 (1- \cos \eta)}
 \end{equation} 
 
-If we look to the numerical solution on the figure, we see that for the small wave number, there is very little damping. There is much less spurious oscillations than before but they are still present. It is easy to see why there is oscillations, because when $\sigma$ is between 0 and 1 there is one negative term. 
+For $\sigma \rightarrow 0: \epsilon \varphi = \frac{\sin \eta}{\eta}$. If we look to the numerical solution on the figure, we see that for the small wave number, there is very little damping. There is much less spurious oscillations than before but they are still present. It is easy to see why there is oscillations, because when $-1 \leq \sigma\leq 0$ and $0\leq \sigma \leq 1$ there is one negative term if we rewrite in the form: 
+
+\begin{equation}
+u_i^{n+1} = \frac{1}{2}(\sigma ^2 - \sigma)u^n_{i+1} + (1-\sigma ^2)u_i^{n}+ \frac{1}{2}(\sigma ^2 + \sigma) u_{i-1}^n
+\end{equation}
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/13}
+\captionof{figure}{}
+\end{center}
