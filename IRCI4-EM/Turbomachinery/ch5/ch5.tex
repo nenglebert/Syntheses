@@ -412,7 +412,7 @@ x_{th} = 1 - \alpha \left( \pi _c^{\frac{1}{n}} -1 \right) \qquad \alpha = \frac
 \end{equation}
 
 \subsubsection{Maximum compression ratio in piston compressors}
-\wrapfig{10}{l}{5.5}{0.25}{ch5/18}
+\wrapfig{11}{l}{5.5}{0.25}{ch5/18}
 It is easy to show graphically that the volume $v_{AB}$ decreases when the compression ratio increases. The maximal ratio reachable is when $v_{AB} = 0$ so that point A is on point B on the indicator graph. This corresponds to: 
 
 \begin{equation}
@@ -442,3 +442,81 @@ The real $x$ depends on the clearance volume $v_c$, pressure, heat and leak loss
 \begin{equation}
 x = 0.85 x_{th}
 \end{equation}
+
+\subsubsection{Global and partial efficiency}
+We have already defined the isothermal efficiency composed of an internal efficiency and a mechanical efficiency term: 
+
+\begin{equation}
+\eta _t = \frac{P{it}}{P_{ind}}\frac{P_{ind}}{P_m} = \eta _i \eta _m
+\end{equation}
+
+where $P_{ind}$ is the indicated power, the one delivered to the gas at the piston head area. The mechanical efficiency characterizes the purely mechanical losses such as the friction in the bearings, piston, ... The internal efficiency characterizes the losses due to aerodynamic and the fluid itself. 
+
+\subsection{Preliminary design}
+\subsubsection{Input data}
+A preliminary design is the very first step in selecting a turbo. The one who wants it knows a certain number of parameters: 
+
+\begin{itemize}
+\item[•] The inlet conditions: pressure, temperature, altitude.
+\item[•] The volumetric flow rate or the mass flow rate. 
+\item[•] The pressure ration, since we want a certain output pressure. 
+\item[•] The cooling system, since it could be water or air cooled, it depends on the requirements (transportable, weight,...)
+\item[•] The driving motor, it depends on the power solutions disponible, we can use for example small piston gasoline engines for small compressors, 1 phase or multiphase electrical machines,...
+\item[•] How long it will be used, who will use it, for what purpose, ...
+\end{itemize}
+
+\subsubsection{Practical considerations}
+We have two design parameters. We first define the mean velocity $V_m$ which is the ratio between the distance traveled by the piston (stroke $2a$) and the time taken to travel (linked to the rotation speed): 
+
+\begin{equation}
+V_m = \frac{4a n}{60}
+\end{equation}
+
+It cannot be too high because then the wear and the leakage between the piston and the cylinder becomes too high. Practically it is between 2 and 5 m/s. Secondly, we define the stroke to bore ratio and we can define the cylinder volume as:  
+
+\begin{equation}
+\frac{2a}{d} \qquad v_1 = \frac{\pi d^2}{4}2a
+\end{equation}
+
+We could have a large bore and small stroke or the inverse, but in the first case the clearance volume is larger so we have less filling coefficient. In the other case, there will be more friction between piston and cylinder, so a compromise has to be found. Practically we chose the stroke to bore ratio between 0.5 and 1.2. 
+
+\subsubsection{Link between flow rate and bore}
+We can find it easily from the definition of the filling coefficient: 
+
+\begin{equation}
+x= \frac{\frac{\dot{m}}{\rho _0}}{\frac{n}{60}v_1}\qquad  \Leftrightarrow \dot{v}_0 = x \frac{n}{60} \frac{\pi d^2}{4}2a = \frac{\pi d^2}{8}x V_m = 7.5 x\pi d^2 V_m
+\end{equation}
+
+\subsection{Multi-stage piston compressors}
+\subsubsection{Why a multi-stage design?}
+There are two reasons for this which are the filling coefficient and the lubrication. The first is badly affected because the filling coefficient decreases with the increasing pressure ratio. The second one is worse because the oil used for the lubrication sees its viscosity decrease with increasing temperature. Since the real compression is not isothermal, the temperature increases a lot with the compression ratio. The loss of viscosity means higher wear between the piston and the cylinder walls, leading to a loss in lifetime, but means also higher leakage and thus the air is more polluted, it can lead to explosions. The limit of viscosity is set to 150\degres C for safety reasons, this corresponds to a pressure ratio between 6 and 8 depending on the cooling. For higher ratios, multistage is recommended.
+
+\subsubsection{Architecture of a multistage compressor} 
+\minifig{ch5/20}{ch5/21}{0.2}{0.3}{0.49}{0.49}
+
+Different configurations exist for multistage compressors. In the case where the power request is not too high, one can save money by building everything on a single shaft (single motor). The rotation speed and the stroke of the two piston compressors will be the same. Cooling is organized between the two pistons and consists often of a ventilator mounted on the same shaft. In case of higher performances, the stages can be driven by different motors. This gives a compressor with a low pressure, an intermadiate pressure and a high pressure part. 
+
+\subsubsection{How it works in theory and in reality?} 
+The multistage working can be deduced form the single stage study. Indeed, the inlet conditions of one are the outlet conditions of the stage just before. We have to specify that the mass flow is the same in all stages: 
+
+\begin{equation}
+\dot{m} = \frac{x_1 (\rho _0)_1(V_1)_1n_1}{60} = \frac{x_2 (\rho _0)_2(V_1)_2n_2}{60}
+\end{equation}
+
+Another important consideration is to have the same rotation speed and the same stroke when mounted on the same shaft so that the mass flow conservation becomes: 
+
+\begin{equation}
+x_1 (\rho _0)_1 (d_1)^2 = x_2 (\rho _0)_2 (d_2)^2
+\end{equation}
+
+In real compressors, the filling coefficient is of course depending on the dead volume, the level of cooling, and is proportional to its theoretical value. One can assume that both stages have the same $x$. The volumetric mass of the air is higher at the outlet of the first stage due to increased pressure and temperature, so the volume of the second stage is reduced. Intermediate cooling introduces pressure losses so that the inlet conditions can slightly. 
+
+\subsubsection{Number of compression stages}
+As we have seen in section 3, the compression stages pressure ratios should be the same. As we are limited to 6-8 for the compression ratio due to temperature constraints, we find the following table: 
+
+\begin{center}
+\includegraphics[scale=0.5]{ch5/22}
+\captionof{table}{}
+\end{center}
+
+We can see that some pressure ratios are situated in 2 stage numbers. One has to choose in function of the use. If we use the compressor everyday continuously, then it is better to invest more at the acquisition to lower the maintenance and consumption costs. If we use it for example once a day, then take the cheapest. 
