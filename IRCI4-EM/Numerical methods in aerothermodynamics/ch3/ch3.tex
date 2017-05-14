@@ -1094,3 +1094,150 @@ u_i^{n+1} = \frac{1}{2}(\sigma ^2 - \sigma)u^n_{i+1} + (1-\sigma ^2)u_i^{n}+ \fr
 \includegraphics[scale=0.5]{ch3/13}
 \captionof{figure}{}
 \end{center}
+
+\subsection{Implicit schemes}
+We are still dealing with hyperbolic equations. We need to have a part of the imaginary axis, this is what we are going to look now. Remember that when we are doing central space we have a footprint $[-a/\Delta x, a/\Delta x]$ and the Fourrier footprint of the backward time was a circle centered in the positive real axis. Let's test that: 
+
+\begin{equation}
+\frac{du_i}{dt} + a \frac{u_{i-1}-u_{i+1}}{2\Delta x} = 0
+\end{equation}
+
+Let's first analyze the expression of FT and BT: 
+
+\begin{equation}
+\frac{u^{n+1}- u^n}{\Delta t} = f(u^n) \qquad \frac{u^{n}- u^{n-1}}{\Delta t} = f(u^n) \Rightarrow FT = f(u^{n+1})\ BT
+\end{equation}
+
+General 1 step: 
+
+\begin{equation}
+\frac{u^{n+1}-u^n}{\Delta t} = \theta f(u^{n+1}) + (1-\theta)f(u^n)
+\end{equation}
+
+So that the first equation becomes now:
+
+\begin{equation}
+\frac{u_i^{n+1}-u_i^n}{\Delta t} + \frac{a}{2\Delta x} \left[ \theta (u_{i+1}^{n+1}-u_{i-1}^{n+1})+ (1-\theta )(u_{i+1}^n - u_{i-1}^n)  \right) = 0 \qquad \frac{du}{dt} = f(u)
+\end{equation}
+
+Stability condition (replace eta)
+
+
+
+\begin{equation}
+g(1+i \sigma \theta \sin \eta ) = 1- i\sigma (1-\theta)\sin \eta \qquad |g|^2 = \frac{1+\nu ^2 (1-\theta)^2 \sin ^2\eta)}{1+\sigma ^2\theta ^2\sin ^2\eta} \leq 1 \qquad (1-\theta)^2 \leq \theta ^2 \Leftrightarrow 1-\theta \leq \theta \Leftrightarrow \theta \geq 1/2
+\end{equation}
+
+For the stability analysis:
+
+\begin{equation}
+\frac{u^{n+1}-u^n}{\Delta t} = q [\theta u^{n+1}+ (1-\theta)u^n]\qquad g-1 = z[\theta g +(1-\theta)] \Rightarrow g(1-\theta z) \leq 1+(1-\theta)z \qquad |g| = \frac{|1+(1-\theta)z|}{|1-\theta z|} \qquad z=x+iy \Rightarrow [1+(1-\theta)x]^2 + (1-\theta)^2 \eta ^2 \leq (1-\theta x)^2 + \theta ^2 \eta ^2
+\end{equation}
+
+This is a circle etc see syllabus
+
+The general one step rewrites: 
+\begin{equation}
+u^{n+1} = u^n + \Delta t [\theta f(u^{n+1}) + (1-\theta) f(u^n)]
+\end{equation}
+
+If we take 1/2 and 1/2 as coefficients, the method is trapezoidal non dissipative. Let's look to the question of spurious oscillations or not. Reads the syllabus. 
+
+We have a linear combination of terms so that we have a tridiagonal system of equation. They are easily solved and are inexpensive in memory. This is for 1D but it becomes very hard with more. The analysis for the oscillations is more complicated than before, we find that 
+
+\begin{equation}
+U^{n+1}= K^{-1}AU^n = CU^n
+\end{equation}
+
+The sum of the coefficient should be 1 ... 
+
+
+\subsection{Upwind schemes for systems of equations with characteristic speeds of mixed signs}
+We mentioned that it was impossible to use fully biased schemes for mixed sign because the BS is unstable for all the eigenvalues negative and conversely the FT was for the positive eigenvalues. So one way to get around the problem is to use characteristic decomposition. The eigenvalues are real since we are hyperbolic. The model linear problem is: 
+
+\begin{equation}
+\frac{\D U}{\D t}+ A\frac{\D U}{\D x} = 0 \qquad A = R\Lambda R^{-1}
+\end{equation}
+
+If we multiply this by $R^{-1}$: 
+
+\begin{equation}
+R^{-1}\frac{\D U}{\D t}+ R^{-1}A\frac{\D U}{\D x} = 0 = \frac{\D}{\D t} (\underbrace{R^{-1}U}_{W}) + \Lambda \frac{\D}{\D x} (\underbrace{R^{-1}U}_{W})
+\end{equation}
+
+We have thus that in equation form: 
+
+\begin{equation}
+w_{j,i}^{n+1}= w_{j,i}^{n} + \frac{\Delta t}{\Delta x} \lambda ^{(j)}(w_{j,i}^{n} - w_{j,i+1}^{n}) \qquad \lambda ^{(j)}>0
+\end{equation}
+
+and also 
+
+\begin{equation}
+w_{j,i}^{n+1}= w_{j,i}^{n} + \frac{\Delta t}{\Delta x} \lambda ^{(j)}(w_{j,i+1}^{n} - w_{j,i}^{n}) \qquad \lambda ^{(j)}<0
+\end{equation}
+
+This is called the CIR scheme. This becomes: 
+
+\begin{equation}
+\frac{\D w}{\D x} \rightarrow \begin{array}{c}
+\lambda \frac{w_i - w_{i-1}}{\Delta x} \quad \lambda > 0\\
+\lambda \frac{w_{i-1} - w_{i}}{\Delta x} \quad \lambda < 0
+\end{array}
+\qquad \lambda \frac{\D w}{\D x} \approx \lambda \frac{w_{i+1}-w_{i-1}}{2\Delta x} - |\lambda|\frac{w_{i+1}-2w_i + w_{i-1}}{2\Delta x} 
+\end{equation}
+
+This equation can be interpreted as a central scheme with a bit of diffusion since the second term is a second derivative discretization. This can be written: 
+
+\begin{equation}
+A \frac{\D U}{\D x} \approx A\frac{U_{i+1}-U_{i-1}}{2\Delta x} - |A|\frac{U_{i+1}-2U_i + U_{i-1}}{2\Delta x} 
+\end{equation}
+
+where we define $|A| = R \, |\mbox{diag}(\lambda ^{(j)})| R^{-1}$.
+
+\subsubsection{Conservative discretization - shock capturing}
+read
+
+Page 112
+
+Leap Friedrich: 
+
+\begin{equation}
+\frac{U_i^{n+1/2}-\frac{1}{2}U_{i+1}^n+U_{i-1}^n}{\Delta t+2} + \frac{F_{i+1/2}^n-F^n_{i-1/2}}{\Delta x}=0 
+\end{equation}
+
+And the leap frog 
+
+\begin{equation}
+\frac{U_i^{n+1}-U_i^n}{\Delta t}+ \frac{F^{n+1/2}_{i+1/2}-F_{i-1/2}^{n+1/2}}{\Delta x} = 0
+\end{equation}
+
+Implicit schemes p 113
+We are considering: 
+
+\begin{equation}
+\frac{\D u}{\D t }+ \frac{\D f(u)}{\D x} 
+\end{equation}
+
+Using implicit time and central space: 
+
+\begin{equation}
+\frac{u^{n+1}_i-u_i^n}{\Delta t} + \frac{1}{2\Delta x} [\theta (f_{i+1}^{n+1}-f_{i-1}^{n+1})+(1-\theta) (f_{i+1}^n)-f^n_{i-1}]
+\end{equation}
+
+It is too expensive since it is not a linear equation. A way to make it cheaper is to make as described. 
+
+\section{Numerical schemes for parabolic equations}
+The model equation is: 
+
+\begin{equation}
+\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2}
+\end{equation}
+
+Here FTCS works because the region of stability of both are imbricated so that we need: 
+
+\begin{equation}
+\frac{-4\alpha \Delta t}{\Delta x^2} > -2 \qquad \frac{\alpha \Delta }{\Delta x^2}<1/2
+\end{equation}
+
+Details are not important on page 111
