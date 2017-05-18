@@ -321,7 +321,7 @@ where $\eta$ is non-dimensional and is the \textbf{reduced wave number}. Inserti
 
 The locus of all possible values of $\lambda$ as a function of the reduced wavenumber is called the \textbf{Fourrier footprint} of the discretized equation. Since $-1 \leq \sin \frac{\eta}{2} \leq 1$, in this case it is located on the negative real axis between 0 and $- 4\frac{\alpha}{\Delta x^2}$ and is indeed an approximation of what we obtained with the previous boundary condition discussion.  
 
-\section{Spectra of various discretization of the advection equation}
+\subsection{Spectra of various discretization of the advection equation}
 \begin{equation}
 \frac{\D u}{\D t} + a\frac{\D u}{\D x} = 0 
 \end{equation}
@@ -650,3 +650,447 @@ For stiff problems one will frequently choose among the simplest second order A-
 \end{equation}
 
 It can be shown that it is the method with the lowest truncation error. In summary, the gain in time step is not compensated by the cost in memory. On the other hand, extremely stiff problems like viscous and reactive flows requires the use of implicit methods. 
+
+\section{Numerical schemes for hyperbolic equations}
+We can distinguish between linear and non linear advection equations. The linear equation for scalar and system forms is:
+
+\begin{equation}
+\frac{\D u}{\D t} + a \frac{\D u}{\D x} = 0 \qquad \frac{\D U}{\D t} +A \frac{\D U}{\D x} = 0 
+\end{equation}
+
+The non-linear equations are (Burger's equation in the scalar form): 
+
+\begin{equation}
+\frac{\D u}{\D t} + \frac{\D f( u)}{\D x} = 0 = \frac{\D u}{\D t} + \frac{\D f(u)}{\D u} \frac{\D u}{\D x} \qquad \frac{\D U}{\D t} + a \frac{\D F(U)}{\D x} = 0 = \frac{\D U }{\D t} + \frac{\D F}{\D U} \frac{\D U}{\D x}
+\end{equation}
+
+and these will be considered as model equations whit $A$ diagonalizable in both cases. 
+
+\subsection{Forward time (explicit) central space (FTCS) scheme}
+It turns out that the linear scalar has a closed form solution $u = f(x-at)$. The time derivative will be discretized with forward Euler and the space by central space:
+
+\begin{equation}
+\left. \frac{\D u}{\D t}\right|_i \approx \frac{u_i^{n+1} - u_i^n}{\Delta t} \qquad \left. \frac{\D u}{\D x}\right|_i \approx \frac{u_{i+1}^{n} - u_{i-1}^n}{2\Delta x} \qquad \Rightarrow \frac{u_i ^{n+1} - u_i^n}{\Delta t} + a \frac{u_{i+1}^{n} - u_{i-1}^n}{2\Delta x}
+\end{equation}
+
+To study the stability, let's derivate again what we have found previously. The Fourrier footprint for the equation can be computed like:
+
+\begin{equation}
+\frac{d u_i}{dt} + a \underbrace{\frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x}}_{\frac{e^{i\eta} - e^{-i\eta}}{2\Delta x}u_i} = 0 
+\end{equation}
+
+The region of stability of the time integration scheme is given by 
+
+\begin{equation}
+\frac{du}{dt} = \lambda u \rightarrow \frac{u^{n+1}-u^n}{\Delta t} = \lambda u^n \rightarrow g = \frac{u^{n+1}}{u^n} = 1+\lambda \Delta t \qquad u^{n+1} = u^n (1+\lambda \Delta t)
+\end{equation}
+
+The eigenvalues of the central space are situated on the imaginary axis between $\lambda = \pm ia \frac{\Delta t}{\Delta x}$. We find that the locus of eigenvalues are outside the region of stability of the forward Euler (which is a circle that crosses the origin) and thus the method is \textbf{unconditionally unstable}. For the one step analysis let's compute the amplification factor, remind that we found $\lambda = -ia\sin \eta /\Delta x$: 
+
+\begin{equation}
+g = 1+ \lambda \Delta t = 1 - i a\frac{\Delta t}{\Delta x} \sin \eta \qquad |g|^2 = 1+ \underbrace{\frac{a^2 \Delta t^2}{\Delta x^2}}_{\sigma^2} \sin^2 \eta \gg 1
+\end{equation}
+
+where $\sigma$ is the CFL number non dimensional. We see that the method is unstable we have to try other stuff. 
+
+\subsection{Forward time upwind space (first order upwind) scheme}
+Let's keep forward Euler for time, but we use a backward when $a>0$ and forward when $a<0$ for space discretization (biased). If $a$ is the wave propagation speed: 
+
+\begin{equation}
+BW : \ \left.\frac{\D u}{\D x} \right| _i = \frac{u_i ^n-u_{i-1}^n}{\Delta x} \qquad FW : \ \left.\frac{\D u}{\D x}\right| _i = a \frac{u_{i+1}^n - u_{i}^n}{\Delta x}
+\end{equation}
+
+We call this upwind because the discrete points are always upstream the "wind" direction. Assume know that we have $a>0$: 
+
+\begin{equation}
+\frac{u_{i}^{n+1} - u_{i}^{n}}{\Delta t} + a \frac{u_{i}^{n} - u_{i-1}^{n}}{\Delta x} = 0
+\end{equation}
+
+If we look at the Fourrier footprint: 
+
+\begin{equation}
+\frac{d u_i}{dt} + a \underbrace{\frac{u_{i}-u_{i-1}}{\Delta x}}_{\frac{1-e^{-i\eta}}{\Delta x}u_i}
+\end{equation}
+
+Now the region of stability is a circle of radius $a/\Delta x$ centered at $-a/\Delta x$ for backward Euler (see previous sections) and the region of stability of the forward was a circle of radius 1 centered in -1, the condition of stability is:
+
+\begin{equation}
+\sigma = \frac{a\Delta t}{\Delta x} \leq 1
+\end{equation}
+
+Let's verify with the amplification factor:
+
+\begin{equation}
+\begin{aligned}
+g &= 1 + \lambda \Delta t = 1 - \sigma (1- e^{-i\eta}) = 1 - \sigma (1 - \cos \eta) - i \sigma \sin \eta \\
+|g| ^2 &= [1 - \sigma (1 - \cos \eta)]^2 + \sigma ^2 \sin ^2 \eta\\
+ &= 1 - 2\sigma (1 - \cos \eta) + \sigma ^2 [1 + \cos ^2 \eta - 2 \cos \eta + \sin ^2 \eta]\\
+  &= 1 - 2 (1- \cos \eta) (\sigma - \sigma ^2) = 1 - 2 (1 - \cos \eta)\sigma (1 - \sigma) 
+\end{aligned}
+\end{equation}
+
+since $1 - \cos \sigma $ is positive, $\sigma (1 - \sigma )> 0$ so that our condition is $0\leq \sigma \leq 1$. This is what we found since $0 \leq \sigma$ is verified with $a>0$.
+
+\subsubsection{Interpretation}
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/7}
+\captionof{figure}{}
+\end{center}
+
+We know that we have a hyperbolic equation that means that there is a characteristic line with slope $\frac{dx}{dt} = a$. We have seen in PDE theory that the solution $u^{n+1}_i$ depends on the solutions that lie on the characteristic passing through it. If we look to case (a) and (c), we see that the numerical domain of dependence (here the segment $[u_{i-1} \ u_i]$) does not include the physical domain of dependence (the characteristic) $\Rightarrow$ unstable, while it is included in the case (b) $\Rightarrow$ stable. This is a \textbf{necessary} stability condition, but not a \textbf{sufficient} condition! Because in the previous scheme, if we take the case $|\sigma| \leq 1 $, the physical domain of dependence is included in the numerical domain, but we have seen that the scheme was unstable.\\
+
+ We can give a more algebraic interpretation: when we look at the numerical scheme 
+
+\begin{equation}
+\frac{u_i ^{n+1} - u_i ^n}{\Delta t} + a \frac{u_i ^n - u_{i-1}^n}{\Delta x} = 0 \Rightarrow u_i ^{n+1} = (1-\sigma ) u_i ^n + \sigma u _{i-1}^n
+\end{equation}
+
+It is observed that the scheme is stable if $u_i^{n+1}$ is obtained by \textbf{interpolation }of previous time step and unstable if \textbf{extrapolation}. In fact, when $\sigma <1$, we can see in the equation that the coefficients are positive and that the solution is a weighted average of $u^n_{i-1}$ and $u^n_{i}$ and thus lies into the interval $[u^n_{i-1}\ u^n_{i}]$ which rejects solution blow up and oscillations.  If $\sigma < 1$ we have an interpolation and when $\sigma >1, <0$ we have extrapolation. \\
+
+Now if we consider the forward discretization (used for time), we can see that the region of stability goes up to $z=-2$ on \autoref{ch3/3}. The discrete stability condition is therefore $0\leq \sigma \leq 2$. But it is observed that for $1< \sigma \leq 2$ the solution of the upwind scheme blows up rapidly. This has been explained by the fact that first the error is increasing, then it decreases asymptotically for $n\rightarrow \infty$. As we have limited time steps this is unacceptable. 
+
+\subsection{Dissipation and dispersion}
+This is in reference to the advection equation 
+
+\begin{equation}
+\frac{\D u}{\D t} + a \frac{\D u}{\D x } = 0
+\end{equation}
+
+and relate to the behavior of periodic numerical solutions wrt that of the corresponding exact solutions. 
+
+\subsubsection{Properties of the space discretization operator}
+These are define with regard to a periodic solution of the closed form $u = f(x-at)$ where in particular $f$ can be a periodic function $u = e^{ik(x-at)} = û(t) e^{ikx}$ where $k$ is the wave number. When we space discretize, we gonna get: 
+
+\begin{equation}
+u _ i = \hat{u} (t) e^{ikx_i}\qquad \Rightarrow \frac{d u}{dt} = \lambda ^{(j)} \hat{u}
+\end{equation}
+
+where $\lambda$ is an eigenvalue in the discrete spectrum. This $\lambda$ is to be compared with $- i ka $ ($\hat{u} = e^{\lambda^{(j)}t}$). It has a real part and an imaginary part: 
+
+\begin{equation}
+\lambda ^{j} = \lambda _r ^{j}+ i\lambda _i^{j}
+\end{equation}
+
+If we define $a _{num}$ the numerical wave propagation speed, such that: 
+
+\begin{equation}
+\frac{\lambda ^{j}}{-ik_j} = a _{num} ^{j} = a_r ^{j} +  ia_i^{j} \qquad \Rightarrow \hat{u} = e^{\lambda ^{(j)} t} = e^{-ika_r^{(j)}t}e^{ka_i^{(j)}t} = \rho e^{-i\varphi}
+\end{equation}
+
+We observe that the error in amplitude wrt the exact solution, called \textbf{dissipative error} is associated with the imaginary part $a_i^{(j)}$ and that the error in phase called \textbf{dispersive error} is related to the real part $a_r^{(j)}$. We define dissipative error $\epsilon_D$ and dispersive error $\epsilon_\varphi$ as: 
+
+\begin{equation}
+\epsilon _D = \ln \rho = k_j a_i^{(j)} t = \frac{a_i^{(j)}}{a} k_j \Delta x \underbrace{\frac{at}{\Delta x}}_{t^*}, \qquad \epsilon _\varphi = \frac{\varphi _{num}}{\varphi _{exact}} = \frac{a_r^{(j)}}{a}
+\end{equation}
+
+Traditionally we plot $\frac{a _i ^(j)}{a} k_j \Delta x$ (dissipative) vs $\eta= k \Delta x$ and $\frac{a_i^{(j)}}{a}k_j \Delta x= \epsilon _\varphi k_j \Delta x$ (dispersive). For the numerical scheme to be stable the dissipative error must be negative. We will look to two discretization methods. 
+
+\subsubsection{Illustration}
+If we do upwind (BW space), then central, knowing the $\lambda$, we have: 
+
+\begin{equation}
+\begin{aligned}
+\lambda = -\frac{a}{\Delta x} (1 - e^{-i\eta _j}) &= -\frac{a}{\Delta x} (1 - \cos \eta_j) - i \frac{a}{\Delta x} \sin \eta_j\\
+&\Rightarrow \frac{a^{(j)}}{a}k_j \Delta x = \frac{i \lambda ^{(j)} \Delta x}{a} = \sin \eta _j - i(1 - \cos \eta _j) \\
+\lambda = -i \frac{a}{\Delta x} \sin \eta \qquad &\Rightarrow \frac{a^{(j)}}{a}k_j \Delta x = \frac{i \lambda ^{(j)} \Delta x}{a} = \sin \eta _j
+\end{aligned}
+\end{equation}
+
+We observe that there is no dispersive part for central discretization (imaginary part). The curves are plotted just below.
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/9}
+\captionof{figure}{}
+\end{center}
+
+We see indeed that central finite difference is non dissipative and that the backward space is dissipative. Let's concentrate on the dispersive curves, let's recall that the eigenmodes of the waves consists of discrete periodic solutions in space $\nu ^{(j)}_m = \exp (ik_j x_m)$ with wave numbers $k_j = 2\pi j/L, j= 0, \dots, N-1$, so that the erduced wave number is $\eta _j = k_j \Delta x =  2\pi j \Delta x / L = 2\pi j / N$. They vary between 0 and $2 \pi$ or $-\pi, \pi$ (eigenvalues periodic in $\eta$). The numerical solution is thus limited in wavenumber resolution to $\eta \leq \pi$ or $k \leq k_{max} = \pi / \Delta x$.\\
+
+This is similar to the Shannon Nyquist theorem for signal processing where we can only reconstruct frequencies up to $f_s /2$ where $f_s$ is the sampling frequency. In our case, if the sampling wavenumber is $k_s = 2\pi / \Delta x$, the numerical solution can only resolve wavenumbers up to $k = \pi / \Delta x$ and waves with higher wavenumbers than this limit are called \textbf{unresolved}, we need to rescale the mesh. We can observe on the figure that for higher reduced wave numbers $\eta$, the phase lag error increases which leads to numerical errors that are subsequently highlighted. We call these waves \textbf{poorly resolved waves}. For example if we want an accuracy of 5\% in phase, this corresponds to $\eta \leq \pi / 6 \geq 2\pi \Delta x / \lambda \Rightarrow \lambda / \Delta x \geq 12$, we need thus at least 12 points to approximate well this wave. \\
+
+In conclusion, accurately resolved waves should suffer from as low as possible dissipative errors (amplitude), but the dispersive error (phase-lag) should be damped so that the phase lag errors do not pollute the solution. 
+
+\subsubsection{Fully discrete analysis}
+As we discretize in time, the time step also contributes to the dissipative and dispersive errors. For periodic solutions in time, the amplification factor $\frac{u^{n+1}_i}{u_i^n}= g(\eta, \sigma) = e^{\lambda _{num}}$ has to be compared with: 
+
+\begin{equation}
+\frac{u(x_i , t + \Delta t)}{u (x_i, t)} = e^{\lambda _{exact}\Delta t} = e^{-i k a \Delta t} = e^{- i \eta \sigma}
+\end{equation}  
+
+So that the errors are: 
+
+\begin{equation}
+\epsilon _D = \ln |g| \mathcal{R}(\lambda _{num}) \Delta t = k a_{num,i} \Delta t=  \frac{a_{num,i}}{a}\eta \sigma \qquad \epsilon _{\varphi} = \frac{arg(g)}{-\eta \sigma} = \frac{a_{num}}{a} 
+\end{equation}
+
+We often plot $\epsilon _D/\sigma$ and $\epsilon _\varphi \eta$ as a function of $\eta$. For the upwind scheme we had $g = 1 - \sigma (1 - e^{-i\eta \sigma})$ so that 
+
+\begin{equation}
+\epsilon _D / \sigma = \frac{\ln (1 - 2 \sigma (1- \sigma )(1-\cos \eta))}{2\sigma } \qquad \eta _\varphi \eta = \frac{1}{\sigma} \arctan \left( \frac{\sigma \sin \eta }{1 -\sigma (1- \cos \eta)} \right)
+\end{equation}
+
+For $\sigma = 1$, we have $\epsilon _D = \epsilon _\varphi = 0$ which means that the scheme becomes exact, the time integrator exactly compensates the dispersive and dissipative errors of the space discretization. This can be understood  when we see that the characteristic passing through the point $i, n+1$ passes through $i-1,n$. This is not possible in practice. For the case $\sigma \rightarrow 0$, we can make a Taylor approximation: 
+
+\begin{equation}
+\epsilon _D /\sigma \approx -(1 - \cos \eta) \qquad \epsilon _\varphi \approx \sin \eta
+\end{equation}
+
+We recover the result of the semi-discrete analysis, since when $\sigma \rightarrow 0$ the time integration becomes exact. \\
+
+To conclude we will show that the dissipative error is similar to the effect of an artificial diffusion. The advection diffusion equation is: 
+
+\begin{equation}
+\frac{\D u}{\D t} + a \frac{\D u }{\D x} = \alpha \frac{\D ^2 u}{\D x^2}
+\end{equation}
+
+It admits a periodic solution $u = e^{ik(x-at)}e^{-ak^2 t}$ whose amplification factor is $g_{AD} = e^{-i\eta \sigma}e^{-a \eta ^2 \frac{\Delta t}{\Delta x^2}}$. We have thus applying Taylor approx: 
+
+\begin{equation}
+|g|^2 = e^{-a \eta ^2 \frac{\Delta t}{\Delta x^2}} \approx 1 - \frac{a\Delta t}{\Delta x^2} \eta ^2 
+\end{equation}
+
+Now also for $\eta \ll 1$ (Taylor), the amplification factor of the upwind scheme is: 
+
+\begin{equation}
+g \approx \sqrt{1 - \sigma (1-\sigma )\eta ^2} \approx 1 - \sigma \frac{1-\sigma}{2}\eta ^2
+\end{equation}
+
+They have similar form and we can deduce the artificial diffusion term 
+
+\begin{equation}
+\alpha _{num} = \frac{\sigma (1-\sigma)}{2}\frac{\Delta x^2}{\Delta t} = \frac{a \Delta x}{2}(1- \sigma)
+\end{equation}
+
+We can see that the effects are indeed similar on the figure just below. 
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/10}
+\captionof{figure}{}
+\end{center}
+
+\subsection{Centred schemes: leap-frog, Lax-Friedrichs and Lax-Wendroff}
+
+We started by looking to the FTCS for the transport equation and we saw that it was unstable. We changed space discretization in forward time upwind scheme. This can run to problems with systems, let's show why. First, it is highly dissipative. Second, if we look to the forward time backward space we have: 
+
+\begin{equation}
+\frac{\D U}{\D t} + A\frac{\D U}{\D x} \qquad \Rightarrow \frac{U^{n+1}_{i} - U^{n}_{i}}{\Delta t} + A \frac{U^{n}_{i} - U^{n}_{i-1}}{\Delta x} = 0
+\end{equation}
+
+If we assume as previously that we have periodic solutions in space, we have: 
+
+\begin{equation}
+\begin{aligned}
+U_{i-1} = U_i &e^{-i k \Delta x} \qquad \Rightarrow U_i^{n+1} = U_i^n - \frac{A \Delta t}{\Delta x} (1 - e^{-i\eta}) U_i^n \\
+&U_i^{n+1} = \underbrace{\left[I - A \frac{\Delta t}{\Delta x} (1 - e^{-i\eta})\right]}_{G} U_i^n
+\end{aligned}
+\end{equation}
+
+Now we have an \textbf{amplification matrix G} instead of an amplification factor. As the system is supposed to be hyperbolic it has a complete set of eigenvalues and eigenvectors, A is diagonalizable: 
+
+\begin{equation}
+A = R\Lambda R^{-1}
+\end{equation}
+
+where $\Lambda = diag (\lambda ^{i})$. In addition $I = RR^{-1}$ so that we can rewrite the equation: 
+
+\begin{equation}
+\begin{aligned}
+&G = R \, \mbox{diag }\left(1 - \lambda ^{(i)}\frac{\Delta t}{\Delta x} (1-e^{-i\eta})\right) R^{-1}\\
+&R^{-1}U_i^{n+1} = R^{-1}R \,\mbox{diag} \left(1 - \lambda ^{(i)} \frac{\Delta t}{\Delta x} (1-e^{-i \eta}) \right) R^{-1}U_i^n
+\end{aligned}
+\end{equation}
+
+We pose $W_i^{n+1} = R^{-1}U_i^{n+1}$, $R^{-1}R = I$ and $W_i^{n} = R^{-1}U_i^{n}$. We can finally write $g^{(i)}$ the eigenvalues of $G$: 
+
+\begin{equation}
+W_i^{n+1} = \mbox{diag}\left(g^{(i)}\right) W_i ^n = \sum _{i=1}^m R_i g^{(i)}w_i
+\end{equation}
+
+The stability condition can be generalized to: 
+
+\theor{A numerical scheme for the solution of a system of evolution equations is stable iff all eigenvalues of the amplification matrix G are such that their modulus is smaller or equal to unity.
+
+\begin{equation}
+|g^{(i)}| =  \left|1 - \lambda ^{(i)} \frac{\Delta t}{\Delta x} (1-e^{-i \eta}) \right| \qquad\Rightarrow 0 \leq \frac{\lambda ^{(i)}\Delta t}{\Delta x} \leq 1
+\end{equation}}\ \\
+
+This condition is violated for negative eigenvalues and thus if the eigenvalues are of mixed type (some positive and some negative), the system is unconditionally unstable. This is the case for 1D Euler with eigenvalues of both signs $u-a, u, u+a$, so we cannot use FTBS. We should use then a centered space discretization. 
+
+\subsubsection{Leap-frog scheme}
+If we come back to the reason the FTCS doesn't work, we have a region for CS that is purely imaginary and the FT on the left plane of the complex plane has no extend on the imaginary axis. We have already treated the change in space discretization, for time discretization modification we have 3 candidates: the explicit mid-point method (imaginary), Runga Kutta (extension on the real negative and imaginary axis) or implicit schemes (let's forget to the two last and look to the central time). 
+The leap-frog consists in using the explicit mid-point, central discretization. For the advection equation we will get: 
+
+\begin{equation}
+\frac{u_{i}^{n+1} - u_{i}^{n-1}}{2\Delta t} + a \frac{u_{i+1}^{n} - u_{i-1}^{n}}{2\Delta x} = 0
+\end{equation}
+
+First of all we know that the truncation error is more accurate $\mathcal{O}(\Delta t^2, \Delta x^2)$. Since we use the four points around point i, n without using the point itself, it has been called \textbf{Leap-frog scheme}. If we look to the stability via the Fourrier footprint we had a stability region on the imaginary axis going from $-\frac{ia}{\Delta x}$ to $\frac{ia}{\Delta x}$ for the space discretization and for the time discretization is between $-i,i$. Thus the condition of stability is: 
+
+\begin{equation}
+\left|\frac{a\Delta t}{\Delta x} \right| = |\sigma | \leq 1
+\end{equation}
+
+If we do the one step analysis, we will replace the discretized equation by: 
+
+\begin{equation}
+\frac{g u^n_i - \frac{1}{g}u^n_i}{2\Delta t} + a \underbrace{\frac{e^{i\eta}- e^{-i\eta}}{2\Delta x}}_{I\frac{\sin \eta}{\Delta x}} u^n_i = 0 \qquad \Rightarrow g^2 - 1 + 2\frac{a \Delta t}{\Delta x} i \sin \eta g = 0
+\end{equation}
+
+For which we get the following solution:
+
+\begin{equation}
+g = - i \sigma \sin \eta \pm \sqrt{-\sin ^2 \eta + 1}
+\end{equation}
+
+The stability condition is that $1 - \sigma ^2 \sin ^2 \eta \geq 0$ and since $\sin ^2\eta$ is between 1 and 0, we have $\sigma ^2 \leq 1$. We can compute the dissipative and dispersive errors: 
+
+\begin{equation}
+\begin{aligned}
+&|g|^2 = 1 - \sigma ^2 \sin ^2 \eta + \sigma ^2\sin ^2 \eta = 1 \\
+&\Rightarrow arg(g) = \arctan \left(\frac{-\sigma \sin \eta }{1 - \sigma ^2 \sin ^2 \eta} \right) \Rightarrow \epsilon _\varphi = \frac{arg(g)}{-\eta \sigma } = \frac{1}{\eta \sigma } \arctan \frac{\sigma \sin \eta}{1 - \sigma ^2 \sin ^2 \eta}
+\end{aligned}
+\end{equation}
+
+For $\sigma \rightarrow 0$ the dispersive error becomes $\frac{\sin \eta }{\eta}$, there is no dissipative error, this seems to look perfect. We can see on the figure that we preserve the amplitude of the wave packet. We have dispersive error, phase lag and thus this leeds to spurious oscillations. Poorly resolved high wave number modes are trailing behind the wavepacket on the figure (a). In case of non continuity we have something really poor, showing that non damped poorly resolved modes can affect the solution very badly. We can show these oscillations, let's take the discretized equation: 
+
+\begin{equation}
+u^{n+1}_i = u^{n-1}_i - \sigma u_{i+1}^n + \sigma u_{i-1}^n
+\end{equation}
+
+Where we have a negative term with sigma, the reason of oscillations. 
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/11}
+\captionof{figure}{}
+\end{center}
+
+\subsubsection{Lax-Friedrischs scheme}
+We want to manipulate the FTCS to stabilize it and we want to replace the $u_i^n$ in the time discretization by an average of the two neighbors $\frac{1}{2} (u_{i-1}^n + u_{i+1}^n)$, this gives: 
+
+\begin{equation}
+\frac{u_i ^{n+1} - \frac{1}{2}(u_{i-1}^n + u_{i+1 ^n})}{\Delta t} + a \frac{u_{i+1}^n - u_{i-1}^n}{2\Delta x} = 0
+\end{equation}
+
+The truncation error of this is $TE = \mathcal{O} (\Delta t, \Delta x^2 / \Delta t)$. We see that the two discretizations are not independent and are coupled due to the neighboring average, this does not allow us to make a separate region of dependance analysis. We can rewrite the scheme as: 
+
+\begin{equation}
+u_i^{n+1} = \frac{1}{2} (1 + \sigma )u_{i-1}^n + \frac{1}{2} (1- \sigma ) u_{i+1}^n
+\end{equation}
+
+For this to be stable we need $-1 \leq \sigma \leq 1$ so that both coefficients are >0 to have stability and non oscillatory solution. We can check this by Fourrier footprint: 
+
+\begin{equation}
+g = \frac{1}{2} (1+\sigma) e^{-i\eta} + \frac{1}{2}(1-\sigma) e^{i\eta} = \cos \eta - \sigma i \sin \eta \qquad
+\begin{aligned}
+&\Rightarrow |g|^2= \cos ^2 \eta + \sigma ^2 \sin ^2 \eta \\
+&= 1 - (1 - \sigma ^2)\sin ^2\eta \leq 1 \Rightarrow \sigma ^2 \leq 1
+\end{aligned}
+ \end{equation}
+ 
+We can compute the arg(g): 
+ 
+\begin{equation}
+\begin{aligned}
+&arg(g) = \arctan \frac{-\sigma \sin \eta}{\cos \eta} = \arctan (-\sigma \tan \eta) \\
+\Rightarrow &\epsilon _\varphi = \frac{arg(g)}{-\eta \sigma} = \frac{\arctan (\sigma \tan \eta)}{\sigma \eta} \rightarrow \frac{\tan \eta}{\eta} \quad \mbox{for } \sigma \rightarrow 0
+\end{aligned}
+\end{equation}
+
+It is dissipative (stronger damping than upwind scheme) but there is no oscillation as can be seen in the case of the front. Can we assemble the two schemes? We will see it in the next method.
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/12}
+\captionof{figure}{}
+\end{center}
+
+\subsubsection{Lax-Wendroff scheme}
+It consists in one step of Friedrichs and one step of Leap-Frog. We will generate using Fridrichs the points $u^(n+1)_{i-1}, u^(n+1)_{i+1}$  and use the Leap to get from these two the point $u_{i}^{n+2}$. Mathematically, we use the Friedrichs method: 
+
+\begin{equation}
+u_i^{n+1} = \frac{1}{2}(1+\sigma )u_{i-1}^n + \frac{1}{2}(1-\sigma) u_{i+1}^n
+\end{equation}
+
+Then we get the two points 
+
+\begin{equation}
+u_{i-1}^{n+1} = \frac{1}{2}(1+\sigma )u_{i-2}^n + \frac{1}{2}(1-\sigma) u_{i}^n\qquad 
+u_{i+1}^{n+1} = \frac{1}{2}(1+\sigma )u_{i}^n + \frac{1}{2}(1-\sigma) u_{i+2}^n
+\end{equation}
+
+Then we will just shift the n indices +1 in central central schemes to make appear the $n+1$ on $u$: 
+
+\begin{equation}
+\frac{u_i^{n+2} - u_i^n}{2\Delta t} + a \frac{\frac{1}{2}(1+\sigma)u_i^{n} + \frac{1}{2}(1-\sigma)u_{i+2}^n-\left(\frac{1}{2}(1+\sigma)u_{i-2}^n + \frac{1}{2}(1-\sigma)u_i^n \right)}{2\Delta x}
+\end{equation}
+
+By considering the mesh regrouping two squares in one
+
+\begin{equation}
+\frac{u_i^{n+1} - u_i^n}{2\Delta t} + a \frac{\frac{1}{2}(1+\sigma)u_i^{n} + \frac{1}{2}(1-\sigma)u_{i+1}^n-\left(\frac{1}{2}(1+\sigma)u_{i-1}^n + \frac{1}{2}(1-\sigma)u_i^n \right)}{2\Delta x}
+\end{equation}
+
+Then we can rewrite
+
+\begin{equation}
+\begin{aligned}
+&u_i^{n+1} - u_i ^n + \sigma \underbrace{\left[ \frac{1}{2}(1-\sigma)u_{i+1}^n + \sigma u_i ^n - \frac{1}{2} (1+\sigma) u _{i-1}^n \right]}_{\frac{u_{i+1}^n- u _{i-1}}{2}^n - \sigma \frac{u_{i+1}^n - 2u_i ^n + u_{i-1}^n}{2}} = 0\\
+&\Rightarrow u_i^{n+1} = u_i^n - \sigma \frac{u_{i+1}^n - u_{i-1}^n}{2} + \sigma ^2 \frac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{2}
+\end{aligned}
+\end{equation}
+
+\theor{
+\textbf{MIGUEL CAN YOU DO HERE PLEASE}\\
+If we do a Taylor expansion 
+
+\begin{equation}
+u_{i}^{n+1} =  u_i^n + \Delta t \left. \frac{\D u}{\D t} \right|^n_i + \frac{\Delta t^2}{2} \left. \frac{\D ^2 u}{\D t^2} \right| ^n_i  + \mathcal{O}(\Delta t^3)
+\end{equation}
+
+We know from the advection $\frac{\D u}{\D t} + a \frac{\D u}{\D x} = 0$ equation that 
+
+\begin{equation}
+\frac{\D ^2 u}{\D t^2} = \frac{\D}{\D t}\left(\frac{\D u}{\D t} \right) = \frac{\D }{\D t} \left( -a \frac{\D u}{\D x} \right) = -a \frac{\D}{\D x} \left( \frac{\D u }{\D t} \right) = a^2 \frac{\D^2 u }{\D x^2}
+\end{equation}
+
+If we come back to the Taylor we can replace the first derivative and the second by respectively: 
+
+\begin{equation}
+-a \frac{\D u}{\D x} \approx -a \frac{u_{i+1}-u_{i-1}}{2\Delta x} + \mathcal{O}(\Delta x^2) \qquad a^2\frac{\D ^2 u}{\D x^2} \approx a^2 \frac{u_{i+1}^n}{•}
+\end{equation}
+
+Not had the time to copy ...
+}
+
+Stability analysis: 
+
+\begin{equation}
+\begin{aligned}
+g &= 1 - \sigma \frac{e^{i\eta} - e^{-i\eta}}{2} + \frac{\sigma ^2}{2} (e^{i\eta} + e^{-i\eta}-2) = 1 - i \sigma \sin \eta + \sigma ^2 (\cos \eta -1)\\
+|g|^2 &= [1 - \sigma ^2 (1 -\cos \eta)]^2 +\sigma^2 \sin ^2 \eta = 1 - 2 \sigma ^2 (1- \cos \eta) + \sigma ^4 (1 - \cos \eta)^2 \\
+&+ \sigma ^2 (1-\cos ^2\eta)= 1 - (1 -\cos \eta) [2- (1 + \cos \eta) - \sigma ^2 (1 - \cos \eta)] \\
+ &= 1 - \sigma ^2 (1-\cos \eta ) [1 - \cos \eta - \sigma ^2 (1- \cos \eta)] = 1 - \sigma ^2 (1- \sigma ^2) (1 - \cos \eta )^2 \leq 1
+\end{aligned}
+\end{equation}
+
+Since the squares are positive, we have $1 - \sigma ^2 \geq 0\Leftrightarrow \sigma ^2 \leq 1$. Studying the dissipative error, $1 - \cos \eta = 2\sin ^2 (\eta /2)$ so that: 
+
+\begin{equation}
+\epsilon _D = \ln(g) = \frac{1}{2}\ln (1-4\sigma ^4\frac{\eta}{2}(1-\sigma ^2))
+\end{equation}
+
+we have a $4 \sin ^4 (\eta /2)$ for the dissipation so that the $^4$ term being much smaller than the previous case, reduces the damping in the amplitude. Now if we do the argument: 
+
+\begin{equation}
+arg(g) = - \arctan \frac{\sigma \sin \eta }{1 - \sigma ^2 (1 - \cos \eta)} \Rightarrow \epsilon _\varphi = \frac{1}{\eta \sigma} \arctan \frac{\sigma \sin \eta}{1- \sigma ^2 (1- \cos \eta)}
+\end{equation} 
+
+For $\sigma \rightarrow 0: \epsilon \varphi = \frac{\sin \eta}{\eta}$. If we look to the numerical solution on the figure, we see that for the small wave number, there is very little damping. There is much less spurious oscillations than before but they are still present. It is easy to see why there is oscillations, because when $-1 \leq \sigma\leq 0$ and $0\leq \sigma \leq 1$ there is one negative term if we rewrite in the form: 
+
+\begin{equation}
+u_i^{n+1} = \frac{1}{2}(\sigma ^2 - \sigma)u^n_{i+1} + (1-\sigma ^2)u_i^{n}+ \frac{1}{2}(\sigma ^2 + \sigma) u_{i-1}^n
+\end{equation}
+
+\begin{center}
+\includegraphics[scale=0.5]{ch3/13}
+\captionof{figure}{}
+\end{center}
