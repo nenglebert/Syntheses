@@ -782,34 +782,627 @@ S(\alpha J, \alpha' J' ) = \sum_{MM'q} \vert \langle \alpha JM \vert \mu^{(1)}_q
 \vert \langle \alpha J \Vert 
 \mbox{\boldmath $ \mu $}^{(1)} \Vert \alpha J' \rangle \vert^2
 \end{equation}
-Suite au cours de demain!
-
-\iffalse
-unité atomique de moment dipolaire au carré. C'est (e*a0)^2 l'unité de ça
-
-303.7 : nombre quand S exprime en u.a., quand lamda est en 1. il faut... pour calculer un nombre sans dimension
-
-nombre sans dim qui va introduire la force d'oscillateur. EN injectant çala dedans on trouve 1. g_k c'est facteur de dégen
-\fi
 
 
+	\begin{wrapfigure}[10]{r}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.55]{ch2/image3}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+
+En exprimant $S$ en unité atomique, on peut (si $\lambda$ est exprimé en Angström) en extraire déduire
+la valeur sans dimension
+\begin{equation}
+g_i f_{ik} = \frac{303.7}{\lambda} S(i,k)
+\end{equation}
+Ce nombre adimensionnel va introduire la force d'oscillateur. En injectant ce résultat on peut faire a
+apparaître le coefficient d'Einstein $A$ fonction de la dégénérescence
+\begin{equation}
+A_{ki} (s^{-1}) = \frac{6.670~10^{15}}{g_k \lambda^2} g_i f_{ik}
+\end{equation}
+Il est possible avec celui-ci de déterminer le temps de vie d'un niveau. La probabilité de transition
+s'exprime alors
+\begin{equation}
+f_{ka} =  \frac{2 m \omega_{ka}}{3 \hbar} \vert {\bf r}_{ka} \vert^2
+\end{equation}
+Le signe de la fréquence associée à cette transition renseigne s'il s'agit d'une émission ou d'une
+absorption
+\begin{equation}
+\omega_{ka} = (E_k - E_a)/ \hbar 
+\left\{ \begin{array}{ll} 
+f_{ka} > 0 & \mbox{absorption} \\
+f_{ka} < 0 & \mbox{\'emission} \end{array} \right.
+\end{equation}
+
+\subsection{Formalise "longueur" et "vitesse"}
+Commençons par définir une force d'oscillateur à une dimension (par simple facilité) en nous 
+basant directement sur la relation $f_{ka}$ obtenue ci-dessus. Par définition du module carré, 
+on trouve
+\begin{equation}
+f_{ka}^x =  \frac{2 m \omega_{ka}}{3 \hbar} \vert x_{ka} \vert^2 =
+\frac{2m \omega_{ka}}{3 \hbar} \langle a \vert x \vert k \rangle 
+\langle k \vert x \vert a \rangle
+\end{equation}
+Il est possible d'écrire $\dot{\vec{r}}$ à comme le commutateur de $\vec{r}$ avec $H$ au $(i\hbar)^{
+-1}$ près : ceci faisant apparaître $\vec{r}$, il permettra de passer du formalise \textit{longueur}
+au formalisme \textit{vitesse}
+\begin{equation}
+\dot{{\bf r}} = \frac{1}{i \hbar} [ {\bf r}, H] \Rightarrow
+\langle \psi_b \vert \dot{{\bf r}} \vert \psi_a \rangle
+= (i \hbar)^{-1} (E_a - E_b) \langle \psi_b \vert {\bf r} \vert
+\psi_a \rangle
+\end{equation}
+Connaissant les relations liant $x$ et $p$ via les transformées de \textsc{Fourier}
+\begin{equation}
+x_{ka} = \langle k \vert x \vert a \rangle = - \frac{i}{m \omega_{ka}}
+ \langle k \vert  p_x \vert a \rangle,\qquad\qquad
+ x_{ak} = \langle a \vert x \vert k \rangle =  \frac{i}{m \omega_{ka}}
+ \langle a \vert  p_x \vert k \rangle 
+\end{equation}
+On peut définir l'opérateur (initialement gradient, changé en dipolaire) sous la forme longueur (
+ci-dessous, à gauche) et sous forme vitesse (ci-dessous, à droite)\ \\
+
+\cadre{\begin{equation}
+f_{ka}^l =  \frac{2 m \omega_{ka}}{3 \hbar} \vert {\bf r}_{ka} \vert^2 \; \; \; ; \; \; \;
+f_{ka}^{v} =  \frac{2}{3m \hbar \omega_{ka}} \vert {\bf p}_{ka} \vert^2
+\end{equation}}\ \\
+
+Une fois $\omega$ est au numérateur, et l'autre au dénominateur. Ceci vient simplement du lien entre
+$x$ et $p$. Ce qui est intéressant, c'est que les deux approches doivent donner le même résultat :
+la comparaison des deux donne une bonne information sur la véracité des approximations faites.
+
+\subsection{Règle de Thomas-Reiche-Kuhn}
+Reprenons (copié-collé) trois éléments important de la sous-section précédente
+\begin{equation}
+f_{ka}^x =  \frac{2 m \omega_{ka}}{3 \hbar} \vert x_{ka} \vert^2 =
+\frac{2m \omega_{ka}}{3 \hbar} \langle a \vert x \vert k \rangle 
+\langle k \vert x \vert a \rangle
+\end{equation}
+\begin{equation}
+x_{ka} = \langle k \vert x \vert a \rangle = - \frac{i}{m \omega_{ka}}
+ \langle k \vert  p_x \vert a \rangle,\qquad\qquad
+ x_{ak} = \langle a \vert x \vert k \rangle =  \frac{i}{m \omega_{ka}}
+ \langle a \vert  p_x \vert k \rangle 
+\end{equation}
+En remplaçant les éléments de matrices on peut obtenir l'expression suivante
+\begin{equation}
+\begin{array}{ll}
+f_{ka}^x &\DS=  \frac{2i}{3 \hbar} 
+\langle a \vert p_x \vert k \rangle 
+\langle k \vert x \vert a \rangle
+= -\frac{2i}{3 \hbar} 
+\langle a \vert x \vert k \rangle 
+\langle k \vert p_x \vert a \rangle\vspace{2mm}\\
+&\DS= + \frac{i}{3 \hbar} \left[ 
+\langle a \vert p_x \vert k \rangle 
+\langle k \vert x \vert a \rangle
+- \langle a \vert x \vert k \rangle 
+\langle k \vert p_x \vert a \rangle \right]
+\end{array}
+\end{equation}
+où la troisième égalité vient du remplacement de $\bra{a}x\ket{k}$ par $\bra{k}p_x\ket{a}$. Les 
+$\omega$ ont disparus lors de la transformation. Dans cette dernière égalité, si on somme sur $k$, 
+on va faire apparaître des relations de fermetures. Dès lors
+\begin{equation}
+\sum_k \vert k \rangle \langle k \vert = I 
+\Rightarrow \sum_k f_{ka}^x = \frac{i}{3 \hbar}
+\langle a \vert p_x x - x p_x \vert a \rangle
+\end{equation}
+Sachant que $[x,p_x]=i\hbar$, la somme des forces oscillateur donne $1/3$. Dans le cas isotrope 
+(généralisé à 3D donc), la somme des forces d'oscillateur doit valoir l'unité (résulté montré avec
+Wigner-Eckart)\\
+
+\cadre{\begin{equation}
+\sum_k f_{ka}^x = 1/3 \Rightarrow
+\sum_{k} f_{ka} = 1
+\end{equation}}\ \\
+
+Regardons maintenant ce qui se passe dans un atome d'hydrogène. Pour se faire, il va être utile de
+travailler avec des grandeurs moyennées.
+
+\subsection{Forces d'oscillateur moyennes}
+Nous avons les nombres quantiques $n,l$ et $m_l$ (triplet de nombre quantique) que nous aimerions 
+fair apparaître afin de les interpréter. En valeur moyenne, nous pouvons écrire
+\begin{equation}
+\overline{f}_{n'l',nl} \equiv \frac{1}{2l+1}
+ \sum_{m_l',m_l} f_{n'l'm_l',nlm_l}
+\end{equation}
+où $\DS \sum_{n'l'} \overline{f}_{n'l',nl} = 1$ (règle de Laporte). \\
+
+Nous allons considérer que $nl=1s$ et sommer sur $n'l'$. A partir de cet état, nous allons "aller" 
+vers $2p, 3p,\dots$ et même jusqu'au continu (ce n'est qu'une prolongation). Il va donc y avoir
+une \textit{contribution du continuum}. Regardons le tableau suivant
+\begin{center}
+\begin{tabular}{ccccccccc}
+ & &  $n=1$ & $n=2$ & $n=3$ & $n=4$ 
+& $\sum_{n=5}^\infty$ & $ \epsilon l$ \\
+\hline
+$1s$ & $np$ & $-$ & 0.416 & 0.079 & 0.029 &
+0.041 & 0.435 \\
+$2s$ & $np$ & $-$ & $-$   & 0.435 & 0.103 &
+0.111 & 0.351 \\
+$2p$ & $ns$ & $-0.139$ & $-$ & 0.014 & 0.003 &
+0.003 & 0.008 \\
+$2p$ & $nd$ & $-$ & $-$ & 0.696 & 0.122 & 0.109 &
+0.183
+\end{tabular}  
+\captionof{table}{ }
+\end{center}
+Dans la première ligne ($1s$), la colonne $n=2$ donne la valeur de $f$ pour le pour le passage 
+$1s\to2p$. En fin de ligne on a effectué $1s\to 5p$ (on va que en $p$ car $\Delta l = \pm1$) jusqu'à
+l'ionisation. Dans la deuxième ligne ($2s$) on peut aller vers $3p,4p,\dots$ Le $\epsilon l$, c'est la
+contribution nécessaire pour que la règle de la somme fasse 1 : illustre le continu pour une certaine
+énergie. A partir de la ligne $2p$ il y a deux canaux : vers le canal $s$ ($3s,4s,\dots$) mais aussi
+vers le canal $d$ ($3d,4d,\dots$) jusqu'à $\epsilon d$.\\
+
+\danger\ Dans $2p$, il ne faut pas oublier de sommer les états "au dessus". On somme sur $k$ mais
+rien ne dit qu'il faut sommer que sur les supérieurs : il y a donc une flèche vers l'état $s$.\\
+
+Ce tableau nous permet de calculer les temps de vie (en ns) de l'atome d'hydrogène
+\begin{center}
+\begin{tabular}{lcccc}
+    & $s$   &   $p$   &   $d$    &  $f$ \\
+\hline
+$n=2$ & $\infty$~(E1)& 1.6 &   &  \\
+$n=3$ & 160  &  5.4  &  15.6 &    \\
+$n=4$ & 230  &  12.4 &  36.5 & 73 
+\end{tabular}
+\captionof{table}{ }
+\end{center}
+Si l'état $2s$ est excité, son temps de transition sera long car il n'existe aucune transition vers
+le bas. Une transition double-photonique permet le passage $2s\to 2s$ mais ce n'est pas pris en
+compte dans cette approximation.
+
+
+\section{Structure fine des raies}
+Nous avions vu que l'équation de \textsc{Schrödinger} n'était pas suffisante et qu'il existait une
+structure fine. En oubliant le \textit{Lamb shift}, l'énergie dépend de $n,j$ et est indépendante
+de $l$. Nous \textbf{devrons} donc coupler les moments angulaire d'orbite et de spin (la correction
+sera alors relativiste) $j=l+s$ (cf. chapitre 4).\\
+
+Pour coupler le moment angulaire (et ainsi tenir compte des effets fins), il est nécessaire de changer
+d'\textsc{ecoc}
+\begin{equation}
+\vert lsjm_j  \rangle = \sum_{m_l m_s} \langle lsm_lm_s \vert jm_j \rangle \; \vert lsm_lm_s \rangle
+\end{equation}
+Ceci à pour conséquence qu'il va falloir "regarder jusqu'à $j$"
+\begin{equation}
+ \langle l m_l \vert C^{(1)}_q \vert l'm_l' \rangle
+\rightarrow
+\langle l s j m_j \vert C^{(1)}_q \vert l's' j' m_j' \rangle
+\end{equation}
+où $C^{(1)}$ est une harmonique sphérique réduite indépendante du spin : un $\delta_{ss'}$ apparaît
+logiquement. En détricotant les \textit{bra} et \textit{kets} pour faire appliquer $C$ dans l'espace
+dans lequel il agit (espace spatial), on trouvé
+\begin{equation}
+\langle l s j \Vert {\bf C}^{(1)} \Vert l's' j' \rangle 
+\Rightarrow \delta_{ss'}
+\left\{ \begin{array}{ccc}
+l & s & j \\ j' & 1 & l' \end{array} \right\} \langle l  \Vert {\bf C}^{(1)} \Vert l' \rangle
+\end{equation}
+où apparaît un beau $6-j$ avec six moments angulaires. Ces six moments angulaires impliquent en
+réalité quatre relations triangulaires
+\begin{equation}
+\left\{ \begin{array}{ccc}
+\bullet  & \bullet & \bullet \\ \cdot & \cdot & \cdot \end{array} 
+\right\},
+\left\{ \begin{array}{ccc}
+\bullet  & \cdot & \cdot \\ \cdot & \bullet & \bullet \end{array} 
+\right\},
+\left\{ \begin{array}{ccc}
+\cdot & \bullet & \cdot \\ \bullet & \cdot & \bullet \end{array} 
+\right\},
+\left\{ \begin{array}{ccc}
+\cdot & \cdot & \bullet \\ \bullet & \bullet & \cdot \end{array} 
+\right\}
+\end{equation}
+On en tire
+\begin{equation}
+\delta(l,s,j) \; , \; \delta(l,1,l') \; , \; \delta(j',s,l')  \; , \; \delta(j',1,j)
+\end{equation}
+Ce qui est équivalent à\\
+
+\cadre{\begin{equation}
+\left\{
+\begin{array}{l}
+\Delta s = 0 \\
+\Delta l = \pm 1 \\
+\Delta j = 0, \pm 1 \; \; \; (0 \leftrightarrow 0 ~\mbox{interdite})
+\end{array}
+\right.
+\end{equation}}\ \\
+
+Un électron ne peut donc pas changer de spin (dans l'hydrogène, c'est différent pour l'hélium). On
+retrouve la loi de Laporte ainsi qu'un règle "équivalente" sur $j$.
+
+\begin{center}
+\includegraphics[scale=0.6]{ch2/image4}
+\captionof{figure}{Transitions fines. En noir, il y a bien sur les deux transitions permises 
+$p \to s$. En rouge on retrouve les transitions $s\to p$ et en bleu $d\to 2p$. Remarquons qu'il
+s'agit bien d'une structure fine, ceci s'étalant sur une fraction de $cm^{-1}$.}
+\end{center}
+
+
+
+\section{Règles de sélection E1 généralisées aux systèmes polyélectroniques}
+Nous allons maintenant voir ce qui va se passer pour les systèmes à plusieurs électrons. Nous 
+allons aborder ce problème dans le cadre des perturbations
+\begin{equation}
+i \hbar \frac{\partial}{\partial t} \Psi  = [ H_0 + H'(t)] \Psi
+\end{equation}
+Regardons le terme non-perturbé. A l'examen on écrit huit fois sur dix n'\textbf{importe quoi} !
+On se trompe dans les signes, le $Z$ va n'importe ou,\dots Attention donc! Ici, on somme bien
+l'énergie cinétique sur plusieurs électrons, on somme l'énergie d'attraction des $Z$ protons et
+on retrouve l'attraction entre les $Z$ protons et la charge de chaque électron. Il apparaît aussi
+un "nouveau" terme, celui de la répulsion entre les électrons
+\begin{equation}
+H_0 = -\frac{\hbar ^2}{2m} 
+ {\color{red} \sum_{i=1}^N } 
+\nabla ^2 _{{\color{red} i }} 
+-  {\color{red} \sum_{i=1}^N }  
+\frac{Ze^2}{(4 \pi \epsilon_0) r_{{\color{red} i }}  } 
++  {\color{red}
+\sum_{i < j=1}^N 
+\frac{e^2}{(4 \pi \epsilon_0) r_{ij}}
+}
+\end{equation} 
+Pour la perturbation, considérons
+\begin{equation}
+H'(t) = - \frac{i \hbar e}{m}
+{\color{red} \sum_{i=1}^N }
+{\bf A}( {\bf r}_{{\color{red} i}} , t) 
+\cdot \mbox{\boldmath $ \nabla $}_{{\color{red} i}}
+\end{equation}
+On retrouve une forme quasi-similaire pour $M_{ba}$ si ce n'est qu'il faut maintenant sommer sur 
+tous les électrons
+\begin{equation}
+M_{ba} \equiv 
+{\color{red} \sum_{i= 1}^N }
+ \langle \psi_b \vert 
+e^{i {\bf k} \cdot {\bf r}_{{\color{red} i}} }
+  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\mbox{\boldmath $ \nabla $} _{{\color{red} i}} \vert \psi_a \rangle
+\end{equation}
+où les fonctions sont les fonctions propres \textit{approximées} de $H_0$.\\
+
+Dans l'approximation dipolaire électrique, nous avons alors\footnote{Pas de notes}
+\begin{equation}
+M_{ba}^{\rm{E1}} \equiv 
+{\color{red} \sum_{i= 1}^N }
+ \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+ \langle \psi_b \vert 
+\mbox{\boldmath $ \nabla $} _{{\color{red} i}} 
+\vert \psi_a \rangle
+=
+- \frac{m \omega_{ba}}{\hbar} 
+{\color{red} \sum_{i= 1}^N }
+\hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\langle \psi_b \vert {\bf r} _{{\color{red} i}}  \vert \psi_a \rangle = \frac{m \omega_{ba}}{\hbar e}
+ \; \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\langle \psi_b \vert \mu
+\vert \psi_a \rangle
+\end{equation}
+où $\DS \mbox{\boldmath $ \mu $} = 
+-e {\color{red} \sum_{i=1}^N } {\bf r}_{{\color{red} i}}$.\\
+
+Dans les systèmes \textbf{mono}électroniques, nous avions trouvé que
+\begin{equation}
+\langle l s j \Vert {\bf C}^{(1)} \Vert l's' j' \rangle 
+\Rightarrow 
+\left\{
+\begin{array}{l}
+\Delta s = 0 \\
+\Delta l = \pm 1 \\
+\Delta j = 0, \pm 1 \; \; \; (0 \leftrightarrow 0 ~\mbox{interdite})
+\end{array}
+\right.
+\end{equation}
+Pour les systèmes \textbf{poly}électroniques, commençons par ré-écrire $V, L, S$ et $P$
+\begin{equation}
+V = 
+-  {\color{red} \sum_{i=1}^N }  
+\frac{Ze^2}{(4 \pi \epsilon_0) r_{{\color{red} i }}  } 
++  {\color{red}
+\sum_{i < j=1}^N 
+\frac{e^2}{(4 \pi \epsilon_0) r_{ij}}
+}
+\end{equation}
+Le dernier terme est assez méchant : $H$ n'est plus invariant par rapport à $z$ par rotation sauf
+si tout bouge en même temps. Nous savons que $R_z(\alpha) = e^{i\alpha L_z/\hbar}$. Pour conserver
+la symétrie, il faut que toutes bougent en même temps $R_z(\alpha) = e^{i\alpha Lz(1)/\hbar} * e^{i\alpha L_z(2)/\hbar} = e^{i\alpha( L_z(1) + L_z(2))/\hbar}$. En composant $L=L_z(1)+L_z(2)$, nous
+avons créer un opérateur qui, pour n'importe quel angle, laisse $H$ invariant par rotation. La 
+somme des $L_z$ sera ainsi le générateur de rotation.
+\begin{equation}
+{\bf L}  =     {\color{red} \sum_{i=1}^N }  
+{\bf l}_{{\color{red} i }} 
+\hspace*{0.5cm} ;  \hspace*{0.5cm} 
+{\bf S}  =  
+  {\color{red} \sum_{i=1}^N }   
+{\bf s}_{{\color{red} i }} 
+\hspace*{0.5cm} ;  \hspace*{0.5cm} 
+{\bf J} =  {\bf L} + {\bf S}
+\end{equation}
+\begin{equation}
+{\bf P}  =  (-1)^{   {\color{red} \sum_{i=1}^N }  l_i  }
+= \left\{
+\begin{array}{c}
++1 ~\mbox{(even)} \\ -1 ~\mbox{(odd)}
+\end{array}
+\right.
+\end{equation}
+On en tire de nouvelles règles de sélection
+\begin{equation}
+\langle L S J  \Vert 
+\sum_{i=1}^N {\bf C}^{(1)}(i)  \Vert L'S' J' \rangle 
+\Rightarrow 
+\left\{
+\begin{array}{l}
+\Delta S = 0 \\
+\Delta L = 0, \pm 1 
+\; \; \; (0 \leftrightarrow 0 ~\mbox{interdite}) \\
+\Delta J = 0, \pm 1 
+\; \; \; (0 \leftrightarrow 0 ~\mbox{interdite}) \\
+\Delta l = \pm 1 ~\mbox{(chgt de parit\'e)}
+\end{array}
+\right.
+\end{equation}
+Le problème, c'est que ces "règles triangulaires" ne seront pas toujours utilisable à cause du
+principe d'exclusion de \textsc{Pauli}.\newpage
+
+	\begin{wrapfigure}[11]{r}{5.5cm}
+%	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch2/image5}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+
+Considérons un état singlet $S=0$ (une valeur de $m_s$) et un état triplet $S=1$ (trois valeurs de
+$m_s$). Les règles de sélections précédemment annoncées nous interdisent de passer de l'état 
+singlet à l'état triplet. "Tout en haut" pour $S=0$ on retrouve les états $^1s2p, ^1s3p,\dots, ^1s3d,
+ ^1s4d,\dots$. On converge vers l'ionisation et à la fin il ne restera que $1s$.\\
+ 
+Considérons le fondamental $1s^2$. Les niveaux convergent vers l'ionisation d'un seul électron
+via des séries de \textsc{Rydberg}. La question est : quel électron reste? Lorsque l'on s'intéresse
+au triplet, on remarque que $1s^2$ n'existe pas. C'est l'absence de ce niveau qui a mené à la 
+proposition du principe d'exclusion. \textbf{Voir notes de cours pour graphique page 39}\footnote{Si
+quelqu'un à des notes, je suis preneur (je sais que tu lis ces lignes, ne fait pas l'égoïste) !!}
+
+
+\section{Transitions interdites (E2, M1)}
+Les transitions sont données via 
+\begin{equation}
+M_{ba} \equiv 
+ \sum_{i= 1}^N 
+ \langle \psi_b \vert 
+e^{i {\bf k} \cdot {\bf r}_i } \; 
+  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\mbox{\boldmath $ \nabla $} _i \vert \psi_a \rangle
+\end{equation}
+Dans l'approximation dipolaire électrique (E1), nous avions tronqué le développement 
+$\DS e^{i {\bf k} \cdot {\bf r} } = 1 + (i {\bf k} \cdot {\bf r} ) + \frac{1}{2!} 
+  ( i {\bf k} \cdot {\bf r} ) ^2 + \ldots$ au premier ordre de sorte à pouvoir écrire
+\begin{equation}
+  e^{i {\bf k} \cdot {\bf r} } \simeq 1 
+~~~ (\lambda \gg \langle r \rangle )
+\rightarrow 
+M_{ba} ^{\rm{ E1}} \equiv 
+ \sum_{i= 1}^N 
+\hat{  \mbox{\boldmath $ \epsilon $}}    \cdot 
+ \langle \psi_b \vert 
+\mbox{\boldmath $ \nabla $} _i \vert \psi_a \rangle
+\end{equation}
+
+\subsection{Effets de retard}
+Un premier effet auquel on peut s'intéresser est de voir ce que donne le second terme du développement
+en série (effet de retard)
+\begin{equation}
+e^{i {\bf k} \cdot {\bf r} } \simeq  1 
+{\color{red} + (i {\bf k} \cdot {\bf r} )  }
+\rightarrow
+M_{ba} 
+= M_{ba}^{\rm{E1}}  
+{\color{red} + M_{ba}^r }
+\end{equation}
+Nous avons maintenant
+\begin{equation}
+M_{ba} 
+= M_{ba}^{\rm{E1}}  
+{\color{red} + M_{ba}^r }\qquad\text{ où } M_{ba}^r = 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ (i {\bf k} \cdot {\bf r}_i )
+(  \hat{  \mbox{\boldmath $ \epsilon $}} \cdot 
+\mbox{\boldmath $ \nabla $} _i ) \vert \psi_a \rangle
+\end{equation}
+Afin d'avoir quelque chose d'exploitable, faisons un choix d'axes : $ {\bf k}  = k ( {\bf 1z} )$ et $
+ \hat{  \mbox{\boldmath $ \epsilon $}} = {\bf 1x}$. L'expression devient
+\begin{equation}
+M_{ba}^r =  i k
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ z_i \frac{\partial}{\partial x_i} \vert \psi_a \rangle
+= i \frac{\omega_{ba}}{c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ z_i \frac{\partial}{\partial x_i} \vert \psi_a \rangle
+\end{equation}
+Développons l'opérateur présent dans l'élément de matrice
+\begin{equation}
+\sum_{i= 1}^N 
+ z_i \frac{\partial}{\partial x_i}
+= \frac{1}{2}  \sum_{i= 1}^N
+\left(  
+ z_i \frac{\partial}{\partial x_i} 
+- x_i \frac{\partial}{\partial z_i} 
+\right)
++
+\frac{1}{2}  \sum_{i= 1}^N
+\left(  
+ x_i \frac{\partial}{\partial z_i} 
++ z_i \frac{\partial}{\partial x_i} 
+\right)
+\end{equation}
+Le premier terme peut s'exprimer simplement à partir de $L_y$
+\begin{equation}
+\frac{1}{2}  \sum_{i= 1}^N
+\left(  
+ z_i \frac{\partial}{\partial x_i} 
+- x_i \frac{\partial}{\partial z_i} 
+\right)
+=
+\frac{i}{2 \hbar} \; L_y
+\end{equation}
+
+\subsection{Équation du mouvement d'Heisenberg}
+Le second terme est un petit peu plus délicat. Il faut réutiliser la relation $\dot{\vec{r_i}}$, 
+déjà utilisée précédemment
+\begin{equation}
+\dot{ {\bf r} }
+ _{i} = \frac{1}{i \hbar} [  {\bf r}_i, H_0 ] = 
+\frac{  {\bf p}_i}{m}
+\rightarrow   \frac{\partial}{\partial z_i} 
+= \frac{m}{\hbar^2}
+[z_i , H_0]
+\end{equation}
+Cette relation nous permet de calculer le second terme
+\begin{equation}
+\begin{array}{ll}
+\DS\frac{1}{2}  
+ \sum_{i= 1}^N
+\left(  
+ x_i \frac{\partial}{\partial z_i} 
++ z_i \frac{\partial}{\partial x_i} 
+\right)  
+&\DS=
+\frac{1}{2}  
+ \sum_{i= 1}^N
+\left(  
+ x_i \frac{\partial}{\partial z_i} 
++ \frac{\partial}{\partial x_i}  z_i 
+\right)\vspace{2mm}\\
+&\DS =
+\frac{m}{2 \hbar^2}  
+ \sum_{i= 1}^N
+\left(  
+ x_i [z_i, H_0 ] + [x_i, H_0] z_i 
+\right)\vspace{2mm}\\
+&\DS=
+\frac{m}{2 \hbar^2}  
+ \sum_{i= 1}^N
+\left(  
+ x_i z_i H_0  -  H_0 x_i  z_i 
+\right)
+\end{array}
+\end{equation}
+
+Les deux termes étant développés, on peut ré-écrire $M^r_{ba}$
+\begin{equation}
+M_{ba}^r =   i \frac{\omega_{ba}}{c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ z_i \frac{\partial}{\partial x_i} \vert \psi_a \rangle
+=        M_{ba}^{{\color{red} M1}}  
++ M_{ba}^{{\color{red} E2}}
+\end{equation}
+où
+\begin{equation}
+ M_{ba}^{{\color{red} M1}}   =   - \frac{\omega_{ba}}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ L_y \vert \psi_a \rangle,\qquad\qquad
+  M_{ba}^{{\color{red} E2}}    =   - \frac{i m \omega_{ba}^2}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ x_i z_i  \vert \psi_a \rangle
+\end{equation}
+
+
+\subsection{Transitions magnétiques dipolaires (M1)}
+La première transition interdite (M1) est donnée par
+\begin{equation}
+ M_{ba}^{{\color{red} M1}}   =   - \frac{\omega_{ba}}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ L_y \vert \psi_a \rangle
+\end{equation}
+Il y a génération d'un moment magnétique orbital. Pour être totalement complet, il faut tenir compte
+d'une partie de spin
+\begin{equation}
+ \mbox{\boldmath $ \mu $} =
+ \frac{e}{2m} \; {\bf L} 
+= - \mu_B \left(  \frac{{\bf L}}{\hbar}\right),\qquad \qquad
+ {\bf L}  \rightarrow  {\bf L} + 2 {\bf S}
+\end{equation}
+La transition $M1$ s'écrit alors
+\begin{equation}
+ M_{ba}^{{\color{red} M1}}   =   - \frac{\omega_{ba}}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ L_y + 2S_y \vert \psi_a \rangle
+=
+- \frac{\omega_{ba}}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ J_y + S_y \vert \psi_a \rangle
+\end{equation}
+Cette transition possède également ses propres règles de transitions
+\begin{equation}
+\left\{
+\begin{array}{l}
+\Delta J = 0, \pm 1 
+\; \; \; (0 \leftrightarrow 0 ~\mbox{interdite}) \\
+\Delta L = \Delta l_i = 0 ~\mbox{(m\^eme parit\'e)} \\
+\Delta S = 0  
+\end{array}
+\right.
+\end{equation}
+
+\subsection{Transitions électriques quadrupolaires (E2)}
+Un peu comme l'OM, allons droit au but
+\begin{equation}
+ M_{ba}^{{\color{red} E2}}    =   - \frac{i m \omega_{ba}^2}{2 \hbar c} \; 
+\sum_{i= 1}^N 
+ \langle \psi_b \vert 
+ x_i z_i  \vert \psi_a \rangle
+\end{equation}
+On peut démontrer les règles de sélections suivantes (\textit{le faire prendrait deux heures})
+\begin{equation}
+\left\{
+\begin{array}{l}
+\Delta J = 0, \pm 1, \pm 2 
+\; \; \; (J + J' \ge 2) \\
+\Delta L = 0, \pm 1, \pm 2 
+\; \; \; (L + L' \ge 2) \\ 
+ \Delta l_i= 0, \pm 2 \; \; \; \mbox{(m\^eme  parit\'e)}\\
+\Delta S = 0   
+\end{array}
+\right.
+\end{equation}
+Le \textit{slide 43} illustre ces transitions tandis que le \textit{slide 44} calcule les ordres
+de grandeur de ces transitions.
+
+\section*{Transitions E1 spin-interdites}
+
+	\begin{wrapfigure}[10]{r}{7cm}
+	\vspace{-15mm}
+	\includegraphics[scale=0.54]{ch2/image6}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+
+
+Nous avions vu la règle de sélection $\Delta S=0$ : il ne peut pas y avoir de transition entre
+l'état singulet et l'état triplet. Cependant, si le triplet $P$ est un contaminé parle singulet 
+$P$, ces transitions deviennent possibles !
+\begin{equation}
+\Psi (1s2p \; ^{3} P_1^o  )  = 
+\vert  1s2p \; ^{3}P_1^o \rangle +
+{\color{red} \epsilon}  \; 
+\vert  1s2p \; ^{ {\color{red} 1}  } P_1^o \rangle
+\end{equation}
+Dans le cas d'une contamination, cette transition est donc possible\footnote{Voir notes manuscrites}.\\
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{Masers, lasers: inversion de population}
+Cette section ayant été intégralement vue dans le cours \textit{Physique des lasers}, elle ne sera
+pas détaillée ici.
