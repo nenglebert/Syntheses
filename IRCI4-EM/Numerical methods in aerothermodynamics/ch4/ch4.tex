@@ -1,0 +1,322 @@
+
+\chapter{Numerical methods for boundary value problems}
+As seen, one concern for boundary value problems is the CPU time and the memory requirements. Most of the problems in fluid mechanics are non-linear and one way to solve them is to use Newton's method, consisting in solving a system of linear equations. We will discuss about the accuracy, stability and convergence of iterative solution processes. 
+
+\section{Direct methods for the solution of linear systems (Gaussian elimination \& variants)}
+These are not discussed here but they are all based on Gaussian elimination, LU factorization. We will just recall that for a sparse matrix in 1D the CPU cost is of order $\mathcal{O}(nb^2)$ and the memory $\mathcal{O}(nb)$ where $n$ is the number of unknowns and $b$ the bandwidth. In 2D: $N=nm$, $b=m$, this becomes excessively costly. Because of this cost the direct method have been excluded from numerical computation for long time ago. In mechanics the direct methods are used, we can solve with much less dense grids for compared to fluid dynamics. This is why in CFD one has tried to look for alternative approaches. 
+
+\section{Iterative methods}
+\subsection{Fixed point methods}
+If we want to solve $Ax=b$, the idea is to replace this by solving a sequence of linear problems, iterates $x^k$ of the type: 
+
+\begin{equation}
+Bx^{(k+1)} = b + (B-A)x^{(k)}
+\end{equation}
+
+There is two conditions for this to be competitive, the cost of every step has to be low, much smaller than the direct method. The second condition is that the method converges fast so that the global cost does not exceed direct method.\\
+
+The first condition is satisfied if the matrix $B$ is (a product of) diagonal or (upper or lower) triangular matrices, diagonal cost is $\mathcal{O}(n)$ and the other $\mathcal{O}(nb)$. For the second condition, let's multiply by $B^{-1}$:
+
+\begin{equation}
+x^{(k+1)} = B^{-1}b + (I - B^{-1}A) x^{(k)}\qquad 
+\tilde{x} = B^{-1}b + (I - B^{-1}A) \tilde{x}
+\end{equation}
+
+where $\tilde{x}$ is the converged solution $A\tilde{x}=b$. If we make the difference we will get: 
+
+\begin{equation}
+x^{(k+1)}-\tilde{x} = e^{k+1} = (I - B^{-1}A)[x^{(k)}-\tilde{x}] = Ge^{(k)}
+\end{equation}
+
+Where we make appear the error on the solution. To have the fastest convergence, the coefficients of $G$ should be as small as possible. The simplest choices for B are the followings: $B=I$ (Richardson) or $B=A_{D}$ (diagonal part of A) (Jacobi). 
+
+\begin{itemize}
+\item[•] $B=I$: this is the simplest one, Richardson's method: 
+
+\begin{equation}
+x^{(k+1)} =  x^{(k)} + (b-Ax^{(k)}) \qquad \Rightarrow x^{(k+1)}_i =  x^{(k)}_i + (b_i-\sum _{j=1}^n a_{ij} x_j^{(k)})
+\end{equation}
+
+\item[•] The jacobi method would consist in ($A_L,A_U$ are the lower and upper triangular matrices): 
+
+\begin{equation}
+Bx^{(k+1)} =  b + (B-A)x^{(k)} = b - (A_L+A_U)x^{(k)}  \qquad \Rightarrow a_{ii} x_i^{(k+1)} = b_i - \sum _{j=1,j\neq i}a_{ij}x_j^{(k)}
+\end{equation}
+
+\item[•] $B = A_L + A_D$ or $B = A_D + A_U$, we can take a combination of triangular parts and diagonal part, as suggested by the Gauss-Seidel mthod.
+
+\begin{equation}
+\begin{aligned}
+&(A_L + A_D)x^{(k+1)} = b - A_U x^{(k)} \qquad \sum_{j=1}^i a_{ij}x_j^{(k+1)} = b_i - \sum _{j=i+1}^n a_{ij}x_j^{(k)}\\
+&(A_D + A_U)x^{(k+1)} = b - A_L x^{(k)} \qquad \sum_{j=i}^n a_{ij}x_j^{(k+1)} = b_i - \sum _{j=1}^{i-1} a_{ij}x_j^{(k)} 
+\end{aligned}
+\end{equation}
+
+\item[•] These two algorithms being asymetric, it is preferred to combine first a substep of the first then a substep of the second si that we get the Symmetric Gauss-Seidel (SGS): 
+
+\begin{equation}
+(A_L + A_D)x^* = b - A_U x^{(k)} \qquad (A_D + A_U)x^{(k+1)} = b - A_L x^* = A_D x^* + A_U x^{(k)}
+\end{equation}
+
+It can be easily shown that the last expression can be compacted by defining:
+
+\begin{equation}
+B_{SGS} = (A_L + A_D) A_D^{-1}(A_D + A_U)\qquad \Rightarrow
+(A_L + A_D) A^{-1}_D (A_L+A_U)\delta _x = b_i - Ax^{(k)} 
+\end{equation}
+
+%So that we get a system
+%\begin{equation}
+%(A_L + A_D) \delta _x ^* = b-Ax^{(k)}
+%(A_L + A_U) \delta _x  = A_D \delta _x^*
+%\end{equation}
+
+\item[•] We can go further and use an additional parameter $\omega$ to control the convergence (relaxation parameter), the optimum omega is an over relaxation >1: 
+
+\begin{equation}
+B = A_L + \frac{A _D}{\omega}
+\end{equation}
+
+when applied to Gauss-Seidel normal. We can also apply to symmetric one $\rightarrow$ symmetric successive over-relaxation SSOR. When you write the system in the iterative way, we remark that it is in fact a richardson method for the system $B^{-1}Ax= B^{-1}b$, indeed if we do Richardson on that . Everything is based on the richardson and this is why we call $B^{-1}Ax = B^{-1}b$ preconditioning system. 
+
+\subsection{Convergence of the fixed point method}
+
+When expressing the second condition, we found: 
+
+\begin{equation}
+x^{(k+1)}-\tilde{x} = e^{(k+1)} = [I-B^{-1}A]e^{(k)} = Ge^{(k)}
+\end{equation}
+
+The convergence condition is $|\rho (G)|\leq 1$ for the amplification matrix at each iteration. Assuming that has a complete set of eigenvalues and lin. ind. eigenvectors: 
+\begin{equation}
+e^{(0)} = a_i V_i \qquad e^{(1)} = Ga_i V_i  = a_i GV_i = a_i \lambda ^{(1)}V_i \qquad e^{(k)}=G^k a_iV_i = \lambda ^{(i)^k}a_iV_i
+\end{equation}
+
+STOPPED HERE
+
+The condition can be reexpressed by considering the spectral radius of G (largest modulus eigenvalue) respects $\rho _G = |\lambda (G)|_{max}<1$. Asymptotically $e^{k+1} = |\lambda|_{max}e^k$. The convergence speed $\frac{1}{n_{it}}$ needed to reduce the error by 1 order of magnitude. It is always the bigger eigenvalues are dominating: 
+
+\begin{equation}
+e^{k+n} = |\lambda _{max}|^n e^k \qquad \frac{e^k}{e^{k+n}} = \frac{1}{|\lambda _{max}|^n} \Rightarrow 1 = -n\log |\lambda _{max}| \qquad \frac{1}{n} = V_C = -\log |\lambda _{max}| = - \log \rho
+\end{equation}
+
+It is shown in the syllabus (he skip details) that A resulting from the discretization of Laplace's equation on a grid with $\Delta x= \Delta y = h$: 
+
+\begin{equation}
+\rho _{G,J} = 1-\mathcal{O}(h^2) \Rightarrow V_c = \mathcal{h^2} \qquad \rho _{G,S} = \rho _{G,J}^2 \Rightarrow V_{C,GS} = 2V_{C,J}
+\end{equation}
+
+SOR : $\exists$ an optimum $\omega \rightarrow $ at the optimum $\omega, V_C = \mathcal{O}(h)$. 
+\end{itemize}
+\section{Better iterative schemes ? }
+Consider: 
+
+\begin{equation}
+B^{-1}A x = B^{-1}b \qquad A' = b'
+\end{equation} 
+
+We have that in iteration mode: 
+
+\begin{equation}
+x^{(k+1)} = b' + (I-A')x^{(k)} = x^{(k)} + \underbrace{b' - A' x^{(k)}}_{r^{(k)}}
+\end{equation}
+
+Then the residual $r^{(k)}$: 
+
+\begin{equation}
+x^{(k+1)} = x^{(k)} + r^{(k)} = x^{(k-1)} + r^{(k-1) } + r^{(k) } = x^{(0)} + r^{(0) } + r^{(1) } + \dots + r^{(k) }
+\end{equation}
+
+The residual is defined such that: 
+
+\begin{equation}
+r^{(k+1)} = b' - A' x^{(k+1)} = b' - A' [x^{(k)}+r^{(k)}] = r^{(k)} - A' r^{(k)} = (I-A')r^{(k)} 
+\end{equation}
+
+So that we can write: 
+
+\begin{equation}
+x^{(0)} + [I + (I-A)+ (I-A)^2+ \dots + (I-A)^k] r^{(k)}
+\end{equation}
+
+We see that we have a polynomial of $A$, with $V$ belonging to $K_k (A,r_0) = span (r_0,Ar_0,A^2r_0 ... A^k r_0)$, we search for a better space. 
+
+\subsection{Kvylov subspace methods}
+Is it possible to construct a better iterate in the same vector space ? 2 strategies: 1) find the iterate such that $r^{(k+1)}$ is perpendicular to the vector space $K_k(r_0,A)$ . 2) find the iterate that minimizes the $||r^{k+1}|| \Leftrightarrow r^{(k+1)}\perp AK_k (r_0,A)$ so that $||b-Ax^{(k+1)}||_{min}$. Let's apply to 
+
+\begin{equation}
+\begin{aligned}
+&x^{(0)} \quad r^{(0)} = b-Ax^{(0)} \\
+&x^{(1)} = x^{(0)} + \alpha r^{(0)}
+\end{aligned}
+\end{equation}
+
+The first method gives: 
+
+\begin{equation}
+\begin{aligned}
+&r^{(1)} = b-Ax^{(1)} = r^{(0)} - \alpha A r^{(0)}\\
+&r^{(1)} \perp r^{(0)} \quad (r^{(0)}- \alpha A r^{(0)}, r^{(0)}) = 0 \\
+&r^{(0)}, r^{(0)} - \alpha (Ar^{(0)}, r^{(0)}) = 0\\
+&\alpha = \frac{r^{(0)},r^{(0)}}{r^{(0)},Ar^{(0)}} 
+\end{aligned}
+\end{equation}
+
+The second method gives: 
+
+\begin{equation}
+\begin{aligned}
+&||r^{(1)}||^2 = r^{(0)}-\alpha A r^{(0)}, r^{(0)}-\alpha A r^{(0)} = (r^{(0)},r^{(0)}) - 2\alpha (r^{(0)},A r^{(0)})+ \alpha ^2(Ar^{(0)}, Ar^{(0)})\\
+&\Rightarrow \frac{d}{d\alpha} ||r^{(1)}||^2 = -2(r^{(0)}, Ar^{(0)}) + 2\alpha (r^{(0)}, A r^{(0)})
+\end{aligned}
+\end{equation}
+
+Num
+\begin{equation}
+^\alpha _{opt} = \frac{r^{(0)},Ar^{(0)}}{Ar^{(0)},Ar^{(0)}} \Leftrightarrow (r_{opt}^{(1)}= r^{(0)}-\alpha _{opt} A r^{(0)}, Ar^{(0)}) = 0
+\end{equation}
+
+page 126 syllabus. DONT DO THE CONVERGENCE 
+
+
+\section{Stability of the space discretization}
+We want to look to the stability of the space discretization, we are dealing with boundary conditions and assume that we have a strategy to solve the problem, what about the stability of the resulting solution ?
+
+\subsection{Stability for advection-dominated problems}
+We have full advection problems :
+\begin{equation}
+\frac{\D F_i}{\D x_i} = 0
+\end{equation}
+
+We have advection diffusion problems: 
+
+\begin{equation}
+a _i \frac{\D u}{\D x_i} = \alpha \frac{\D ^2 u}{\D x_j \D x_j}
+\end{equation}
+
+And the advection reaction problems
+
+\begin{equation}
+a_i \frac{\D u}{\D x_i} = S_i
+\end{equation}
+
+We take as model equation the advection-diffusion in 1D: 
+
+\begin{equation}
+a \frac{du}{dx} = \alpha \frac{d^2}{dx^2}
+\end{equation}
+
+and we assume that $u(0)= u_{in}$ and that $u(1) = u_{out}$ in a range $0,1$. The solution will be in the form $e^{rx}$ so that $ar = \alpha r^2\Rightarrow r = 0, r = a/\alpha$. We have thus that $u = c_1 + c_2 e^{ax/\alpha}$ where we find the constants with the boundary conditions: 
+
+\begin{equation}
+u_{in} = c_1 + c_2 \qquad u_{out} = c_1 + c_2e^{aL/\alpha}
+\end{equation} 
+
+where $aL/\alpha$ is the Pecklet number (Reynolds in thermo). The constants are: 
+\begin{equation}
+\begin{aligned}
+&c_2(e^{P_e}-1) = u_{out} - u_{in} \qquad c_1(e^{P_e}-1) = u_{in}e^{Pe} - u_{out} \\ 
+&u = \frac{u_{in}e^{Pe}-u_{out}}{e^{Pe}-1}+ \frac{u_{out}-u_{in}}{e^{Pe}-1}e^{\alpha x	\alpha} = u_{in} + (u_{out}-u_{in} \frac{e^{\frac{ax}{\alpha}}-1}{e^{Pe}-1})
+\end{aligned}
+\end{equation}
+
+The central discretization is 
+\begin{equation}
+\Delta w = h \quad a\frac{u_{i+1}-u_{i-1}}{2h} = \alpha \frac{u_{i+1}-2u_i+u_{i-1}}{h^2}
+\end{equation}
+
+Knowing that $u_{i+1}= gu_i, u_i = g^i$ such that 
+
+\begin{equation}
+\begin{aligned}
+&\frac{h^2}{\alpha} \times a\frac{g^2-1}{2h} = \alpha \frac{g^2 - 2 g +1}{h^2}\\
+&\frac{ah}{\alpha} (g^2-1) = g^2 -2g +1 \Rightarrow g^2 (1- \frac{Pe}{2})-2g + 1 + \frac{Pe}{2} = 0\\
+&(g-1)\underbrace{(g(1-\frac{Pe}{2})-(1+\frac{Pe}{2}))}_{g = \frac{1+Pe/2}{1-Pe/2}}
+\end{aligned}
+\end{equation}
+
+The boundary conditions applied to find the constants: 
+\begin{equation}
+u_i = C_1 A^i + c_2 \left(\frac{1+Pe/2}{1-Pe/2} \right) = u_{in} + (u_{out}-u_{in})\frac{g^1 -1 }{g^n -1}
+\end{equation}
+
+figure 130 we observe that the exact solution is monotonically increasing while the numerical solution shows oscillations. It is easy to observe where the oscillations comes from. When the Pe > 2, the g is negative and thus the solution will change sign at every computation. So what to do ? Let's refine the mesh to reduce h. However in several simension we can have coexistence of regions of strong gradient $\alpha / a$. How do we stabilize the solution ? 
+
+\subsubsection{Stabilization of the solution}
+By using an upwind scheme using the advection term. We go from central advection to central advection: 
+
+\begin{equation}
+\begin{aligned}
+&a \frac{u_i - u_{i-1}}{h} = \alpha \frac{u_{i+1}-2u_i + u_{i-1}}{h^2} \Rightarrow Pe  (u_i - u_{i-1}) = u_{i+1}-2u_i - 2u_i + u_{i-1}\\
+&0 = g^2 - (2 + Pe) u_i +(1+Pe) u_i + 1\\
+&(g-1)(g-(1+Pe)) \Rightarrow 2 + V_e \ roots \rightarrow Non oscillation
+\end{aligned}
+\end{equation}
+
+We can see that :
+
+\begin{equation}
+\frac{u_i - u_{i-1}}{h} = \frac{u_{i+1}-u_{i-1}}{2h} - \frac{u_{i+1}-2u_i +u_{i-1}}{2h} \qquad \Rightarrow a \frac{u_{i+1}-u_{i-1}}{2h} = \frac{u_{i+1}-2u_i+  u_{i-1}}{h^2}(\alpha + \zeta \frac{ah}{2})
+\end{equation}
+We have an artificial diffusion term. 
+read 131. 
+
+\subsubsection{Galerkin FE discretization}
+\begin{equation}
+a\frac{du}{dx}= \alpha \frac{d^2u}{dx^2} \qquad a\frac{du}{dx} - \alpha \frac{d^2u}{dx^2} = 0 \qquad \int _0^L (\phi _i \frac{du^h}{dx}+ \alpha \frac{d\phi _i}{dx}\frac{du^h}{dx})\, dx - \cancel{[\phi q]_0^L }
+\end{equation}
+
+The last term goes away with dirichlet condition. We have $\phi$ with contribution of element A and element B: 
+
+\begin{equation}
+A: [\frac{a}{2}\frac{u_i - u_{i-1}}{h}+\alpha \frac{1}{h} \frac{u_i - u_{i-1}}{h}]h
+B: [\frac{a}{2}\frac{u_{i+1} - u_{i}}{h}-\alpha \frac{1}{h} \frac{u_{i+1} - u_{i}}{h}]h
+\end{equation}
+
+The sum of the two gives something central so we have the same stabilization problem
+
+\begin{equation}
+\left(\frac{u_{i+1}-u_{i-1}}{2h}-\alpha \frac{u_{i+1}-2u_i+u_{i-1}}{h^2} \right)h = 0
+\end{equation}
+
+If we do the least square: 
+
+\begin{equation}
+\int \underbrace{\frac{\D r^*}{\D u_i}}_{\left( a\frac{d\phi _i}{dx} - \cancel{\frac{d^2\phi _i}{dx^2}} \right)}\times \left( a\frac{du^h}{dx}-\cancel{\alpha \frac{d^2uh}{dx^2} }\right) \, dx
+\end{equation}
+
+Cancelation applies for piecewise linear elements. We will have an extra term 
+
+\begin{equation}
+\int _0 ^L \tau a^2 \frac{d\phi _i}{dx}\frac{du^h}{dx}dx
+\hat{\alpha} = \tau a^2 = \zeta \frac{ah}{2} \Rightarrow \tau = \zeta \frac{h}{2a}
+\end{equation}
+
+4.47 there is one alpha too much. Some illustrations. 
+
+\subsection{Pressure stabilization for incompressible flows}
+Which problem ? Take the Stokes equation: 
+
+\begin{equation}
+\nabla u = 0 \Rightarrow \cancel{(\bar{u} \nabla)} \bar{u}= - \nabla P + \nu \nabla ^2 \bar{u}
+\end{equation}
+
+Consider a cartesion mesh of spacing $\Delta x = \Delta y = h$ so that the central discretization gives: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{u_{i+1,j}-u_{i-1,j}}{2h}+ \frac{v_{i,j + 1}-v_{i,j-1}}{2h} = 0 \\
+&0 = - \frac{P_{i+1,j} - P_{i-1,j}}{2h}+ \frac{\nu}{h^2}(\delta _x^2+ \delta _y^2)u_{ij}\\
+&0 = - \frac{P_{i,j+1} - P_{i,j-1}}{2h}+ \frac{\nu}{h^2}(\delta _x^2+ \delta _y^2)v_{ij}
+\end{aligned}
+\end{equation}
+
+Let's look to diffusive terms: 
+\begin{equation}
+\begin{aligned}
+&0 = -\left( \frac{P_{i+2,j} - P_{i,j}}{2h} - \frac{P_{i,j} - P_{i-2,j}}{2h} \right) \frac{1}{2h} + \frac{\nu}{h^2}(\delta _x^2+ \delta _y^2)\left( \frac{u_{i+1,j}- u_{i-1,j}}{2h} + \frac{v_{i,j+1}- v_{i,j-1}}{2h} \right) \\
+&-\left( \frac{P_{i+2,j} - P_{i,j}}{2h}- \frac{P_{i,j} - P_{i-2,j}}{2h} \right) \frac{1}{2h} 
+\end{aligned}
+\end{equation}
+
+In fluid mechanics, we always need a central scheme and a bit of stabilization. It is not as structural stability where we are happy with the Galerkin method. 

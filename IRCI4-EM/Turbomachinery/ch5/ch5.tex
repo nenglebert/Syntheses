@@ -524,5 +524,341 @@ We can see that some pressure ratios are situated in 2 stage numbers. One has to
 \section{Centrifugal turbochargers}
 \subsection{Introduction}
 
-\minifig{ch5/23}{ch5/24}{0.3}{0.3}{0.49}{0.49}
+\minifig{ch5/23}{ch5/24}{0.4}{0.4}{0.49}{0.49}
 This is one of the most efficient compression system for high compression ratio. The wheel is mounted on the shaft and on this wheel we have a passage for the flow between blades. On top of that we have a cover. The blades can be purely radial or shifted. Then we enter in the diffuser where we have vanes (2 rows), before going into the volute. This collector can have different shapes. The volume is increasing as shown on the second figure, it is used mainly to change the direction of the air. The distributor is different from the pump because we have something inside, we have vanes in the distributor. These vanes can rotate in some cases. They are called Variable Stator Vane, or Inlet Guide Vane.
+
+\subsection{Determination of inlet condition of the distributor}
+\subsubsection{Static machine case}
+\paragraph{System of equations}
+The total elements at the inlet are atmospheric pressure and temperature $p_a, T_a$. If the flow speed is low ($M_a \leq 0.25$) and if we suppose that the flow is adiabatic in the distributor, the static quantities are: 
+
+\begin{equation}
+p_i + \frac{\rho V_i^2}{2} = p_a \qquad T_i + \frac{V_i^2}{2C_p}= T_a
+\end{equation}
+
+The density can be computed using perfect gas law and the mass flow is: 
+
+\begin{equation}
+\rho _i = \frac{p_i}{rT_i} \qquad \dot{m}_i = \rho _iA_iV_i
+\end{equation}
+
+This is a system of 4 equations in 4 unknowns: $T_i,p_i,V_i,rho_i$, the given problem data are $T_a,p_a,A_i,\dot{m}$.
+
+\paragraph{Solution}
+This has to be solved with iteration method. First we assume $\rho = p_a/rT_a$, then we compute the velocity using mass flow relation and then find $p_i,T_i$ which leads to a new iteration cycle with $\rho$. 
+
+\paragraph{Case $M_i > 0.25$}
+In that case the flow is compressible and mach number has to be integrated in the equations: 
+
+\begin{equation}
+\begin{aligned}
+\frac{T_a}{T_i} = 1+ \frac{\gamma -1}{2} M_i^2\qquad \frac{p_a}{p_i} = \left(1+ \frac{\gamma -1}{2} M_i^2\right)^{\frac{\gamma}{\gamma -1}}\\
+M_i = \frac{V_i}{\sqrt{\gamma rT_i}} \qquad \rho = \frac{p_i}{rT_i} \qquad \dot{m}_i = \rho _i V_i A_i
+\end{aligned}
+\end{equation}
+
+There is now one additional equation and an additional unknown which is $M_i$. To solve this system, one estimates $M_i$ computes $T_i, p_i$, then $\rho _i$ and $V_i$ then redo the loop until convergence. 
+
+\subsubsection{Moving machine case}
+\paragraph{$M \leq 0.25$}
+In the case of moving compressors like in helicopters, the total temperature and pressure are no longer the atmospheric values and need to be computed using the known flight speed: 
+
+\begin{equation}
+T_t = T_a + \frac{V_a^2}{2C_p} \qquad p_t = p_a + \frac{\rho V_a^2}{2}
+\end{equation}
+
+Then the equations are the same: 
+
+\begin{equation}
+\begin{aligned}
+p_i + \frac{\rho V_i^2}{2} = p_t \qquad T_i + \frac{V_i^2}{2C_p}= T_t\\
+\rho _i = \frac{p_i}{rT_i} \qquad \dot{m}_i = \rho _iA_iV_i
+\end{aligned}
+\end{equation}
+
+\paragraph{$M>0.25$}
+Same as previously, at the difference that the total quantities are computed using the displacement Mach number: 
+
+\begin{equation}
+T_t = T_a \left(1+ \frac{\gamma -1}{2}M^2 \right) \qquad p_t = p_a \left(1+ \frac{\gamma -1}{2}M^2 \right)^{\frac{\gamma}{\gamma -1}}
+\end{equation}
+
+And the other equations are the same replacing $T_a, p_a$ by $T_t, p_t$. 
+
+\subsection{Determination of the conditions at the distributor exit}
+\subsubsection{Temperature at distributor exit}
+The exit temperature is computed using the first principle: 
+
+\begin{equation}
+T_1 = T_i + \frac{V_i^2-V_1^2}{2C_p}
+\end{equation}
+
+where the speed $V_1$ is determined by its axial, tangential and radial components. Let's neglect the radial component in the distributor, the axial component is determined using: 
+
+\begin{equation}
+\dot{m} = \rho _1 V_{1a} A_1
+\end{equation}
+
+Let's admit for now that the density at exit is known. If the tangential component is known, the velocity is given by:
+
+\begin{equation}
+V_1 = \sqrt{V_{1a}^2+V_{1t}^2}
+\end{equation}
+
+\subsubsection{Distributor with a positive, negative or zero circulation}
+\wrapfig{5}{l}{4}{0.4}{ch5/25}
+\paragraph{Distributor with a positive circulation $\alpha _1 < 90\degres$}
+The distributor is most of the time vaned in order to give to the flow a tangential velocity $\bar{V}_{1t}$ in the same direction as the wheel driving speed $\bar{u}_1$. In that case the relative velocity can be computed as:
+
+\begin{equation}
+\bar{W} = \bar{V}_1-\bar{u}_1 \qquad \Rightarrow \left\{ \begin{array}{c}
+W_{1a} = V_{1a}\\
+W_{1t} = V_{1t}- u_1
+\end{array} \right.
+\end{equation}
+
+\wrapfig{1}{r}{3}{0.4}{ch5/26}
+
+\paragraph{Distributor with a negative circulation $\alpha _1 > 90\degres$}
+\begin{equation*}
+\bar{W} = \bar{V}_1-\bar{u}_1 \Rightarrow \left\{ \begin{array}{c}
+\bar{W}_{1a} = \bar{V}_{1a}\\
+\bar{W}_{1t} = \bar{V}_{1t} - \bar{u}_1
+\end{array} \right.
+\Rightarrow
+\left\{ \begin{array}{c}
+W_{1a} = V_{1a}\\
+W_{1t} = V_{1t} + u_1
+\end{array} \right.
+\end{equation*}
+
+\paragraph{Zero circulation or axial entry: $\alpha _1 = 90\degres$}
+In that case we have that 
+
+\begin{equation}
+V_{1a} = V_1 \qquad V_{1t}= 0
+\end{equation}
+
+\subsubsection{Pressure at distributor exit}
+The friction losses in the distributor are unavoidable, increasing with the speed. Knowing $T_1$, there are two ways to determine $p_1$: 
+
+\paragraph{Via the polytropic exponent} 
+If $n$ is known: 
+
+\begin{equation}
+\frac{p_1}{p_i} = \left(\frac{T_1}{T_i} \right)^{\frac{n}{n-1}}
+\end{equation}
+
+\paragraph{Via the head losses coefficient $\epsilon _D$}
+If the polytropic coefficient is unknown, we can compute the isentropic pressure and then use the head losses $\Delta p_D$ in the distributor: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{p_{is}}{p_i} = \left(\frac{T_1}{T_i} \right)^{\frac{\gamma}{\gamma-1}} \qquad p_1 = p_{is} - \Delta p_D\\
+&\Delta p_D = \epsilon _D \rho _1 \frac{V_{1a}^2}{2} \qquad \frac{\Delta p_D}{p_1} = \frac{1}{2} \epsilon _D \gamma M_{1a}^2
+\end{aligned}
+\end{equation}
+
+$\epsilon_D$ is between 0.15 and 0.5.
+
+\subsection{Study of the helical part of the wheel}
+This part of the wheel corresponds to the first part that will guide the flow towards the radial part, denoting 1' the exit of this region, the relative velocity $W_{1'}$ should be parallel to the shaft.
+
+\subsubsection{Calculation of the $T_{1'}$ temperature}
+\wrapfig{8}{l}{4}{0.4}{ch5/27}
+If we assume that the section $A_{1'} \approx A_1$ and that the pressure variation is limited, the mass flow equation tells that the relative speed 1' is equal to $V_{1a}$: 
+
+\begin{equation}
+\dot{m} = A_1V_{1a}\rho _1 = A_{1'}W_{1'}\rho _{1'} \qquad \Rightarrow W_{1'}= V_{1a}
+\end{equation}
+
+The application of the energy equation gives: 
+
+\begin{equation}
+\frac{W_{1'}^2-W_1^2}{2} = h_1 - h_{1'} = c_p(T_1-T_{1'})\qquad \Rightarrow T_{1'} = T_1 + \frac{W_1^2 - V_{1a}^2}{2c_p}
+\end{equation}
+
+\subsubsection{Calculation of pressure $p_{1'}$ for an isentropic flow}
+The helical part has also the job to increase the pressure in the distributor. 
+
+\paragraph{Positive circulation distributor case}
+In that case the relative velocity can be defined and replaced in the temperature expression: 
+
+\begin{equation}
+W_1^2 = V_{1a}^2 + (u_1-V_{1t})^2\qquad \Rightarrow T_{1'} = T_1 + \frac{(u_1-V_{1t})^2}{2c_p}
+\end{equation}
+
+Injecting that in the isentropic pressure relation: 
+\begin{equation}
+\frac{p_{1'}}{p_1} = \left(\frac{T_{1'}}{T_1} \right)^{\frac{\gamma}{\gamma -1}} = \left( 1 + \frac{(u_1-V_{1t})^2}{2c_pT_1} \right)
+\end{equation}
+
+We see that the pressure increases, even more when $V_{1t}$ differs from $u_1$. It is $\approx 0$ when $V_{1t} = u_1$. 
+
+\paragraph{Negative circulation distributor}
+\begin{equation}
+\frac{p_{1'}}{p_1} = \left(\frac{T_{1'}}{T_1} \right)^{\frac{\gamma}{\gamma -1}} = \left( 1 + \frac{(u_1-V_{1t})^2}{2c_pT_1} \right)
+\end{equation}
+
+Same conclusions can be drawn in that case, the pressure $p_{1'}$ can become even higher than $p_i$ at the inlet of the distributor entry. 
+
+\paragraph{Zero circulation distributor}
+In that case remember that $W_{1} = V_{1a} + u_1$ so that we have 
+
+\begin{equation}
+\frac{p_{1'}}{p_1} = \left(\frac{T_{1'}}{T_1} \right)^{\frac{\gamma}{\gamma -1}} = \left( 1 + \frac{u_1^2}{2c_pT_1} \right)
+\end{equation}
+
+\subsubsection{Calculation of $P_{1'}$ for a real flow}
+As previous part, to get closer to the real flow, we can introduce the polytropic coefficient $n>1.4$ or use a head losses coefficient $\epsilon _h$: 
+
+\begin{equation}
+\frac{p_{1'}}{p_1} = \left(\frac{T_{1'}}{T_1} \right)^{\frac{n}{n -1}} \qquad \Delta p_h = \epsilon _h \rho _1 \frac{W_1^2}{2} \ or \ \frac{\Delta }{p_1} = \frac{1}{2}\epsilon _h\gamma M_{1a}^2 
+\end{equation}
+
+with $p_{1'}=  p_{1',is} - \Delta p_h$. 
+
+\subsubsection{Remarks}
+\paragraph{Pressure regulation thanks to $\alpha _1$}
+It has been concluded that the angle $\alpha _1$ has effects on the temperature and pressure at section $1'$ and thus the global compression ratio can be controlled by moving the blades. This control is economic because it allows to decrease temperature and pressure simultaneously upon which depends the compression work in the wheel. \\
+
+The wheel power decreases when $\alpha _1$ goes from a value $>90\degres$ to a value $<90\degres$. Indeed, Euler Rateau tells: 
+
+\begin{equation}
+\frac{P_R}{\dot{m}_R} = u_{1'}V_{1'u} - u_{1}V_{1u}
+\end{equation}
+
+Taking into account that $u' = u$, $W_{1'}$ is axial so $V_{1'}\cos \alpha _{1'} = u_{1'}$ and that $V_1\cos \alpha 1 = V_{1a}/\tan \alpha _1$:
+
+\begin{equation}
+\frac{P_R}{\dot{m}_R} = u_1 \left( u_1 - \frac{V_{1a}}{\tan \alpha _1} \right)
+\end{equation}
+
+One can conclude that $P_R$ decreases when $\alpha _1$ goes from $>90\degres$ to $<90\degres$, vanishes for $\alpha _1 = 90\degres$ since $u_1 = V_{1a}$ and that it can even become negative for very small angles (works as a turbine).
+
+\paragraph{Diverging channels}
+We note that the maximum transferred energy comes with negative circulation entry and corresponds to the case where the blades in the helical part form divergent channels (relative velocity decreases and pressure increases). Note also that this increases the risk of separation. 
+
+\paragraph{The relative Mach number}
+It is with a positive circulation entry that Mach number will be the lowest 
+
+\begin{equation}
+M_{1e} = \frac{W_1}{C_1}
+\end{equation} 
+
+And with an axial entry, it will be the highest at the mean radius $r_e$. The relative Mach number value should not exceed 0.9 to avoid any shock. 
+
+\subsection{Flow in the wheel itself (radial part)}
+Centrifugal compressors operates with very high rotation speeds, this is why they are milled in the material and not mounted separately. 
+
+\subsubsection{Velocity triangle at wheel exit}
+\wrapfig{8}{l}{5}{0.4}{ch5/28}
+At the exit, for an infinite number of blades, the relative velocity $W_2$ should be purely radial, but due to the finite number of blades, it has a component opposed to $u_2$ and thus $V_{2u} \neq u_2$. This can be characterized by the slip factor $\phi _5$: 
+
+\begin{equation}
+\phi _5 = 1- \frac{0.63 \pi}{N}
+\end{equation}
+
+where N is the number of blades (often between 15 and 30). 
+
+\subsection{Energy transfer in the wheel}
+\subsubsection{Basic relations}
+\paragraph{Application of the Euler-Rateau equation}
+The available power for the fluid is given by: 
+
+\begin{equation}
+\frac{P_R}{\dot{m}_R} = u_2V_2\cos \alpha - u_1V_1 \cos \alpha = \frac{V_2^2-V_1^2}{2} + \frac{u_2^2-u_1^2}{2} +\frac{W_2^2-W_1^2}{2}
+\end{equation}
+
+Last relation comes from cosine rule. 
+
+\paragraph{Application of kinetic energy equation}
+In a rotating frame between section 1 and 2: 
+
+\begin{equation}
+\frac{W_2^2-W_1^2}{2} - \frac{u_2^2-u_1^2}{2} = - \int _{p_1}^{p2} \nu \, dp - w^"_d - g(z_2-z_1)
+\end{equation}
+
+Substitution of the last Euler-Rateau expression gives: 
+
+\begin{equation}
+P_R = \dot{m}_R \left( \frac{V_2^2-V_1^2}{2} + \int _{p_1}^{p2} \nu \, dp + g(z_2-z_1) \right) + \dot{m}_R w^"_d = \dot{m}_Re_R + \dot{m}_R w^"_d
+\end{equation}
+
+\paragraph{Application of energy equation}
+Replacing Euler rateau in rotating energy equation
+
+\begin{equation}
+\frac{W_2^2-W_1^2}{2}  = \frac{u_2^2-u_1^2}{2} + h_1-h_2 \qquad \Rightarrow \frac{P_R}{\dot{m}_R} = \frac{V_2^2-V_1^2}{2} + h_2 - h_1 = h_{t2}-h_{t1} = h_{to} - h_{ti}
+\end{equation}
+
+where the last equality comes from the fact that distributor and diffuser channels are static. 
+
+\paragraph{Axial entry machine}
+In that case $\alpha _1 = 90\degres$ so that the Euler Rateau becomes: 
+
+\begin{equation}
+\frac{P_R}{\dot{m}_R} = u_2V_{2u} = \phi _5 u_2^2 = h_{t2} - h_{t1}
+\end{equation}
+
+We see that to transfer maximum power we need to have large rotation speeds that cause high centrifugal forces on the blades. 
+
+\subsubsection{Reaction degree}
+\paragraph{Definition}
+It is possible to transfer the energy in form of kinetic energy or pressure energy. The degree of reaction is the ratio between the power transmitted by reaction and the total power transmitted: 
+
+\begin{equation}
+D = \frac{(P_R)_r}{P_R} = \frac{\int _{p_1}^{p2} \nu \, dp - g(z_2-z_1) - w^"_d}{\frac{V_2^2-V_1^2}{2} + \int _{p_1}^{p2} \nu \, dp - g(z_2-z_1)  - w^"_d}
+\end{equation}
+
+Using the kinetic energy in moving channels, we find: 
+
+\begin{equation}
+R = \frac{u_2^2 - u_1^2 - (W_2^2-W_1^2)}{V_2^2-V_1^2 + u_2^2 - u_1^2 - (W_2^2-W_1^2)}
+\end{equation}
+
+\paragraph{Axial entry machine}
+With an axial entry (no vanes) and purely radial exit (infinite blades):
+
+\begin{equation}
+W_1^2 = V_1^2+ u_1^2 \qquad V_2^2 = W_2^2+ u_2^2
+\end{equation}
+
+And the reaction degree becomes: 
+
+\begin{equation}
+D = \frac{u_2^2-u_1^2 - (W_2^2- W_1^2)}{2u_2^2}
+\end{equation}
+
+This equation gives information about the design of the rotor. Indeed if the radius $r_2$ and the rotation speed are fixed, higher reaction degrees are obtained for $W_2<W_1$. A high degree of reaction will permit to limit the diffuser dimensions where there is few kinetic energy to transform into pressure energy. \\
+
+Divergent channels are created in the distributor in order to obtain a larger pressure energy in the rotor. But there is a limit, the flow can separate. Indeed, the boundary layer and the flow are subject to the same pressure gradient, when this increases, the boundary layer being weaker than the flow, the wall shear stresses are not able to counteract the gradient and the flow will be reversed in the boundary layer. 
+
+\subsubsection{Calculation of the pressure increase in the rotor}
+\paragraph{Polytropic exponent $n>4$}
+We have found thanks to the energy equation that the total enthalpy difference gives the power: 
+
+\begin{equation}
+\frac{P_R}{\dot{m}} = h_{t2}-h_{t1} = \frac{V_2^2-V_1^2}{2} + C_p (T_2-T_1)\qquad \Rightarrow \frac{T_2}{T_1} = 1 + \frac{P_R}{\dot{m}C_pT_1}\frac{V_2^2-V_1^2}{2C_pT_1}
+\end{equation}
+
+For a given supply power and a mass flow, if the velocity triangle is known and the inlet conditions are known, it is possible to find the temperature ratio and then to compute the pressure ratio using
+
+\begin{equation}
+\frac{p_2}{p_1} = \left(\frac{T_2}{T_1}\right)^{\frac{n}{n-1}}
+\end{equation}
+
+\paragraph{Through the head losses coefficient}
+Using the relation in previous paragraph, we find the temperature ratio, then using the isentropic low: 
+
+\begin{equation}
+\frac{p_{2,is}}{p_1} = \left(\frac{T_2}{T_1}\right)^{\frac{\gamma }{\gamma -1}}
+\end{equation}
+
+The isentropic pressure is found. Then using:
+
+\begin{equation}
+p_2 = p_{2,is} - \Delta p_R \qquad \Delta p_R= \epsilon _R \rho _1  \frac{W_1^2}{2} \ or \ \frac{\Delta p_R}{p_1} = \frac{1}{2} \epsilon _R \gamma M_{1a}^2
+\end{equation}
+
+Order of magnitude $\epsilon _R:$ 0.3-0.5
