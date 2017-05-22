@@ -1094,3 +1094,306 @@ u_i^{n+1} = \frac{1}{2}(\sigma ^2 - \sigma)u^n_{i+1} + (1-\sigma ^2)u_i^{n}+ \fr
 \includegraphics[scale=0.5]{ch3/13}
 \captionof{figure}{}
 \end{center}
+
+
+\subsection{Implicit schemes}
+We are still dealing with hyperbolic equations and FTCS which was unconditionally unstable. Remember that when we are doing central space we have a footprint $[-ia/\Delta x, ia/\Delta x]$ and the Fourrier footprint of the backward time was the whole domain without a circle centered in the positive real axis. The region of stability covers all the imaginary axis, let's confirm this. We do central space: 
+
+\begin{equation}
+\frac{du_i}{dt} + a \frac{u_{i-1}-u_{i+1}}{2\Delta x} = 0
+\end{equation}
+
+For the time integration we will use a linear combination of the BT and FT called one step integration. Indeed the BT indices can be shifted and we obtain the BT: 
+
+\begin{equation}
+FT: \ \frac{u^{n+1}- u^n}{\Delta t} = f(u^n) \qquad BW: \ \frac{u^{n}- u^{n-1}}{\Delta t} = f(u^n) \Rightarrow FT = f(u^{n+1})\ BT
+\end{equation}
+
+So that the linear combination gives:
+
+\begin{equation}
+\frac{u^{n+1}-u^n}{\Delta t} = \theta f(u^{n+1}) + (1-\theta)f(u^n)
+\end{equation}
+
+If we apply this to the initial equation, the CS is transformed into:
+
+\begin{equation}
+\frac{u_i^{n+1}-u_i^n}{\Delta t} + \frac{a}{2\Delta x} \left[ \theta (u_{i+1}^{n+1}-u_{i-1}^{n+1})+ (1-\theta )(u_{i+1}^n - u_{i-1}^n)  \right) = 0 \qquad \frac{du}{dt} = f(u)
+\end{equation}
+
+The stability analysis consists in writing the equation in terms of $g$ and $e^{i\eta}$:
+
+\begin{equation}
+\begin{aligned}
+&g-1 + \frac{a \Delta t}{2\Delta x} \left[ \theta g(e^{i\eta}-e^{-i\eta})+ (1-\theta )(e^{i\eta}-e^{-i\eta})  \right] = 0 \qquad \Rightarrow g-1 +\sigma i\sin \eta (\theta g+(1-\theta)) = 0\\ 
+\Leftrightarrow &g(1+i \sigma \theta \sin \eta ) = 1- i\sigma (1-\theta)\sin \eta \qquad \Rightarrow |g|^2 = \frac{1+\sigma ^2 (1-\theta)^2 \sin ^2\eta}{1+\sigma ^2\theta ^2\sin ^2\eta} \leq 1 \\
+&(1-\theta)^2 \leq \theta ^2 \Leftrightarrow 1-\theta \leq \theta \Leftrightarrow \theta \geq 1/2
+\end{aligned}
+\end{equation}
+
+We see that now we have a stability condition on $\theta$ and not on $\sigma$ if the condition is not respected the method is unconditionally unstable, if respected stable. This is logical since the BT takes importance when $\geq 1/2$.\\
+
+For what concerns the dissipative and dispersive error, remark that when $\theta = 1/2, |g|^2 = 1$ so it is non dissipative in that case. The case $\theta = 1/2$ is called the trapezoidal method because it approximates the time integration by the area under the curve going from $u^n_i$ to $u^{n+1}_{i+1}$ by a trapezoid. The general expression of the errors are: 
+
+\begin{equation}
+\begin{aligned}
+&\epsilon _D = \frac{1}{2}\ln \left( \frac{1+\sigma ^2 (1-\theta)^2 \sin ^2\eta}{1+\sigma ^2\theta ^2\sin ^2\eta} \right)\\
+&\epsilon _\phi = \frac{\arctan (\theta \sigma \sin \eta) - \arctan ((\theta -1)\sigma \sin \eta)}{\sigma \eta}
+\end{aligned}
+\end{equation}
+
+In the case $\theta = 1$ the scheme is very dissipative. We see that the phase lag is important in both cases. The resolution of implicit schemes is more costly because it requires the resolution of a system of equation. If we rearrange equation (1.115) we see that the next time is function of the point itself and the two immediate neighbors, this gives birth to a tridiagonal system that can be solved by LU decomposition. The cost is proportional to the number of unknowns, so it is non costly for 1D but for higher dimensions this is not true. To conclude, let's analyze the spurious oscillations. We can express the system of equation to solve under the form: 
+
+\begin{equation}
+K U^{n+1} = A U^n \qquad \Rightarrow U^{n+1}  = C U^{n}
+\end{equation}
+
+To have no oscillations, all the entries of matrix C should be positive (the sum of the coefficients on each line should be 1 because for a uniform solution at time level n we have $U^{n+1}=U^n$). A sufficient condition but not necessary for this is that $A$ contains strictly positive entries and that $K$ contains negative off diagonal entries,  positive diagonal entries and which is diagonally dominant. $K$ is sparse, but $K^{-1}$ is full so that the solution at point $i$ and time $n+1$ is a wheighted average of the nodal values on the whole domain and not only of the neighbors as for explicit schemes. \\
+
+It is easy to show that an implicit one step scheme in combination with upwind discretization is positive under the condition $\sigma \leq 1/(1-\theta)$, but combined with centered discretization the positivity depends on $\theta$ too. In practise, $\theta = 1$ doesn't make  appear oscillations due to the very dissipative character. 
+
+The general one step rewrites: 
+\begin{equation}
+u^{n+1} = u^n + \Delta t [\theta f(u^{n+1}) + (1-\theta) f(u^n)]
+\end{equation}
+
+If we take 1/2 and 1/2 as coefficients, the method is trapezoidal non dissipative. Let's look to the question of spurious oscillations or not. Reads the syllabus. 
+
+We have a linear combination of terms so that we have a tridiagonal system of equation. They are easily solved and are inexpensive in memory. This is for 1D but it becomes very hard with more. The analysis for the oscillations is more complicated than before, we find that 
+
+\begin{equation}
+U^{n+1}= K^{-1}AU^n = CU^n
+\end{equation}
+
+The sum of the coefficient should be 1 ... 
+
+
+\subsection{Upwind schemes for systems of equations with characteristic speeds of mixed signs}
+We mentioned that it was impossible to use fully biased schemes for mixed sign because the BS is unstable for all the eigenvalues negative and conversely the FT was for the positive eigenvalues. So one way to get around the problem is to use characteristic decomposition. The eigenvalues are real since we are hyperbolic. The model linear problem is: 
+
+\begin{equation}
+\frac{\D U}{\D t}+ A\frac{\D U}{\D x} = 0 \qquad A = R\Lambda R^{-1}
+\end{equation}
+
+If we multiply this by $R^{-1}$: 
+
+\begin{equation}
+R^{-1}\frac{\D U}{\D t}+ R^{-1}A\frac{\D U}{\D x} = 0 = \frac{\D}{\D t} (\underbrace{R^{-1}U}_{W}) + \Lambda \frac{\D}{\D x} (\underbrace{R^{-1}U}_{W})
+\end{equation}
+
+Since $\Lambda$ is diagonal, we can use a space discretization depending on the sign. We can take BS if $\lambda > 0$ and FS if $\lambda < 0$. We have thus that in equation form: 
+
+\begin{equation}
+\begin{aligned}
+&w_{j,i}^{n+1}= w_{j,i}^{n} + \frac{\Delta t}{\Delta x} \lambda ^{(j)}(w_{j,i}^{n} - w_{j,i-1}^{n}) \qquad \lambda ^{(j)}>0\\
+&w_{j,i}^{n+1}= w_{j,i}^{n} + \frac{\Delta t}{\Delta x} \lambda ^{(j)}(w_{j,i+1}^{n} - w_{j,i}^{n}) \qquad \lambda ^{(j)}<0
+\end{aligned}
+\end{equation}
+
+This is called the CIR (Courant-Isaacson-Rees) scheme. We can infact note this changing scheme in a single formula: 
+
+\begin{equation}
+\lambda \frac{\D w}{\D x} \rightarrow \begin{array}{c}
+\lambda \frac{w_i - w_{i-1}}{\Delta x} \quad \lambda > 0\\
+\lambda \frac{w_{i+1} - w_{i}}{\Delta x} \quad \lambda < 0
+\end{array}
+\qquad \lambda \frac{\D w}{\D x} \approx \lambda \frac{w_{i+1}-w_{i-1}}{2\Delta x} - |\lambda|\frac{w_{i+1}-2w_i + w_{i-1}}{2\Delta x} 
+\end{equation}
+
+This equation can be interpreted as a central scheme with a bit of diffusion since the second term is a second derivative discretization in order to damp the oscillations. This can be generalized to the initial system: 
+
+\begin{equation}
+A \frac{\D U}{\D x} \approx A\frac{U_{i+1}-U_{i-1}}{2\Delta x} - |A|\frac{U_{i+1}-2U_i + U_{i-1}}{2\Delta x} 
+\end{equation}
+
+where we define $|A| = R \, \mbox{diag}(|\lambda ^{(j)}|) R^{-1}$.
+
+\subsection{Non-linear problems}
+Let's consider now the non-linear equation and system: 
+
+\begin{equation}
+\frac{\D u}{\D t}  +\frac{\D f(u)}{\D x}=0 \qquad \frac{\D U}{\D t}  +\frac{\D F(U)}{\D x} = 0
+\end{equation}
+
+It can be written in quasi linear form by defining $a = \frac{d f(u)}{du}$ or $A = \frac{d F(U)}{dU}$
+
+\subsubsection{Conservative discretization - shock capturing}
+It was pointed out that hyperbolic equations allow for discontinuous weak solutions. Finite element and finite volume methods based on the weak or integral form of the conservation equations allow shocks. For finite difference, this is possible as long as the the discretization is in conservative form due to the Lax's theorem: 
+
+\theor{
+If a scheme in conservative form is convergent, then it converges boundedly almost everywhere towards a weak form of the differential problem. 
+}\ \\
+
+If the algorithm is in conservative form, there is no need to treat shocks specially. A conservative form of the non linear equation is: 
+
+\begin{equation}
+\frac{U_i^{n+1}-U_i^{n}}{\Delta t} + \frac{\tilde{F}_{i+1/2}-\tilde{F}_{i-1/2}}{\Delta x}= 0 \qquad \mbox{with } \tilde{F}_{i+1/2} = \Phi (U_{i-k+1}^n,\dots , U_{i+k}^n, U_{i-k+1}^{n+1}, \dots , U_{i+k}^{n+1})
+\end{equation}
+
+with $\Phi (U, \dots , U, U , \dots , U) = F(U)$. Let's see some scheme's extensions. 
+
+\subsubsection{Lax Friedrichs}
+
+\begin{equation}
+\frac{U_i^{n+1/2}-\frac{1}{2}U_{i+1}^n+U_{i-1}^n}{\Delta t+2} + \frac{F_{i+1/2}^n-F^n_{i-1/2}}{\Delta x}=0 
+\end{equation}
+
+\subsubsection{Leap frog}
+
+\begin{equation}
+\frac{U_i^{n+1}-U_i^n}{\Delta t}+ \frac{F^{n+1/2}_{i+1/2}-F_{i-1/2}^{n+1/2}}{\Delta x} = 0
+\end{equation}
+\subsubsection{Lax-Wendroff scheme}
+It is obtained by Taylor series expansion in time of the solution: 
+
+\begin{equation}
+\frac{\D U}{\D t} = - \frac{\D F}{\D x} \Rightarrow \frac{\D ^2 U}{\D t^2} = -\frac{\D}{\D t}\left(\frac{\D F}{\D x}\right) = -\frac{\D}{\D x}\left(\frac{\D F}{\D t}\right) = -\frac{\D}{\D x}\left(A(U)\frac{\D U}{\D t}\right) = \frac{\D}{\D x}\left(A(U)\frac{\D U}{\D x}\right)
+\end{equation}
+
+So that the conservative form of the method becomes 
+
+\begin{equation}
+U_i^{n+1}  = U_i ^n - \frac{\beta}{2}(F_{i+1}^n-F_{i-1}^n)+ \frac{\beta ^2}{2}(A_{i+1/2}^n(F_{i+1}^n-F_{i}^n)-A_{i-1/2}(F_{i}^n-F_{i-1}^n))
+\end{equation}
+
+where $\beta = \frac{\Delta t}{\Delta x}$ and $A_{i\pm1/2} = (A(U_i)+A(U_{i+1})/2$. Its drowback is that it requires the computation of $\frac{\D F}{\D U}$, but can be avoided by a two step implementation. This method becomes clearly superior in two and three dimensions over the Leap-Frog and Lax-Friedrichs, and even more when finite volume. 
+
+\subsection{Upwind scheme}
+One just needs to replace the centred term by the flux average, namely: 
+
+\begin{equation}
+\frac{U_{i}^{n+1}-U_{i}^{n}}{\Delta t} + \frac{\tilde{F}_{i+1/2}-\tilde{F}_{i-1/2}}{\Delta x} = 0 \mbox{ with } \tilde{F}_{i+1/2} = \frac{F_{i}^n+F_{i+1}^n}{2}- \frac{|A_{i+1/2}^n|}{2}(U_{i+1}^n-U_{i}^n)
+\end{equation}
+
+\subsubsection{Implicit schemes}
+We are considering: 
+
+\begin{equation}
+\frac{\D u}{\D t }+ \frac{\D f(u)}{\D x} =0
+\end{equation}
+
+Using implicit time and central space: 
+
+\begin{equation}
+\frac{u^{n+1}_i-u_i^n}{\Delta t} + \frac{1}{2\Delta x} [\theta (f_{i+1}^{n+1}-f_{i-1}^{n+1})+(1-\theta) (f_{i+1}^n)-f^n_{i-1}]
+\end{equation}
+
+It is too expensive since it is not a linear system of equations. A way to make it cheaper is to replace the non-linear functions $f(u^{n+1}_i)$ by a linear approx:
+
+\begin{equation}
+f(u^{n+1}_i)\approx f(u^{n}_i)+ \left(\frac{d f}{du} \right)^n_i(u_i^{n+1}-u_i^{n}) = f(u_i^{n})+a (u_i^{n})(u_i^{n+1}-u_i^{n})
+\end{equation}
+
+This does not modify the accuracy of the method since the neglected terms are of order $\mathcal{O}\Delta t^2$. This can be put under the form of a tridiagonal system, that reduces the cost. To conclude, let's say that the non-linearities the production of spurious oscillations is aggravated. 
+
+\section{Numerical schemes for parabolic equations}
+The model equation in 1D is: 
+
+\begin{equation}
+\frac{\D u}{\D t} = \alpha \frac{\D ^2 u}{\D x^2}
+\end{equation}
+
+Here FTCS works because the region of stability of both are imbricated (Forward time is a circle and parabolic equation spectrum on negative real axis) so that we have the following condition since the largest eigenvalue is $|\lambda|_{max} = 4\alpha /\Delta x^2$: 
+
+\begin{equation}
+\frac{-4\alpha \Delta t}{\Delta x^2} \geq -2 \qquad \Rightarrow r= \frac{\alpha \Delta t}{\Delta x^2}\leq 1/2
+\end{equation}
+
+$r$ plays the same role as $\sigma$ the CFL number and this is a very restrictive limit. This is why we use implicit methods. If we do a centered space discretization: 
+
+\begin{equation}
+\frac{\D u_i}{\D t} = \frac{\alpha}{\Delta x^2} \delta^2 _xu_i
+\end{equation}
+
+and therefore the implicit scheme will be: 
+
+\begin{equation}
+\begin{aligned}
+\frac{u_i^{n+1}-u_i^{n}}{\Delta t} = \frac{\alpha}{\Delta x^2} \left[(1-\theta)\delta _x^2u_i^n + \theta \delta _x^2 u_i^{n+1} \right]& \qquad \delta u_i = u_i^{n+1} -u_i^n = \frac{\alpha \Delta t}{\Delta x^2}\left[(1-\theta)\delta _x^2u_i^n + \theta \delta _x^2 u_i^{n+1} \right] \\
+-\theta r u^{n+1}_{i+1} + (1+2\theta r) u^{n+1}_{i} - \theta r u^{n+1}_{i-1} &= (1-\theta)ru^{n}_{i+1} + (1-2r(1-\theta))u^{n}_{i} + (1-\theta) ru^{n}_{i-1} \\
+[1-r\theta \delta _x^2] u_i^{n+1} &= [1+r(1-\theta)\delta_x^2]u_i^n
+\end{aligned}
+\end{equation}
+
+We will use the compact notation so know that:
+
+\begin{equation}
+\delta _x^2 u^{n+1}_{i} = \delta x^2u^{n}_{i} + \delta _x^2 \delta u_i \qquad \delta u_i = u^{n+1}_{i}-u^{n}_{i}
+\end{equation}
+
+%In the last equation, the left term becomes:
+
+%\begin{equation}
+%[1-r\theta \delta _x^2] \delta u_i = -r\theta \delta u_{i+1} + (1+2r\theta)\delta u_i - r\theta \delta u_{i-1}=r\delta _x^2 u_i^n - r [u^n_{i+1}-2u_i^n+u_{i-1}^{n}]
+%\end{equation}
+
+The amplification factor in the syllabus is: 
+
+\begin{equation}
+g = \frac{1-4(1-\theta) r\sin ^2\frac{\eta}{2}}{1+4\theta \sin ^2\frac{\eta}{2}}
+\end{equation}
+
+So that the stability condition gives: 
+
+\begin{equation}
+-4r\sin ^2 \frac{\eta}{2} \left(2+4(2\theta -1)\sin ^2 \frac{\eta }{2}\right)\leq 0 \qquad \Rightarrow r \leq \frac{1}{2(1-2\theta)}
+\end{equation}
+
+Which is automatically satisfied for $\theta \geq 1/2$, but has the condition "$\Rightarrow$" for $\theta <1/2$. To conclude, we have seen that the domain of dependence of the heat equation was the whole past, the implicit method coupling all the points at time level n+1 ensures that the numerical domain of dependence indeed contains the whole mathematical domain of dependence.  
+
+\section{Implicit methods in several dimension. The ADI technique and its variants}
+In 2D we will have: 
+
+\begin{equation}
+\frac{\D u}{\D t} = \alpha \left( \frac{\D ^2u}{\D x^2}+ \frac{\D^2 u}{\D y^2} \right)
+\end{equation}
+Space discretization: 
+
+\begin{equation}
+\frac{d u_{ij}}{d t} = \alpha \left( \frac{\delta _x^2 u_{ij}}{\Delta x^2} +\frac{\delta _ y^2 u_{ij}}{\Delta y^2}  \right)
+\end{equation}
+
+Implicit one step: 
+
+\begin{equation}
+\begin{aligned}
+&\frac{u_{ij}^{n+1}-u_{ij}^n}{\Delta t} = \alpha \left[\theta \left(\frac{\delta _x^2}{\Delta x^2} + \frac{ \delta _y^2}{\Delta y^2}\right)u_{ij}^{n+1} + (1-\theta )\left(\frac{\delta x^2}{\Delta x^2}+ \frac{\delta y^2}{\Delta y^2}\right)u_{ij}^{n}\right]\\
+&u_{ij}^{n+1}-u_{ij}^{n} = \theta (r_x\delta _x^2 + r_y\delta _y^2)u_{ij}^{n+1}+ (1-\theta)(r_x \delta _x ^2 + r_y \delta _y ^2)u_{ij}^{n}\\
+&\delta u_{ij} = (r_x \delta _x^2 +r_y \delta _y^2)u_{ij}^{n} + \theta (r_x \delta _x^2 + r_y \delta _y ^2)\delta u_{ij}
+\end{aligned}
+\end{equation}
+
+The final equation becomes: 
+
+\begin{equation}
+\begin{aligned}
+&[1-\theta (r_x \delta _x^2+r_y\delta _y^2)]u_{ij}^{n+1} = [1+(1-\theta)(r_x\delta _x^2+r_y \delta _y^2)]u_{ij}^{n}\\
+\Rightarrow&[1-\theta (r_x \delta _x^2+r_y\delta _y^2)]\delta u_{ij} = (r_x\delta _x^2 + r_y\delta y^2)u_{ij}^n
+\end{aligned}
+\end{equation}
+
+
+Thanks to the A-stability of the implicit one-step scheme for $\theta \geq 1/2$ this scheme is unconditionally stable in the same conditions. We see that the value of the point i depends on the 2 direct neighbors because of central discretization and this leads to a sparse matrix and not tridiagonal, we have zeros in the bandwidth so that the memory requirement becomes higher.
+
+\minifig{ch3/14}{ch3/15}{0.8}{0.4}{0.3}{0.4}
+
+To avoid this, there has been two ideas. If we look to the first equation in (1.146), alternative direction implicit (ADI) consists in first make a half $\Delta t/2$ which is implicit in x ($\theta = 1$) and explicit in y ($\theta = 0$), the second half step is the contrary, explicit in x and implicit in y. This means: 
+
+\begin{equation}
+[1-\frac{r_x}{2} \delta _x ^2]u_{ij}^{n+1} = (1+\frac{r_y}{2}\delta _y^2)u_{ij}^n \qquad
+[1 - \frac{r_y}{2}\delta ^2_y]u_{ij}^{n+1} = (1+\frac{r_x}{2}\delta _x^2)u_{ij}^n
+\end{equation}
+
+The other method is the approximate factorization: 
+
+\begin{equation}
+[1-\theta r_x \delta _y^2][1-\theta r_y \delta y^2] \delta u_{ij}  = (r_x \delta _x^2+r_y \delta _y^2)u_{ij}^n
+\end{equation}
+
+that gives 
+\begin{equation}
+(1-\theta r_x \delta _x^2)\delta u_{ij}^* = (r_x \delta _x^2 + r_y \delta _y^2)u_{ij}\qquad
+(1 - \theta r_y \delta _y ^2)\delta u_{ij} = \delta u_{ij}^*
+\end{equation}
+
+This is still unconditionally stable even in 3D, this can be applied with finite volume discretizations as well, but only structured meshes. 
