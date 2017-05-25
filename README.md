@@ -23,8 +23,8 @@ le fichier, il suffit d'appuyer sur Raw pour le télécharger.
    - [x] [Électricité](IRCI2/Electricité/build/Electricité%20-%20Nicolas%20Englebert.pdf)
      - [x] [Rapport de laboratoire](IRCI2/Electricité/Laboratoire/build/Rapport%20de%20laboratoire%20-%20Terence%20Blésin,%20Nicolas%20Englebert,%20Benoît%20Vernier.pdf)
    - [x] Informatique
-     - [x] [Micro-informatique](IRCI2/Informatique/syntheseOO.pdf)
-     - [x] [Orientée objet](IRCI2/Informatique/MicroInformatique/build/syllab_microinfo.pdf)
+     - [x] [Micro-informatique](IRCI2/Informatique/MicroInformatique/build/syllab_microinfo.pdf)
+     - [x] [Orientée objet](IRCI2/Informatique/syntheseOO.pdf)
    - [x] [Mécanique des solides et des fluides](IRCI2/Mécanique%20des%20fluides/build/Mécanique%20des%20fluides%20-%20Nicolas%20Englebert.pdf)
    - [x] [Physique quantique et statistique](IRCI2/Physique%20quantique%20et%20statistique/build/Physique%20quantique%20et%20statistique%20-%20Nicolas%20Englebert.pdf)
 
