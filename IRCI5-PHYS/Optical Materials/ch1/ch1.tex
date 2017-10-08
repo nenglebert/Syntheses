@@ -1,0 +1,205 @@
+\chapter{Introduction}
+\section{Changing the Properties of Light}
+Un faisceau laser peut être caractérisé par une intensité $I$, une puissance $P$, un rayon $w$, 
+une longueur d'onde $\lambda$, une pulsation $\omega$, une polarisation et un vecteur de Poynting 
+$\vec{S}$. Nous aimerions changer ces propriétés et la seule façon de faire est de la faire interagir 
+avec un matériau.
+
+\section{Introduction to Electrodynamics in Continuous Media}
+\subsection{Maxwell's Equations}
+Le champ électrique $\vec{E}(\vec r,t)$ et le champ magnétique d'induction $\vec B(\vec r,t)$ 
+sont gouvernés par 
+\begin{equation}
+\begin{array}{ll}
+\div \vec E &=\DS \frac{1}{\epsilon_0}\rho_a\\
+\div \vec B &= 0\\
+\vec\nabla\times\vec E&=\DS -\frac{\partial \vec{B}}{\partial t}\\
+\vec\nabla\times\vec B&=\DS \mu_0\vec{J_a} + \epsilon_0\mu_0\frac{\partial \vec{E}}{\partial t}
+\end{array}
+\end{equation}
+où $\rho_a$ (densité de charge (libre et polarisation) et $\vec{J}_a$ (courants : libres, polarisés 
+et magnétiques) sont les termes sources. Dans le vide, les choses sont simples ($\vec E, \vec B$ 
+continus et pas de termes sources) mais dans un matériau il faut prendre en compte toutes les 
+particules pouvant contribuer au terme source. \\
+
+On approxime souvent la densité de charge $\rho_a$ par une combinaison de charges séparées et de 
+dipôles\footnote{Description utilisée lorsque deux charges égales mais de signe opposé sont 
+considérées comme un ensemble.}
+\begin{equation}
+\vec p = q\vec d
+\end{equation}
+Par exemple, les atomes, molécules, \dots\ Pour les charge séparées on notera les électrons dans
+un solide, les ions, \dots\ On note alors
+\begin{equation}
+\rho_a = \rho + \rho_P
+\end{equation}\ \\
+
+Le densité de courant totale $\vec{J_a}$ $[A/m^2]$ se note
+\begin{equation}
+\vec{J_a} = \vec J + \vec{J_P}+\vec{J_M}
+\end{equation}
+où $\vec{J}$ est le mouvement des charges libres, $\vec{J_P}$ la variation des dipôles et 
+$\vec{J_M}$ la densité de courant magnétique. Notons la force de Lorentz agissant sur une 
+charge $q$ à vitesse $\vec{v}$
+\begin{equation}
+f_{Lorentz} = q(\vec{E}+\vec{v}\times\vec{B})
+\end{equation}
+ainsi que la force agissant sur un dipôle électrique $\vec{P}$ (où $\vec{B}=\vec0$)
+\begin{equation}
+f_p = (p.\vec{\nabla})\vec{E}
+\end{equation}
+D'autres forces sont renseignées à la page 12.\\
+
+Une approche (microscopique) pour étudier la propagation de la lumière dans la matière serait 
+de résoudre ces équations couplées aux équations de mouvement de toutes les particules, ce qui 
+n'est pas réaliste. Une autre approche est de voir les choses d'un point de vue macroscopique. 
+Les équations de Maxwell sont valables aux dimensions macroscopique (nm) en considérant la moyenne
+des champs sur un volume contenant un grand nombre d'atomes, ions, \dots\ Avec l'hypothèse de
+continuité, on appelle cette approche \textit{electrodynamics of continuous media}.
+
+
+
+
+\subsection{Polarisation Charge and Current}
+Nous avons vu l'expression d'un dipôle microscopique ($\vec p = q\vec d$). Pour l'approche
+macroscopique, il faut considérer la moyenne du moment dipolaire par unité de volume
+\begin{equation}
+\vec P(r) \equiv \lim\limits_{\Delta V\to \epsilon} \dfrac{\sum_i \vec p_i}{\Delta V}
+\end{equation}
+où $\vec PP$ est défini dans la limite où l'élément de volume $\Delta V$ autour de $\vec r$
+est "petit" macroscopiquement, mais contient un grand nombre de dipôles. Le moment magnétique
+d'un élément au point $\vec{r'}$ est donné par
+\begin{equation}
+P\Delta V'
+\end{equation}
+Celui-ci contribue au potentiel au point $\vec{r}$ d'une quantité (vecteurs à mettre)
+\begin{equation}
+\Delta U(r) = \frac{P(r')\Delta V'(r-r')}{4\pi\epsilon_0|r-r'|^3}
+\end{equation}
+Le potentiel au point $\vec{r}$ est alors donné par
+\begin{equation}
+U(\vec{r}) = \iiint_{V_0} \frac{P(r')(r-r')dV'}{4\pi\epsilon_0|r-r'|^3}
+\end{equation}
+Sachant que, par propriété$\nabla'(1/(|r-r'|)= (r-r')/(|r-r'|^3)$ et à l'aide du vecteur
+différentiel $\nabla'(f\vec{P}) : f\nabla'.\vec{P}+\vec{P}.\nabla' f$, on peut ré-écrire le
+potentiel
+\begin{equation}
+U(r) = \frac{1}{4\pi\epsilon_0}\iiint_{V_0} \dfrac{(-\nabla'.\vec{P})dV'}{|\vec{r}-\vec{r'}|} +
+\frac{1}{4\pi\epsilon_0}\iint_{S_0}\dfrac{\vec{P}.dS}{|\vec{r}-\vec{r'}|}
+\end{equation}
+Par identification avec l'expression du potentiel du à une distribution de charge volumique ou 
+surfacique et comme $[-\vec\nabla .\vec{P}] = [C/m^3]$ et $[\vec{P}] = [C/m^2]$, on peut écrire
+\begin{equation}
+\rho_P = -\vec\nabla .\vec{P}
+\end{equation}
+Sachant que le courant de polarisation est donné par\footnote{Cf. théorie microscopique des 
+dipôles élémentaires}
+\begin{equation}
+\vec{J_p} = \dfrac{\partial\vec{P}}{\partial t}
+\end{equation}
+Compte-tenu de la précédente expression, nous obtenons
+\begin{equation}
+\dfrac{\partial\rho_p}{\partial t} = -\vec\nabla.\vec{J}_p
+\end{equation}
+La présence de la divergence se justifie par le fait que les charges sont séparées, le signe 
+par convention. 
+
+\subsection{Magnetisation Current}
+Les courants de magnétisations sont des petites "boucles" magnétiques. Similairement à la 
+sous-section précédente
+\begin{equation}
+M(\vec{r}) \equiv\lim\limits_{\Delta V\to \epsilon} \dfrac{\sum_i m_i}{\Delta V},\qquad
+\qquad\vec{J_M} = \vec{\nabla}\times\vec{M}
+\end{equation}
+
+\subsection{Maxwell’s Equations Revisited}
+En substituant dans les équations de Maxwell les résultats des deux précédentes sous-sections 
+et en posant $\vec{D} = \epsilon_0\vec{E}+\vec{P}$ et $\vec H = \vec B/\mu_0-\vec{M}$, on 
+trouve
+\begin{equation}
+\begin{array}{ll}
+\div\vec{D} &=\rho\\
+\div\vec{B} &= 0\\
+\vec\nabla\times\vec{E} &=-\dfrac{\partial\vec{B}}{\partial t}\\
+\vec\nabla\times\vec{H} &= \DS \vec{J}+\dfrac{\partial \vec{D}}{\partial t}
+\end{array}
+\end{equation}
+
+
+
+\subsection{Constitutive Equations}
+Pour avoir un système résolvable, il faut trouver une relation entre $\vec{P}, \vec{E}$ et 
+$\vec{M},\vec{B}$. Ceci va être faisable avec une approché phénoménologique, en utilisant les 
+équations constitutives. 
+
+	\subsubsection{Champ de magnétisation}
+	Dans ce cours, on considérera que $\vec{M} = \vec{0}$
+
+	\subsection{Champ de polarisation}
+	Beaucoup de matériaux contiennent des dipôles ou son polarisé à cause de $\vec{E}$. Ces 
+	dipôles sont affectés lorsqu'une onde EM traverse le matériau : les particules positives
+	bougent dans la direction du champ et les négatives dans le sens opposé. Il en résulte que
+	$\vec{P} = f(\vec{E})$. On peut alors considérer le développement en série suivant 
+	\begin{equation}
+	\vec{P} = \vec{P}^{(0)}+\vec{P}^{(1)}+\vec{P}^{(2)}+\dots 
+	\end{equation}
+	où $\vec{P}^{(0)}$ est la polarisation statique, $\vec{P}^{(1)}$ est la polarisation 
+	linéaire ($\propto \vec{E}$), \dots\\
+	
+	De façon générale, la polarisation en $(\vec{r},t)$ dépend d'autres position et temps
+	que le doublet $(\vec{r},t)$. L'expression du $n^e$ ordre devient alors
+	\begin{equation}
+	\begin{array}{ll}
+	\DS P_i^{(n)}(\vec{r},t) = \epsilon_0\iiint_{V_0}d\vec{r}_1\dots\iiint_{V_0}d\vec{r}_n
+	\int_{-\infty}^\infty dt_1\dots&\DS \int_{-\infty}^\infty dt_n \chi_{ij_{1}\dots j_n}^{(n)}
+	(\vec r, \vec r_1,\dots, \vec{r}_n, t, t_1,\dots,t_n)\\ &\DS\ E_{j1}(\vec{r}_1,t)\dots 
+	E_{jn}(\vec{r}_n,t_n)
+	\end{array}
+	\end{equation}
+	où $\chi^{(n)}$ est la susceptibilité d'ordre $n$, un tenseur de rang $n+1$. Nous faisons
+	ici l'hypothèse que le matériau est homogène (propriétés identique en chaque point de 
+	l'espace). En cas de discontinuité, on supposera que la théorie de continuité reste valide
+	à l'interface. On fait également l'hypothèse que le matériau est stationnaire : la même 
+	expérience faite aujourd'hui ou demain donnera les mêmes résultats. Il s'agit bien sur 
+	d'approximations. Ceci s'exprime mathématiquement par un tenseur de susceptibilité qui ne
+	dépend que des différences entre les coordonnées spatiales et temporelles.
+	
+	\begin{equation}
+	\begin{array}{ll}
+	\DS P_i^{(n)}(r,t) =\epsilon_0&\DS\iiint_{V_0}dr_1\dots \iiint_{V_0} dr_n \int_{-\infty}^
+	\infty dt_1\int_{-\infty}^	\infty dt_n\\
+	&\DS \chi_{ij_1\dots j_n}^{(n)}(r-r_1,\dots,r-r_n,t,\dots,t-t_n)E_{j_1}(r_1,t_1)\dots
+	E_{j_n}(r_n,t_n)
+	\end{array}
+	\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
