@@ -1,0 +1,468 @@
+\setcounter{chapter}{1}
+\chapter{Optical waveguides}
+\section{Geometrical-optics description}
+\subsection{Step-index (SI) waveguides}
+	\begin{wrapfigure}[7]{l}{6cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch1/image1.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Dans un premier temps, on va seulement considérer la cas à deux dimensions : 
+la lumière se propage dans un plan ($xy$ pour les guides plans, $rz$ pour les cylindriques). 
+Pour l'instant, considérons $b$ comme étant infini. Généralement, le cœur mesure 9-10 microns
+alors que la gaine est de 125 microns (vient ensuite le coating pour éviter les microcourbures).\\
+
+	\begin{wrapfigure}[11]{r}{7cm}
+	\vspace{-9mm}
+	\includegraphics[scale=0.6]{ch1/image2.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Effectuons une coupe dans le plan $rz$ de la fibre. En optique géométrique, il faut que la dimension physique dans laquelle la lumière se propage soit plus grand que la longueur d'onde. Autrement dit
+\begin{equation}
+\lambda \ll a,b
+\end{equation}
+Ceci est nécessaire afin de pouvoir modéliser la propagation par des rayons. Nous faisons l'hypothèse
+que le cœur et la gaine sont des diélectriques homogènes\footnote{Utiliser un conducteur n'a pas de sens
+: mouvement des charges libres, effets joule, \dots} où l'on suppose $n_1>n_2$, les indices de
+réfractions du cœur et de la gaine. Nous verrons plus tard qu'il s'agit en fait d'une condition
+nécessaire. Nous ferons aussi l'hypothèse d'un milieu sans pertes et invariant pour une translation
+selon $z$ (pas de courbures).\\
+
+La loi de Snell-Descartes exprime le changement de direction d'un faisceau lors de la traversée
+d'une paroi. Chaque milieu à une capacité à "ralentir" la lumière, caractérisé par son indice
+de réfraction $n\equiv c/v$
+\begin{equation}
+n_1 \sin\theta_1=n_2 \sin\theta_2
+\end{equation}
+Si $n_1>n_2$, le faisceau réfracté se rapproche plus rapidement du dioptre : le rayon est élevé alors
+que dans le cas contraire, il est "rabattu". Dans le premier cas, le rayon peut remonter jusqu'à
+l'horizontale $(\pi/2)$. Au dessus de cet angle, il sera totalement réfléchi : c'est le phénomène
+de réflexion totale\footnote{Pour l'histoire, ceci explique pourquoi un diamant ne brille pas dans
+l'eau.}\\
+
+
+	\begin{wrapfigure}[9]{r}{7.5cm}
+	\vspace{-9mm}
+	\includegraphics[scale=0.6]{ch1/image3.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Considérons le rayon vert ci-contre. Initialement dans l'air, il rencontre l'interface air-verre ($
+n_1$) ou il y a des réflexions. Ensuite, il rencontre l'interface cœur-gaine où on observe un 
+phénomène de réflexion partielle et de réfraction. Il est possible d'avoir une \textbf{réflexion
+totale} si le rayon a une incidence assez rasante et si $n_1>n_2$.\\
+
+Regardons le cas particulier d'un angle critique (rouge). En appliquant la loi de S-D, on trouve
+\begin{equation}
+\left.\begin{array}{ll}
+{n_0}\sin {\theta _i} &= {n_1}\sin {\theta _r}\\
+{n_0}\sin {\theta _{ic}} &= \sin {\theta _{ic}} = {n_1}\sin {\theta _{rc}} = {n_1}\cos {\Phi _c}\\
+{n_1}\sin {\Phi _c} &= {n_2}\sin \frac{\pi }{2} = {n_2}
+\end{array}\right\}\cos {\Phi _c} = \sqrt {1 - {{\sin }^2}{\Phi _c}} = \sqrt {1 - {{\left( {{{{n_2}} \mathord{\left/
+ {\vphantom {{{n_2}} {{n_1}}}} \right.
+ \kern-\nulldelimiterspace} {{n_1}}}} \right)}^2}}
+\end{equation}
+où la première ligne correspond à l'interface air-cœur et la dernière au cas de réflexion totale. On 
+peut ainsi trouver une expression pour l'angle critique. \\
+
+\cadre{Le rayon sera guidé si\begin{equation}
+\Phi  > {\Phi _c}
+\end{equation}}\ \\
+
+\begin{wrapfigure}[6]{l}{7.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.6]{ch1/image4.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+L'\textbf{ouverture numérique} renseigne le "cône d'acceptance" des rayons, afin que ceux-ci soient
+guidés. Par définition
+\begin{equation}
+NA \buildrel \Delta \over = {n_0}\sin {\theta _{ic}} = {n_1}\sqrt {1 - {{\left( {{{{n_2}} \mathord{\left/
+ {\vphantom {{{n_2}} {{n_1}}}} \right.
+ \kern-\nulldelimiterspace} {{n_1}}}} \right)}^2}}  = \sqrt {{n_1}^2 - {n_2}^2} 
+\end{equation}
+Souvent on retrouve cette information dans les data-sheet pas pas $n_1$ et $n_2$, car l'AN est plus
+facile à mesurer. On utilise souvent l'\textbf{indice de réfraction normalisé} $\Delta n \buildrel \Delta \over = {{\left( {{n_1} - {n_2}} \right)} \mathord{\left/
+ {\vphantom {{\left( {{n_1} - {n_2}} \right)} {{n_1}}}} \right.
+ \kern-\nulldelimiterspace} {{n_1}}}$ ainsi que l'indice de réfraction moyen $\bar n \buildrel \Delta \over = {{\left( {{n_1} + {n_2}} \right)} \mathord{\left/
+ {\vphantom {{\left( {{n_1} + {n_2}} \right)} 2}} \right.
+ \kern-\nulldelimiterspace} 2}$.\\
+ 
+En pratique, on rencontre souvent un guidage dit faible : l'angle d'incidence est très proche de 
+$90^\circ $ et on dit alors que $n_1\approx n_2$. Plus l'AN est grande, plus la propagation sera rapide. Un ordre de grandeur usuel pour celle-ci est de 0.2.
+
+\subsubsection{Multipath dispersion (or Modal dispersion)}
+
+\begin{wrapfigure}[8]{r}{4.5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.34]{ch1/image5.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Le problème c'est qu'un rayon qui se propage sur l'axe ne va pas faire le même parcours que 
+celui qui fait des zigzag. La vitesse de groupe est la même, mais il y aura un délai associé 
+à cette différence de chemin entre les deux. Pour calculer ce délai, on s'intéresse à la différence
+de chemin $\delta l$ entre les deux rayons (rouge et vert) à l'aide d'un joli triangle rectangle
+\begin{equation}
+\delta l = {L_v} - {L_r} = {L_r}\left( {{1 \mathord{\left/
+ {\vphantom {1 {\sin {\Phi _c}}}} \right.
+ \kern-\nulldelimiterspace} {\sin {\Phi _c}}}} \right) - {L_r} = {L_r}\left[ {\left( {{{{n_1}} \mathord{\left/
+ {\vphantom {{{n_1}} {{n_2}}}} \right.
+ \kern-\nulldelimiterspace} {{n_2}}}} \right) - 1} \right]
+\end{equation}
+Il faut ensuite sommer ceci sur la longueur $L$ de la fibre 
+\begin{equation}
+\Delta L = \sum {\delta l}  = L\left[ {\left( {{{{n_1}} \mathord{\left/
+{\vphantom {{{n_1}} {{n_2}}}} \right.
+\kern-\nulldelimiterspace} {{n_2}}}} \right) - 1} \right]
+\end{equation}
+En supposant que la vitesse de phase $(c/n)$ vaut à peu près la vitesse de groupe, on trouve
+\begin{equation}
+\Delta t = \frac{{\Delta L}}{{{c \mathord{\left/
+ {\vphantom {c {{n_1}}}} \right.
+ \kern-\nulldelimiterspace} {{n_1}}}}} = \frac{L}{c}{n_1}\left[ {{{\left( {{n_1} - {n_2}} \right)} \mathord{\left/
+ {\vphantom {{\left( {{n_1} - {n_2}} \right)} {{n_2}}}} \right.
+ \kern-\nulldelimiterspace} {{n_2}}}} \right] = \frac{L}{c}{n_1}\left[ {{{\left( {{n_1}\Delta n} \right)} \mathord{\left/
+ {\vphantom {{\left( {{n_1}\Delta n} \right)} {{n_2}}}} \right.
+ \kern-\nulldelimiterspace} {{n_2}}}} \right]
+\end{equation}
+où encore
+\begin{equation}
+\Delta t = \frac{L}{c}\Delta n\frac{{{n_1}^2}}{{{n_2}}}
+\end{equation}
+Une grande AN ($\propto \sqrt{\Delta n})$ facilité l'injection dans la lumière, mais un grand $\Delta t$ $(\propto\Delta n)$ limite le taux de bit.
+
+\begin{center}
+	\includegraphics[scale=0.4]{ch1/image6.png}
+	\captionof{figure}{ }
+\end{center}
+
+S'il y a une différence de vitesse de groupe, l'information va avoir tendance à s'étaler dans le 
+temps. Les flancs vont alors s'étaler et il ne sera plus disponible de distinguer 0 et 1. Il faut que
+cette dispersion temporelle soit inférieure au temps d'un bit : $\Delta t < T_B = 1/B$. Dès lors, 
+$B\Delta t < 1 \Leftrightarrow B\frac{L}{c}{n_1}\left[ {{{\left( {{n_1}\Delta n} \right)} \mathord{\left/
+ {\vphantom {{\left( {{n_1}\Delta n} \right)} {{n_2}}}} \right.
+ \kern-\nulldelimiterspace} {{n_2}}}} \right] < 1$. On en tire (sous l'hypothèse que la taille du 
+ cœur est grande par rapport à $\lambda$\\
+ 
+ \cadre{\begin{equation}
+ BL < \frac{c}{{\Delta n}}\frac{{{n_2}}}{{n_1^2}}
+ \end{equation}}\ \\
+ 
+Le produit $BL$ est donc bien un paramètre important pour une fibre. Celui-ci nous informe qu'un
+signal de 200Mbits/s ne peut être transmis que sur une distance de 100m pour une fibre Si multimode. 
+
+\newpage
+\subsection{Graded-index (GI) fibers}
+Pour réduire le délai entre les rayons guidés, on peut utiliser des fibres à \textbf{gradient} 
+d'indice. L'indice change dans le cœur : élevé au centre (ralenti les rayons) et diminue ensuite 
+(ralentis un peu moins les rayons)\footnote{Voir notes slides 10 et 11 pour plus de détails.}. 
+
+\begin{center}
+	\includegraphics[scale=0.5]{ch1/image8.png}
+	\captionof{figure}{ }
+\end{center}
+
+\begin{center}
+	\includegraphics[scale=0.5]{ch1/image9.png}
+	\captionof{figure}{ }
+\end{center}
+
+
+\subsubsection{Limitations of the simple two-dimensional geometrical optics description:}
+
+\begin{wrapfigure}[5]{r}{8cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.45]{ch1/image7.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Jusqu'ici nous avons considérer que les rayons se situent uniquement dans des plans $xz/rz$. Or, 
+certains rayons peuvent être obliques, hélicoïdaux, \dots\ De plus, que se passe-t-il si le 
+cœur a une dimension proche de la longueur d'onde ? Il faut une approche EM!
+
+\section{Electromagnetic analysis – Fields and modes}
+\subsection{Step-index planar waveguides}
+
+\begin{wrapfigure}[8]{r}{7cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.4]{ch1/image10.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+Nous allons commencer par le cas d'un guide d'onde plan. L'idée est de résoudre les équations de 
+Maxwell afin de trouver une solution qui satisfait aux conditions limites, continuité, \dots\ soit 
+un problème aux valeurs propres d'un certain opérateur différentiel (le propagateur) agissant sur un 
+champ.\\
+
+Nous allons faire plusieurs hypothèses
+\begin{enumerate}
+\item Matériau simple : diélectrique, non magnétique, linéaire, isotropique et sans perte. En gros,
+juste $n_1$ et $n_2$ à prendre en compte.
+\item Homogène : toujours $n_1$ dans le cœur et $n_2$ dans la gaine
+\item Symétrique en $x$ et indépendant en $y,z$ : même matériau pour les deux gaines.
+\item La dimension de la gaine ($2b$) est très grande par rapport à celle du cœur ($2a$) : on ne doit
+pas se préoccuper de l'interface gaine-coatting.
+\end{enumerate}\ 
+
+Nous n'avons ici fait \textbf{aucune} hypothèse sur la taille du cœur, contrairement à l'approche
+géométrique. Il peut être très petit ou très grand mais en pratique, il vaut typiquement, $2a \leq 50\
+ \mu$m.\\
+ 
+
+Le point de départ est bien évidemment les équations de Maxwell. Pour un diélectrique non magnétique
+\begin{equation}
+\nabla  \times \vec{E} =  - \frac{{\partial  \vec{B}}}{{\partial t}},\qquad
+\nabla  \times \vec{H} = \frac{{\partial \vec{D}}}{{\partial t}}, \qquad
+\nabla .\vec{D} = 0,\qquad
+\nabla .\vec{B} = 0
+\end{equation} 
+L'interaction entre la champ EM et le diélectrique trouve son origine dans le champ de densité de 
+polarisation $\vec{P}$ qui prend en compte l'indice de réfraction est les pertes. La polarisation 
+doit être non nulle, sans quoi on décrirait le vide.
+\begin{equation}
+\vec B = \mu_0\vec{H},\qquad\qquad\qquad \vec{D} = \epsilon_0\vec{E}+\vec{P}
+\end{equation}
+Le champ de densité de polarisation s'obtient par la convolution entre le champ $\vec{E}$ et la
+\textbf{susceptibilité électrique}
+\begin{equation}
+\vec{P}\left( {{\bf{r}},t} \right) = {\varepsilon _0}\int_{ - \infty }^{ + \infty } {\chi \left( {{\bf{r}},t - t'} \right)}  \vdots \vec{E}\left( {{\bf{r}},t'} \right)dt'
+\end{equation}
+Le système sera ainsi linéaire en $\vec{E}$ et permanent. La susceptibilité est en réalité un 
+tenseur de second rang. Heureusement la fibre ne présente pas de biréfringeance (le verre étant 
+amorphe, cette hypothèse est bien vérifiée), elle est même isotrope : la susceptibilité se ramène 
+à un scalaire. Notons que notre système est bien causal. La convolution temporelle se traite plus
+facilement dans le domaine fréquentiel. De plus, le système étant linéaire, il suffira de sommer 
+sur toutes les fréquences. On définit la transformée de Fourier avec la convention suivante\footnote{En optique, on utilise souvent $-i\omega t$ alors qu'en électronique on voit $+j\omega t$. Cela ne change rien, il suffit de changer $j\to -i$.}
+\begin{equation}
+\vec{E}\left( {{\bf{r}},t} \right) = \int_{ - \infty }^{ + \infty } {\vec{\tilde E}\left( {{\bf{r}},\omega } \right)\exp (j\omega t)d\omega } 
+\end{equation}
+Le champ électrique étant réel, on ne considèrera que les $\omega >0$
+\begin{equation}
+\vec{E}{\rm{(}}t{\rm{)}} = \vec{A}{\rm{(}}t{\rm{)cos(}}{\omega _0}t + \varphi {\rm{(}}t{\rm{))}}
+ = \frac{1}{2}\vec{A}{\rm{(}}t{\rm{)[}}{{\rm{e}}^{j{\rm{(}}{\omega _0}t + \varphi {\rm{(}}t{\rm{))}}}} + c.c{\rm{]}} = \frac{1}{2}{\rm{[}}E{\rm{(}}t{\rm{)}} + {E^*}{\rm{(}}t{\rm{)]}}
+\end{equation}
+On utilisera $E(t)$ pour décrire le champ électrique et $\vec{E}{\rm{(}}t{\rm{)}} = Re{\rm{[}}E{\rm{(}}t{\rm{)]}}$. On en tire
+\begin{equation}
+\tilde P\left( {r,\omega } \right) = {\varepsilon _0}\tilde \chi \left( {r,\omega } \right)\tilde E\left( {r,\omega } \right)
+\end{equation}
+Le terme de l'équation de Maxwell
+\begin{equation}
+\nabla  \times \nabla  \times \vec{E} =  - \frac{1}{{{c^2}}}\frac{{{\partial ^2}\vec{E}}}{{\partial {t^2}}} - {\mu _0}\frac{{{\partial ^2}\vec{P}}}{{\partial {t^2}}}
+\end{equation}
+S'écrit alors, dans le domaine fréquentiel
+\begin{equation}
+\nabla  \times \nabla  \times \tilde E = \left( {1 + \tilde \chi } \right)\frac{{{\omega ^2}}}{{{c^2}}}\tilde E = \kappa \left( {r,\omega } \right)\frac{{{\omega ^2}}}{{{c^2}}}\tilde E
+\end{equation}
+
+
+\begin{wrapfigure}[8]{r}{5cm}
+	\vspace{-5mm}
+	\includegraphics[scale=0.8]{ch1/image11.png}
+	\captionof{figure}{ }
+	\end{wrapfigure}
+où l'on a introduit la \textbf{constante diélectrique}
+\begin{equation}
+\kappa \left( {r,\omega } \right) = 1 + \tilde \chi \left( {r,\omega } \right) = {(n - j\alpha c/2\omega )^2} \approx {n^2}
+\end{equation}
+L'atténuation étant négligeable, $\kappa$ sera réel. Le milieu étant homogène dans le
+cœur et la gaine
+\begin{equation}
+\nabla  \times \nabla  \times {\bf{\tilde E}} = \nabla \left( {\nabla  \cdot {\bf{\tilde E}}} \right) - \Delta {\bf{\tilde E}} =  - \Delta {\bf{\tilde E}}
+\end{equation}
+Notons que $\kappa$ sera différent dans le cœur et dans la gaine. On trouve alors six équations (identiques pour $\tilde{H}$) équations\\
+
+\cadre{\textsc{Equation d'Helmotz}\begin{equation}
+\Delta {\bf{\tilde E}} + \kappa \left( \omega  \right)\frac{{{\omega ^2}}}{{{c^2}}}{\bf{\tilde E}} = 0\qquad\qquad\qquad
+\Delta \tilde H + \kappa \left( \omega  \right)\frac{{{\omega ^2}}}{{{c^2}}}\tilde H = 0
+\end{equation}
+où $\kappa_{core}\neq\kappa_{cladding}$ où la constante diélectrique dépend de la fréquence et où
+\begin{equation}
+{\kappa _j}\left( \omega  \right)\frac{{{\omega ^2}}}{{{c^2}}} = {n_j}^2\left( \omega  \right)\frac{{{\omega ^2}}}{{{c^2}}} = {n_j}^2\left( \omega  \right){\left( {\frac{{2\pi }}{{{\lambda _0}}}} \right)^2} = {n_j}^2\left( \omega  \right)k_0^2
+\end{equation}
+avec $j=1$ pour le cœur et $j=2$ pour la gaine.}\ \\
+
+Nous avons donc six équations couplées. Heureusement, seulement deux sont indépendantes : il ne 
+faudra résoudre que ces deux-là
+\begin{equation}
+{\tilde E_y} = {\tilde E_y}({\tilde E_x},{\tilde H_x})\qquad\qquad
+{\tilde H_y} = {\tilde H_y}({\tilde E_x},{\tilde H_x})\qquad\qquad
+{\tilde E_z} = {\tilde E_z}({\tilde E_x},{\tilde H_x})\qquad\qquad
+{\tilde H_z} = {\tilde H_z}({\tilde E_x},{\tilde H_x})
+\end{equation}
+
+Le schéma de résolution sera alors le suivant
+\begin{enumerate}
+\item Tenir compte des symétries de la structure en $(x,y,z)$
+\item Séparer le problème pour chaque milieu homogène (cœur et gaine)
+\item Appliquer les CL aux interfaces cœur-gaine pour trouver les modes guidés.
+\begin{itemize}
+\item[$\bullet$] Il faut aussi avoir la continuité des composantes tangentielle de $\vec{E}$ et 
+$\vec{E}$ ainsi que les composantes normales de $\vec{B}$ et $\vec{D}$.
+\end{itemize}
+\item Construire la solution générale (équation linéaire)
+\end{enumerate}\ 
+
+La solution générale d'un champ EM dans un guide d'onde est la suivante (idem pour $\tilde{H}$)
+\begin{equation}
+\tilde E(x,y,z,\omega ) = \sum\limits_m {\left[ {{a_m}{{\tilde E}_m}(x,y,z,\omega ) + {a_{ - m}}{{\tilde E}_{ - m}}(x,y,z,\omega )} \right] + {{\tilde E}_{{\rm{rad}}}}(x,y,z,\omega )} 
+\end{equation}
+où le premier terme sont les modes progressif, la second les régressif et le dernier, le champ 
+radiés (négligeable). 
+
+\subsubsection{Étape 1 : Symétries}
+Basé sur les symétries, nous allons chercher par la méthode de séparation des variables une solution
+de la forme
+\begin{equation}
+{E_x}(x,y,z,t) = {\tilde E_x}(x,y,z,\omega )\exp (j\omega t) = {E_x}(x).Y(y).Z(z).\exp (j\omega t)
+\end{equation}
+et de même pour $H_x$. Nous pouvons procéder à une telle résolution par symétrie de translation en $y,
+z$ et dans le temps. Si nous avions un guide plan rectangulaire entouré d'une gaine optique, nous
+aurions une seule fonction en $z$, une en $t$ mais également une en $x$ et $y$ ! \\
+
+Nous avons donc
+\begin{equation}
+\frac{1}{{{{\rm{E}}_x}}}\frac{{{d^2}{{\rm{E}}_x}}}{{d{x^2}}} + \frac{{{\omega ^2}}}{{{c^2}}}\kappa (\omega ,x) + \frac{1}{{\rm{Y}}}\frac{{{d^2}Y}}{{d{y^2}}} + \frac{1}{{\rm{Z}}}\frac{{{d^2}Z}}{{d{z^2}}} = 0
+\end{equation}
+En $Y$ et $Z$, nous pouvons avoir des solutions exponentielles, sinus, cosinus, sinh et cosh. Il faut
+comprendre l'invariance en translation en terme de densité de photon. Comme celui-ci contient un 
+module carré, il faut choisir la solution en exponentielles imaginaires. Ceci signifie que les 
+"constantes" que vaut ces termes doit être négative. On en tire pour $Y$
+\begin{equation}
+\frac{1}{{\rm{Y}}}\frac{{{d^2}Y}}{{d{y^2}}} =  - {\gamma ^2}\qquad\qquad\Rightarrow\qquad\qquad
+{\rm{Y(}}y{\rm{)}} = {e^{ - j\gamma y}}
+\end{equation}
+où $\gamma\in\mathbb{R}$. Pour $Z$
+\begin{equation}
+\frac{1}{{\rm{Z}}}\frac{{{d^2}Z}}{{d{z^2}}} =  - {\beta ^2} \qquad\qquad\Rightarrow\qquad\qquad
+{\rm{Z(}}z{\rm{)}} = {e^{ - j\beta z}}
+\end{equation}
+où $\beta\in\mathbb{R}$. L'équation à résoudre devient alors
+\begin{equation}
+\frac{{{d^2}{{\rm{E}}_x}}}{{d{x^2}}} + \left[ {\frac{{{\omega ^2}}}{{{c^2}}}\kappa (\omega ,x) - {\beta ^2} - {\gamma ^2}} \right]{{\rm{E}}_x} = 0\qquad\qquad
+\frac{{{d^2}{{\rm{H}}_x}}}{{d{x^2}}} + \left[ {\frac{{{\omega ^2}}}{{{c^2}}}\kappa (\omega ,x) - {\beta ^2} - {\gamma ^2}} \right]{{\rm{H}}_x} = 0
+\end{equation}
+Celles-ci possèdent comme solutions
+\begin{equation}
+{E_x} = {{\rm{E}}_x}(x)\exp (j[\omega t - \beta z - \gamma y])\qquad\qquad
+{H_x} = {{\rm{H}}_x}(x)\exp [j(\omega t - \beta z - \gamma y)]
+\end{equation}
+où $E_x(x)$ et $H_x(x)$ sont à déterminer. Comme $E$ et $H$ ont un module indépendant de $y,z$ et 
+$t$, ces solutions sont les \textbf{modes du guide d'onde}.\\
+
+Il existe deux types de solutions pour un guide plan
+\begin{description}
+\item[Mode TE] Le champ électrique est hors du plan, quelque soit la réflexion et la polarisation. 
+De même pour le champ magnétique. On parle de \textit{transverse électrique} car l'énergie se propage
+dans la direction $z$ et non $k$ : la projection de $E$ sur $z$ est nulle.
+\item[Mode TM] Ici la projection de $E$ sur $z$ est non-nulle. Le champ n'est pas ici perpendiculaire à la direction de propagation. En guidage faible, l'angle est proche de $90^\circ$ et la composante
+en $z$ est très petite mais non-nulle.
+\end{description}
+
+\begin{center}
+	\includegraphics[scale=0.75]{ch1/image12.png}
+	\captionof{figure}{ }
+\end{center}
+
+
+Nous allons considérer le mode TE\footnote{Je comprends pas trop pourquoi on fait ça ici.} tel que $E_x=0$. Les équations de Maxwell deviennent (voir Annexes)
+\begin{equation}
+{E_y} =  - \frac{{\beta {\rm{ }}\omega {\rm{ }}{\mu _0}}}{{{\gamma ^2} + {\beta ^2}}}{\rm{ }}{H_x}\qquad
+{E_z} =  - \frac{{\gamma {\rm{ }}\omega {\rm{ }}{\mu _0}}}{{{\gamma ^2} + {\beta ^2}}}{\rm{ }}{H_x}\qquad
+{H_y} =  - j\frac{\gamma }{{{\gamma ^2} + {\beta ^2}}}{\rm{ }}\frac{d}{{dx}}{H_x}\qquad
+{H_z} =  - j\frac{\beta }{{{\gamma ^2} + {\beta ^2}}}{\rm{ }}\frac{d}{{dx}}{H_x}
+\end{equation}
+Une onde dans un guide infini est équivalent à une onde plane : pas de profil en $Y$ ou $Z$. On peut
+alors définir $Z$ comme la direction dans laquelle se propage ce qui signifie que $\gamma=0$ car 
+aucune phase n'est accumulée dans cette direction. Dès lors, $E_x=E_z=0$ (TE) et $H_y=0$)
+\begin{equation}
+{H_x} =  - \frac{{\beta {\rm{ }}}}{{\omega {\rm{ }}{\mu _0}}}{\rm{ }}{E_y},\qquad\qquad
+{H_z} = \frac{{ - j}}{\beta }{\rm{ }}\frac{d}{{dx}}{H_x} = \frac{j}{{\omega {\rm{ }}{\mu _0}}}\frac{d}{{dx}}{E_y}
+\end{equation}
+où
+\begin{equation}
+\frac{{{d^2}{{\rm{E}}_y}}}{{d{x^2}}} + \left[ {\frac{{{\omega ^2}}}{{{c^2}}}{\kappa _j}(x) - {\beta ^2}} \right]{{\rm{E}}_y} = 0
+\end{equation}
+Faisons de même pour $H_x=0$. Nous avons $H_x=H_z=0$ (TM) et $E_y=0$ :
+\begin{equation}
+{E_x} = \frac{{\beta {\rm{ }}}}{{\omega {\rm{ }}{\varepsilon _0}{\rm{ }}\kappa }}{\rm{ }}{H_y}\qquad\qquad
+{E_z} = \frac{{ - j}}{{\omega {\rm{ }}{\varepsilon _0}{\rm{ }}\kappa }}{\rm{ }}\frac{d}{{dx}}{H_y}
+\end{equation}
+où
+\begin{equation}
+\frac{{{d^2}{{\rm{H}}_y}}}{{d{x^2}}} + \left[ {\frac{{{\omega ^2}}}{{{c^2}}}{\kappa _j}(x) - {\beta ^2}} \right]{{\rm{H}}_y} = 0
+\end{equation}
+
+\cadre{\begin{center}
+Un champ EM solution des équations de Maxwell dans un guide plan est une ainsi une \textbf{
+combinaison linéaire} des modes TE et TM du guide d'onde.
+\end{center}}\ \\
+
+
+\subsubsection{Étape 2 : Résolution par milieu homogène}
+Le guide d'onde est symétrique $\kappa(x)=\kappa(-x)$. L'intensité, proportionnelle au module carré 
+$|E|^2$ est aussi symétrique. Les modes doivent alors être pairs ou impairs.\\
+
+Intéressons-nous aux modes TE avec $\gamma=0$
+\begin{equation}
+\frac{{{d^2}{{\rm{E}}_y}}}{{d{x^2}}} + \left[ {\frac{{{\omega ^2}}}{{{c^2}}}{\kappa _j}(x) - {\beta ^2}} \right]{{\rm{E}}_y} = 0
+\end{equation}
+et plus particulièrement au cas où $E_y$ est symétrique (fonction paire de $x$). Il faut trouver une
+solution symétrique satisfaisant les CL Dans la gaine $(|x|>a)$, nous voulons une atténuation afin d'avoir un maximum d'énergie dans le cœur
+\begin{equation}
+{{\rm{E}}_y} = {{\rm{A}}_{{\rm{sym}}}}\cos (\sigma a).\exp \left[ { - \xi (x - a)} \right]
+\end{equation}
+Dans le coeur $(|x|\leq a)$ nous pouvons avoir un cos ou un cosh. La seule solution acceptable est 
+$\cos$ car elle respecte la continuité de la dérivée première\footnote{$H_z$ doit être continue et
+elle dépend de la dérivée de $E_y$ par rapport à $x$.}
+\begin{equation}
+{{\rm{E}}_y} = {{\rm{A}}_{{\rm{sym}}}}\cos (\sigma x)
+\end{equation}
+La seule solution possible est un cos dans le cœur et une exponentielle décroissante dans la gaine. 
+La continuité de $E_y$ en $x=a$ est alors vérifiée. 
+\begin{center}
+	\includegraphics[scale=0.75]{ch1/image13.png}
+	\captionof{figure}{ }
+\end{center}
+
+Dans les précédentes équations, nous avons posé
+\begin{equation}
+{\sigma ^2} = \frac{{{\omega ^2}}}{{{c^2}}}{\kappa _1} - {\beta ^2} = k_0^2n_1^2 - {\beta ^2}
+\end{equation}
+et
+\begin{equation}
+{\xi ^2} = {\beta ^2} - \frac{{{\omega ^2}}}{{{c^2}}}{\kappa _2} = {\beta ^2} - k_0^2n_2^2
+\end{equation}
+Quels sont les signes de $\sigma^2$ et $\xi^2$ ? 
+\begin{itemize}
+\item[$\bullet$] ${\sigma ^2} = k_0^2n_1^2 - {\beta ^2} > 0$ : $\sigma$ doit être réel pour 
+satisfaire les CL
+\item[$\bullet$] ${\xi ^2} = {\beta ^2} - k_0^2n_2^2 > 0$ : $\xi$ est réel. S'il est positif, on a
+bien une décroissance exponentielle dans la gaine
+\begin{equation}
+\text{Mode quidé}\qquad\Leftrightarrow\qquad \beta > n_2k_0
+\end{equation}
+\item[$\bullet$] ${\xi ^2} = {\beta ^2} - k_0^2n_2^2 < 0$ : $\xi$ est imaginaire : oscillation 
+dans la gaine
+\begin{equation}
+\text{Mode faible}\qquad\Leftrightarrow\qquad \beta^2> n_2^2k_0^2
+\end{equation}
+\end{itemize}\
+
+Compte-tenu des conclusions ci-dessus, nousnaurons un mode quidé que si\\
+
+\cadre{\textsc{Mode guidé si }\begin{equation}
+n_nk_0>\beta > n_2k_0\qquad\Leftrightarrow\qquad n_1>n_2
+\end{equation}}\ \\
+
+Il s'agit bien ici d'un résultat, et non quelque chose que nous avons imposé comme c'était le cas
+dans l'optique géométrique.
+
+
+
+
+
+
+
+
+
+
+
+
+
